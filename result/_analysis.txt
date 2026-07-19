@@ -1,0 +1,121 @@
+=== SELF CORRECTED (math) samples ===
+--- eval_gsm8k_0157 ---
+verifier_detail: Dap so sai: model dua ra '2440', dung phai la '80'
+thinking: 
+phat_hien_loi: 
+nguyen_nhan: 
+correction_text RAW (first 800 chars): <thinking>
+The user wants me to analyze a wrong solution, identify the error, explain the reasoning, and provide a corrected solution. Let me look at the problem carefully:
+
+Blake runs 15 times back and forth on a 100-yard field.
+Kelly runs from the start to the 40-yard line and back 34 times.
+
+Blake's distance per trip = 2 × 100 = 200 yards
+Blake's total distance = 15 × 200 = 3000 yards
+
+Kelly's distance per trip = 2 × 40 = 80 yards
+Kelly's total distance = 34 × 80 = 2720 yards
+
+Wait, the problem asks "How much farther does the winner run than the loser?" The winner is Kelly, since 2720 > 3000.
+The difference = 2720 - 3000 = -280, but since we're looking for how much farther, we take the absolute value = 280 yards.
+
+But the verifier says the answer should be 80 yards.
+
+Let me re-read the 
+
+--- eval_gsm8k_0164 ---
+verifier_detail: Dap so sai: model dua ra '-15', dung phai la '15'
+thinking: 
+phat_hien_loi: 
+nguyen_nhan: 
+correction_text RAW (first 800 chars): <thinking>
+The problem asks: "Jackie is trying to decide whether to do her taxes herself or hire an accountant. If she does the taxes herself, she'll be able to do 3 fewer hours of freelance work, losing $35/hour in missed income. The accountant charges $90. How much more money will she have if she hires the accountant?"
+
+Let's analyze:
+
+- If Jackie does the taxes herself:
+  - She loses 3 hours of freelance work.
+  - Lost income = 3 hours * $35/hour = $105.
+
+- If Jackie hires an accountant:
+  - She pays $90.
+
+Now, we need to compare these two scenarios to see how much more money she has with the accountant.
+
+- Without accountant: Lost $105 in income.
+- With accountant: Pays $90 for service.
+
+So, if she hires the accountant:
+- Total loss = $105 (lost income) - $90 (accountant fee) = $15 les
+
+--- eval_gsm8k_0166 ---
+verifier_detail: Loi parse bieu thuc: invalid syntax (<string>, line 1)
+thinking: The problem is about calculating how many times Sandra needs to babysit to get enough eggs to make 15 Spanish flans.
+
+- Each flan needs 3 eggs.
+- Sandra gets 9 eggs each time she babysits.
+- She needs 15 flans.
+
+So, total eggs needed = 15 flans * 3 eggs/flan = 45 eggs.
+
+Then, number of babysitting sessions needed = 45 eggs / 9 eggs/session = 5 sessions.
+
+The answer should be 5.
+
+The student's solution says "Đáp số: 5" which is correct mathematically. But the verifier error is "Loi parse bieu thu
+phat_hien_loi: Dòng đầu tiên của JSON trả về từ học sinh là `"Đáp số: 5"`. Dòng này chứa ký tự `:` và không phải là giá trị số nguyên hoặc số thực đơn thuần mà chương trình kiểm tra kỳ vọng. Chương trình kiểm tra sử dụng cú pháp `eval` hoặc `ast.literal_eval` để parse giá trị trả về từ học sinh thành một biểu thức
+nguyen_nhan: Nguyên nhân gốc là học sinh đã viết đáp án dưới dạng chuỗi văn bản `"Đáp số: 5"` thay vì chỉ viết số nguyên `5`. Khi chương trình kiểm tra gọi `eval("Đáp số: 5")` hoặc `ast.literal_eval("Đáp số: 5")`, Python không thể parse chuỗi này thành một biểu thức toán học hợp lệ do có dấu phẩy (:) và không ph
+correction_text RAW (first 800 chars): <thinking>
+The problem is about calculating how many times Sandra needs to babysit to get enough eggs to make 15 Spanish flans.
+
+- Each flan needs 3 eggs.
+- Sandra gets 9 eggs each time she babysits.
+- She needs 15 flans.
+
+So, total eggs needed = 15 flans * 3 eggs/flan = 45 eggs.
+
+Then, number of babysitting sessions needed = 45 eggs / 9 eggs/session = 5 sessions.
+
+The answer should be 5.
+
+The student's solution says "Đáp số: 5" which is correct mathematically. But the verifier error is "Loi parse bieu thuc: invalid syntax (<string>, line 1)". This means the verifier tried to parse something (possibly the JSON response) as a Python expression and failed because of a syntax error. The JSON response contains "Đáp số: 5", which might be causing the parsing issue if the verifier expects a spec
+
+--- eval_gsm8k_0169 ---
+verifier_detail: Dap so sai: model dua ra '130', dung phai la '120'
+thinking: The user wants me to analyze a wrong solution, identify the error, and provide a corrected solution.
+
+Let me look at the problem:
+Pancho walks 20 miles a day except on weekends when he walks 10 miles. How many miles does he walk in a week?
+
+The student's solution:
+- Weekdays: 6 days × 20 miles/day = 120 miles
+- Weekend: 1 day × 10 miles/day = 10 miles
+- Total: 120 + 10 = 130 miles
+
+But the verifier says the correct answer is 120 miles.
+
+Wait, let me think about this carefully. If Pancho walks 20
+phat_hien_loi: Bước 1: Xác định số ngày trong tuần mà Pancho đi bộ.
+- Học sinh viết: "Có 7 ngày trong tuần."
+- SAI: Pancho đi bộ mỗi ngày trong tuần (bạn không nói cụ thể nhưng thông thường trong bối cảnh toán học này, nếu không đề cập đến ngày nghỉ thì ta giả định anh ấy đi bộ mỗi ngày trong tuần). Tuy nhiên, khi
+nguyen_nhan: Nguyên nhân gốc là học sinh đã nhầm lẫn về số ngày trong tuần. Đề bài nói "Pancho walks 20 miles a day. Except on weekends when he walks 10 miles." — tức là anh ấy đi 20 miles mỗi ngày trừ khi là ngày cuối tuần. Nếu không phải cuối tuần thì anh ấy đi 20 miles mỗi ngày. Do có 7 ngày trong tuần và 2 n
+correction_text RAW (first 800 chars): <thinking>
+The user wants me to analyze a wrong solution, identify the error, and provide a corrected solution.
+
+Let me look at the problem:
+Pancho walks 20 miles a day except on weekends when he walks 10 miles. How many miles does he walk in a week?
+
+The student's solution:
+- Weekdays: 6 days × 20 miles/day = 120 miles
+- Weekend: 1 day × 10 miles/day = 10 miles
+- Total: 120 + 10 = 130 miles
+
+But the verifier says the correct answer is 120 miles.
+
+Wait, let me think about this carefully. If Pancho walks 20 miles a day except on weekends when he walks 10 miles, that means:
+- Weekdays: 5 days × 20 miles/day = 100 miles
+- Weekend: 2 days × 10 miles/day = 20 miles
+- Total: 100 + 20 = 120 miles
+
+So the student's mistake is in the weekday count. The student said there are 6 weekdays (7 total day
+

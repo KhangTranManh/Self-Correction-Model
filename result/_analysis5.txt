@@ -1,0 +1,12 @@
+===== eval_gsm8k_0155 (van sai, format hoan tat) =====
+verifier_detail: Loi parse bieu thuc: invalid syntax (<string>, line 1)
+phat_hien_loi: 
+sua_lai: 
+second_detail: Chua hoan tat dinh dang '### Sua lai' (co the bi cat vi het max_new_tokens)
+
+===== eval_gsm8k_0172 (van sai, format hoan tat) =====
+verifier_detail: Dap so sai: model dua ra '41', dung phai la '51'
+phat_hien_loi: 
+sua_lai: 
+second_detail: Chua hoan tat dinh dang '### Sua lai' (co the bi cat vi het max_new_tokens)
+

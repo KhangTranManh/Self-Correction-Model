@@ -1,0 +1,26 @@
+!apt-get update -qq && apt-get install -y -qq openssh-server > /dev/null 2>&1
+!mkdir -p /var/run/sshd /root/.ssh
+!echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIpgm9qZCl+Y8VVJg1taiVI24nAKAVncgwo9n0nKbGgz phase1-gpu-box" >> /root/.ssh/authorized_keys
+!chmod 700 /root/.ssh
+!chmod 600 /root/.ssh/authorized_keys
+!sed -i 's/#PermitRootLogin.*/PermitRootLogin yes/; s/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+!service ssh start
+!service ssh status
+
+
+
+
+
+
+
+
+
+
+
+
+
+!pip install -q pyngrok
+from pyngrok import ngrok, conf
+conf.get_default().auth_token = "2wqZ5nlVaRLrXls86Q4BCqTXovd_3NvmoeVvMprStewkCiUC3"
+tunnel = ngrok.connect(22, "tcp")
+print(tunnel.public_url)

@@ -1,0 +1,144 @@
+GIAI ĐOẠN 0: DẠY MODEL BIẾT ĐÚNG - SAI & TỰ SỬA CHỮA
+Mục tiêu giai đoạn:
+
+Model không chỉ trả lời, mà biết phân biệt đúng/sai, tự phê bình và tự sửa lỗi.
+Đây là nền tảng quan trọng nhất trước khi nạp kiến thức chuyên sâu 
+
+
+1. Điều kiện để model ổn định sau giai đoạn này
+Để giai đoạn này thành công và model ổn định, cần đạt được các điều kiện sau:
+
+Accuracy tự critique ≥ 75–80% trên tập validation (model tự đánh giá đúng lỗi của chính nó).
+Tỷ lệ sửa chữa thành công ≥ 70% (sau khi critique, model sửa được lỗi).
+Giảm hallucination rõ rệt so với trước khi train.
+Model không lặp lại lỗi trên cùng loại input sau 2–3 lần sửa.
+Độ dài phản hồi hợp lý, không quá dài dòng.
+Stable loss trong training (không bị overfitting sớm).
+
+
+2. Cách thực hiện giai đoạn này
+Bước 1: Tạo dữ liệu bằng DeepSeek V4 Pro (khoảng 800–1500 mẫu)
+Bước 2: Định dạng dataset (chat format hoặc JSONL)
+Bước 3: Fine-tune với Unsloth (SFT hoặc DPO)
+Bước 4: Đánh giá & lặp lại
+
+
+3. Rủi ro cần cân nhắc khi dạy hành vi (không phải dạy kiến thức)
+Vì mục tiêu là dạy HÀNH VI (biết sai -> tự sửa), không phải nạp kiến thức, nên khi
+đánh giá kết quả phải cân nhắc cả các khả năng sau, không chỉ nhìn con số % thô:
+
+- Rò rỉ đáp án trong lời nhắc sửa lỗi (nghiêm trọng nhất, o phan toan):
+  Nếu câu thông báo lỗi đưa cho model tự sửa có ghi thẳng đáp án đúng (vd
+  "dap so dung la 48"), model có thể học hành vi "chép lại số trong thông báo lỗi"
+  thay vì thực sự suy luận lại. % tự sửa cao ở toán có thể là GIẢ (kỹ năng
+  đọc-chép, không phải tự sửa thật). Nên đổi thông báo lỗi thành gợi ý chẩn đoán
+  (vd "sai ở bước tính X") thay vì lộ thẳng đáp án, để đo đúng kỹ năng.
+
+- Sycophancy (vâng lời quá mức): Data train hiện chỉ có case "bị báo SAI -> sửa",
+  chưa có case "bị báo SAI nhưng thực ra đang ĐÚNG -> giữ nguyên". Model có thể
+  học phản xạ "hễ bị nói sai là đổi đáp án" bất kể đúng/sai thật. Cần test thêm:
+  cố tình báo SAI cho câu model làm đúng, xem model có tự đổi thành sai không.
+
+- Học thuộc format, không học kỹ năng thật: model có thể chỉ chép khung
+  <thinking>/### Sửa lại mà không suy luận thật bên trong. Nếu tỷ lệ tự sửa
+  gần 0% thì đây là dấu hiệu rõ của tình trạng này.
+
+- Overfit trên tập nhỏ (hiện chỉ ~143 mẫu, note yêu cầu 800-1500) làm quên năng
+  lực gốc: cần so sánh tỷ lệ giải đúng lần đầu (initial_correct) của model SAU
+  train với model GỐC (chưa train) trên cùng bộ đề, để phát hiện nếu LoRA làm
+  hỏng năng lực giải bài gốc.
+
+- Chỉ test 1 vòng sửa, chưa test lặp lỗi nhiều vòng: điều kiện ở mục 1 yêu cầu
+  "không lặp lỗi sau 2-3 lần sửa", nhưng quy trình đánh giá hiện tại dừng ngay
+  sau 1 lần phản tư -- chưa biết model có tiến bộ dần qua nhiều vòng sửa hay
+  lặp lại y hệt lỗi cũ.
+
+- Verifier code có thể yếu (false positive): test case MBPP ít, code "sửa" có
+  thể pass test nhưng chưa chắc giải đúng bài toán tổng quát.
+
+- Da phat hien qua du lieu that (lan chay dau tren adapter da train): ~1/3 case
+  duoc tinh "tu sua thanh cong" thuc ra bi cat ngang giua <thinking> vi het
+  max_new_tokens (chua bao gio toi "### Sua lai"), verifier vo tinh bat trung
+  so/code nhap con dang do dang. Da sua: tach rieng max_new_tokens_correction
+  (tang len 2048, gap doi luc giai dau) + neu khong tim thay "### Sua lai" thi
+  tinh thang la chua sua duoc, KHONG fallback dung ca doan text tho de verify.
+
+
+4. Dinh huong tiep theo (da quyet dinh 2026-07-19)
+Da can nhac them huong "tu phat hien loi KHONG can goi y" (model tu ra soat bai
+lam cua chinh no ma khong duoc cho biet dung/sai truoc) -- day moi la dung y
+nghia "tu critique" (75-80%) trong muc 1, con huong dang lam hien tai ("cho biet
+loi that -> sua") chi la 1 nua cua ky nang (tuong ung chi so "ty le sua chua
+thanh cong" 70%).
+
+QUYET DINH: CHUA lam huong "tu phat hien khong goi y" ngay. Tiep tuc cung co
+huong hien tai (cho biet loi that -> sua) truoc, vi 2 ly do:
+- Rui ro hallucinate cao: khi bi yeu cau tu tim loi ma khong co moc khach quan
+  de dua vao, model de (a) tu bia ra loi khong co that o cau da dung (doi dung
+  thanh sai chi vi bi ep phai tim ra cai gi do sai), hoac (b) khong thay duoc
+  loi that o bai phuc tap vi dung lai chinh cach suy luan da gay ra loi de tu
+  kiem tra no (diem mu lap lai chinh no, khong phai co che kiem tra doc lap).
+  Day chinh la van de "LLM tu cham diem cho LLM" ma toan bo Phase 1 dang co
+  tranh (da chon dung verifier khach quan sympy/unit-test thay vi LLM judge).
+- Du lieu qua nho (143/800-1500 mau) de dua them 1 huong hoc moi (tu phat hien)
+  ma khong lam loang/hong huong dang hoc (tu sua khi duoc cho biet).
+
+Dieu kien de chuyen sang lam huong "tu phat hien khong goi y":
+  (a) huong hien tai da on dinh (ty le tu sua that ro rang tang so voi baseline,
+      khong con rui ro ro ri dap an/hallucinate da neu o muc 3),
+  (b) da scale du lieu len 800-1500 mau theo muc 2,
+  (c) neu lam, nen bat dau tu muc do goi y trung gian (vd "co the dung co the
+      sai, hay kiem tra ky" thay vi im lang hoan toan) roi moi bo dan xuong
+      khong goi y, thay vi nhay thang len no-hint tu dau.
+
+
+5. Tham khao: paper "The Self-Correction Illusion" (arXiv 2606.05976, Chen et al.
+2026 NCKU) -- ban PDF luu tai d:\AGI\2606.05976v1.pdf
+Phat hien chinh: LLM khong tu sua duoc loi trong <thought> cua chinh no KHONG
+phai vi thieu nang luc suy luan, ma vi thieu "addressability" -- khong co thoi
+quen coi 1 menh de nam trong suy nghi rieng la 1 "doi tuong" co the goi ten/bac
+bo. Dua lai byte-identical claim sai duoi role BEN NGOAI (user/tool/system
+<memory>) thay vi de no nam trong <thought> giup tang ty le tu sua 23-93 diem %,
+KHONG can train lai. Tu-audit khong goi y (giong huong da hoan o muc 4) chi dat
+0-23% -- xac nhan doc lap quyet dinh hoan o tren la dung.
+
+Doi chieu voi pipeline: _REFLECT_PROMPT_TEMPLATE dang dua verifier_detail qua
+role "user" (khong de trong <thought>) -- vo tinh da dung dung co che chinh cua
+paper. Dang thu nghiem doi role "user" -> "tool" (--reflect-role tool trong
+evaluate_self_correction.py) vi verifier_detail von la output that tu 1 tool
+(checker), hop voi dieu kien L_TOOL cua paper -- CHUA co ket qua, dang cho.
+
+Phat hien tu du lieu that (lan chay adapter da train, sau khi sua bug format-cat-
+ngang o muc 3): ty le tu sua TOAN = 0/7 (0%) dù verifier_detail LO THANG dap an
+dung (case 0154: bao dung la '272', model sua lai van ra '2'; case 0169: bao
+dung la '120', model sua lai van ra lai '130' y het loi cu). Code = 8/16 (50%
+tren cac case hoan tat dinh dang) dù KHONG lo dap an, chi co traceback chi dich
+danh dong/ham loi. => Dao nguoc gia thuyet cu (nghi toan "an gian" nho lo dap
+an) -- hoa ra LO DAP AN KHONG DU, model van khong dinh vi duoc BUOC nao trong
+loi giai cu la sai (thieu "dia chi" cu the, dung y addressability cua paper).
+Code co traceback chi ro dong/ham -> addressable hon nhieu -> tu sua tot hon
+han dù kho hon o nang luc goc. KET LUAN: can sua verifier_detail cua TOAN thanh
+dang chi diem (buoc tinh nao sai) thay vi chi noi dap so dung/sai, giong cach
+traceback code dang lam.
+
+Phat hien phu (bug rieng): math_verifier co the bat sai dap so vi dinh ky tu
+rac trong chuoi trich xuat (vd '$18,000`' co dau backtick lan vao) -- can lam
+sach _extract_answer/_to_sympy tot hon, doc lap voi van de addressability o tren.
+
+
+6. Y tuong dang can nhac (chua trien khai, chua quyet dinh) 2026-07-19
+De xuat: dung generate_attempts sinh ~150 mau co <thinking>, giu lai neu dung,
+neu sai thi KHONG thay the truc tiep bang thinking cua model to hon roi gia vo
+la cua chinh model (rui ro: day model "noi doi" ve nguon goc suy nghi cua chinh
+no -- lam nang them van de unfaithful reasoning trace, nguoc voi muc tieu giam
+hallucination). Thay vao do, ap dung kieu ORPO/DPO: dung chinh cac lan model TU
+SUA SAI that (da thu duoc tu log eval, vd case 0154/0169 o muc 5) lam "rejected",
+va ban DeepSeek sinh loi phe binh+sua ĐUNG cho dung case do lam "chosen" --
+khong can mao danh nguon goc, chi day model uu tien cach phe binh TOT hon cach
+DO. Day chinh la huan luyen "tu critique" bang DPO da nhac o muc 4(c)/muc 2
+buoc 3 (SFT hoac DPO), ap dung cu the o buoc PHAN TU/SUA LOI (khong phai buoc
+giai lan dau, de tranh lech sang day kien thuc).
+Dieu kien de lam: nen hoan tat cac fix dang do (test --reflect-role tool, sua
+bug trich xuat cua math_verifier o muc 5) de co nen SFT + verifier_detail sach
+truoc, vi "chosen" cua ORPO cung phai dua tren verifier_detail dung/sach moi co
+gia tri.

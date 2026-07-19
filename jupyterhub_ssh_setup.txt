@@ -1,0 +1,36 @@
+# Buoc 1: cai openssh qua conda (khong can sudo) - chay trong env my_cuda_env dang active
+conda install -c conda-forge openssh -y
+which sshd
+
+# Buoc 2: tao host key + authorized_keys rieng (khong dung /etc, khong can quyen root)
+mkdir -p ~/.ssh_server ~/.ssh
+ssh-keygen -t ed25519 -f ~/.ssh_server/ssh_host_ed25519_key -N ""
+echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIpgm9qZCl+Y8VVJg1taiVI24nAKAVncgwo9n0nKbGgz phase1-gpu-box" >> ~/.ssh/authorized_keys
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+
+# Buoc 3: tao sshd_config rieng, port 2222 (khong can quyen root de bind)
+cat > ~/.ssh_server/sshd_config << 'CONF'
+Port 2222
+HostKey /home/jovyan/.ssh_server/ssh_host_ed25519_key
+AuthorizedKeysFile /home/jovyan/.ssh/authorized_keys
+PasswordAuthentication no
+PidFile /home/jovyan/.ssh_server/sshd.pid
+UsePAM no
+StrictModes no
+CONF
+
+# Buoc 4: khoi dong sshd rieng (chay nen)
+sshd -f ~/.ssh_server/sshd_config -D &
+disown
+sleep 1
+pgrep -fa sshd
+
+# Buoc 5: tunnel qua ngrok toi port 2222 (khong phai 22)
+pip install -q pyngrok
+python3 -c "
+from pyngrok import ngrok, conf
+conf.get_default().auth_token = '2wqZ5nlVaRLrXls86Q4BCqTXovd_3NvmoeVvMprStewkCiUC3'
+tunnel = ngrok.connect(2222, 'tcp')
+print(tunnel.public_url)
+"

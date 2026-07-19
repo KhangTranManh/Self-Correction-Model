@@ -1,0 +1,25 @@
+# Code hien tai (train_sft.py/generate_attempts.py/evaluate_self_correction.py) dung
+# Unsloth (FastLanguageModel) -- YEU CAU GPU compute capability >= 7.5 (Turing/Ampere/
+# Ada/Hopper: T4, L40S, A100, 4090, H100...).
+#
+# KHONG dung duoc tren V100 (Volta, CC 7.0) -- da verify thuc te (2026-07): torch ban
+# Unsloth/Axolotl can deu >= 2.11/2.3, va tu ~2.3 tro len torch da bo kernel CC 7.0
+# (torch.cuda.is_available() van tra True nhung tinh tren GPU se loi/sai am tham).
+# Neu chay tren V100, phai revert code ve ban plain transformers+peft+trl (xem git
+# history commit truoc khi doi sang Unsloth) + ghim torch==2.2.1+cu121.
+#
+# Cai dat (theo dung thu tu, de pip resolve dung phien ban tuong thich nhau):
+#   pip install unsloth
+#   pip install -r requirements.txt   # cac package con lai, KHONG ghim torch/bitsandbytes
+#
+# unsloth se tu keo torch/bitsandbytes/trl/transformers ban no can -- KHONG tu them
+# version pin cho may thu nay o day, se gay xung dot dependency (da tung gap loi
+# nay khi ghim cung torch/bitsandbytes cho V100 roi cai unsloth de).
+
+unsloth
+datasets
+openai>=1.30.0
+huggingface_hub>=0.24.0
+python-dotenv
+pyyaml
+sympy

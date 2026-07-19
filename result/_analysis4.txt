@@ -1,0 +1,26 @@
+=== FORMAT INCOMPLETE cases (van bi cat du da tang max_new_tokens_correction) ===
+eval_gsm8k_0155 domain=math len_chars=5889 second_detail=Chua hoan tat dinh dang '### Sua lai' (co the bi cat vi het max_new_tokens)
+eval_gsm8k_0157 domain=math len_chars=6379 second_detail=Chua hoan tat dinh dang '### Sua lai' (co the bi cat vi het max_new_tokens)
+eval_gsm8k_0172 domain=math len_chars=5679 second_detail=Chua hoan tat dinh dang '### Sua lai' (co the bi cat vi het max_new_tokens)
+eval_mbpp_165 domain=code len_chars=6888 second_detail=Chua hoan tat dinh dang '### Sua lai' (co the bi cat vi het max_new_tokens)
+eval_mbpp_166 domain=code len_chars=6391 second_detail=Chua hoan tat dinh dang '### Sua lai' (co the bi cat vi het max_new_tokens)
+eval_mbpp_167 domain=code len_chars=6703 second_detail=Chua hoan tat dinh dang '### Sua lai' (co the bi cat vi het max_new_tokens)
+eval_mbpp_169 domain=code len_chars=4706 second_detail=Chua hoan tat dinh dang '### Sua lai' (co the bi cat vi het max_new_tokens)
+eval_mbpp_172 domain=code len_chars=8825 second_detail=Chua hoan tat dinh dang '### Sua lai' (co the bi cat vi het max_new_tokens)
+eval_mbpp_177 domain=code len_chars=7903 second_detail=Chua hoan tat dinh dang '### Sua lai' (co the bi cat vi het max_new_tokens)
+eval_mbpp_179 domain=code len_chars=6494 second_detail=Chua hoan tat dinh dang '### Sua lai' (co the bi cat vi het max_new_tokens)
+eval_mbpp_182 domain=code len_chars=6641 second_detail=Chua hoan tat dinh dang '### Sua lai' (co the bi cat vi het max_new_tokens)
+eval_mbpp_183 domain=code len_chars=6158 second_detail=Chua hoan tat dinh dang '### Sua lai' (co the bi cat vi het max_new_tokens)
+eval_mbpp_185 domain=code len_chars=5160 second_detail=Chua hoan tat dinh dang '### Sua lai' (co the bi cat vi het max_new_tokens)
+eval_mbpp_188 domain=code len_chars=6695 second_detail=Chua hoan tat dinh dang '### Sua lai' (co the bi cat vi het max_new_tokens)
+eval_mbpp_189 domain=code len_chars=5565 second_detail=Chua hoan tat dinh dang '### Sua lai' (co the bi cat vi het max_new_tokens)
+
+=== SELF CORRECTED (genuine, format complete) ===
+eval_mbpp_170 domain=code format_incomplete=False
+eval_mbpp_171 domain=code format_incomplete=False
+eval_mbpp_174 domain=code format_incomplete=False
+eval_mbpp_175 domain=code format_incomplete=False
+eval_mbpp_176 domain=code format_incomplete=False
+eval_mbpp_181 domain=code format_incomplete=False
+eval_mbpp_187 domain=code format_incomplete=False
+eval_mbpp_190 domain=code format_incomplete=False

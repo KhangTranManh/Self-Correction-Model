@@ -1,0 +1,36 @@
+===== eval_gsm8k_0154 =====
+verifier_detail: Dap so sai: model dua ra '368', dung phai la '272'
+phat_hien_loi: Bước 2: Tính tổng số giờ học trong một tuần.
+- Tổng số giờ học từ Monday đến Friday (5 ngày): \(5 \times 3 = 15\) giờ.
+- Tổng số giờ học từ Tuesday đến Thursday (2 ngày): \(2 \times 4 = 8\) giờ.
+- Tổng số giờ học trong một tuần: \(15 + 8 = 23\) giờ.
+
+Dòng này sai. Thực tế, học sinh đã tính đúng số giờ học mỗi ngày cho từng ngày trong tuần, nhưng tổng số giờ học trong một tuần nên được tính lại. Dòng này nhầm lẫn giữa số giờ học mỗi ngày và tổng số giờ học trong một tuần. Đúng phải là tổng số giờ
+sua_lai: Bước 1: Xác định số giờ học trong một ngày cụ thể cho các ngày trong tuần.
+- Các ngày từ Monday đến Friday: Kimo có 3 lớp mỗi ngày, mỗi lớp 1 giờ. Tổng cộng là \(3 \times 1 = 3\) giờ.
+- Các ngày Tuesd
+second_detail: Dap so sai: model dua ra '2', dung phai la '272'
+
+===== eval_gsm8k_0164 =====
+verifier_detail: Loi parse bieu thuc: invalid syntax (<string>, line 1)
+phat_hien_loi: (regex khong khop)
+sua_lai: (regex khong khop)
+second_detail: Loi parse bieu thuc: invalid syntax (<string>, line 1)
+
+===== eval_gsm8k_0169 =====
+verifier_detail: Dap so sai: model dua ra '110', dung phai la '120'
+phat_hien_loi: (regex khong khop)
+sua_lai: (regex khong khop)
+second_detail: Dap so sai: model dua ra '130', dung phai la '120'
+
+===== eval_gsm8k_0173 =====
+verifier_detail: Loi parse bieu thuc: invalid syntax (<string>, line 1)
+phat_hien_loi: Dòng 1: `Đáp số: $18,000`
+Lỗi: Python không thể parse chuỗi chứa ký tự `$` (ký tự đô la). Ký tự này không hợp lệ trong biểu thức Python.
+sua_lai: def solve():
+    # Tính tổng số tiền tối thiểu Jessica cần phải trả hàng tháng cho tất cả các khoản nợ.
+    student_loans_min_payment = 300
+    credit_card_min_payment = 200
+    mortgage_min_payment =
+second_detail: Dap so sai: model dua ra '$18,000`', dung phai la '18000'
+

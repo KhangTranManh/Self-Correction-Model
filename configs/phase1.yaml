@@ -1,0 +1,65 @@
+# Cau hinh pipeline Phase 1: Verified Self-Correction (toan / code)
+# Secrets (DEEPSEEK_API_KEY, DEEPSEEK_MODEL) nam trong .env, khong dat o day.
+
+small_model:
+  # Quay lai Qwen2.5-7B-Instruct: model text thuan, da verify chay dung nhieu lan
+  # trong dung pipeline nay. Jackrong/Qwopus3.5-9B-v3 (thu truoc do) bi loi tu goc
+  # repo (processor VL + eos_token la nghi van chua ro nguyen nhan trong SFTConfig/
+  # trl) -- ton qua nhieu thoi gian debug moi lan doi may, khong dang so voi loi ich.
+  name_or_path: "Qwen/Qwen2.5-7B-Instruct"
+  max_seq_length: 4096
+  load_in_4bit: true
+  chat_template: ""  # khong can, Qwen2.5-7B-Instruct la model text thuan
+
+generation:
+  max_new_tokens: 1024
+  # Buoc phan tu/sua loi phai viet <thinking> + 3 muc (Phat hien loi/Nguyen nhan/Sua
+  # lai) -- dai hon nhieu so voi lan giai dau. Da phat hien thuc te: voi 1024, ~1/3
+  # cac case duoc tinh la "tu sua thanh cong" thuc ra bi cat ngang giua chung <thinking>
+  # (chua bao gio toi "### Sua lai"), verifier vo tinh bat trung so/code nhap xuat hien
+  # som trong doan van chua hoan tat -- khong phai hanh vi tu sua that. Tang len de
+  # model co du cho hoan tat dinh dang truoc khi bi cat.
+  max_new_tokens_correction: 2048
+  temperature: 0.7
+  top_p: 0.9
+  num_attempts_per_problem: 1
+
+deepseek:
+  temperature: 0.2
+  # deepseek-v4-pro la model reasoning: reasoning_content (chain-of-thought) co the
+  # ton hang nghin token TRUOC KHI toi content (JSON cuoi). 2048 qua nho -> content
+  # bi cat cut/rong (da gap thuc te, xem git history). 8000 de du cho reasoning dai.
+  max_tokens: 8000
+  max_retries: 3
+
+paths:
+  problems_math: "data/problems/math.jsonl"
+  problems_code: "data/problems/code.jsonl"
+  attempts_out: "data/processed/attempts.jsonl"
+  sft_dataset_out: "data/processed/phase1_sft.jsonl"
+  lora_out_dir: "outputs/phase1_lora"
+
+verifier:
+  code_timeout_seconds: 5
+  code_memory_limit_mb: 256
+
+training:
+  epochs: 3
+  # per_device_batch_size=1 + grad_accum=16 (effective batch = 16, giu nguyen nhu
+  # cu) -- giam tu 2/8 vi RTX 5060 Ti chi co 16GB VRAM (nho hon nhieu so voi
+  # V100 32GB/L40S 46GB da dung truoc do), bi CUDA OOM voi batch_size=2.
+  per_device_batch_size: 1
+  gradient_accumulation_steps: 16
+  learning_rate: 0.0002
+  lora_r: 32
+  lora_alpha: 64
+  lora_dropout: 0.05
+  # Giam tu 4096 -> 2048: RTX 5060 Ti 16GB van OOM ngay ca voi batch_size=1 (chi
+  # thieu ~1.75GB) -- giam max_seq_length de cat bot activation memory.
+  max_seq_length: 2048
+  push_to_hub: false  # tam thoi luu local vao outputs/phase1_lora/; doi lai true + sua
+                      # huggingface.repo_id ben duoi khi muon push len Hub
+
+huggingface:
+  repo_id: "Kxck/AGI_v1"
+  private: true
