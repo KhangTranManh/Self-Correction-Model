@@ -44,7 +44,7 @@ from src.verifier.math_verifier import MathVerifier
 # o top-level -> ep moi truong chay eval (Unsloth) phai cai ca vLLM. Doi sang
 # src.prompts (khong co dependency nang) de 2 venv doc lap hoan toan.
 from src.prompts import CORRECTION_RE as _CORRECTION_RE
-from src.prompts import REFLECT_PROMPT_TEMPLATE as _REFLECT_PROMPT_TEMPLATE
+from src.prompts import REFLECT_ROLES, build_reflect_message
 from src.prompts import build_prompt as _build_prompt
 
 
@@ -94,7 +94,7 @@ def main() -> None:
         "--reflect-role",
         type=str,
         default="tool",
-        choices=["user", "tool"],
+        choices=list(REFLECT_ROLES),
         help=(
             "Role bao boc verifier_detail o buoc phan tu. Mac dinh 'tool' (da doi tu 'user' "
             "sau khi do thuc te qua paper 2606.05976 (The Self-Correction Illusion): tool giup "
@@ -155,10 +155,7 @@ def main() -> None:
 
         messages = messages + [
             {"role": "assistant", "content": attempt_text},
-            {
-                "role": args.reflect_role,
-                "content": _REFLECT_PROMPT_TEMPLATE.format(verifier_detail=first_result.detail),
-            },
+            build_reflect_message(first_result.detail, args.reflect_role),
         ]
         correction_max_new_tokens = gen_cfg.get("max_new_tokens_correction", gen_cfg["max_new_tokens"])
         correction_text = _generate(model, tokenizer, messages, correction_max_new_tokens)

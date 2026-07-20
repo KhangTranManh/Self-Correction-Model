@@ -22,6 +22,9 @@ d:\AGI/
 │   └── phase1_lora/               trained LoRA adapter (gitignored; may be pushed to HF Hub instead)
 └── src/
     ├── config.py                  loads .env + phase1.yaml -> Config dataclass (single source of truth for all scripts)
+    ├── prompts.py                 SINGLE source for every shared prompt template + build_reflect_message()
+    ├── eval_common.py             held-out problem loader + log format + report, shared by BOTH eval scripts
+    ├── run_lock.py                PID lock — refuses a second concurrent instance of the same script
     ├── data/
     │   ├── schema.py               Problem / Attempt / VerifierResult / CorrectionRecord dataclasses
     │   └── problem_sources.py      load_math_problems(), load_code_problems() — JSONL -> list[Problem]
@@ -30,14 +33,40 @@ d:\AGI/
     │   ├── math_verifier.py        sympy-based objective answer checking
     │   └── code_verifier.py        subprocess-based unit test execution
     ├── deepseek_client.py          OpenAI-compatible chat client — critique_and_correct(), captures reasoning_content
-    ├── prepare_public_datasets.py  GSM8K/MBPP (HF datasets) -> data/problems/*.jsonl
-    ├── generate_attempts.py        small model self-attempts (no external API) -> attempts.jsonl
-    ├── build_dataset.py            verify -> API critique/correction -> re-verify -> phase1_sft.jsonl
-    ├── train_sft.py                QLoRA SFT via transformers+peft+trl -> outputs/phase1_lora/ or HF Hub
-    ├── evaluate_self_correction.py held-out eval: does the trained adapter actually self-correct?
+    ├── prepare_public_datasets.py  GSM8K/MBPP (HF datasets) -> data/problems/*.jsonl, split-aware
+    ├── generate_attempts.py        small model self-attempts (no external API), vLLM batched -> attempts.jsonl
+    ├── build_dataset.py            verify -> API critique/correction -> re-verify -> phase1_sft.jsonl (threaded)
+    ├── reframe_dataset.py          rewrite the reflect turn's framing in an existing dataset — NO API cost
+    ├── train_sft.py                QLoRA SFT via Unsloth+trl -> outputs/phase1_lora/ or HF Hub
+    ├── evaluate_self_correction.py      held-out eval, Unsloth engine (kept as cross-check)
+    ├── evaluate_self_correction_vllm.py same measurement, vLLM engine — 2 batched passes
     ├── push_to_hub.py              standalone: push an existing local adapter dir to HF Hub
+    ├── notify.py                   pipeline progress -> Telegram; stdlib only, runs outside any venv
+    ├── tg_inbox.py                 collect Telegram messages -> outputs/tg_inbox.jsonl (does NOT execute them)
     └── test_deepseek_connection.py cheap API config/connectivity sanity check — no GPU needed
 ```
+
+### Why `prompts.py` and `eval_common.py` exist
+
+Not to save typing — to make two invariants structural rather than remembered.
+
+`prompts.py` holds `REFLECT_PROMPT_TEMPLATE` and `build_reflect_message()`. That
+template used to be duplicated in `build_dataset.py` and `evaluate_self_correction.py`
+with a comment saying the copies must stay byte-identical; a drift between them is
+exactly the train/inference mismatch the `verifier_detail` fix was built to remove.
+All three call sites (both eval scripts plus dataset construction) now read one
+constant, so they cannot diverge. `build_reflect_message()` additionally encodes the
+`memory` → `system` + `<memory>` mapping — see SKILL.md rule 13 for why constructing
+that turn inline is dangerous.
+
+`eval_common.py` holds the held-out loader, log format and report. If each eval script
+loaded its own problems, the two engines' numbers would not be comparable — and being
+comparable is the entire reason both are kept.
+
+Both modules deliberately import nothing heavy (no vllm, no unsloth), because they are
+imported from **both** virtualenvs. `generate_attempts.py` imports vllm at module
+level, so `evaluate_self_correction.py` importing `_build_prompt` from it used to drag
+vLLM into the Unsloth environment.
 
 ## Dependency graph
 

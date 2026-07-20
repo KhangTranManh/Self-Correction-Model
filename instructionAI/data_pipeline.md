@@ -83,6 +83,86 @@ model's competence is fine but the *reflection* skill didn't transfer — that's
 to inspect raw generations (see the verifier_detail fix above for the last time this
 happened) before concluding "needs more data."
 
+### Always decompose the metric — the headline number hides the bottleneck
+
+`self_corrected / initial_wrong` is the product of two independent things:
+
+```
+rate = format_completion × fix_rate_given_format
+```
+
+where `format_completion` is the share of wrong attempts whose reflect generation
+actually reached `### Sửa lại`, and `fix_rate_given_format` is the success rate among
+only those. Computing it from an eval log:
+
+```python
+wrong = [r for r in rows if not r["initial_passed"]]
+done  = [r for r in wrong if not r["format_incomplete"]]
+fixed = [r for r in done if r["second_passed"]]
+# format_completion       = len(done)  / len(wrong)
+# fix_rate_given_format   = len(fixed) / len(done)
+```
+
+Measured across a 2×2 experiment (adapter trained on `tool` or `memory` × evaluated
+under either), 600 math + 150 code problems each:
+
+| Cell | format_completion | fix_rate_given_format | headline |
+|---|---|---|---|
+| tool / tool | 58.2% | **64.8%** | 37.8% |
+| tool / memory | 63.6% | **64.3%** | 40.9% |
+| memory / memory | 66.4% | **67.6%** | 44.8% |
+| memory / tool | 21.1% | **69.6%** | 14.7% |
+
+**The second column does not move.** Not across framings, not across matched vs
+mismatched training, and not when the training set grew from 135 to 631 samples
+(Fisher p = 0.856 on the headline; p = 0.62 on the fix rate specifically). It sits at
+~65–70% — which is roughly the project's ≥70% target.
+
+Everything that has ever moved the headline moved `format_completion` instead. The
+mismatched cell makes this unmissable: worst headline (14.7%), best fix rate (69.6%).
+
+Practical consequence: **the open problem is generation behaviour — getting the model
+to finish and stop — not critique quality.** Interventions aimed at teaching better
+diagnosis (more data, better teacher, richer critiques) target a factor that is
+already near target and has never responded. Record both factors in every report.
+
+### Sizing the eval set
+
+The denominator is the model's *own failures*, so it shrinks as the model improves,
+and it shrinks fastest in the domain the model is best at:
+
+| Domain | Base model solves correctly | Problems needed for denominator ≈ 100 |
+|---|---|---|
+| Math (GSM8K) | ~84% | **~600** |
+| Code (MBPP) | ~3–7% | ~110 |
+
+At 100 math problems the denominator is ~16, where a single case moves the rate by
+6pp. The same adapter on the same problems measured **15.8% math at n=19 and 31.7% at
+n=104** — the first figure was noise. Every historical math number in this project
+(0%, 33.3%, 22.2%) came from 7–9 cases.
+
+The metric also has a **selection effect**: a model that solves more problems on the
+first try is left with a smaller and *harder* denominator, so the rate can fall while
+the model genuinely improves. On the exact 30 math problems used for the 40.5%
+measurement, the later adapter solves **all 30** on the first attempt, leaving nothing
+to self-correct. Report `initial_correct` next to the rate, always.
+
+### Comparing two eval runs
+
+When both runs cover the same problems, use a **paired** test (McNemar), not a
+comparison of two percentages. Items where both runs succeed or both fail carry no
+information about which condition is better; only the discordant pairs do. Pairing
+also removes problem-difficulty variance, which makes it substantially more sensitive.
+The unpaired comparison is additionally *wrong* here, since the two runs are not
+independent samples.
+
+Pairing is cleanest when the two cells share an adapter and differ only in framing
+(e.g. `memory/memory` vs `memory/tool`). When the adapters differ, pairing removes
+problem difficulty but not the between-training-run variance — and that variance is
+real: two adapters trained on the *same* data differing only in the reflect wrapper
+showed `initial_correct` of 66.8% vs 70.3%, a 3.5pp gap that has nothing to do with
+the wrapper (the first attempt happens before any reflect turn exists).
+
 ## Known current limitation
 
 Training data volume (as of the last documented run) sat around 115–140 kept examples

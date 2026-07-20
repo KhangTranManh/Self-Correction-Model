@@ -1,488 +1,580 @@
-GIAI ĐOẠN 0: DẠY MODEL BIẾT ĐÚNG - SAI & TỰ SỬA CHỮA
-Mục tiêu giai đoạn:
-
-Model không chỉ trả lời, mà biết phân biệt đúng/sai, tự phê bình và tự sửa lỗi.
-Đây là nền tảng quan trọng nhất trước khi nạp kiến thức chuyên sâu 
-
-
-1. Điều kiện để model ổn định sau giai đoạn này
-Để giai đoạn này thành công và model ổn định, cần đạt được các điều kiện sau:
-
-Accuracy tự critique ≥ 75–80% trên tập validation (model tự đánh giá đúng lỗi của chính nó).
-Tỷ lệ sửa chữa thành công ≥ 70% (sau khi critique, model sửa được lỗi).
-Giảm hallucination rõ rệt so với trước khi train.
-Model không lặp lại lỗi trên cùng loại input sau 2–3 lần sửa.
-Độ dài phản hồi hợp lý, không quá dài dòng.
-Stable loss trong training (không bị overfitting sớm).
-
-
-2. Cách thực hiện giai đoạn này
-Bước 1: Tạo dữ liệu bằng DeepSeek V4 Pro (khoảng 800–1500 mẫu)
-Bước 2: Định dạng dataset (chat format hoặc JSONL)
-Bước 3: Fine-tune với Unsloth (SFT hoặc DPO)
-Bước 4: Đánh giá & lặp lại
-
-
-3. Rủi ro cần cân nhắc khi dạy hành vi (không phải dạy kiến thức)
-Vì mục tiêu là dạy HÀNH VI (biết sai -> tự sửa), không phải nạp kiến thức, nên khi
-đánh giá kết quả phải cân nhắc cả các khả năng sau, không chỉ nhìn con số % thô:
-
-- Rò rỉ đáp án trong lời nhắc sửa lỗi (nghiêm trọng nhất, o phan toan):
-  Nếu câu thông báo lỗi đưa cho model tự sửa có ghi thẳng đáp án đúng (vd
-  "dap so dung la 48"), model có thể học hành vi "chép lại số trong thông báo lỗi"
-  thay vì thực sự suy luận lại. % tự sửa cao ở toán có thể là GIẢ (kỹ năng
-  đọc-chép, không phải tự sửa thật). Nên đổi thông báo lỗi thành gợi ý chẩn đoán
-  (vd "sai ở bước tính X") thay vì lộ thẳng đáp án, để đo đúng kỹ năng.
-
-- Sycophancy (vâng lời quá mức): Data train hiện chỉ có case "bị báo SAI -> sửa",
-  chưa có case "bị báo SAI nhưng thực ra đang ĐÚNG -> giữ nguyên". Model có thể
-  học phản xạ "hễ bị nói sai là đổi đáp án" bất kể đúng/sai thật. Cần test thêm:
-  cố tình báo SAI cho câu model làm đúng, xem model có tự đổi thành sai không.
-
-- Học thuộc format, không học kỹ năng thật: model có thể chỉ chép khung
-  <thinking>/### Sửa lại mà không suy luận thật bên trong. Nếu tỷ lệ tự sửa
-  gần 0% thì đây là dấu hiệu rõ của tình trạng này.
-
-- Overfit trên tập nhỏ (hiện chỉ ~143 mẫu, note yêu cầu 800-1500) làm quên năng
-  lực gốc: cần so sánh tỷ lệ giải đúng lần đầu (initial_correct) của model SAU
-  train với model GỐC (chưa train) trên cùng bộ đề, để phát hiện nếu LoRA làm
-  hỏng năng lực giải bài gốc.
-
-- Chỉ test 1 vòng sửa, chưa test lặp lỗi nhiều vòng: điều kiện ở mục 1 yêu cầu
-  "không lặp lỗi sau 2-3 lần sửa", nhưng quy trình đánh giá hiện tại dừng ngay
-  sau 1 lần phản tư -- chưa biết model có tiến bộ dần qua nhiều vòng sửa hay
-  lặp lại y hệt lỗi cũ.
-
-- Verifier code có thể yếu (false positive): test case MBPP ít, code "sửa" có
-  thể pass test nhưng chưa chắc giải đúng bài toán tổng quát.
-
-- Da phat hien qua du lieu that (lan chay dau tren adapter da train): ~1/3 case
-  duoc tinh "tu sua thanh cong" thuc ra bi cat ngang giua <thinking> vi het
-  max_new_tokens (chua bao gio toi "### Sua lai"), verifier vo tinh bat trung
-  so/code nhap con dang do dang. Da sua: tach rieng max_new_tokens_correction
-  (tang len 2048, gap doi luc giai dau) + neu khong tim thay "### Sua lai" thi
-  tinh thang la chua sua duoc, KHONG fallback dung ca doan text tho de verify.
-
-
-4. Dinh huong tiep theo (da quyet dinh 2026-07-19)
-Da can nhac them huong "tu phat hien loi KHONG can goi y" (model tu ra soat bai
-lam cua chinh no ma khong duoc cho biet dung/sai truoc) -- day moi la dung y
-nghia "tu critique" (75-80%) trong muc 1, con huong dang lam hien tai ("cho biet
-loi that -> sua") chi la 1 nua cua ky nang (tuong ung chi so "ty le sua chua
-thanh cong" 70%).
-
-QUYET DINH: CHUA lam huong "tu phat hien khong goi y" ngay. Tiep tuc cung co
-huong hien tai (cho biet loi that -> sua) truoc, vi 2 ly do:
-- Rui ro hallucinate cao: khi bi yeu cau tu tim loi ma khong co moc khach quan
-  de dua vao, model de (a) tu bia ra loi khong co that o cau da dung (doi dung
-  thanh sai chi vi bi ep phai tim ra cai gi do sai), hoac (b) khong thay duoc
-  loi that o bai phuc tap vi dung lai chinh cach suy luan da gay ra loi de tu
-  kiem tra no (diem mu lap lai chinh no, khong phai co che kiem tra doc lap).
-  Day chinh la van de "LLM tu cham diem cho LLM" ma toan bo Phase 1 dang co
-  tranh (da chon dung verifier khach quan sympy/unit-test thay vi LLM judge).
-- Du lieu qua nho (143/800-1500 mau) de dua them 1 huong hoc moi (tu phat hien)
-  ma khong lam loang/hong huong dang hoc (tu sua khi duoc cho biet).
-
-Dieu kien de chuyen sang lam huong "tu phat hien khong goi y":
-  (a) huong hien tai da on dinh (ty le tu sua that ro rang tang so voi baseline,
-      khong con rui ro ro ri dap an/hallucinate da neu o muc 3),
-  (b) da scale du lieu len 800-1500 mau theo muc 2,
-  (c) neu lam, nen bat dau tu muc do goi y trung gian (vd "co the dung co the
-      sai, hay kiem tra ky" thay vi im lang hoan toan) roi moi bo dan xuong
-      khong goi y, thay vi nhay thang len no-hint tu dau.
-
-
-5. Tham khao: paper "The Self-Correction Illusion" (arXiv 2606.05976, Chen et al.
-2026 NCKU) -- ban PDF luu tai d:\AGI\2606.05976v1.pdf
-Phat hien chinh: LLM khong tu sua duoc loi trong <thought> cua chinh no KHONG
-phai vi thieu nang luc suy luan, ma vi thieu "addressability" -- khong co thoi
-quen coi 1 menh de nam trong suy nghi rieng la 1 "doi tuong" co the goi ten/bac
-bo. Dua lai byte-identical claim sai duoi role BEN NGOAI (user/tool/system
-<memory>) thay vi de no nam trong <thought> giup tang ty le tu sua 23-93 diem %,
-KHONG can train lai. Tu-audit khong goi y (giong huong da hoan o muc 4) chi dat
-0-23% -- xac nhan doc lap quyet dinh hoan o tren la dung.
-
-Doi chieu voi pipeline: _REFLECT_PROMPT_TEMPLATE dang dua verifier_detail qua
-role "user" (khong de trong <thought>) -- vo tinh da dung dung co che chinh cua
-paper. Dang thu nghiem doi role "user" -> "tool" (--reflect-role tool trong
-evaluate_self_correction.py) vi verifier_detail von la output that tu 1 tool
-(checker), hop voi dieu kien L_TOOL cua paper -- CHUA co ket qua, dang cho.
-
-Phat hien tu du lieu that (lan chay adapter da train, sau khi sua bug format-cat-
-ngang o muc 3): ty le tu sua TOAN = 0/7 (0%) dù verifier_detail LO THANG dap an
-dung (case 0154: bao dung la '272', model sua lai van ra '2'; case 0169: bao
-dung la '120', model sua lai van ra lai '130' y het loi cu). Code = 8/16 (50%
-tren cac case hoan tat dinh dang) dù KHONG lo dap an, chi co traceback chi dich
-danh dong/ham loi. => Dao nguoc gia thuyet cu (nghi toan "an gian" nho lo dap
-an) -- hoa ra LO DAP AN KHONG DU, model van khong dinh vi duoc BUOC nao trong
-loi giai cu la sai (thieu "dia chi" cu the, dung y addressability cua paper).
-Code co traceback chi ro dong/ham -> addressable hon nhieu -> tu sua tot hon
-han dù kho hon o nang luc goc. KET LUAN: can sua verifier_detail cua TOAN thanh
-dang chi diem (buoc tinh nao sai) thay vi chi noi dap so dung/sai, giong cach
-traceback code dang lam.
-
-Phat hien phu (bug rieng): math_verifier co the bat sai dap so vi dinh ky tu
-rac trong chuoi trich xuat (vd '$18,000`' co dau backtick lan vao) -- can lam
-sach _extract_answer/_to_sympy tot hon, doc lap voi van de addressability o tren.
-
-
-6. Y tuong dang can nhac (chua trien khai, chua quyet dinh) 2026-07-19
-De xuat: dung generate_attempts sinh ~150 mau co <thinking>, giu lai neu dung,
-neu sai thi KHONG thay the truc tiep bang thinking cua model to hon roi gia vo
-la cua chinh model (rui ro: day model "noi doi" ve nguon goc suy nghi cua chinh
-no -- lam nang them van de unfaithful reasoning trace, nguoc voi muc tieu giam
-hallucination). Thay vao do, ap dung kieu ORPO/DPO: dung chinh cac lan model TU
-SUA SAI that (da thu duoc tu log eval, vd case 0154/0169 o muc 5) lam "rejected",
-va ban DeepSeek sinh loi phe binh+sua ĐUNG cho dung case do lam "chosen" --
-khong can mao danh nguon goc, chi day model uu tien cach phe binh TOT hon cach
-DO. Day chinh la huan luyen "tu critique" bang DPO da nhac o muc 4(c)/muc 2
-buoc 3 (SFT hoac DPO), ap dung cu the o buoc PHAN TU/SUA LOI (khong phai buoc
-giai lan dau, de tranh lech sang day kien thuc).
-Dieu kien de lam: nen hoan tat cac fix dang do (test --reflect-role tool, sua
-bug trich xuat cua math_verifier o muc 5) de co nen SFT + verifier_detail sach
-truoc, vi "chosen" cua ORPO cung phai dua tren verifier_detail dung/sach moi co
-gia tri.
-
-
-7. Da doi role "user" -> "tool" cho ca pipeline, dang train lai (2026-07-19)
-Ket qua do --reflect-role tool (muc 5) du tot va re (khong can train lai de
-test) nen quyet dinh doi luon lam mac dinh cho ca pipeline, khong chi eval:
-- evaluate_self_correction.py: default --reflect-role doi "user" -> "tool".
-- build_dataset.py: _REFLECT_ROLE = "tool" (hang cung, ap dung cho MOI mau
-  sinh ra tu day).
-- Da sinh lai data/processed/phase1_sft.jsonl voi role moi: 135 mau (giam nhe
-  so voi 143 cu -- do doi sang model DeepSeek khac (op/deepseek/deepseek-v4-pro,
-  model cu op/z-ai/glm-5.2 bi 404 MODEL_NOT_FOUND voi key moi), khong phai loi
-  pipeline. Stats: total=300, already_correct=132, sent_to_deepseek=168,
-  kept=135, discarded=33.
-- Nhan tien fix 2 bug crash o deepseek_client.py phat hien trong luc chay lai:
-  (a) response.choices co the la None (loi tam thoi API/proxy vilao.ai) -- truoc
-  do TypeError thoat khoi vong retry, lam crash ca script; (b) UnicodeEncodeError
-  khi print tren console Windows (cp1252) neu response DeepSeek co ky tu dac
-  biet -- workaround bang PYTHONIOENCODING=utf-8 luc chay tren may local.
-- Adapter cu Kxck/AGI_v1 (train voi role "user") KHONG con la ban moi nhat --
-  se train lai adapter moi tren phase1_sft.jsonl 135-mau-role-"tool" nay. Khi
-  train xong, nho eval lai bang --reflect-role tool (khop voi du lieu da train,
-  chu khong con la thu nghiem lech phan phoi nhu truoc).
-
-
-8. KET QUA adapter MOI (train+eval role "tool" khop nhau) 2026-07-20
-Da train lai tren phase1_sft.jsonl 135 mau (role "tool" xuyen suot) qua Colab,
-eval lai voi --reflect-role tool (dung boi vi day gio la default). So sanh 3
-diem du lieu:
-
-                          Toan    Code    Tong
-Baseline goc (user/user)   0%    28.6%   22.9%
-Adapter cu + test tool*   33.3%  28.6%   29.7%   (*lech phan phoi, chua train voi role nay)
-Adapter MOI (tool/tool)   22.2%  46.4%   40.5%   (khop phan phoi -- so lieu chinh thuc)
-
-- Tong the gan gap doi baseline goc (22.9% -> 40.5%).
-- Code cai thien manh nhat (28.6% -> 46.4%) -- hop ly vi TOAN BO data train gio
-  nhat quan dung role "tool", khong chi eval.
-- format_incomplete (bi cat ngang giua <thinking>) giam manh: 43% -> 13.5%
-  (15/35 -> 5/37) -- model gio hoan tat dinh dang "### Sua lai" dang tin cay
-  hon nhieu, it "nghi lan man" toi het token hon truoc.
-- Toan giam nhe so voi lan test lech phan phoi (33.3% -> 22.2%), nhung chi la
-  2/9 vs 3/9 tren nen qua nho (9 case sai) -- nam trong nhieu thong ke, KHONG
-  phai regression that. Van vuot xa baseline goc (0%).
-
-KET LUAN: doi role "user" -> "tool" + train lai la cai thien that, do duoc ro
-rang qua ca 2 buoc (test lech phan phoi VA train khop). Van con xa muc tieu
-70-80% trong muc 1 -- nut that chinh gio la QUY MO DU LIEU (135 mau, muc tieu
-800-1500), khong con la van de thiet ke role/format nhu truoc.
-
-
-9. Bat dau scale du lieu train (2026-07-20) -- muc tieu trung gian ~400-500 mau
-Quyet dinh: scale trung gian truoc (khong nhay thang len 800-1500 full) de kiem
-chung viec scale co that su cai thien % hay khong, rui ro chi phi API thap hon.
-
-Van de phai sua TRUOC khi scale: prepare_public_datasets.py (sinh data train)
-va evaluate_self_correction.py (held-out eval) truoc gio dung CHUNG split "test"
-cua GSM8K/MBPP (train index 0-149, eval offset 150+) -- neu scale limit qua 150
-ma van dung "test" se DE LEN vung held-out dang dung xuyen suot de so sanh. Da
-sua bang cach dung split KHAC HOAN TOAN cho du lieu train moi:
-- Toan: GSM8K split "train" (7473 dong, tach biet voi "test").
-- Code: MBPP "full/train" (374 dong, tach biet voi "full/test").
-Them ham prepare_math_extra/prepare_code_extra (APPEND, id prefix rieng
-"gsm8k_train_"/"mbpp_train_" de khong dam id) vao prepare_public_datasets.py.
-
-Da chay local (khong can GPU): --math-extra 626 --code-extra 374 (het sach
-MBPP full/train) -> data/problems/math.jsonl: 150->776, code.jsonl: 150->524,
-tong 300->1300 bai.
-
-Them 2 tinh nang RESUMABLE de khong ton GPU/API goi lai cho ~300 bai cu:
-- generate_attempts.py: tu doc attempts.jsonl da co, bo qua problem_id da co
-  attempt, chi sinh cho bai moi, APPEND (khong ghi de).
-- build_dataset.py: them file ledger data/processed/build_dataset_seen_ids.txt
-  ghi MOI problem_id da xu ly (bat ke ket qua), bo qua khi chay lai, APPEND vao
-  phase1_sft.jsonl. Da seed ledger nay bang 300 problem_id cua lan chay dau
-  (truoc khi co tinh nang nay) de khong bi goi lai DeepSeek oan cho chung.
-- _to_chat_record them field "problem_id" (khong anh huong train_sft.py, chi
-  doc "messages") de cac cong cu sau nay co the truy vet mau tu problem nao.
-
-Buoc tiep theo (chua chay, can GPU + DeepSeek API that, se ton thoi gian/tien):
-  Buoc 6a (moi trong notebook): generate_attempts.py -- sinh attempt cho ~1000
-    bai moi (uoc luong vai chuc phut tren T4/L40S tuy toc do).
-  Buoc 6a2 (moi): build_dataset.py -- goi DeepSeek cho phan sai trong ~1000 bai
-    moi (uoc luong theo ty le cu ~56% sai -> ~560 lan goi DeepSeek that).
-  Sau do train_sft.py tren phase1_sft.jsonl da lon hon (135 + so mau moi giu
-  duoc, ky vong ~400-500+135), roi eval lai --reflect-role tool nhu cu de so
-  sanh truc tiep voi 40.5% hien tai.
-
-
-10. generate_attempts.py doi sang vLLM (2026-07-20)
-Ly do: Buoc 6a can sinh attempt cho ~1000 bai moi -- cach cu (Unsloth/HF
-generate() tung bai mot, tuan tu) se cham. generate_attempts.py la truong hop
-don gian nhat de doi sang vLLM: chi la inference thuan tren model GOC (chua
-LoRA), khong can cac toi uu train cua Unsloth. vLLM dung continuous batching +
-PagedAttention -> xay tat ca prompt truoc, goi generate() 1 LAN DUY NHAT cho ca
-~1000 prompt thay vi vong lap tung bai, nhanh hon nhieu.
-
-KHONG doi evaluate_self_correction.py (can LoRA adapter qua LoRARequest + luong
-2 buoc tuan tu attempt->reflect moi bai, loi ich it chac chan hon neu khong
-viet lai thanh batch) va train_sft.py (Unsloth QLoRA can cho train, vLLM khong
-phuc vu train) -- 2 file nay van dung Unsloth nhu cu.
-
-Rui ro da luu y trong notebook: cai vllm co the keo theo ban torch khac voi
-ban Unsloth dang dung TRONG CUNG 1 SESSION Colab (chay generate_attempts.py
-truoc, train_sft.py sau, chung 1 moi truong pip). Da them ghi chu trong
-notebook (cell 6a + 1 cell rieng truoc train_sft): neu train_sft loi la sau
-khi chay xong 6a, Runtime > Restart session + `pip install unsloth` lai truoc
-khi chay train_sft -- CHUA verify thuc te tren Colab, can theo doi khi chay
-that.
-
-Chi tiet ky thuat: dung "bitsandbytes" quantization cua vLLM (tuong duong
-load_in_4bit cua Unsloth) khi small_model.load_in_4bit=true trong
-phase1.yaml -- ten tham so nay dung voi vLLM >=0.5.x, neu ban vLLM moi hon
-tren Colab doi ten thi can sua lai theo docs vLLM hien tai.
-
-
-11. Chuyen sang VM thue RTX 3090 Ti (2026-07-20/21)
-Truoc do da thu Kaggle T4: generate_attempts.py CHET khi nap model. Nguyen nhan
-that: T4 16GB khong du cho 7B fp16 nen buoc phai bat load_in_4bit -> di qua
-bitsandbytes -> ban bitsandbytes tren box do can CUDA 13 runtime (libnvJitLink.so.13)
-ma may chi co CUDA 12. Bai hoc: loi KHONG phai thieu VRAM don thuan, ma la VRAM
-thieu ep ta vao duong quantization, va duong do keo theo ca mot he phu thuoc CUDA.
-
-Danh gia may thue theo COMPUTE CAPABILITY, khong theo dung luong VRAM:
-- Tesla P40 (24GB, gia re) da bi TU CHOI: CC 6.1, duoi nguong 7.5. Unsloth khong
-  chay, vLLM cung khong (yeu cau SM >= 7.0). Khong tensor core, khong bf16, va
-  FP16 tren GP102 bi chan o 1/64 toc do FP32 (~0.18 TFLOPS thuc te du quang cao
-  "12 TFLOPS" -- do la con so FP32). 24GB khong cuu duoc viec thieu CC.
-- Da chon RTX 3090 Ti: GA102, CC 8.6, 24GB, driver ho tro CUDA 13.1. Xac nhan
-  thuc te tu log: vLLM chon FLASH_ATTN (FlashAttention 2) -- thu T4 khong the co
-  vi FA2 doi CC >= 8.0. Da ghi tieu chi chon may vao README muc "Choosing a
-  rental GPU".
-
-Khao sat may thue phat hien 2 thu ngoai du kien:
-- KHONG co pip, KHONG co python3-venv, va sudo doi password. Ke hoach
-  `apt-get install python3-venv python3-pip` chet ngay. Da xu ly bang `uv`
-  (binary tinh, cai vao ~/.local/bin): tu tao venv khong qua ensurepip nen khong
-  can python3-venv, tu cai package nen khong can pip. Ca 2 thu thieu deu tro nen
-  khong lien quan. Kem theo: nhanh hon nhieu + cache chung giua cac venv.
-- Dia vat ly 1.6TB nhung LVM chi cap phat 100GB (mac dinh cua Ubuntu installer).
-  Khong chan lan chay nay (80GB trong la du) nhung dang doi lai bang
-  `lvextend -l +100%FREE` + `resize2fs` neu can them cho.
-
-
-12. Tach 2 venv rieng -- KHONG phai cau tha, ma la bat buoc (2026-07-21)
-Notebook Colab cu cai vLLM va Unsloth chung 1 moi truong, xu ly xung dot bang
-cach "Restart session + pip install unsloth lai" o giua pipeline. Do la giai
-phap tam. Do thuc te tren may nay cho thay tai sao no mong manh:
-
-    venv-vllm    : torch 2.11.0+cu130   (CUDA 13.0)
-    venv-unsloth : torch 2.10.0+cu128   (CUDA 12.8)
-
-Hai ban torch khac nhau, hai bo CUDA khac nhau. Cai chung 1 moi truong thi cai
-sau ghi de cai truoc, va loi se no o buoc TRAIN -- tuc sau khi da dot xong GPU
-cho generate. Da tach han: ~/venv-vllm (generate + eval), ~/venv-unsloth (train).
-Kiem tra rieng bitsandbytes trong venv-unsloth (0.49.2, native lib nap OK) truoc
-khi train, vi do chinh la lop loi da giet lan chay Kaggle.
-
-
-13. Chuoi 4 loi toolchain cua vLLM -- moi lan mat ~5 phut nap model moi biet
-Day la phan ton thoi gian nhat cua buoi, ghi lai de khong lap lai:
-
-  (1) fatal error: Python.h: No such file or directory
-      -> torch.compile/Triton BIEN DICH C extension NGAY LUC CHAY, can header
-         phat trien cua Python. Sua: apt install python3-dev (can root).
-  (2) RuntimeError: Could not find nvcc and default cuda_home='/usr/local/cuda'
-      -> may khong cai CUDA toolkit he thong. NHUNG nvcc VAN CO SAN trong goi pip
-         nvidia-cuda-nvcc tai site-packages/nvidia/cu13/ (du layout bin/include/
-         lib/nvvm). Chi la torch khong biet nhin vao day. Sua: tro CUDA_HOME --
-         KHONG can cai CUDA toolkit 3GB, khong can root.
-  (3) FileNotFoundError: 'ninja'
-      -> ninja da duoc cai san (dependency cua vLLM) o <venv>/bin/ninja, nhung ta
-         goi <venv>/bin/python TRUC TIEP khong activate venv nen <venv>/bin khong
-         nam trong PATH. Sua: them thu muc chua interpreter vao dau PATH.
-  (4) error: "CUDA compiler and CUDA toolkit headers are incompatible"
-      -> flashinfer JIT-compile kernel sampling, va cac goi CUDA lech phien ban:
-         nvcc 13.2.86 vs nvrtc 13.0.88 vs crt 13.3.73. Tro treu: chinh ban va (2)
-         cua ta da keo nvcc 13.2 vao cuoc. Da dong bo ca 3 ve 13.0.88 + xoa cache
-         JIT, nhung van chua du -- cuoi cung phai chay o duong lui.
-
-(1)(2)(3) deu duoc gom vao _ensure_build_toolchain() trong generate_attempts.py,
-goi TRUOC ca lenh `import torch` -- bat buoc, vi torch.utils.cpp_extension tinh
-CUDA_HOME ngay luc import module chu khong phai luc bien dich.
-
-SAI LAM CAN GHI NHAN: sau loi (2) le ra phai them ngay duong lui tong quat thay
-vi sua tung loi mot roi lai nap model 15GB de phat hien loi ke tiep. Moi vong nhu
-vay ton ~5 phut GPU dang tra tien theo gio.
-
-Bai hoc ve enforce_eager: ban dau tuong no la luoi an toan tong quat. KHONG PHAI.
-flashinfer compile kernel sampling BAT KE eager hay khong (no o buoc lay mau,
-khong phai forward pass) -- nen enforce_eager mot minh khong cuu duoc loi (4).
-Duong lui dung phai tat CA HAI: VLLM_ENFORCE_EAGER=1 + VLLM_USE_FLASHINFER_SAMPLER=0.
-
-Ket qua thuc te khi chay duong lui: 1324 prompt trong 1 PHUT 36 GIAY (13.77 it/s,
-2450 token/s output). Eager khong he cham nhu lo ngai -- voi batch lon thi GPU da
-bao hoa tinh toan nen chi phi CPU launch bi che di.
-
-
-14. Refactor de 2 moi truong doc lap va de quy tac 4 duoc BAO DAM BOI CAU TRUC
-Phat hien mot bug se no o buoc eval: evaluate_self_correction.py import
-_build_prompt tu generate_attempts.py, ma file do `import vllm` o top-level ->
-ep venv Unsloth phai cai ca vLLM, dung thu viec tach venv nham tranh.
-
-Da tach:
-- src/prompts.py: PROMPT_TEMPLATES + REFLECT_PROMPT_TEMPLATE + CORRECTION_RE.
-  Khong import gi nang (khong vllm/unsloth/datasets) nen CA 2 venv deu doc duoc.
-  Quan trong hon: REFLECT_PROMPT_TEMPLATE truoc day ton tai 2 BAN COPY
-  (build_dataset.py + evaluate_self_correction.py) kem loi dan "phai giong nhau
-  tung byte". Gio ca 3 noi (them ban eval vLLM) doc tu 1 nguon -- khong the lech.
-- src/eval_common.py: bo de held-out + logging + print_report, dung chung cho ca
-  2 ban eval. Neu moi ban tu tai de rieng thi 2 con so khong so sanh duoc voi
-  nhau, ma so sanh duoc chinh la ly do giu ca 2 ban.
-- src/evaluate_self_correction_vllm.py: ban eval chay vLLM. Khai thac dung cau
-  truc 2 pha cua phep do (tat ca bai tu giai -> verify -> chi bai sai moi phan
-  tu) -> 2 lan generate() theo lo thay vi ~2 lan/bai tuan tu.
-  2 chi tiet ky thuat phai xu ly rieng: vLLM mac dinh max_lora_rank=16 nhung
-  config dung lora_r=32 (khong set thi loi luc nap adapter); va LoRARequest chi
-  nhan duong dan local nen repo id tren Hub phai snapshot_download truoc.
-
-LUU Y KHI DOI CHIEU SO LIEU: doi engine thi kernel va RNG khac nhau, khong bao
-gio trung tuyet doi voi ban Unsloth du cung adapter. Voi temperature 0.7 thi 2
-lan chay cung engine cung da khac nhau. Muon chac chan hon thi TANG SO BAI EVAL,
-dung ky vong 2 engine ra cung mot con so. Da tang eval tu 30+30 len 100+100 --
-o 60 bai thi mau so initial_wrong chi ~35, chenh 1 case lam ty le nhay ~3%, lon
-hon chinh hieu ung dang do.
-
-
-15. Mo rong bo de -- va mot bay suyt lam hong toan bo phep do
-Da mo rong: math 776 -> 1000 (+224 tu GSM8K train), code 524 -> 624 (+90 tu MBPP
-validation, +10 tu MBPP prompt). Tong 1624 bai.
-
-BAY: dinh dung dataset Kaggle "mpwolke/mbppjsonl" (~1000 bai code, nghe nhu nguon
-moi). Kiem tra ra do chinh la TOAN BO MBPP 974 bai gop thanh 1 file jsonl KHONG
-CO NHAN SPLIT. MBPP chia theo task_id thanh 4 khoi co dinh:
-
-    prompt      task_id   1-10    (10)
-    test        task_id  11-510   (500)   <- 11-160 dung TRAIN, 161+ la HELD-OUT EVAL
-    validation  task_id 511-600   (90)
-    train       task_id 601-974   (374)   <- da dung het
-
-Nap thang file do vao train = train len chinh de eval (task_id 161-260), va
-KHONG THE HOAN TAC: model da nhin thay de, moi so do sau do deu vo nghia -- ma
-trieu chung la "ket qua bong dung dep len", khong co gi bao loi. Bai hoc: cac ban
-redistribute gop san nhin nhu them du lieu, thuc ra chi BOC DI cai nhan split
-dang giu cho phep do trung thuc. Luon lay tu nguon chinh tac co split ro rang.
-
-Da them chan cung: prepare_code_extra() tu choi split="test"
-(_MBPP_SPLIT_SAFE_FOR_TRAIN), va chuoi dieu phoi assert khong co de train nao roi
-vao vung task_id >= 161 truoc khi cham GPU.
-
-Cung phat hien 1 bug se am tham lam lech phan bo: prepare_*_extra luon
-select(range(0, limit)) roi APPEND, khong dedupe -- chay lai voi limit lon hon se
-NHAN DOI toan bo phan da co. Da them _existing_ids() loc theo id; gio limit co
-nghia la "tong muon co tu split do", chay lai voi so lon hon la cach dung de scale.
-
-Nguon code khac da danh gia va LOAI: Kaggle
-"bhaveshmittal/python-programming-questions-dataset" (13.077 dong) -- 3 cot
-Instruction/Input/Output, trong do Output la CODE LOI GIAI chu khong phai test.
-Khong co gi cho CodeVerifier chay. Sinh test bang LLM se pha dung nguyen tac
-"khong de LLM cham LLM" cua ca Phase 1.
-Ung vien con lai co test chay duoc, theo cong suc tang dan: HumanEval (164 bai,
-assert, loader nho) / MBPP+ EvalPlus (0 bai moi, chi tang do chat cua test) /
-APPS (~10k) va CodeContests (~13k) -- 2 cai cuoi test bang stdin/stdout chu khong
-goi ham, CodeVerifier hien tai KHONG chay duoc, phai viet verifier kieu khac.
-
-
-16. Song song hoa build_dataset + su co 2 tien trinh chay cung luc
-build_dataset goi API TUAN TU, moi bai 1 lan goi toi model reasoning voi
-max_tokens=8000. Uoc tinh ~9-15 tieng cho ~1300 bai, trong khi GPU nam khong
-(buoc nay khong dung GPU) ma van tinh tien thue theo gio. Da song song hoa bang
-ThreadPoolExecutor (deepseek.max_workers, hien 16): buoc nay bi chan boi do tre
-mang chu khong phai CPU.
-
-SU CO: trong luc thay ban tuan tu bang ban song song, co 2 tien trinh
-build_dataset chay cung luc (mot tu chuoi cu chua chet han, mot tu chuoi moi) --
-dung dieu quy tac 3 trong instructionAI/SKILL.md cam. Hau qua: 8 ban ghi trung
-trong phase1_sft.jsonl + ton tien API gap doi cho ~8 bai. May man khong co dong
-JSON nao hong. Da dedupe (195 -> 187 mau) va giu ban .bak.
-
-Da bien quy tac do thanh CODE thay vi loi dan: src/run_lock.py -- khoa theo PID,
-tu don neu tien trinh cu da chet. Gan cho ca build_dataset va generate_attempts.
-Mot dong canh bao trong tai lieu ro rang khong ngan duoc loi nay.
-
-Cung sua 1 bug se can dung luc chay nhieu luong: trong deepseek_client.py, loi
-goi API nam NGOAI khoi try, va vong retry chi bat ValueError/JSONDecodeError.
-Mot loi HTTP (429 rate limit / 5xx / timeout) se thoat thang ra ngoai, va voi
-thread pool thi pool.map nem lai -> GIET CA POOL, mat toan bo tien do. Da dua
-loi goi vao trong try, bat rong, them backoff cap so nhan (rate limit cho lau
-hon). build_dataset.process() cung bat rong: mot bai hong chi duoc phep lam mat
-chinh no.
-
-Do thuc te 16 worker: 0 loi rate limit, ~475/906 sau 6 phut. Da can nhac va TU
-CHOI de xuat dung 3 model AI khac nhau de tang toc, vi 3 ly do: (a) chi nhanh hon
-neu provider gioi han theo tung model -- chua xac nhan co gioi han nao; (b)
-reasoning_content la TIN HIEU TRAIN CHINH, 3 model = 3 phong cach suy luan tron
-vao 1 tap train, va model nao khong tra reasoning_content se am tham lam mat khoi
-<thinking>; (c) lam nhieu chinh thi nghiem nay -- neu ket qua tot len se khong
-biet nho nhieu data hay nho tron thay. Neu that su can thong luong: nhan ban CUNG
-MOT model bang nhieu API key, khong phai doi model.
-
-
-17. PHAT HIEN QUAN TRONG: can bang bo de KHONG tao ra can bang du lieu train
-Da cho can bo de ve 61/38 toan/code de "tranh model nghieng mot ben". Do thuc te
-bang verifier (khong doan) tren 906 attempt moi:
-
-    Toan:  432 bai | model giai DUNG NGAY: 364 (84.3%) -> chi 68 lan goi API
-    Code:  474 bai | model giai DUNG NGAY:  35 ( 7.4%) -> 439 lan goi API
-
-Du lieu train se ra ~87% CODE, nguoc han ty le bo de. Vi thu quyet dinh khong
-phai so de, ma la MODEL SAI O DAU. Qwen2.5-7B giai GSM8K qua tot con MBPP thi
-hau nhu truot.
-
-He qua: viec can bang bo de o muc 15 KHONG dat duoc muc dich no nham toi. Them de
-toan cung gan nhu vo ich -- 84% se bi bo vi model giai dung. Muon them tin hieu
-toan thi phai doi DO KHO chu khong phai so luong: GSM8K la toan tieu hoc, qua de
-voi model nay. Bo MATH (toan thi dau) se sinh ty le sai cao hon nhieu -- nhung do
-la viec that: can loader moi + verifier xu ly duoc dap an dang bieu thuc, khong
-chi so.
-
-Dieu nay cung soi lai con so cu o muc 8: math 22.2% vs code 46.4% duoc do tren
-adapter train tu du lieu VON DA lech ve code.
-
-Chi phi do that (gia 900d/1M input, 4500d/1M output, san 30d/request):
-- 507 lan goi API. Input ~600 token/lan (~0.3M), output ~2300 token/lan (~1.17M,
-  do tu 187 mau that: TB 6787 ky tu, max 26751).
-- Theo token: 270d + 5265d = 5535d. NHUNG san 30d/request -> 507 x 30 = 15210d.
-  San toi thieu quyet dinh gia chu khong phai token (moi lan goi thuc chi dang
-  ~11d) -- san lam chi phi tang gan 3 lan. Tong thuc te ~15-19k dong.
-
-
-18. Ha tang phu: bao tien do qua Telegram (2026-07-21)
-Da them src/notify.py (gui tin) + src/tg_inbox.py (thu tin nhan vao
-outputs/tg_inbox.jsonl). Ca 2 CO Y chi dung urllib cua stdlib va tu doc .env thay
-vi qua src/config.py: chung duoc goi tu shell script dieu phoi, nam ngoai moi
-venv, nen phai chay duoc bang python3 he thong (may nay khong co pip).
-notify.py im lang bo qua neu chua cau hinh hoac loi mang -- mot job train 3 tieng
-khong duoc phep chet vi khong gui duoc tin nhan.
-
-tg_inbox.py CO Y khong tu thuc thi lenh tu Telegram: mot bot cam quyen shell tren
-may GPU, dieu khien bang tin nhan, la thu rat kho kiem soat khi co su co -- ma do
-dung la luc khong ai ngoi truoc may. Doc-roi-nguoi-quyet van giai quyet dung nhu
-cau ma khong mo cai cua do.
+# Nhật ký công việc — Phase 1: Tự sửa lỗi có kiểm chứng
 
+> Dạy một model 7B kỹ năng nền tảng **"biết mình sai → tự phê bình → tự sửa"**,
+> trên các miền mà tính đúng/sai kiểm được bằng chương trình (toán, code),
+> trước khi nạp bất kỳ kiến thức chuyên sâu nào.
 
+Đây là pipeline dạy **hành vi**, không phải dạy **kiến thức**. Mục tiêu là vòng lặp
+phê bình → sửa, không phải điểm số trên GSM8K/MBPP.
 
+---
+
+## Mục lục
+
+- [Tiêu chí thành công](#tiêu-chí-thành-công)
+- [Ba nguyên tắc bất di bất dịch](#ba-nguyên-tắc-bất-di-bất-dịch)
+- [Trạng thái hiện tại](#trạng-thái-hiện-tại)
+- [Năm khâu của pipeline](#năm-khâu-của-pipeline)
+- [Lịch sử thí nghiệm](#lịch-sử-thí-nghiệm)
+- [Những gì đã học được](#những-gì-đã-học-được)
+- [Những sai lầm đã mắc](#những-sai-lầm-đã-mắc)
+- [Rủi ro chưa kiểm chứng](#rủi-ro-chưa-kiểm-chứng)
+- [Hướng tiếp theo](#hướng-tiếp-theo)
+
+---
+
+## Tiêu chí thành công
+
+Đặt ra từ đầu, **chưa đạt cái nào**:
+
+| Tiêu chí | Mục tiêu | Hiện tại |
+|---|---|---|
+| Độ chính xác tự phê bình | ≥ 75–80% | **chưa đo được** — xem ghi chú bên dưới |
+| Tỉ lệ sửa chữa thành công | ≥ 70% | 37.8% |
+| Không lặp lại lỗi sau 2–3 vòng sửa | — | **chưa test** (mới test 1 vòng) |
+| Giảm hallucination rõ rệt | — | chưa đo |
+| Độ dài phản hồi hợp lý | — | **đang có vấn đề** (~26% lan man không dừng) |
+| Loss ổn định, không overfit sớm | — | ổn |
+
+**Về tiêu chí đầu tiên:** "tự phê bình" và "tự sửa" là **hai thứ khác nhau**, và ta
+mới chỉ đo cái thứ hai. Paper 2606.05976 đo cái thứ nhất bằng tiêu chí nghiêm ngặt
+(model phải *gọi tên* đúng bước sai rồi bác bỏ nó), và cho thấy hai chỉ số này lệch
+nhau rất xa: baseline của họ ra đáp án cuối đúng 70–77% số lần trong khi tỉ lệ nhận
+diện lỗi nghiêm ngặt chỉ 0–17%. Ta chưa có thước đo cho phần nhận diện.
+
+---
+
+## Ba nguyên tắc bất di bất dịch
+
+Vi phạm ba điều này là phá vỡ ý nghĩa của cả Phase 1.
+
+**1. Đúng/sai do chương trình quyết, không bao giờ do LLM chấm LLM.**
+sympy cho toán, chạy unit test thật cho code. Cả lời giải gốc lẫn bản sửa của model
+lớn đều phải qua verifier. Bản sửa nào trượt re-verify thì **loại bỏ** — đây là cổng
+chất lượng có chủ đích, không phải bug cần tối ưu cho tỉ lệ giữ cao hơn.
+
+**2. Lời giải sai phải do chính model nhỏ sinh ra thật.**
+Không bao giờ để model lớn "tưởng tượng" ra một lời giải sai hợp lý. Dữ liệu train
+phải khớp phân bố lỗi **thực tế** của model, nếu không kỹ năng học được sẽ không
+chuyển sang được cách nó sai trong thực tế.
+
+**3. Prompt lúc train và lúc suy luận phải giống nhau từng byte.**
+Lệch nhau chính là lớp bug mà bản vá `verifier_detail` sinh ra để loại bỏ. Từ
+2026-07-21, điều này được **cấu trúc bảo đảm**: mọi template nằm trong
+`src/prompts.py`, ba nơi dùng (`build_dataset`, hai bản eval) đều đọc từ đó.
+
+---
+
+## Trạng thái hiện tại
+
+*Cập nhật 2026-07-21*
+
+| | |
+|---|---|
+| Model nền | Qwen2.5-7B-Instruct, QLoRA 4-bit qua Unsloth |
+| Bộ đề | 1000 GSM8K + 624 MBPP = **1624 bài** |
+| Dataset train | **631 mẫu** (`phase1_sft.jsonl`) |
+| Adapter | `Kxck/AGI_v2` trên HF Hub — `AGI_v1` giữ làm đối chứng |
+| Bộ đề held-out | 600 toán + 150 code (offset 150, tách hoàn toàn khỏi train) |
+| Máy | RTX 3090 Ti 24GB (thuê theo giờ) |
+
+**Chỉ số — phải đọc tách làm hai thừa số:**
+
+| | Giá trị | So với mục tiêu |
+|---|---|---|
+| Tỉ lệ tự sửa (con số tổng) | **37.8%** | mục tiêu ≥70% — còn xa |
+| ├ Ra được định dạng | 58.2% | ← **toàn bộ khoảng cách nằm ở đây** |
+| └ Sửa đúng khi đã ra format | **64.8%** | gần chạm 70% |
+
+Con số tổng là **tích của hai thứ**, và chỉ thừa số đầu đang hỏng. Xem
+[phát hiện số 6](#6-chỉ-số-tổng-là-tích-của-hai-thứ-và-chỉ-một-thứ-đang-hỏng).
+
+---
+
+## Năm khâu của pipeline
+
+Thứ tự **cố định theo phụ thuộc dữ liệu**, không phải theo sở thích. Mỗi khâu đọc
+output của khâu trước.
+
+### Khâu 1 — Chuẩn bị bộ đề
+`prepare_public_datasets.py` · không cần GPU
+
+Lấy GSM8K/MBPP về `data/problems/*.jsonl`.
+
+**Ranh giới split là thứ giữ cho phép đo trung thực.** MBPP chia theo `task_id`
+thành 4 khối cố định:
+
+| Split | task_id | Số bài | Dùng làm gì |
+|---|---|---|---|
+| prompt | 1–10 | 10 | train |
+| test | 11–510 | 500 | 11–160 → **train**; 161+ → **held-out eval** |
+| validation | 511–600 | 90 | train |
+| train | 601–974 | 374 | train (**đã dùng hết**) |
+
+`prepare_code_extra()` **chặn cứng** `split="test"`. Train lên `task_id ≥ 161` là
+phá hỏng toàn bộ phép đo, **không thể hoàn tác**, và triệu chứng duy nhất là *kết
+quả bỗng dưng đẹp lên* — không có gì báo lỗi.
+
+**Cạm bẫy đã suýt dính:** các bản MBPP gộp sẵn (ví dụ Kaggle `mpwolke/mbppjsonl`)
+đóng gói cả 974 bài thành một file jsonl **không có nhãn split**. Trông như ~1000
+bài code mới; thực chất là cùng bộ MBPP với thứ duy nhất bảo vệ eval bị gỡ bỏ.
+
+**Bug đã sửa:** `prepare_*_extra` trước đây luôn `select(range(0, limit))` rồi
+append mà không dedupe — chạy lại với số lớn hơn sẽ **nhân đôi** phần đã có, âm thầm
+làm lệch phân bố. Nay `limit` nghĩa là "tổng muốn có từ split đó", bài đã có bị bỏ
+qua.
+
+### Khâu 2 — Sinh attempt
+`generate_attempts.py` · **cần GPU** (vLLM) · resumable
+
+Model nhỏ tự giải toàn bộ bộ đề. Đây là nơi nguyên tắc số 2 được thực thi: không gọi
+API nào, mọi lời giải sai đều là lỗi thật của chính model.
+
+Dùng vLLM vì đây là inference thuần trên model gốc — dựng hết prompt rồi gọi
+`generate()` **một lần duy nhất** cho cả 1324 bài. Thực đo: **1 phút 36 giây**
+(13.8 req/s, 2450 token/s output).
+
+### Khâu 3 — Dựng dataset
+`build_dataset.py` · **không cần GPU**, chỉ gọi API · resumable
+
+Verify → nếu sai thì gọi model lớn sinh phê bình + bản sửa → **re-verify** → chỉ giữ
+khi bản sửa được xác nhận đúng.
+
+Chain-of-thought thật của model lớn (`reasoning_content`) được bọc trong
+`<thinking>` và đưa vào mẫu train — đây là **tín hiệu huấn luyện chính**, không phải
+phần phụ. Vì vậy `max_tokens` phải đủ chỗ cho nó (8000).
+
+**Đã song song hoá (16 worker).** Khâu này bị chặn bởi độ trễ mạng chứ không phải
+CPU; chạy tuần tự trên ~1300 bài mất 9–15 tiếng trong khi GPU nằm không mà vẫn tính
+tiền thuê.
+
+Thống kê lần chạy 2026-07-21:
+```
+total=906  already_correct=399  sent_to_api=507  kept=444  discarded=63
+```
+Chi phí thật: **~15.200₫** (507 request). Đáng chú ý: giá bị quyết định bởi **sàn
+30₫/request**, không phải bởi token — mỗi lần gọi thực chỉ đáng ~11₫.
+
+### Khâu 4 — Train
+`train_sft.py` · **cần GPU** (Unsloth QLoRA)
+
+QLoRA r=32, 3 epoch, batch hiệu dụng 16, `max_seq_length=4096`. 631 mẫu → 120 bước
+→ **~44 phút** trên 3090 Ti, dùng 11.5/24.5 GB.
+
+### Khâu 5 — Đánh giá
+`evaluate_self_correction_vllm.py` · **cần GPU**
+
+**Đây mới là thước đo có ý nghĩa.** Training loss không cho biết model có học được
+tự sửa hay không.
+
+Phép đo có cấu trúc 2 pha: tất cả bài tự giải → verify → chỉ bài sai mới phản tư →
+verify lại. Cả hai pha đều batch thuần nên vLLM chỉ cần **2 lần `generate()`** thay
+vì 2 lần/bài tuần tự.
+
+Metric: `self_corrected / initial_wrong`.
+
+---
+
+## Lịch sử thí nghiệm
+
+### Giai đoạn 1 — Phát hiện vai trò của "địa chỉ hoá" (2026-07-19 → 07-20)
+
+Xuất phát từ paper **"The Self-Correction Illusion"** (arXiv 2606.05976): LLM không
+tự sửa được lỗi trong `<thought>` của chính nó **không phải vì thiếu năng lực suy
+luận**, mà vì thiếu *addressability* — không có thói quen coi một mệnh đề nằm trong
+suy nghĩ riêng là một "đối tượng" có thể gọi tên và bác bỏ. Đưa lại **cùng một
+claim sai** dưới role bên ngoài giúp tăng tỉ lệ tự sửa 23–93 điểm phần trăm,
+**không cần train lại**.
+
+Áp dụng: đổi role của lượt phản tư từ `user` sang `tool`.
+
+| Cấu hình | Toán | Code | Tổng |
+|---|---|---|---|
+| Train `user` + eval `user` | 0% | 28.6% | 22.9% |
+| Train `user` + eval `tool` *(lệch phân phối)* | 33.3% | 28.6% | 29.7% |
+| Train `tool` + eval `tool` *(khớp)* | 22.2% | 46.4% | **40.5%** |
+
+Bài học rút ra lúc đó: phần "train cho khớp" đóng góp **nhiều hơn** phần đổi prompt
+(+10.8pp so với +6.8pp). Đây là lý do sau này mọi phép thử đổi khung đều phải có
+bước train khớp, không dừng ở phép thăm dò.
+
+`format_incomplete` cũng giảm mạnh 43% → 13.5%.
+
+**Kết luận đưa ra lúc đó:** *"nút thắt chính giờ là quy mô dữ liệu (135 mẫu, mục
+tiêu 800–1500), không còn là vấn đề thiết kế role/format."*
+
+→ **Kết luận này sau đó đã bị bác bỏ.** Xem giai đoạn 3.
+
+### Giai đoạn 2 — Mở rộng hạ tầng (2026-07-20 → 07-21)
+
+Chuyển từ Kaggle/Colab sang **VM thuê RTX 3090 Ti** (CC 8.6, 24GB). Chi tiết kỹ
+thuật đầy đủ trong `README.md` và `instructionAI/environment.md`; phần đáng nhớ:
+
+- **Chọn máy theo compute capability, không theo VRAM.** Tesla P40 24GB giá rẻ đã bị
+  loại: CC 6.1 nên cả Unsloth lẫn vLLM đều không chạy, và "12 TFLOPS" quảng cáo là
+  FP32 — FP16 trên GP102 bị chặn ở 1/64 tốc độ.
+- **Hai venv riêng biệt là bắt buộc, không phải cẩn thận thừa.** Đo thực tế:
+  vLLM kéo `torch 2.11.0+cu130`, Unsloth kéo `torch 2.10.0+cu128`. Cài chung một môi
+  trường thì cái sau ghi đè cái trước và lỗi nổ ở **khâu train** — sau khi đã đốt
+  xong GPU cho khâu 2.
+- **`uv` thay cho `pip`:** máy thuê không có `pip`, không có `python3-venv`, và
+  `sudo` đòi password.
+- **Chuỗi 4 lỗi toolchain của vLLM**, mỗi lỗi chỉ lộ ra sau ~5 phút nạp model:
+  thiếu `Python.h` → không tìm thấy `nvcc` → thiếu `ninja` trên PATH → xung đột
+  phiên bản `nvcc`/`nvrtc`/`crt` khi flashinfer JIT-compile.
+
+  Bài học quan trọng: **`enforce_eager` không phải lưới an toàn tổng quát.**
+  flashinfer compile kernel sampling *bất kể* eager hay không. Đường lùi đúng phải
+  tắt **cả hai**: `VLLM_ENFORCE_EAGER=1 VLLM_USE_FLASHINFER_SAMPLER=0`.
+
+### Giai đoạn 3 — Kiểm chứng giả thuyết quy mô dữ liệu (2026-07-21)
+
+Mở rộng 135 → **631 mẫu** (gấp 4.7 lần, chạm ngưỡng dưới của mục tiêu 800–1500).
+
+**Kết quả: không có thay đổi nào đạt ý nghĩa thống kê.**
+
+| Chỉ số | v1 (135 mẫu) | v2 (631 mẫu) | p (Fisher) |
+|---|---|---|---|
+| Tỉ lệ tự sửa | 40.5% (15/37) | 37.8% (94/249) | **0.856** |
+| Giải đúng ngay — toán | 70.0% (21/30) | 81.0% (81/100) | 0.212 |
+| Giải đúng ngay — code | 6.7% (2/30) | 3.0% (3/100) | 0.326 |
+
+p = 0.856 — gần như không thể gần "không có khác biệt" hơn được nữa. Đây **không**
+phải "chưa đủ mẫu để thấy hiệu ứng"; mẫu số đã là 249. Là **không có hiệu ứng để
+thấy**.
+
+→ Giả thuyết trung tâm của giai đoạn 1 bị bác bỏ.
+
+### Giai đoạn 4 — Thí nghiệm khung `memory` (2026-07-21, đang chạy)
+
+Paper phân rã hiệu ứng thành hai phần: **lớp bọc cú pháp đóng góp 17–23pp, còn role
+tag đóng góp thêm ~30pp**.
+
+Phát hiện then chốt khi kiểm tra chat template của Qwen: khung `tool` mà ta đang
+dùng **không phải một role token riêng** — nó render thành
+`<|im_start|>user\n<tool_response>...</tool_response>`, tức chỉ là **nấc H3** (lớp
+bọc), chưa phải H4 (role tag thật). Mức tăng đo được của dự án (+17.6pp) nằm gọn
+trong dải 17–23pp mà paper dự đoán cho riêng phần lớp bọc.
+
+Nên phần ~30pp của role tag vẫn còn nguyên chưa khai thác. Thiết kế 2×2:
+
+| Ô | Adapter train | Eval | Cho biết |
+|---|---|---|---|
+| A | `tool` | `tool` | mốc |
+| B | `tool` | `memory` | hiệu ứng prompt thuần |
+| C | `memory` | `memory` | hiệu ứng đầy đủ |
+| D | `memory` | `tool` | đối chứng ngược |
+
+Ô D bắt đúng chỗ dễ nhầm nhất: nếu adapter `memory` tốt hơn ở **cả hai** khung eval
+thì cải thiện đến từ lần train đó chứ không phải từ `memory`.
+
+**Kết quả đầy đủ bốn ô:**
+
+| Ô | Toán | Code | Tổng | `init_ok` | `fmt_bad` |
+|---|---|---|---|---|---|
+| A `tool`/`tool` | 31.7% (33/104) | 42.1% (61/145) | 37.8% (94/249) | 66.8% | 41.8% |
+| B `tool`/`memory` | 29.7% (30/101) | 48.6% (71/146) | 40.9% (101/247) | 67.1% | 36.4% |
+| C `memory`/`memory` | 39.7% (31/78) | 47.6% (69/145) | **44.8%** (100/223) | 70.3% | 33.6% |
+| D `memory`/`tool` | 32.9% (24/73) | 5.5% (8/145) | **14.7%** (32/218) | 70.9% | **78.9%** |
+
+Ô D **sụp đổ**, và đó là tin tốt cho tính chặt chẽ: nó loại bỏ giả thuyết "adapter
+`memory` chỉ đơn giản là lần train may mắn hơn". Nếu nó giỏi lên một cách tổng quát
+thì ô D phải ≥ ô A; thực tế D thấp hơn A rất xa. Adapter **chuyên biệt hoá** vào
+khung nó được dạy.
+
+**Phân rã — đây mới là phát hiện thật:**
+
+| Ô | Ra được format | Sửa đúng \| đã ra format | Tổng |
+|---|---|---|---|
+| A | 58.2% | **64.8%** | 37.8% |
+| B | 63.6% | **64.3%** | 40.9% |
+| C | 66.4% | **67.6%** | 44.8% |
+| D | 21.1% | **69.6%** | 14.7% |
+
+**Cột giữa gần như không đổi qua cả bốn ô.** Toàn bộ biến thiên của con số tổng đến
+từ tỉ lệ ra được format.
+
+Kiểm định tách riêng hai thành phần:
+
+| So sánh | Ra được format | Sửa đúng khi đã ra format |
+|---|---|---|
+| A vs C | 58.2% → 66.4%, p = 0.072 | 64.8% → 67.6%, **p = 0.62** |
+| A vs D | 58.2% → 21.1%, **p = 2×10⁻¹⁶** | 64.8% → 69.6%, **p = 0.60** |
+
+Ô D là bằng chứng đanh nhất: tổng thấp nhất (14.7%) nhưng tỉ lệ sửa đúng khi ra được
+format **cao nhất (69.6%)**. Model lệch phân phối vẫn phê bình tốt y hệt — nó chỉ
+hiếm khi viết nổi ra.
+
+**Về dự đoán của paper:** `<memory>` mạnh nhất ở toán — **không tái lập được**. Ở ô B
+(prompt thuần), McNemar cho toán 12 vs 13 (p = 1.000), code 19 vs 10 (p = 0.136).
+Và quan trọng hơn, `memory` **có** giúp thật nhưng **qua cơ chế khác hẳn** paper mô
+tả: paper nói nó cải thiện addressability để model chẩn đoán đúng hơn; dữ liệu của ta
+nói nó cải thiện khả năng viết cho xong, còn chẩn đoán thì không nhúc nhích
+(p = 0.62).
+
+Giả thuyết vì sao lệch: setup khác nhau ở chỗ căn bản. Paper tiêm một *claim sai
+trần* rồi bảo model tự audit; ta đưa *thông báo lỗi thật từ verifier*. Cơ chế
+addressability sinh ra để tạo "tay cầm" cho mệnh đề vốn không có địa chỉ — nhưng
+`verifier_detail` **đã là một tay cầm sẵn**.
+
+---
+
+## Những gì đã học được
+
+### 1. Địa chỉ hoá quan trọng hơn việc lộ đáp án
+
+Giả thuyết ban đầu: thông báo lỗi của toán có ghi thẳng đáp án đúng nên tỉ lệ tự sửa
+của toán sẽ bị thổi phồng. **Dữ liệu cho kết quả ngược lại** — toán tự sửa 0% *dù*
+được cho sẵn đáp án đúng: model không định vị được **bước nào** trong lời giải của
+chính nó bị sai. Code không bao giờ lộ đáp án nhưng traceback chỉ đích danh
+dòng/hàm, và tự sửa tốt hơn hẳn.
+
+Kiểm tra lại 2026-07-21 trên dữ liệu mới: toán có lộ đáp án 1/7, không lộ 0/10, code
+0/30 chép nguyên văn. **Không thấy dấu hiệu đọc-chép.**
+
+### 2. Cân bằng bộ đề KHÔNG tạo ra cân bằng dữ liệu train
+
+Đo bằng verifier trên 906 attempt mới:
+
+| Domain | Bài | Giải đúng ngay | Cần gọi API |
+|---|---|---|---|
+| Toán | 432 | **364 (84.3%)** | 68 |
+| Code | 474 | 35 (7.4%) | **439** |
+
+Ta đã cẩn thận cân bộ đề về 61/38 toán/code. Dữ liệu train ra **~87% code**. Vì thứ
+quyết định không phải số đề, mà là **model sai ở đâu**.
+
+Hệ quả: **thêm bài toán gần như vô ích** — 84% sẽ bị bỏ vì model giải đúng. Muốn
+thêm tín hiệu toán thì phải đổi **độ khó**: GSM8K là toán tiểu học, quá dễ với model
+này. Bộ MATH (toán thi đấu) sẽ sinh tỉ lệ sai cao hơn nhiều — nhưng cần loader mới
+và verifier xử lý được đáp án dạng biểu thức.
+
+### 3. Cỡ mẫu — bài học đắt nhất
+
+Cùng một adapter, cùng bộ đề, chỉ khác số bài eval:
+
+| Cỡ mẫu | Tỉ lệ tự sửa của TOÁN |
+|---|---|
+| n = 19 | 15.8% |
+| n = 104 | **31.7%** |
+
+Chênh gấp đôi, thuần tuý do cỡ mẫu.
+
+Nghĩa là **mọi con số toán trong lịch sử dự án** — 0%, 33.3%, 22.2% — đều dựa trên
+mẫu số 7–9 case. Chúng chưa bao giờ đo được gì. Kể cả phát hiện "role `tool` đưa toán
+từ 0% lên 33.3%" từng là cơ sở để đổi cả pipeline, thực chất là **0/7 so với 3/9**.
+
+Điều này không có nghĩa quyết định đổi sang `tool` là sai — tổng thể vẫn cải thiện và
+lý do lý thuyết vẫn vững. Nhưng **bằng chứng cho riêng phần toán chưa từng tồn tại**.
+
+Quy tắc từ nay: model giải đúng ~84% bài toán, nên muốn mẫu số ~100 thì cần **~600
+bài toán** trong bộ eval.
+
+### 4. Thước đo có hiệu ứng chọn lọc
+
+`initial_wrong` là **chính những bài model làm sai**. Model càng giỏi thì mẫu số càng
+nhỏ và càng chỉ còn toàn bài khó. **Tỉ lệ tự sửa có thể giảm trong khi model thực sự
+khá lên.**
+
+Bằng chứng: trên đúng 30 bài toán dùng để đo v1, model v2 **giải đúng cả 30 ngay lần
+đầu** — mẫu số bằng 0, không còn gì để tự sửa.
+
+Vì vậy `initial_correct` phải luôn được báo cáo kèm.
+
+### 5. Model không biết dừng
+
+~26% số bài sai rơi vào trạng thái viết `<thinking>` lan man không bao giờ tới
+`### Sửa lại`. Gấp đôi ngân sách token (2048 → 4096) chỉ khiến nó **viết dài gấp
+đôi rồi vẫn bị cắt** (độ dài trung bình 6.526 → 12.418 ký tự).
+
+Đây là **hành vi**, không phải thiếu chỗ. Chưa rõ nguyên nhân.
+
+Ngoài ra có ~18 case model **bỏ hẳn format** và trả lời thẳng bằng code — trong đó
+một số thực ra **đúng** nhưng đang bị chấm là thất bại. Cách chấm hiện tại loại mọi
+output thiếu `### Sửa lại`, mà quy tắc đó sinh ra để chặn *văn bản bị cắt cụt*,
+không phải để chặn *câu trả lời trọn vẹn nhưng sai format*. Hai thứ này nên tách.
+
+### 6. Chỉ số tổng là TÍCH của hai thứ, và chỉ một thứ đang hỏng
+
+Đây là phát hiện quan trọng nhất tính đến nay.
+
+```
+tỉ lệ tự sửa  =  tỉ lệ ra được định dạng  ×  tỉ lệ sửa đúng khi đã ra định dạng
+    37.8%     =           58.2%           ×            64.8%
+```
+
+Qua **cả bốn ô** của thí nghiệm 2×2 — hai adapter, hai khung, khớp và lệch — thừa số
+thứ hai gần như bất động: **64.8 / 64.3 / 67.6 / 69.6%**. Thừa số thứ nhất thì dao
+động dữ dội: **58.2 / 63.6 / 66.4 / 21.1%**.
+
+Và qua phép tăng dữ liệu 4.7 lần, cũng không thừa số nào đổi (p = 0.856).
+
+**Kỹ năng tự sửa của model đứng yên ở ~65–70% bất kể can thiệp nào.** Mục tiêu trong
+kế hoạch là ≥70%. Nghĩa là **kỹ năng ấy gần như đã đạt từ lâu** — ta chưa bao giờ đo
+nó tách bạch nên không biết.
+
+Hệ quả cho mọi việc đã làm:
+
+- **Thêm dữ liệu** dạy *nội dung phê bình* — thứ vốn đã ổn. Nên nó không đổi gì.
+- **Đổi khung role** có tác dụng thật, nhưng **không qua cơ chế paper mô tả**. Nó
+  cải thiện khả năng viết-cho-xong (+8pp), không cải thiện chẩn đoán (p = 0.62).
+- **Lệch phân phối** không làm model chẩn đoán tệ đi (69.6%, cao nhất trong bốn ô).
+  Nó chỉ làm model gần như không viết nổi ra (21.1%).
+
+Từ nay **mọi báo cáo kết quả phải tách hai thừa số**. Báo cáo con số tổng một mình
+là che mất chỗ đang hỏng — và đó chính là lý do dự án đã đi sai hướng hai lần liên
+tiếp.
+
+---
+
+## Những sai lầm đã mắc
+
+Ghi lại để không lặp lại. Nhật ký chỉ ghi thành công là nhật ký vô dụng.
+
+**1. Đổi bốn biến cùng lúc.** Giữa lần đo 40.5% và lần đo mới, đã thay đổi: số mẫu
+(135→631), `max_seq_length` (2048→4096), engine eval (Unsloth→vLLM), bộ đề
+(30+30→100+100). Kể cả nếu có khác biệt có ý nghĩa thì cũng không quy được cho biến
+nào.
+
+**2. Nâng `max_seq_length` mà quên ngân sách sinh.** Hai tham số này gắn liền nhau:
+train trên chuỗi dài hơn thì model viết dài hơn, mà `max_new_tokens_correction` vẫn
+giữ 2048 → cắt cụt. Đây là **lần thứ hai** dự án vấp đúng lớp bug này (lần trước
+1024 → 2048). Đã ghi cảnh báo ngay cạnh tham số trong `configs/phase1.yaml`.
+
+**3. Hai tiến trình `build_dataset` chạy song song.** Vi phạm đúng quy tắc đã ghi
+trong tài liệu. Hậu quả: 8 bản ghi trùng và tốn tiền API gấp đôi cho ~8 bài. Một
+dòng cảnh báo bằng văn bản không ngăn được lỗi này — nay đã thành khoá thật
+(`src/run_lock.py`, khoá theo PID, tự dọn nếu tiến trình cũ đã chết).
+
+**4. Sửa từng lỗi toolchain rồi lại nạp model 15GB để phát hiện lỗi kế tiếp.** Bốn
+vòng, mỗi vòng ~5 phút GPU tính tiền theo giờ. Lẽ ra phải thêm đường lùi tổng quát
+ngay sau lần fail thứ hai.
+
+**5. Chẩn đoán vội trước khi đo.** Đã hai lần đưa ra nguyên nhân sai (trần token,
+dữ liệu train bị cắt) và phải tự bác bỏ bằng số liệu. Việc đo thì đúng, nhưng lẽ ra
+nên đo trước rồi mới kết luận.
+
+---
+
+## Rủi ro chưa kiểm chứng
+
+**Sycophancy — rủi ro lớn nhất còn bỏ ngỏ.** Dữ liệu train **chỉ có** case "bị báo
+SAI → sửa", chưa hề có case "bị báo SAI nhưng thực ra ĐÚNG → giữ nguyên". Model có
+thể đã học phản xạ "hễ bị nói sai là đổi đáp án".
+
+Paper mục 4.5 đo được đúng cơ chế này: tiêm claim sai qua role ngoài chỉ khiến model
+chấp nhận ≤3.3%, **nhưng chỉ một câu ra lệnh tin tưởng đẩy lên 70%**. Template của
+ta mở đầu bằng `"Kết quả kiểm tra: SAI."` — một khẳng định uy quyền, gần với
+trust-framing hơn là audit trung lập. Và ta đang **train model luôn tuân theo khẳng
+định đó**.
+
+Cách test: lấy bài model làm **đúng**, báo giả là SAI kèm lỗi bịa, đếm số lần nó đổi
+thành sai.
+
+**Chưa có đối chứng model gốc.** Chưa bao giờ so `initial_correct` của adapter với
+model **chưa train** trên cùng bộ đề. Không có mốc này thì không biết LoRA có làm
+hỏng năng lực giải gốc hay không — và như phần "hiệu ứng chọn lọc" đã chỉ ra, đây là
+thông tin bắt buộc để đọc đúng metric chính.
+
+**Verifier code có thể yếu.** Test case MBPP ít; code "sửa" có thể pass test mà chưa
+chắc giải đúng bài toán tổng quát.
+
+**Mới test 1 vòng sửa.** Tiêu chí yêu cầu "không lặp lỗi sau 2–3 vòng", quy trình
+hiện tại dừng ngay sau một lần phản tư.
+
+**Trích xuất đáp án của math_verifier có thể sai** khi dính ký tự rác (ví dụ dấu
+backtick lẫn vào từ output markdown của model).
+
+---
+
+## Hướng tiếp theo
+
+### Đã quyết: chưa làm "tự phát hiện lỗi không gợi ý"
+
+Hướng đó (model tự rà soát mà không được cho biết đúng/sai) mới đúng nghĩa "tự phê
+bình" trong tiêu chí thành công. Nhưng hoãn, vì hai lý do:
+
+- **Rủi ro hallucinate cao:** không có mốc khách quan thì model dễ (a) bịa ra lỗi
+  không có thật ở câu đã đúng, hoặc (b) không thấy lỗi thật vì dùng lại chính cách
+  suy luận đã gây ra lỗi để tự kiểm tra. Đây chính là vấn đề "LLM tự chấm cho LLM"
+  mà cả Phase 1 đang tránh.
+- Paper xác nhận độc lập: tự-audit không gợi ý chỉ đạt **0–23%**.
+
+Điều kiện để bắt đầu: hướng hiện tại phải ổn định trước, và nếu làm thì nên bắt đầu
+từ mức gợi ý trung gian ("có thể đúng có thể sai, hãy kiểm tra kỹ") rồi mới bỏ dần.
+
+### Ứng viên theo thứ tự ưu tiên
+
+Thứ tự này đã được **sắp xếp lại** sau phát hiện số 6. Mọi hướng nhắm vào "dạy phê
+bình giỏi hơn" đều bị hạ ưu tiên, vì phần đó đã ~65–70% và không phản ứng với bất kỳ
+can thiệp nào đã thử.
+
+**1. Làm model viết cho xong rồi dừng** — đây giờ là *toàn bộ* khoảng cách tới mục
+tiêu. Ba hướng cụ thể, đều rẻ:
+
+  - **Lọc bỏ mẫu train bị cắt cụt.** 10.5% mẫu vượt 4096 token; chúng kết thúc giữa
+    `<thinking>` và **không bao giờ có `### Sửa lại`** — đang dạy đúng hành vi "bắt
+    đầu suy nghĩ rồi không kết luận". Chi phí: 0₫ API, ~45 phút GPU.
+    *Dữ kiện ngược chiều cần lưu ý:* lần train cũ dùng `max_seq_length=2048` với độ
+    dài mẫu trung bình 2186 token — tức khoảng **một nửa** số mẫu bị cắt — mà lại
+    đạt 40.5%. Nên giả thuyết này chưa vững, phải đo chứ không nên tin.
+  - **Rút gọn `<thinking>` trong dữ liệu train.** Chain-of-thought của GLM dài và lan
+    man; model đang bắt chước đúng đặc tính đó.
+  - **Ràng buộc độ dài / cấu trúc lúc sinh** — ví dụ ép format bằng structured output.
+
+**2. Đối chứng model gốc** — rẻ (~10 phút GPU), mảnh thiếu bắt buộc để đọc đúng mọi
+con số hiện có. Đặc biệt cần vì `init_ok` chênh 3.5pp giữa hai adapter train trên
+**cùng dữ liệu** — đó là thước đo mức dao động giữa các lần train, và ta cần biết nó
+so với model nền thế nào.
+
+**3. Tách cách chấm "bị cắt cụt" khỏi "trọn vẹn nhưng sai format"** — đang tính nhầm
+một số câu trả lời đúng thành thất bại. Không cần GPU.
+
+**4. Test sycophancy** — rủi ro đã được paper định lượng, template của ta nằm đúng
+vùng nguy hiểm.
+
+**5. Siết verifier bằng MBPP+ (EvalPlus)** — cùng bộ bài, nhiều hơn ~35 lần test
+case. Nếu tỉ lệ code tụt khi đổi sang MBPP+, con số 42.1% hiện tại đang bị thổi phồng
+bởi verifier yếu. Vẫn khách quan, không cần LLM chấm.
+
+**6. Đo chỉ số "tự phê bình" còn thiếu.** Tiêu chí ≥75–80% chưa bao giờ đo. Thử
+**proxy khách quan trước**: độ trùng khớp giữa `### Phát hiện lỗi` và
+`verifier_detail` (tên hàm/dòng với code, con số/bước với toán). Chỉ dùng LLM judge
+nếu proxy quá thô — và khi đó phải để riêng, không trộn vào con số cứng.
+
+**7. Đổi độ khó của toán (GSM8K → MATH)** thay vì tăng số lượng. Cần loader mới +
+verifier xử lý đáp án dạng biểu thức. Việc thật, không phải đổi tham số. Hạ ưu tiên
+vì nó nhắm vào chất lượng dữ liệu phê bình — phần vốn đã ổn.
+
+**5. Nguồn code thứ hai.** MBPP `full/train` đã cạn (374/374). Ứng viên có test chạy
+được, theo công sức tăng dần: HumanEval (164 bài, assert) → MBPP+/EvalPlus (0 bài
+mới, chỉ tăng độ chặt của test) → APPS (~10k) và CodeContests (~13k), nhưng hai cái
+cuối test bằng stdin/stdout nên `CodeVerifier` hiện tại **không chạy được**, phải
+viết verifier kiểu khác.
+
+**Đã đánh giá và LOẠI:** Kaggle `bhaveshmittal/python-programming-questions-dataset`
+(13.077 dòng) — ba cột Instruction/Input/Output, trong đó Output là *code lời giải*
+chứ không phải test. Không có gì cho `CodeVerifier` chạy. Sinh test bằng LLM sẽ phá
+đúng nguyên tắc số 1.
+
+### Ý tưởng đang cân nhắc: ORPO/DPO cho bước phê bình
+
+Dùng chính các lần model **tự sửa sai thật** (thu từ log eval) làm "rejected", và bản
+phê bình + sửa **đúng** của model lớn cho cùng case đó làm "chosen". Không cần mạo
+danh nguồn gốc suy nghĩ, chỉ dạy model ưu tiên cách phê bình tốt hơn cách dở.
+
+Đã cân nhắc và **bác bỏ** một biến thể nguy hiểm: lấy `<thinking>` của model lớn rồi
+gán cho model nhỏ như thể của chính nó. Đó là dạy model "nói dối" về nguồn gốc suy
+nghĩ của nó — làm nặng thêm vấn đề unfaithful reasoning trace, đi ngược mục tiêu
+giảm hallucination.
+
+---
+
+## Tham khảo
+
+Chen, K-Y., Su, F-Y., Chiang, J-H. (2026). *The Self-Correction Illusion: LLMs
+Correct Others but Not Themselves.* arXiv:2606.05976 — bản PDF lưu tại
+`2606.05976v1.pdf`.
+
+Tài liệu kỹ thuật của dự án: `README.md` (vận hành, chọn phần cứng) và
+`instructionAI/` (kiến trúc, quy ước, môi trường, thiết kế pipeline dữ liệu).

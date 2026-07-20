@@ -41,6 +41,36 @@ REFLECT_PROMPT_TEMPLATE = (
 # Tach phan loi giai da sua ra khoi toan bo output (bo <thinking> + 2 muc dau).
 CORRECTION_RE = re.compile(r"###\s*Sửa lại\s*\n(.*)", flags=re.DOTALL)
 
+# Cac khung (role) co the boc verifier_detail o luot phan tu. Theo paper 2606.05976,
+# hieu qua PHU THUOC DOMAIN: <memory> manh nhat o toan, user manh nhat o logic,
+# tool manh nhat o BBH-LD. Xem REFLECT_ROLES ben duoi va build_reflect_message().
+REFLECT_ROLES = ("user", "tool", "memory")
+
 
 def build_prompt(problem: Problem) -> str:
     return PROMPT_TEMPLATES[problem.domain].format(question=problem.question)
+
+
+def build_reflect_message(verifier_detail: str, role: str) -> dict:
+    """Dung message cho luot phan tu theo khung `role`.
+
+    CANH BAO QUAN TRONG ve role "memory":
+    Chat template cua Qwen2.5 KHONG biet role "memory". Dat {"role": "memory"} thi
+    template NUOT IM LANG ca message -- khong raise, khong warning, thong bao loi
+    bien mat hoan toan khoi prompt. Model se duoc yeu cau "tu sua" ma khong he biet
+    sai o dau, so lieu sup do, va KHONG co gi chi ra nguyen nhan. Da verify truc tiep
+    tren tokenizer.
+    Vi vay "memory" duoc hien thuc dung nhu paper lam: role "system" + noi dung boc
+    trong <memory>...</memory>.
+
+    Ghi chu ve role "tool" (khung dang dung mac dinh): tren template Qwen no KHONG
+    phai mot role token rieng -- no render thanh
+        <|im_start|>user\\n<tool_response>...</tool_response><|im_end|>
+    tuc la user message co them lop boc XML. Doi chieu voi thang H0-H4 muc 3.3 cua
+    paper, day la nac H3 (lop boc cu phap, chua co role tag), khong phai H4. Paper
+    do duoc: lop boc dong gop 17-23pp, con role tag dong gop THEM ~30pp.
+    """
+    content = REFLECT_PROMPT_TEMPLATE.format(verifier_detail=verifier_detail)
+    if role == "memory":
+        return {"role": "system", "content": f"<memory>\n{content}\n</memory>"}
+    return {"role": role, "content": content}

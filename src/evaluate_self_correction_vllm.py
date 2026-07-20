@@ -53,7 +53,7 @@ from src.eval_common import (  # noqa: E402
     open_log,
     print_report,
 )
-from src.prompts import CORRECTION_RE, REFLECT_PROMPT_TEMPLATE, build_prompt
+from src.prompts import CORRECTION_RE, REFLECT_ROLES, build_prompt, build_reflect_message
 from src.verifier.code_verifier import CodeVerifier
 from src.verifier.math_verifier import MathVerifier
 
@@ -108,7 +108,12 @@ def main() -> None:
         help="Mac dinh lay small_model.name_or_path trong phase1.yaml. vLLM load base "
              "roi gan LoRA len tren, khac Unsloth (tu doc base tu adapter_config.json).",
     )
-    parser.add_argument("--reflect-role", type=str, default="tool", choices=["user", "tool"])
+    parser.add_argument(
+        "--reflect-role", type=str, default="tool", choices=list(REFLECT_ROLES),
+        help="Khung boc verifier_detail. 'memory' duoc hien thuc bang role system + "
+             "the <memory> (KHONG phai role 'memory' -- template Qwen se nuot im lang). "
+             "Xem build_reflect_message() trong src/prompts.py.",
+    )
     parser.add_argument(
         "--max-model-len",
         type=int,
@@ -224,10 +229,7 @@ def main() -> None:
         first_messages[i]
         + [
             {"role": "assistant", "content": attempt_text},
-            {
-                "role": args.reflect_role,
-                "content": REFLECT_PROMPT_TEMPLATE.format(verifier_detail=detail),
-            },
+            build_reflect_message(detail, args.reflect_role),
         ]
         for i, _p, attempt_text, detail in wrong
     ]

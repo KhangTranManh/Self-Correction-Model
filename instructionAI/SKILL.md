@@ -21,9 +21,26 @@ produced and that an objective verifier has already confirmed are wrong.
 | File | Covers |
 |---|---|
 | [architecture.md](architecture.md) | File/folder tree, one-line role per file, dependency graph, the 5-stage runtime pipeline |
-| [conventions.md](conventions.md) | Code conventions, safe-vs-dangerous-to-change list, design rationale |
+| [conventions.md](conventions.md) | Code conventions, safe-vs-dangerous-to-change list, coupled parameters, concurrency |
 | [environment.md](environment.md) | GPU/hardware constraints, exact dependency pins, remote-box setup/reconnect procedure |
-| [data_pipeline.md](data_pipeline.md) | Verifier design, the verifier_detail grounding fix, thinking-trace capture, evaluation methodology |
+| [data_pipeline.md](data_pipeline.md) | Verifier design, the verifier_detail grounding fix, thinking-trace capture, **evaluation methodology and how to size/decompose it** |
+
+## Where the project actually stands (read before proposing work)
+
+The headline metric decomposes into `format_completion × fix_rate_given_format`, and
+**only the first factor is failing**. The second sits at ~65–70% — near the project's
+≥70% target — and has not responded to any intervention tried: not a 4.7× increase in
+training data, not changing the reflect framing, not even a deliberate train/eval
+mismatch. Details and numbers in `data_pipeline.md`.
+
+Two research directions have already been pursued against the wrong bottleneck
+because the metric was reported as one number. Before proposing anything aimed at
+"better critique quality" — more data, a stronger teacher model, richer critiques,
+harder problems — check whether it targets a factor that is already at target.
+
+The open problem is **generation behaviour**: getting the model to finish writing and
+stop. ~26% of failures are long non-terminating reasoning; a further group answers
+correctly but skips the required format and is currently scored as failure.
 
 `note.txt` (repo root, NOT part of this folder) is the user's own rolling success-criteria
 / status doc — read it for current targets and progress, but it is not maintained as part
@@ -98,3 +115,45 @@ of this documentation set (see conventions.md's exclude-list rationale).
     to, the push raises AFTER training completes, and the trained adapter is lost
     (never written to disk). Verify `repo_id` and `HF_TOKEN` before a real training run,
     or set `training.push_to_hub: false` to save locally instead.
+
+11. **Never report the self-correction rate as a single number.** It is the product of
+    two independent factors, and measurement across a 2×2 experiment showed only the
+    first one ever moves:
+
+        rate = format_completion × fix_rate_given_format
+        37.8% =     58.2%        ×        64.8%
+
+    The second factor sat at 64.8 / 64.3 / 67.6 / 69.6% across two adapters, two
+    reflect framings, matched and mismatched — and did not move when training data
+    grew 4.7×. Every intervention tried so far has acted on the *first* factor.
+    Reporting the product alone hides which one is broken, and is the direct reason
+    two research directions were pursued against the wrong bottleneck. Always report
+    both, plus `initial_correct`. See `data_pipeline.md` for how to compute them.
+
+12. **Train/eval framing mismatch is catastrophic, not a mild penalty.** An adapter
+    trained on `memory` framing and evaluated under `tool` framing dropped format
+    completion from 58.2% to 21.1% (p ≈ 2e-16) — while its fix-rate-given-format was
+    *unchanged* (69.6%, the highest of any cell). The model still diagnoses fine; it
+    stops producing parseable output. This is the strongest evidence yet for rule 4:
+    the prompt used at inference must match the prompt used at training exactly.
+
+13. **`{"role": "memory"}` is silently dropped by Qwen's chat template.** No error, no
+    warning — the message vanishes from the rendered prompt entirely, so the model is
+    asked to self-correct with no error information at all and the numbers collapse
+    with no visible cause. The `memory` condition must be built as `role: "system"`
+    with the content wrapped in `<memory>...</memory>`. Always go through
+    `build_reflect_message()` in `src/prompts.py`; never construct the reflect turn
+    inline.
+
+    Related: `{"role": "tool"}` on Qwen is **not** a distinct role token either — it
+    renders as `<|im_start|>user` wrapping the content in `<tool_response>`. So the
+    project's long-standing "`tool` role" is, mechanically, a *user message with an
+    XML wrapper*.
+
+14. **Denominators are tiny unless the eval problem count is large.** The metric's
+    denominator is `initial_wrong` — the model's own failures. The base model already
+    solves ~84% of GSM8K correctly, so 100 math problems yield ~16 wrong cases, where
+    one case shifts the rate by 6pp. The same adapter on the same problems measured
+    **15.8% math at n=19 and 31.7% at n=104**. Use **≥600 math problems** for any math
+    claim. Historically every math figure in this project (0%, 33.3%, 22.2%) rested on
+    7–9 cases and supports nothing.

@@ -82,8 +82,36 @@ rank, etc.); how many problems `prepare_public_datasets.py` pulls (CLI args); wh
 public dataset(s) feed a given domain.
 
 **Dangerous — verify the specific reasoning in data_pipeline.md before changing:**
-the `_REFLECT_PROMPT_TEMPLATE` wiring between `build_dataset.py` and
-`evaluate_self_correction.py` (must stay byte-for-byte identical, and must keep
-embedding real `verifier_detail` — see SKILL.md rule 4); the `torch` version pin
-(environment.md); anything that would let the "attempt" step and the "critique" step
-run on the same underlying reasoning source (violates the core design principle above).
+anything in `src/prompts.py` (one edit propagates to dataset construction *and* both
+eval scripts — that is the point, but it means a change silently alters the meaning of
+every future measurement, and invalidates comparison with every past one); the `torch`
+version pin (environment.md); anything that would let the "attempt" step and the
+"critique" step run on the same underlying reasoning source (violates the core design
+principle above).
+
+## Coupled parameters — changing one requires re-checking the other
+
+- **`training.max_seq_length` ↔ `generation.max_new_tokens_correction`.** Training on
+  longer sequences teaches the model to write longer reflections; if the generation
+  budget does not follow, output gets truncated before `### Sửa lại` and is scored as
+  failure. This has bitten the project **twice** (1024 → 2048, then 2048 → 4096).
+  Note the budget is not a general cure: doubling it once merely doubled the output
+  length (mean 6.5k → 12.4k chars) and the same share still ran off the end, because
+  the underlying behaviour is failure to terminate, not lack of room.
+- **The reflect framing used in `build_dataset.py` ↔ the `--reflect-role` used at
+  eval.** A mismatch is not a mild penalty; it collapsed format completion from 58.2%
+  to 21.1% in a controlled test (SKILL.md rule 12).
+
+## Concurrency
+
+`build_dataset.py` and `generate_attempts.py` both acquire a PID lock via
+`src/run_lock.py` and refuse to start if another instance is live. This used to be a
+documentation rule; it was violated in practice (two orchestration chains launched the
+same step, producing 8 duplicate records and paying the API twice), so it is now
+enforced in code. Stale locks from killed processes clean themselves up.
+
+Note when writing shell helpers around these scripts: `pgrep -f "src.build_dataset"`
+will match the *shell process that contains the script text in its own command line*,
+including the heredoc that wrote the script. Anchor the pattern
+(`pgrep -f "^/home/.*/venv-[a-z]*/bin/python -m src\.build_dataset$"`) or you will
+get false positives — and, with `pkill`, kill your own SSH session.

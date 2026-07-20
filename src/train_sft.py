@@ -11,6 +11,9 @@ Chay tren may co GPU (24-48GB+, CC>=7.5):
 """
 from __future__ import annotations
 
+import argparse
+from pathlib import Path
+
 # QUAN TRONG: unsloth PHAI duoc import truoc trl/transformers/peft -- neu khong,
 # Unsloth khong the patch day du cac class cua trl (SFTConfig/SFTTrainer van tro
 # ve ban chua patch), gay loi "eos_token ('<EOS_TOKEN>') is not found in the
@@ -37,6 +40,21 @@ _TARGET_MODULES = [
 
 
 def main() -> None:
+    # --dataset / --out-dir de chay duoc nhieu NHANH THI NGHIEM tren cung mot config
+    # (vd so sanh khung reflect "tool" vs "memory") ma khong phai sua phase1.yaml
+    # giua chung -- sua config giua cac lan chay la cach chac chan de sau nay khong
+    # con biet adapter nao duoc train tu du lieu nao.
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--dataset", type=str, default=None,
+        help="Mac dinh: paths.sft_dataset_out trong phase1.yaml.",
+    )
+    parser.add_argument(
+        "--out-dir", type=str, default=None,
+        help="Mac dinh: paths.lora_out_dir trong phase1.yaml.",
+    )
+    args = parser.parse_args()
+
     cfg = load_config()
     train_cfg = cfg.training
 
@@ -58,7 +76,9 @@ def main() -> None:
         use_gradient_checkpointing="unsloth",
     )
 
-    dataset = load_dataset("json", data_files=str(cfg.path("sft_dataset_out")), split="train")
+    dataset_path = args.dataset or str(cfg.path("sft_dataset_out"))
+    print(f"[train_sft] dataset: {dataset_path}")
+    dataset = load_dataset("json", data_files=dataset_path, split="train")
 
     def _format(example):
         return {
@@ -69,7 +89,8 @@ def main() -> None:
 
     dataset = dataset.map(_format, remove_columns=dataset.column_names)
 
-    out_dir = cfg.path("lora_out_dir")
+    out_dir = Path(args.out_dir) if args.out_dir else cfg.path("lora_out_dir")
+    print(f"[train_sft] luu adapter vao: {out_dir}")
     out_dir.mkdir(parents=True, exist_ok=True)
 
     bf16_ok = is_bfloat16_supported()

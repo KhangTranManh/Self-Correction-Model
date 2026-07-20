@@ -30,7 +30,7 @@ from src.deepseek_client import DeepSeekClient
 # evaluate_self_correction.py: model tu bia ra loi gia, sua sai cho, van fail).
 # Template nay dung chung voi ca 2 script eval qua src/prompts.py -- KHONG copy lai
 # gia tri vao day, lech 1 byte la du de pha vo su khop nhau giua train va infer.
-from src.prompts import REFLECT_PROMPT_TEMPLATE as _REFLECT_PROMPT_TEMPLATE
+from src.prompts import build_reflect_message
 from src.run_lock import single_instance
 from src.verifier.code_verifier import CodeVerifier
 from src.verifier.math_verifier import MathVerifier
@@ -76,10 +76,10 @@ def _to_chat_record(problem: Problem, attempt_text: str, correction: dict, verif
             {"role": "system", "content": _SYSTEM_PROMPT},
             {"role": "user", "content": problem.question},
             {"role": "assistant", "content": attempt_text},
-            {
-                "role": _REFLECT_ROLE,
-                "content": _REFLECT_PROMPT_TEMPLATE.format(verifier_detail=verifier_detail),
-            },
+            # Qua build_reflect_message() de khung role o luc TRAIN dung y het luc
+            # EVAL -- ke ca truong hop "memory" (phai la system + <memory>, khong
+            # phai role "memory"). Xem src/prompts.py.
+            build_reflect_message(verifier_detail, _REFLECT_ROLE),
             {"role": "assistant", "content": assistant_reflection},
         ]
     }

@@ -15,40 +15,56 @@ decisions and why).
 
 ## Status (2026-07-21)
 
-A scale-up run is **in progress** on a rented RTX 3090 Ti. The table below is the
-last *completed* measurement (135 samples); numbers for the scaled run are not in
-yet.
-
 | | |
 |---|---|
 | Base model | Qwen/Qwen2.5-7B-Instruct, QLoRA (4-bit) via Unsloth |
 | Problem set | 1000 GSM8K + 624 MBPP = 1624 (was 300) |
-| Training data | 135 samples measured below; scale-up run targeting ~640 |
-| Trained adapter | Retrained on the 135-sample/role-`tool` dataset. `Kxck/AGI_v1` on HF Hub still holds the previous (role-`user`) version — not yet re-pushed. |
-| Held-out eval set | 30+30 for the numbers below; raised to **100 GSM8K + 100 MBPP** for the scale-up run (offset 150, disjoint from training data) |
+| Training data | **631 samples** (was 135) |
+| Adapter | `Kxck/AGI_v2`; `Kxck/AGI_v1` kept as the control |
+| Held-out eval | **600 GSM8K + 150 MBPP** (offset 150, disjoint from training) |
 
-**Self-correction rate** (`self_corrected / initial_wrong`, held-out set, counting
-only responses that completed the `### Sửa lại` format — see
-[Known issues](#known-issues--limitations)):
+**The headline metric is a product of two factors, and only one of them is
+failing:**
+
+```
+self-correction rate  =  format completion  ×  fix rate given format
+      37.8%           =        58.2%        ×          64.8%
+```
+
+| | Value | vs. target |
+|---|---|---|
+| Self-correction rate (headline) | **37.8%** (94/249) | target ≥70% — far off |
+| ├ produced the required format | 58.2% | **this is where the entire gap is** |
+| └ fixed correctly once it did | **64.8%** | close to target |
+
+Reporting only the headline hides which factor is broken. See
+[Key Finding 4](#key-findings).
+
+**Two interventions were tested and neither moved the second factor:**
+
+| Change | Format completion | Fix rate given format |
+|---|---|---|
+| 135 → 631 training samples (4.7×) | no change | no change (p = 0.856 overall) |
+| reflect role `tool` → `memory` (matched) | 58.2% → 66.4% (p = 0.072) | 64.8% → 67.6% (**p = 0.62**) |
+| train/eval framing mismatch | 58.2% → 21.1% (**p = 2e-16**) | 64.8% → 69.6% (**p = 0.60**) |
+
+Historical numbers, kept for context — note the sample sizes:
 
 | Run | Math | Code | Overall |
 |---|---|---|---|
 | Baseline (train + eval, role `user`) | 0.0% | 28.6% | 22.9% |
-| Old adapter + role `tool` at eval only (out-of-distribution probe) | 33.3% | 28.6% | 29.7% |
-| **Retrained on role `tool` + eval role `tool` (matched, current)** | **22.2%** | **46.4%** | **40.5%** |
+| Old adapter + role `tool` at eval only | 33.3% | 28.6% | 29.7% |
+| Retrained role `tool`, 135 samples | 22.2% (2/9) | 46.4% (13/28) | 40.5% (15/37) |
+| **631 samples, properly sized eval** | **31.7%** (33/104) | **42.1%** (61/145) | **37.8%** (94/249) |
 
-Nearly doubled overall vs. the original baseline. `format_incomplete` (generation
-cut off mid-`<thinking>`, never reaching `### Sửa lại`) also dropped sharply,
-43% → 13.5% of wrong cases — the retrained model completes the expected format
-far more reliably. Math's small dip vs. the out-of-distribution probe (33.3% →
-22.2%) is 2/9 vs. 3/9 — a 1-sample difference on a small base, not a real
-regression.
+40.5% → 37.8% is **not** a regression: Fisher exact p = 0.856. The 40.5% rested on
+37 wrong cases and was never a firm baseline. Every historical *math* figure rested
+on 7–9 cases — see [Key Finding 5](#key-findings).
 
-Success criteria from the project plan (not yet met — pilot scale):
-self-critique accuracy ≥75–80%, self-correction success rate ≥70%, no repeated
-errors after 2–3 correction rounds. The current bottleneck is dataset scale
-(135 vs. the planned 800–1500), not the role/format design — see
-[`note.txt`](note.txt) section 8 for the full comparison and reasoning.
+Success criteria from the project plan: self-critique accuracy ≥75–80% (**never
+measured** — that is the *identification* metric, not the correction metric),
+self-correction ≥70%, no repeated errors after 2–3 rounds (**never tested** — eval
+runs one round). Full reasoning in [`note.txt`](note.txt).
 
 ---
 
@@ -67,7 +83,13 @@ errors after 2–3 correction rounds. The current bottleneck is dataset scale
    self-correction from 0% → 33.3% as a prompt-only probe on the old adapter,
    and after adopting `tool` as the pipeline default and retraining, the
    overall rate (matched train/eval role) reached 40.5%, nearly double the
-   original baseline — see [Status](#status-2026-07-20) for the full table.
+   original baseline — see [Status](#status-2026-07-21) for the full table.
+
+   **Superseded in part by Findings 4 and 5.** The framing effect is real and
+   reproduced under a properly sized eval, but it does *not* work through improved
+   diagnosis as this finding originally assumed — it works by making the model
+   finish writing. And the specific math figures quoted here (0% → 33.3%) rest on
+   7–9 cases and do not support a claim about math.
 
 2. **Revealing the correct answer in the error message is not sufficient for
    self-correction, and doesn't explain the math/code gap.** The original
@@ -87,7 +109,46 @@ errors after 2–3 correction rounds. The current bottleneck is dataset scale
    the reflect-turn token budget and (b) treating incomplete generations as
    failures instead of falling back to the raw text.
 
-4. **Balancing the problem set does not balance the training set.** The problem
+4. **The bottleneck is format adherence, not self-correction skill.** A 2×2
+   experiment (adapter trained on `tool` or `memory` framing × evaluated under
+   either) decomposed the metric into its two factors:
+
+   | Cell | Format completion | Fix rate given format | Headline |
+   |---|---|---|---|
+   | A: tool / tool | 58.2% | **64.8%** | 37.8% |
+   | B: tool / memory | 63.6% | **64.3%** | 40.9% |
+   | C: memory / memory | 66.4% | **67.6%** | 44.8% |
+   | D: memory / tool | 21.1% | **69.6%** | 14.7% |
+
+   The middle column barely moves across two adapters, two framings, matched and
+   mismatched — and it did not move when training data grew 4.7×. Cell D is the
+   sharpest evidence: it has the *worst* headline (14.7%) and the *best* fix rate
+   (69.6%). A model whose framing it was never trained on still diagnoses just as
+   well; it simply rarely produces output at all.
+
+   **The self-correction skill sits at ~65–70% and has not responded to any
+   intervention tried.** The plan's target is ≥70%. That target is essentially
+   already met on the skill itself — nobody had measured it separately.
+
+   This also reinterprets Finding 1: the `memory` framing does help, but **not by
+   the mechanism the paper describes**. The paper attributes the lift to improved
+   addressability, i.e. better diagnosis. Here diagnosis does not change
+   (p = 0.62); what changes is whether the model finishes writing.
+
+5. **Every historical math figure was measured on 7–9 cases.** The same adapter on
+   the same problems measured **15.8% math at n=19 and 31.7% at n=104**. Because the
+   base model already solves ~84% of GSM8K correctly, the denominator
+   (`initial_wrong`) is tiny unless the problem count is large. Rule of thumb: **600
+   math problems** are needed for a denominator near 100. The finding that "role
+   `tool` lifted math from 0% to 33.3%" — which motivated changing the whole
+   pipeline — was 0/7 versus 3/9.
+
+   Relatedly, the metric has a **selection effect**: the denominator is the model's
+   own failures, so a better model is left with a smaller, harder denominator. On
+   the exact 30 math problems used for the 40.5% measurement, the newer adapter gets
+   **all 30 right on the first try**. Always report `initial_correct` alongside.
+
+6. **Balancing the problem set does not balance the training set.** The problem
    set was deliberately kept near 61/38 math/code to avoid skewing the model.
    Measured against the verifier on 906 fresh attempts, the result is the
    opposite of what that implies:
