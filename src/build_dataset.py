@@ -6,6 +6,12 @@
     -> chi giu mau neu correction DA DUOC XAC NHAN DUNG
     -> ghi ra data/processed/phase1_sft.jsonl (dinh dang chat/ChatML)
 
+RESUMABLE: ghi lai MOI problem_id da xu ly (bat ke ket qua: already_correct/kept/
+discarded) vao data/processed/build_dataset_seen_ids.txt. Lan chay sau chi xu ly
+attempt co problem_id CHUA co trong file nay -- tranh goi lai DeepSeek (ton tien
+that) cho nhung case da biet ket qua tu truoc, kho co ich khi scale them du lieu.
+Neu muon lam lai tu dau, xoa file ledger nay + phase1_sft.jsonl truoc khi chay.
+
 Chay (khong can GPU, chi can .env co DEEPSEEK_API_KEY/DEEPSEEK_MODEL va da co attempts.jsonl):
     python -m src.build_dataset
 """
@@ -62,6 +68,9 @@ def _to_chat_record(problem: Problem, attempt_text: str, correction: dict, verif
         f"### Sửa lại\n{correction['corrected_solution']}"
     )
     return {
+        # problem_id: khong dung de train (train_sft.py chi doc "messages"), chi
+        # de build_dataset.py/cong cu khac sau nay biet mau nay tu problem nao.
+        "problem_id": problem.id,
         "messages": [
             {"role": "system", "content": _SYSTEM_PROMPT},
             {"role": "user", "content": problem.question},
@@ -94,16 +103,27 @@ def main() -> None:
     }
     deepseek = DeepSeekClient(cfg.deepseek)
 
-    stats = {"total": 0, "already_correct": 0, "sent_to_deepseek": 0, "kept": 0, "discarded": 0}
+    stats = {"total": 0, "already_correct": 0, "sent_to_deepseek": 0, "kept": 0, "discarded": 0, "skipped_seen": 0}
 
     out_path = cfg.path("sft_dataset_out")
     out_path.parent.mkdir(parents=True, exist_ok=True)
+    seen_ids_path = out_path.parent / "build_dataset_seen_ids.txt"
 
-    with open(out_path, "w", encoding="utf-8") as out_f:
+    seen_ids: set[str] = set()
+    if seen_ids_path.exists():
+        seen_ids = {line.strip() for line in seen_ids_path.read_text(encoding="utf-8").splitlines() if line.strip()}
+        print(f"[build_dataset] Da co {len(seen_ids)} problem_id xu ly tu truoc -- bo qua, chi xu ly moi.")
+
+    with open(out_path, "a", encoding="utf-8") as out_f, open(seen_ids_path, "a", encoding="utf-8") as seen_f:
         for attempt in attempts:
+            if attempt["problem_id"] in seen_ids:
+                stats["skipped_seen"] += 1
+                continue
+
             stats["total"] += 1
             problem = problems_by_id[attempt["problem_id"]]
             verifier = verifiers[problem.domain]
+            seen_f.write(attempt["problem_id"] + "\n")
 
             first_result = verifier.verify(problem, attempt["text"])
             if first_result.passed:

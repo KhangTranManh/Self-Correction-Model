@@ -13,30 +13,37 @@ decisions and why).
 
 ---
 
-## Status (2026-07-19)
+## Status (2026-07-20)
 
 | | |
 |---|---|
 | Base model | Qwen/Qwen2.5-7B-Instruct, QLoRA (4-bit) via Unsloth |
-| Training data | 143 samples (target per plan: 800–1500 — current run is a pipeline-validation pilot, not final scale) |
-| Trained adapter | [`Kxck/AGI_v1`](https://huggingface.co/Kxck/AGI_v1) (private) on HF Hub |
+| Training data | 135 samples, reflect-turn role `tool` (target per plan: 800–1500 — current run is a pipeline-validation pilot, not final scale) |
+| Trained adapter | Retrained on the 135-sample/role-`tool` dataset. `Kxck/AGI_v1` on HF Hub still holds the previous (role-`user`) version — not yet re-pushed. |
 | Held-out eval set | 30 GSM8K + 30 MBPP problems (offset 150, disjoint from training data) |
 
-**Latest measured self-correction rate** (`self_corrected / initial_wrong`, held-out set,
-counting only responses that completed the `### Sửa lại` format — see
+**Self-correction rate** (`self_corrected / initial_wrong`, held-out set, counting
+only responses that completed the `### Sửa lại` format — see
 [Known issues](#known-issues--limitations)):
 
-| Reflect-turn role | Math | Code | Overall |
+| Run | Math | Code | Overall |
 |---|---|---|---|
-| `user` (baseline, matches current trained adapter) | 0.0% | 28.6% | 22.9% |
-| `tool` (prompt-only change, no retrain — see [Findings](#key-findings)) | 33.3% | 28.6% | 29.7% |
+| Baseline (train + eval, role `user`) | 0.0% | 28.6% | 22.9% |
+| Old adapter + role `tool` at eval only (out-of-distribution probe) | 33.3% | 28.6% | 29.7% |
+| **Retrained on role `tool` + eval role `tool` (matched, current)** | **22.2%** | **46.4%** | **40.5%** |
+
+Nearly doubled overall vs. the original baseline. `format_incomplete` (generation
+cut off mid-`<thinking>`, never reaching `### Sửa lại`) also dropped sharply,
+43% → 13.5% of wrong cases — the retrained model completes the expected format
+far more reliably. Math's small dip vs. the out-of-distribution probe (33.3% →
+22.2%) is 2/9 vs. 3/9 — a 1-sample difference on a small base, not a real
+regression.
 
 Success criteria from the project plan (not yet met — pilot scale):
 self-critique accuracy ≥75–80%, self-correction success rate ≥70%, no repeated
-errors after 2–3 correction rounds.
-
-**In progress:** regenerating training data with the reflect turn re-labeled to
-role `tool` (informed by the finding below) for the next training round.
+errors after 2–3 correction rounds. The current bottleneck is dataset scale
+(135 vs. the planned 800–1500), not the role/format design — see
+[`note.txt`](note.txt) section 8 for the full comparison and reasoning.
 
 ---
 
@@ -49,11 +56,13 @@ role `tool` (informed by the finding below) for the next training round.
    treating a claim inside their own output as a nameable, rejectable object.
    Re-presenting the identical error under an external chat-template role
    (`user`/`tool`/`memory`) instead of leaving it in `<thought>` measurably lifts
-   correction rates, with **no retraining required**. Switching the reflect
-   turn's role from `user` to `tool` (since `verifier_detail` is genuinely a
-   tool/checker output) took math self-correction from 0% → 33.3% on the
-   currently trained adapter, with no change to code (code's traceback is
-   already addressable regardless of role).
+   correction rates, with **no retraining required** to see an initial effect.
+   Switching the reflect turn's role from `user` to `tool` (since
+   `verifier_detail` is genuinely a tool/checker output) took math
+   self-correction from 0% → 33.3% as a prompt-only probe on the old adapter,
+   and after adopting `tool` as the pipeline default and retraining, the
+   overall rate (matched train/eval role) reached 40.5%, nearly double the
+   original baseline — see [Status](#status-2026-07-20) for the full table.
 
 2. **Revealing the correct answer in the error message is not sufficient for
    self-correction, and doesn't explain the math/code gap.** The original

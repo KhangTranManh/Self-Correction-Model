@@ -142,3 +142,116 @@ Dieu kien de lam: nen hoan tat cac fix dang do (test --reflect-role tool, sua
 bug trich xuat cua math_verifier o muc 5) de co nen SFT + verifier_detail sach
 truoc, vi "chosen" cua ORPO cung phai dua tren verifier_detail dung/sach moi co
 gia tri.
+
+
+7. Da doi role "user" -> "tool" cho ca pipeline, dang train lai (2026-07-19)
+Ket qua do --reflect-role tool (muc 5) du tot va re (khong can train lai de
+test) nen quyet dinh doi luon lam mac dinh cho ca pipeline, khong chi eval:
+- evaluate_self_correction.py: default --reflect-role doi "user" -> "tool".
+- build_dataset.py: _REFLECT_ROLE = "tool" (hang cung, ap dung cho MOI mau
+  sinh ra tu day).
+- Da sinh lai data/processed/phase1_sft.jsonl voi role moi: 135 mau (giam nhe
+  so voi 143 cu -- do doi sang model DeepSeek khac (op/deepseek/deepseek-v4-pro,
+  model cu op/z-ai/glm-5.2 bi 404 MODEL_NOT_FOUND voi key moi), khong phai loi
+  pipeline. Stats: total=300, already_correct=132, sent_to_deepseek=168,
+  kept=135, discarded=33.
+- Nhan tien fix 2 bug crash o deepseek_client.py phat hien trong luc chay lai:
+  (a) response.choices co the la None (loi tam thoi API/proxy vilao.ai) -- truoc
+  do TypeError thoat khoi vong retry, lam crash ca script; (b) UnicodeEncodeError
+  khi print tren console Windows (cp1252) neu response DeepSeek co ky tu dac
+  biet -- workaround bang PYTHONIOENCODING=utf-8 luc chay tren may local.
+- Adapter cu Kxck/AGI_v1 (train voi role "user") KHONG con la ban moi nhat --
+  se train lai adapter moi tren phase1_sft.jsonl 135-mau-role-"tool" nay. Khi
+  train xong, nho eval lai bang --reflect-role tool (khop voi du lieu da train,
+  chu khong con la thu nghiem lech phan phoi nhu truoc).
+
+
+8. KET QUA adapter MOI (train+eval role "tool" khop nhau) 2026-07-20
+Da train lai tren phase1_sft.jsonl 135 mau (role "tool" xuyen suot) qua Colab,
+eval lai voi --reflect-role tool (dung boi vi day gio la default). So sanh 3
+diem du lieu:
+
+                          Toan    Code    Tong
+Baseline goc (user/user)   0%    28.6%   22.9%
+Adapter cu + test tool*   33.3%  28.6%   29.7%   (*lech phan phoi, chua train voi role nay)
+Adapter MOI (tool/tool)   22.2%  46.4%   40.5%   (khop phan phoi -- so lieu chinh thuc)
+
+- Tong the gan gap doi baseline goc (22.9% -> 40.5%).
+- Code cai thien manh nhat (28.6% -> 46.4%) -- hop ly vi TOAN BO data train gio
+  nhat quan dung role "tool", khong chi eval.
+- format_incomplete (bi cat ngang giua <thinking>) giam manh: 43% -> 13.5%
+  (15/35 -> 5/37) -- model gio hoan tat dinh dang "### Sua lai" dang tin cay
+  hon nhieu, it "nghi lan man" toi het token hon truoc.
+- Toan giam nhe so voi lan test lech phan phoi (33.3% -> 22.2%), nhung chi la
+  2/9 vs 3/9 tren nen qua nho (9 case sai) -- nam trong nhieu thong ke, KHONG
+  phai regression that. Van vuot xa baseline goc (0%).
+
+KET LUAN: doi role "user" -> "tool" + train lai la cai thien that, do duoc ro
+rang qua ca 2 buoc (test lech phan phoi VA train khop). Van con xa muc tieu
+70-80% trong muc 1 -- nut that chinh gio la QUY MO DU LIEU (135 mau, muc tieu
+800-1500), khong con la van de thiet ke role/format nhu truoc.
+
+
+9. Bat dau scale du lieu train (2026-07-20) -- muc tieu trung gian ~400-500 mau
+Quyet dinh: scale trung gian truoc (khong nhay thang len 800-1500 full) de kiem
+chung viec scale co that su cai thien % hay khong, rui ro chi phi API thap hon.
+
+Van de phai sua TRUOC khi scale: prepare_public_datasets.py (sinh data train)
+va evaluate_self_correction.py (held-out eval) truoc gio dung CHUNG split "test"
+cua GSM8K/MBPP (train index 0-149, eval offset 150+) -- neu scale limit qua 150
+ma van dung "test" se DE LEN vung held-out dang dung xuyen suot de so sanh. Da
+sua bang cach dung split KHAC HOAN TOAN cho du lieu train moi:
+- Toan: GSM8K split "train" (7473 dong, tach biet voi "test").
+- Code: MBPP "full/train" (374 dong, tach biet voi "full/test").
+Them ham prepare_math_extra/prepare_code_extra (APPEND, id prefix rieng
+"gsm8k_train_"/"mbpp_train_" de khong dam id) vao prepare_public_datasets.py.
+
+Da chay local (khong can GPU): --math-extra 626 --code-extra 374 (het sach
+MBPP full/train) -> data/problems/math.jsonl: 150->776, code.jsonl: 150->524,
+tong 300->1300 bai.
+
+Them 2 tinh nang RESUMABLE de khong ton GPU/API goi lai cho ~300 bai cu:
+- generate_attempts.py: tu doc attempts.jsonl da co, bo qua problem_id da co
+  attempt, chi sinh cho bai moi, APPEND (khong ghi de).
+- build_dataset.py: them file ledger data/processed/build_dataset_seen_ids.txt
+  ghi MOI problem_id da xu ly (bat ke ket qua), bo qua khi chay lai, APPEND vao
+  phase1_sft.jsonl. Da seed ledger nay bang 300 problem_id cua lan chay dau
+  (truoc khi co tinh nang nay) de khong bi goi lai DeepSeek oan cho chung.
+- _to_chat_record them field "problem_id" (khong anh huong train_sft.py, chi
+  doc "messages") de cac cong cu sau nay co the truy vet mau tu problem nao.
+
+Buoc tiep theo (chua chay, can GPU + DeepSeek API that, se ton thoi gian/tien):
+  Buoc 6a (moi trong notebook): generate_attempts.py -- sinh attempt cho ~1000
+    bai moi (uoc luong vai chuc phut tren T4/L40S tuy toc do).
+  Buoc 6a2 (moi): build_dataset.py -- goi DeepSeek cho phan sai trong ~1000 bai
+    moi (uoc luong theo ty le cu ~56% sai -> ~560 lan goi DeepSeek that).
+  Sau do train_sft.py tren phase1_sft.jsonl da lon hon (135 + so mau moi giu
+  duoc, ky vong ~400-500+135), roi eval lai --reflect-role tool nhu cu de so
+  sanh truc tiep voi 40.5% hien tai.
+
+
+10. generate_attempts.py doi sang vLLM (2026-07-20)
+Ly do: Buoc 6a can sinh attempt cho ~1000 bai moi -- cach cu (Unsloth/HF
+generate() tung bai mot, tuan tu) se cham. generate_attempts.py la truong hop
+don gian nhat de doi sang vLLM: chi la inference thuan tren model GOC (chua
+LoRA), khong can cac toi uu train cua Unsloth. vLLM dung continuous batching +
+PagedAttention -> xay tat ca prompt truoc, goi generate() 1 LAN DUY NHAT cho ca
+~1000 prompt thay vi vong lap tung bai, nhanh hon nhieu.
+
+KHONG doi evaluate_self_correction.py (can LoRA adapter qua LoRARequest + luong
+2 buoc tuan tu attempt->reflect moi bai, loi ich it chac chan hon neu khong
+viet lai thanh batch) va train_sft.py (Unsloth QLoRA can cho train, vLLM khong
+phuc vu train) -- 2 file nay van dung Unsloth nhu cu.
+
+Rui ro da luu y trong notebook: cai vllm co the keo theo ban torch khac voi
+ban Unsloth dang dung TRONG CUNG 1 SESSION Colab (chay generate_attempts.py
+truoc, train_sft.py sau, chung 1 moi truong pip). Da them ghi chu trong
+notebook (cell 6a + 1 cell rieng truoc train_sft): neu train_sft loi la sau
+khi chay xong 6a, Runtime > Restart session + `pip install unsloth` lai truoc
+khi chay train_sft -- CHUA verify thuc te tren Colab, can theo doi khi chay
+that.
+
+Chi tiet ky thuat: dung "bitsandbytes" quantization cua vLLM (tuong duong
+load_in_4bit cua Unsloth) khi small_model.load_in_4bit=true trong
+phase1.yaml -- ten tham so nay dung voi vLLM >=0.5.x, neu ban vLLM moi hon
+tren Colab doi ten thi can sua lai theo docs vLLM hien tai.
