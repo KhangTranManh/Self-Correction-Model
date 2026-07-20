@@ -255,3 +255,234 @@ Chi tiet ky thuat: dung "bitsandbytes" quantization cua vLLM (tuong duong
 load_in_4bit cua Unsloth) khi small_model.load_in_4bit=true trong
 phase1.yaml -- ten tham so nay dung voi vLLM >=0.5.x, neu ban vLLM moi hon
 tren Colab doi ten thi can sua lai theo docs vLLM hien tai.
+
+
+11. Chuyen sang VM thue RTX 3090 Ti (2026-07-20/21)
+Truoc do da thu Kaggle T4: generate_attempts.py CHET khi nap model. Nguyen nhan
+that: T4 16GB khong du cho 7B fp16 nen buoc phai bat load_in_4bit -> di qua
+bitsandbytes -> ban bitsandbytes tren box do can CUDA 13 runtime (libnvJitLink.so.13)
+ma may chi co CUDA 12. Bai hoc: loi KHONG phai thieu VRAM don thuan, ma la VRAM
+thieu ep ta vao duong quantization, va duong do keo theo ca mot he phu thuoc CUDA.
+
+Danh gia may thue theo COMPUTE CAPABILITY, khong theo dung luong VRAM:
+- Tesla P40 (24GB, gia re) da bi TU CHOI: CC 6.1, duoi nguong 7.5. Unsloth khong
+  chay, vLLM cung khong (yeu cau SM >= 7.0). Khong tensor core, khong bf16, va
+  FP16 tren GP102 bi chan o 1/64 toc do FP32 (~0.18 TFLOPS thuc te du quang cao
+  "12 TFLOPS" -- do la con so FP32). 24GB khong cuu duoc viec thieu CC.
+- Da chon RTX 3090 Ti: GA102, CC 8.6, 24GB, driver ho tro CUDA 13.1. Xac nhan
+  thuc te tu log: vLLM chon FLASH_ATTN (FlashAttention 2) -- thu T4 khong the co
+  vi FA2 doi CC >= 8.0. Da ghi tieu chi chon may vao README muc "Choosing a
+  rental GPU".
+
+Khao sat may thue phat hien 2 thu ngoai du kien:
+- KHONG co pip, KHONG co python3-venv, va sudo doi password. Ke hoach
+  `apt-get install python3-venv python3-pip` chet ngay. Da xu ly bang `uv`
+  (binary tinh, cai vao ~/.local/bin): tu tao venv khong qua ensurepip nen khong
+  can python3-venv, tu cai package nen khong can pip. Ca 2 thu thieu deu tro nen
+  khong lien quan. Kem theo: nhanh hon nhieu + cache chung giua cac venv.
+- Dia vat ly 1.6TB nhung LVM chi cap phat 100GB (mac dinh cua Ubuntu installer).
+  Khong chan lan chay nay (80GB trong la du) nhung dang doi lai bang
+  `lvextend -l +100%FREE` + `resize2fs` neu can them cho.
+
+
+12. Tach 2 venv rieng -- KHONG phai cau tha, ma la bat buoc (2026-07-21)
+Notebook Colab cu cai vLLM va Unsloth chung 1 moi truong, xu ly xung dot bang
+cach "Restart session + pip install unsloth lai" o giua pipeline. Do la giai
+phap tam. Do thuc te tren may nay cho thay tai sao no mong manh:
+
+    venv-vllm    : torch 2.11.0+cu130   (CUDA 13.0)
+    venv-unsloth : torch 2.10.0+cu128   (CUDA 12.8)
+
+Hai ban torch khac nhau, hai bo CUDA khac nhau. Cai chung 1 moi truong thi cai
+sau ghi de cai truoc, va loi se no o buoc TRAIN -- tuc sau khi da dot xong GPU
+cho generate. Da tach han: ~/venv-vllm (generate + eval), ~/venv-unsloth (train).
+Kiem tra rieng bitsandbytes trong venv-unsloth (0.49.2, native lib nap OK) truoc
+khi train, vi do chinh la lop loi da giet lan chay Kaggle.
+
+
+13. Chuoi 4 loi toolchain cua vLLM -- moi lan mat ~5 phut nap model moi biet
+Day la phan ton thoi gian nhat cua buoi, ghi lai de khong lap lai:
+
+  (1) fatal error: Python.h: No such file or directory
+      -> torch.compile/Triton BIEN DICH C extension NGAY LUC CHAY, can header
+         phat trien cua Python. Sua: apt install python3-dev (can root).
+  (2) RuntimeError: Could not find nvcc and default cuda_home='/usr/local/cuda'
+      -> may khong cai CUDA toolkit he thong. NHUNG nvcc VAN CO SAN trong goi pip
+         nvidia-cuda-nvcc tai site-packages/nvidia/cu13/ (du layout bin/include/
+         lib/nvvm). Chi la torch khong biet nhin vao day. Sua: tro CUDA_HOME --
+         KHONG can cai CUDA toolkit 3GB, khong can root.
+  (3) FileNotFoundError: 'ninja'
+      -> ninja da duoc cai san (dependency cua vLLM) o <venv>/bin/ninja, nhung ta
+         goi <venv>/bin/python TRUC TIEP khong activate venv nen <venv>/bin khong
+         nam trong PATH. Sua: them thu muc chua interpreter vao dau PATH.
+  (4) error: "CUDA compiler and CUDA toolkit headers are incompatible"
+      -> flashinfer JIT-compile kernel sampling, va cac goi CUDA lech phien ban:
+         nvcc 13.2.86 vs nvrtc 13.0.88 vs crt 13.3.73. Tro treu: chinh ban va (2)
+         cua ta da keo nvcc 13.2 vao cuoc. Da dong bo ca 3 ve 13.0.88 + xoa cache
+         JIT, nhung van chua du -- cuoi cung phai chay o duong lui.
+
+(1)(2)(3) deu duoc gom vao _ensure_build_toolchain() trong generate_attempts.py,
+goi TRUOC ca lenh `import torch` -- bat buoc, vi torch.utils.cpp_extension tinh
+CUDA_HOME ngay luc import module chu khong phai luc bien dich.
+
+SAI LAM CAN GHI NHAN: sau loi (2) le ra phai them ngay duong lui tong quat thay
+vi sua tung loi mot roi lai nap model 15GB de phat hien loi ke tiep. Moi vong nhu
+vay ton ~5 phut GPU dang tra tien theo gio.
+
+Bai hoc ve enforce_eager: ban dau tuong no la luoi an toan tong quat. KHONG PHAI.
+flashinfer compile kernel sampling BAT KE eager hay khong (no o buoc lay mau,
+khong phai forward pass) -- nen enforce_eager mot minh khong cuu duoc loi (4).
+Duong lui dung phai tat CA HAI: VLLM_ENFORCE_EAGER=1 + VLLM_USE_FLASHINFER_SAMPLER=0.
+
+Ket qua thuc te khi chay duong lui: 1324 prompt trong 1 PHUT 36 GIAY (13.77 it/s,
+2450 token/s output). Eager khong he cham nhu lo ngai -- voi batch lon thi GPU da
+bao hoa tinh toan nen chi phi CPU launch bi che di.
+
+
+14. Refactor de 2 moi truong doc lap va de quy tac 4 duoc BAO DAM BOI CAU TRUC
+Phat hien mot bug se no o buoc eval: evaluate_self_correction.py import
+_build_prompt tu generate_attempts.py, ma file do `import vllm` o top-level ->
+ep venv Unsloth phai cai ca vLLM, dung thu viec tach venv nham tranh.
+
+Da tach:
+- src/prompts.py: PROMPT_TEMPLATES + REFLECT_PROMPT_TEMPLATE + CORRECTION_RE.
+  Khong import gi nang (khong vllm/unsloth/datasets) nen CA 2 venv deu doc duoc.
+  Quan trong hon: REFLECT_PROMPT_TEMPLATE truoc day ton tai 2 BAN COPY
+  (build_dataset.py + evaluate_self_correction.py) kem loi dan "phai giong nhau
+  tung byte". Gio ca 3 noi (them ban eval vLLM) doc tu 1 nguon -- khong the lech.
+- src/eval_common.py: bo de held-out + logging + print_report, dung chung cho ca
+  2 ban eval. Neu moi ban tu tai de rieng thi 2 con so khong so sanh duoc voi
+  nhau, ma so sanh duoc chinh la ly do giu ca 2 ban.
+- src/evaluate_self_correction_vllm.py: ban eval chay vLLM. Khai thac dung cau
+  truc 2 pha cua phep do (tat ca bai tu giai -> verify -> chi bai sai moi phan
+  tu) -> 2 lan generate() theo lo thay vi ~2 lan/bai tuan tu.
+  2 chi tiet ky thuat phai xu ly rieng: vLLM mac dinh max_lora_rank=16 nhung
+  config dung lora_r=32 (khong set thi loi luc nap adapter); va LoRARequest chi
+  nhan duong dan local nen repo id tren Hub phai snapshot_download truoc.
+
+LUU Y KHI DOI CHIEU SO LIEU: doi engine thi kernel va RNG khac nhau, khong bao
+gio trung tuyet doi voi ban Unsloth du cung adapter. Voi temperature 0.7 thi 2
+lan chay cung engine cung da khac nhau. Muon chac chan hon thi TANG SO BAI EVAL,
+dung ky vong 2 engine ra cung mot con so. Da tang eval tu 30+30 len 100+100 --
+o 60 bai thi mau so initial_wrong chi ~35, chenh 1 case lam ty le nhay ~3%, lon
+hon chinh hieu ung dang do.
+
+
+15. Mo rong bo de -- va mot bay suyt lam hong toan bo phep do
+Da mo rong: math 776 -> 1000 (+224 tu GSM8K train), code 524 -> 624 (+90 tu MBPP
+validation, +10 tu MBPP prompt). Tong 1624 bai.
+
+BAY: dinh dung dataset Kaggle "mpwolke/mbppjsonl" (~1000 bai code, nghe nhu nguon
+moi). Kiem tra ra do chinh la TOAN BO MBPP 974 bai gop thanh 1 file jsonl KHONG
+CO NHAN SPLIT. MBPP chia theo task_id thanh 4 khoi co dinh:
+
+    prompt      task_id   1-10    (10)
+    test        task_id  11-510   (500)   <- 11-160 dung TRAIN, 161+ la HELD-OUT EVAL
+    validation  task_id 511-600   (90)
+    train       task_id 601-974   (374)   <- da dung het
+
+Nap thang file do vao train = train len chinh de eval (task_id 161-260), va
+KHONG THE HOAN TAC: model da nhin thay de, moi so do sau do deu vo nghia -- ma
+trieu chung la "ket qua bong dung dep len", khong co gi bao loi. Bai hoc: cac ban
+redistribute gop san nhin nhu them du lieu, thuc ra chi BOC DI cai nhan split
+dang giu cho phep do trung thuc. Luon lay tu nguon chinh tac co split ro rang.
+
+Da them chan cung: prepare_code_extra() tu choi split="test"
+(_MBPP_SPLIT_SAFE_FOR_TRAIN), va chuoi dieu phoi assert khong co de train nao roi
+vao vung task_id >= 161 truoc khi cham GPU.
+
+Cung phat hien 1 bug se am tham lam lech phan bo: prepare_*_extra luon
+select(range(0, limit)) roi APPEND, khong dedupe -- chay lai voi limit lon hon se
+NHAN DOI toan bo phan da co. Da them _existing_ids() loc theo id; gio limit co
+nghia la "tong muon co tu split do", chay lai voi so lon hon la cach dung de scale.
+
+Nguon code khac da danh gia va LOAI: Kaggle
+"bhaveshmittal/python-programming-questions-dataset" (13.077 dong) -- 3 cot
+Instruction/Input/Output, trong do Output la CODE LOI GIAI chu khong phai test.
+Khong co gi cho CodeVerifier chay. Sinh test bang LLM se pha dung nguyen tac
+"khong de LLM cham LLM" cua ca Phase 1.
+Ung vien con lai co test chay duoc, theo cong suc tang dan: HumanEval (164 bai,
+assert, loader nho) / MBPP+ EvalPlus (0 bai moi, chi tang do chat cua test) /
+APPS (~10k) va CodeContests (~13k) -- 2 cai cuoi test bang stdin/stdout chu khong
+goi ham, CodeVerifier hien tai KHONG chay duoc, phai viet verifier kieu khac.
+
+
+16. Song song hoa build_dataset + su co 2 tien trinh chay cung luc
+build_dataset goi API TUAN TU, moi bai 1 lan goi toi model reasoning voi
+max_tokens=8000. Uoc tinh ~9-15 tieng cho ~1300 bai, trong khi GPU nam khong
+(buoc nay khong dung GPU) ma van tinh tien thue theo gio. Da song song hoa bang
+ThreadPoolExecutor (deepseek.max_workers, hien 16): buoc nay bi chan boi do tre
+mang chu khong phai CPU.
+
+SU CO: trong luc thay ban tuan tu bang ban song song, co 2 tien trinh
+build_dataset chay cung luc (mot tu chuoi cu chua chet han, mot tu chuoi moi) --
+dung dieu quy tac 3 trong instructionAI/SKILL.md cam. Hau qua: 8 ban ghi trung
+trong phase1_sft.jsonl + ton tien API gap doi cho ~8 bai. May man khong co dong
+JSON nao hong. Da dedupe (195 -> 187 mau) va giu ban .bak.
+
+Da bien quy tac do thanh CODE thay vi loi dan: src/run_lock.py -- khoa theo PID,
+tu don neu tien trinh cu da chet. Gan cho ca build_dataset va generate_attempts.
+Mot dong canh bao trong tai lieu ro rang khong ngan duoc loi nay.
+
+Cung sua 1 bug se can dung luc chay nhieu luong: trong deepseek_client.py, loi
+goi API nam NGOAI khoi try, va vong retry chi bat ValueError/JSONDecodeError.
+Mot loi HTTP (429 rate limit / 5xx / timeout) se thoat thang ra ngoai, va voi
+thread pool thi pool.map nem lai -> GIET CA POOL, mat toan bo tien do. Da dua
+loi goi vao trong try, bat rong, them backoff cap so nhan (rate limit cho lau
+hon). build_dataset.process() cung bat rong: mot bai hong chi duoc phep lam mat
+chinh no.
+
+Do thuc te 16 worker: 0 loi rate limit, ~475/906 sau 6 phut. Da can nhac va TU
+CHOI de xuat dung 3 model AI khac nhau de tang toc, vi 3 ly do: (a) chi nhanh hon
+neu provider gioi han theo tung model -- chua xac nhan co gioi han nao; (b)
+reasoning_content la TIN HIEU TRAIN CHINH, 3 model = 3 phong cach suy luan tron
+vao 1 tap train, va model nao khong tra reasoning_content se am tham lam mat khoi
+<thinking>; (c) lam nhieu chinh thi nghiem nay -- neu ket qua tot len se khong
+biet nho nhieu data hay nho tron thay. Neu that su can thong luong: nhan ban CUNG
+MOT model bang nhieu API key, khong phai doi model.
+
+
+17. PHAT HIEN QUAN TRONG: can bang bo de KHONG tao ra can bang du lieu train
+Da cho can bo de ve 61/38 toan/code de "tranh model nghieng mot ben". Do thuc te
+bang verifier (khong doan) tren 906 attempt moi:
+
+    Toan:  432 bai | model giai DUNG NGAY: 364 (84.3%) -> chi 68 lan goi API
+    Code:  474 bai | model giai DUNG NGAY:  35 ( 7.4%) -> 439 lan goi API
+
+Du lieu train se ra ~87% CODE, nguoc han ty le bo de. Vi thu quyet dinh khong
+phai so de, ma la MODEL SAI O DAU. Qwen2.5-7B giai GSM8K qua tot con MBPP thi
+hau nhu truot.
+
+He qua: viec can bang bo de o muc 15 KHONG dat duoc muc dich no nham toi. Them de
+toan cung gan nhu vo ich -- 84% se bi bo vi model giai dung. Muon them tin hieu
+toan thi phai doi DO KHO chu khong phai so luong: GSM8K la toan tieu hoc, qua de
+voi model nay. Bo MATH (toan thi dau) se sinh ty le sai cao hon nhieu -- nhung do
+la viec that: can loader moi + verifier xu ly duoc dap an dang bieu thuc, khong
+chi so.
+
+Dieu nay cung soi lai con so cu o muc 8: math 22.2% vs code 46.4% duoc do tren
+adapter train tu du lieu VON DA lech ve code.
+
+Chi phi do that (gia 900d/1M input, 4500d/1M output, san 30d/request):
+- 507 lan goi API. Input ~600 token/lan (~0.3M), output ~2300 token/lan (~1.17M,
+  do tu 187 mau that: TB 6787 ky tu, max 26751).
+- Theo token: 270d + 5265d = 5535d. NHUNG san 30d/request -> 507 x 30 = 15210d.
+  San toi thieu quyet dinh gia chu khong phai token (moi lan goi thuc chi dang
+  ~11d) -- san lam chi phi tang gan 3 lan. Tong thuc te ~15-19k dong.
+
+
+18. Ha tang phu: bao tien do qua Telegram (2026-07-21)
+Da them src/notify.py (gui tin) + src/tg_inbox.py (thu tin nhan vao
+outputs/tg_inbox.jsonl). Ca 2 CO Y chi dung urllib cua stdlib va tu doc .env thay
+vi qua src/config.py: chung duoc goi tu shell script dieu phoi, nam ngoai moi
+venv, nen phai chay duoc bang python3 he thong (may nay khong co pip).
+notify.py im lang bo qua neu chua cau hinh hoac loi mang -- mot job train 3 tieng
+khong duoc phep chet vi khong gui duoc tin nhan.
+
+tg_inbox.py CO Y khong tu thuc thi lenh tu Telegram: mot bot cam quyen shell tren
+may GPU, dieu khien bang tin nhan, la thu rat kho kiem soat khi co su co -- ma do
+dung la luc khong ai ngoi truoc may. Doc-roi-nguoi-quyet van giai quyet dung nhu
+cau ma khong mo cai cua do.
+
+
+

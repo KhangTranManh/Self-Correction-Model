@@ -91,3 +91,73 @@ correction failing re-verification, both reduce the count). Reaching a much larg
 target sample count requires pulling from GSM8K/MBPP's larger `train` split (not just
 `test`, which caps out around 1300 + 500 problems) or adding another verifiable domain —
 neither is implemented yet.
+
+## Scaling the problem set — what's actually available
+
+### MBPP is partitioned by `task_id`, and the boundaries matter
+
+MBPP's 974 tasks split into four fixed blocks by `task_id`:
+
+| Split | task_id | Count | Status in this project |
+|---|---|---|---|
+| prompt | 1–10 | 10 | available for training |
+| test | 11–510 | 500 | 11–160 used for **training**; 161+ is **held-out eval** |
+| validation | 511–600 | 90 | available for training |
+| train | 601–974 | 374 | **fully consumed** |
+
+`prepare_code_extra()` hard-rejects `split="test"` for this reason — see the
+`_MBPP_SPLIT_SAFE_FOR_TRAIN` guard. Training on task_id ≥ 161 silently destroys the
+eval: the model has seen the problems, every subsequent number is meaningless, and it
+cannot be undone.
+
+**Consequence for pre-merged MBPP dumps.** Several redistributions (e.g. the Kaggle
+dataset `mpwolke/mbppjsonl`) ship all 974 tasks as one flat `.jsonl` with **no split
+labels**. They look like ~1000 new code problems; they are not — they are the same
+MBPP, with the only thing protecting eval integrity stripped out. Always pull from the
+canonical HF parquet with an explicit split.
+
+Genuinely unused and safe: validation (90) + prompt (10) = **100 problems**. The
+remaining test range 261–510 (250 problems) is technically safe *only* if the code eval
+limit stays permanently at 100 — that's trading the last eval reserve for training
+data, and is not recommended.
+
+### Any new code source must ship executable tests
+
+`CodeVerifier` needs an `entry_point` plus a list of `assert` statements it can run.
+This is not an implementation detail — it is the objective-verification principle
+above. A dataset of question/solution pairs cannot be used: producing tests for it
+would mean having an LLM write the tests, which reintroduces exactly the
+LLM-judging-LLM dependency the design rejects.
+
+Checked and **rejected** on this basis: Kaggle
+`bhaveshmittal/python-programming-questions-dataset` (13,077 rows) — columns are
+`Instruction` / `Input` / `Output`, where `Output` is the *solution code*, not tests.
+It is an instruction-tuning corpus, unusable here regardless of size.
+
+Candidate sources that do carry runnable tests, ordered by integration cost:
+
+| Source | New problems | Test style | Work required |
+|---|---|---|---|
+| MBPP validation + prompt | 100 | `assert` (identical) | none — implemented |
+| HumanEval | 164 | `assert` | small: new loader |
+| MBPP+ / EvalPlus | 0 | `assert` (~35× more tests) | small: raises verifier strictness, adds no problems |
+| APPS | ~10,000 | **stdin/stdout** | large: needs a second verifier shape |
+| CodeContests | ~13,000 | **stdin/stdout** | large: same |
+
+The last two are where real volume lives, but they test by feeding stdin and comparing
+stdout rather than calling a function — `CodeVerifier` cannot run them as-is.
+
+### Math scales freely, which creates a balance problem
+
+GSM8K `train` has 7,473 problems and only ~626 have been used, so math can grow almost
+without limit while code is capped. Scaling "the problem set" therefore means scaling
+*math*, which shifts the domain ratio. This is worth watching: code is the domain where
+self-correction currently works best (46.4% vs math 22.2%), so a math-dominated
+training set changes what is being measured, not just how much of it there is. Keeping
+the ratio near the existing ~60/40 is a deliberate choice, not an accident.
+
+Note that `prepare_math_extra()` / `prepare_code_extra()` treat their `limit` as the
+**total** wanted from that split, not "how many to add": already-present ids are
+skipped via `_existing_ids()`. Re-running with a larger number is the correct way to
+scale. (Before that guard existed, re-running appended duplicates of everything already
+there — silent distribution skew rather than an error.)

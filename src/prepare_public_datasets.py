@@ -96,44 +96,103 @@ def prepare_code(limit: int, out_path: Path) -> None:
     print(f"Da ghi {written} bai code (MBPP) vao {out_path}")
 
 
+def _existing_ids(path: Path) -> set[str]:
+    """Doc id da co trong file de KHONG append trung.
+
+    Can thiet vi cac ham *_extra deu mo file o che do "a": chay lai voi limit lon hon
+    (vd 626 -> 1350 de scale them) se append de len chinh nhung bai da co neu khong
+    loc. Trung lap trong tap train khong bao loi -- no chi am tham lam lech phan bo
+    du lieu, kieu bug rat kho phat hien ve sau.
+    """
+    if not path.exists():
+        return set()
+    ids = set()
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if line:
+                ids.add(json.loads(line)["id"])
+    return ids
+
+
 def prepare_math_extra(limit: int, out_path: Path) -> None:
     # split "train" (7473 dong) -- hoan toan tach biet voi split "test" ma ca
     # prepare_math() (data train ban dau) lan evaluate_self_correction.py
     # (held-out eval) deu dang dung -- an toan de scale ma khong dam vao eval.
+    #
+    # limit o day la TONG so bai train muon co, khong phai "them bao nhieu": bai da
+    # co se bi bo qua nho _existing_ids, nen chay lai voi limit lon hon la cach dung
+    # de scale (vd 626 -> 1350 se chi them 724 bai moi).
     ds = load_dataset("openai/gsm8k", "main", split="train")
     ds = ds.select(range(min(limit, len(ds))))
 
-    written = 0
+    seen = _existing_ids(out_path)
+    written = skipped = 0
     with open(out_path, "a", encoding="utf-8") as f:
         for i, row in enumerate(ds):
+            record_id = f"gsm8k_train_{i:04d}"
+            if record_id in seen:
+                skipped += 1
+                continue
             record = {
-                "id": f"gsm8k_train_{i:04d}",
+                "id": record_id,
                 "question": row["question"],
                 "reference_answer": _extract_gsm8k_answer(row["answer"]),
             }
             f.write(json.dumps(record, ensure_ascii=False) + "\n")
             written += 1
 
-    print(f"Da APPEND {written} bai toan moi (GSM8K split=train) vao {out_path}")
+    print(
+        f"Da APPEND {written} bai toan moi (GSM8K split=train) vao {out_path}"
+        f" (bo qua {skipped} bai da co)"
+    )
 
 
-def prepare_code_extra(limit: int, out_path: Path) -> None:
-    # "full/train" (374 dong) -- tach biet voi "full/test" ma evaluate_self_correction.py
-    # dang dung cho held-out eval.
+# MBPP co 974 bai, chia theo task_id thanh 4 khoi CO DINH:
+#     prompt      task_id   1-10    (10 bai)
+#     test        task_id  11-510   (500 bai)
+#     validation  task_id 511-600   (90 bai)
+#     train       task_id 601-974   (374 bai)
+# "full/train" da duoc dung het (374/374). Con lai co the dung de train ma KHONG
+# dam vao eval: validation (90) + prompt (10) = 100 bai.
+#
+# CANH BAO -- khong duoc lay split "test" qua duong nay: 11-160 da dung de train,
+# con 161 tro len la vung held-out cua evaluate_self_correction.py. Cac ban MBPP
+# gop san kieu "974 dong 1 file jsonl" (vd tren Kaggle) KHONG co nhan split -- nap
+# thang vao se train len chinh de eval, va khong the hoan tac: moi so do sau do deu
+# vo nghia vi model da nhin thay de.
+_MBPP_SPLIT_SAFE_FOR_TRAIN = ("train", "validation", "prompt")
+
+
+def prepare_code_extra(limit: int, out_path: Path, split: str = "train") -> None:
+    if split not in _MBPP_SPLIT_SAFE_FOR_TRAIN:
+        raise ValueError(
+            f"split={split!r} khong duoc phep dung lam du lieu train. "
+            f"Chi chap nhan {_MBPP_SPLIT_SAFE_FOR_TRAIN}. Split 'test' la vung "
+            f"held-out cua eval -- train len no lam hong toan bo phep do."
+        )
+
     ds = load_dataset(
         "parquet",
         data_files=(
-            "hf://datasets/google-research-datasets/mbpp@refs%2Fconvert%2Fparquet/full/train/0000.parquet"
+            f"hf://datasets/google-research-datasets/mbpp@refs%2Fconvert%2Fparquet/full/{split}/0000.parquet"
         ),
         split="train",
     )
     ds = ds.select(range(min(limit, len(ds))))
 
-    written = 0
+    seen = _existing_ids(out_path)
+    written = skipped = no_entry_point = 0
     with open(out_path, "a", encoding="utf-8") as f:
         for row in ds:
+            record_id = f"mbpp_{split}_{row['task_id']}"
+            if record_id in seen:
+                skipped += 1
+                continue
+
             entry_point = _extract_entry_point(row["code"])
             if entry_point is None:
+                no_entry_point += 1
                 continue
 
             tests = list(row["test_list"])
@@ -141,7 +200,7 @@ def prepare_code_extra(limit: int, out_path: Path) -> None:
                 tests = [row["test_setup_code"]] + tests
 
             record = {
-                "id": f"mbpp_train_{row['task_id']}",
+                "id": record_id,
                 "question": row["text"],
                 "entry_point": entry_point,
                 "tests": tests,
@@ -149,7 +208,10 @@ def prepare_code_extra(limit: int, out_path: Path) -> None:
             f.write(json.dumps(record, ensure_ascii=False) + "\n")
             written += 1
 
-    print(f"Da APPEND {written} bai code moi (MBPP split=full/train) vao {out_path}")
+    print(
+        f"Da APPEND {written} bai code moi (MBPP split=full/{split}) vao {out_path}"
+        f" (bo qua {skipped} da co, {no_entry_point} khong tach duoc entry_point)"
+    )
 
 
 def main() -> None:
@@ -168,7 +230,15 @@ def main() -> None:
     )
     parser.add_argument(
         "--code-extra", type=int, default=0,
-        help="So bai MBPP THEM tu split=full/train (APPEND vao code.jsonl, khong dam voi held-out eval)",
+        help="So bai MBPP THEM (APPEND vao code.jsonl). Bai da co se bi bo qua, nen "
+             "chay lai voi so lon hon la cach dung de scale.",
+    )
+    parser.add_argument(
+        "--code-extra-split", type=str, default="train",
+        choices=list(_MBPP_SPLIT_SAFE_FOR_TRAIN),
+        help="Split MBPP de lay --code-extra. 'train' (374) da dung het; con "
+             "'validation' (90) va 'prompt' (10). Split 'test' bi chan co y: 161 tro "
+             "len la vung held-out cua eval.",
     )
     args = parser.parse_args()
 
@@ -182,7 +252,7 @@ def main() -> None:
     if args.math_extra > 0:
         prepare_math_extra(args.math_extra, math_path)
     if args.code_extra > 0:
-        prepare_code_extra(args.code_extra, code_path)
+        prepare_code_extra(args.code_extra, code_path, split=args.code_extra_split)
 
 
 if __name__ == "__main__":

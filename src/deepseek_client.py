@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import re
+import time
 
 from openai import OpenAI
 
@@ -73,17 +74,23 @@ class DeepSeekClient:
 
         last_error: Exception | None = None
         for attempt_no in range(self.cfg.max_retries):
-            response = self.client.chat.completions.create(
-                model=self.cfg.model,
-                messages=[
-                    {"role": "system", "content": _SYSTEM_PROMPT},
-                    {"role": "user", "content": user_prompt},
-                ],
-                temperature=self.cfg.temperature,
-                max_tokens=self.cfg.max_tokens,
-            )
-
             try:
+                # Loi goi API PHAI nam trong try: truoc day no o ngoai, nen mot loi
+                # HTTP (429 rate limit, 5xx, timeout) se thoat thang ra ngoai vong
+                # retry. Voi build_dataset chay thread pool, mot ngoai le nhu vay lam
+                # pool.map nem lai va GIET CA POOL -- mat toan bo tien do dang chay.
+                # Cang nhieu worker cang de dinh rate limit, nen day la dieu kien tien
+                # quyet de tang so worker.
+                response = self.client.chat.completions.create(
+                    model=self.cfg.model,
+                    messages=[
+                        {"role": "system", "content": _SYSTEM_PROMPT},
+                        {"role": "user", "content": user_prompt},
+                    ],
+                    temperature=self.cfg.temperature,
+                    max_tokens=self.cfg.max_tokens,
+                )
+
                 # response.choices co the la None/rong (loi tam thoi tu API/proxy,
                 # da gap thuc te voi vilao.ai) -- coi day la loi can thu lai, khong
                 # de TypeError thoat ra ngoai vong retry lam crash ca build_dataset.py.
@@ -110,7 +117,15 @@ class DeepSeekClient:
                         raise ValueError(f"Thieu key '{key}' trong response DeepSeek")
                 parsed["reasoning"] = reasoning
                 return parsed
-            except (ValueError, json.JSONDecodeError) as e:
+            except Exception as e:  # noqa: BLE001
+                # Bat rong CO CHU DICH: gom ca loi HTTP cua SDK openai (RateLimitError,
+                # APIError, APITimeoutError...) vao cung duong retry voi loi JSON. Bat
+                # rieng tung loai se bo sot -- ma bo sot o day nghia la giet ca pool.
+                # Rate limit thi cho lau hon theo cap so nhan; loi khac cho ngan.
+                is_rate_limit = "rate" in type(e).__name__.lower() or "429" in str(e)
+                if attempt_no < self.cfg.max_retries - 1:
+                    delay = (5 * 2**attempt_no) if is_rate_limit else (2**attempt_no)
+                    time.sleep(delay)
                 # choice/raw_text co the chua duoc gan neu loi xay ra ngay o buoc kiem
                 # tra response.choices rong -- dung locals().get de tranh NameError.
                 choice = locals().get("choice")
