@@ -14,6 +14,9 @@ venv/
 # Data sinh ra tu pipeline (co the lon, co the chua noi dung tu DeepSeek/model)
 data/processed/
 data/attempts/
+# Phase 2: du lieu preference sinh ra (KTO seed, sycophancy) -- tai tao duoc tu
+# build_preference.py + output Phase 1, co chua text sua cua model.
+data/preference/
 
 # Model checkpoints / LoRA adapters
 outputs/

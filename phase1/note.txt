@@ -1,0 +1,889 @@
+# Nhật ký công việc — Phase 1: Tự sửa lỗi có kiểm chứng
+
+> Dạy một model 7B kỹ năng nền tảng **"biết mình sai → tự phê bình → tự sửa"**,
+> trên các miền mà tính đúng/sai kiểm được bằng chương trình (toán, code),
+> trước khi nạp bất kỳ kiến thức chuyên sâu nào.
+
+Đây là pipeline dạy **hành vi**, không phải dạy **kiến thức**. Mục tiêu là vòng lặp
+phê bình → sửa, không phải điểm số trên GSM8K/MBPP.
+
+---
+
+## Mục lục
+
+- [Tiêu chí thành công](#tiêu-chí-thành-công)
+- [Ba nguyên tắc bất di bất dịch](#ba-nguyên-tắc-bất-di-bất-dịch)
+- [Trạng thái hiện tại](#trạng-thái-hiện-tại)
+- [Năm khâu của pipeline](#năm-khâu-của-pipeline)
+- [Lịch sử thí nghiệm](#lịch-sử-thí-nghiệm)
+- [Những gì đã học được](#những-gì-đã-học-được)
+- [Những sai lầm đã mắc](#những-sai-lầm-đã-mắc)
+- [Rủi ro chưa kiểm chứng](#rủi-ro-chưa-kiểm-chứng)
+- [Hướng tiếp theo](#hướng-tiếp-theo)
+
+---
+
+## Tiêu chí thành công
+
+*Cập nhật đánh giá 2026-07-23, sau Giai đoạn 7.* Cách đọc đúng: **cơ chế đạt, mốc
+số KHÔNG đạt — và đã có bằng chứng thực nghiệm rằng mốc số ban đầu không với tới
+được với cấu hình này (7B + SFT trên correction).** Đây không phải "làm sai" mà là
+"đặt mốc quá tham vọng cho công cụ đang dùng" — chính việc chứng minh được điều đó
+bằng số liệu sạch là kết quả có giá trị nhất của Phase 1.
+
+| Tiêu chí | Mục tiêu | Hiện tại | Phán định |
+|---|---|---|---|
+| Độ chính xác tự phê bình | ≥ 75–80% | **chưa đo trực tiếp** | Mốc gần như chắc chắn bất khả với 7B+SFT — xem ghi chú dưới |
+| Tỉ lệ sửa chữa thành công | ≥ 70% | code ~35–74%*, toán ~32–36% | **Đã chạm trần**: 2 can thiệp độc lập (GĐ4, GĐ7) đều không nâng được toán |
+| Không lặp lỗi sau 2–3 vòng | — | **chưa test** (mới 1 vòng) | Còn mở, cần GPU |
+| Giảm hallucination rõ rệt | — | chưa đo | Còn mở — và là lõi của chẩn đoán Phase 2 (xem dưới) |
+| Độ dài phản hồi hợp lý | — | ~26% lan man không dừng | Bài toán dữ liệu, chưa giải |
+| Loss ổn định, không overfit sớm | — | ổn | Đạt |
+
+\* Con số code dao động mạnh theo cấu hình eval (74% ở đối chứng có grounding tốt
+GĐ5, ~35% ở eval toàn phần GĐ6) — bản thân biên độ này là dấu hiệu verifier code
+có thể đang được chấm lỏng (test MBPP mỏng); chưa siết bằng MBPP+.
+
+**Về tiêu chí đầu tiên — và tại sao nó là cốt lõi của chẩn đoán:** "tự phê bình"
+(nhận diện đúng chỗ sai) và "tự sửa" (ra đáp án cuối đúng) là **hai thứ khác nhau**,
+ta mới đo cái thứ hai. Paper 2606.05976 đo cái thứ nhất nghiêm ngặt và cho thấy hai
+chỉ số lệch nhau rất xa: baseline của họ ra đáp án đúng 70–77% nhưng nhận diện lỗi
+đúng chỉ 0–17%. **Toàn bộ bằng chứng Phase 1 hội tụ về đúng khoảng cách này:** model
+"sửa đúng" phần lớn vì được cho sẵn đáp án rồi khớp ngược (Giai đoạn 7 chứng minh:
+bỏ đáp án đi thì tỉ lệ sửa TỤT, dù có chỉ đúng bước sai), chứ không phải vì thật sự
+nhận diện được lỗi. Nói cách khác: **cái ta dạy được bằng SFT là *định dạng* của
+việc sửa, không phải *kỹ năng phân biệt* đúng/sai.** Đây là điểm khởi đầu của Phase 2.
+
+---
+
+## Ba nguyên tắc bất di bất dịch
+
+Vi phạm ba điều này là phá vỡ ý nghĩa của cả Phase 1.
+
+**1. Đúng/sai do chương trình quyết, không bao giờ do LLM chấm LLM.**
+sympy cho toán, chạy unit test thật cho code. Cả lời giải gốc lẫn bản sửa của model
+lớn đều phải qua verifier. Bản sửa nào trượt re-verify thì **loại bỏ** — đây là cổng
+chất lượng có chủ đích, không phải bug cần tối ưu cho tỉ lệ giữ cao hơn.
+
+**2. Lời giải sai phải do chính model nhỏ sinh ra thật.**
+Không bao giờ để model lớn "tưởng tượng" ra một lời giải sai hợp lý. Dữ liệu train
+phải khớp phân bố lỗi **thực tế** của model, nếu không kỹ năng học được sẽ không
+chuyển sang được cách nó sai trong thực tế.
+
+**3. Prompt lúc train và lúc suy luận phải giống nhau từng byte.**
+Lệch nhau chính là lớp bug mà bản vá `verifier_detail` sinh ra để loại bỏ. Từ
+2026-07-21, điều này được **cấu trúc bảo đảm**: mọi template nằm trong
+`src/core/prompts.py`, ba nơi dùng (`build_dataset`, hai bản eval) đều đọc từ đó.
+
+---
+
+## Trạng thái hiện tại
+
+*Cập nhật 2026-07-21*
+
+| | |
+|---|---|
+| Model nền | Qwen2.5-7B-Instruct, QLoRA 4-bit qua Unsloth |
+| Bộ đề | 1000 GSM8K + 624 MBPP = **1624 bài** |
+| Dataset train | **631 mẫu** (`phase1_sft.jsonl`) |
+| Adapter | `Kxck/AGI_v2` trên HF Hub — `AGI_v1` giữ làm đối chứng |
+| Bộ đề held-out | 600 toán + 150 code (offset 150, tách hoàn toàn khỏi train) |
+| Máy | RTX 3090 Ti 24GB (thuê theo giờ) |
+
+**Chỉ số — phải đọc tách làm hai thừa số:**
+
+| | Giá trị | So với mục tiêu |
+|---|---|---|
+| Tỉ lệ tự sửa (con số tổng) | **37.8%** | mục tiêu ≥70% — còn xa |
+| ├ Ra được định dạng | 58.2% | ← **toàn bộ khoảng cách nằm ở đây** |
+| └ Sửa đúng khi đã ra format | **64.8%** | gần chạm 70% |
+
+Con số tổng là **tích của hai thứ**, và chỉ thừa số đầu đang hỏng. Xem
+[phát hiện số 6](#6-chỉ-số-tổng-là-tích-của-hai-thứ-và-chỉ-một-thứ-đang-hỏng).
+
+**Ba đối chứng (giai đoạn 5) xác nhận thừa số thứ hai là tự sửa THẬT, không phải giải
+lại:** bỏ `verifier_detail` thì sửa|format sụp 66.9%→21.4%, riêng code 74%→0%. Kỹ
+năng sửa của code hoàn toàn dựa vào traceball; toán phần lớn là giải lại (grounding
+yếu). Adapter dạy model *phát ra định dạng*; `verifier_detail` dạy nó *sửa đúng chỗ*.
+
+---
+
+## Năm khâu của pipeline
+
+Thứ tự **cố định theo phụ thuộc dữ liệu**, không phải theo sở thích. Mỗi khâu đọc
+output của khâu trước.
+
+### Khâu 1 — Chuẩn bị bộ đề
+`prepare_public_datasets.py` · không cần GPU
+
+Lấy GSM8K/MBPP về `data/problems/*.jsonl`.
+
+**Ranh giới split là thứ giữ cho phép đo trung thực.** MBPP chia theo `task_id`
+thành 4 khối cố định:
+
+| Split | task_id | Số bài | Dùng làm gì |
+|---|---|---|---|
+| prompt | 1–10 | 10 | train |
+| test | 11–510 | 500 | 11–160 → **train**; 161+ → **held-out eval** |
+| validation | 511–600 | 90 | train |
+| train | 601–974 | 374 | train (**đã dùng hết**) |
+
+`prepare_code_extra()` **chặn cứng** `split="test"`. Train lên `task_id ≥ 161` là
+phá hỏng toàn bộ phép đo, **không thể hoàn tác**, và triệu chứng duy nhất là *kết
+quả bỗng dưng đẹp lên* — không có gì báo lỗi.
+
+**Cạm bẫy đã suýt dính:** các bản MBPP gộp sẵn (ví dụ Kaggle `mpwolke/mbppjsonl`)
+đóng gói cả 974 bài thành một file jsonl **không có nhãn split**. Trông như ~1000
+bài code mới; thực chất là cùng bộ MBPP với thứ duy nhất bảo vệ eval bị gỡ bỏ.
+
+**Bug đã sửa:** `prepare_*_extra` trước đây luôn `select(range(0, limit))` rồi
+append mà không dedupe — chạy lại với số lớn hơn sẽ **nhân đôi** phần đã có, âm thầm
+làm lệch phân bố. Nay `limit` nghĩa là "tổng muốn có từ split đó", bài đã có bị bỏ
+qua.
+
+### Khâu 2 — Sinh attempt
+`generate_attempts.py` · **cần GPU** (vLLM) · resumable
+
+Model nhỏ tự giải toàn bộ bộ đề. Đây là nơi nguyên tắc số 2 được thực thi: không gọi
+API nào, mọi lời giải sai đều là lỗi thật của chính model.
+
+Dùng vLLM vì đây là inference thuần trên model gốc — dựng hết prompt rồi gọi
+`generate()` **một lần duy nhất** cho cả 1324 bài. Thực đo: **1 phút 36 giây**
+(13.8 req/s, 2450 token/s output).
+
+### Khâu 3 — Dựng dataset
+`build_dataset.py` · **không cần GPU**, chỉ gọi API · resumable
+
+Verify → nếu sai thì gọi model lớn sinh phê bình + bản sửa → **re-verify** → chỉ giữ
+khi bản sửa được xác nhận đúng.
+
+Chain-of-thought thật của model lớn (`reasoning_content`) được bọc trong
+`<thinking>` và đưa vào mẫu train — đây là **tín hiệu huấn luyện chính**, không phải
+phần phụ. Vì vậy `max_tokens` phải đủ chỗ cho nó (8000).
+
+**Đã song song hoá (16 worker).** Khâu này bị chặn bởi độ trễ mạng chứ không phải
+CPU; chạy tuần tự trên ~1300 bài mất 9–15 tiếng trong khi GPU nằm không mà vẫn tính
+tiền thuê.
+
+Thống kê lần chạy 2026-07-21:
+```
+total=906  already_correct=399  sent_to_api=507  kept=444  discarded=63
+```
+Chi phí thật: **~15.200₫** (507 request). Đáng chú ý: giá bị quyết định bởi **sàn
+30₫/request**, không phải bởi token — mỗi lần gọi thực chỉ đáng ~11₫.
+
+### Khâu 4 — Train
+`train_sft.py` · **cần GPU** (Unsloth QLoRA)
+
+QLoRA r=32, 3 epoch, batch hiệu dụng 16, `max_seq_length=4096`. 631 mẫu → 120 bước
+→ **~44 phút** trên 3090 Ti, dùng 11.5/24.5 GB.
+
+### Khâu 5 — Đánh giá
+`evaluate_self_correction_vllm.py` · **cần GPU**
+
+**Đây mới là thước đo có ý nghĩa.** Training loss không cho biết model có học được
+tự sửa hay không.
+
+Phép đo có cấu trúc 2 pha: tất cả bài tự giải → verify → chỉ bài sai mới phản tư →
+verify lại. Cả hai pha đều batch thuần nên vLLM chỉ cần **2 lần `generate()`** thay
+vì 2 lần/bài tuần tự.
+
+Metric: `self_corrected / initial_wrong`.
+
+---
+
+## Lịch sử thí nghiệm
+
+### Giai đoạn 1 — Phát hiện vai trò của "địa chỉ hoá" (2026-07-19 → 07-20)
+
+Xuất phát từ paper **"The Self-Correction Illusion"** (arXiv 2606.05976): LLM không
+tự sửa được lỗi trong `<thought>` của chính nó **không phải vì thiếu năng lực suy
+luận**, mà vì thiếu *addressability* — không có thói quen coi một mệnh đề nằm trong
+suy nghĩ riêng là một "đối tượng" có thể gọi tên và bác bỏ. Đưa lại **cùng một
+claim sai** dưới role bên ngoài giúp tăng tỉ lệ tự sửa 23–93 điểm phần trăm,
+**không cần train lại**.
+
+Áp dụng: đổi role của lượt phản tư từ `user` sang `tool`.
+
+| Cấu hình | Toán | Code | Tổng |
+|---|---|---|---|
+| Train `user` + eval `user` | 0% | 28.6% | 22.9% |
+| Train `user` + eval `tool` *(lệch phân phối)* | 33.3% | 28.6% | 29.7% |
+| Train `tool` + eval `tool` *(khớp)* | 22.2% | 46.4% | **40.5%** |
+
+Bài học rút ra lúc đó: phần "train cho khớp" đóng góp **nhiều hơn** phần đổi prompt
+(+10.8pp so với +6.8pp). Đây là lý do sau này mọi phép thử đổi khung đều phải có
+bước train khớp, không dừng ở phép thăm dò.
+
+`format_incomplete` cũng giảm mạnh 43% → 13.5%.
+
+**Kết luận đưa ra lúc đó:** *"nút thắt chính giờ là quy mô dữ liệu (135 mẫu, mục
+tiêu 800–1500), không còn là vấn đề thiết kế role/format."*
+
+→ **Kết luận này sau đó đã bị bác bỏ.** Xem giai đoạn 3.
+
+### Giai đoạn 2 — Mở rộng hạ tầng (2026-07-20 → 07-21)
+
+Chuyển từ Kaggle/Colab sang **VM thuê RTX 3090 Ti** (CC 8.6, 24GB). Chi tiết kỹ
+thuật đầy đủ trong `README.md` và `instructionAI/environment.md`; phần đáng nhớ:
+
+- **Chọn máy theo compute capability, không theo VRAM.** Tesla P40 24GB giá rẻ đã bị
+  loại: CC 6.1 nên cả Unsloth lẫn vLLM đều không chạy, và "12 TFLOPS" quảng cáo là
+  FP32 — FP16 trên GP102 bị chặn ở 1/64 tốc độ.
+- **Hai venv riêng biệt là bắt buộc, không phải cẩn thận thừa.** Đo thực tế:
+  vLLM kéo `torch 2.11.0+cu130`, Unsloth kéo `torch 2.10.0+cu128`. Cài chung một môi
+  trường thì cái sau ghi đè cái trước và lỗi nổ ở **khâu train** — sau khi đã đốt
+  xong GPU cho khâu 2.
+- **`uv` thay cho `pip`:** máy thuê không có `pip`, không có `python3-venv`, và
+  `sudo` đòi password.
+- **Chuỗi 4 lỗi toolchain của vLLM**, mỗi lỗi chỉ lộ ra sau ~5 phút nạp model:
+  thiếu `Python.h` → không tìm thấy `nvcc` → thiếu `ninja` trên PATH → xung đột
+  phiên bản `nvcc`/`nvrtc`/`crt` khi flashinfer JIT-compile.
+
+  Bài học quan trọng: **`enforce_eager` không phải lưới an toàn tổng quát.**
+  flashinfer compile kernel sampling *bất kể* eager hay không. Đường lùi đúng phải
+  tắt **cả hai**: `VLLM_ENFORCE_EAGER=1 VLLM_USE_FLASHINFER_SAMPLER=0`.
+
+### Giai đoạn 3 — Kiểm chứng giả thuyết quy mô dữ liệu (2026-07-21)
+
+Mở rộng 135 → **631 mẫu** (gấp 4.7 lần, chạm ngưỡng dưới của mục tiêu 800–1500).
+
+**Kết quả: không có thay đổi nào đạt ý nghĩa thống kê.**
+
+| Chỉ số | v1 (135 mẫu) | v2 (631 mẫu) | p (Fisher) |
+|---|---|---|---|
+| Tỉ lệ tự sửa | 40.5% (15/37) | 37.8% (94/249) | **0.856** |
+| Giải đúng ngay — toán | 70.0% (21/30) | 81.0% (81/100) | 0.212 |
+| Giải đúng ngay — code | 6.7% (2/30) | 3.0% (3/100) | 0.326 |
+
+p = 0.856 — gần như không thể gần "không có khác biệt" hơn được nữa. Đây **không**
+phải "chưa đủ mẫu để thấy hiệu ứng"; mẫu số đã là 249. Là **không có hiệu ứng để
+thấy**.
+
+→ Giả thuyết trung tâm của giai đoạn 1 bị bác bỏ.
+
+### Giai đoạn 4 — Thí nghiệm khung `memory` (2026-07-21)
+
+Paper phân rã hiệu ứng thành hai phần: **lớp bọc cú pháp đóng góp 17–23pp, còn role
+tag đóng góp thêm ~30pp**.
+
+Phát hiện then chốt khi kiểm tra chat template của Qwen: khung `tool` mà ta đang
+dùng **không phải một role token riêng** — nó render thành
+`<|im_start|>user\n<tool_response>...</tool_response>`, tức chỉ là **nấc H3** (lớp
+bọc), chưa phải H4 (role tag thật). Mức tăng đo được của dự án (+17.6pp) nằm gọn
+trong dải 17–23pp mà paper dự đoán cho riêng phần lớp bọc.
+
+Nên phần ~30pp của role tag vẫn còn nguyên chưa khai thác. Thiết kế 2×2:
+
+| Ô | Adapter train | Eval | Cho biết |
+|---|---|---|---|
+| A | `tool` | `tool` | mốc |
+| B | `tool` | `memory` | hiệu ứng prompt thuần |
+| C | `memory` | `memory` | hiệu ứng đầy đủ |
+| D | `memory` | `tool` | đối chứng ngược |
+
+Ô D bắt đúng chỗ dễ nhầm nhất: nếu adapter `memory` tốt hơn ở **cả hai** khung eval
+thì cải thiện đến từ lần train đó chứ không phải từ `memory`.
+
+**Kết quả đầy đủ bốn ô:**
+
+| Ô | Toán | Code | Tổng | `init_ok` | `fmt_bad` |
+|---|---|---|---|---|---|
+| A `tool`/`tool` | 31.7% (33/104) | 42.1% (61/145) | 37.8% (94/249) | 66.8% | 41.8% |
+| B `tool`/`memory` | 29.7% (30/101) | 48.6% (71/146) | 40.9% (101/247) | 67.1% | 36.4% |
+| C `memory`/`memory` | 39.7% (31/78) | 47.6% (69/145) | **44.8%** (100/223) | 70.3% | 33.6% |
+| D `memory`/`tool` | 32.9% (24/73) | 5.5% (8/145) | **14.7%** (32/218) | 70.9% | **78.9%** |
+
+Ô D **sụp đổ**, và đó là tin tốt cho tính chặt chẽ: nó loại bỏ giả thuyết "adapter
+`memory` chỉ đơn giản là lần train may mắn hơn". Nếu nó giỏi lên một cách tổng quát
+thì ô D phải ≥ ô A; thực tế D thấp hơn A rất xa. Adapter **chuyên biệt hoá** vào
+khung nó được dạy.
+
+**Phân rã — đây mới là phát hiện thật:**
+
+| Ô | Ra được format | Sửa đúng \| đã ra format | Tổng |
+|---|---|---|---|
+| A | 58.2% | **64.8%** | 37.8% |
+| B | 63.6% | **64.3%** | 40.9% |
+| C | 66.4% | **67.6%** | 44.8% |
+| D | 21.1% | **69.6%** | 14.7% |
+
+**Cột giữa gần như không đổi qua cả bốn ô.** Toàn bộ biến thiên của con số tổng đến
+từ tỉ lệ ra được format.
+
+Kiểm định tách riêng hai thành phần:
+
+| So sánh | Ra được format | Sửa đúng khi đã ra format |
+|---|---|---|
+| A vs C | 58.2% → 66.4%, p = 0.072 | 64.8% → 67.6%, **p = 0.62** |
+| A vs D | 58.2% → 21.1%, **p = 2×10⁻¹⁶** | 64.8% → 69.6%, **p = 0.60** |
+
+Ô D là bằng chứng đanh nhất: tổng thấp nhất (14.7%) nhưng tỉ lệ sửa đúng khi ra được
+format **cao nhất (69.6%)**. Model lệch phân phối vẫn phê bình tốt y hệt — nó chỉ
+hiếm khi viết nổi ra.
+
+**Về dự đoán của paper:** `<memory>` mạnh nhất ở toán — **không tái lập được**. Ở ô B
+(prompt thuần), McNemar cho toán 12 vs 13 (p = 1.000), code 19 vs 10 (p = 0.136).
+Và quan trọng hơn, `memory` **có** giúp thật nhưng **qua cơ chế khác hẳn** paper mô
+tả: paper nói nó cải thiện addressability để model chẩn đoán đúng hơn; dữ liệu của ta
+nói nó cải thiện khả năng viết cho xong, còn chẩn đoán thì không nhúc nhích
+(p = 0.62).
+
+Giả thuyết vì sao lệch: setup khác nhau ở chỗ căn bản. Paper tiêm một *claim sai
+trần* rồi bảo model tự audit; ta đưa *thông báo lỗi thật từ verifier*. Cơ chế
+addressability sinh ra để tạo "tay cầm" cho mệnh đề vốn không có địa chỉ — nhưng
+`verifier_detail` **đã là một tay cầm sẵn**.
+
+### Giai đoạn 5 — Ba đối chứng: 64.8% NGHĨA LÀ GÌ (2026-07-21)
+
+Câu hỏi treo sau giai đoạn 4: con số "sửa đúng khi đã ra format" (64.8%) là **tự sửa
+có định hướng** hay chỉ là **giải lại từ đầu rồi tình cờ đúng**? Nó nằm đúng dải
+70–77% mà paper đo được ở model *hoàn toàn không nhận diện được lỗi*. Ba đối chứng,
+không train gì, mỗi cái 600 toán + 150 code, seed cố định:
+
+| Đối chứng | init_ok | ra format | sửa\|format | headline |
+|---|---|---|---|---|
+| 1. adapter + detail (tái lập ô A) | 66.8% | 54.6% | **66.9%** | 36.5% |
+| 2. adapter + **BLIND** (bỏ verifier_detail) | 68.4% | 29.5% | **21.4%** | 6.3% |
+| 3. **MODEL GỐC** + detail | 68.8% | **0.0%** | — | 0.0% |
+
+**Kết quả 1 — tự sửa là THẬT, không phải giải lại.** Bỏ `verifier_detail` thì cả hai
+thừa số sụp: ra-format 54.6%→29.5% (p = 3×10⁻⁸), sửa|format 66.9%→21.4%
+(p = 7×10⁻¹⁰). 21.4% là mức "giải lại tình cờ đúng"; phần nhảy lên 66.9% là tự sửa
+có định hướng thật nhờ đọc lỗi.
+
+**Kết quả 2 — hai domain hành xử HOÀN TOÀN khác nhau** (sửa|format):
+
+| Domain | có detail | blind | detail đóng góp |
+|---|---|---|---|
+| Toán | 53.2% (25/47) | 42.9% (15/35) | chỉ +10pp |
+| Code | 74.2% (66/89) | **0.0% (0/35)** | toàn bộ |
+
+- **Code = tự sửa 100% có định hướng.** Bỏ traceback → sửa 0/35. Model dựa hoàn toàn
+  vào traceback để định vị và chữa.
+- **Toán = phần lớn giải lại.** Bỏ hết thông tin lỗi vẫn sửa 42.9% (giải lại GSM8K
+  dễ). Detail chỉ thêm ~10pp — và vì blind-toán vốn đã cao, điều này xác nhận lại
+  model **không đọc-chép** đáp án được lộ trong detail toán.
+
+Đây là bằng chứng bằng SỐ cho luận điểm addressability (phát hiện số 1/2 cũ): code có
+địa chỉ (traceback chỉ dòng/hàm) → tự sửa thật; toán không địa chỉ ("đáp số sai, đúng
+là X" — không chỉ bước nào sai) → chỉ giải lại.
+
+**Kết quả 3 — model gốc = 0%, NHƯNG là giả tạo do cách chấm.** Model gốc chưa từng
+train trên khung `<thinking>` + 3 mục, nên nó **không phát ra định dạng** đó → mọi
+thứ bị tính `format_incomplete` → nội dung sửa không bao giờ được verify. Nên đối
+chứng 3 chỉ chứng minh sạch MỘT điều: **train dạy model PHÁT RA định dạng phê bình
+gradable.** Nó KHÔNG cho biết model gốc có sửa được hay không — muốn biết phải verify
+nội dung bất kể format (nhưng việc đó dễ tạo false positive, chính lý do fallback đã
+bị bỏ ở giai đoạn đầu). Đây là giới hạn thành thật của đối chứng này.
+
+**Tổng hợp ba đối chứng:** train dạy model *"cách trình bày phê bình"*, còn
+`verifier_detail` (grounding) dạy nó *"sửa đúng chỗ"* — hai thứ tách bạch. `init_ok`
+~67–69% giống nhau qua cả ba (adapter hầu như không đổi năng lực giải gốc — đúng như
+kỳ vọng với một LoRA hành vi).
+
+### Giai đoạn 6 — Thêm MATH level 2–3, `AGI_v3`, và một bug regex nghiêm trọng (2026-07-22)
+
+Máy `agi2` mất (host key đổi — container mới), phải dựng lại toàn bộ trên `agi3`
+(RTX 3090, CC 8.6). Tái tạo `data/problems/*.jsonl` **tất định** (cùng dataset công
+khai, cùng thứ tự tải) rồi khôi phục `attempts.jsonl`/`phase1_sft.jsonl` (631 mẫu)
+từ backup local — đối chiếu id: **1624/1624 khớp tuyệt đối, 0 mồ côi**.
+
+**Ba bug thật từ lần refactor `src/` trước đó, chỉ lộ ra khi chạy thật** (kiểm tra
+tĩnh trước đó không bắt được):
+- `ROOT_DIR = Path(__file__).resolve().parent.parent` ở 3 file (`prepare_datasets.py`,
+  `notify.py`, `tg_inbox.py`) bị dời sâu thêm 1 cấp thư mục lúc refactor mà quên
+  cập nhật số `.parent` — trỏ sai vào `src/` thay vì gốc dự án. Hậu quả nếu không
+  bắt: `notify.py`/`tg_inbox.py` **không tìm thấy `.env` một cách im lặng**.
+- `problem_sources.py` dùng import tương đối `from .schema import Problem` — vỡ vì
+  `schema.py` đã dời sang `core/`. Công cụ kiểm tra tĩnh tự viết trong phiên trước
+  **chỉ quét import tuyệt đối**, bỏ sót hoàn toàn import tương đối — đã vá lại công
+  cụ để bắt được lớp lỗi này lần sau.
+- Cả hai đều đã sửa và **verify bằng cách chạy thật** (không chỉ tin kiểm tra tĩnh):
+  `py_compile` toàn bộ `src/`, và 13 case hồi quy chạy thật cho `MathVerifier` (xem
+  ngay bên dưới) trên máy có Python thật — local Python vẫn hỏng suốt dự án.
+
+**Thêm nguồn `EleutherAI/hendrycks_math` (MATH, level 2–3), 200 bài thí điểm.**
+Kết quả đo bằng verifier: model giải đúng ngay chỉ **56.5%** (so với 84.3% của
+GSM8K) — đúng mục đích tạo thêm tín hiệu sai để học. 87 bài cần gọi API, giữ được
+**61 mẫu mới** → `phase1_sft.jsonl` 631 → **692 mẫu**.
+
+**Phát hiện quan trọng khi viết loader — một bug nguy hiểm trong `MathVerifier`
+đã tồn tại từ trước, chỉ lộ ra khi thêm dữ liệu LaTeX:** logic "dấu phẩy là số
+thập phân kiểu VN" áp dụng mù quáng lên toạ độ/tuple (vd `(3, π/2)`), biến dấu
+phẩy phân tách thành dấu chấm rồi `implicit_multiplication_application` nối
+thành phép nhân — **hai toạ độ khác nhau như `(3,π/2)` và `(6,π/4)` cùng cho ra
+`1.5π`, chấm nhầm là bằng nhau** (false positive, sai âm thầm nguy hiểm nhất).
+Bắt được bằng cách chạy test thật, không phải lần theo tay. Đã sửa bằng
+`_BARE_NUMBER_RE`: chỉ chuẩn hoá dấu phẩy khi giá trị là số trần.
+
+**`AGI_v3` train từ base model, KHÔNG tiếp nối từ `AGI_v2`** (theo đúng thiết kế
+`train_sft.py`: mỗi phiên bản train độc lập từ `Qwen2.5-7B-Instruct` gốc trên toàn
+bộ dataset tích luỹ tại thời điểm đó — tránh quên lãng chồng chất, giữ mỗi
+adapter là một điểm dữ liệu so sánh được độc lập).
+
+**Bug thứ hai, nghiêm trọng hơn, phát hiện SAU khi có kết quả eval đầu tiên:**
+kết quả thô cho thấy toán tụt thê thảm (`init_ok` 82.7%→71.7%, headline 31.7%→21.2%).
+Trước khi tin con số này, kiểm tra `verifier_detail` của các case "sai" — phát hiện
+**112/170 (66%) chỉ là lỗi trích xuất, không phải sai logic**. Nguyên nhân: sau khi
+train thêm MATH, model đổi văn phong sang lặp hai lớp
+(`"### Đáp số:\nĐáp số: 15"`) — regex `_ANSWER_PATTERNS` dùng `\s*` (khớp cả xuống
+dòng) sau dấu `:` nên nuốt qua dòng đầu, trích nhầm **nguyên cả dòng sau** làm giá
+trị (`"Đáp số: 15"` thay vì `"15"`) → không parse được → tính là sai.
+
+Sửa: giới hạn khoảng trắng sau `:`/`=` chỉ trong cùng dòng (`[ \t]*` thay vì `\s*`).
+**Verify lại trên chính text đã lưu, không cần chạy lại GPU** — 98 bài lật từ
+"sai" sang "đúng ngay lần đầu", 1 bài lật sang "tự sửa thành công". Số liệu ĐÚNG
+sau khi sửa, kiểm định Fisher exact:
+
+| Domain | Chỉ số | v2 | v3 (đã sửa) | p |
+|---|---|---|---|---|
+| Toán | init_ok | 82.7% | **88.0%** | **0.011 (có ý nghĩa)** |
+| Toán | headline | 31.7% | 31.9% | 1.000 (không đổi) |
+| Code | headline | 42.1% | 35.2% | 0.28 (chưa đủ ý nghĩa) |
+| Code | ra-format | 62.8% | 53.1% | 0.12 (chưa đủ ý nghĩa) |
+| Code | sửa\|format | 67.0% | 66.2% | 1.00 (không đổi) |
+
+**Kết luận:** thêm MATH giúp toán giải đúng ngay TỐT HƠN THẬT (p<0.05) — năng lực
+nền được bồi đắp thật sự, không phải nhiễu. Kỹ năng tự sửa toán không đổi (đúng dự
+đoán — grounding của toán vẫn chưa được cải thiện, chỉ có thêm dữ liệu). Code có
+dấu hiệu tụt (đúng câu hỏi ban đầu: "train chỉ toán có ảnh hưởng code không" — vì
+LoRA là một bộ trọng số chung) nhưng **chưa đủ bằng chứng thống kê để kết luận** —
+cần eval quy mô lớn hơn mới khẳng định được.
+
+**Bài học phương pháp quan trọng nhất của giai đoạn này:** một kết quả "tệ bất
+thường" là tín hiệu để **điều tra trước khi tin**, không phải để kết luận ngay.
+Nếu không kiểm tra `verifier_detail` của các case sai, kết luận sai "thêm MATH làm
+hỏng toán" đã được báo cáo và ghi vào lịch sử — trong khi sự thật ngược lại hoàn
+toàn.
+
+**Hạ tầng mới:** `notify.py` mở rộng gửi được file (`send_document`, tự dựng
+multipart/form-data bằng stdlib, không cần `requests`). `gen_report.py` tự sinh
+báo cáo HTML từ eval thật, so với mốc v2. Chuỗi tự động (`watch_and_report.sh`)
+chờ pipeline xong rồi tự gửi báo cáo qua Telegram — đã tự gửi một bản **trước khi
+bug được phát hiện**, phải gửi bản đính chính ngay sau đó. Bài học: tự động hoá
+việc báo cáo là tốt, nhưng không thay thế được việc kiểm tra tính hợp lý của kết
+quả trước khi tin nó.
+
+---
+
+### Giai đoạn 7 — Thử định vị bước sai cho toán (KHÔNG lộ đáp án) — kết quả âm tính (2026-07-23)
+
+**Giả thuyết:** toán tự sửa kém hơn code vì không "địa chỉ hoá" được (code có
+traceback chỉ đúng dòng/hàm lỗi; toán chỉ nói "sai, đúng là X" — model chỉ cần
+điền lại đáp án có sẵn, không cần hiểu bước nào sai). Thử: giữ nguyên cơ chế
+verify (vẫn 100% dựa vào so khớp sympy, không đổi), nhưng đổi CÁCH TRÌNH BÀY lỗi
+cho luợt phản tư — chỉ ra bước tính nghi vấn, **không** nói đáp án đúng.
+
+**Hạ tầng mới (`src/`):** `Problem.calc_steps` — trích annotation tính toán
+`<<48/2=24>>` sẵn có trong raw answer GSM8K (`_extract_calc_steps` trong
+`prepare_datasets.py`, dùng chung ở cả pipeline train và `eval_common.py`).
+`locate_wrong_step()` trong `math.py` — khớp text tự do của model với từng
+bước chuẩn, tìm bước ĐẦU TIÊN không khớp, trả về câu chỉ vị trí (không lộ giá
+trị đúng); trả `None` (fallback về thông báo cũ) nếu không có `calc_steps` hoặc
+mọi giá trị đều khớp đâu đó trong bài — CHỦ Ý không đoán khi không có bằng
+chứng, cùng nguyên tắc với `_to_sympy()`/`extract_last_boxed()`. Cờ opt-in
+`--math-localize-steps` ở cả 2 script eval, hằng số tắt mặc định ở
+`build_dataset.py` — không đổi hành vi pipeline hiện có.
+
+Dựng máy mới `agi-new` (RTX 3090, CC 8.6, 209.121.195.118:12022) để thử
+nghiệm eval-time (không cần retrain — chỉ đổi câu thông báo lỗi lúc infer,
+dùng thẳng adapter `Kxck/AGI_v3` có sẵn trên HF Hub).
+
+**Phát hiện phụ về phương pháp:** chạy 2 lượt cùng `--seed 42` để mong có tập
+"sai lần đầu" giống hệt nhau (so sánh cặp sạch) — **KHÔNG đạt được**: 72 bài sai
+ở run A (baseline) vs 80 bài sai ở run B (localize), dù cùng seed/model/prompt.
+vLLM continuous batching không đảm bảo tái lập tuyệt đối (thứ tự gộp batch ảnh
+hưởng thứ tự cộng dồn dấu phẩy động → sampling khác). Ghi nhận: `--seed` không
+đủ để có so sánh cặp sạch với engine này; muốn so sánh cặp thật cần greedy
+(temperature=0) hoặc n lớn hơn nhiều.
+
+**Kết quả (kiểm định cả 2 cách, cùng hướng):**
+
+| Cách so sánh | Baseline (lộ đáp án) | Localize (chỉ vị trí) | p-value |
+|---|---|---|---|
+| Toàn bộ tập sai mỗi run | 36.1% (26/72) | 22.5% (18/80) | 0.075 (Fisher) |
+| Chỉ 63 bài sai ở CẢ HAI run (cặp thật) | 31.7% (20/63) | 19.0% (12/63) | 0.096 (McNemar) |
+
+**Kết luận: kết quả ÂM TÍNH.** Định vị bước sai (không lộ đáp án) không cải
+thiện tỉ lệ tự sửa toán — ngược lại có xu hướng TỆ HƠN ~12-13 điểm %, nhất quán
+giữa 2 cách phân tích độc lập, dù chưa đạt p<0.05 quy ước. `format_incomplete`
+không đổi nhiều (51%→57%) nên không phải do model viết dài hơn/bị cắt. Diễn
+giải hợp lý nhất: tự sửa toán của model này chủ yếu là "được cho đáp án rồi
+giải ngược lại", không phải suy luận lại từ vị trí lỗi — bỏ đáp án đi (dù có
+chỉ đúng bước) tước mất đòn bẩy đang thực sự hoạt động, còn heuristic định vị
+(khớp số trong văn bản tự do, không phải logic toán thật) chưa đủ chính xác để
+bù lại. **Không nên đầu tư retrain theo hướng "thay thế" này** dựa trên bằng
+chứng hiện tại — nếu thử tiếp, nên theo hướng "định vị CỘNG THÊM đáp án" (bổ
+sung, không thay thế) thay vì bỏ hẳn đáp án.
+
+---
+
+## Những gì đã học được
+
+### 1. Địa chỉ hoá quan trọng hơn việc lộ đáp án
+
+Giả thuyết ban đầu: thông báo lỗi của toán có ghi thẳng đáp án đúng nên tỉ lệ tự sửa
+của toán sẽ bị thổi phồng. **Dữ liệu cho kết quả ngược lại** — toán tự sửa 0% *dù*
+được cho sẵn đáp án đúng: model không định vị được **bước nào** trong lời giải của
+chính nó bị sai. Code không bao giờ lộ đáp án nhưng traceback chỉ đích danh
+dòng/hàm, và tự sửa tốt hơn hẳn.
+
+Kiểm tra lại 2026-07-21 trên dữ liệu mới: toán có lộ đáp án 1/7, không lộ 0/10, code
+0/30 chép nguyên văn. **Không thấy dấu hiệu đọc-chép.** Đối chứng blind (giai đoạn 5)
+xác nhận mạnh hơn: bỏ hết detail thì toán vẫn sửa 42.9% (giải lại), tức model gần như
+không dùng đáp án được lộ.
+
+### 1b. `verifier_detail` là thứ làm pipeline chạy — và tác dụng chia theo domain
+
+(Từ giai đoạn 5, đối chứng blind.) Bỏ `verifier_detail` khỏi lượt phản tư:
+
+- **Code: tự sửa sụp 74.2% → 0%.** Traceback (chỉ đích danh dòng/hàm) là thứ DUY NHẤT
+  làm code tự sửa được. Không có nó, model không định vị được lỗi và sửa 0/35.
+- **Toán: 53.2% → 42.9%, chỉ mất ~10pp.** Toán phần lớn là *giải lại*, không phải tự
+  sửa; detail (kể cả khi lộ đáp án) đóng góp rất ít.
+
+Bài học kép: (a) tự sửa là kỹ năng THẬT, phụ thuộc grounding — không phải giải lại;
+(b) chất lượng grounding quyết định tất cả, và grounding của toán hiện quá yếu (không
+địa chỉ hoá được). Đây là bằng chứng bằng số cho phát hiện số 2.
+
+### 2. Cân bằng bộ đề KHÔNG tạo ra cân bằng dữ liệu train
+
+Đo bằng verifier trên 906 attempt mới:
+
+| Domain | Bài | Giải đúng ngay | Cần gọi API |
+|---|---|---|---|
+| Toán | 432 | **364 (84.3%)** | 68 |
+| Code | 474 | 35 (7.4%) | **439** |
+
+Ta đã cẩn thận cân bộ đề về 61/38 toán/code. Dữ liệu train ra **~87% code**. Vì thứ
+quyết định không phải số đề, mà là **model sai ở đâu**.
+
+Hệ quả: **thêm bài toán gần như vô ích** — 84% sẽ bị bỏ vì model giải đúng. Muốn
+thêm tín hiệu toán thì phải đổi **độ khó**: GSM8K là toán tiểu học, quá dễ với model
+này. Bộ MATH (toán thi đấu) sẽ sinh tỉ lệ sai cao hơn nhiều — nhưng cần loader mới
+và verifier xử lý được đáp án dạng biểu thức.
+
+### 3. Cỡ mẫu — bài học đắt nhất
+
+Cùng một adapter, cùng bộ đề, chỉ khác số bài eval:
+
+| Cỡ mẫu | Tỉ lệ tự sửa của TOÁN |
+|---|---|
+| n = 19 | 15.8% |
+| n = 104 | **31.7%** |
+
+Chênh gấp đôi, thuần tuý do cỡ mẫu.
+
+Nghĩa là **mọi con số toán trong lịch sử dự án** — 0%, 33.3%, 22.2% — đều dựa trên
+mẫu số 7–9 case. Chúng chưa bao giờ đo được gì. Kể cả phát hiện "role `tool` đưa toán
+từ 0% lên 33.3%" từng là cơ sở để đổi cả pipeline, thực chất là **0/7 so với 3/9**.
+
+Điều này không có nghĩa quyết định đổi sang `tool` là sai — tổng thể vẫn cải thiện và
+lý do lý thuyết vẫn vững. Nhưng **bằng chứng cho riêng phần toán chưa từng tồn tại**.
+
+Quy tắc từ nay: model giải đúng ~84% bài toán, nên muốn mẫu số ~100 thì cần **~600
+bài toán** trong bộ eval.
+
+### 4. Thước đo có hiệu ứng chọn lọc
+
+`initial_wrong` là **chính những bài model làm sai**. Model càng giỏi thì mẫu số càng
+nhỏ và càng chỉ còn toàn bài khó. **Tỉ lệ tự sửa có thể giảm trong khi model thực sự
+khá lên.**
+
+Bằng chứng: trên đúng 30 bài toán dùng để đo v1, model v2 **giải đúng cả 30 ngay lần
+đầu** — mẫu số bằng 0, không còn gì để tự sửa.
+
+Vì vậy `initial_correct` phải luôn được báo cáo kèm.
+
+### 5. Model không biết dừng
+
+~26% số bài sai rơi vào trạng thái viết `<thinking>` lan man không bao giờ tới
+`### Sửa lại`. Gấp đôi ngân sách token (2048 → 4096) chỉ khiến nó **viết dài gấp
+đôi rồi vẫn bị cắt** (độ dài trung bình 6.526 → 12.418 ký tự).
+
+Đây là **hành vi**, không phải thiếu chỗ. Chưa rõ nguyên nhân.
+
+Ngoài ra có ~18 case model **bỏ hẳn format** và trả lời thẳng bằng code — trong đó
+một số thực ra **đúng** nhưng đang bị chấm là thất bại. Cách chấm hiện tại loại mọi
+output thiếu `### Sửa lại`, mà quy tắc đó sinh ra để chặn *văn bản bị cắt cụt*,
+không phải để chặn *câu trả lời trọn vẹn nhưng sai format*. Hai thứ này nên tách.
+
+### 6. Chỉ số tổng là TÍCH của hai thứ, và chỉ một thứ đang hỏng
+
+Đây là phát hiện quan trọng nhất tính đến nay.
+
+```
+tỉ lệ tự sửa  =  tỉ lệ ra được định dạng  ×  tỉ lệ sửa đúng khi đã ra định dạng
+    37.8%     =           58.2%           ×            64.8%
+```
+
+Qua **cả bốn ô** của thí nghiệm 2×2 — hai adapter, hai khung, khớp và lệch — thừa số
+thứ hai gần như bất động: **64.8 / 64.3 / 67.6 / 69.6%**. Thừa số thứ nhất thì dao
+động dữ dội: **58.2 / 63.6 / 66.4 / 21.1%**.
+
+Và qua phép tăng dữ liệu 4.7 lần, cũng không thừa số nào đổi (p = 0.856).
+
+**Kỹ năng tự sửa của model đứng yên ở ~65–70% bất kể can thiệp nào.** Mục tiêu trong
+kế hoạch là ≥70%. Nghĩa là **kỹ năng ấy gần như đã đạt từ lâu** — ta chưa bao giờ đo
+nó tách bạch nên không biết.
+
+Hệ quả cho mọi việc đã làm:
+
+- **Thêm dữ liệu** dạy *nội dung phê bình* — thứ vốn đã ổn. Nên nó không đổi gì.
+- **Đổi khung role** có tác dụng thật, nhưng **không qua cơ chế paper mô tả**. Nó
+  cải thiện khả năng viết-cho-xong (+8pp), không cải thiện chẩn đoán (p = 0.62).
+- **Lệch phân phối** không làm model chẩn đoán tệ đi (69.6%, cao nhất trong bốn ô).
+  Nó chỉ làm model gần như không viết nổi ra (21.1%).
+
+Từ nay **mọi báo cáo kết quả phải tách hai thừa số**. Báo cáo con số tổng một mình
+là che mất chỗ đang hỏng — và đó chính là lý do dự án đã đi sai hướng hai lần liên
+tiếp.
+
+---
+
+## Những sai lầm đã mắc
+
+Ghi lại để không lặp lại. Nhật ký chỉ ghi thành công là nhật ký vô dụng.
+
+**1. Đổi bốn biến cùng lúc.** Giữa lần đo 40.5% và lần đo mới, đã thay đổi: số mẫu
+(135→631), `max_seq_length` (2048→4096), engine eval (Unsloth→vLLM), bộ đề
+(30+30→100+100). Kể cả nếu có khác biệt có ý nghĩa thì cũng không quy được cho biến
+nào.
+
+**2. Nâng `max_seq_length` mà quên ngân sách sinh.** Hai tham số này gắn liền nhau:
+train trên chuỗi dài hơn thì model viết dài hơn, mà `max_new_tokens_correction` vẫn
+giữ 2048 → cắt cụt. Đây là **lần thứ hai** dự án vấp đúng lớp bug này (lần trước
+1024 → 2048). Đã ghi cảnh báo ngay cạnh tham số trong `configs/phase1.yaml`.
+
+**3. Hai tiến trình `build_dataset` chạy song song.** Vi phạm đúng quy tắc đã ghi
+trong tài liệu. Hậu quả: 8 bản ghi trùng và tốn tiền API gấp đôi cho ~8 bài. Một
+dòng cảnh báo bằng văn bản không ngăn được lỗi này — nay đã thành khoá thật
+(`src/core/run_lock.py`, khoá theo PID, tự dọn nếu tiến trình cũ đã chết).
+
+**4. Sửa từng lỗi toolchain rồi lại nạp model 15GB để phát hiện lỗi kế tiếp.** Bốn
+vòng, mỗi vòng ~5 phút GPU tính tiền theo giờ. Lẽ ra phải thêm đường lùi tổng quát
+ngay sau lần fail thứ hai.
+
+**5. Chẩn đoán vội trước khi đo.** Đã hai lần đưa ra nguyên nhân sai (trần token,
+dữ liệu train bị cắt) và phải tự bác bỏ bằng số liệu. Việc đo thì đúng, nhưng lẽ ra
+nên đo trước rồi mới kết luận.
+
+---
+
+## Rủi ro chưa kiểm chứng
+
+**Sycophancy — rủi ro lớn nhất còn bỏ ngỏ.** Dữ liệu train **chỉ có** case "bị báo
+SAI → sửa", chưa hề có case "bị báo SAI nhưng thực ra ĐÚNG → giữ nguyên". Model có
+thể đã học phản xạ "hễ bị nói sai là đổi đáp án".
+
+Paper mục 4.5 đo được đúng cơ chế này: tiêm claim sai qua role ngoài chỉ khiến model
+chấp nhận ≤3.3%, **nhưng chỉ một câu ra lệnh tin tưởng đẩy lên 70%**. Template của
+ta mở đầu bằng `"Kết quả kiểm tra: SAI."` — một khẳng định uy quyền, gần với
+trust-framing hơn là audit trung lập. Và ta đang **train model luôn tuân theo khẳng
+định đó**.
+
+Cách test: lấy bài model làm **đúng**, báo giả là SAI kèm lỗi bịa, đếm số lần nó đổi
+thành sai.
+
+**Chưa có đối chứng model gốc.** Chưa bao giờ so `initial_correct` của adapter với
+model **chưa train** trên cùng bộ đề. Không có mốc này thì không biết LoRA có làm
+hỏng năng lực giải gốc hay không — và như phần "hiệu ứng chọn lọc" đã chỉ ra, đây là
+thông tin bắt buộc để đọc đúng metric chính.
+
+**Verifier code có thể yếu.** Test case MBPP ít; code "sửa" có thể pass test mà chưa
+chắc giải đúng bài toán tổng quát.
+
+**Mới test 1 vòng sửa.** Tiêu chí yêu cầu "không lặp lỗi sau 2–3 vòng", quy trình
+hiện tại dừng ngay sau một lần phản tư.
+
+**Trích xuất đáp án của math_verifier có thể sai** khi dính ký tự rác (ví dụ dấu
+backtick lẫn vào từ output markdown của model).
+
+---
+
+## Hướng tiếp theo
+
+### Đã quyết: chưa làm "tự phát hiện lỗi không gợi ý"
+
+Hướng đó (model tự rà soát mà không được cho biết đúng/sai) mới đúng nghĩa "tự phê
+bình" trong tiêu chí thành công. Nhưng hoãn, vì hai lý do:
+
+- **Rủi ro hallucinate cao:** không có mốc khách quan thì model dễ (a) bịa ra lỗi
+  không có thật ở câu đã đúng, hoặc (b) không thấy lỗi thật vì dùng lại chính cách
+  suy luận đã gây ra lỗi để tự kiểm tra. Đây chính là vấn đề "LLM tự chấm cho LLM"
+  mà cả Phase 1 đang tránh.
+- Paper xác nhận độc lập: tự-audit không gợi ý chỉ đạt **0–23%**.
+
+Điều kiện để bắt đầu: hướng hiện tại phải ổn định trước, và nếu làm thì nên bắt đầu
+từ mức gợi ý trung gian ("có thể đúng có thể sai, hãy kiểm tra kỹ") rồi mới bỏ dần.
+
+### Ứng viên theo thứ tự ưu tiên
+
+Thứ tự này đã **sắp xếp lại lần nữa** sau giai đoạn 5. Ba đối chứng cho thấy: kỹ năng
+sửa (khi có grounding tốt) đã tốt — code 74%; nút thắt là (a) model *viết ra được*
+định dạng, và (b) grounding của *toán* quá yếu. Nên hai hướng đầu giờ là "cải thiện
+việc phát ra format" và "làm grounding toán địa chỉ hoá được".
+
+**1. ~~Làm grounding của TOÁN địa chỉ hoá được~~ — ĐÃ LÀM, KẾT QUẢ ÂM TÍNH (GĐ7).**
+Đã hiện thực đúng ý này (`locate_wrong_step` chỉ ra bước tính sai, không lộ đáp án)
+và thử eval-time trên `AGI_v3`. Kết quả ngược kỳ vọng: localize-thay-thế làm tự sửa
+**tụt** 36.1%→22.5% (xem Giai đoạn 7). Diễn giải: đáp án là đòn bẩy đang thật sự
+kéo, bỏ đi thì mất; heuristic khớp-số chưa đủ tinh để bù. **Không đầu tư retrain
+theo hướng thay-thế này.** Biến thể còn chưa thử (rẻ, eval-time): "định vị + VẪN
+giữ đáp án" — nhưng kỳ vọng thấp. Bài học lớn hơn: grounding toán yếu là **giới hạn
+năng lực model**, không sửa được bằng cách đổi câu thông báo lỗi → chuyển sang
+Phase 2.
+
+**2. Làm model viết cho xong rồi dừng** — thừa số `format_completion` (58.2%) là
+phần còn lại của khoảng cách. Đối chứng 3 xác nhận đây là *hành vi học được* (model
+gốc phát ra format 0%), nên là bài toán dữ liệu train:
+  - **Rút gọn `<thinking>` trong dữ liệu train.** CoT của GLM dài, lan man; model bắt
+    chước đúng đặc tính đó. 0₫ API, ~45 phút GPU.
+  - **Lọc bỏ mẫu train bị cắt cụt** (10.5% vượt 4096 token, kết thúc giữa
+    `<thinking>`). *Chưa vững:* lần train cũ ở seq 2048 (một nửa mẫu bị cắt) vẫn đạt
+    40.5% — phải đo, đừng tin.
+  - Ràng buộc độ dài / structured output lúc sinh.
+
+**3. Sửa cách chấm — tách "không ra format" khỏi "ra format nhưng sai".** Không GPU.
+Giờ là ưu tiên cao hơn trước, vì đối chứng 3 phơi bày đúng vấn đề: model gốc bị chấm
+0% chỉ vì không phát ra header, không phải vì không sửa được. Cần cách chấm này để
+đánh giá công bằng model gốc VÀ để đo được "tự phê bình".
+
+**4. Test sycophancy** — rủi ro đã được paper định lượng, template của ta nằm đúng
+vùng nguy hiểm.
+
+**5. Siết verifier bằng MBPP+ (EvalPlus)** — cùng bộ bài, nhiều hơn ~35 lần test
+case. Nếu tỉ lệ code tụt khi đổi sang MBPP+, con số 42.1% hiện tại đang bị thổi phồng
+bởi verifier yếu. Đặc biệt đáng lo sau giai đoạn 5: code tự sửa 74% có thể một phần
+là "pass 3 test yếu" chứ chưa chắc sửa đúng tổng quát.
+
+**6. Đo chỉ số "tự phê bình" còn thiếu.** Tiêu chí ≥75–80% chưa bao giờ đo. Thử
+**proxy khách quan trước**: độ trùng khớp giữa `### Phát hiện lỗi` và
+`verifier_detail` (tên hàm/dòng với code, con số/bước với toán). Chỉ dùng LLM judge
+nếu proxy quá thô — và khi đó phải để riêng, không trộn vào con số cứng.
+
+**7. Đổi độ khó của toán (GSM8K → MATH).** Cần loader mới + verifier xử lý đáp án
+dạng biểu thức. Bổ trợ cho hướng 1: MATH khó hơn → nhiều lỗi hơn để học, và lời giải
+nhiều bước → grounding "bước nào sai" có ý nghĩa hơn.
+
+**5. Nguồn code thứ hai.** MBPP `full/train` đã cạn (374/374). Ứng viên có test chạy
+được, theo công sức tăng dần: HumanEval (164 bài, assert) → MBPP+/EvalPlus (0 bài
+mới, chỉ tăng độ chặt của test) → APPS (~10k) và CodeContests (~13k), nhưng hai cái
+cuối test bằng stdin/stdout nên `CodeVerifier` hiện tại **không chạy được**, phải
+viết verifier kiểu khác.
+
+**Đã đánh giá và LOẠI:** Kaggle `bhaveshmittal/python-programming-questions-dataset`
+(13.077 dòng) — ba cột Instruction/Input/Output, trong đó Output là *code lời giải*
+chứ không phải test. Không có gì cho `CodeVerifier` chạy. Sinh test bằng LLM sẽ phá
+đúng nguyên tắc số 1.
+
+### Ý tưởng đang cân nhắc: ORPO/DPO cho bước phê bình
+
+Dùng chính các lần model **tự sửa sai thật** (thu từ log eval) làm "rejected", và bản
+phê bình + sửa **đúng** của model lớn cho cùng case đó làm "chosen". Không cần mạo
+danh nguồn gốc suy nghĩ, chỉ dạy model ưu tiên cách phê bình tốt hơn cách dở.
+
+Đã cân nhắc và **bác bỏ** một biến thể nguy hiểm: lấy `<thinking>` của model lớn rồi
+gán cho model nhỏ như thể của chính nó. Đó là dạy model "nói dối" về nguồn gốc suy
+nghĩ của nó — làm nặng thêm vấn đề unfaithful reasoning trace, đi ngược mục tiêu
+giảm hallucination.
+
+---
+
+## Phase 2 — Từ "bắt chước cách sửa" sang "học kỹ năng phân biệt" (phác thảo 2026-07-23)
+
+### Chẩn đoán gốc: tại sao SFT chạm trần
+
+Xuất phát từ một quan sát về **bản chất cách model được train** (trọng tâm của
+Phase 2):
+
+> Model nền được tối ưu theo hướng `P(câu trả lời tốt | ngữ cảnh)` — lượt của
+> *assistant* luôn là **mục tiêu cần sinh ra**, chưa bao giờ là **đối tượng bị đem ra
+> đánh giá**. Tự sửa lỗi đòi hỏi một tư thế **bậc hai**: coi chính output trước đó
+> của mình như một vật thể có thể sai, cần kiểm chứng. Phân bố dữ liệu này gần như
+> KHÔNG có trong pretraining/SFT.
+
+Hệ quả, và nó khớp từng mảnh với bằng chứng Phase 1:
+
+- **SFT trên correction chỉ dạy được *định dạng* của việc sửa, không dạy được *kỹ
+  năng phân biệt* đúng/sai.** Thừa số `format_completion` học được (model gốc phát
+  ra format 0%, sau train thì có); nhưng thừa số "sửa đúng khi thật sự sai" thì
+  không lên — vì trong lúc train, model **chưa bao giờ được cho xem một bản phê bình
+  SAI kèm nhãn 'đây là sai, đừng làm vậy'**. Nó chỉ được xem toàn bản sửa đúng để
+  bắt chước.
+- **Khi được cho đáp án** → model làm ngược lại để khớp (re-solving, không phải
+  nhận diện lỗi). **Khi KHÔNG được cho đáp án** (GĐ7, hoặc tự-audit) → nó (a) bịa ra
+  lỗi không có thật, hoặc (b) lật cả đáp án vốn đúng (sycophancy). Đây chính là ý
+  "fallback lại chính nó thì rất dễ hallucinate" — và nó không phải lỗi ngẫu nhiên,
+  mà là hệ quả trực tiếp của việc **chưa từng có gradient nào dạy nó phân biệt phê
+  bình thật với phê bình bịa.**
+
+Kết luận: trần của Phase 1 **không phải khoảng cách tinh chỉnh** mà là **sai mục
+tiêu huấn luyện** — SFT là bắt chước, không phải phân biệt. Phase 2 phải đổi mục
+tiêu, không phải đổi dữ liệu/prompt.
+
+### Các phương pháp — cân nhắc và đánh đổi
+
+**A. Preference learning trên bước phê bình (DPO/ORPO/KTO) — ứng viên chính.**
+Khớp nhất với cả chẩn đoán lẫn insight trên. Điểm mấu chốt: **verifier cho nhãn
+đúng/sai MIỄN PHÍ** (đúng lý do chọn miền kiểm chứng được từ đầu). Dựng cặp ưu tiên:
+- *chosen* = bản phê bình định vị đúng lỗi thật + sửa đúng (đã verify pass).
+- *rejected* = **chính bản phê bình model tự bịa** (verify vẫn sai) HOẶC **lần nó lật
+  một đáp án vốn đúng** (sycophancy) — cả hai đều lọc được tự động từ log eval.
+
+Đây là thứ SFT không làm được: tiêm thẳng gradient "đừng bịa lỗi, đừng lật khi đang
+đúng". Chi phí trung bình, không cần hạ tầng mới ngoài một trainer DPO + log eval đã
+có. **Rủi ro phải chặn:** nếu tập rejected không chứa đủ case bịa/sycophancy thì DPO
+lại thoái hoá về đúng kiểu bắt chước cũ — phải chủ động thu các case này.
+
+**B. Train tư thế "verifier" tách bạch (two-role / self-play / debate).**
+Dạy model chiếm vị trí người đánh giá: cho `(đề, lời giải ứng viên)` → xuất phán
+quyết đúng/sai + định vị lỗi, train trên nhãn khách quan của verifier. Đúng cái tư
+thế bậc hai model nền thiếu. Mạnh hơn A về nguyên lý nhưng tốn hơn (đổi cấu trúc
+sinh, cần thiết kế reward). Có thể làm sau khi A xác nhận hướng đi đúng.
+
+**C. Process reward / giám sát theo bước (PRM).**
+Gán nhãn đúng/sai cho *từng bước* suy luận, train model tìm bước sai đầu tiên. Đánh
+thẳng vào lỗ hổng grounding/địa chỉ hoá mà GĐ7 thử bằng heuristic và thất bại — PRM
+là bản "làm cho tử tế" của cùng ý đó. Tốn: cần nhãn theo bước. `calc_steps` (GSM8K)
+ta đã trích là nguồn rẻ một phần, nhưng chưa đủ thành PRM đầy đủ.
+
+**D. Hiệu chỉnh độ tự tin / biết-nói-không-chắc (calibration/abstention) — tiền đề.**
+Nếu model không phân biệt được lúc nào mình sai thì mọi việc "sửa" đều là đoán. Dạy
+nó phát tín hiệu "tôi không chắc" (verbalized confidence) train theo nhãn verifier.
+Nằm ở thượng nguồn của tất cả. Có thể rẻ, đáng làm như một probe song song với A.
+
+**E. Model lớn hơn — đối chứng "có phải chỉ do 7B nhỏ".**
+Câu trả lời nhàm nhưng bắt buộc phải có một điểm dữ liệu: chạy model nền + một model
+lớn hơn (14B/32B) trên **cùng bộ eval**, cùng cách chấm. Nếu tự-sửa-toán bật lên rõ
+ở model lớn mà không đổi gì khác, thì phần nào của trần là "phương pháp" và phần nào
+là "quy mô" được tách bạch. Đây là compute, không phải insight — nhưng thiếu nó thì
+mọi kết luận "phương pháp sai" đều chưa chặt.
+
+### Con đường đề xuất
+
+1. **Trước tiên (không GPU):** thu tập preference từ log eval đã có — chọn/dựng
+   chosen/rejected, ĐẶC BIỆT chủ động gom case bịa-lỗi và sycophancy (chạy test
+   sycophancy ở mục "Rủi ro" để sinh chính các negative này). Đây là dữ liệu cho A.
+2. **A (DPO trên critique)** làm hướng chính — tái dùng verifier + log sẵn có, đánh
+   trúng cả chẩn đoán lẫn hallucination-khi-fallback.
+3. **D (calibration)** chạy song song như probe rẻ.
+4. **E (model lớn)** một lần duy nhất làm đối chứng quy mô.
+5. B, C để dành — chỉ mở nếu A cho tín hiệu dương và cần đẩy xa hơn.
+
+**Nguyên tắc bất di bất dịch của Phase 1 vẫn giữ nguyên trong Phase 2:** verifier
+khách quan quyết đúng/sai (không LLM chấm LLM), lỗi phải do chính model sinh thật,
+prompt train ≡ prompt infer. DPO không phá nguyên tắc nào — nhãn ưu tiên đến từ
+verifier, không từ phán xét của một LLM khác.
+
+---
+
+## Tham khảo
+
+Chen, K-Y., Su, F-Y., Chiang, J-H. (2026). *The Self-Correction Illusion: LLMs
+Correct Others but Not Themselves.* arXiv:2606.05976 — bản PDF lưu tại
+`2606.05976v1.pdf`.
+
+Tài liệu kỹ thuật của dự án: `README.md` (vận hành, chọn phần cứng) và
+`instructionAI/` (kiến trúc, quy ước, môi trường, thiết kế pipeline dữ liệu).

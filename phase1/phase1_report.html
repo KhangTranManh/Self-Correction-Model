@@ -1,0 +1,674 @@
+<title>Phase 1 — Tự sửa lỗi có kiểm chứng · Báo cáo</title>
+<style>
+  :root {
+    --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "Cascadia Code", "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+
+    /* neutrals — cool, chosen not defaulted */
+    --page: #E9EBEF;
+    --card: #F6F7F9;
+    --card-2: #FBFCFD;
+    --ink: #171B21;
+    --ink-2: #515965;
+    --ink-3: #838C98;
+    --hair: #D6DAE0;
+    --hair-2: #E4E7EB;
+
+    /* brand accent — deep teal-green, identity only (never a data fill) */
+    --accent: #0A6E5E;
+    --accent-soft: #0a6e5e18;
+
+    /* categorical — validated (light) */
+    --code: #0E8CB0;
+    --math: #B45309;
+    --code-soft: #0e8cb01a;
+    --math-soft: #b453091a;
+
+    /* status */
+    --good: #157F3B;
+    --bad: #B42318;
+    --good-soft: #157f3b16;
+    --bad-soft: #b4231816;
+
+    --maxw: 1080px;
+    --r: 10px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --page: #0D1015;
+      --card: #14181E;
+      --card-2: #191E25;
+      --ink: #E7EAEE;
+      --ink-2: #A4ADB8;
+      --ink-3: #69727D;
+      --hair: #232932;
+      --hair-2: #1C222A;
+      --accent: #3FB3A4;
+      --accent-soft: #3fb3a41f;
+      --code: #1B8DA8;
+      --math: #C17C28;
+      --code-soft: #1b8da822;
+      --math-soft: #c17c2822;
+      --good: #46C46E;
+      --bad: #F0685C;
+      --good-soft: #46c46e1e;
+      --bad-soft: #f0685c1e;
+    }
+  }
+  :root[data-theme="light"] {
+    --page:#E9EBEF;--card:#F6F7F9;--card-2:#FBFCFD;--ink:#171B21;--ink-2:#515965;--ink-3:#838C98;
+    --hair:#D6DAE0;--hair-2:#E4E7EB;--accent:#0A6E5E;--accent-soft:#0a6e5e18;
+    --code:#0E8CB0;--math:#B45309;--code-soft:#0e8cb01a;--math-soft:#b453091a;
+    --good:#157F3B;--bad:#B42318;--good-soft:#157f3b16;--bad-soft:#b4231816;
+  }
+  :root[data-theme="dark"] {
+    --page:#0D1015;--card:#14181E;--card-2:#191E25;--ink:#E7EAEE;--ink-2:#A4ADB8;--ink-3:#69727D;
+    --hair:#232932;--hair-2:#1C222A;--accent:#3FB3A4;--accent-soft:#3fb3a41f;
+    --code:#1B8DA8;--math:#C17C28;--code-soft:#1b8da822;--math-soft:#c17c2822;
+    --good:#46C46E;--bad:#F0685C;--good-soft:#46c46e1e;--bad-soft:#f0685c1e;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--page); color: var(--ink);
+    font-family: var(--font-sans); line-height: 1.6;
+    font-size: 16.5px; -webkit-font-smoothing: antialiased;
+    font-feature-settings: "kern";
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* ---- eyebrow / structural mono ---- */
+  .eyebrow {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: .13em;
+    text-transform: uppercase; color: var(--accent); font-weight: 600;
+    display: inline-flex; align-items: center; gap: 9px;
+  }
+  .eyebrow::before { content:""; width: 22px; height: 2px; background: var(--accent); display:inline-block; }
+
+  h1,h2,h3 { text-wrap: balance; line-height: 1.15; margin: 0; letter-spacing: -.015em; }
+  h1 { font-size: clamp(30px, 5vw, 46px); font-weight: 800; }
+  h2 { font-size: clamp(23px, 3.4vw, 30px); font-weight: 750; }
+  h3 { font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
+  p { margin: 0; color: var(--ink-2); max-width: 68ch; }
+  strong { color: var(--ink); font-weight: 660; }
+  code { font-family: var(--font-mono); font-size: .86em; background: var(--hair-2);
+    padding: .1em .38em; border-radius: 5px; color: var(--ink); }
+
+  a { color: var(--accent); }
+
+  /* ---- header ---- */
+  header.hero { padding: 68px 0 20px; border-bottom: 1px solid var(--hair); }
+  .hero-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 44px; align-items: end; }
+  @media (max-width: 760px){ .hero-grid { grid-template-columns: 1fr; gap: 30px; } }
+  .hero p.lede { font-size: 18px; margin-top: 18px; color: var(--ink-2); }
+  .meta-row { display:flex; flex-wrap:wrap; gap: 8px 22px; margin-top: 26px;
+    font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-3); }
+  .meta-row b { color: var(--ink); font-weight: 600; }
+
+  /* ---- thesis / hero equation ---- */
+  .thesis {
+    background: var(--card); border: 1px solid var(--hair); border-radius: var(--r);
+    padding: 22px 24px;
+  }
+  .thesis .eq { display:flex; align-items:center; gap: 14px; flex-wrap: wrap; }
+  .factor { display:flex; flex-direction:column; gap: 2px; }
+  .factor .v { font-family: var(--font-mono); font-weight: 700; font-size: 26px; letter-spacing:-.02em; }
+  .factor .k { font-size: 11.5px; color: var(--ink-3); font-family: var(--font-mono); letter-spacing:.02em; }
+  .op { font-family: var(--font-mono); font-size: 22px; color: var(--ink-3); font-weight: 400; }
+  .factor.result .v { color: var(--accent); }
+  .factor.gap .v { color: var(--bad); }
+  .thesis .cap { margin-top: 14px; font-size: 13.5px; color: var(--ink-2); border-top:1px dashed var(--hair); padding-top:12px; }
+
+  /* ---- section rhythm ---- */
+  section { padding: 56px 0; border-bottom: 1px solid var(--hair); }
+  .sec-head { max-width: 70ch; margin-bottom: 30px; }
+  .sec-head h2 { margin-top: 12px; }
+  .sec-head p { margin-top: 12px; }
+
+  /* ---- cards / grid ---- */
+  .card { background: var(--card); border: 1px solid var(--hair); border-radius: var(--r); padding: 22px; }
+  .grid { display: grid; gap: 16px; }
+  .g2 { grid-template-columns: 1fr 1fr; }
+  .g3 { grid-template-columns: repeat(3,1fr); }
+  .g4 { grid-template-columns: repeat(4,1fr); }
+  @media (max-width: 820px){ .g3,.g4 { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px){ .g2,.g3,.g4 { grid-template-columns: 1fr; } }
+
+  /* ---- stat tile ---- */
+  .stat .big { font-family: var(--font-mono); font-size: 32px; font-weight: 700; letter-spacing: -.02em; line-height:1; }
+  .stat .lbl { font-size: 12.5px; color: var(--ink-3); margin-top: 9px; font-family: var(--font-mono); letter-spacing:.02em; }
+  .stat .sub { font-size: 13px; color: var(--ink-2); margin-top: 8px; }
+
+  /* ---- pipeline ---- */
+  .pipe { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  @media (max-width: 900px){ .pipe { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px){ .pipe { grid-template-columns: 1fr; } }
+  .stage { background: var(--card); border: 1px solid var(--hair); border-radius: var(--r);
+    padding: 16px 15px; display:flex; flex-direction:column; gap: 9px; position: relative; overflow:hidden; }
+  .stage .idx { font-family: var(--font-mono); font-size: 12px; color: var(--accent); font-weight: 700; }
+  .stage h3 { font-size: 15px; }
+  .stage .desc { font-size: 12.5px; color: var(--ink-2); line-height: 1.45; flex: 1; }
+  .stage .foot { display:flex; flex-wrap:wrap; gap: 5px; margin-top: 4px; }
+  .chip { font-family: var(--font-mono); font-size: 10.5px; letter-spacing:.02em; padding: 2px 7px;
+    border-radius: 20px; border: 1px solid var(--hair); color: var(--ink-2); white-space: nowrap; }
+  .chip.gpu { border-color: color-mix(in srgb, var(--code) 45%, transparent); color: var(--code); background: var(--code-soft); }
+  .chip.nogpu { border-color: color-mix(in srgb, var(--good) 40%, transparent); color: var(--good); background: var(--good-soft); }
+
+  /* ---- bar chart ---- */
+  figure { margin: 0; }
+  figcaption { font-size: 12.5px; color: var(--ink-3); margin-top: 14px; font-family: var(--font-mono); }
+  .chart-title { font-size: 15px; font-weight: 700; letter-spacing:-.01em; margin-bottom: 4px; }
+  .chart-sub { font-size: 13px; color: var(--ink-2); margin-bottom: 20px; max-width: 60ch; }
+
+  .barset { display:flex; flex-direction: column; gap: 13px; }
+  .bar-row { display:grid; grid-template-columns: 130px 1fr; gap: 14px; align-items:center; }
+  @media (max-width:560px){ .bar-row { grid-template-columns: 96px 1fr; gap: 10px; } }
+  .bar-name { font-size: 13px; color: var(--ink-2); text-align: right; }
+  .bar-name .dom { font-family: var(--font-mono); font-size: 11px; display:block; color: var(--ink-3); }
+  .track { position: relative; height: 26px; background: var(--hair-2); border-radius: 5px; }
+  .fill { position:absolute; inset: 0 auto 0 0; border-radius: 5px 3px 3px 5px;
+    background: var(--c, var(--accent)); display:flex; align-items:center; justify-content:flex-end;
+    min-width: 3px; transition: filter .15s; }
+  .fill:hover { filter: brightness(1.08) saturate(1.1); }
+  .fill .tag { font-family: var(--font-mono); font-size: 12px; font-weight: 650; color: #fff;
+    padding-right: 8px; text-shadow: 0 1px 2px rgba(0,0,0,.28); font-variant-numeric: tabular-nums; }
+  .fill.outside .tag { color: var(--ink); position:absolute; left: calc(100% + 8px); text-shadow:none; padding:0; }
+
+  .legend { display:flex; gap: 18px; flex-wrap: wrap; margin-bottom: 20px; font-size: 12.5px; color: var(--ink-2); }
+  .legend span { display:inline-flex; align-items:center; gap: 7px; font-family: var(--font-mono); }
+  .swatch { width: 12px; height: 12px; border-radius: 3px; display:inline-block; }
+
+  /* ---- collapse chart (slope-ish grouped) ---- */
+  .collapse { display:grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 6px; }
+  @media (max-width:620px){ .collapse { grid-template-columns: 1fr; gap: 30px; } }
+  .cg { background: var(--card-2); border: 1px solid var(--hair); border-radius: var(--r); padding: 18px; }
+  .cg .cg-h { display:flex; align-items:center; justify-content:space-between; margin-bottom: 18px; }
+  .cg .cg-h .dname { font-family: var(--font-mono); font-weight:700; font-size: 14px; }
+  .cg .cg-plot { display:flex; align-items:flex-end; gap: 26px; height: 158px; }
+  .colbar { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; gap: 8px; height:100%; }
+  .colbar .col { width: 100%; max-width: 74px; border-radius: 5px 5px 3px 3px; min-height: 3px; }
+  .colbar .cv { font-family: var(--font-mono); font-weight:700; font-size: 19px; }
+  .cg-xaxis { display:flex; gap: 26px; margin-top: 9px; }
+  .cg-xaxis span { flex:1; text-align:center; font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); letter-spacing:.02em; }
+  .delta { text-align:center; font-family: var(--font-mono); font-size: 12px; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--hair); }
+  .delta b { font-weight:700; }
+
+  /* ---- 2x2 matrix ---- */
+  .matrix { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width:560px){ .matrix { grid-template-columns: 1fr; } }
+  .cell { border:1px solid var(--hair); border-radius: var(--r); padding: 16px 17px; background: var(--card-2); }
+  .cell.hi { border-color: color-mix(in srgb, var(--bad) 55%, transparent); background: var(--bad-soft); }
+  .cell .ctag { font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); letter-spacing:.03em; }
+  .cell .chead { font-weight:700; font-size: 15px; margin: 4px 0 12px; }
+  .cell .mrow { display:flex; justify-content:space-between; font-size: 12.5px; padding: 4px 0; border-top:1px solid var(--hair-2); }
+  .cell .mrow .mk { color: var(--ink-3); font-family: var(--font-mono); font-size: 11.5px; }
+  .cell .mrow .mv { font-family: var(--font-mono); font-weight:650; font-variant-numeric: tabular-nums; }
+  .cell .mrow.key .mv { color: var(--accent); }
+
+  /* ---- callout ---- */
+  .callout { border-left: 3px solid var(--accent); background: var(--accent-soft);
+    padding: 16px 20px; border-radius: 0 var(--r) var(--r) 0; }
+  .callout.warn { border-left-color: var(--math); background: var(--math-soft); }
+  .callout .k { font-family: var(--font-mono); font-size: 11.5px; letter-spacing:.08em; text-transform:uppercase;
+    color: var(--ink-3); margin-bottom: 6px; }
+  .callout p { color: var(--ink); }
+
+  /* ---- data table ---- */
+  .tbl-wrap { overflow-x: auto; border:1px solid var(--hair); border-radius: var(--r); }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; min-width: 460px; }
+  th,td { text-align: right; padding: 11px 14px; border-bottom: 1px solid var(--hair-2); font-variant-numeric: tabular-nums; }
+  th:first-child, td:first-child { text-align: left; }
+  thead th { font-family: var(--font-mono); font-size: 11px; letter-spacing:.04em; text-transform:uppercase;
+    color: var(--ink-3); font-weight: 600; background: var(--card-2); }
+  tbody tr:last-child td { border-bottom: none; }
+  td.pos { color: var(--good); font-weight:600; }
+  td.neg { color: var(--bad); font-weight:600; }
+  .mono { font-family: var(--font-mono); }
+
+  /* ---- next steps ---- */
+  .steps { display:flex; flex-direction: column; gap: 10px; }
+  .step { display:grid; grid-template-columns: 40px 1fr; gap: 16px; align-items:start;
+    background: var(--card); border:1px solid var(--hair); border-radius: var(--r); padding: 16px 18px; }
+  .step .n { font-family: var(--font-mono); font-size: 20px; font-weight: 700; color: var(--accent); line-height:1.1; }
+  .step h3 { font-size: 15px; margin-bottom: 4px; }
+  .step p { font-size: 13.5px; }
+  .step .tags { margin-top: 8px; display:flex; gap:6px; flex-wrap:wrap; }
+
+  footer { padding: 40px 0 64px; color: var(--ink-3); font-size: 12.5px; font-family: var(--font-mono); }
+  footer .wrap { display:flex; justify-content:space-between; flex-wrap:wrap; gap: 12px; }
+
+  .pill { display:inline-flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:11px;
+    padding:2px 9px; border-radius:20px; border:1px solid var(--hair); color:var(--ink-2); }
+  .pill.good{ color:var(--good); border-color:color-mix(in srgb,var(--good) 40%,transparent); background:var(--good-soft);}
+  .pill.bad{ color:var(--bad); border-color:color-mix(in srgb,var(--bad) 40%,transparent); background:var(--bad-soft);}
+
+  hr.soft { border:none; border-top:1px dashed var(--hair); margin: 26px 0; }
+  .note-inline { font-size:12.5px; color: var(--ink-3); font-family: var(--font-mono); }
+
+  @media (prefers-reduced-motion: reduce){ * { transition: none !important; } }
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Phase 0 · Verified Self-Correction</span>
+    <div class="hero-grid" style="margin-top:18px">
+      <div>
+        <h1>Dạy model 7B biết mình sai và tự sửa — đo bằng chương trình, không bằng LLM</h1>
+        <p class="lede">Một pipeline dạy <strong>hành vi</strong> (biết sai → tự phê bình → tự sửa) trên các miền
+          mà đúng/sai kiểm được bằng chương trình. Đúng/sai đến từ <strong>verifier khách quan</strong>
+          (sympy cho toán, chạy unit test cho code) — không bao giờ để LLM chấm LLM.</p>
+        <div class="meta-row">
+          <span>Model nền · <b>Qwen2.5-7B-Instruct</b> · QLoRA 4-bit</span>
+          <span>Adapter · <b>Kxck/AGI_v2</b></span>
+          <span>Cập nhật · <b>21/07/2026</b></span>
+        </div>
+      </div>
+      <div class="thesis">
+        <div class="eq">
+          <div class="factor result"><span class="v num">37.8%</span><span class="k">tỉ lệ tự sửa</span></div>
+          <span class="op">=</span>
+          <div class="factor"><span class="v num">58.2%</span><span class="k">ra được format</span></div>
+          <span class="op">×</span>
+          <div class="factor"><span class="v num">64.8%</span><span class="k">sửa | đã ra format</span></div>
+        </div>
+        <div class="cap">Chỉ số tổng là <strong>tích của hai thừa số</strong>. Mục tiêu kế hoạch ≥ 70%.
+          Toàn bộ khoảng cách nằm ở thừa số đầu — thừa số thứ hai (kỹ năng sửa) đã gần đạt.</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ THE FINDING UP FRONT ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Kết luận trước, chi tiết sau</span>
+      <h2>Kỹ năng tự sửa là THẬT — và nó sống nhờ thông tin lỗi</h2>
+      <p>Ba đối chứng (không train, cùng bộ đề 600 toán + 150 code) tách bạch câu hỏi cốt lõi:
+        con số 64.8% là tự sửa có định hướng, hay chỉ là giải lại từ đầu rồi tình cờ đúng?
+        Bỏ <code>verifier_detail</code> ra khỏi lượt phản tư, và câu trả lời hiện ra rõ ràng.</p>
+    </div>
+
+    <div class="grid g3">
+      <div class="card stat">
+        <div class="big num" style="color:var(--code)">74 → 0<span style="font-size:18px">%</span></div>
+        <div class="lbl">CODE · sửa | format</div>
+        <div class="sub">Bỏ traceback thì code sửa được <strong>0/35</strong>. Model phụ thuộc
+          <strong>hoàn toàn</strong> vào traceback để định vị lỗi.</div>
+      </div>
+      <div class="card stat">
+        <div class="big num" style="color:var(--math)">53 → 43<span style="font-size:18px">%</span></div>
+        <div class="lbl">TOÁN · sửa | format</div>
+        <div class="sub">Bỏ hết thông tin lỗi vẫn sửa 42.9% — toán <strong>phần lớn là giải lại</strong>,
+          detail chỉ thêm ~10pp.</div>
+      </div>
+      <div class="card stat">
+        <div class="big num"><span style="color:var(--good)">phát format</span></div>
+        <div class="lbl">Adapter dạy gì</div>
+        <div class="sub">Model gốc phát ra định dạng phê bình <strong>0%</strong>. Train dạy
+          <em>cách trình bày</em>; <code>verifier_detail</code> dạy <em>sửa đúng chỗ</em>.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px" class="callout">
+      <div class="k">Ý nghĩa</div>
+      <p>Đây là bằng chứng bằng số cho luận điểm <strong>addressability</strong> (địa chỉ hoá): code có
+        traceback chỉ đích danh dòng/hàm → tự sửa thật; toán chỉ có "đáp số sai, đúng là X" — không chỉ
+        <em>bước nào</em> sai → chỉ còn cách giải lại. Chất lượng grounding quyết định tất cả.</p>
+    </div>
+  </section>
+
+  <!-- ============ PIPELINE ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Quy trình</span>
+      <h2>Năm khâu, thứ tự cố định theo phụ thuộc dữ liệu</h2>
+      <p>Mỗi khâu đọc output của khâu trước. Chạy sai thứ tự là lỗi thiếu file, không phải sai âm thầm.
+        Chỉ hai khâu cần GPU chạy sinh/train; khâu tốn tiền nhất (gọi API) lại không cần GPU.</p>
+    </div>
+
+    <div class="pipe">
+      <div class="stage">
+        <span class="idx">01</span>
+        <h3>Chuẩn bị bộ đề</h3>
+        <div class="desc">GSM8K + MBPP → problems. Split tách hoàn toàn khỏi vùng held-out eval.</div>
+        <div class="foot"><span class="chip nogpu">no GPU</span><span class="chip">1624 bài</span></div>
+      </div>
+      <div class="stage">
+        <span class="idx">02</span>
+        <h3>Sinh attempt</h3>
+        <div class="desc">Model nhỏ tự giải toàn bộ. Lỗi sai đều là lỗi thật của chính model, không API.</div>
+        <div class="foot"><span class="chip gpu">GPU · vLLM</span><span class="chip">1m36s</span></div>
+      </div>
+      <div class="stage">
+        <span class="idx">03</span>
+        <h3>Dựng dataset</h3>
+        <div class="desc">Verify → model lớn phê bình + sửa → re-verify → chỉ giữ bản sửa đã xác nhận đúng.</div>
+        <div class="foot"><span class="chip nogpu">no GPU · API</span><span class="chip">~15.200₫</span></div>
+      </div>
+      <div class="stage">
+        <span class="idx">04</span>
+        <h3>Train QLoRA</h3>
+        <div class="desc">SFT qua Unsloth. r=32, 3 epoch, seq 4096. 631 mẫu → 120 bước.</div>
+        <div class="foot"><span class="chip gpu">GPU · Unsloth</span><span class="chip">~44 phút</span></div>
+      </div>
+      <div class="stage">
+        <span class="idx">05</span>
+        <h3>Đánh giá</h3>
+        <div class="desc">Held-out 2 pha: tất cả tự giải → verify → chỉ bài sai mới phản tư → verify lại.</div>
+        <div class="foot"><span class="chip gpu">GPU · vLLM</span><span class="chip">metric thật</span></div>
+      </div>
+    </div>
+
+    <div class="grid g4" style="margin-top:16px">
+      <div class="card stat"><div class="big num">1624</div><div class="lbl">bài (1000 toán · 624 code)</div></div>
+      <div class="card stat"><div class="big num">507</div><div class="lbl">lần gọi API · 444 giữ</div></div>
+      <div class="card stat"><div class="big num">631</div><div class="lbl">mẫu train (từ 135)</div></div>
+      <div class="card stat"><div class="big num">16×</div><div class="lbl">worker song song build_dataset</div></div>
+    </div>
+  </section>
+
+  <!-- ============ CONTROL CHART (the money) ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Thí nghiệm · 3 đối chứng</span>
+      <h2>Tác dụng của <code>verifier_detail</code> chia hẳn theo domain</h2>
+      <p>Cùng adapter, cùng bộ đề, chỉ khác một biến: có hay không thông tin lỗi ở lượt phản tư.
+        Cột "sửa | đã ra format" là kỹ năng sửa thuần. Nhãn trực tiếp trên mỗi cột — không đọc bằng màu.</p>
+    </div>
+
+    <div class="card">
+      <div class="legend">
+        <span><i class="swatch" style="background:var(--code)"></i>Code</span>
+        <span><i class="swatch" style="background:var(--math)"></i>Toán</span>
+        <span class="note-inline" style="margin-left:auto">tỉ lệ sửa đúng khi đã viết ra định dạng · %</span>
+      </div>
+      <div class="collapse">
+        <!-- CODE -->
+        <div class="cg">
+          <div class="cg-h"><span class="dname" style="color:var(--code)">CODE</span>
+            <span class="pill bad">sụp về 0</span></div>
+          <div class="cg-plot">
+            <div class="colbar">
+              <span class="cv" style="color:var(--code)">74.2</span>
+              <div class="col" style="height:74%; background:var(--code)" title="Code, có detail: 66/89 = 74.2%"></div>
+            </div>
+            <div class="colbar">
+              <span class="cv" style="color:var(--code)">0.0</span>
+              <div class="col" style="height:2px; background:var(--code); opacity:.5" title="Code, blind: 0/35 = 0%"></div>
+            </div>
+          </div>
+          <div class="cg-xaxis"><span>có detail</span><span>blind</span></div>
+          <div class="delta">traceback là <b style="color:var(--code)">thứ duy nhất</b> làm code tự sửa được</div>
+        </div>
+        <!-- MATH -->
+        <div class="cg">
+          <div class="cg-h"><span class="dname" style="color:var(--math)">TOÁN</span>
+            <span class="pill">chỉ −10pp</span></div>
+          <div class="cg-plot">
+            <div class="colbar">
+              <span class="cv" style="color:var(--math)">53.2</span>
+              <div class="col" style="height:53%; background:var(--math)" title="Toán, có detail: 25/47 = 53.2%"></div>
+            </div>
+            <div class="colbar">
+              <span class="cv" style="color:var(--math)">42.9</span>
+              <div class="col" style="height:43%; background:var(--math); opacity:.6" title="Toán, blind: 15/35 = 42.9%"></div>
+            </div>
+          </div>
+          <div class="cg-xaxis"><span>có detail</span><span>blind</span></div>
+          <div class="delta">42.9% blind = <b style="color:var(--math)">giải lại</b>; model gần như không dùng detail</div>
+        </div>
+      </div>
+      <figcaption>Đối chứng blind · n = 749 held-out · Fisher exact p = 7×10⁻¹⁰ cho toàn bộ · sửa|format sụp 66.9% → 21.4%</figcaption>
+    </div>
+
+    <div class="grid g2" style="margin-top:16px">
+      <div class="callout">
+        <div class="k">Đọc được gì</div>
+        <p><strong>Model không chỉ giải lại.</strong> Nếu chỉ giải lại thì bỏ hay giữ thông tin lỗi không
+          khác gì. Code sụp 74→0 chứng minh nó thật sự <em>đọc traceback để định vị và chữa</em>.</p>
+      </div>
+      <div class="callout warn">
+        <div class="k">Hệ quả cho hướng đi</div>
+        <p>Muốn <strong>toán</strong> tự sửa thật (thay vì giải lại), phải làm <code>verifier_detail</code> của
+          toán <em>địa chỉ hoá được</em> như traceback — chỉ ra <strong>bước tính nào</strong> sai, không chỉ
+          nói đáp số sai.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FULL CONTROL TABLE ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Bảng đầy đủ · 3 đối chứng</span>
+      <h2>Con số model gốc = 0% là giả tạo do cách chấm</h2>
+      <p>Model gốc chưa từng train trên khung <code>&lt;thinking&gt;</code> + 3 mục, nên không phát ra định dạng
+        → mọi thứ bị tính <em>format_incomplete</em>, nội dung sửa không bao giờ được verify. Đối chứng này chỉ
+        chứng minh sạch một điều: <strong>train dạy model phát ra định dạng gradable</strong>.</p>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Đối chứng</th>
+            <th>init_ok</th>
+            <th>ra format</th>
+            <th>sửa | format</th>
+            <th>headline</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1 · adapter + detail <span class="note-inline">(mốc)</span></td>
+            <td class="mono">66.8%</td><td class="mono">54.6%</td>
+            <td class="mono pos">66.9%</td><td class="mono">36.5%</td>
+          </tr>
+          <tr>
+            <td>2 · adapter + <b>BLIND</b></td>
+            <td class="mono">68.4%</td><td class="mono neg">29.5%</td>
+            <td class="mono neg">21.4%</td><td class="mono">6.3%</td>
+          </tr>
+          <tr>
+            <td>3 · <b>MODEL GỐC</b> + detail</td>
+            <td class="mono">68.8%</td><td class="mono neg">0.0%</td>
+            <td class="mono">—</td><td class="mono">0.0%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:16px; font-size:13.5px">
+      <span class="pill">init_ok ~67–69% qua cả ba</span> — LoRA hành vi hầu như không đổi năng lực giải gốc,
+      đúng như kỳ vọng. Bỏ detail còn kéo cả <strong>ra-format</strong> xuống (54.6% → 29.5%, p = 3×10⁻⁸):
+      có điểm tựa cụ thể thì model ít lan man hơn.
+    </p>
+  </section>
+
+  <!-- ============ 2x2 MEMORY ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Thí nghiệm · khung role 2×2</span>
+      <h2>Đổi khung có tác dụng — nhưng qua cơ chế khác paper mô tả</h2>
+      <p>Bốn ô: adapter train trên khung <code>tool</code> hoặc <code>memory</code>, đánh giá dưới mỗi khung.
+        Tách chỉ số làm hai thừa số cho thấy điều then chốt: <strong>cột "sửa | format" gần như bất động</strong>
+        (64.8 · 64.3 · 67.6 · 69.6), mọi biến thiên đến từ "ra được format".</p>
+    </div>
+    <div class="matrix">
+      <div class="cell">
+        <div class="ctag">A · train tool → eval tool</div>
+        <div class="chead">Mốc</div>
+        <div class="mrow"><span class="mk">ra format</span><span class="mv">58.2%</span></div>
+        <div class="mrow key"><span class="mk">sửa | format</span><span class="mv">64.8%</span></div>
+        <div class="mrow"><span class="mk">headline</span><span class="mv">37.8%</span></div>
+      </div>
+      <div class="cell">
+        <div class="ctag">B · train tool → eval memory</div>
+        <div class="chead">Prompt thuần</div>
+        <div class="mrow"><span class="mk">ra format</span><span class="mv">63.6%</span></div>
+        <div class="mrow key"><span class="mk">sửa | format</span><span class="mv">64.3%</span></div>
+        <div class="mrow"><span class="mk">headline</span><span class="mv">40.9%</span></div>
+      </div>
+      <div class="cell">
+        <div class="ctag">C · train memory → eval memory</div>
+        <div class="chead">Khớp đầy đủ</div>
+        <div class="mrow"><span class="mk">ra format</span><span class="mv">66.4%</span></div>
+        <div class="mrow key"><span class="mk">sửa | format</span><span class="mv">67.6%</span></div>
+        <div class="mrow"><span class="mk">headline</span><span class="mv">44.8%</span></div>
+      </div>
+      <div class="cell hi">
+        <div class="ctag">D · train memory → eval tool</div>
+        <div class="chead">Đối chứng ngược <span class="pill bad">lệch phân phối</span></div>
+        <div class="mrow"><span class="mk">ra format</span><span class="mv" style="color:var(--bad)">21.1%</span></div>
+        <div class="mrow key"><span class="mk">sửa | format</span><span class="mv">69.6%</span></div>
+        <div class="mrow"><span class="mk">headline</span><span class="mv" style="color:var(--bad)">14.7%</span></div>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:20px">
+      <div class="k">Ô D — bằng chứng đanh nhất</div>
+      <p>Headline tệ nhất (14.7%) nhưng "sửa | format" cao nhất (69.6%). Model gặp khung nó
+        <strong>chưa từng được train</strong> vẫn phê bình tốt y hệt — nó chỉ hiếm khi viết nổi ra.
+        Chẩn đoán không đổi (p = 0.62); thứ đổi là model có viết cho xong hay không.</p>
+    </div>
+  </section>
+
+  <!-- ============ SCALE-UP null result ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Thí nghiệm · quy mô dữ liệu</span>
+      <h2>Tăng dữ liệu 4.7× không tạo thay đổi đo được</h2>
+      <p>Giả thuyết cũ: nút thắt là quy mô dữ liệu. Kiểm chứng trực tiếp — và bị bác bỏ.
+        Đây là kết quả âm tính, nhưng là thông tin thật: nó loại bỏ hướng "cứ thêm dữ liệu".</p>
+    </div>
+
+    <div class="card" style="margin-bottom:16px">
+      <div class="chart-title">Tỉ lệ tự sửa — 135 mẫu so với 631 mẫu (đo đúng cỡ mẫu)</div>
+      <div class="chart-sub">Cùng thang đo. Fisher exact p = 0.856 — gần như không thể gần "không khác biệt" hơn.</div>
+      <div class="barset">
+        <div class="bar-row">
+          <div class="bar-name">135 mẫu<span class="dom">n = 37</span></div>
+          <div class="track"><div class="fill" style="width:40.5%; --c:var(--accent)"><span class="tag">40.5%</span></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">631 mẫu<span class="dom">n = 249</span></div>
+          <div class="track"><div class="fill" style="width:37.8%; --c:var(--accent)"><span class="tag">37.8%</span></div></div>
+        </div>
+      </div>
+      <figcaption>40.5% → 37.8% KHÔNG phải suy giảm. Con số 40.5% cũ chỉ dựa trên 37 case sai — chưa bao giờ là mốc chắc.</figcaption>
+    </div>
+
+    <div class="grid g2">
+      <div class="callout warn">
+        <div class="k">Bẫy cỡ mẫu · bài học đắt nhất</div>
+        <p>Cùng adapter, cùng đề: toán đo <strong>15.8% ở n=19</strong> nhưng <strong>31.7% ở n=104</strong>.
+          Mọi con số toán lịch sử (0%, 33.3%, 22.2%) đều dựa trên 7–9 case — chưa bao giờ đo được gì.
+          Model giải đúng ~84% bài toán, nên cần <strong>~600 bài toán</strong> để mẫu số đủ ~100.</p>
+      </div>
+      <div class="callout">
+        <div class="k">Vì sao thêm dữ liệu vô ích</div>
+        <p>Dữ liệu train chỉ dựng từ <em>lỗi</em> của model. Model giải đúng ngay 84.3% bài toán →
+          thêm bài toán thì 84% bị bỏ. Muốn thêm tín hiệu toán phải đổi <strong>độ khó</strong>
+          (GSM8K → MATH), không phải số lượng.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DATA MIX ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Cấu trúc dữ liệu</span>
+      <h2>Cân bằng bộ đề KHÔNG tạo ra cân bằng dữ liệu train</h2>
+      <p>Bộ đề cân 61/38 toán/code. Nhưng dữ liệu train ra <strong>~87% code</strong> — vì thứ quyết định
+        không phải số đề, mà là <strong>model sai ở đâu</strong>.</p>
+    </div>
+    <div class="card">
+      <div class="legend">
+        <span><i class="swatch" style="background:var(--good)"></i>Giải đúng ngay (bỏ đi)</span>
+        <span><i class="swatch" style="background:var(--math)"></i>Toán · cần sửa</span>
+        <span><i class="swatch" style="background:var(--code)"></i>Code · cần sửa</span>
+      </div>
+      <div class="barset">
+        <div class="bar-row">
+          <div class="bar-name">Toán<span class="dom">432 bài</span></div>
+          <div class="track">
+            <div class="fill" style="width:84.3%; --c:var(--good)"><span class="tag">84.3% đúng ngay</span></div>
+            <div class="fill" style="left:84.3%; width:15.7%; --c:var(--math); border-radius:3px 5px 5px 3px"><span class="tag">68</span></div>
+          </div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Code<span class="dom">474 bài</span></div>
+          <div class="track">
+            <div class="fill" style="width:7.4%; --c:var(--good); border-radius:5px 3px 3px 5px"></div>
+            <div class="fill" style="left:7.4%; width:92.6%; --c:var(--code); border-radius:3px 5px 5px 3px"><span class="tag">439 cần sửa</span></div>
+          </div>
+        </div>
+      </div>
+      <figcaption>Đo bằng verifier trên 906 attempt · Qwen2.5-7B thấy GSM8K dễ, MBPP khó → 439/507 lần gọi API là code</figcaption>
+    </div>
+  </section>
+
+  <!-- ============ NEXT STEPS ============ -->
+  <section style="border-bottom:none">
+    <div class="sec-head">
+      <span class="eyebrow">Hướng tiếp theo</span>
+      <h2>Sắp lại theo bằng chứng, không theo trực giác</h2>
+      <p>Ba đối chứng cho thấy kỹ năng sửa (khi có grounding tốt) đã ổn — code 74%. Nút thắt là
+        (a) grounding của toán quá yếu, (b) model viết ra được định dạng. Mọi hướng "dạy phê bình giỏi hơn"
+        bị hạ ưu tiên.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="n">1</span>
+        <div>
+          <h3>Làm grounding của TOÁN địa chỉ hoá được</h3>
+          <p>Sửa <code>math_verifier</code> để chỉ ra <em>bước tính nào</em> sai (như traceback),
+            thay vì chỉ nói đáp số. Hướng có bằng chứng mạnh nhất từ đối chứng blind.</p>
+          <div class="tags"><span class="pill">không GPU để sửa</span><span class="pill good">ưu tiên cao</span></div>
+        </div>
+      </div>
+      <div class="step">
+        <span class="n">2</span>
+        <div>
+          <h3>Làm model viết cho xong rồi dừng</h3>
+          <p>Rút gọn <code>&lt;thinking&gt;</code> trong dữ liệu train (CoT của model lớn lan man;
+            model 7B bắt chước mà không hạ cánh nổi). Đối chứng 3 xác nhận đây là hành vi học được.</p>
+          <div class="tags"><span class="pill">0₫ API · ~45p GPU</span></div>
+        </div>
+      </div>
+      <div class="step">
+        <span class="n">3</span>
+        <div>
+          <h3>Sửa cách chấm — tách "không ra format" khỏi "ra format nhưng sai"</h3>
+          <p>Cần thiết để đánh giá công bằng model gốc và để đo được chỉ số "tự phê bình" còn thiếu.</p>
+          <div class="tags"><span class="pill">không GPU</span></div>
+        </div>
+      </div>
+      <div class="step">
+        <span class="n">4</span>
+        <div>
+          <h3>Test sycophancy & siết verifier (MBPP+)</h3>
+          <p>Kiểm tra model có đổi đáp án đúng khi bị báo sai giả không; và code 74% có thể là "pass 3 test yếu"
+            chứ chưa chắc đúng tổng quát.</p>
+          <div class="tags"><span class="pill">rủi ro chưa kiểm chứng</span></div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="soft">
+    <div class="callout">
+      <div class="k">Nguyên tắc mang theo</div>
+      <p>Bài học đắt nhất không phải một con số: <strong>hai hướng nghiên cứu đã nhắm sai nút thắt vì chỉ số
+        được báo cáo dưới dạng một con số duy nhất</strong>. Luôn tách chỉ số thành thừa số trước khi tối ưu —
+        và kiểm chứng thước đo trước khi tin nó.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Phase 1 · Verified Self-Correction · nhật ký nghiên cứu đầy đủ trong <code>note.txt</code></span>
+    <span>Tham khảo · The Self-Correction Illusion · arXiv:2606.05976</span>
+  </div>
+</footer>

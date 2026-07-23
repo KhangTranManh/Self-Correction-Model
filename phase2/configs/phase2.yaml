@@ -1,0 +1,45 @@
+# Cau hinh Phase 2 — Preference learning (KTO) tren buoc phe binh.
+# Base model + secrets (HF_TOKEN) van doc tu Phase 1 (.env + phase1.yaml) qua
+# load_config() cua Phase 1 -- KHONG lap lai o day. File nay chi giu tham so RIENG
+# cua Phase 2 (KTO + LoRA + duong dan du lieu preference).
+
+# Diem KHOI DAU cua KTO: adapter da SFT cua Phase 1 (KHONG train tu base). KTO la
+# buoc tinh-chinh-uu-tien DUNG SAU SFT -- bat dau tu base se vut bo toan bo nang
+# luc SFT da co. De None/rong de test "KTO tu base" neu can doi chung.
+init_adapter: "Kxck/AGI_v3"
+
+dataset:
+  path: "data/preference/kto_seed.jsonl"   # output cua build_preference.py
+
+kto:
+  # beta: do "gat" khoi reference model. 0.1 la mac dinh trl, hop ly de bat dau.
+  # (KTO VAN dung reference model nhu DPO -- reward = beta*log(pi/pi_ref). Khong
+  # phai ref-free. Khi train bang LoRA, reference = base voi adapter TAT di, nen
+  # khong ton them 1 model rieng tren VRAM -- meo nay DPO cung dung duoc, khong
+  # phai loi the rieng cua KTO. Ly do chon KTO chi la du lieu KHONG ghep cap.)
+  beta: 0.1
+  # Can bang lech desirable/undesirable: du lieu seed ~675 desirable / ~108
+  # undesirable. trl khuyen weight ti le NGHICH voi so luong sao cho
+  #   desirable_weight * n_desirable  ~=  undesirable_weight * n_undesirable
+  # va giu ti so trong [1, 1.33]. Voi 675/108 (ti so ~6.25) khong the dat [1,1.33]
+  # chi bang weight -> PHAI them undesirable that (sycophancy, GPU) truoc khi train
+  # that. Gia tri duoi la diem khoi dau, se tinh lai theo so lieu cuoi cung.
+  desirable_weight: 1.0
+  undesirable_weight: 1.33
+  learning_rate: 5.0e-6      # thap hon SFT (2e-4) -- tinh chinh uu tien, tranh pha SFT
+  epochs: 1
+  per_device_batch_size: 2
+  gradient_accumulation_steps: 8
+  max_length: 4096           # khop max_seq_length cua Phase 1
+  max_prompt_length: 2048
+
+lora:
+  # Trung cau hinh Phase 1 (r=32, alpha=64) de tuong thich khi tiep tuc tu AGI_v3.
+  r: 32
+  alpha: 64
+  dropout: 0.0
+
+output:
+  out_dir: "outputs/phase2_kto_lora"
+  push_to_hub: false
+  repo_id: "Kxck/AGI_v4"     # chi dung khi push_to_hub=true
