@@ -39,11 +39,64 @@ adapter off, so there's no VRAM edge unique to KTO.)
 
 | Step | Script | GPU? | Status |
 |---|---|---|---|
-| 0. Build KTO seed from Phase 1 outputs (bootstrap, see caveat) | `build_preference.py` | No | **done, tested** |
-| 1a. Generate sycophancy negatives (+ measure the risk) | `gen_sycophancy.py` | Yes | defined, needs GPU-time impl+verify |
-| 1b. Generate multi-sample failed corrections | `gen_corrections.py` | Yes | **to add** at GPU time |
-| 2. KTO-tune the critique behavior (from AGI_v3) | `train_kto.py` | Yes | written to pattern, **not yet run** |
-| 3. Evaluate vs AGI_v3 baseline | reuse `../phase1/.../evaluate_vllm.py` | Yes | reuse Phase 1 |
+| 0. Build KTO seed from Phase 1 outputs (bootstrap, see caveat) | `build_preference.py` | No | done, tested |
+| 1. Generate preference data from the model's own behavior | `gen_preference.py` | Yes | **done, ran 2026-07-23 → 1741 examples** |
+| 1.5. Render conversational → standard (trl KTO requirement) | `render_kto.py` | No | **done, needed** (see below) |
+| 2. KTO-tune the critique behavior (from AGI_v3) | `train_kto.py` | Yes | **verified (smoke passed); full run too slow — see below** |
+| 3. Evaluate vs AGI_v3 baseline | reuse `../phase1/.../evaluate_vllm.py` | Yes | pending (needs a trained checkpoint first) |
+
+> `gen_preference.py` merged the two intended generators (sycophancy + multi-sample
+> corrections) into one model-load session — see its docstring. It supersedes the
+> earlier `gen_sycophancy.py`/`gen_corrections.py` split.
+
+### Run 2026-07-23 results (adapter AGI_v3, 500 math + 400 code, training split)
+
+Phase-1 self-solve: 478 correct / 422 wrong. Generated **1741 KTO examples**:
+
+| source | label | n |
+|---|---|---|
+| `gen_correct_fix` | desirable | 643 |
+| `gen_syco_pushback` | desirable | 11 |
+| `gen_failed_fix` | **undesirable (strong)** | 282 |
+| `gen_syco_flip` | **undesirable (strong)** | 42 |
+| `gen_format_incomplete` | undesirable (weak) | 763 |
+
+Training set (`kto_train_std.jsonl`, weak `format_incomplete` excluded): **654
+desirable / 324 strong undesirable ≈ 2:1** — workable for KTO weights.
+
+**Finding — sycophancy rate = 79% (42 flip / 53 that completed format).** Told
+*falsely* it was wrong, the model caves ~4 out of 5 times, holds firm only 11×. This
+concretely confirms the risk flagged in `../phase1/note.txt` and is exactly the
+undesirable signal KTO needs.
+
+### trl KTO needs STANDARD (rendered) format — not conversational
+
+Smoke-testing `train_kto` surfaced a real bug: trl's conversational KTO validates
+that the prompt's **last message role is `user`**, and rejects our prompt ending in
+role `tool` (`Invalid role in the last message: tool`). Fix (keeps prompt
+byte-exact, principle #3): pre-render prompt+completion to strings with the chat
+template via `render_kto.py`, and feed trl the **standard** format. With that,
+`train_kto` smoke-passed end-to-end (loaded AGI_v3, trained, saved).
+
+### Full KTO run — attempted 2026-07-23, stopped (too slow), no checkpoint
+
+Launched the full run from AGI_v3 on `kto_train_std.jsonl` (978 examples,
+`--max-steps 200 --save-steps 50`). It ran but was **too slow: ~32 s/step** (long
+sequences up to 4096 + KTO's reference forward pass), i.e. ~1h50 for 200 steps, and
+first checkpoint only at step 50 (~27 min). Stopped at step ~23 on request → **no
+checkpoint materialized** (first save is at step 50), nothing to pull. The generated
+data is safe; `train_kto` is verified; only the actual tuned adapter is still
+missing.
+
+**Lessons for the next run** (all in `train_kto.py` / `configs/phase2.yaml`):
+- The 32 s/step is the bottleneck. To make a full run practical: lower
+  `max_length` (most completions are far under 4096), and/or reduce effective batch
+  (`per_device_batch_size` × `gradient_accumulation_steps`, currently 2×8=16).
+- Set `--save-steps` small (e.g. 25) so the *first* checkpoint is reachable early
+  and a partial run is still usable.
+- 1 epoch of 978 at effective-batch 16 is only ~61 steps — `--max-steps 200` is
+  ~3 epochs, likely too many for preference tuning; ~60–80 steps (≈1 epoch) is a
+  better first target. Then evaluate that checkpoint vs AGI_v3.
 
 ### What "undesirable" we need, and where it comes from
 

@@ -53,6 +53,12 @@ def main() -> None:
                         help="Ghi de init_adapter trong phase2.yaml. '' = train tu base.")
     parser.add_argument("--dataset", type=str, default=None)
     parser.add_argument("--out-dir", type=str, default=None)
+    parser.add_argument("--max-steps", type=int, default=0,
+                        help="Dung sau N buoc (0 = theo epochs). Dat vai tram de xem "
+                             "ket qua som / tranh over-optimize preference tuning.")
+    parser.add_argument("--save-steps", type=int, default=50,
+                        help="Luu checkpoint moi N buoc -> pull duoc tung chang, khong "
+                             "mat trang neu may chet giua chung (save_strategy=steps).")
     args = parser.parse_args()
 
     p2 = _load_phase2_cfg()
@@ -91,9 +97,11 @@ def main() -> None:
 
     dataset_path = args.dataset or p2["dataset"]["path"]
     print(f"[train_kto] dataset: {dataset_path}")
-    # KTO doc thang cot prompt/completion/label (conversational). trl tu ap chat
-    # template. [!] VERIFY: mot so ban trl doi cot conversational qua
-    # apply_chat_template san -- neu loi schema, map thu cong bang tokenizer o day.
+    # PHAI la dinh dang STANDARD (prompt/completion la CHUOI da render), KHONG phai
+    # conversational (list message). Ly do: trl KTO conversational validate role
+    # message cuoi cua prompt phai la user -> bao loi voi prompt ket thuc bang role
+    # "tool" cua ta. Dung render_kto.py de doi conversational -> standard TRUOC khi
+    # train (giu prompt byte-exact). Da xac nhan smoke pass tren ban standard.
     dataset = load_dataset("json", data_files=dataset_path, split="train")
 
     out_dir = Path(args.out_dir) if args.out_dir else PHASE2_DIR / p2["output"]["out_dir"]
@@ -108,13 +116,18 @@ def main() -> None:
         max_length=kto_cfg["max_length"],
         max_prompt_length=kto_cfg["max_prompt_length"],
         num_train_epochs=kto_cfg["epochs"],
+        max_steps=args.max_steps if args.max_steps > 0 else -1,  # -1 = theo epochs
         per_device_train_batch_size=kto_cfg["per_device_batch_size"],
         gradient_accumulation_steps=kto_cfg["gradient_accumulation_steps"],
         learning_rate=kto_cfg["learning_rate"],
         fp16=not bf16_ok,
         bf16=bf16_ok,
         logging_steps=10,
-        save_strategy="no",
+        # Luu checkpoint dinh ky (thay vi "no"): pull duoc tung chang de eval trajectory
+        # va khong mat trang neu may thue chet giua chung. LoRA nho nen khong ton dia.
+        save_strategy="steps",
+        save_steps=args.save_steps,
+        save_total_limit=6,
         optim="adamw_8bit",
         lr_scheduler_type="cosine",
         warmup_ratio=0.03,

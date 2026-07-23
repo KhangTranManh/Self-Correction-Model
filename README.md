@@ -64,7 +64,7 @@ which is Phase 2. Full research log, risks, dead ends and statistics in
 [`phase1/note.txt`](phase1/note.txt); operational detail in
 [`phase1/README.md`](phase1/README.md).
 
-### Phase 2 — From imitation to discrimination  ·  *next*
+### Phase 2 — From imitation to discrimination  ·  *in progress*
 
 The Phase 1 ceiling is a wrong *objective*, not a tuning gap. Base models are
 optimized to *produce* a good answer; the assistant turn is always the target,
@@ -72,11 +72,16 @@ never the object under evaluation — so the model never learned the second-orde
 stance of judging its own prior output, and hallucinates when forced into it.
 
 Phase 2 changes the training objective from *imitate a good correction* to *prefer
-a real critique over a fabricated one*, using preference learning (DPO/ORPO) where
-the **verifier supplies the labels for free**: a model's own hallucinated critique
-and its sycophantic flips become explicit *rejected* examples. Full method
-comparison (preference learning, verifier-stance training, process rewards,
-calibration, scale control) in the *Phase 2* section of
+a real critique over a fabricated one*, using **KTO** (chosen over DPO because our
+data is unpaired) where the **verifier supplies the labels for free**: the model's
+own hallucinated fixes and its sycophantic flips become the *undesirable* signal.
+
+**Progress (2026-07-23):** generated 1741 preference examples from the model's own
+behavior on the training split — and measured a **79% sycophancy rate** (told
+falsely it was wrong, AGI_v3 caves ~4 out of 5 times). The KTO training pipeline is
+verified end-to-end (smoke-passed); a full tuning run is pending a practical config
+(the first attempt ran at ~32 s/step — too slow to finish in one rental). Details in
+[`phase2/README.md`](phase2/README.md); method survey in the *Phase 2* section of
 [`phase1/note.txt`](phase1/note.txt).
 
 ### Later phases — *not yet designed*
@@ -92,25 +97,31 @@ base is solid.
 ```
 .
 ├── README.md            ← this file (project vision, roadmap)
-└── phase1/              ← everything for Phase 1 (self-contained)
-    ├── README.md         ← Phase 1 operational readme
-    ├── note.txt          ← full research log (the authoritative record)
-    ├── src/              ← pipeline code (core / data / llm / pipeline / ops)
-    ├── configs/          ← phase1.yaml (hyperparams, paths)
-    ├── data/             ← problem sets + processed training data
-    ├── instructionAI/    ← architecture / conventions / environment docs
-    └── ...               ← eval logs, reports, reference paper
+├── phase1/              ← Phase 1: Verified Self-Correction (self-contained)
+│   ├── README.md         ← Phase 1 operational readme
+│   ├── note.txt          ← full research log (the authoritative record)
+│   ├── src/              ← pipeline code (core / data / llm / pipeline / ops)
+│   ├── configs/ data/ instructionAI/ outputs/ ...
+└── phase2/              ← Phase 2: KTO on the critique step
+    ├── README.md         ← Phase 2 plan + run results
+    ├── gen_preference.py ← generate preference data from the model's own behavior
+    ├── render_kto.py     ← conversational → standard format for trl
+    ├── train_kto.py      ← KTO tuning from AGI_v3
+    ├── build_preference.py, configs/, data/preference/
 ```
 
 Each phase is a **self-contained folder**: its code resolves all paths relative to
-its own root, so phases don't interfere and any one can be run in isolation. To run
-Phase 1, work from inside `phase1/` (see its README).
+its own root, so phases don't interfere. Phase 2 reads Phase 1's outputs and reuses
+its stable primitives (prompts, verifiers) via an explicit path import — it does not
+duplicate them. Run each phase from inside its own folder (see its README).
 
 ---
 
 ## Status
 
 Phase 1 closed with an honest negative on its headline target and a clear,
-evidence-backed reason why — which is exactly the input Phase 2 needs. The next
-concrete step is assembling preference data for Phase 2 from the existing Phase 1
-eval logs (no GPU required), before committing further compute.
+evidence-backed reason why. Phase 2 is underway: preference data is generated (1741
+examples, incl. a measured 79% sycophancy rate) and the KTO pipeline is verified.
+The immediate next step is a full KTO tuning run with a practical config (the first
+attempt was too slow to finish), then evaluating the tuned adapter against AGI_v3 on
+the clean held-out set.

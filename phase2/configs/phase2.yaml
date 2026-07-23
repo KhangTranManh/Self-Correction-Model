@@ -9,7 +9,10 @@
 init_adapter: "Kxck/AGI_v3"
 
 dataset:
-  path: "data/preference/kto_seed.jsonl"   # output cua build_preference.py
+  # PHAI la ban STANDARD (da render bang render_kto.py) -- trl KTO khong nhan
+  # conversational ket thuc role "tool". Luong: gen_preference.py -> kto_generated
+  # -> (loc format_incomplete) kto_train -> render_kto.py -> kto_train_std.
+  path: "data/preference/kto_train_std.jsonl"
 
 kto:
   # beta: do "gat" khoi reference model. 0.1 la mac dinh trl, hop ly de bat dau.
