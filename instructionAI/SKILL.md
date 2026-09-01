@@ -20,10 +20,11 @@ produced and that an objective verifier has already confirmed are wrong.
 
 | File | Covers |
 |---|---|
-| [architecture.md](architecture.md) | File/folder tree, one-line role per file, dependency graph, the 5-stage runtime pipeline |
+| [architecture.md](architecture.md) | File/folder tree, one-line role per file, dependency graph, the seven-stage runtime pipeline plus serving path |
 | [conventions.md](conventions.md) | Code conventions, safe-vs-dangerous-to-change list, design rationale |
 | [environment.md](environment.md) | GPU/hardware constraints, exact dependency pins, remote-box setup/reconnect procedure |
 | [data_pipeline.md](data_pipeline.md) | Verifier design, the verifier_detail grounding fix, thinking-trace capture, evaluation methodology |
+| [results.md](results.md) | Canonical latest run, trained-vs-base metrics, interpretation, serving validation, and next evidence needed |
 
 `note.txt` (repo root, NOT part of this folder) is the user's own rolling success-criteria
 / status doc — read it for current targets and progress, but it is not maintained as part
@@ -47,7 +48,9 @@ of this documentation set (see conventions.md's exclude-list rationale).
 
 2. **Pipeline stage order is fixed by data dependency, not a preference:**
    `prepare_public_datasets.py` → `generate_attempts.py` (GPU) → `build_dataset.py`
-   (API only, no GPU) → `train_sft.py` (GPU) → `evaluate_self_correction.py` (GPU).
+   (API only, no GPU) → `prepare_training_dataset.py` → `train_sft.py` (GPU) →
+   `evaluate_self_correction.py` (GPU), or `evaluate_self_correction_vllm.py` when the
+   merged model is already served.
    Each stage reads the previous stage's output file. Running out of order fails with
    a missing-file error, not silent wrong behavior.
 
@@ -58,8 +61,9 @@ of this documentation set (see conventions.md's exclude-list rationale).
    Always check `ps aux | grep <script>` before launching one of these.
 
 4. **The self-correction "reflect" prompt MUST embed the real verifier error message**
-   (`verifier_detail`), in both `build_dataset.py` (training data generation) and
-   `evaluate_self_correction.py` (eval), using the identical template. Without this,
+   (`verifier_detail`), in `build_dataset.py` (training data generation),
+   `evaluate_self_correction.py`, and `evaluate_self_correction_vllm.py`, using the
+   identical template. Without this,
    the small model learns to hallucinate a plausible-sounding but ungrounded diagnosis
    instead of reading and reacting to the actual error — confirmed empirically (0%
    self-correction success on held-out code problems before this fix was added).
@@ -98,3 +102,10 @@ of this documentation set (see conventions.md's exclude-list rationale).
     to, the push raises AFTER training completes, and the trained adapter is lost
     (never written to disk). Verify `repo_id` and `HF_TOKEN` before a real training run,
     or set `training.push_to_hub: false` to save locally instead.
+
+11. **Never trust a self-correction score without checking `format_incomplete` and raw
+    headings.** A mojibake-corrupted `### Sửa lại` regex once turned 12 valid correction
+    sections into a false 0/12 result. Keep the HTTP evaluator's heading matcher encoded
+    with Unicode escapes, allow same-line corrected content, and inspect raw generations
+    whenever all corrections fail for the same formatting reason. The canonical current
+    result and invalid-run signature are recorded in `results.md`.

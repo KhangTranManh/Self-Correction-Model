@@ -1,6 +1,6 @@
 # Data pipeline design
 
-This expands on the 5-stage flow in architecture.md — the reasoning behind each design
+This expands on the staged flow in architecture.md — the reasoning behind each design
 choice, so a future change can be checked against *why* it's built this way, not just
 *what* it currently does.
 
@@ -35,18 +35,19 @@ eval/inference time, was never shown that real error, only the generic "it's wro
 message. It learned to produce a confident-sounding diagnosis conditioned on no real
 diagnostic information, i.e., to hallucinate.
 
-Fix: `_REFLECT_PROMPT_TEMPLATE` in both `build_dataset.py` and
-`evaluate_self_correction.py` now embeds the actual `verifier_detail` string (the real
-`sympy` mismatch message or Python traceback) into the reflect turn — identically in
-both files. This reframes the task from "guess what might be wrong" to "read the actual
-error and fix it" — closer to how real automated debugging works, and a much more
-tractable task for a 7B model. Re-run `evaluate_self_correction.py` after any further
-change here to confirm the self-correction rate didn't regress; the 8.6% overall /
-0% code baseline (pre-fix) is the number to beat.
+Fix: `_REFLECT_PROMPT_TEMPLATE` in `build_dataset.py`,
+`evaluate_self_correction.py`, and `evaluate_self_correction_vllm.py` now embeds the
+actual `verifier_detail` string (the real `sympy` mismatch message or Python traceback)
+into the reflect turn — identically in all three files. This reframes the task from
+"guess what might be wrong" to "read the actual error and fix it" — closer to how real
+automated debugging works, and a much more tractable task for a 7B model. Re-run an
+objective evaluator after any further change here to confirm the self-correction rate
+didn't regress; the 8.6% overall / 0% code pre-fix baseline is the historical number to
+beat, while `results.md` holds the current canonical result.
 
-If `_REFLECT_PROMPT_TEMPLATE` is ever changed in one file, the other MUST be updated
-identically — a mismatch between training-time and inference-time prompting is exactly
-the class of bug this fix addresses.
+If `_REFLECT_PROMPT_TEMPLATE` is ever changed in one file, the other two MUST be
+updated identically — a mismatch between training-time and inference-time prompting is
+exactly the class of bug this fix addresses.
 
 ## Thinking-trace capture
 
@@ -63,7 +64,7 @@ not just memorize the surface template of the three headed sections.
 Practical consequence: the API's `max_tokens` must budget for this reasoning (see
 environment.md) — it's not optional overhead, it's the main training signal.
 
-## `evaluate_self_correction.py` methodology
+## Self-correction evaluation methodology
 
 Held-out means "not in the range `prepare_public_datasets.py` sliced for training" —
 concretely, GSM8K/MBPP problems starting at `--math-offset`/`--code-offset` (default
@@ -83,11 +84,30 @@ model's competence is fine but the *reflection* skill didn't transfer — that's
 to inspect raw generations (see the verifier_detail fix above for the last time this
 happened) before concluding "needs more data."
 
+`evaluate_self_correction_vllm.py` implements the same method through an
+OpenAI-compatible vLLM endpoint. It sends initial requests concurrently, objectively
+checks them locally, then sends correction requests only for failures. Use this version
+for a merged/served checkpoint and use distinct log/summary paths for base and trained
+runs. The current canonical artifacts and comparison are listed in `results.md`.
+
+The correction extractor is part of the metric, not presentation-only code. It must:
+
+- require a completed correction section before verifying it;
+- recognize the real Unicode `### Sửa lại` heading (encoded with Unicode escapes in
+  source to survive terminal/source encoding differences);
+- accept content on the same line as the heading; and
+- report `format_incomplete` separately from an objectively wrong completed answer.
+
+An earlier mojibake regex rejected all 12 valid trained-model headings and generated a
+false 0% score. If a run suddenly reports that every correction is format-incomplete,
+inspect headings in the JSONL before interpreting it as model failure.
+
 ## Known current limitation
 
-Training data volume (as of the last documented run) sat around 115–140 kept examples
-out of ~300 raw problems (~40% keep rate: attempts already correct, or the API model's
-correction failing re-verification, both reduce the count). Reaching a much larger
-target sample count requires pulling from GSM8K/MBPP's larger `train` split (not just
-`test`, which caps out around 1300 + 500 problems) or adding another verifiable domain —
-neither is implemented yet.
+The latest run uses 513 verified training rows—an improvement over the 115–140-row
+pilots, but still below the planned 800–1500. Its trained-vs-base held-out comparison is
+only 20 problems, so 58.3% (7/12 wrong attempts repaired) is a positive checkpoint, not
+a final estimate. Reaching the target scale requires drawing more examples from the
+larger GSM8K/MBPP train splits or adding another objectively verifiable domain. The next
+evaluation must also cover false feedback/sycophancy, autonomous detection without a
+checker verdict, and two-to-three-round correction; see `results.md`.

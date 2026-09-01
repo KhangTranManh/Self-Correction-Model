@@ -6,7 +6,10 @@ small_model:
   # trong dung pipeline nay. Jackrong/Qwopus3.5-9B-v3 (thu truoc do) bi loi tu goc
   # repo (processor VL + eos_token la nghi van chua ro nguyen nhan trong SFTConfig/
   # trl) -- ton qua nhieu thoi gian debug moi lan doi may, khong dang so voi loi ich.
-  name_or_path: "Qwen/Qwen2.5-7B-Instruct"
+  # Pre-quantized Unsloth build of the same Qwen2.5-7B-Instruct weights. This
+  # avoids materializing the full-precision checkpoint and is the practical
+  # QLoRA path for the local RTX 3060 12GB.
+  name_or_path: "unsloth/Qwen2.5-7B-Instruct-unsloth-bnb-4bit"
   max_seq_length: 4096
   load_in_4bit: true
   chat_template: ""  # khong can, Qwen2.5-7B-Instruct la model text thuan
@@ -37,6 +40,9 @@ paths:
   problems_code: "data/problems/code.jsonl"
   attempts_out: "data/processed/attempts.jsonl"
   sft_dataset_out: "data/processed/phase1_sft.jsonl"
+  # Ban train duoc tao tu phase1_sft.jsonl, bo rieng reasoning trace <thinking>
+  # qua dai nhung giu nguyen critique + corrected_solution da verify.
+  sft_training_dataset_out: "data/processed/phase1_sft_train.jsonl"
   lora_out_dir: "outputs/phase1_lora"
 
 verifier:
@@ -45,21 +51,23 @@ verifier:
 
 training:
   epochs: 3
-  # per_device_batch_size=1 + grad_accum=16 (effective batch = 16, giu nguyen nhu
-  # cu) -- giam tu 2/8 vi RTX 5060 Ti chi co 16GB VRAM (nho hon nhieu so voi
-  # V100 32GB/L40S 46GB da dung truoc do), bi CUDA OOM voi batch_size=2.
-  per_device_batch_size: 1
-  gradient_accumulation_steps: 16
+  # RTX 3090 24GB: batch 2 + grad_accum 8 giu effective batch = 16 va tang
+  # throughput so voi cau hinh RTX 3060 batch 1 + grad_accum 16.
+  per_device_batch_size: 2
+  gradient_accumulation_steps: 8
   learning_rate: 0.0002
+  # RTX 3090 24GB du suc chay rank 32. Dropout=0 cho phep Unsloth dung
+  # fast-patched LoRA kernels.
   lora_r: 32
   lora_alpha: 64
-  lora_dropout: 0.05
-  # Giam tu 4096 -> 2048: RTX 5060 Ti 16GB van OOM ngay ca voi batch_size=1 (chi
-  # thieu ~1.75GB) -- giam max_seq_length de cat bot activation memory.
-  max_seq_length: 2048
+  lora_dropout: 0.0
+  # 1536 giu tron moi verified correction. Chi mot prompt vuot nguong; buoc
+  # prepare se bo rieng failed-attempt context cua dong do, nhung van giu problem,
+  # verifier feedback va toan bo correction target.
+  max_seq_length: 1536
   push_to_hub: false  # tam thoi luu local vao outputs/phase1_lora/; doi lai true + sua
                       # huggingface.repo_id ben duoi khi muon push len Hub
 
 huggingface:
-  repo_id: "Kxck/AGI_v1"
+  repo_id: "Kxck/Self_Correction_v1"
   private: true

@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import re
+import time
 
 from openai import OpenAI
 
@@ -60,7 +61,15 @@ def _extract_json(raw_text: str) -> dict:
 class DeepSeekClient:
     def __init__(self, cfg: DeepSeekConfig):
         self.cfg = cfg
-        self.client = OpenAI(api_key=cfg.api_key, base_url=cfg.base_url)
+        # The SDK default can wait roughly ten minutes on a dead upstream
+        # connection and also performs its own retries. Keep one bounded request
+        # timeout and let the explicit retry loop below own retry behavior.
+        self.client = OpenAI(
+            api_key=cfg.api_key,
+            base_url=cfg.base_url,
+            timeout=300.0,
+            max_retries=0,
+        )
 
     def critique_and_correct(
         self, problem: Problem, attempt_text: str, verifier_detail: str
@@ -73,17 +82,21 @@ class DeepSeekClient:
 
         last_error: Exception | None = None
         for attempt_no in range(self.cfg.max_retries):
-            response = self.client.chat.completions.create(
-                model=self.cfg.model,
-                messages=[
-                    {"role": "system", "content": _SYSTEM_PROMPT},
-                    {"role": "user", "content": user_prompt},
-                ],
-                temperature=self.cfg.temperature,
-                max_tokens=self.cfg.max_tokens,
-            )
-
+            choice = None
+            raw_text = None
             try:
+                # Dat request ben trong khoi try: loi mang/rate-limit/5xx tu API
+                # cung phai duoc retry, khong duoc lam crash ca dataset builder.
+                response = self.client.chat.completions.create(
+                    model=self.cfg.model,
+                    messages=[
+                        {"role": "system", "content": _SYSTEM_PROMPT},
+                        {"role": "user", "content": user_prompt},
+                    ],
+                    temperature=self.cfg.temperature,
+                    max_tokens=self.cfg.max_tokens,
+                )
+
                 # response.choices co the la None/rong (loi tam thoi tu API/proxy,
                 # da gap thuc te voi vilao.ai) -- coi day la loi can thu lai, khong
                 # de TypeError thoat ra ngoai vong retry lam crash ca build_dataset.py.
@@ -110,18 +123,20 @@ class DeepSeekClient:
                         raise ValueError(f"Thieu key '{key}' trong response DeepSeek")
                 parsed["reasoning"] = reasoning
                 return parsed
-            except (ValueError, json.JSONDecodeError) as e:
-                # choice/raw_text co the chua duoc gan neu loi xay ra ngay o buoc kiem
-                # tra response.choices rong -- dung locals().get de tranh NameError.
-                choice = locals().get("choice")
-                raw_text = locals().get("raw_text")
+            except Exception as e:
+                # Bao gom JSON/schema loi, timeout, rate-limit va HTTP 5xx. Khong
+                # in request/config de tranh lo API key; chi in loai loi + preview
+                # response model (neu da co).
                 finish_reason = choice.finish_reason if choice is not None else "N/A"
                 preview = raw_text[:200] if raw_text else "N/A"
                 print(
-                    f"[deepseek_client] Lan thu {attempt_no + 1}/{self.cfg.max_retries} that bai: {e} "
+                    f"[deepseek_client] Lan thu {attempt_no + 1}/{self.cfg.max_retries} "
+                    f"that bai ({type(e).__name__}): {e} "
                     f"(finish_reason={finish_reason}, content_preview={preview!r})"
                 )
                 last_error = e
+                if attempt_no + 1 < self.cfg.max_retries:
+                    time.sleep(min(2**attempt_no, 8))
                 continue
 
         raise RuntimeError(f"DeepSeek tra ve JSON khong hop le sau {self.cfg.max_retries} lan thu: {last_error}")

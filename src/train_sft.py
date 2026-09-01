@@ -11,6 +11,25 @@ Chay tren may co GPU (24-48GB+, CC>=7.5):
 """
 from __future__ import annotations
 
+import os
+from pathlib import Path
+
+# Keep model downloads in the project workspace. On this Windows host the
+# default Hugging Face cache probe can block during Unsloth import, before any
+# training code runs. Respect an explicit caller override when one is present.
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent
+_HF_CACHE = _PROJECT_ROOT / ".cache" / "huggingface"
+os.environ.setdefault("HF_HOME", str(_HF_CACHE))
+os.environ.setdefault("HF_HUB_CACHE", str(_HF_CACHE / "hub"))
+os.environ.setdefault("HF_XET_CACHE", str(_HF_CACHE / "xet"))
+if os.name == "nt":
+    # Native torch.compile/Triton kernels currently terminate this Windows
+    # host with 0xC0000005 during Qwen model loading. Unsloth's 4-bit loader,
+    # LoRA patching and gradient checkpointing remain enabled with compilation
+    # disabled, which preserves the memory-saving path needed on a 12GB GPU.
+    os.environ.setdefault("TORCH_COMPILE_DISABLE", "1")
+    os.environ.setdefault("UNSLOTH_COMPILE_DISABLE", "1")
+
 # QUAN TRONG: unsloth PHAI duoc import truoc trl/transformers/peft -- neu khong,
 # Unsloth khong the patch day du cac class cua trl (SFTConfig/SFTTrainer van tro
 # ve ban chua patch), gay loi "eos_token ('<EOS_TOKEN>') is not found in the
@@ -37,10 +56,21 @@ _TARGET_MODULES = [
 
 
 def main() -> None:
-    cfg = load_config()
+    # Training does not call the correction API. Do not require or upload its
+    # credentials to a rented GPU host.
+    cfg = load_config(require_deepseek=False)
     train_cfg = cfg.training
 
-    model, tokenizer = load_model_and_tokenizer(cfg, train_cfg["max_seq_length"])
+    # Optional local snapshot override avoids any Hugging Face downloader work
+    # on a training host after the model has already been cached and verified.
+    model_name_override = os.environ.get("AGI_MODEL_PATH") or None
+    model, tokenizer = load_model_and_tokenizer(
+        cfg,
+        train_cfg["max_seq_length"],
+        model_name_override=model_name_override,
+    )
+    if model_name_override:
+        print(f"[train_sft] loading verified local model snapshot: {model_name_override}")
 
     # Chup lai eos_token DUNG ngay sau khi load, truoc khi goi bat ky ham Unsloth
     # nao khac -- da phat hien get_peft_model()/patching cua Unsloth co the mutate
@@ -58,16 +88,35 @@ def main() -> None:
         use_gradient_checkpointing="unsloth",
     )
 
-    dataset = load_dataset("json", data_files=str(cfg.path("sft_dataset_out")), split="train")
+    training_dataset_path = cfg.path("sft_training_dataset_out")
+    if not training_dataset_path.exists():
+        raise FileNotFoundError(
+            f"Chua co training dataset {training_dataset_path}. "
+            "Hay chay: python -m src.prepare_training_dataset"
+        )
+    dataset = load_dataset("json", data_files=str(training_dataset_path), split="train")
 
-    def _format(example):
+    def _to_prompt_completion(example):
+        """Mask the failed attempt and verifier feedback from the training loss.
+
+        A Phase-1 row is:
+          system -> user -> failed assistant attempt -> tool feedback
+          -> verified assistant correction
+
+        TRL's conversational prompt-completion format keeps the first four
+        messages as context and computes loss only on the final completion.  In
+        particular, the model must never be optimized to reproduce the failed
+        assistant attempt.
+        """
+        messages = example["messages"]
+        if len(messages) < 2 or messages[-1].get("role") != "assistant":
+            raise ValueError("Mau SFT khong ket thuc bang verified assistant correction")
         return {
-            "text": tokenizer.apply_chat_template(
-                example["messages"], tokenize=False, add_generation_prompt=False
-            )
+            "prompt": messages[:-1],
+            "completion": [messages[-1]],
         }
 
-    dataset = dataset.map(_format, remove_columns=dataset.column_names)
+    dataset = dataset.map(_to_prompt_completion, remove_columns=dataset.column_names)
 
     out_dir = cfg.path("lora_out_dir")
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -78,7 +127,10 @@ def main() -> None:
 
     sft_config = SFTConfig(
         output_dir=str(out_dir),
-        dataset_text_field="text",
+        # Dataset o conversational prompt-completion format; chi completion
+        # (verified correction cuoi) duoc tinh loss. Failed attempt va tool
+        # feedback van nam trong prompt de lam context, nhung label bi mask.
+        completion_only_loss=True,
         max_length=train_cfg["max_seq_length"],
         # Dung gia tri da chup lai tu truoc (correct_eos_token), KHONG doc lai
         # tokenizer.eos_token o day -- co the da bi Unsloth mutate lai thanh
@@ -91,10 +143,12 @@ def main() -> None:
         fp16=not bf16_ok,
         bf16=bf16_ok,
         logging_steps=10,
-        # save_strategy="no": khong ghi checkpoint trung gian moi epoch xuong dia
-        # (LoRA + optimizer state cong don qua nhieu epoch se ton dung luong tren
-        # may thue GPU). Adapter cuoi cung se duoc push thang len HF Hub ben duoi.
-        save_strategy="no",
+        # Native Windows/WDDM can reset a nearly-full GPU without giving Python
+        # a catchable exception. Keep two resumable checkpoints so at most ten
+        # optimizer steps are lost if that happens.
+        save_strategy="steps",
+        save_steps=10,
+        save_total_limit=2,
         optim="adamw_8bit",
         lr_scheduler_type="cosine",
         warmup_ratio=0.03,
@@ -112,7 +166,26 @@ def main() -> None:
         args=sft_config,
     )
 
-    trainer.train()
+    checkpoints = [
+        path
+        for path in out_dir.glob("checkpoint-*")
+        if path.is_dir()
+        and path.name.removeprefix("checkpoint-").isdigit()
+        and (path / "trainer_state.json").exists()
+    ]
+    resume_checkpoint = max(
+        checkpoints,
+        key=lambda path: int(path.name.removeprefix("checkpoint-")),
+        default=None,
+    )
+    if resume_checkpoint is not None:
+        print(f"[train_sft] resuming from checkpoint: {resume_checkpoint}")
+
+    train_result = trainer.train(
+        resume_from_checkpoint=str(resume_checkpoint) if resume_checkpoint else None
+    )
+    trainer.log_metrics("train", train_result.metrics)
+    trainer.save_metrics("train", train_result.metrics)
 
     if train_cfg.get("push_to_hub", False):
         repo_id = cfg.huggingface.repo_id

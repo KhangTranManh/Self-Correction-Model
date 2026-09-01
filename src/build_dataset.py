@@ -103,7 +103,15 @@ def main() -> None:
     }
     deepseek = DeepSeekClient(cfg.deepseek)
 
-    stats = {"total": 0, "already_correct": 0, "sent_to_deepseek": 0, "kept": 0, "discarded": 0, "skipped_seen": 0}
+    stats = {
+        "total": 0,
+        "already_correct": 0,
+        "sent_to_deepseek": 0,
+        "kept": 0,
+        "discarded": 0,
+        "api_failed": 0,
+        "skipped_seen": 0,
+    }
 
     out_path = cfg.path("sft_dataset_out")
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -115,6 +123,13 @@ def main() -> None:
         print(f"[build_dataset] Da co {len(seen_ids)} problem_id xu ly tu truoc -- bo qua, chi xu ly moi.")
 
     with open(out_path, "a", encoding="utf-8") as out_f, open(seen_ids_path, "a", encoding="utf-8") as seen_f:
+        def mark_seen(problem_id: str) -> None:
+            # Chi commit ledger SAU KHI outcome da duoc commit. Flush tung ID de
+            # shutdown/crash khong lam mat progress va khong gay duplicate API call.
+            seen_f.write(problem_id + "\n")
+            seen_f.flush()
+            seen_ids.add(problem_id)
+
         for attempt in attempts:
             if attempt["problem_id"] in seen_ids:
                 stats["skipped_seen"] += 1
@@ -123,11 +138,11 @@ def main() -> None:
             stats["total"] += 1
             problem = problems_by_id[attempt["problem_id"]]
             verifier = verifiers[problem.domain]
-            seen_f.write(attempt["problem_id"] + "\n")
 
             first_result = verifier.verify(problem, attempt["text"])
             if first_result.passed:
                 stats["already_correct"] += 1
+                mark_seen(problem.id)
                 continue
 
             stats["sent_to_deepseek"] += 1
@@ -137,7 +152,9 @@ def main() -> None:
                 )
             except RuntimeError as e:
                 print(f"[SKIP] {problem.id}: DeepSeek loi - {e}")
-                stats["discarded"] += 1
+                # Khong mark_seen: lan resume sau se thu lai ID nay thay vi mat
+                # vinh vien mot mau chi vi API/provider loi tam thoi.
+                stats["api_failed"] += 1
                 continue
 
             second_result = verifier.verify(problem, correction["corrected_solution"])
@@ -146,11 +163,14 @@ def main() -> None:
                     f"[DISCARD] {problem.id}: correction cua DeepSeek van sai - {second_result.detail}"
                 )
                 stats["discarded"] += 1
+                mark_seen(problem.id)
                 continue
 
             record = _to_chat_record(problem, attempt["text"], correction, first_result.detail)
             out_f.write(json.dumps(record, ensure_ascii=False) + "\n")
+            out_f.flush()
             stats["kept"] += 1
+            mark_seen(problem.id)
 
     print(f"Da ghi dataset SFT vao: {out_path}")
     print(f"Thong ke: {stats}")

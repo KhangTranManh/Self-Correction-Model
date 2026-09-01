@@ -73,6 +73,15 @@ rather than raising an error naming the gap.
   mode** while one is already running (see SKILL.md rule 3) — always
   `ps aux | grep <script_name>` before starting `generate_attempts.py` or
   `build_dataset.py` on the remote box.
+- **Keep correction-heading matching encoding-safe.** A source literal containing a
+  mojibake form of `Sửa lại` caused 12 valid correction responses to be classified as
+  incomplete and produced a false 0% result. In evaluator regexes, prefer Unicode
+  escapes, allow correction content on the heading line, and inspect raw JSONL headings
+  whenever `format_incomplete` suddenly equals every initially wrong case.
+- **Report self-correction with its denominator and separately from initial accuracy.**
+  `7/12 (58.3%)` is more informative than `58.3%`; `8/20` initial accuracy measures a
+  different behavior. Do not describe feedback-driven repair as autonomous detection,
+  and do not promote a 20-problem checkpoint to a final research claim.
 
 ## Safe vs. dangerous to change
 
@@ -84,6 +93,7 @@ public dataset(s) feed a given domain.
 **Dangerous — verify the specific reasoning in data_pipeline.md before changing:**
 the `_REFLECT_PROMPT_TEMPLATE` wiring between `build_dataset.py` and
 `evaluate_self_correction.py` (must stay byte-for-byte identical, and must keep
-embedding real `verifier_detail` — see SKILL.md rule 4); the `torch` version pin
+`evaluate_self_correction_vllm.py` in sync as well; all three paths must keep embedding
+real `verifier_detail` — see SKILL.md rule 4); the `torch` version pin
 (environment.md); anything that would let the "attempt" step and the "critique" step
 run on the same underlying reasoning source (violates the core design principle above).

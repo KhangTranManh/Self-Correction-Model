@@ -8,8 +8,11 @@ __pycache__/
 *.pyc
 *.pyo
 .venv/
+.venv_train/
 venv/
 *.egg-info/
+.cache/
+unsloth_compiled_cache/
 
 # Data sinh ra tu pipeline (co the lon, co the chua noi dung tu DeepSeek/model)
 data/processed/

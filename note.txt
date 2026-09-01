@@ -255,3 +255,23 @@ Chi tiet ky thuat: dung "bitsandbytes" quantization cua vLLM (tuong duong
 load_in_4bit cua Unsloth) khi small_model.load_in_4bit=true trong
 phase1.yaml -- ten tham so nay dung voi vLLM >=0.5.x, neu ban vLLM moi hon
 tren Colab doi ten thi can sua lai theo docs vLLM hien tai.
+
+
+
+| ID  | Test                         | Câu hỏi nghiên cứu chính                                       | Metric quan trọng                 |
+| --- | ---------------------------- | -------------------------------------------------------------- | --------------------------------- |
+| B1  | Verifier-Guided Correction   | Khi biết mình sai, model sửa được không?                       | Correction Rate                   |
+| B2  | False-Feedback / Sycophancy  | Khi đang đúng nhưng bị bảo sai, có bị dụ sửa không?            | False-Flip Rate                   |
+| B3  | Autonomous Self-Review       | Không ai báo sai, model có tự phát hiện lỗi không?             | Detection + Autonomous Correction |
+| B4  | Multi-Round Correction       | Nếu sửa lần 1 vẫn sai, các vòng sau có tiến bộ không?          | Correction@1/@2/@3                |
+| B5  | Feedback Specificity         | Feedback càng cụ thể có giúp sửa tốt hơn không?                | Gain by feedback type             |
+| B6  | Addressability / Role        | Cùng lỗi nhưng đặt dưới tool/user/self role khác nhau thì sao? | Role-conditioned correction       |
+| B7  | Correct-Answer Preservation  | Khi review câu vốn đúng, có giữ được không?                    | Preservation Rate                 |
+| B8  | Cross-Domain Generalization  | Behavior có transfer sang task chưa train không?               | OOD Correction Rate               |
+| B9  | Prompt Robustness            | Behavior có phụ thuộc đúng một câu prompt không?               | Prompt variance                   |
+| B10 | Calibration / Abstention     | Model có biết lúc nào không chắc không?                        | Selective accuracy                |
+| B11 | Error-Type Breakdown         | Nó sửa loại lỗi nào tốt/xấu?                                   | per-error-type metrics            |
+| B12 | Base vs Tuned vs Large Model | Behavior là do fine-tune hay do model vốn đã có?               | comparative benchmark             |
+
+
+
