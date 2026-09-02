@@ -16,31 +16,22 @@ DeepSeek — env var names still say `DEEPSEEK_*` for historical reasons, see
 environment.md) plays "grader": it only critiques attempts the small model has already
 produced and that an objective verifier has already confirmed are wrong.
 
+Current evidence is mixed. The 100-case P0 benchmark shows a large verifier-guided
+correction gain (15% base → 56% tuned), but false flips worsen (12% → 22%), autonomous
+correction remains 8%, and HumanEval strict initial accuracy falls sharply. The model
+learned a correction protocol, not yet generalizable error discrimination. Read
+`results.md` and `outputs/p0_benchmark_report.md` before proposing P1/P2 or claiming
+successful autonomous self-correction.
+
 ## File index
 
 | File | Covers |
 |---|---|
-| [architecture.md](architecture.md) | File/folder tree, one-line role per file, dependency graph, the 5-stage runtime pipeline |
-| [conventions.md](conventions.md) | Code conventions, safe-vs-dangerous-to-change list, coupled parameters, concurrency |
+| [architecture.md](architecture.md) | File/folder tree, one-line role per file, dependency graph, the seven-stage runtime pipeline plus serving path |
+| [conventions.md](conventions.md) | Code conventions, safe-vs-dangerous-to-change list, design rationale |
 | [environment.md](environment.md) | GPU/hardware constraints, exact dependency pins, remote-box setup/reconnect procedure |
-| [data_pipeline.md](data_pipeline.md) | Verifier design, the verifier_detail grounding fix, thinking-trace capture, **evaluation methodology and how to size/decompose it** |
-
-## Where the project actually stands (read before proposing work)
-
-The headline metric decomposes into `format_completion × fix_rate_given_format`, and
-**only the first factor is failing**. The second sits at ~65–70% — near the project's
-≥70% target — and has not responded to any intervention tried: not a 4.7× increase in
-training data, not changing the reflect framing, not even a deliberate train/eval
-mismatch. Details and numbers in `data_pipeline.md`.
-
-Two research directions have already been pursued against the wrong bottleneck
-because the metric was reported as one number. Before proposing anything aimed at
-"better critique quality" — more data, a stronger teacher model, richer critiques,
-harder problems — check whether it targets a factor that is already at target.
-
-The open problem is **generation behaviour**: getting the model to finish writing and
-stop. ~26% of failures are long non-terminating reasoning; a further group answers
-correctly but skips the required format and is currently scored as failure.
+| [data_pipeline.md](data_pipeline.md) | Verifier design, grounding, visible-reasoning retention, P0 pairing, and strict/lenient scoring |
+| [results.md](results.md) | Canonical P0 run, trained-vs-base metrics, interpretation, serving validation, and next evidence needed |
 
 `note.txt` (repo root, NOT part of this folder) is the user's own rolling success-criteria
 / status doc — read it for current targets and progress, but it is not maintained as part
@@ -64,9 +55,15 @@ of this documentation set (see conventions.md's exclude-list rationale).
 
 2. **Pipeline stage order is fixed by data dependency, not a preference:**
    `prepare_public_datasets.py` → `generate_attempts.py` (GPU) → `build_dataset.py`
-   (API only, no GPU) → `train_sft.py` (GPU) → `evaluate_self_correction.py` (GPU).
+   (API only, no GPU) → `prepare_training_dataset.py` → `train_sft.py` (GPU) →
+   `evaluate_self_correction.py` (GPU), or `evaluate_self_correction_vllm.py` when the
+   merged model is already served.
    Each stage reads the previous stage's output file. Running out of order fails with
    a missing-file error, not silent wrong behavior.
+
+   After merged serving, `evaluate_p0_vllm.py` is the canonical behavioral gate. Run it
+   separately against base and tuned weights with identical arguments. One 24 GB GPU
+   must switch the BF16 models sequentially.
 
 3. **Never run two instances of `generate_attempts.py` or `build_dataset.py`
    concurrently** (including against the same or different problem sets). Both open
@@ -75,8 +72,9 @@ of this documentation set (see conventions.md's exclude-list rationale).
    Always check `ps aux | grep <script>` before launching one of these.
 
 4. **The self-correction "reflect" prompt MUST embed the real verifier error message**
-   (`verifier_detail`), in both `build_dataset.py` (training data generation) and
-   `evaluate_self_correction.py` (eval), using the identical template. Without this,
+   (`verifier_detail`), in `build_dataset.py` (training data generation),
+   `evaluate_self_correction.py`, and `evaluate_self_correction_vllm.py`, using the
+   identical template. Without this,
    the small model learns to hallucinate a plausible-sounding but ungrounded diagnosis
    instead of reading and reacting to the actual error — confirmed empirically (0%
    self-correction success on held-out code problems before this fix was added).
@@ -116,44 +114,26 @@ of this documentation set (see conventions.md's exclude-list rationale).
     (never written to disk). Verify `repo_id` and `HF_TOKEN` before a real training run,
     or set `training.push_to_hub: false` to save locally instead.
 
-11. **Never report the self-correction rate as a single number.** It is the product of
-    two independent factors, and measurement across a 2×2 experiment showed only the
-    first one ever moves:
+11. **Never trust a self-correction score without checking `format_incomplete` and raw
+    headings.** A mojibake-corrupted `### Sửa lại` regex once turned 12 valid correction
+    sections into a false 0/12 result. Keep the HTTP evaluator's heading matcher encoded
+    with Unicode escapes, allow same-line corrected content, and inspect raw generations
+    whenever all corrections fail for the same formatting reason. The canonical current
+    result and invalid-run signature are recorded in `results.md`.
 
-        rate = format_completion × fix_rate_given_format
-        37.8% =     58.2%        ×        64.8%
+12. **P0 is the gate before P1/P2.** Preserve its branch semantics and denominators:
+    B1/B3 share 100 wrong initial responses; B2/B3/B7 share 100 correct initial
+    responses; B8 uses a fixed SVAMP/HumanEval pool and corrects up to 100 genuinely
+    wrong responses. Never pad a correction denominator, hide domain imbalance, or
+    treat model-specific conditional groups as perfectly paired.
 
-    The second factor sat at 64.8 / 64.3 / 67.6 / 69.6% across two adapters, two
-    reflect framings, matched and mismatched — and did not move when training data
-    grew 4.7×. Every intervention tried so far has acted on the *first* factor.
-    Reporting the product alone hides which one is broken, and is the direct reason
-    two research directions were pursued against the wrong bottleneck. Always report
-    both, plus `initial_correct`. See `data_pipeline.md` for how to compute them.
+13. **Save complete visible reasoning, but never invent hidden reasoning.** P0 raw
+    JSONL must contain the exact prompt/intervention, full initial and final outputs,
+    candidates, and verifier details. `reasoning_content` and `<thinking>` are recorded
+    only if returned. In the canonical P0 run both are absent, so the explicit fields
+    are null while the complete visible outputs remain available.
 
-12. **Train/eval framing mismatch is catastrophic, not a mild penalty.** An adapter
-    trained on `memory` framing and evaluated under `tool` framing dropped format
-    completion from 58.2% to 21.1% (p ≈ 2e-16) — while its fix-rate-given-format was
-    *unchanged* (69.6%, the highest of any cell). The model still diagnoses fine; it
-    stops producing parseable output. This is the strongest evidence yet for rule 4:
-    the prompt used at inference must match the prompt used at training exactly.
-
-13. **`{"role": "memory"}` is silently dropped by Qwen's chat template.** No error, no
-    warning — the message vanishes from the rendered prompt entirely, so the model is
-    asked to self-correct with no error information at all and the numbers collapse
-    with no visible cause. The `memory` condition must be built as `role: "system"`
-    with the content wrapped in `<memory>...</memory>`. Always go through
-    `build_reflect_message()` in `src/core/prompts.py`; never construct the reflect turn
-    inline.
-
-    Related: `{"role": "tool"}` on Qwen is **not** a distinct role token either — it
-    renders as `<|im_start|>user` wrapping the content in `<tool_response>`. So the
-    project's long-standing "`tool` role" is, mechanically, a *user message with an
-    XML wrapper*.
-
-14. **Denominators are tiny unless the eval problem count is large.** The metric's
-    denominator is `initial_wrong` — the model's own failures. The base model already
-    solves ~84% of GSM8K correctly, so 100 math problems yield ~16 wrong cases, where
-    one case shifts the rate by 6pp. The same adapter on the same problems measured
-    **15.8% math at n=19 and 31.7% at n=104**. Use **≥600 math problems** for any math
-    claim. Historically every math figure in this project (0%, 33.3%, 22.2%) rested on
-    7–9 cases and supports nothing.
+14. **Do not treat self-reported error language as successful detection.** The tuned
+    model claimed an error on every neutral-review answer, including all correct ones,
+    while objectively repairing only 8/100 wrong answers. Detection must discriminate
+    correct from wrong and is subordinate to objective transition counts.

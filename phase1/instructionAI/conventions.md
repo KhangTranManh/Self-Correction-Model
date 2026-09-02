@@ -28,14 +28,14 @@ not a bug to "optimize away" for a higher keep-rate.
   secrets live in `.env`. Both are loaded together once, in `src/config.py`, into a
   single `Config` dataclass — no script reads `.env` or the yaml file directly itself.
 - Dataclasses over dicts for structured data crossing function boundaries
-  (`Problem`, `Attempt`, `VerifierResult` in `src/core/schema.py`) — dicts are only used
+  (`Problem`, `Attempt`, `VerifierResult` in `src/data/schema.py`) — dicts are only used
   for the final JSON-serializable record shapes (attempts.jsonl rows, ChatML messages).
 
 ## Adding a new problem domain (e.g. "logic")
 
-Touches all of: `src/core/schema.py` (`Problem.domain` Literal type), a new
+Touches all of: `src/data/schema.py` (`Problem.domain` Literal type), a new
 `load_*_problems()` in `problem_sources.py`, a new `Verifier` implementation in
-`src/data/verifiers/`, a new prompt template in `generate_attempts.py`'s
+`src/verifier/`, a new prompt template in `generate_attempts.py`'s
 `_PROMPT_TEMPLATES` dict, and a new entry in `build_dataset.py`'s `verifiers` dict
 (and `evaluate_self_correction.py`'s, if held-out eval should cover it too). There is no
 single central registry — missing one of these locations silently breaks that domain
@@ -73,6 +73,35 @@ rather than raising an error naming the gap.
   mode** while one is already running (see SKILL.md rule 3) — always
   `ps aux | grep <script_name>` before starting `generate_attempts.py` or
   `build_dataset.py` on the remote box.
+- **Keep correction-heading matching encoding-safe.** A source literal containing a
+  mojibake form of `Sửa lại` caused 12 valid correction responses to be classified as
+  incomplete and produced a false 0% result. In evaluator regexes, prefer Unicode
+  escapes, allow correction content on the heading line, and inspect raw JSONL headings
+  whenever `format_incomplete` suddenly equals every initially wrong case.
+- **Report self-correction with its denominator and separately from initial accuracy.**
+  `7/12 (58.3%)` is more informative than `58.3%`; `8/20` initial accuracy measures a
+  different behavior. Do not describe feedback-driven repair as autonomous detection,
+  and do not promote a 20-problem checkpoint to a final research claim.
+- **Do not force a requested sample count when the behavioral denominator does not
+  exist.** Correction is conditioned on an objectively wrong initial answer. P0's
+  fixed OOD pool produced 76 wrong base answers, so the valid result is `26/76`, not a
+  fabricated 100-case denominator. Record requested size, actual size, and shortfall.
+- **Keep P0 branches paired within each model.** B1 and autonomous-wrong must start
+  from the same wrong answers; false feedback, autonomous-correct, and B7 must start
+  from the same correct answers. Base and tuned conditional groups can differ, so
+  report domain mix and shared-ID analyses before interpreting aggregate differences.
+- **Separate strict output validity from lenient semantic audits.** A fresh code prompt
+  requests executable code, so correction prose plus unfenced code is a strict failure.
+  A secondary extraction audit may explain the failure, but must not replace the strict
+  score. P0's HumanEval regression remains substantial even after lenient extraction.
+- **Store all visible model reasoning without claiming hidden chain-of-thought.** P0
+  JSONL records keep exact prompts/interventions and complete raw outputs under explicit
+  visible-reasoning fields. Populate `reasoning_content` or `<thinking>` fields only
+  when the API actually returns them; null means unavailable, not lost.
+- **A self-reported error is not error detection unless it discriminates.** The tuned
+  model claimed an error on 100/100 wrong and 100/100 correct neutral-review cases.
+  This is an always-correct template and must be reported separately from the objective
+  `wrong → correct` rate (8/100).
 
 ## Safe vs. dangerous to change
 
@@ -82,36 +111,14 @@ rank, etc.); how many problems `prepare_public_datasets.py` pulls (CLI args); wh
 public dataset(s) feed a given domain.
 
 **Dangerous — verify the specific reasoning in data_pipeline.md before changing:**
-anything in `src/core/prompts.py` (one edit propagates to dataset construction *and* both
-eval scripts — that is the point, but it means a change silently alters the meaning of
-every future measurement, and invalidates comparison with every past one); the `torch`
-version pin (environment.md); anything that would let the "attempt" step and the
-"critique" step run on the same underlying reasoning source (violates the core design
-principle above).
+the `_REFLECT_PROMPT_TEMPLATE` wiring between `build_dataset.py` and
+`evaluate_self_correction.py` (must stay byte-for-byte identical, and must keep
+`evaluate_self_correction_vllm.py` in sync as well; all three paths must keep embedding
+real `verifier_detail` — see SKILL.md rule 4); the `torch` version pin
+(environment.md); anything that would let the "attempt" step and the "critique" step
+run on the same underlying reasoning source (violates the core design principle above).
 
-## Coupled parameters — changing one requires re-checking the other
-
-- **`training.max_seq_length` ↔ `generation.max_new_tokens_correction`.** Training on
-  longer sequences teaches the model to write longer reflections; if the generation
-  budget does not follow, output gets truncated before `### Sửa lại` and is scored as
-  failure. This has bitten the project **twice** (1024 → 2048, then 2048 → 4096).
-  Note the budget is not a general cure: doubling it once merely doubled the output
-  length (mean 6.5k → 12.4k chars) and the same share still ran off the end, because
-  the underlying behaviour is failure to terminate, not lack of room.
-- **The reflect framing used in `build_dataset.py` ↔ the `--reflect-role` used at
-  eval.** A mismatch is not a mild penalty; it collapsed format completion from 58.2%
-  to 21.1% in a controlled test (SKILL.md rule 12).
-
-## Concurrency
-
-`build_dataset.py` and `generate_attempts.py` both acquire a PID lock via
-`src/core/run_lock.py` and refuse to start if another instance is live. This used to be a
-documentation rule; it was violated in practice (two orchestration chains launched the
-same step, producing 8 duplicate records and paying the API twice), so it is now
-enforced in code. Stale locks from killed processes clean themselves up.
-
-Note when writing shell helpers around these scripts: `pgrep -f "src.pipeline.build_dataset"`
-will match the *shell process that contains the script text in its own command line*,
-including the heredoc that wrote the script. Anchor the pattern
-(`pgrep -f "^/home/.*/venv-[a-z]*/bin/python -m src\.build_dataset$"`) or you will
-get false positives — and, with `pkill`, kill your own SSH session.
+`evaluate_p0_vllm.py` intentionally uses a benchmark-specific English intervention
+wording from `benchmark_testcase.txt`; it is not required to be byte-for-byte identical
+to the training reflect prompt. If that wording changes, rerun both base and tuned with
+the same prompt and do not combine results across prompt versions.

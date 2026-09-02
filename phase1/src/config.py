@@ -55,7 +55,11 @@ class Config:
         return p if p.is_absolute() else ROOT_DIR / p
 
 
-def load_config(yaml_path: str | Path = ROOT_DIR / "configs" / "phase1.yaml") -> Config:
+def load_config(
+    yaml_path: str | Path = ROOT_DIR / "configs" / "phase1.yaml",
+    *,
+    require_deepseek: bool = True,
+) -> Config:
     load_dotenv(ROOT_DIR / ".env")
 
     with open(yaml_path, "r", encoding="utf-8") as f:
@@ -63,7 +67,7 @@ def load_config(yaml_path: str | Path = ROOT_DIR / "configs" / "phase1.yaml") ->
 
     api_key = os.environ.get("DEEPSEEK_API_KEY", "")
     model = os.environ.get("DEEPSEEK_MODEL", "")
-    if not api_key or not model:
+    if require_deepseek and (not api_key or not model):
         raise RuntimeError(
             "DEEPSEEK_API_KEY hoac DEEPSEEK_MODEL chua duoc set trong .env"
         )

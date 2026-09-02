@@ -13,29 +13,28 @@ that) cho nhung case da biet ket qua tu truoc, kho co ich khi scale them du lieu
 Neu muon lam lai tu dau, xoa file ledger nay + phase1_sft.jsonl truoc khi chay.
 
 Chay (khong can GPU, chi can .env co DEEPSEEK_API_KEY/DEEPSEEK_MODEL va da co attempts.jsonl):
-    python -m src.pipeline.build_dataset
+    python -m src.build_dataset
 """
 from __future__ import annotations
 
 import json
-import threading
-from concurrent.futures import ThreadPoolExecutor
 
 from src.config import load_config
 from src.data.problem_sources import load_code_problems, load_math_problems
-from src.core.schema import Problem
-from src.llm.api_client import DeepSeekClient
+from src.data.schema import Problem
+from src.deepseek_client import DeepSeekClient
+from src.verifier.code_verifier import CodeVerifier
+from src.verifier.math_verifier import MathVerifier
+
+_SYSTEM_PROMPT = "Bạn luôn kiểm tra lại lời giải của mình trước khi chốt câu trả lời cuối."
 # QUAN TRONG: phai co verifier_detail THAT trong prompt phan tu -- neu khong, model
 # hoc cach "doan mo" 1 loi nghe hop ly thay vi doc loi that va sua (da phat hien qua
 # evaluate_self_correction.py: model tu bia ra loi gia, sua sai cho, van fail).
-# Template nay dung chung voi ca 2 script eval qua src/prompts.py -- KHONG copy lai
-# gia tri vao day, lech 1 byte la du de pha vo su khop nhau giua train va infer.
-from src.core.prompts import build_reflect_message
-from src.core.run_lock import single_instance
-from src.data.verifiers.code import CodeVerifier
-from src.data.verifiers.math import MathVerifier
-
-_SYSTEM_PROMPT = "Bạn luôn kiểm tra lại lời giải của mình trước khi chốt câu trả lời cuối."
+_REFLECT_PROMPT_TEMPLATE = (
+    "Kết quả kiểm tra: SAI.\n"
+    "Chi tiết lỗi từ hệ thống kiểm tra: {verifier_detail}\n"
+    "Hãy tự rà soát lại lời giải trên và sửa lại cho đúng."
+)
 # Role "tool" (khong phai "user") cho tin nhan phan tu -- theo paper 2606.05976
 # (The Self-Correction Illusion): verifier_detail von la output that cua 1 tool
 # (checker), dua duoi role "tool" giup model addressable hoa claim sai tot hon.
@@ -43,13 +42,6 @@ _SYSTEM_PROMPT = "Bạn luôn kiểm tra lại lời giải của mình trước
 # tu sua TOAN tang 0% -> 33.3% (khong doi voi code, vi code von da addressable
 # qua traceback). Xem note.txt muc 7.
 _REFLECT_ROLE = "tool"
-# TAT theo mac dinh: giu nguyen hanh vi cu ("dap so sai: dung phai la X") cho du
-# lieu train hien co. Bat co CHU DICH cho vong train THU NGHIEM sau khi Giai
-# doan 3 (probe re bang eval-time, khong retrain -- xem evaluate_vllm.py
-# --math-localize-steps) cho thay dinh vi buoc giup ich that, tranh doi hanh vi
-# du lieu train am tham truoc khi co bang chung. Xem locate_wrong_step trong
-# src/data/verifiers/math.py.
-_MATH_LOCALIZE_STEPS = False
 
 
 def _load_attempts(path) -> list[dict]:
@@ -83,10 +75,10 @@ def _to_chat_record(problem: Problem, attempt_text: str, correction: dict, verif
             {"role": "system", "content": _SYSTEM_PROMPT},
             {"role": "user", "content": problem.question},
             {"role": "assistant", "content": attempt_text},
-            # Qua build_reflect_message() de khung role o luc TRAIN dung y het luc
-            # EVAL -- ke ca truong hop "memory" (phai la system + <memory>, khong
-            # phai role "memory"). Xem src/prompts.py.
-            build_reflect_message(verifier_detail, _REFLECT_ROLE),
+            {
+                "role": _REFLECT_ROLE,
+                "content": _REFLECT_PROMPT_TEMPLATE.format(verifier_detail=verifier_detail),
+            },
             {"role": "assistant", "content": assistant_reflection},
         ]
     }
@@ -103,7 +95,7 @@ def main() -> None:
     attempts = _load_attempts(cfg.path("attempts_out"))
 
     verifiers = {
-        "math": MathVerifier(localize_steps=_MATH_LOCALIZE_STEPS),
+        "math": MathVerifier(),
         "code": CodeVerifier(
             timeout_seconds=cfg.verifier["code_timeout_seconds"],
             memory_limit_mb=cfg.verifier["code_memory_limit_mb"],
@@ -111,7 +103,15 @@ def main() -> None:
     }
     deepseek = DeepSeekClient(cfg.deepseek)
 
-    stats = {"total": 0, "already_correct": 0, "sent_to_deepseek": 0, "kept": 0, "discarded": 0, "skipped_seen": 0}
+    stats = {
+        "total": 0,
+        "already_correct": 0,
+        "sent_to_deepseek": 0,
+        "kept": 0,
+        "discarded": 0,
+        "api_failed": 0,
+        "skipped_seen": 0,
+    }
 
     out_path = cfg.path("sft_dataset_out")
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -122,87 +122,55 @@ def main() -> None:
         seen_ids = {line.strip() for line in seen_ids_path.read_text(encoding="utf-8").splitlines() if line.strip()}
         print(f"[build_dataset] Da co {len(seen_ids)} problem_id xu ly tu truoc -- bo qua, chi xu ly moi.")
 
-    todo = [a for a in attempts if a["problem_id"] not in seen_ids]
-    stats["skipped_seen"] = len(attempts) - len(todo)
+    with open(out_path, "a", encoding="utf-8") as out_f, open(seen_ids_path, "a", encoding="utf-8") as seen_f:
+        def mark_seen(problem_id: str) -> None:
+            # Chi commit ledger SAU KHI outcome da duoc commit. Flush tung ID de
+            # shutdown/crash khong lam mat progress va khong gay duplicate API call.
+            seen_f.write(problem_id + "\n")
+            seen_f.flush()
+            seen_ids.add(problem_id)
 
-    # SONG SONG HOA: buoc nay bi chan boi do TRE MANG, khong phai CPU -- moi bai la
-    # 1 lan goi API toi model reasoning voi max_tokens=8000, thuc te 30-90 giay. Chay
-    # tuan tu tren ~1300 bai la khoang 9-15 tieng, trong khi GPU nam khong (buoc nay
-    # khong dung GPU). Voi thread pool, thoi gian gan nhu chia deu cho so worker.
-    #
-    # deepseek.max_workers trong phase1.yaml. Dat vua phai: qua cao thi dinh rate
-    # limit cua provider, va moi request deu ton token that.
-    max_workers = int(cfg.raw.get("deepseek", {}).get("max_workers", 8))
-    lock = threading.Lock()
-    done_count = 0
-    total_todo = len(todo)
-    print(f"[build_dataset] {total_todo} attempt can xu ly, {max_workers} worker song song.")
+        for attempt in attempts:
+            if attempt["problem_id"] in seen_ids:
+                stats["skipped_seen"] += 1
+                continue
 
-    def process(attempt: dict) -> None:
-        """Xu ly 1 attempt. Moi ghi file/stats deu nam trong lock."""
-        nonlocal done_count
-        problem = problems_by_id[attempt["problem_id"]]
-        verifier = verifiers[problem.domain]
+            stats["total"] += 1
+            problem = problems_by_id[attempt["problem_id"]]
+            verifier = verifiers[problem.domain]
 
-        first_result = verifier.verify(problem, attempt["text"])
+            first_result = verifier.verify(problem, attempt["text"])
+            if first_result.passed:
+                stats["already_correct"] += 1
+                mark_seen(problem.id)
+                continue
 
-        correction = None
-        second_result = None
-        if not first_result.passed:
+            stats["sent_to_deepseek"] += 1
             try:
                 correction = deepseek.critique_and_correct(
                     problem, attempt["text"], first_result.detail
                 )
-                second_result = verifier.verify(problem, correction["corrected_solution"])
-            except Exception as e:  # noqa: BLE001
-                # Bat rong: trong thread pool, mot ngoai le khong bat se lam pool.map
-                # nem lai va giet toan bo cac worker con lai. Mot bai hong chi duoc
-                # phep lam mat chinh no.
-                print(f"[SKIP] {problem.id}: {type(e).__name__} - {e}")
-                correction = None
+            except RuntimeError as e:
+                print(f"[SKIP] {problem.id}: DeepSeek loi - {e}")
+                # Khong mark_seen: lan resume sau se thu lai ID nay thay vi mat
+                # vinh vien mot mau chi vi API/provider loi tam thoi.
+                stats["api_failed"] += 1
+                continue
 
-        with lock:
-            done_count += 1
-            stats["total"] += 1
-            # Ghi seen_id cho MOI attempt da xu ly, bat ke ket qua -- day la co so
-            # cua tinh resumable. Ghi trong lock + flush ngay de neu bi ngat giua
-            # chung thi phan da lam khong bi lam lai.
-            seen_f.write(attempt["problem_id"] + "\n")
-            seen_f.flush()
-
-            if first_result.passed:
-                stats["already_correct"] += 1
-            elif correction is None:
-                stats["sent_to_deepseek"] += 1
-                stats["discarded"] += 1
-            elif not second_result.passed:
-                stats["sent_to_deepseek"] += 1
-                stats["discarded"] += 1
-                print(f"[DISCARD] {problem.id}: correction van sai - {second_result.detail}")
-            else:
-                stats["sent_to_deepseek"] += 1
-                record = _to_chat_record(
-                    problem, attempt["text"], correction, first_result.detail
-                )
-                out_f.write(json.dumps(record, ensure_ascii=False) + "\n")
-                out_f.flush()
-                stats["kept"] += 1
-
-            if done_count % 25 == 0 or done_count == total_todo:
+            second_result = verifier.verify(problem, correction["corrected_solution"])
+            if not second_result.passed:
                 print(
-                    f"[build_dataset] {done_count}/{total_todo} | kept={stats['kept']} "
-                    f"already_correct={stats['already_correct']} discarded={stats['discarded']}",
-                    flush=True,
+                    f"[DISCARD] {problem.id}: correction cua DeepSeek van sai - {second_result.detail}"
                 )
+                stats["discarded"] += 1
+                mark_seen(problem.id)
+                continue
 
-    # Khoa: 2 instance cung ghi phase1_sft.jsonl se tao ban ghi trung va ton tien API
-    # gap doi cho cung mot bai. Da xay ra that -- xem src/run_lock.py.
-    with single_instance("build_dataset", out_path.parent):
-        with open(out_path, "a", encoding="utf-8") as out_f, open(
-            seen_ids_path, "a", encoding="utf-8"
-        ) as seen_f:
-            with ThreadPoolExecutor(max_workers=max_workers) as pool:
-                list(pool.map(process, todo))
+            record = _to_chat_record(problem, attempt["text"], correction, first_result.detail)
+            out_f.write(json.dumps(record, ensure_ascii=False) + "\n")
+            out_f.flush()
+            stats["kept"] += 1
+            mark_seen(problem.id)
 
     print(f"Da ghi dataset SFT vao: {out_path}")
     print(f"Thong ke: {stats}")
