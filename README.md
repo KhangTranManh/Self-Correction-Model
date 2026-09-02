@@ -21,33 +21,30 @@ decisions and why).
 | Training data | 513 verified correction rows; failed attempts and verifier feedback are prompt context, and loss is computed only on the verified correction |
 | Training run | 3 epochs, 99 optimizer steps, rank 32 / alpha 64 LoRA, final train loss 0.4506 |
 | Published model | Merged BF16 checkpoint: [`Kxck/Self_Correction_v1`](https://huggingface.co/Kxck/Self_Correction_v1) (14.19 GiB, four shards, directly loadable by vLLM) |
-| Held-out eval set | 10 GSM8K + 10 MBPP problems from offset 150, disjoint from the generated training rows |
+| Canonical P0 pool | 600 held-out GSM8K + 300 held-out MBPP; OOD: 200 SVAMP + all 164 HumanEval |
 
-**Self-correction rate** (`self_corrected / initial_wrong`, held-out set, counting
-only responses that completed the `### Sửa lại` format — see
-[Known issues](#known-issues--limitations)):
+The canonical evaluation is now the 100-case P0 suite in
+[`outputs/p0_benchmark_report.md`](outputs/p0_benchmark_report.md). It compares the
+untouched base and fine-tuned model on verifier-guided correction, false feedback,
+autonomous review, correct-answer preservation, and cross-domain generalization.
 
-| Run | Initial correct | Initially wrong | Self-corrected | Rate |
-|---|---:|---:|---:|---:|
-| Untuned Qwen baseline | 8/20 | 12 | 0/12 | 0.0% (required protocol) |
-| **Self_Correction_v1** | **8/20** | **12** | **7/12** | **58.3%** |
+| P0 metric | Base | Self_Correction_v1 |
+|---|---:|---:|
+| B1 guided correction | 15/100 (15%) | **56/100 (56%)** |
+| B2 false-flip rate | **12/100 (12%)** | 22/100 (22%) |
+| B3 autonomous correction | 6/100 (6%) | 8/100 (8%) |
+| B7 correct preservation | 74/100 (74%) | **86/100 (86%)** |
+| B8 OOD correction | 26/76 (34.2%) | 44/100 (44%) |
 
-For the trained model, math corrected 3/4 wrong attempts (75%) and code corrected
-4/8 (50%). It completed the required correction format in all 12 cases. Untuned Qwen
-did not follow that format in any of its 12 correction turns; even a lenient diagnostic
-that ignored the protocol found only 2/12 objectively repaired answers (16.7%).
+The model learned a strong **externally guided correction** behavior, especially for
+code, but P0 does not support reliable autonomous error discrimination. False flips
+increased, autonomous repair remained weak, and HumanEval strict initial accuracy fell
+from 79.3% to 8.5%. A lenient correction-section extraction raises tuned HumanEval to
+47.0%, so output-format over-transfer explains part—but not all—of that regression.
 
-This is evidence that the model learned to use **external verifier feedback** and often
-repair its answer. It is not evidence of reliable autonomous error detection: the
-checker must first tell the model that its answer is wrong, and 5/12 wrong attempts
-still remained wrong. The sample is only 20 problems, so this is a positive checkpoint,
-not a final research estimate. The project target of ≥70% self-correction is not yet met.
-
-An initial evaluation incorrectly reported 0% for the trained model because the
-evaluator's `### Sửa lại` regex was mojibake-corrupted. The generations contained the
-correct Unicode heading; fixing the extractor and rerunning produced the canonical
-58.3% result above. See [`instructionAI/results.md`](instructionAI/results.md) for the
-full run record and interpretation.
+The earlier 20-problem run (7/12 strict guided corrections for tuned, 0/12 for base)
+is retained as historical evidence, but P0 supersedes it as the current estimate. See
+[`instructionAI/results.md`](instructionAI/results.md) for the canonical interpretation.
 
 ---
 
@@ -86,6 +83,12 @@ full run record and interpretation.
    `### Sửa lại` headings were rejected, producing a false 0%. The extractor
    now uses Unicode escapes, accepts same-line content, and the run was repeated.
 
+4. **The larger P0 benchmark separates correction sensitivity from error
+   discrimination.** The tuned model improves guided correction from 15% to 56%, but
+   false flips worsen from 12% to 22% and autonomous correction remains only 8%.
+   It also claims an error under neutral review on every correct and wrong case. This
+   is evidence of a learned correction trigger/template, not reliable introspection.
+
 Full detail, including risks considered and rejected approaches, in
 [`note.txt`](note.txt).
 
@@ -109,6 +112,7 @@ src/prepare_training_dataset.py  masks/compacts context -> phase1_sft_train.json
 src/train_sft.py          QLoRA SFT (Unsloth + trl)
 src/evaluate_self_correction.py  held-out eval: does the model actually self-correct?
 src/evaluate_self_correction_vllm.py  same objective eval through a vLLM HTTP server
+src/evaluate_p0_vllm.py  100-case B1/B2/B3/B7 plus SVAMP/HumanEval B8 benchmark
 src/export_merged_for_vllm.py  merge adapter into standalone BF16 weights + publish
 src/push_to_hub.py        push a saved adapter directory to HF Hub manually
 ```
@@ -149,8 +153,9 @@ src/push_to_hub.py        push a saved adapter directory to HF Hub manually
 | 5 | `python -m src.train_sft` | Yes |
 | 6 | `python -m src.evaluate_self_correction --adapter <repo_or_path>` | Yes |
 | 7 (served model) | `python -m src.evaluate_self_correction_vllm --model Kxck/Self_Correction_v1` | vLLM server needs GPU |
+| 8 (P0 benchmark) | `python -m src.evaluate_p0_vllm --model Kxck/Self_Correction_v1` | vLLM server needs GPU |
 
-Steps 6–7 produce the metric that matters — training loss alone does not tell you
+Steps 6–8 produce the metrics that matter — training loss alone does not tell you
 whether the model learned to self-correct (see [Key Findings](#key-findings)).
 
 **Before running full-scale on rented GPU hours:** run steps 1–3 on the small
@@ -175,14 +180,29 @@ Serve the published model with native vLLM (no Unsloth/BitsAndBytes loader neede
 ```bash
 VLLM_USE_FLASHINFER_SAMPLER=0 vllm serve Kxck/Self_Correction_v1 \
   --served-model-name Kxck/Self_Correction_v1 \
-  --host 0.0.0.0 --port 8999 \
+  --host 127.0.0.1 --port 8000 \
   --max-model-len 4096 --gpu-memory-utilization 0.90 \
-  --dtype bfloat16 --api-key "$VLLM_API_KEY"
+  --dtype bfloat16
 ```
 
 The sampler environment variable is required on CUDA-runtime-only containers that do
 not include `nvcc`; otherwise FlashInfer tries to JIT-compile during warm-up and vLLM
 exits. The verified RTX 3090 deployment used approximately 22.5/24.6 GiB VRAM.
+Use `--host 0.0.0.0 --api-key "$VLLM_API_KEY"` only when a remote client must reach
+the endpoint; keep the unauthenticated benchmark endpoint on localhost.
+
+With the server available at `http://127.0.0.1:8000/v1`, run the canonical P0 suite:
+
+```bash
+python -m src.evaluate_p0_vllm \
+  --base-url http://127.0.0.1:8000/v1 \
+  --model Kxck/Self_Correction_v1 \
+  --log-file outputs/p0_trained_100_log.jsonl \
+  --summary-file outputs/p0_trained_100_summary.json
+```
+
+Serve the untouched base separately and repeat with model id
+`Qwen/Qwen2.5-7B-Instruct`. One 24 GB GPU cannot safely host both BF16 models at once.
 
 ## Hardware Notes
 
@@ -207,16 +227,18 @@ subprocess isolation alone is not sufficient for adversarial code.
 
 See [`note.txt`](note.txt) section 3 for the full list. Headline items:
 
-- Training set is 513 verified samples vs. the planned 800–1500, and the current
-  held-out comparison is only 20 problems. Treat 58.3% as a checkpoint, not a
-  final population estimate.
+- Training set is 513 correction-only samples versus the planned 800–1500 balanced
+  examples. The missing no-change, false-feedback-defense, autonomous-review, and
+  ordinary code-only examples are now measured failure modes, not hypothetical gaps.
 - Math verifier's answer extraction can mis-parse stray formatting characters
   (e.g. a stray backtick) leaked from the model's own markdown-style output.
-- No test yet for sycophancy (model changing a *correct* answer when falsely
-  told it's wrong) or multi-round correction (note.txt requires no repeated
-  errors after 2–3 rounds; current eval only tests one round).
-- Current evaluation supplies objective error feedback. Autonomous detection of
-  an error without checker feedback has not been demonstrated.
+- P0 now tests sycophancy and autonomous review. The tuned false-flip rate is 22%,
+  autonomous correction is 8%, and neutral-review error claims are indiscriminate.
+- P0 does not include multi-round correction, feedback-specificity ablations, role
+  ablations, prompt robustness, or calibration. These remain P1/P2 work and should be
+  diagnostic until a retrained model passes P0.
+- HumanEval shows correction-format over-transfer: strict accuracy is 8.5% and a
+  lenient correction-section audit reaches 47.0%, still below the 79.3% base result.
 
 ## References
 

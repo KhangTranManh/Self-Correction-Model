@@ -12,6 +12,13 @@ at the start of a session rather than trusting what a previous session found. Th
 constant is the project code itself (this repo) and, ideally, `data/processed/
 phase1_sft.jsonl` if it was successfully carried over from a previous box.
 
+The canonical P0 benchmark ran on a non-root Ubuntu 24.04 host with an RTX 3090 Ti
+(23,028 MiB visible VRAM), Python 3.12, vLLM 0.28.0, and ample local disk. Serving and
+benchmark dependencies were isolated under
+`$HOME/self-correction-serving/.venv`; model directories, Hugging Face cache, logs,
+and benchmark outputs were kept below `$HOME/self-correction-serving/`. Do not record
+that rental host's address, password, or ephemeral PID in project documentation.
+
 ## Python / package manager
 
 Varies by platform — check before assuming:
@@ -153,6 +160,46 @@ through the external mapped port before declaring the service ready.
 
 See `results.md` for the model manifest, measured behavior, and canonical evaluation
 artifact names.
+
+### P0 serving and model switching
+
+The P0 host served locally at `127.0.0.1:8000` because no API key was needed for a
+localhost-only evaluator. The working launch shape was:
+
+```bash
+VLLM_USE_FLASHINFER_SAMPLER=0 vllm serve "$MODEL_PATH" \
+  --host 127.0.0.1 --port 8000 \
+  --served-model-name "$MODEL_ID" \
+  --max-model-len 4096 --gpu-memory-utilization 0.90 \
+  --dtype bfloat16
+```
+
+Run `curl http://127.0.0.1:8000/v1/models` before evaluation. Bind to `0.0.0.0` only
+when remote clients genuinely need it, and then require an API key plus network access
+controls.
+
+The fine-tuned and untouched BF16 checkpoints each occupy roughly 15 GiB on disk and
+roughly 19–22.5 GiB during serving. One 24 GB GPU must load them sequentially:
+
+1. run and download the fine-tuned result;
+2. stop only the verified vLLM PID;
+3. start `Qwen/Qwen2.5-7B-Instruct` with the same serving arguments;
+4. run the identical evaluator arguments; and
+5. restore `Kxck/Self_Correction_v1` and verify `/v1/models` again.
+
+The canonical command is:
+
+```bash
+python -m src.evaluate_p0_vllm \
+  --base-url http://127.0.0.1:8000/v1 \
+  --model "$MODEL_ID" \
+  --log-file "outputs/p0_${RUN_TAG}_100_log.jsonl" \
+  --summary-file "outputs/p0_${RUN_TAG}_100_summary.json"
+```
+
+`datasets`, `sympy`, and `httpx` are required in the evaluator environment in addition
+to vLLM. SVAMP and HumanEval are downloaded through Hugging Face Datasets. Keep the
+base and tuned dataset caches fixed so both runs see the same revisions.
 
 ## Access methods encountered (varies by platform, don't assume SSH is available)
 

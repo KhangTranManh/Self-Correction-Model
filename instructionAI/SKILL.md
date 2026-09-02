@@ -16,6 +16,13 @@ DeepSeek — env var names still say `DEEPSEEK_*` for historical reasons, see
 environment.md) plays "grader": it only critiques attempts the small model has already
 produced and that an objective verifier has already confirmed are wrong.
 
+Current evidence is mixed. The 100-case P0 benchmark shows a large verifier-guided
+correction gain (15% base → 56% tuned), but false flips worsen (12% → 22%), autonomous
+correction remains 8%, and HumanEval strict initial accuracy falls sharply. The model
+learned a correction protocol, not yet generalizable error discrimination. Read
+`results.md` and `outputs/p0_benchmark_report.md` before proposing P1/P2 or claiming
+successful autonomous self-correction.
+
 ## File index
 
 | File | Covers |
@@ -23,8 +30,8 @@ produced and that an objective verifier has already confirmed are wrong.
 | [architecture.md](architecture.md) | File/folder tree, one-line role per file, dependency graph, the seven-stage runtime pipeline plus serving path |
 | [conventions.md](conventions.md) | Code conventions, safe-vs-dangerous-to-change list, design rationale |
 | [environment.md](environment.md) | GPU/hardware constraints, exact dependency pins, remote-box setup/reconnect procedure |
-| [data_pipeline.md](data_pipeline.md) | Verifier design, the verifier_detail grounding fix, thinking-trace capture, evaluation methodology |
-| [results.md](results.md) | Canonical latest run, trained-vs-base metrics, interpretation, serving validation, and next evidence needed |
+| [data_pipeline.md](data_pipeline.md) | Verifier design, grounding, visible-reasoning retention, P0 pairing, and strict/lenient scoring |
+| [results.md](results.md) | Canonical P0 run, trained-vs-base metrics, interpretation, serving validation, and next evidence needed |
 
 `note.txt` (repo root, NOT part of this folder) is the user's own rolling success-criteria
 / status doc — read it for current targets and progress, but it is not maintained as part
@@ -53,6 +60,10 @@ of this documentation set (see conventions.md's exclude-list rationale).
    merged model is already served.
    Each stage reads the previous stage's output file. Running out of order fails with
    a missing-file error, not silent wrong behavior.
+
+   After merged serving, `evaluate_p0_vllm.py` is the canonical behavioral gate. Run it
+   separately against base and tuned weights with identical arguments. One 24 GB GPU
+   must switch the BF16 models sequentially.
 
 3. **Never run two instances of `generate_attempts.py` or `build_dataset.py`
    concurrently** (including against the same or different problem sets). Both open
@@ -109,3 +120,20 @@ of this documentation set (see conventions.md's exclude-list rationale).
     with Unicode escapes, allow same-line corrected content, and inspect raw generations
     whenever all corrections fail for the same formatting reason. The canonical current
     result and invalid-run signature are recorded in `results.md`.
+
+12. **P0 is the gate before P1/P2.** Preserve its branch semantics and denominators:
+    B1/B3 share 100 wrong initial responses; B2/B3/B7 share 100 correct initial
+    responses; B8 uses a fixed SVAMP/HumanEval pool and corrects up to 100 genuinely
+    wrong responses. Never pad a correction denominator, hide domain imbalance, or
+    treat model-specific conditional groups as perfectly paired.
+
+13. **Save complete visible reasoning, but never invent hidden reasoning.** P0 raw
+    JSONL must contain the exact prompt/intervention, full initial and final outputs,
+    candidates, and verifier details. `reasoning_content` and `<thinking>` are recorded
+    only if returned. In the canonical P0 run both are absent, so the explicit fields
+    are null while the complete visible outputs remain available.
+
+14. **Do not treat self-reported error language as successful detection.** The tuned
+    model claimed an error on every neutral-review answer, including all correct ones,
+    while objectively repairing only 8/100 wrong answers. Detection must discriminate
+    correct from wrong and is subordinate to objective transition counts.

@@ -64,6 +64,14 @@ not just memorize the surface template of the three headed sections.
 Practical consequence: the API's `max_tokens` must budget for this reasoning (see
 environment.md) — it's not optional overhead, it's the main training signal.
 
+This training-data reasoning channel is different from P0 evaluation logging. The
+served Qwen models did not return a separate `reasoning_content` field and emitted no
+explicit `<thinking>` tags during P0. `evaluate_p0_vllm.py` therefore stores every
+complete visible model output under `initial_visible_reasoning_output` or
+`visible_reasoning_output`, while `visible_thinking` and
+`separate_reasoning_content` remain null. Never label unreturned hidden activations as
+captured thinking.
+
 ## Self-correction evaluation methodology
 
 Held-out means "not in the range `prepare_public_datasets.py` sliced for training" —
@@ -90,6 +98,40 @@ checks them locally, then sends correction requests only for failures. Use this 
 for a merged/served checkpoint and use distinct log/summary paths for base and trained
 runs. The current canonical artifacts and comparison are listed in `results.md`.
 
+`evaluate_p0_vllm.py` is now the canonical behavioral evaluator. It reuses a large
+held-out candidate pool and makes controlled branches from objectively scored initial
+answers:
+
+- B1: 100 wrong answers receive real verifier feedback;
+- B2: 100 correct answers receive deliberately false “incorrect” feedback;
+- B3: the same 100 wrong and 100 correct groups receive a neutral review prompt with
+  no checker verdict or error detail;
+- B7: the correct half of B3 measures preservation without false feedback; and
+- B8: a fixed SVAMP/HumanEval pool measures cross-domain initial performance and
+  verifier-guided correction.
+
+B1/B3 are paired within each model on the same initial wrong responses. B2/B3/B7 are
+paired within each model on the same initial correct responses. Selection is
+outcome-conditioned, so base and tuned groups are not automatically identical. Always
+report domain mix and shared problem IDs; never compare conditional aggregate rates as
+if the examples were perfectly paired.
+
+For correction metrics, the denominator must be the number of genuinely initially
+wrong answers. The fixed OOD pool produced only 76 such base cases, so B8 correctly
+reports 26/76 rather than padding the denominator to 100. The tuned pool had at least
+100 wrong cases and reports 44/100. The common selected subset (31 wrong for both)
+shows 12 base versus 11 tuned repairs, which does not establish OOD improvement.
+
+Code scoring has two distinct views:
+
+- **strict**: the entire requested code output must be executable under the unit tests;
+- **lenient audit**: if the model incorrectly emits correction scaffolding on a fresh
+  task, extract its final correction section and test that code separately.
+
+Strict remains canonical for instruction following. Lenient is diagnostic only. In
+P0, tuned HumanEval is 14/164 strict and 77/164 lenient versus 130/164 for base, showing
+that output-format transfer explains part, but not all, of the regression.
+
 The correction extractor is part of the metric, not presentation-only code. It must:
 
 - require a completed correction section before verifying it;
@@ -102,12 +144,18 @@ An earlier mojibake regex rejected all 12 valid trained-model headings and gener
 false 0% score. If a run suddenly reports that every correction is format-incomplete,
 inspect headings in the JSONL before interpreting it as model failure.
 
-## Known current limitation
+## Known current limitations
 
-The latest run uses 513 verified training rows—an improvement over the 115–140-row
-pilots, but still below the planned 800–1500. Its trained-vs-base held-out comparison is
-only 20 problems, so 58.3% (7/12 wrong attempts repaired) is a positive checkpoint, not
-a final estimate. Reaching the target scale requires drawing more examples from the
-larger GSM8K/MBPP train splits or adding another objectively verifiable domain. The next
-evaluation must also cover false feedback/sycophancy, autonomous detection without a
-checker verdict, and two-to-three-round correction; see `results.md`.
+The latest model uses 513 verified correction-only rows. P0 now measures 100 cases per
+in-domain condition and exposes the missing training distribution directly:
+
+- guided correction is strong (56%) but below the original 70% target;
+- false-feedback flips are worse than base (22% versus 12%);
+- autonomous correction is only 8%;
+- the model claims an error under neutral review on every correct and wrong case; and
+- fresh HumanEval prompts trigger correction scaffolding and a large capability loss.
+
+The next dataset should not merely add more of the same correction rows. It needs
+verified no-change, false-feedback defense, neutral autonomous review, ordinary
+code-only, and OOD-style examples. Multi-round correction and the other P1/P2
+ablations remain untested; see `results.md` and `outputs/p0_benchmark_report.md`.

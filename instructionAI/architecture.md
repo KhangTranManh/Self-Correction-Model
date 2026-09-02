@@ -7,6 +7,7 @@ d:\AGI/
 ├── .env                          secrets (per-machine, never synced — see SKILL.md rule 6)
 ├── .gitignore                    excludes .env, data/processed/, outputs/, __pycache__
 ├── README.md                     setup, current result, and run instructions
+├── benchmark_testcase.txt        benchmark backlog and P0/P1/P2 priority definitions
 ├── note.txt                      user's own rolling success-criteria/status notes (not part of this doc set)
 ├── requirements.txt               pinned deps + WHY comments (torch pin rationale lives here)
 ├── configs/
@@ -22,7 +23,11 @@ d:\AGI/
 ├── outputs/
 │   ├── phase1_lora/               trained LoRA adapter
 │   ├── Self_Correction_v1_merged/ standalone merged BF16 checkpoint for vLLM
-│   └── eval_*_vllm_*.{json,jsonl} objective HTTP evaluation summaries/raw records
+│   ├── eval_*_vllm_*.{json,jsonl} historical small HTTP evaluations
+│   ├── p0_*_100_summary.json      canonical base/trained P0 summaries
+│   ├── p0_*_100_log.jsonl         complete P0 prompts, outputs, reasoning text, scores
+│   ├── p0_benchmark_report.md     canonical human-readable P0 comparison
+│   └── p0_code_format_audit.json  strict-vs-lenient code-format diagnostic
 └── src/
     ├── config.py                  loads .env + phase1.yaml -> Config dataclass (single source of truth for all scripts)
     ├── data/
@@ -40,6 +45,7 @@ d:\AGI/
     ├── train_sft.py                QLoRA SFT via Unsloth+TRL -> outputs/phase1_lora/
     ├── evaluate_self_correction.py held-out eval: does the trained adapter actually self-correct?
     ├── evaluate_self_correction_vllm.py same eval through a running vLLM HTTP API
+    ├── evaluate_p0_vllm.py        B1/B2/B3/B7/B8 base-vs-tuned benchmark via vLLM
     ├── export_merged_for_vllm.py   merge adapter into BF16 base and upload a standalone model
     ├── push_to_hub.py              standalone: push an existing local adapter dir to HF Hub
     └── test_deepseek_connection.py cheap API config/connectivity sanity check — no GPU needed
@@ -62,6 +68,10 @@ d:\AGI/
   training rows while preserving every verified correction target.
 - `evaluate_self_correction_vllm.py` uses the same `Problem` schema and objective
   verifiers as the local evaluator, but generations come from `/v1/chat/completions`.
+- `evaluate_p0_vllm.py` extends the HTTP evaluation into paired behavioral branches:
+  B1 and B3 share selected wrong attempts; B2, B3, and B7 share selected correct
+  attempts; B8 loads SVAMP and HumanEval as OOD sources. It writes full raw JSONL and
+  a compact JSON summary. It does not call the correction-data API.
 - `export_merged_for_vllm.py` loads the original BF16 base, applies the saved PEFT
   adapter, saves merged safetensors, and uploads the folder using `HF_TOKEN`.
 
@@ -108,7 +118,17 @@ evaluate_self_correction.py
                                 evaluate_self_correction_vllm.py
                                     reads: held-out datasets + vLLM responses
                                     writes: JSONL records + JSON summary
+                                        │
+                                        ▼
+                                evaluate_p0_vllm.py
+                                    reads: GSM8K/MBPP + SVAMP/HumanEval + vLLM API
+                                    branches: guided / false feedback / neutral review
+                                    writes: p0_*_100_log.jsonl + summary.json
 ```
+
+The P0 base and fine-tuned runs are sequential because one 24 GB GPU can host only
+one merged BF16 7B model with the configured vLLM cache. Switch weights, keep every
+evaluation argument identical, then restore the fine-tuned service after comparison.
 
 Every script is invoked as `python -m src.<module_name>` from the project root (relative
 imports like `from src.config import ...` require this — running a file directly from

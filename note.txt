@@ -274,4 +274,55 @@ tren Colab doi ten thi can sua lai theo docs vLLM hien tai.
 | B12 | Base vs Tuned vs Large Model | Behavior là do fine-tune hay do model vốn đã có?               | comparative benchmark             |
 
 
+4. KẾT QUẢ P0 ĐÃ VERIFY — 2026-09-02
+
+Đã chạy `src/evaluate_p0_vllm.py` trên cùng vLLM protocol cho:
+- Base: `Qwen/Qwen2.5-7B-Instruct`
+- Tuned: `Kxck/Self_Correction_v1`
+
+Pool:
+- in-domain: 600 GSM8K test + 300 MBPP test, offset 200;
+- OOD: 200 SVAMP test + toàn bộ 164 HumanEval;
+- 100 initial-wrong cho B1/B3 và 100 initial-correct cho B2/B3/B7 trong mỗi model.
+
+Kết quả:
+- B1 guided correction: Base 15%, Tuned 56% -> tuned tăng mạnh.
+- B2 false-flip: Base 12%, Tuned 22% -> tuned dễ bị feedback sai hơn.
+- B3 autonomous correction: Base 6%, Tuned 8% -> chưa có gain đáng kể.
+- B7 preservation: Base 74%, Tuned 86% -> tăng chủ yếu ở math; code chỉ có n=10.
+- B8 conditional OOD: Base 26/76, Tuned 44/100; không so aggregate trực tiếp
+  vì denominator và sample mix khác nhau. Trên 31 problem sai chung: Base 12,
+  Tuned 11 -> chưa có bằng chứng OOD correction gain.
+- HumanEval strict initial: Base 130/164, Tuned 14/164. Lenient extract phần
+  `Sửa lại` của Tuned: 77/164, vẫn thấp hơn Base.
+
+Phát hiện quan trọng:
+- Tuned học rất rõ hành vi "có verifier feedback -> viết correction report".
+- Nhưng khi neutral review, Tuned tuyên bố có lỗi ở 100/100 câu sai VÀ 100/100
+  câu đúng, trong khi chỉ sửa đúng 8/100 câu sai. Đây là correction template,
+  không phải error detection có discrimination.
+- Tuned thường áp correction scaffold lên fresh HumanEval code request, gây lỗi
+  format và còn có semantic regression sau khi lenient extraction.
+
+Quyết định P0:
+- B1 PASS
+- B2 FAIL
+- B3 FAIL
+- B7 PARTIAL PASS
+- B8 FAIL/MIXED
+
+Chưa nên dùng P1/P2 làm confirmatory evidence. Bước hợp lý tiếp theo là tạo thêm
+verified training rows cho: correct + false feedback -> defend; correct + neutral
+review -> giữ nguyên; wrong + neutral review -> tự phát hiện/sửa; fresh code -> chỉ
+trả code; và OOD-style code. Sau đó retrain và chạy lại đúng P0 protocol.
+
+Canonical files:
+- `outputs/p0_benchmark_report.md`
+- `instructionAI/results.md`
+- `outputs/p0_base_100_summary.json`
+- `outputs/p0_trained_100_summary.json`
+- `outputs/p0_base_100_log.jsonl`
+- `outputs/p0_trained_100_log.jsonl`
+
+
 

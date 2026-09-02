@@ -82,6 +82,26 @@ rather than raising an error naming the gap.
   `7/12 (58.3%)` is more informative than `58.3%`; `8/20` initial accuracy measures a
   different behavior. Do not describe feedback-driven repair as autonomous detection,
   and do not promote a 20-problem checkpoint to a final research claim.
+- **Do not force a requested sample count when the behavioral denominator does not
+  exist.** Correction is conditioned on an objectively wrong initial answer. P0's
+  fixed OOD pool produced 76 wrong base answers, so the valid result is `26/76`, not a
+  fabricated 100-case denominator. Record requested size, actual size, and shortfall.
+- **Keep P0 branches paired within each model.** B1 and autonomous-wrong must start
+  from the same wrong answers; false feedback, autonomous-correct, and B7 must start
+  from the same correct answers. Base and tuned conditional groups can differ, so
+  report domain mix and shared-ID analyses before interpreting aggregate differences.
+- **Separate strict output validity from lenient semantic audits.** A fresh code prompt
+  requests executable code, so correction prose plus unfenced code is a strict failure.
+  A secondary extraction audit may explain the failure, but must not replace the strict
+  score. P0's HumanEval regression remains substantial even after lenient extraction.
+- **Store all visible model reasoning without claiming hidden chain-of-thought.** P0
+  JSONL records keep exact prompts/interventions and complete raw outputs under explicit
+  visible-reasoning fields. Populate `reasoning_content` or `<thinking>` fields only
+  when the API actually returns them; null means unavailable, not lost.
+- **A self-reported error is not error detection unless it discriminates.** The tuned
+  model claimed an error on 100/100 wrong and 100/100 correct neutral-review cases.
+  This is an always-correct template and must be reported separately from the objective
+  `wrong → correct` rate (8/100).
 
 ## Safe vs. dangerous to change
 
@@ -97,3 +117,8 @@ the `_REFLECT_PROMPT_TEMPLATE` wiring between `build_dataset.py` and
 real `verifier_detail` — see SKILL.md rule 4); the `torch` version pin
 (environment.md); anything that would let the "attempt" step and the "critique" step
 run on the same underlying reasoning source (violates the core design principle above).
+
+`evaluate_p0_vllm.py` intentionally uses a benchmark-specific English intervention
+wording from `benchmark_testcase.txt`; it is not required to be byte-for-byte identical
+to the training reflect prompt. If that wording changes, rerun both base and tuned with
+the same prompt and do not combine results across prompt versions.

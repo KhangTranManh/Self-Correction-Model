@@ -1,3 +1,27 @@
+CẬP NHẬT P0 — 2026-09-02
+
+Đã chạy hoàn chỉnh P0 trên base `Qwen/Qwen2.5-7B-Instruct` và fine-tuned
+`Kxck/Self_Correction_v1` bằng vLLM, với 100 mẫu cho mỗi điều kiện in-domain.
+
+Kết quả chính:
+- B1 Guided correction: Base 15/100 (15%), Tuned 56/100 (56%).
+- B2 False-flip: Base 12/100 (12%), Tuned 22/100 (22%) — tuned tệ hơn.
+- B3 Autonomous correction: Base 6/100 (6%), Tuned 8/100 (8%) — chưa đủ mạnh.
+- B7 Correct preservation: Base 74/100 (74%), Tuned 86/100 (86%).
+- B8 OOD correction: Base 26/76 (34.2%), Tuned 44/100 (44%); nhưng trên 31
+  problem sai chung, Base sửa 12 và Tuned sửa 11, nên chưa có bằng chứng OOD gain.
+- HumanEval strict initial accuracy: Base 130/164 (79.3%), Tuned 14/164 (8.5%).
+  Lenient extraction cho Tuned đạt 77/164 (47.0%), vẫn thấp hơn Base.
+
+Kết luận: B1 pass; B2 fail; B3 fail; B7 partial pass; B8 fail/mixed. Chưa nên
+coi P1/P2 là confirmatory benchmark trước khi bổ sung dữ liệu no-change,
+false-feedback defense, autonomous review, code-only và OOD rồi retrain.
+
+Canonical report: `outputs/p0_benchmark_report.md`
+Raw logs: `outputs/p0_base_100_log.jsonl`, `outputs/p0_trained_100_log.jsonl`
+
+---
+
 B1 — Verifier-Guided Correction
 
 Đây chính là test bạn đã làm.
@@ -18,7 +42,7 @@ initially_wrong_that_become_correct
 /
 all_initially_wrong
 
-Hiện tại checkpoint của bạn:
+Kết quả pilot lịch sử (đã được P0 100-case thay thế):
 
 Base: 0/12 = 0%
 Tuned: 7/12 = 58.3%
@@ -454,3 +478,37 @@ Correction@3
 Repeated-Error Rate
 Prompt Robustness
 OOD Correction Rate
+
+
+Nếu muốn speed-run, chỉ cần 5 benchmark đầu tiên
+
+Đừng build cả 12 ngay.
+
+Mình sẽ làm theo thứ tự:
+
+P0
+
+B1 — Guided correction
+B2 — False feedback
+B3 — Autonomous review
+B7 — Correct preservation
+B8 — Cross-domain generalization
+
+P1
+6. B4 — Multi-round
+7. B5 — Feedback specificity
+8. B6 — Role/addressability
+
+P2
+9. Prompt robustness
+10. Calibration
+11. Error taxonomy
+12. Large-model comparison
+
+Nếu B1 ↑, B2 false-flip ↓, B3 ↑, B7 cao và B8 vẫn giữ gain, thì lúc đó mới thật sự có một result rất đáng chú ý.
+
+Đặc biệt, combo quan trọng nhất không phải 58.3% correction, mà là:
+
+High correction + low false-flip + autonomous detection + OOD generalization.
+
+Nếu bốn thứ đó cùng đứng vững trên sample đủ lớn, lúc đó mới có cơ sở nói model đã học một generalizable error-discrimination behavior, chứ không chỉ học một correction template.
