@@ -1,0 +1,34 @@
+{
+  "model_label": "self_correction_v1",
+  "served_model": "self_correction_v1",
+  "complete": true,
+  "expected": 1474,
+  "total": 1474,
+  "correct": 902,
+  "wrong": 572,
+  "accuracy": 0.6119402985074627,
+  "datasets": {
+    "gsm8k": {
+      "total": 1000,
+      "correct": 873,
+      "wrong": 127,
+      "accuracy": 0.873
+    },
+    "mbpp": {
+      "total": 474,
+      "correct": 29,
+      "wrong": 445,
+      "accuracy": 0.06118143459915612
+    }
+  },
+  "generation": {
+    "max_tokens": 1024,
+    "temperature": 0.7,
+    "top_p": 0.9,
+    "seed": 314159
+  },
+  "raw_attempts_sha256": "7a2d7e0622c2f39d0951f32e5a6f5ef991b723019efe242e9068df060a5da6c3",
+  "raw_attempts": "/home/ezycloudx-admin/AGI/phase3/data/attempts/self_correction_v1/raw_attempts.jsonl",
+  "correct_pool": "/home/ezycloudx-admin/AGI/phase3/data/attempts/self_correction_v1/correct.jsonl",
+  "wrong_pool": "/home/ezycloudx-admin/AGI/phase3/data/attempts/self_correction_v1/wrong.jsonl"
+}

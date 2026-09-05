@@ -1,0 +1,59 @@
+{
+  "definitions": {
+    "CC": "Base correct, Self_Correction_v1 correct",
+    "WW": "Base wrong, Self_Correction_v1 wrong",
+    "WC": "Base wrong, Self_Correction_v1 correct",
+    "CW": "Base correct, Self_Correction_v1 wrong"
+  },
+  "total_paired_problems": 1474,
+  "counts": {
+    "CC": 716,
+    "WW": 519,
+    "WC": 186,
+    "CW": 53
+  },
+  "counts_by_dataset": {
+    "gsm8k": {
+      "CC": 692,
+      "WW": 85,
+      "WC": 181,
+      "CW": 42
+    },
+    "mbpp": {
+      "CC": 24,
+      "WW": 434,
+      "WC": 5,
+      "CW": 11
+    }
+  },
+  "files": {
+    "CC": {
+      "base": "data/buckets/CC/base.jsonl",
+      "self_correction_v1": "data/buckets/CC/self_correction_v1.jsonl"
+    },
+    "WW": {
+      "base": "data/buckets/WW/base.jsonl",
+      "self_correction_v1": "data/buckets/WW/self_correction_v1.jsonl"
+    },
+    "WC": {
+      "base": "data/buckets/WC/base.jsonl",
+      "self_correction_v1": "data/buckets/WC/self_correction_v1.jsonl"
+    },
+    "CW": {
+      "base": "data/buckets/CW/base.jsonl",
+      "self_correction_v1": "data/buckets/CW/self_correction_v1.jsonl"
+    }
+  },
+  "assignments_file": "data/buckets/bucket_assignments.jsonl",
+  "sha256": {
+    "data/buckets/CC/base.jsonl": "e52c57d134ca6482500a5f52302945c3e3bec32fa06c19ff14000d4f7d1a3158",
+    "data/buckets/CC/self_correction_v1.jsonl": "78364374a4a3fa6f5fffb197dd96afed595c73939b8a4952f5ba32cdd22cb7ba",
+    "data/buckets/WW/base.jsonl": "20a2e6c25f87b0923d03b8c2a2467b0eaaa812e592d8f1bf5780418daff9563d",
+    "data/buckets/WW/self_correction_v1.jsonl": "884e373a04b81a9a5a989a4abc5665113f7ea544e5a5ad9791070f3ddd324319",
+    "data/buckets/WC/base.jsonl": "1e796f61296cc98d90a3d025e10266374a28cd6ab3e1b486235e48be0d6a1c2c",
+    "data/buckets/WC/self_correction_v1.jsonl": "7410a75728808c4bcc5950a042a907ff7c293f405c6dff36eb49f8be60d42e30",
+    "data/buckets/CW/base.jsonl": "51bce6f76db60e29df04f24c2ade18358b26d12767d338b02c1bf857859b08eb",
+    "data/buckets/CW/self_correction_v1.jsonl": "681a17ec89b4e20b2b514a1878771d3a074aa819e33d241186311df6a7d3860c",
+    "data/buckets/bucket_assignments.jsonl": "f00dcbdfa9cb8e9489fd59ffa9717e8d8d7d96c3d1249582ff05025597cb59a8"
+  }
+}

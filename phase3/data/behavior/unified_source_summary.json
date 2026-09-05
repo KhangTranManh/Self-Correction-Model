@@ -1,0 +1,225 @@
+{
+  "total_rows": 1774,
+  "unique_ids": 1774,
+  "counts_by_dataset": {
+    "apps": 300,
+    "gsm8k": 1000,
+    "mbpp": 474
+  },
+  "counts_by_domain": {
+    "code": 774,
+    "math": 1000
+  },
+  "counts_by_bucket": {
+    "CC": 836,
+    "WW": 651,
+    "WC": 207,
+    "CW": 80
+  },
+  "counts_by_dataset_and_bucket": {
+    "apps": {
+      "CC": 120,
+      "WW": 132,
+      "WC": 21,
+      "CW": 27
+    },
+    "gsm8k": {
+      "CC": 692,
+      "WW": 85,
+      "WC": 181,
+      "CW": 42
+    },
+    "mbpp": {
+      "CC": 24,
+      "WW": 434,
+      "WC": 5,
+      "CW": 11
+    }
+  },
+  "counts_by_domain_and_bucket": {
+    "code": {
+      "CC": 144,
+      "WW": 566,
+      "WC": 26,
+      "CW": 38
+    },
+    "math": {
+      "CC": 692,
+      "WW": 85,
+      "WC": 181,
+      "CW": 42
+    }
+  },
+  "eligible_rows_by_behavior": {
+    "normal_solve": 287,
+    "preserve_false_feedback": 1043,
+    "preserve_neutral": 1043,
+    "regression_recovery": 80,
+    "repair_neutral": 651,
+    "repair_true_feedback": 651
+  },
+  "behavior_by_domain": {
+    "normal_solve": {
+      "code": 64,
+      "math": 223
+    },
+    "preserve_false_feedback": {
+      "code": 170,
+      "math": 873
+    },
+    "preserve_neutral": {
+      "code": 170,
+      "math": 873
+    },
+    "regression_recovery": {
+      "code": 38,
+      "math": 42
+    },
+    "repair_neutral": {
+      "code": 566,
+      "math": 85
+    },
+    "repair_true_feedback": {
+      "code": 566,
+      "math": 85
+    }
+  },
+  "behavior_by_dataset": {
+    "normal_solve": {
+      "apps": 48,
+      "gsm8k": 223,
+      "mbpp": 16
+    },
+    "preserve_false_feedback": {
+      "apps": 141,
+      "gsm8k": 873,
+      "mbpp": 29
+    },
+    "preserve_neutral": {
+      "apps": 141,
+      "gsm8k": 873,
+      "mbpp": 29
+    },
+    "regression_recovery": {
+      "apps": 27,
+      "gsm8k": 42,
+      "mbpp": 11
+    },
+    "repair_neutral": {
+      "apps": 132,
+      "gsm8k": 85,
+      "mbpp": 434
+    },
+    "repair_true_feedback": {
+      "apps": 132,
+      "gsm8k": 85,
+      "mbpp": 434
+    }
+  },
+  "eligible_action_source_counts_by_domain": {
+    "KEEP": {
+      "math": 873,
+      "code": 170
+    },
+    "REVISE": {
+      "math": 127,
+      "code": 604
+    }
+  },
+  "v1_correct_source_pool": {
+    "total": 1043,
+    "math": 873,
+    "code": 170,
+    "by_dataset": {
+      "apps": 141,
+      "gsm8k": 873,
+      "mbpp": 29
+    }
+  },
+  "v1_wrong_source_pool": {
+    "total": 731,
+    "math": 127,
+    "code": 604,
+    "by_dataset": {
+      "apps": 159,
+      "gsm8k": 127,
+      "mbpp": 445
+    }
+  },
+  "code_preserve_source_count": 170,
+  "code_repair_source_count": 566,
+  "code_regression_recovery_source_count": 38,
+  "code_revise_source_count_including_regression_recovery": 604,
+  "inconsistent_rows": [],
+  "duplicate_ids": [],
+  "missing_required_fields": [],
+  "invalid_eligibility_rows": [],
+  "frozen_evaluation_rows": [],
+  "humaneval_rows": [],
+  "count_discrepancies": {
+    "counts_by_dataset_and_bucket": {},
+    "combined_bucket_counts": {}
+  },
+  "validation": {
+    "expected_total_1774": true,
+    "all_ids_unique": true,
+    "original_row_count_unchanged": true,
+    "apps_row_count_300": true,
+    "known_dataset_bucket_counts_match": true,
+    "no_inconsistent_rows": true,
+    "no_missing_required_fields": true,
+    "eligibility_mapping_exact": true,
+    "no_frozen_evaluation_rows": true,
+    "no_humaneval_rows": true,
+    "all_passed": true
+  },
+  "output": {
+    "inventory": "data/behavior/unified_source_inventory.jsonl",
+    "inventory_sha256": "499ef89532dcfe439a4e7cdfe4ad19eee23f8083ad97082e6bbbbbb47b666674",
+    "summary": "data/behavior/unified_source_summary.json"
+  },
+  "inputs": {
+    "original_inventory": {
+      "path": "data/source_inventory.jsonl",
+      "sha256": "9ef230f8ad1a449634c625b70dee2d825c36a2424c7467497d39b312c02e7889"
+    },
+    "original_source": {
+      "path": "data/source/problems.jsonl",
+      "sha256": "0d6d04e28db674728636b4d3ce8e01a0a09cd1077567a930db26865c6c4ae8ea"
+    },
+    "original_assignments": {
+      "path": "data/buckets/bucket_assignments.jsonl",
+      "sha256": "f00dcbdfa9cb8e9489fd59ffa9717e8d8d7d96c3d1249582ff05025597cb59a8"
+    },
+    "original_base_attempts": {
+      "path": "data/attempts/base/raw_attempts.jsonl",
+      "sha256": "004f304734af42090fde5f164643faa1f7100d05fe2299626302067df22a2ac0"
+    },
+    "original_v1_attempts": {
+      "path": "data/attempts/self_correction_v1/raw_attempts.jsonl",
+      "sha256": "7a2d7e0622c2f39d0951f32e5a6f5ef991b723019efe242e9068df060a5da6c3"
+    },
+    "apps_source": {
+      "path": "data/apps_pilot/candidates/code_candidates.jsonl",
+      "sha256": "eb4a3347309e386c1314f50f01c60711a604809894ee9a909607dbb30b656f29"
+    },
+    "apps_assignments": {
+      "path": "data/apps_pilot/buckets/bucket_assignments.jsonl",
+      "sha256": "1526ddded86e9fd8233d142e18d4dfa260092ecbd11a9bdeb8a97323214369ef"
+    },
+    "apps_base_attempts": {
+      "path": "data/apps_pilot/attempts/base/raw_attempts.jsonl",
+      "sha256": "960bdefcf46f761f2f6b25ba53ab6004c8015e83694c190c448c42cd54bca468"
+    },
+    "apps_v1_attempts": {
+      "path": "data/apps_pilot/attempts/self_correction_v1/raw_attempts.jsonl",
+      "sha256": "57937a2d322e2286fbc2e62fa14e23c37fbde6a389e9b14d1361e38962786596"
+    }
+  },
+  "notes": {
+    "initial_state_semantics": "initial_state and phase3_initial_state refer to Self_Correction_v1 correctness, the checkpoint entering Phase 3",
+    "revise_semantics": "REVISE includes WW repair and CW regression recovery; code_repair_source_count reports WW repair only",
+    "cw_constraint": "CW rows are eligible for regression_recovery and normal_solve, never ordinary repair",
+    "source_content": "Prompts, tests, solutions, and raw model outputs remain in referenced source/attempt artifacts"
+  }
+}

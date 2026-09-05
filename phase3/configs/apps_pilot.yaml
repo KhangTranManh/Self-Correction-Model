@@ -1,0 +1,56 @@
+dataset:
+  name: "codeparrot/apps"
+  revision: "21e74ddf8de1a21436da12e3e653065c5213e9d1"
+  split: "train"
+  difficulty: "introductory"
+  pilot_size: 300
+  selection_seed: 314159
+  raw_file: "data/raw/train.jsonl"
+  # Fixed before inference. These quotas increase source/test-mode diversity
+  # without looking at either model's correctness.
+  diversity_quotas:
+    "www.codewars.com|call_based": 166
+    "leetcode.com|call_based": 55
+    "www.hackerrank.com|call_based": 4
+    "www.hackerrank.com|standard_input": 44
+    "codeforces.com|standard_input": 30
+    "atcoder.jp|standard_input": 1
+
+models:
+  base:
+    model_id: "Qwen/Qwen2.5-7B-Instruct"
+    served_model_name: "base"
+  self_correction_v1:
+    model_id: "Kxck/Self_Correction_v1"
+    served_model_name: "self_correction_v1"
+
+generation:
+  max_tokens: 2048
+  temperature: 0.7
+  top_p: 0.9
+  seed: 314159
+  concurrency: 32
+  batch_size: 32
+  request_timeout_seconds: 900
+  max_retries: 3
+
+verifier:
+  per_test_timeout_seconds: 3
+  per_problem_timeout_seconds: 30
+  memory_limit_mb: 512
+  max_output_bytes: 1048576
+
+decision_gate:
+  minimum_v1_correct_count: 60
+  minimum_v1_correct_rate: 0.20
+  require_both_test_modes: true
+  minimum_source_hosts: 3
+  maximum_single_source_fraction: 0.70
+
+paths:
+  candidates: "data/apps_pilot/candidates/code_candidates.jsonl"
+  candidate_summary: "data/apps_pilot/candidates/candidate_summary.json"
+  selection_exclusions: "data/apps_pilot/candidates/selection_exclusions.jsonl"
+  attempts_dir: "data/apps_pilot/attempts"
+  buckets_dir: "data/apps_pilot/buckets"
+  report: "data/apps_pilot/report.json"

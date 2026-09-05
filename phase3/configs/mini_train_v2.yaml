@@ -1,0 +1,62 @@
+experiment:
+  name: phase3_behavior_pilot_v2_2epoch
+  seed: 314159
+  upload_to_hub: false
+
+model:
+  original_base_model: Qwen/Qwen2.5-7B-Instruct
+  training_checkpoint: Kxck/Self_Correction_v1
+  load_in_4bit: true
+  quant_type: nf4
+  double_quant: true
+  compute_dtype: bfloat16
+  new_lora_r: 32
+  new_lora_alpha: 64
+  new_lora_dropout: 0.0
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+
+data:
+  train_path: data/behavior/mini_train_v2/train.jsonl
+  # Byte-identical copy of the original 30-row dev set.
+  dev_path: data/behavior/mini_train_v2/dev.jsonl
+  expected_train_rows: 170
+  expected_dev_rows: 30
+  max_seq_length: 8192
+  train_on_final_assistant_only: true
+  exact_contract_train_rows: 144
+  format_only_rows: 16
+
+training:
+  epochs: 2
+  micro_batch_size: 1
+  gradient_accumulation_steps: 8
+  effective_batch_size: 8
+  learning_rate: 0.00003
+  warmup_ratio: 0.1
+  lr_scheduler_type: cosine
+  weight_decay: 0.0
+  gradient_checkpointing: true
+  optim: paged_adamw_8bit
+  logging_steps: 1
+  save_strategy: 'no'
+
+output:
+  root: outputs/phase3_behavior_pilot_v2_2epoch
+  final_adapter: outputs/phase3_behavior_pilot_v2_2epoch/final_adapter
+  train_report: outputs/phase3_behavior_pilot_v2_2epoch/train_report.json
+
+micro_eval:
+  dev_sha256: 29a90c9cc74747b158bd79f3662f68e220b296ef2a101f2be1d432cea9a9ef07
+  temperature: 0.0
+  max_tokens: 4096
+  seed: 314159
+  baseline_model: self-correction-v1
+  candidate_model: phase3-pilot-v2-2epoch
+  pass_gate_note: Small n=5 per condition; use direction and failure inspection, not significance claims.

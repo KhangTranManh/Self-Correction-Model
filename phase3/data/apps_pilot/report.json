@@ -1,0 +1,97 @@
+{
+  "definitions": {
+    "CC": "Base correct, Self_Correction_v1 correct",
+    "WW": "Base wrong, Self_Correction_v1 wrong",
+    "WC": "Base wrong, Self_Correction_v1 correct",
+    "CW": "Base correct, Self_Correction_v1 wrong"
+  },
+  "complete": true,
+  "total": 300,
+  "counts": {
+    "CC": 120,
+    "WW": 132,
+    "WC": 21,
+    "CW": 27
+  },
+  "base_correct": 147,
+  "base_correct_rate": 0.49,
+  "v1_correct": 141,
+  "v1_correct_rate": 0.47,
+  "v1_net_correct_gain": -6,
+  "counts_by_test_mode": {
+    "call_based": {
+      "CC": 88,
+      "WW": 96,
+      "WC": 19,
+      "CW": 22
+    },
+    "standard_input": {
+      "CC": 32,
+      "WW": 36,
+      "WC": 2,
+      "CW": 5
+    }
+  },
+  "counts_by_source_host": {
+    "atcoder.jp": {
+      "CC": 1,
+      "WW": 0,
+      "WC": 0,
+      "CW": 0
+    },
+    "codeforces.com": {
+      "CC": 2,
+      "WW": 27,
+      "WC": 1,
+      "CW": 0
+    },
+    "leetcode.com": {
+      "CC": 31,
+      "WW": 7,
+      "WC": 3,
+      "CW": 14
+    },
+    "www.codewars.com": {
+      "CC": 55,
+      "WW": 88,
+      "WC": 15,
+      "CW": 8
+    },
+    "www.hackerrank.com": {
+      "CC": 31,
+      "WW": 10,
+      "WC": 2,
+      "CW": 5
+    }
+  },
+  "decision_gate": {
+    "thresholds": {
+      "minimum_v1_correct_count": 60,
+      "minimum_v1_correct_rate": 0.2,
+      "require_both_test_modes": true,
+      "minimum_source_hosts": 3,
+      "maximum_single_source_fraction": 0.7
+    },
+    "checks": {
+      "v1_correct_count": true,
+      "v1_correct_rate": true,
+      "both_test_modes": true,
+      "minimum_source_hosts": true,
+      "maximum_single_source_fraction": true
+    },
+    "scale_recommended": true,
+    "decision": "APPS introductory is suitable to scale for Phase 3 code-correct coverage"
+  },
+  "candidate_sha256": "eb4a3347309e386c1314f50f01c60711a604809894ee9a909607dbb30b656f29",
+  "input_sha256": {
+    "base_attempts": "960bdefcf46f761f2f6b25ba53ab6004c8015e83694c190c448c42cd54bca468",
+    "self_correction_v1_attempts": "57937a2d322e2286fbc2e62fa14e23c37fbde6a389e9b14d1361e38962786596"
+  },
+  "output_sha256": {
+    "data/apps_pilot/buckets/CC.jsonl": "b4687924aff5b74181d9691a073e6d8713f9582a704b80ae9aef9ca7c498a871",
+    "data/apps_pilot/buckets/WW.jsonl": "ecbc7cfd0c060dbf10fa002b982eedcc449129f16f40b903c24e60fea4bc9512",
+    "data/apps_pilot/buckets/WC.jsonl": "1f82477707a216ed29aded886ccfc1a5d3c3290595a42696aacc542d2442f22d",
+    "data/apps_pilot/buckets/CW.jsonl": "b31464d8f8614979e0c8640e2931df51e0ac424208f316042aa6ae0675c0f7cb",
+    "data/apps_pilot/buckets/bucket_assignments.jsonl": "1526ddded86e9fd8233d142e18d4dfa260092ecbd11a9bdeb8a97323214369ef"
+  }
+}

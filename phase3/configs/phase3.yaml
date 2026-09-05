@@ -1,0 +1,33 @@
+model:
+  base_model: "Qwen/Qwen2.5-7B-Instruct"
+  tuned_model: "Kxck/Self_Correction_v1"
+  tuned_model_format: "merged_checkpoint"
+
+dataset:
+  # P0 uses GSM8K test + MBPP full/test. Phase 3 uses only disjoint train-side
+  # splits, so the frozen benchmark remains untouched.
+  gsm8k_train_limit: 1000
+  mbpp_splits:
+    train: 374
+    validation: 90
+    prompt: 10
+
+generation:
+  max_tokens: 1024
+  temperature: 0.7
+  top_p: 0.9
+  seed: 314159
+  concurrency: 32
+  batch_size: 64
+  request_timeout_seconds: 900
+  max_retries: 3
+
+verifier:
+  code_timeout_seconds: 5
+  code_memory_limit_mb: 256
+
+paths:
+  source_problems: "data/source/problems.jsonl"
+  source_manifest: "data/source/manifest.json"
+  source_inventory: "data/source_inventory.jsonl"
+  attempts_dir: "data/attempts"

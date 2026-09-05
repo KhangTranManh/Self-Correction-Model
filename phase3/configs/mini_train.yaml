@@ -1,0 +1,60 @@
+experiment:
+  name: phase3_behavior_pilot_1epoch
+  seed: 314159
+  upload_to_hub: false
+
+model:
+  original_base_model: Qwen/Qwen2.5-7B-Instruct
+  # The Hub repo is a merged V1 checkpoint (config + four model shards), not a
+  # PEFT adapter repo. Train a new Phase-3 LoRA on top of these V1 weights.
+  training_checkpoint: Kxck/Self_Correction_v1
+  load_in_4bit: true
+  quant_type: nf4
+  double_quant: true
+  compute_dtype: bfloat16
+  new_lora_r: 32
+  new_lora_alpha: 64
+  new_lora_dropout: 0.0
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+
+data:
+  train_path: data/behavior/mini_train/train.jsonl
+  dev_path: data/behavior/mini_train/dev.jsonl
+  expected_train_rows: 120
+  expected_dev_rows: 30
+  max_seq_length: 8192
+  train_on_final_assistant_only: true
+
+training:
+  epochs: 1
+  micro_batch_size: 1
+  gradient_accumulation_steps: 8
+  effective_batch_size: 8
+  learning_rate: 0.00005
+  warmup_ratio: 0.1
+  lr_scheduler_type: cosine
+  weight_decay: 0.0
+  gradient_checkpointing: true
+  optim: paged_adamw_8bit
+  logging_steps: 1
+  save_strategy: 'no'
+
+output:
+  root: outputs/phase3_behavior_pilot_1epoch
+  final_adapter: outputs/phase3_behavior_pilot_1epoch/final_adapter
+  train_report: outputs/phase3_behavior_pilot_1epoch/train_report.json
+
+micro_eval:
+  temperature: 0.0
+  max_tokens: 4096
+  seed: 314159
+  baseline_model: self-correction-v1
+  candidate_model: phase3-pilot-1epoch
+  pass_gate_note: Small n=5 per condition; use direction and failure inspection, not significance claims.

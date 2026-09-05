@@ -1,0 +1,35 @@
+{
+  "model_label": "base",
+  "model_id": "Qwen/Qwen2.5-7B-Instruct",
+  "served_model": "base",
+  "complete": true,
+  "expected": 300,
+  "total": 300,
+  "correct": 147,
+  "wrong": 153,
+  "accuracy": 0.49,
+  "candidate_sha256": "eb4a3347309e386c1314f50f01c60711a604809894ee9a909607dbb30b656f29",
+  "generation": {
+    "max_tokens": 2048,
+    "temperature": 0.7,
+    "top_p": 0.9,
+    "seed": 314159
+  },
+  "correct_by_test_mode": {
+    "call_based": 110,
+    "standard_input": 37
+  },
+  "total_by_test_mode": {
+    "call_based": 225,
+    "standard_input": 75
+  },
+  "correct_by_source_host": {
+    "atcoder.jp": 1,
+    "codeforces.com": 2,
+    "leetcode.com": 45,
+    "www.codewars.com": 63,
+    "www.hackerrank.com": 36
+  },
+  "raw_attempts": "/root/apps_pilot/data/apps_pilot/attempts/base/raw_attempts.jsonl",
+  "raw_attempts_sha256": "960bdefcf46f761f2f6b25ba53ab6004c8015e83694c190c448c42cd54bca468"
+}

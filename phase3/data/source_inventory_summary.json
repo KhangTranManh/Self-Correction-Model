@@ -1,0 +1,52 @@
+{
+  "total": 1474,
+  "unique_ids": 1474,
+  "counts_by_bucket": {
+    "CC": 716,
+    "WW": 519,
+    "WC": 186,
+    "CW": 53
+  },
+  "counts_by_dataset_and_bucket": {
+    "gsm8k": {
+      "CC": 692,
+      "WW": 85,
+      "WC": 181,
+      "CW": 42
+    },
+    "mbpp": {
+      "CC": 24,
+      "WW": 434,
+      "WC": 5,
+      "CW": 11
+    }
+  },
+  "eligible_rows_by_behavior": {
+    "normal_solve": 53,
+    "preserve_false_feedback": 902,
+    "preserve_neutral": 902,
+    "regression_recovery": 53,
+    "repair_neutral": 519,
+    "repair_true_feedback": 519
+  },
+  "behavior_mapping": {
+    "CC": [
+      "preserve_false_feedback",
+      "preserve_neutral"
+    ],
+    "WW": [
+      "repair_true_feedback",
+      "repair_neutral"
+    ],
+    "WC": [
+      "preserve_false_feedback",
+      "preserve_neutral"
+    ],
+    "CW": [
+      "normal_solve",
+      "regression_recovery"
+    ]
+  },
+  "inventory_file": "data/source_inventory.jsonl",
+  "sha256": "9ef230f8ad1a449634c625b70dee2d825c36a2424c7467497d39b312c02e7889"
+}

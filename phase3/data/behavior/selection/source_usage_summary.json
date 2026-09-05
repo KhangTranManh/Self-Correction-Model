@@ -1,0 +1,419 @@
+{
+  "actual_max_source_usage": 2,
+  "available_source_count": 1774,
+  "counterfactual_pair_source_count": 120,
+  "max_behavior_rows_per_source": 2,
+  "non_pair_sources_used_twice_with_explicit_justification": [
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "apps_train_2411"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "apps_train_2421"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "apps_train_2457"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "apps_train_2463"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "apps_train_2475"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "apps_train_2481"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "apps_train_2502"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "apps_train_2516"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "apps_train_2523"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "apps_train_2528"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "apps_train_2542"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "apps_train_2583"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "apps_train_2628"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "apps_train_2629"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "apps_train_2632"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "apps_train_2636"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "apps_train_2699"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "apps_train_2719"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "apps_train_2956"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "apps_train_3197"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "apps_train_3248"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "apps_train_4105"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "apps_train_4331"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "mbpp_train_610"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "mbpp_train_616"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "mbpp_train_654"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "mbpp_train_703"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "mbpp_train_825"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "mbpp_train_830"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "mbpp_train_843"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "mbpp_train_848"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "mbpp_train_945"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "mbpp_train_961"
+    },
+    {
+      "conditions": [
+        "normal_solve",
+        "regression_recovery"
+      ],
+      "justifications": [
+        "Code NORMAL has only 26 WC sources; this CW source supplies a fresh-solve anchor and regression-recovery row within the two-row cap. Later targets must use a verified reference or Base-correct solution, never V1-wrong output."
+      ],
+      "source_id": "mbpp_validation_578"
+    }
+  ],
+  "selected_behavior_row_count": 860,
+  "selected_unique_source_count": 706,
+  "selection_seed": 314159,
+  "sources_used_more_than_twice": [],
+  "unselected_source_count": 1068,
+  "usage_by_bucket": {
+    "CC": {
+      "available_sources": 836,
+      "unused_sources": 576,
+      "used_once": 210,
+      "used_twice": 50
+    },
+    "CW": {
+      "available_sources": 80,
+      "unused_sources": 0,
+      "used_once": 46,
+      "used_twice": 34
+    },
+    "WC": {
+      "available_sources": 207,
+      "unused_sources": 71,
+      "used_once": 126,
+      "used_twice": 10
+    },
+    "WW": {
+      "available_sources": 651,
+      "unused_sources": 421,
+      "used_once": 170,
+      "used_twice": 60
+    }
+  },
+  "usage_by_dataset": {
+    "apps": {
+      "available_sources": 300,
+      "unused_sources": 48,
+      "used_once": 199,
+      "used_twice": 53
+    },
+    "gsm8k": {
+      "available_sources": 1000,
+      "unused_sources": 648,
+      "used_once": 282,
+      "used_twice": 70
+    },
+    "mbpp": {
+      "available_sources": 474,
+      "unused_sources": 372,
+      "used_once": 71,
+      "used_twice": 31
+    }
+  },
+  "usage_by_domain": {
+    "code": {
+      "available_sources": 774,
+      "unused_sources": 420,
+      "used_once": 270,
+      "used_twice": 84
+    },
+    "math": {
+      "available_sources": 1000,
+      "unused_sources": 648,
+      "used_once": 282,
+      "used_twice": 70
+    }
+  },
+  "usage_histogram": {
+    "0": 1068,
+    "1": 552,
+    "2": 154,
+    ">2": 0
+  }
+}

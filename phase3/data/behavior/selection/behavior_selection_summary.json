@@ -1,0 +1,420 @@
+{
+  "counterfactual_pair_count": 120,
+  "counts_by_behavior": {
+    "normal_solve": 120,
+    "preserve": 370,
+    "regression_recovery": 80,
+    "repair": 290
+  },
+  "counts_by_bucket": {
+    "CC": 310,
+    "CW": 114,
+    "WC": 146,
+    "WW": 290
+  },
+  "counts_by_condition": {
+    "normal_solve": 120,
+    "preserve_false_feedback": 185,
+    "preserve_neutral": 185,
+    "regression_recovery": 80,
+    "repair_neutral": 145,
+    "repair_true_feedback": 145
+  },
+  "counts_by_dataset": {
+    "apps": 305,
+    "gsm8k": 422,
+    "mbpp": 133
+  },
+  "counts_by_decision": {
+    "KEEP": 370,
+    "NORMAL": 120,
+    "RECOVER": 80,
+    "REVISE": 290
+  },
+  "counts_by_domain": {
+    "code": 438,
+    "math": 422
+  },
+  "cross_tabs": {
+    "behavior_x_dataset": {
+      "normal_solve": {
+        "apps": 44,
+        "gsm8k": 60,
+        "mbpp": 16
+      },
+      "preserve": {
+        "apps": 134,
+        "gsm8k": 200,
+        "mbpp": 36
+      },
+      "regression_recovery": {
+        "apps": 27,
+        "gsm8k": 42,
+        "mbpp": 11
+      },
+      "repair": {
+        "apps": 100,
+        "gsm8k": 120,
+        "mbpp": 70
+      }
+    },
+    "behavior_x_domain": {
+      "normal_solve": {
+        "code": 60,
+        "math": 60
+      },
+      "preserve": {
+        "code": 170,
+        "math": 200
+      },
+      "regression_recovery": {
+        "code": 38,
+        "math": 42
+      },
+      "repair": {
+        "code": 170,
+        "math": 120
+      }
+    },
+    "bucket_x_condition": {
+      "CC": {
+        "normal_solve": 0,
+        "preserve_false_feedback": 155,
+        "preserve_neutral": 155,
+        "regression_recovery": 0,
+        "repair_neutral": 0,
+        "repair_true_feedback": 0
+      },
+      "CW": {
+        "normal_solve": 34,
+        "preserve_false_feedback": 0,
+        "preserve_neutral": 0,
+        "regression_recovery": 80,
+        "repair_neutral": 0,
+        "repair_true_feedback": 0
+      },
+      "WC": {
+        "normal_solve": 86,
+        "preserve_false_feedback": 30,
+        "preserve_neutral": 30,
+        "regression_recovery": 0,
+        "repair_neutral": 0,
+        "repair_true_feedback": 0
+      },
+      "WW": {
+        "normal_solve": 0,
+        "preserve_false_feedback": 0,
+        "preserve_neutral": 0,
+        "regression_recovery": 0,
+        "repair_neutral": 145,
+        "repair_true_feedback": 145
+      }
+    },
+    "condition_x_dataset": {
+      "normal_solve": {
+        "apps": 44,
+        "gsm8k": 60,
+        "mbpp": 16
+      },
+      "preserve_false_feedback": {
+        "apps": 67,
+        "gsm8k": 100,
+        "mbpp": 18
+      },
+      "preserve_neutral": {
+        "apps": 67,
+        "gsm8k": 100,
+        "mbpp": 18
+      },
+      "regression_recovery": {
+        "apps": 27,
+        "gsm8k": 42,
+        "mbpp": 11
+      },
+      "repair_neutral": {
+        "apps": 50,
+        "gsm8k": 60,
+        "mbpp": 35
+      },
+      "repair_true_feedback": {
+        "apps": 50,
+        "gsm8k": 60,
+        "mbpp": 35
+      }
+    },
+    "condition_x_domain": {
+      "normal_solve": {
+        "code": 60,
+        "math": 60
+      },
+      "preserve_false_feedback": {
+        "code": 85,
+        "math": 100
+      },
+      "preserve_neutral": {
+        "code": 85,
+        "math": 100
+      },
+      "regression_recovery": {
+        "code": 38,
+        "math": 42
+      },
+      "repair_neutral": {
+        "code": 85,
+        "math": 60
+      },
+      "repair_true_feedback": {
+        "code": 85,
+        "math": 60
+      }
+    },
+    "decision_x_dataset": {
+      "KEEP": {
+        "apps": 134,
+        "gsm8k": 200,
+        "mbpp": 36
+      },
+      "NORMAL": {
+        "apps": 44,
+        "gsm8k": 60,
+        "mbpp": 16
+      },
+      "RECOVER": {
+        "apps": 27,
+        "gsm8k": 42,
+        "mbpp": 11
+      },
+      "REVISE": {
+        "apps": 100,
+        "gsm8k": 120,
+        "mbpp": 70
+      }
+    },
+    "decision_x_domain": {
+      "KEEP": {
+        "code": 170,
+        "math": 200
+      },
+      "NORMAL": {
+        "code": 60,
+        "math": 60
+      },
+      "RECOVER": {
+        "code": 38,
+        "math": 42
+      },
+      "REVISE": {
+        "code": 170,
+        "math": 120
+      }
+    }
+  },
+  "design_notes": {
+    "code_keep": "Uses 140 unique CC sources (24 MBPP, 116 APPS); all 26 code WC sources are reserved for NORMAL anchors.",
+    "code_revise": "Each condition uses 35 MBPP and 50 APPS WW sources to keep both datasets represented and reduce dataset/decision shortcut pressure.",
+    "content_boundary": "Manifest contains metadata and references only; no prompts, tests, solutions, teacher outputs, or full model outputs are copied.",
+    "cw_semantics": "CW is never ordinary REVISE; every CW source is retained as regression_recovery.",
+    "normal_cw_exception": "Code NORMAL needs 60 rows but only 26 code WC sources exist, so 34 CW sources are also selected with reference/Base-correct target requirements and an explicit two-row-cap justification."
+  },
+  "determinism": {
+    "independent_in_memory_rebuild_byte_identical": true,
+    "output_order": "selection_id ASC; JSON keys sorted; UTF-8 with LF newlines",
+    "sampling_algorithm": "SHA-256 rank of '<seed>|<selection_context>|<source_id>', then stable source position",
+    "seed": 314159,
+    "stable_pre_sampling_order": "dataset ASC, normalized source_index ASC, source_id ASC"
+  },
+  "input": {
+    "path": "data/behavior/unified_source_inventory.jsonl",
+    "sha256": "499ef89532dcfe439a4e7cdfe4ad19eee23f8083ad97082e6bbbbbb47b666674",
+    "total_rows": 1774
+  },
+  "max_source_usage": 2,
+  "percentage_core_behavior_rows_paired": 36.3636,
+  "percentage_rows_paired": 27.907,
+  "rows_in_counterfactual_pairs": 240,
+  "rows_per_unique_source": 1.21813,
+  "schema_version": "phase3_behavior_selection_v1",
+  "selection_seed": 314159,
+  "shortage_by_target_cell": {},
+  "shortcut_diagnostics": {
+    "absolute_probability_gaps": {
+      "all_rows_keep_math_vs_code": 0.085806,
+      "all_rows_revise_math_vs_code": 0.103768,
+      "core_keep_mbpp_vs_apps": 0.233027,
+      "core_revise_mbpp_vs_apps": 0.233027
+    },
+    "core_denominator_note": "Core probabilities exclude NORMAL and RECOVER rows.",
+    "core_probabilities": {
+      "P(KEEP|apps,core)": {
+        "denominator": 234,
+        "numerator": 134,
+        "probability": 0.57265
+      },
+      "P(KEEP|code,core)": {
+        "denominator": 340,
+        "numerator": 170,
+        "probability": 0.5
+      },
+      "P(KEEP|math,core)": {
+        "denominator": 320,
+        "numerator": 200,
+        "probability": 0.625
+      },
+      "P(KEEP|mbpp,core)": {
+        "denominator": 106,
+        "numerator": 36,
+        "probability": 0.339623
+      },
+      "P(REVISE|apps,core)": {
+        "denominator": 234,
+        "numerator": 100,
+        "probability": 0.42735
+      },
+      "P(REVISE|code,core)": {
+        "denominator": 340,
+        "numerator": 170,
+        "probability": 0.5
+      },
+      "P(REVISE|math,core)": {
+        "denominator": 320,
+        "numerator": 120,
+        "probability": 0.375
+      },
+      "P(REVISE|mbpp,core)": {
+        "denominator": 106,
+        "numerator": 70,
+        "probability": 0.660377
+      }
+    },
+    "denominator_note": "Requested probabilities use every selected row in the conditioning group.",
+    "requested_probabilities": {
+      "P(KEEP|apps)": {
+        "denominator": 305,
+        "numerator": 134,
+        "probability": 0.439344
+      },
+      "P(KEEP|code)": {
+        "denominator": 438,
+        "numerator": 170,
+        "probability": 0.388128
+      },
+      "P(KEEP|math)": {
+        "denominator": 422,
+        "numerator": 200,
+        "probability": 0.473934
+      },
+      "P(KEEP|mbpp)": {
+        "denominator": 133,
+        "numerator": 36,
+        "probability": 0.270677
+      },
+      "P(REVISE|apps)": {
+        "denominator": 305,
+        "numerator": 100,
+        "probability": 0.327869
+      },
+      "P(REVISE|code)": {
+        "denominator": 438,
+        "numerator": 170,
+        "probability": 0.388128
+      },
+      "P(REVISE|math)": {
+        "denominator": 422,
+        "numerator": 120,
+        "probability": 0.28436
+      },
+      "P(REVISE|mbpp)": {
+        "denominator": 133,
+        "numerator": 70,
+        "probability": 0.526316
+      }
+    },
+    "severe_imbalance_flags": [],
+    "severe_imbalance_threshold": 0.3
+  },
+  "sources_used_more_than_twice": [],
+  "sources_used_once": 552,
+  "sources_used_twice": 154,
+  "target_cells": {
+    "code::normal_solve": {
+      "actual": 60,
+      "shortage": 0,
+      "target": 60
+    },
+    "code::preserve_false_feedback": {
+      "actual": 85,
+      "shortage": 0,
+      "target": 85
+    },
+    "code::preserve_neutral": {
+      "actual": 85,
+      "shortage": 0,
+      "target": 85
+    },
+    "code::regression_recovery": {
+      "actual": 38,
+      "shortage": 0,
+      "target": 38
+    },
+    "code::repair_neutral": {
+      "actual": 85,
+      "shortage": 0,
+      "target": 85
+    },
+    "code::repair_true_feedback": {
+      "actual": 85,
+      "shortage": 0,
+      "target": 85
+    },
+    "math::normal_solve": {
+      "actual": 60,
+      "shortage": 0,
+      "target": 60
+    },
+    "math::preserve_false_feedback": {
+      "actual": 100,
+      "shortage": 0,
+      "target": 100
+    },
+    "math::preserve_neutral": {
+      "actual": 100,
+      "shortage": 0,
+      "target": 100
+    },
+    "math::regression_recovery": {
+      "actual": 42,
+      "shortage": 0,
+      "target": 42
+    },
+    "math::repair_neutral": {
+      "actual": 60,
+      "shortage": 0,
+      "target": 60
+    },
+    "math::repair_true_feedback": {
+      "actual": 60,
+      "shortage": 0,
+      "target": 60
+    }
+  },
+  "total_selected_rows": 860,
+  "unique_source_ids": 706,
+  "validation_checks": {
+    "all_passed": true,
+    "all_selected_sources_exist": true,
+    "cw_not_used_as_ordinary_repair": true,
+    "deterministic_rebuild_matches": true,
+    "keep_only_from_v1_correct": true,
+    "no_duplicate_selection_ids": true,
+    "no_frozen_evaluation_rows": true,
+    "no_humaneval_rows": true,
+    "no_incompatible_condition_leakage": true,
+    "ordinary_revise_only_from_ww": true,
+    "pair_ids_internally_consistent": true,
+    "paired_rows_share_source": true,
+    "provenance_metadata_preserved": true,
+    "recovery_only_from_cw": true,
+    "source_usage_cap_respected": true
+  },
+  "validation_errors": []
+}

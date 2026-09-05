@@ -1,0 +1,35 @@
+{
+  "model_label": "self_correction_v1",
+  "model_id": "Kxck/Self_Correction_v1",
+  "served_model": "self_correction_v1",
+  "complete": true,
+  "expected": 300,
+  "total": 300,
+  "correct": 141,
+  "wrong": 159,
+  "accuracy": 0.47,
+  "candidate_sha256": "eb4a3347309e386c1314f50f01c60711a604809894ee9a909607dbb30b656f29",
+  "generation": {
+    "max_tokens": 2048,
+    "temperature": 0.7,
+    "top_p": 0.9,
+    "seed": 314159
+  },
+  "correct_by_test_mode": {
+    "call_based": 107,
+    "standard_input": 34
+  },
+  "total_by_test_mode": {
+    "call_based": 225,
+    "standard_input": 75
+  },
+  "correct_by_source_host": {
+    "atcoder.jp": 1,
+    "codeforces.com": 3,
+    "leetcode.com": 34,
+    "www.codewars.com": 70,
+    "www.hackerrank.com": 33
+  },
+  "raw_attempts": "/root/apps_pilot/data/apps_pilot/attempts/self_correction_v1/raw_attempts.jsonl",
+  "raw_attempts_sha256": "57937a2d322e2286fbc2e62fa14e23c37fbde6a389e9b14d1361e38962786596"
+}

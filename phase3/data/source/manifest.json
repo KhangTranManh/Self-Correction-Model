@@ -1,0 +1,23 @@
+{
+  "total": 1474,
+  "counts": {
+    "gsm8k": 1000,
+    "mbpp": 474
+  },
+  "p0_overlap_guard": {
+    "gsm8k_allowed_splits": [
+      "train"
+    ],
+    "mbpp_allowed_splits": [
+      "train",
+      "validation",
+      "prompt"
+    ],
+    "frozen_p0_splits_excluded": [
+      "gsm8k/test",
+      "mbpp/full/test"
+    ]
+  },
+  "sha256": "0d6d04e28db674728636b4d3ce8e01a0a09cd1077567a930db26865c6c4ae8ea",
+  "source_file": "/home/ezycloudx-admin/AGI/phase3/data/source/problems.jsonl"
+}

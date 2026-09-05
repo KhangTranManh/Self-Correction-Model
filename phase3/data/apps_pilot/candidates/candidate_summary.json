@@ -1,0 +1,73 @@
+{
+  "dataset": "codeparrot/apps",
+  "revision": "21e74ddf8de1a21436da12e3e653065c5213e9d1",
+  "split": "train",
+  "difficulty": "introductory",
+  "selection_seed": 314159,
+  "selection_used_model_correctness": false,
+  "selected_before_model_inference": true,
+  "raw_rows_inspected": 5000,
+  "introductory_rows_inspected": 2639,
+  "metadata_eligible_rows": 2398,
+  "candidate_count": 300,
+  "unique_candidate_ids": 300,
+  "existing_source_overlap": 0,
+  "duplicate_id_count": 0,
+  "duplicate_content_count": 0,
+  "reference_execution_failures_before_backfill": 32,
+  "counts_by_source_host": {
+    "atcoder.jp": 1,
+    "codeforces.com": 30,
+    "leetcode.com": 55,
+    "www.codewars.com": 166,
+    "www.hackerrank.com": 48
+  },
+  "counts_by_test_mode": {
+    "call_based": 225,
+    "standard_input": 75
+  },
+  "counts_by_prompt_length_bin": {
+    "long_1600_3199": 75,
+    "medium_800_1599": 94,
+    "short_lt_800": 96,
+    "very_long_ge_3200": 35
+  },
+  "quota_plan": {
+    "www.codewars.com|call_based": 166,
+    "leetcode.com|call_based": 55,
+    "www.hackerrank.com|call_based": 4,
+    "www.hackerrank.com|standard_input": 44,
+    "codeforces.com|standard_input": 30,
+    "atcoder.jp|standard_input": 1
+  },
+  "quota_actual": {
+    "atcoder.jp|standard_input": 1,
+    "codeforces.com|standard_input": 30,
+    "leetcode.com|call_based": 55,
+    "www.codewars.com|call_based": 166,
+    "www.hackerrank.com|call_based": 4,
+    "www.hackerrank.com|standard_input": 44
+  },
+  "test_count": {
+    "total": 1635,
+    "min": 1,
+    "max": 299
+  },
+  "candidate_ids_first_five_in_source_order": [
+    "apps_train_2361",
+    "apps_train_2362",
+    "apps_train_2363",
+    "apps_train_2364",
+    "apps_train_2365"
+  ],
+  "raw_file": "/root/apps_pilot/data/raw/train.jsonl",
+  "raw_file_sha256": "45e82ef22ed8e7c0c04d881a21b923e9dd233157896b0b8d5b3493e887499cae",
+  "candidate_file": "/root/apps_pilot/data/apps_pilot/candidates/code_candidates.jsonl",
+  "candidate_sha256": "eb4a3347309e386c1314f50f01c60711a604809894ee9a909607dbb30b656f29",
+  "exclusion_counts": {
+    "missing_or_mismatched_tests": 241,
+    "no_reference_solution_passed_local_verifier": 32
+  },
+  "config_file": "/root/apps_pilot/configs/apps_pilot.yaml",
+  "config_sha256": "925efe21953cc8a866134bfafd62a6f1af0460250a75a2b4e9105202edfc8cad"
+}

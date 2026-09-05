@@ -1,0 +1,691 @@
+{
+  "counterfactual_pair_count": 20,
+  "counts_by_bucket": {
+    "CC": 47,
+    "CW": 30,
+    "WC": 23,
+    "WW": 50
+  },
+  "counts_by_dataset": {
+    "apps": 50,
+    "gsm8k": 72,
+    "mbpp": 28
+  },
+  "counts_by_decision": {
+    "KEEP": 50,
+    "NORMAL": 25,
+    "RECOVER": 25,
+    "REVISE": 50
+  },
+  "counts_by_domain": {
+    "code": 78,
+    "math": 72
+  },
+  "counts_per_condition": {
+    "normal_solve": 25,
+    "preserve_false_feedback": 25,
+    "preserve_neutral": 25,
+    "regression_recovery": 25,
+    "repair_neutral": 25,
+    "repair_true_feedback": 25
+  },
+  "cross_tabs": {
+    "condition_x_dataset": {
+      "normal_solve": {
+        "apps": 8,
+        "gsm8k": 12,
+        "mbpp": 5
+      },
+      "preserve_false_feedback": {
+        "apps": 10,
+        "gsm8k": 12,
+        "mbpp": 3
+      },
+      "preserve_neutral": {
+        "apps": 10,
+        "gsm8k": 12,
+        "mbpp": 3
+      },
+      "regression_recovery": {
+        "apps": 8,
+        "gsm8k": 12,
+        "mbpp": 5
+      },
+      "repair_neutral": {
+        "apps": 7,
+        "gsm8k": 12,
+        "mbpp": 6
+      },
+      "repair_true_feedback": {
+        "apps": 7,
+        "gsm8k": 12,
+        "mbpp": 6
+      }
+    },
+    "condition_x_domain": {
+      "normal_solve": {
+        "code": 13,
+        "math": 12
+      },
+      "preserve_false_feedback": {
+        "code": 13,
+        "math": 12
+      },
+      "preserve_neutral": {
+        "code": 13,
+        "math": 12
+      },
+      "regression_recovery": {
+        "code": 13,
+        "math": 12
+      },
+      "repair_neutral": {
+        "code": 13,
+        "math": 12
+      },
+      "repair_true_feedback": {
+        "code": 13,
+        "math": 12
+      }
+    },
+    "dataset_x_feedback_template": {
+      "apps": {
+        "false_negative_01": 2,
+        "false_negative_02": 3,
+        "false_negative_03": 3,
+        "false_negative_04": 2,
+        "neutral_01": 6,
+        "neutral_02": 2,
+        "neutral_03": 7,
+        "neutral_04": 2,
+        "none": 16,
+        "true_verifier_01": 2,
+        "true_verifier_02": 2,
+        "true_verifier_03": 1,
+        "true_verifier_04": 2
+      },
+      "gsm8k": {
+        "false_negative_01": 3,
+        "false_negative_02": 4,
+        "false_negative_03": 4,
+        "false_negative_04": 1,
+        "neutral_01": 3,
+        "neutral_02": 5,
+        "neutral_03": 9,
+        "neutral_04": 7,
+        "none": 24,
+        "true_verifier_01": 1,
+        "true_verifier_02": 4,
+        "true_verifier_03": 5,
+        "true_verifier_04": 2
+      },
+      "mbpp": {
+        "false_negative_01": 1,
+        "false_negative_02": 0,
+        "false_negative_03": 0,
+        "false_negative_04": 2,
+        "neutral_01": 3,
+        "neutral_02": 2,
+        "neutral_03": 2,
+        "neutral_04": 2,
+        "none": 10,
+        "true_verifier_01": 2,
+        "true_verifier_02": 2,
+        "true_verifier_03": 1,
+        "true_verifier_04": 1
+      }
+    },
+    "decision_x_dataset": {
+      "KEEP": {
+        "apps": 20,
+        "gsm8k": 24,
+        "mbpp": 6
+      },
+      "NORMAL": {
+        "apps": 8,
+        "gsm8k": 12,
+        "mbpp": 5
+      },
+      "RECOVER": {
+        "apps": 8,
+        "gsm8k": 12,
+        "mbpp": 5
+      },
+      "REVISE": {
+        "apps": 14,
+        "gsm8k": 24,
+        "mbpp": 12
+      }
+    },
+    "decision_x_feedback_template": {
+      "KEEP": {
+        "false_negative_01": 6,
+        "false_negative_02": 7,
+        "false_negative_03": 7,
+        "false_negative_04": 5,
+        "neutral_01": 3,
+        "neutral_02": 6,
+        "neutral_03": 8,
+        "neutral_04": 8,
+        "none": 0,
+        "true_verifier_01": 0,
+        "true_verifier_02": 0,
+        "true_verifier_03": 0,
+        "true_verifier_04": 0
+      },
+      "NORMAL": {
+        "false_negative_01": 0,
+        "false_negative_02": 0,
+        "false_negative_03": 0,
+        "false_negative_04": 0,
+        "neutral_01": 0,
+        "neutral_02": 0,
+        "neutral_03": 0,
+        "neutral_04": 0,
+        "none": 25,
+        "true_verifier_01": 0,
+        "true_verifier_02": 0,
+        "true_verifier_03": 0,
+        "true_verifier_04": 0
+      },
+      "RECOVER": {
+        "false_negative_01": 0,
+        "false_negative_02": 0,
+        "false_negative_03": 0,
+        "false_negative_04": 0,
+        "neutral_01": 0,
+        "neutral_02": 0,
+        "neutral_03": 0,
+        "neutral_04": 0,
+        "none": 25,
+        "true_verifier_01": 0,
+        "true_verifier_02": 0,
+        "true_verifier_03": 0,
+        "true_verifier_04": 0
+      },
+      "REVISE": {
+        "false_negative_01": 0,
+        "false_negative_02": 0,
+        "false_negative_03": 0,
+        "false_negative_04": 0,
+        "neutral_01": 9,
+        "neutral_02": 3,
+        "neutral_03": 10,
+        "neutral_04": 3,
+        "none": 0,
+        "true_verifier_01": 5,
+        "true_verifier_02": 8,
+        "true_verifier_03": 7,
+        "true_verifier_04": 5
+      }
+    },
+    "domain_x_feedback_template": {
+      "code": {
+        "false_negative_01": 3,
+        "false_negative_02": 3,
+        "false_negative_03": 3,
+        "false_negative_04": 4,
+        "neutral_01": 9,
+        "neutral_02": 4,
+        "neutral_03": 9,
+        "neutral_04": 4,
+        "none": 26,
+        "true_verifier_01": 4,
+        "true_verifier_02": 4,
+        "true_verifier_03": 2,
+        "true_verifier_04": 3
+      },
+      "math": {
+        "false_negative_01": 3,
+        "false_negative_02": 4,
+        "false_negative_03": 4,
+        "false_negative_04": 1,
+        "neutral_01": 3,
+        "neutral_02": 5,
+        "neutral_03": 9,
+        "neutral_04": 7,
+        "none": 24,
+        "true_verifier_01": 1,
+        "true_verifier_02": 4,
+        "true_verifier_03": 5,
+        "true_verifier_04": 2
+      }
+    }
+  },
+  "duplicate_and_template_diagnostics": {
+    "final_target": {
+      "duplicate_groups": [
+        {
+          "count": 2,
+          "sha256": "0207cdb39b424424dd37a8ee0c3248ce6249230e17f9a5c31fbdd563ab2bf255"
+        },
+        {
+          "count": 2,
+          "sha256": "17ad6c6b716fdb76f078090d988e6031075650fce827e2516b52de8bf0f36c48"
+        },
+        {
+          "count": 2,
+          "sha256": "47981fa6dfc4f59bdfc04c48e27a3c0304cc949cf067cef749a178334df19848"
+        },
+        {
+          "count": 2,
+          "sha256": "4cc632eb396a0f2dffeed9a67ae0f79e4068454089a70d8c5fb6e16afef3e916"
+        },
+        {
+          "count": 2,
+          "sha256": "4cd6862fcd78c04964f2d6db8cf0eef35c571cc4c4e6fa67f58b129921b7835b"
+        },
+        {
+          "count": 2,
+          "sha256": "5c838845bdb36209eca103aa4ee39a5393ca83e58c18b4a345d020416b9a91de"
+        },
+        {
+          "count": 2,
+          "sha256": "637e0921ad1ecfd5191413abd252f9fd45bb480ce9c96bc9711a5d0227e84345"
+        },
+        {
+          "count": 2,
+          "sha256": "67646ac10d2a46bfc01fc0235918dad3f1bf1a61a07a0a5d75013d0784a6ee73"
+        },
+        {
+          "count": 2,
+          "sha256": "72a18948803a6e0275c0182185ff0667e8f1e7b758d10c6de94f0f74c0dee8f5"
+        },
+        {
+          "count": 2,
+          "sha256": "79a744625749108ee6454fe7a4a04959663f12387df9a10c8008f8f3636bf2b2"
+        },
+        {
+          "count": 2,
+          "sha256": "88f32f057d30bdae7e851fcebce17d972400e088601f5badd7f26ec51a93c03e"
+        },
+        {
+          "count": 2,
+          "sha256": "a7feddd6166022c5ee909b593c7f323b40d184919df5786665e921b72c2d726a"
+        },
+        {
+          "count": 2,
+          "sha256": "ac4ed0bc1672c7b3ba733b4dc69627bb406d769abd144bbf23d943a4198766cb"
+        },
+        {
+          "count": 2,
+          "sha256": "ad9c1d767fef15e94f10e78370f6f70211df7ac1a6bed40a1aa1454178c05e31"
+        },
+        {
+          "count": 2,
+          "sha256": "c5edfdb8b9b899267adb40515d9276f4be647268237ecf0ac50ebbde7aaa7ab2"
+        },
+        {
+          "count": 2,
+          "sha256": "cc40e4a0dea2c3b4721f2c8b34010ae475d2fd6f87e526a37821bb479d854828"
+        },
+        {
+          "count": 2,
+          "sha256": "ceb10af49bead99cb177e37de4ea68432530e440205861e94d5a0fe9baa23c90"
+        },
+        {
+          "count": 2,
+          "sha256": "d149e305bff532907f27c7488435607bc3750ea4142d180608f6b6112562875d"
+        },
+        {
+          "count": 2,
+          "sha256": "e11c114482e13c0afa2ada7ba4787584b4f2562c621703e29368abf535eabf31"
+        },
+        {
+          "count": 2,
+          "sha256": "e45af84e4fd973eb3caf611be6bee94dd5aa47a5161ca9acd36b01c486fb47a1"
+        }
+      ],
+      "duplicate_rate": 0.133333,
+      "duplicate_rows_beyond_first": 20,
+      "total": 150,
+      "unique": 130
+    },
+    "full_prompt": {
+      "duplicate_groups": [],
+      "duplicate_rate": 0.0,
+      "duplicate_rows_beyond_first": 0,
+      "total": 150,
+      "unique": 150
+    },
+    "identical_feedback_wording": {
+      "duplicate_groups": [
+        {
+          "count": 18,
+          "sha256": "809369d12fa199e5a5e93edddef6969ba8e8ca0e26f45a709d2b167910cbb0f5"
+        },
+        {
+          "count": 12,
+          "sha256": "9a2ee0a16bed2bb1dd50bce50b5e6863e420a2811468f82d9176c0c8dc9e70cc"
+        },
+        {
+          "count": 11,
+          "sha256": "45847260930308f11a6c43e68a913eb1cb83de7b2cc7abbdd0985b5b8c1d6c71"
+        },
+        {
+          "count": 9,
+          "sha256": "d94f5af621d776f389a881e1dd3e5fa2c6f9919686e390bff8884dce7172f3c8"
+        },
+        {
+          "count": 7,
+          "sha256": "25f6442d3cb27a1f430b6fdeca48de682535db12e9361e1ef09df11d22b01f01"
+        },
+        {
+          "count": 7,
+          "sha256": "a34303bd28b6fb373598d7e3abfe0d52fadc951cd69203022df180d6de49ba8b"
+        },
+        {
+          "count": 6,
+          "sha256": "6427a63f8cc83dd0f901e7aba1e12a84ce9116d8b8733df957a410f683c9fb74"
+        },
+        {
+          "count": 5,
+          "sha256": "3eb17f1a56eed561cc6deb084cfd4fe0ad714c1d5c1fe152d319d35b5f9b07e0"
+        },
+        {
+          "count": 5,
+          "sha256": "c081202786b840f6eef14c9f20957e1d78df698edf34923f1e322f8618797801"
+        },
+        {
+          "count": 4,
+          "sha256": "2d09021e6ec0e862c6a131449f8178358e1b98d12a6e38e1298dcbbdd68c5fc3"
+        },
+        {
+          "count": 2,
+          "sha256": "04e1c84f34d1ec76523d05ac8fd5d943b508f191ffcf694f8d0f7aa3cc6d9fac"
+        },
+        {
+          "count": 2,
+          "sha256": "9da8aa5080e4df257218d2c377515cd8280b275c2b5a234ef19df593196c8f27"
+        },
+        {
+          "count": 2,
+          "sha256": "e50b75ca2586c251ebcb97a4816c8878536dfdee3ff0ff87d99694e29d7164f0"
+        }
+      ],
+      "duplicate_rate": 0.77,
+      "duplicate_rows_beyond_first": 77,
+      "total": 100,
+      "unique": 23
+    },
+    "warnings": []
+  },
+  "failure_reason_distribution": {},
+  "feedback_template_distribution": {
+    "false_negative_01": 6,
+    "false_negative_02": 7,
+    "false_negative_03": 7,
+    "false_negative_04": 5,
+    "neutral_01": 12,
+    "neutral_02": 9,
+    "neutral_03": 18,
+    "neutral_04": 11,
+    "none": 50,
+    "true_verifier_01": 5,
+    "true_verifier_02": 8,
+    "true_verifier_03": 7,
+    "true_verifier_04": 5
+  },
+  "input_manifest": {
+    "path": "data/behavior/selection/behavior_selection_manifest.jsonl",
+    "sha256": "b6abb1d5f34222eaee8632b4f7ed6a6a4c090e6eb07abc644fd4af2fc9fb7c1d",
+    "total_selection_rows": 860
+  },
+  "maximum_source_usage": 2,
+  "notes": {
+    "keep_target": "Exact verified V1 output is preserved inside the KEEP contract.",
+    "normal_and_recovery_target": "Reference target only, with no decision/answer scaffold and never a CW V1-wrong output.",
+    "revise_target": "Cleaned GSM8K reference or fenced dataset reference code; every target is reverified.",
+    "teacher_policy": "No teacher is configured or called; unavailable verified REVISE targets are failures requiring_teacher."
+  },
+  "number_requiring_teacher_generation": 0,
+  "pass_gates": {
+    "all_keep_targets_verify": true,
+    "all_normal_targets_verify": true,
+    "all_ready_revise_targets_verify": true,
+    "all_recovery_targets_verify": true,
+    "all_requested_rows_constructed": true,
+    "all_structural_checks_pass": true,
+    "no_teacher_used": true
+  },
+  "rows_in_counterfactual_pairs": 40,
+  "sampling": {
+    "algorithm": "SHA-256 rank of '<seed>|<pilot_context>|<selection_or_pair_id>'",
+    "counterfactual_pairs_requested_and_selected": 20,
+    "requested_domain_split_per_condition": {
+      "code": 13,
+      "math": 12
+    },
+    "requested_per_condition": 25,
+    "selected_selection_ids": [
+      "phase3v1::apps_train_2441::preserve_neutral",
+      "phase3v1::apps_train_2486::preserve_neutral",
+      "phase3v1::apps_train_2519::preserve_neutral",
+      "phase3v1::apps_train_2520::preserve_neutral",
+      "phase3v1::apps_train_2535::preserve_neutral",
+      "phase3v1::apps_train_2570::preserve_neutral",
+      "phase3v1::apps_train_2571::preserve_neutral",
+      "phase3v1::apps_train_2612::preserve_neutral",
+      "phase3v1::apps_train_3042::preserve_neutral",
+      "phase3v1::apps_train_4323::preserve_neutral",
+      "phase3v1::gsm8k_train_0105::preserve_neutral",
+      "phase3v1::gsm8k_train_0186::preserve_neutral",
+      "phase3v1::gsm8k_train_0213::preserve_neutral",
+      "phase3v1::gsm8k_train_0327::preserve_neutral",
+      "phase3v1::gsm8k_train_0353::preserve_neutral",
+      "phase3v1::gsm8k_train_0475::preserve_neutral",
+      "phase3v1::gsm8k_train_0531::preserve_neutral",
+      "phase3v1::gsm8k_train_0660::preserve_neutral",
+      "phase3v1::gsm8k_train_0668::preserve_neutral",
+      "phase3v1::gsm8k_train_0890::preserve_neutral",
+      "phase3v1::gsm8k_train_0983::preserve_neutral",
+      "phase3v1::gsm8k_train_0988::preserve_neutral",
+      "phase3v1::mbpp_train_704::preserve_neutral",
+      "phase3v1::mbpp_train_933::preserve_neutral",
+      "phase3v1::mbpp_validation_551::preserve_neutral",
+      "phase3v1::apps_train_2491::preserve_false_feedback",
+      "phase3v1::apps_train_2503::preserve_false_feedback",
+      "phase3v1::apps_train_2562::preserve_false_feedback",
+      "phase3v1::apps_train_2571::preserve_false_feedback",
+      "phase3v1::apps_train_2612::preserve_false_feedback",
+      "phase3v1::apps_train_2648::preserve_false_feedback",
+      "phase3v1::apps_train_3054::preserve_false_feedback",
+      "phase3v1::apps_train_3202::preserve_false_feedback",
+      "phase3v1::apps_train_4323::preserve_false_feedback",
+      "phase3v1::apps_train_4735::preserve_false_feedback",
+      "phase3v1::gsm8k_train_0121::preserve_false_feedback",
+      "phase3v1::gsm8k_train_0186::preserve_false_feedback",
+      "phase3v1::gsm8k_train_0252::preserve_false_feedback",
+      "phase3v1::gsm8k_train_0265::preserve_false_feedback",
+      "phase3v1::gsm8k_train_0355::preserve_false_feedback",
+      "phase3v1::gsm8k_train_0475::preserve_false_feedback",
+      "phase3v1::gsm8k_train_0531::preserve_false_feedback",
+      "phase3v1::gsm8k_train_0660::preserve_false_feedback",
+      "phase3v1::gsm8k_train_0741::preserve_false_feedback",
+      "phase3v1::gsm8k_train_0798::preserve_false_feedback",
+      "phase3v1::gsm8k_train_0841::preserve_false_feedback",
+      "phase3v1::gsm8k_train_0988::preserve_false_feedback",
+      "phase3v1::mbpp_train_704::preserve_false_feedback",
+      "phase3v1::mbpp_train_933::preserve_false_feedback",
+      "phase3v1::mbpp_validation_569::preserve_false_feedback",
+      "phase3v1::apps_train_2372::repair_neutral",
+      "phase3v1::apps_train_2400::repair_neutral",
+      "phase3v1::apps_train_3428::repair_neutral",
+      "phase3v1::apps_train_3438::repair_neutral",
+      "phase3v1::apps_train_3781::repair_neutral",
+      "phase3v1::apps_train_4031::repair_neutral",
+      "phase3v1::apps_train_4756::repair_neutral",
+      "phase3v1::gsm8k_train_0102::repair_neutral",
+      "phase3v1::gsm8k_train_0212::repair_neutral",
+      "phase3v1::gsm8k_train_0361::repair_neutral",
+      "phase3v1::gsm8k_train_0483::repair_neutral",
+      "phase3v1::gsm8k_train_0570::repair_neutral",
+      "phase3v1::gsm8k_train_0572::repair_neutral",
+      "phase3v1::gsm8k_train_0604::repair_neutral",
+      "phase3v1::gsm8k_train_0700::repair_neutral",
+      "phase3v1::gsm8k_train_0851::repair_neutral",
+      "phase3v1::gsm8k_train_0952::repair_neutral",
+      "phase3v1::gsm8k_train_0957::repair_neutral",
+      "phase3v1::gsm8k_train_0996::repair_neutral",
+      "phase3v1::mbpp_train_620::repair_neutral",
+      "phase3v1::mbpp_train_658::repair_neutral",
+      "phase3v1::mbpp_train_682::repair_neutral",
+      "phase3v1::mbpp_train_791::repair_neutral",
+      "phase3v1::mbpp_train_837::repair_neutral",
+      "phase3v1::mbpp_validation_515::repair_neutral",
+      "phase3v1::apps_train_2373::repair_true_feedback",
+      "phase3v1::apps_train_2400::repair_true_feedback",
+      "phase3v1::apps_train_3428::repair_true_feedback",
+      "phase3v1::apps_train_3829::repair_true_feedback",
+      "phase3v1::apps_train_4466::repair_true_feedback",
+      "phase3v1::apps_train_4634::repair_true_feedback",
+      "phase3v1::apps_train_4756::repair_true_feedback",
+      "phase3v1::gsm8k_train_0212::repair_true_feedback",
+      "phase3v1::gsm8k_train_0228::repair_true_feedback",
+      "phase3v1::gsm8k_train_0334::repair_true_feedback",
+      "phase3v1::gsm8k_train_0361::repair_true_feedback",
+      "phase3v1::gsm8k_train_0442::repair_true_feedback",
+      "phase3v1::gsm8k_train_0483::repair_true_feedback",
+      "phase3v1::gsm8k_train_0541::repair_true_feedback",
+      "phase3v1::gsm8k_train_0572::repair_true_feedback",
+      "phase3v1::gsm8k_train_0623::repair_true_feedback",
+      "phase3v1::gsm8k_train_0787::repair_true_feedback",
+      "phase3v1::gsm8k_train_0893::repair_true_feedback",
+      "phase3v1::gsm8k_train_0996::repair_true_feedback",
+      "phase3v1::mbpp_train_660::repair_true_feedback",
+      "phase3v1::mbpp_train_682::repair_true_feedback",
+      "phase3v1::mbpp_train_701::repair_true_feedback",
+      "phase3v1::mbpp_train_768::repair_true_feedback",
+      "phase3v1::mbpp_train_837::repair_true_feedback",
+      "phase3v1::mbpp_train_895::repair_true_feedback",
+      "phase3v1::apps_train_2411::normal_solve",
+      "phase3v1::apps_train_2421::normal_solve",
+      "phase3v1::apps_train_2431::normal_solve",
+      "phase3v1::apps_train_2456::normal_solve",
+      "phase3v1::apps_train_2636::normal_solve",
+      "phase3v1::apps_train_3197::normal_solve",
+      "phase3v1::apps_train_3244::normal_solve",
+      "phase3v1::apps_train_4331::normal_solve",
+      "phase3v1::gsm8k_train_0099::normal_solve",
+      "phase3v1::gsm8k_train_0229::normal_solve",
+      "phase3v1::gsm8k_train_0260::normal_solve",
+      "phase3v1::gsm8k_train_0266::normal_solve",
+      "phase3v1::gsm8k_train_0293::normal_solve",
+      "phase3v1::gsm8k_train_0303::normal_solve",
+      "phase3v1::gsm8k_train_0315::normal_solve",
+      "phase3v1::gsm8k_train_0331::normal_solve",
+      "phase3v1::gsm8k_train_0370::normal_solve",
+      "phase3v1::gsm8k_train_0431::normal_solve",
+      "phase3v1::gsm8k_train_0782::normal_solve",
+      "phase3v1::gsm8k_train_0915::normal_solve",
+      "phase3v1::mbpp_train_783::normal_solve",
+      "phase3v1::mbpp_train_873::normal_solve",
+      "phase3v1::mbpp_train_951::normal_solve",
+      "phase3v1::mbpp_validation_516::normal_solve",
+      "phase3v1::mbpp_validation_526::normal_solve",
+      "phase3v1::apps_train_2457::regression_recovery",
+      "phase3v1::apps_train_2463::regression_recovery",
+      "phase3v1::apps_train_2475::regression_recovery",
+      "phase3v1::apps_train_2523::regression_recovery",
+      "phase3v1::apps_train_2629::regression_recovery",
+      "phase3v1::apps_train_2956::regression_recovery",
+      "phase3v1::apps_train_3248::regression_recovery",
+      "phase3v1::apps_train_4105::regression_recovery",
+      "phase3v1::gsm8k_train_0009::regression_recovery",
+      "phase3v1::gsm8k_train_0067::regression_recovery",
+      "phase3v1::gsm8k_train_0223::regression_recovery",
+      "phase3v1::gsm8k_train_0232::regression_recovery",
+      "phase3v1::gsm8k_train_0459::regression_recovery",
+      "phase3v1::gsm8k_train_0648::regression_recovery",
+      "phase3v1::gsm8k_train_0675::regression_recovery",
+      "phase3v1::gsm8k_train_0756::regression_recovery",
+      "phase3v1::gsm8k_train_0839::regression_recovery",
+      "phase3v1::gsm8k_train_0910::regression_recovery",
+      "phase3v1::gsm8k_train_0971::regression_recovery",
+      "phase3v1::gsm8k_train_0985::regression_recovery",
+      "phase3v1::mbpp_train_610::regression_recovery",
+      "phase3v1::mbpp_train_616::regression_recovery",
+      "phase3v1::mbpp_train_654::regression_recovery",
+      "phase3v1::mbpp_train_703::regression_recovery",
+      "phase3v1::mbpp_train_848::regression_recovery"
+    ],
+    "stable_input_order": "selection_id ASC"
+  },
+  "schema_version": "phase3_behavior_construction_pilot_v1",
+  "selection_seed": 314159,
+  "structural_validation_results": {
+    "all_constructed_targets_verified": true,
+    "all_passed": true,
+    "all_selection_ids_exist_in_manifest": true,
+    "counterfactual_pairs_retained_completely": true,
+    "deterministic_sampling_rebuild_matches": true,
+    "false_feedback_only_on_verified_correct": true,
+    "keep_sources_objectively_correct": true,
+    "neutral_feedback_does_not_reveal_correctness": true,
+    "no_frozen_eval_or_humaneval_leakage": true,
+    "normal_and_recovery_have_no_correction_scaffold": true,
+    "ordinary_revise_sources_objectively_wrong_ww": true,
+    "requested_selection_fully_accounted_for": true,
+    "source_and_manifest_metadata_preserved": true,
+    "unique_construction_ids": true
+  },
+  "target_source_distribution": {
+    "reference": 100,
+    "v1_correct": 50
+  },
+  "teacher_calls_made": 0,
+  "total_pilot_rows_requested": 150,
+  "total_rejected": 0,
+  "total_successfully_constructed": 150,
+  "unique_source_count": 130,
+  "validation_errors": [],
+  "verification_method_distribution": {
+    "apps_executable_tests": 50,
+    "mbpp_executable_unit_tests": 28,
+    "sympy_final_answer_match": 72
+  },
+  "verified_target_rate_per_condition": {
+    "normal_solve": {
+      "constructed": 25,
+      "requested": 25,
+      "verified": 25,
+      "verified_rate_of_constructed": 1.0,
+      "verified_rate_of_requested": 1.0
+    },
+    "preserve_false_feedback": {
+      "constructed": 25,
+      "requested": 25,
+      "verified": 25,
+      "verified_rate_of_constructed": 1.0,
+      "verified_rate_of_requested": 1.0
+    },
+    "preserve_neutral": {
+      "constructed": 25,
+      "requested": 25,
+      "verified": 25,
+      "verified_rate_of_constructed": 1.0,
+      "verified_rate_of_requested": 1.0
+    },
+    "regression_recovery": {
+      "constructed": 25,
+      "requested": 25,
+      "verified": 25,
+      "verified_rate_of_constructed": 1.0,
+      "verified_rate_of_requested": 1.0
+    },
+    "repair_neutral": {
+      "constructed": 25,
+      "requested": 25,
+      "verified": 25,
+      "verified_rate_of_constructed": 1.0,
+      "verified_rate_of_requested": 1.0
+    },
+    "repair_true_feedback": {
+      "constructed": 25,
+      "requested": 25,
+      "verified": 25,
+      "verified_rate_of_constructed": 1.0,
+      "verified_rate_of_requested": 1.0
+    }
+  }
+}
