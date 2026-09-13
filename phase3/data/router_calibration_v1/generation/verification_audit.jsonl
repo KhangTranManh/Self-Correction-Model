@@ -1,0 +1,413 @@
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0002::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0002"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0002::01", "detail": "Dap so sai: model dua ra '$0', dung phai la '5'", "passed": false, "source_id": "gsm8k_train_0002"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0013::00", "detail": "Dap so sai: model dua ra '$30', dung phai la '35'", "passed": false, "source_id": "gsm8k_train_0013"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0014::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0014"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0014::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0014"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0014::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0014"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0014::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0014"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0018::00", "detail": "Dap so sai: model dua ra '28 giờ', dung phai la '16'", "passed": false, "source_id": "gsm8k_train_0018"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0019::00", "detail": "Dap so sai: model dua ra '120 giờ', dung phai la '16'", "passed": false, "source_id": "gsm8k_train_0019"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0021::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0021"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0021::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0021"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0021::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0021"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0021::03", "detail": "Dap so sai: model dua ra '540', dung phai la '1080'", "passed": false, "source_id": "gsm8k_train_0021"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0022::00", "detail": "Dap so sai: model dua ra '9', dung phai la '7'", "passed": false, "source_id": "gsm8k_train_0022"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0026::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0026"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0026::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0026"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0026::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0026"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0026::03", "detail": "Dap so sai: model dua ra '400000', dung phai la '400'", "passed": false, "source_id": "gsm8k_train_0026"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0032::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0032"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0032::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0032"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0032::02", "detail": "Dap so sai: model dua ra '5', dung phai la '10'", "passed": false, "source_id": "gsm8k_train_0032"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0036::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0036"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0036::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0036"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0036::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0036"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0036::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0036"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0062::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0062"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0062::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0062"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0062::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0062"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0062::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0062"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0063::00", "detail": "Dap so sai: model dua ra '0', dung phai la '59'", "passed": false, "source_id": "gsm8k_train_0063"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0072::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0072"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0072::01", "detail": "Dap so sai: model dua ra '162', dung phai la '54'", "passed": false, "source_id": "gsm8k_train_0072"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0091::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0091"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0091::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0091"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0091::02", "detail": "Dap so sai: model dua ra '10 đô-la/giờ', dung phai la '10'", "passed": false, "source_id": "gsm8k_train_0091"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0094::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0094"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0094::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0094"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0094::02", "detail": "Dap so sai: model dua ra '60 (ngày).', dung phai la '60'", "passed": false, "source_id": "gsm8k_train_0094"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0099::00", "detail": "Dap so sai: model dua ra '24', dung phai la '3'", "passed": false, "source_id": "gsm8k_train_0099"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0103::00", "detail": "Dap so sai: model dua ra '182', dung phai la '258'", "passed": false, "source_id": "gsm8k_train_0103"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0125::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0125"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0125::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0125"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0125::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0125"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0125::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0125"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0129::00", "detail": "Dap so sai: model dua ra '50', dung phai la '10'", "passed": false, "source_id": "gsm8k_train_0129"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0132::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0132"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0132::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0132"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0132::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0132"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0132::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0132"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0135::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0135"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0135::01", "detail": "Dap so sai: model dua ra '2485', dung phai la '2350'", "passed": false, "source_id": "gsm8k_train_0135"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0141::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0141"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0141::01", "detail": "Dap so sai: model dua ra '95 phút', dung phai la '72'", "passed": false, "source_id": "gsm8k_train_0141"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0145::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0145"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0145::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0145"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0145::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0145"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0145::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0145"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0158::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0158"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0158::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0158"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0158::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0158"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0158::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0158"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0172::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0172"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0172::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0172"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0172::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0172"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0172::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0172"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0176::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0176"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0176::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0176"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0176::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0176"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0176::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0176"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0181::00", "detail": "Dap so sai: model dua ra '2', dung phai la '21'", "passed": false, "source_id": "gsm8k_train_0181"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0198::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0198"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0198::01", "detail": "Dap so sai: model dua ra '0 phút', dung phai la '30'", "passed": false, "source_id": "gsm8k_train_0198"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0203::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0203"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0203::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0203"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0203::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0203"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0203::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0203"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0216::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0216"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0216::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0216"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0216::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0216"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0216::03", "detail": "Dap so sai: model dua ra '0', dung phai la '30'", "passed": false, "source_id": "gsm8k_train_0216"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0219::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0219"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0219::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0219"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0219::02", "detail": "Dap so sai: model dua ra '10,8', dung phai la '11'", "passed": false, "source_id": "gsm8k_train_0219"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0229::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0229"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0229::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0229"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0229::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0229"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0229::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0229"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0231::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0231"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0231::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0231"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0231::02", "detail": "Dap so sai: model dua ra '12', dung phai la '7'", "passed": false, "source_id": "gsm8k_train_0231"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0238::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0238"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0238::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0238"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0238::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0238"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0238::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0238"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0239::00", "detail": "Dap so sai: model dua ra '3,86', dung phai la '3'", "passed": false, "source_id": "gsm8k_train_0239"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0243::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0243"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0243::01", "detail": "Dap so sai: model dua ra '5', dung phai la '7'", "passed": false, "source_id": "gsm8k_train_0243"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0244::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0244"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0244::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0244"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0244::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0244"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0244::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0244"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0249::00", "detail": "Dap so sai: model dua ra '8', dung phai la '9'", "passed": false, "source_id": "gsm8k_train_0249"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0254::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0254"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0254::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0254"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0254::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0254"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0254::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0254"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0258::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0258"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0258::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0258"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0258::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0258"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0258::03", "detail": "Dap so sai: model dua ra '200cm', dung phai la '200'", "passed": false, "source_id": "gsm8k_train_0258"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0260::00", "detail": "Dap so sai: model dua ra '6', dung phai la '360'", "passed": false, "source_id": "gsm8k_train_0260"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0264::00", "detail": "Dap so sai: model dua ra '5400', dung phai la '21600'", "passed": false, "source_id": "gsm8k_train_0264"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0265::00", "detail": "Dap so sai: model dua ra '13 foot', dung phai la '9'", "passed": false, "source_id": "gsm8k_train_0265"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0266::00", "detail": "Dap so sai: model dua ra '3.33333333333334', dung phai la '4'", "passed": false, "source_id": "gsm8k_train_0266"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0268::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0268"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0268::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0268"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0268::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0268"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0268::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0268"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0270::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0270"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0270::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0270"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0270::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0270"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0270::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0270"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0277::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0277"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0277::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0277"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0277::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0277"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0277::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0277"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0282::00", "detail": "Dap so sai: model dua ra '2125', dung phai la '2210'", "passed": false, "source_id": "gsm8k_train_0282"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0303::00", "detail": "Dap so sai: model dua ra '48.67 đô-la.', dung phai la '50'", "passed": false, "source_id": "gsm8k_train_0303"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0308::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0308"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0308::01", "detail": "Dap so sai: model dua ra '60g.', dung phai la '60'", "passed": false, "source_id": "gsm8k_train_0308"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0310::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0310"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0310::01", "detail": "Dap so sai: model dua ra '1.144.000 đô la.', dung phai la '22000'", "passed": false, "source_id": "gsm8k_train_0310"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0331::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0331"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0331::01", "detail": "Dap so sai: model dua ra '450', dung phai la '6'", "passed": false, "source_id": "gsm8k_train_0331"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0342::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0342"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0342::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0342"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0342::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0342"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0342::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0342"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0348::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0348"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0348::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0348"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0348::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0348"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0348::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0348"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0368::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0368"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0368::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0368"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0368::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0368"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0368::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0368"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0373::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0373"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0373::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0373"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0373::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0373"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0373::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0373"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0378::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0378"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0378::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0378"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0378::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0378"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0378::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0378"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0382::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0382"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0382::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0382"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0382::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0382"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0382::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0382"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0394::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0394"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0394::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0394"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0394::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0394"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0394::03", "detail": "Dap so sai: model dua ra '40', dung phai la '56'", "passed": false, "source_id": "gsm8k_train_0394"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0395::00", "detail": "Dap so sai: model dua ra '10502', dung phai la '1500'", "passed": false, "source_id": "gsm8k_train_0395"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0401::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0401"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0401::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0401"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0401::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0401"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0401::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0401"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0409::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0409"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0409::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0409"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0409::02", "detail": "Dap so sai: model dua ra '1', dung phai la '23'", "passed": false, "source_id": "gsm8k_train_0409"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0416::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0416"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0416::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0416"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0416::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0416"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0416::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0416"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0425::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0425"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0425::01", "detail": "Dap so sai: model dua ra '500', dung phai la '125'", "passed": false, "source_id": "gsm8k_train_0425"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0427::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0427"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0427::01", "detail": "Dap so sai: model dua ra '172112', dung phai la '23248'", "passed": false, "source_id": "gsm8k_train_0427"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0431::00", "detail": "Dap so sai: model dua ra '24', dung phai la '22'", "passed": false, "source_id": "gsm8k_train_0431"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0432::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0432"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0432::01", "detail": "Dap so sai: model dua ra '120', dung phai la '4'", "passed": false, "source_id": "gsm8k_train_0432"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0438::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0438"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0438::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0438"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0438::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0438"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0438::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0438"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0449::00", "detail": "Dap so sai: model dua ra '896', dung phai la '112'", "passed": false, "source_id": "gsm8k_train_0449"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0450::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0450"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0450::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0450"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0450::02", "detail": "Dap so sai: model dua ra '2 gallon/ngày', dung phai la '2'", "passed": false, "source_id": "gsm8k_train_0450"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0455::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0455"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0455::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0455"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0455::02", "detail": "Dap so sai: model dua ra '4', dung phai la '8'", "passed": false, "source_id": "gsm8k_train_0455"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0465::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0465"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0465::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0465"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0465::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0465"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0465::03", "detail": "Dap so sai: model dua ra '5 phút (khi tất cả đèn đỏ)', dung phai la '5'", "passed": false, "source_id": "gsm8k_train_0465"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0470::00", "detail": "Dap so sai: model dua ra '143', dung phai la '52'", "passed": false, "source_id": "gsm8k_train_0470"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0472::00", "detail": "Dap so sai: model dua ra '16', dung phai la '11'", "passed": false, "source_id": "gsm8k_train_0472"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0480::00", "detail": "Dap so sai: model dua ra '307200', dung phai la '259200'", "passed": false, "source_id": "gsm8k_train_0480"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0488::00", "detail": "Dap so sai: model dua ra '595', dung phai la '95'", "passed": false, "source_id": "gsm8k_train_0488"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0490::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0490"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0490::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0490"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0490::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0490"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0490::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0490"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0494::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0494"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0494::01", "detail": "Dap so sai: model dua ra '3,500 sq. ft.', dung phai la '3500'", "passed": false, "source_id": "gsm8k_train_0494"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0495::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0495"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0495::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0495"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0495::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0495"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0495::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0495"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0497::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0497"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0497::01", "detail": "Dap so sai: model dua ra '10,000 đô la.', dung phai la '10000'", "passed": false, "source_id": "gsm8k_train_0497"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0501::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0501"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0501::01", "detail": "Dap so sai: model dua ra '12 tuần', dung phai la '9'", "passed": false, "source_id": "gsm8k_train_0501"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0506::00", "detail": "Dap so sai: model dua ra '3.2', dung phai la '4'", "passed": false, "source_id": "gsm8k_train_0506"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0515::00", "detail": "Dap so sai: model dua ra '36%', dung phai la '24'", "passed": false, "source_id": "gsm8k_train_0515"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0521::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0521"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0521::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0521"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0521::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0521"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0521::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0521"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0527::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0527"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0527::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0527"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0527::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0527"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0527::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0527"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0530::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0530"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0530::01", "detail": "Dap so sai: model dua ra 'Mỗi người được 6 bánh, 9 kẹo và 3 brownie.', dung phai la '18'", "passed": false, "source_id": "gsm8k_train_0530"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0531::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0531"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0531::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0531"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0531::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0531"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0531::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0531"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0536::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0536"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0536::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0536"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0536::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0536"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0536::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0536"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0537::00", "detail": "Dap so sai: model dua ra '414720', dung phai la '34560'", "passed": false, "source_id": "gsm8k_train_0537"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0544::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0544"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0544::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0544"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0544::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0544"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0544::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0544"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0588::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0588"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0588::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0588"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0588::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0588"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0588::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0588"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0590::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0590"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0590::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0590"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0590::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0590"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0590::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0590"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0598::00", "detail": "Dap so sai: model dua ra '3.5 cốc.', dung phai la '3'", "passed": false, "source_id": "gsm8k_train_0598"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0609::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0609"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0609::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0609"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0609::02", "detail": "Dap so sai: model dua ra '42', dung phai la '20'", "passed": false, "source_id": "gsm8k_train_0609"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0615::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0615"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0615::01", "detail": "Dap so sai: model dua ra '1928', dung phai la '1944'", "passed": false, "source_id": "gsm8k_train_0615"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0626::00", "detail": "Dap so sai: model dua ra '60 phút', dung phai la '0'", "passed": false, "source_id": "gsm8k_train_0626"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0628::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0628"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0628::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0628"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0628::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0628"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0628::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0628"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0636::00", "detail": "Dap so sai: model dua ra '55 phút', dung phai la '52'", "passed": false, "source_id": "gsm8k_train_0636"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0638::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0638"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0638::01", "detail": "Dap so sai: model dua ra '4723', dung phai la '4830'", "passed": false, "source_id": "gsm8k_train_0638"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0639::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0639"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0639::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0639"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0639::02", "detail": "Dap so sai: model dua ra '60', dung phai la '80'", "passed": false, "source_id": "gsm8k_train_0639"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0642::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0642"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0642::01", "detail": "Dap so sai: model dua ra '25', dung phai la '15'", "passed": false, "source_id": "gsm8k_train_0642"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0658::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0658"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0658::01", "detail": "Dap so sai: model dua ra '115.45 EUR', dung phai la '19'", "passed": false, "source_id": "gsm8k_train_0658"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0663::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0663"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0663::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0663"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0663::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0663"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0663::03", "detail": "Dap so sai: model dua ra '44', dung phai la '22'", "passed": false, "source_id": "gsm8k_train_0663"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0670::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0670"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0670::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0670"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0670::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0670"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0670::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0670"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0681::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0681"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0681::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0681"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0681::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0681"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0681::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0681"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0684::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0684"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0684::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0684"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0684::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0684"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0684::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0684"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0685::00", "detail": "Dap so sai: model dua ra '2', dung phai la '2000'", "passed": false, "source_id": "gsm8k_train_0685"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0686::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0686"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0686::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0686"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0686::02", "detail": "Dap so sai: model dua ra 'Mỗi bạn trả 20 USD.', dung phai la '20'", "passed": false, "source_id": "gsm8k_train_0686"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0692::00", "detail": "Dap so sai: model dua ra '0.75 USD/giờ', dung phai la '3'", "passed": false, "source_id": "gsm8k_train_0692"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0697::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0697"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0697::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0697"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0697::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0697"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0697::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0697"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0698::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0698"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0698::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0698"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0698::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0698"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0698::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0698"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0717::00", "detail": "Dap so sai: model dua ra '24', dung phai la '3'", "passed": false, "source_id": "gsm8k_train_0717"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0718::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0718"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0718::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0718"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0718::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0718"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0718::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0718"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0725::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0725"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0725::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0725"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0725::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0725"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0725::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0725"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0729::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0729"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0729::01", "detail": "Dap so sai: model dua ra '60', dung phai la '5'", "passed": false, "source_id": "gsm8k_train_0729"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0734::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0734"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0734::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0734"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0734::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0734"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0734::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0734"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0739::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0739"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0739::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0739"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0739::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0739"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0739::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0739"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0743::00", "detail": "Dap so sai: model dua ra '2', dung phai la '106000'", "passed": false, "source_id": "gsm8k_train_0743"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0747::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0747"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0747::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0747"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0747::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0747"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0747::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0747"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0751::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0751"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0751::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0751"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0751::02", "detail": "Dap so sai: model dua ra '36 m/giờ', dung phai la '24'", "passed": false, "source_id": "gsm8k_train_0751"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0753::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0753"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0753::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0753"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0753::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0753"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0753::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0753"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0761::00", "detail": "Dap so sai: model dua ra '0', dung phai la '5'", "passed": false, "source_id": "gsm8k_train_0761"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0771::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0771"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0771::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0771"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0771::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0771"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0771::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0771"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0782::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0782"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0782::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0782"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0782::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0782"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0782::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0782"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0786::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0786"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0786::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0786"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0786::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0786"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0786::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0786"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0788::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0788"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0788::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0788"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0788::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0788"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0788::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0788"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0799::00", "detail": "Dap so sai: model dua ra '54', dung phai la '40'", "passed": false, "source_id": "gsm8k_train_0799"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0828::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0828"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0828::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0828"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0828::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0828"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0828::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0828"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0834::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0834"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0834::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0834"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0834::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0834"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0834::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0834"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0848::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0848"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0848::01", "detail": "Dap so sai: model dua ra '48', dung phai la '24'", "passed": false, "source_id": "gsm8k_train_0848"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0858::00", "detail": "Dap so sai: model dua ra '8', dung phai la '7'", "passed": false, "source_id": "gsm8k_train_0858"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0859::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0859"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0859::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0859"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0859::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0859"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0859::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0859"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0862::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0862"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0862::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0862"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0862::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0862"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0862::03", "detail": "Dap so sai: model dua ra '115', dung phai la '15'", "passed": false, "source_id": "gsm8k_train_0862"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0864::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0864"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0864::01", "detail": "Dap so sai: model dua ra '600', dung phai la '370'", "passed": false, "source_id": "gsm8k_train_0864"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0885::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0885"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0885::01", "detail": "Dap so sai: model dua ra '507.2', dung phai la '730'", "passed": false, "source_id": "gsm8k_train_0885"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0889::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0889"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0889::01", "detail": "Dap so sai: model dua ra '6', dung phai la '7'", "passed": false, "source_id": "gsm8k_train_0889"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0895::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0895"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0895::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0895"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0895::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0895"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0895::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0895"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0915::00", "detail": "Dap so sai: model dua ra '14.4', dung phai la '14400'", "passed": false, "source_id": "gsm8k_train_0915"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0917::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0917"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0917::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0917"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0917::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0917"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0917::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0917"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0918::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0918"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0918::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0918"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0918::02", "detail": "Dap so sai: model dua ra '81.35', dung phai la '232'", "passed": false, "source_id": "gsm8k_train_0918"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0931::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0931"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0931::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0931"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0931::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0931"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0931::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0931"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0933::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0933"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0933::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0933"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0933::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0933"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0933::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0933"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0943::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0943"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0943::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0943"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0943::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0943"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0943::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0943"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0949::00", "detail": "Dap so sai: model dua ra '-510 pounds.', dung phai la '170'", "passed": false, "source_id": "gsm8k_train_0949"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0951::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0951"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0951::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0951"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0951::02", "detail": "Dap so sai: model dua ra '73', dung phai la '54'", "passed": false, "source_id": "gsm8k_train_0951"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0973::00", "detail": "Dap so sai: model dua ra '80', dung phai la '48'", "passed": false, "source_id": "gsm8k_train_0973"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0979::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0979"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0979::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0979"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0979::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0979"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0979::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0979"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0980::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0980"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0980::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0980"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0980::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0980"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0980::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0980"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0986::00", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0986"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0986::01", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0986"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0986::02", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0986"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0986::03", "detail": "OK", "passed": true, "source_id": "gsm8k_train_0986"}
+{"candidate_id": "calibration_gsm8k::gsm8k_train_0993::00", "detail": "Dap so sai: model dua ra '28', dung phai la '13'", "passed": false, "source_id": "gsm8k_train_0993"}

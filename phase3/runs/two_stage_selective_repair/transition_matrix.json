@@ -1,0 +1,46 @@
+{
+  "rows": [
+    {
+      "count": 81,
+      "decision": "KEEP",
+      "initial_state": "Correct",
+      "repair_result": "n/a"
+    },
+    {
+      "count": 11,
+      "decision": "REVISE",
+      "initial_state": "Correct",
+      "repair_result": "still correct"
+    },
+    {
+      "count": 8,
+      "decision": "REVISE",
+      "initial_state": "Correct",
+      "repair_result": "became wrong"
+    },
+    {
+      "count": 51,
+      "decision": "KEEP",
+      "initial_state": "Wrong",
+      "repair_result": "n/a"
+    },
+    {
+      "count": 11,
+      "decision": "REVISE",
+      "initial_state": "Wrong",
+      "repair_result": "repaired correct"
+    },
+    {
+      "count": 38,
+      "decision": "REVISE",
+      "initial_state": "Wrong",
+      "repair_result": "still wrong"
+    },
+    {
+      "count": 0,
+      "decision": "INVALID",
+      "initial_state": "Any",
+      "repair_result": "not called"
+    }
+  ]
+}

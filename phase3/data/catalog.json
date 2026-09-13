@@ -1,0 +1,488 @@
+{
+  "artifact_count": 21,
+  "artifacts": [
+    {
+      "bytes": 1102235,
+      "datasets": {
+        "gsm8k": 1000,
+        "mbpp": 474
+      },
+      "domains": {
+        "code": 474,
+        "math": 1000
+      },
+      "labels": {},
+      "lifecycle": "canonical",
+      "name": "source_pool",
+      "path": "phase3/data/source/problems.jsonl",
+      "role": "source",
+      "rows": 1474,
+      "sha256": "3ae22bb6b8e2daf6db434b2627fe96b5f98b33099dd70fa5222aed71298017ee",
+      "unique_sources": 1474
+    },
+    {
+      "bytes": 1799959,
+      "datasets": {
+        "gsm8k": 1000,
+        "mbpp": 474
+      },
+      "domains": {},
+      "labels": {},
+      "lifecycle": "canonical",
+      "name": "base_attempts",
+      "path": "phase3/data/attempts/base/raw_attempts.jsonl",
+      "role": "immutable_attempts",
+      "rows": 1474,
+      "sha256": "059b7c37b0b26315cdf914bf569ae1cd72d66b37eaa4d0736b348dc98fa98ebd",
+      "unique_sources": 1474
+    },
+    {
+      "bytes": 1570052,
+      "datasets": {
+        "gsm8k": 1000,
+        "mbpp": 474
+      },
+      "domains": {},
+      "labels": {},
+      "lifecycle": "canonical",
+      "name": "v1_attempts",
+      "path": "phase3/data/attempts/self_correction_v1/raw_attempts.jsonl",
+      "role": "immutable_attempts",
+      "rows": 1474,
+      "sha256": "6e1dd91a3a3ec4e9e9f0f698914c5b2dc999c1eab9fbd5e592c6998fd734df56",
+      "unique_sources": 1474
+    },
+    {
+      "bytes": 1776313,
+      "datasets": {
+        "apps": 300
+      },
+      "domains": {
+        "code": 300
+      },
+      "labels": {},
+      "lifecycle": "canonical",
+      "name": "apps_sources",
+      "path": "phase3/data/apps_pilot/candidates/code_candidates.jsonl",
+      "role": "source",
+      "rows": 300,
+      "sha256": "82d501ef068a77f38b9450854d9b2d12909caa09295031e1b3dbc182590b15ba",
+      "unique_sources": 300
+    },
+    {
+      "bytes": 1365210,
+      "datasets": {
+        "apps": 300
+      },
+      "domains": {
+        "code": 300
+      },
+      "labels": {},
+      "lifecycle": "canonical",
+      "name": "apps_base_attempts",
+      "path": "phase3/data/apps_pilot/attempts/base/raw_attempts.jsonl",
+      "role": "immutable_attempts",
+      "rows": 300,
+      "sha256": "4e2d01f307b303b2c7e6349303f4f4d9a669c10362e3961fce299ed910756987",
+      "unique_sources": 300
+    },
+    {
+      "bytes": 1347077,
+      "datasets": {
+        "apps": 300
+      },
+      "domains": {
+        "code": 300
+      },
+      "labels": {},
+      "lifecycle": "canonical",
+      "name": "apps_v1_attempts",
+      "path": "phase3/data/apps_pilot/attempts/self_correction_v1/raw_attempts.jsonl",
+      "role": "immutable_attempts",
+      "rows": 300,
+      "sha256": "4e8bf1dea5d1821fc8ca310d7e4db3da9f0261a8dafdd0f85e3fa1350f094cba",
+      "unique_sources": 300
+    },
+    {
+      "bytes": 1420869,
+      "datasets": {
+        "apps": 300,
+        "gsm8k": 1000,
+        "mbpp": 474
+      },
+      "domains": {
+        "code": 774,
+        "math": 1000
+      },
+      "labels": {},
+      "lifecycle": "canonical",
+      "name": "unified_inventory",
+      "path": "phase3/data/behavior/unified_source_inventory.jsonl",
+      "role": "provenance_index",
+      "rows": 1774,
+      "sha256": "3428758df6a4f42c7dd28e6ccdb6c893bd340d54f3358f37634f031c3ef97c28",
+      "unique_sources": 1774
+    },
+    {
+      "bytes": 597053,
+      "datasets": {
+        "apps": 72,
+        "gsm8k": 120,
+        "mbpp": 48
+      },
+      "domains": {
+        "code": 120,
+        "math": 120
+      },
+      "labels": {},
+      "lifecycle": "canonical",
+      "name": "decision_only_all",
+      "path": "phase3/data/decision_only/decision_only_dataset.jsonl",
+      "role": "router_dataset",
+      "rows": 240,
+      "sha256": "9de0cea7c7a7c351f14d5cf944616b0c1dd612c8e6b2e33b1fc4805105c73ca1",
+      "unique_sources": 240
+    },
+    {
+      "bytes": 411745,
+      "datasets": {
+        "apps": 50,
+        "gsm8k": 84,
+        "mbpp": 34
+      },
+      "domains": {
+        "code": 84,
+        "math": 84
+      },
+      "labels": {},
+      "lifecycle": "canonical",
+      "name": "decision_only_train",
+      "path": "phase3/data/decision_only/decision_only_train.jsonl",
+      "role": "router_train",
+      "rows": 168,
+      "sha256": "74b6663ed2adb51e552f41cc8ef470a08fcb0d16950d25ee68f7245fab53cf30",
+      "unique_sources": 168
+    },
+    {
+      "bytes": 88682,
+      "datasets": {
+        "apps": 10,
+        "gsm8k": 18,
+        "mbpp": 8
+      },
+      "domains": {
+        "code": 18,
+        "math": 18
+      },
+      "labels": {},
+      "lifecycle": "canonical",
+      "name": "decision_only_dev",
+      "path": "phase3/data/decision_only/decision_only_dev.jsonl",
+      "role": "router_dev",
+      "rows": 36,
+      "sha256": "f3c8eaf9d9e3a4fdf245919497b2513154942afb944731432b8e5687706dcac5",
+      "unique_sources": 36
+    },
+    {
+      "bytes": 97070,
+      "datasets": {
+        "apps": 12,
+        "gsm8k": 18,
+        "mbpp": 6
+      },
+      "domains": {
+        "code": 18,
+        "math": 18
+      },
+      "labels": {},
+      "lifecycle": "canonical",
+      "name": "decision_only_test",
+      "path": "phase3/data/decision_only/decision_only_test.jsonl",
+      "role": "router_test",
+      "rows": 36,
+      "sha256": "0de308960af8405b30def570be9c78321ae1f2dd23d69fd16712a2da9b27d518",
+      "unique_sources": 36
+    },
+    {
+      "bytes": 744498,
+      "datasets": {
+        "apps": 75,
+        "gsm8k": 125,
+        "mbpp": 50
+      },
+      "domains": {
+        "code": 125,
+        "math": 125
+      },
+      "labels": {},
+      "lifecycle": "historical_negative",
+      "name": "revised_router",
+      "path": "phase3/data/revised_router/revised_router_dataset.jsonl",
+      "role": "router_dataset",
+      "rows": 250,
+      "sha256": "ec31b5d029e7aa7fdfbf2f959bafcfa2730ffbcf66729c9e8defec3e5b83f9d2",
+      "unique_sources": 250
+    },
+    {
+      "bytes": 210040,
+      "datasets": {
+        "apps": 70,
+        "gsm8k": 30,
+        "mbpp": 20
+      },
+      "domains": {
+        "code": 90,
+        "math": 30
+      },
+      "labels": {},
+      "lifecycle": "historical_negative",
+      "name": "contrastive_pairs",
+      "path": "phase3/data/contrastive_pairs/contrastive_pairs.jsonl",
+      "role": "paired_dataset",
+      "rows": 120,
+      "sha256": "a4e471d31e8d868e0baae7816856170c202fcfe38671c4c86c0874d6a23a8daa",
+      "unique_sources": 120
+    },
+    {
+      "bytes": 606946,
+      "datasets": {
+        "apps": 140,
+        "gsm8k": 60,
+        "mbpp": 40
+      },
+      "domains": {
+        "code": 180,
+        "math": 60
+      },
+      "labels": {},
+      "lifecycle": "historical_negative",
+      "name": "dpo_pilot",
+      "path": "phase3/data/dpo_pilot/dpo_preferences.jsonl",
+      "role": "preference_dataset",
+      "rows": 240,
+      "sha256": "0167cb10c0656fc62821e59f84f2f69fc30af396764b49a9c0527fbc978ab4ee",
+      "unique_sources": 120
+    },
+    {
+      "bytes": 154476,
+      "datasets": {
+        "apps": 20,
+        "gsm8k": 73,
+        "mbpp": 7
+      },
+      "domains": {
+        "code": 27,
+        "math": 73
+      },
+      "labels": {},
+      "lifecycle": "historical_negative",
+      "name": "semantic_dpo_pairs",
+      "path": "phase3/data/semantic_model_dpo/semantic_pairs.jsonl",
+      "role": "paired_dataset",
+      "rows": 100,
+      "sha256": "0d55ecfceba5530f0a5e85155c02f1751da31a5c242076a5009c9929566e6249",
+      "unique_sources": 100
+    },
+    {
+      "bytes": 431602,
+      "datasets": {
+        "apps": 40,
+        "gsm8k": 146,
+        "mbpp": 14
+      },
+      "domains": {
+        "code": 54,
+        "math": 146
+      },
+      "labels": {},
+      "lifecycle": "historical_negative",
+      "name": "semantic_dpo",
+      "path": "phase3/data/semantic_model_dpo/dpo_preferences.jsonl",
+      "role": "preference_dataset",
+      "rows": 200,
+      "sha256": "8adfb6dd07f90550a5d079b2fcd16cc0421bb58a3ac6100557c5eee3fd0a82ea",
+      "unique_sources": 100
+    },
+    {
+      "bytes": 473045,
+      "datasets": {
+        "apps": 40,
+        "gsm8k": 60,
+        "humaneval": 20,
+        "mbpp": 40,
+        "svamp": 40
+      },
+      "domains": {
+        "code": 100,
+        "math": 100
+      },
+      "labels": {},
+      "lifecycle": "canonical_frozen",
+      "name": "frozen_200",
+      "path": "phase3/data/two_stage_selective_repair/frozen_eval.jsonl",
+      "role": "protected_evaluation",
+      "rows": 200,
+      "sha256": "3c05bf6950756d8f58d15aa9c1f52eec93e148785e1d918bd26c1a74a84fb15f",
+      "unique_sources": 200
+    },
+    {
+      "bytes": 358803,
+      "datasets": {
+        "apps": 74,
+        "gsm8k": 58,
+        "mbpp": 8
+      },
+      "domains": {
+        "code": 82,
+        "math": 58
+      },
+      "labels": {
+        "KEEP": 74,
+        "REVISE": 66
+      },
+      "lifecycle": "completed_gate_failed",
+      "name": "router_calibration",
+      "path": "phase3/data/router_calibration_v1/calibration_all.jsonl",
+      "role": "calibration_dataset",
+      "rows": 140,
+      "sha256": "e83711f9243ae381f5a6151d02c163c03de1fd95001014fd03db511ae24a31ed",
+      "unique_sources": 140
+    },
+    {
+      "bytes": 299051,
+      "datasets": {
+        "apps": 23,
+        "gsm8k": 84,
+        "mbpp": 1
+      },
+      "domains": {
+        "code": 24,
+        "math": 84
+      },
+      "labels": {},
+      "lifecycle": "incomplete_closed",
+      "name": "router_recovery_pairs",
+      "path": "phase3/data/router_recovery_v2/current/verified_pairs.partial.jsonl",
+      "role": "paired_dataset",
+      "rows": 108,
+      "sha256": "d094acc0fb35b00cd48dfb2e69851e171c11af8aa1c14138b106e50b605658ec",
+      "unique_sources": 108
+    },
+    {
+      "bytes": 435294,
+      "datasets": {
+        "apps": 46,
+        "gsm8k": 168,
+        "mbpp": 2
+      },
+      "domains": {
+        "code": 48,
+        "math": 168
+      },
+      "labels": {
+        "KEEP": 108,
+        "REVISE": 108
+      },
+      "lifecycle": "incomplete_closed",
+      "name": "router_recovery_behavior",
+      "path": "phase3/data/router_recovery_v2/current/development_all.partial.jsonl",
+      "role": "router_dataset",
+      "rows": 216,
+      "sha256": "df9dd9c8771b9d872a8eb28f50ef7ce3ffd5c65ed9e905a86488dfa6bf293178",
+      "unique_sources": 108
+    },
+    {
+      "bytes": 519484,
+      "datasets": {
+        "apps": 78,
+        "gsm8k": 128,
+        "mbpp": 50
+      },
+      "domains": {
+        "code": 128,
+        "math": 128
+      },
+      "labels": {
+        "KEEP": 128,
+        "REVISE": 128
+      },
+      "lifecycle": "canonical_frozen",
+      "name": "representation_probe",
+      "path": "phase3/runs/representation_probe/probe_dataset.jsonl",
+      "role": "protected_probe",
+      "rows": 256,
+      "sha256": "a31be690e12fb77fa92b9a38c4b6dd57b867a18cab1a6f36504cd1419ecf4f94",
+      "unique_sources": 256
+    }
+  ],
+  "closed_on": "2026-09-13",
+  "directory_rollups": {
+    "apps_pilot": {
+      "bytes": 4699976,
+      "files": 9
+    },
+    "attempts": {
+      "bytes": 3371931,
+      "files": 4
+    },
+    "behavior": {
+      "bytes": 2235193,
+      "files": 5
+    },
+    "buckets": {
+      "bytes": 194138,
+      "files": 2
+    },
+    "contrastive_pairs": {
+      "bytes": 891187,
+      "files": 4
+    },
+    "decision_only": {
+      "bytes": 1199804,
+      "files": 5
+    },
+    "dpo_pilot": {
+      "bytes": 608467,
+      "files": 2
+    },
+    "frozen_200_probe": {
+      "bytes": 341282,
+      "files": 2
+    },
+    "offline_next": {
+      "bytes": 2086083,
+      "files": 10
+    },
+    "revised_router": {
+      "bytes": 1856031,
+      "files": 5
+    },
+    "router_calibration_v1": {
+      "bytes": 2015649,
+      "files": 15
+    },
+    "router_recovery_v2": {
+      "bytes": 9337666,
+      "files": 86
+    },
+    "semantic_model_dpo": {
+      "bytes": 1176534,
+      "files": 5
+    },
+    "source": {
+      "bytes": 1102742,
+      "files": 2
+    },
+    "two_stage_selective_repair": {
+      "bytes": 791245,
+      "files": 3
+    }
+  },
+  "phase_status": "closed",
+  "rules": {
+    "canonical_files_are_immutable": true,
+    "incomplete_closed_data_requires_a_new_phase_to_resume": true,
+    "protected_evaluation_is_never_training_data": true
+  },
+  "schema_version": "phase3_closed_data_catalog_v1"
+}

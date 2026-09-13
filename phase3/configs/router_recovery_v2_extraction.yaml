@@ -1,0 +1,40 @@
+experiment:
+  name: router_recovery_v2_hidden_extraction
+  status: not_run_phase3_closed
+
+model:
+  base_checkpoint: Kxck/Self_Correction_v1
+  adapter: ../outputs/phase3_decision_only_v1/final_adapter
+  label: decision_only_v1
+  load_in_4bit: true
+  weights_changed: false
+
+data:
+  input: data/router_recovery_v2/development_all.jsonl
+  expected_minimum_rows: 400
+  expected_target_rows: 600
+  unique_source_pairing_required: true
+  protected_overlap_must_equal: 0
+  maximum_token_length: 4096
+
+representation:
+  layers: [14, 21, 28]
+  pooling:
+    required: final_prompt_token
+    optional_diagnostic: answer_end_token
+  output_dtype: float16
+  save_row_manifest: true
+  hash_all_artifacts: true
+  output: ../outputs/phase3_router_recovery_v2/02_hidden_states
+
+runtime:
+  minimum_gpu_vram_gib: 12
+  recommended_gpu_vram_gib: 24
+  estimated_minutes_on_rtx_3090_ti: [20, 60]
+  unload_model_after_completion: true
+
+stop_conditions:
+  - any duplicate source_id outside an explicit KEEP/REVISE pair
+  - source overlap with protected data
+  - token truncation would occur
+  - adapter hash differs from canonical Decision-Only V1

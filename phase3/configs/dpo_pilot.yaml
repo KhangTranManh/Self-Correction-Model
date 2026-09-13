@@ -1,0 +1,31 @@
+experiment:
+  name: phase3_dpo_pilot_v1
+  seed: 173205
+
+model:
+  base_model: Kxck/Self_Correction_v1
+  initial_adapter: ../outputs/phase3_decision_only_v1/final_adapter
+  load_in_4bit: true
+  compute_dtype: bfloat16
+  attn_implementation: sdpa
+
+data:
+  train_path: data/dpo_pilot/dpo_preferences.jsonl
+  expected_rows: 240
+  expected_pairs: 120
+  max_length: 4096
+
+training:
+  epochs: 1
+  learning_rate: 0.000005
+  beta: 0.1
+  gradient_accumulation_steps: 8
+  warmup_ratio: 0.1
+  weight_decay: 0.0
+  max_grad_norm: 1.0
+  log_every_optimizer_steps: 1
+
+output:
+  root: ../outputs/phase3_dpo_pilot_v1
+  final_adapter: ../outputs/phase3_dpo_pilot_v1/final_adapter
+  train_report: ../outputs/phase3_dpo_pilot_v1/train_report.json

@@ -1,0 +1,32 @@
+{
+  "admitted_datasets": {
+    "apps": 2,
+    "gsm8k": 23
+  },
+  "admitted_domains": {
+    "code": 2,
+    "math": 23
+  },
+  "admitted_pairs": 25,
+  "candidate_rows": 480,
+  "candidate_sources": 59,
+  "combined_datasets": {
+    "apps": 5,
+    "gsm8k": 84,
+    "mbpp": 1
+  },
+  "combined_domains": {
+    "code": 6,
+    "math": 84
+  },
+  "combined_pairs": 90,
+  "fresh_correct_pass": 25,
+  "fresh_wrong_fail": 25,
+  "manifest_sha256": "0081ac885ba49fc186fa24db281c6b4646c6b2399b87516dc4ba54e0352090e6",
+  "minimum_gate_pass": false,
+  "minimum_pairs": 200,
+  "schema_version": "phase3_router_recovery_v2_batch_verification_v1",
+  "synthetic_wrong_answers": 0,
+  "target_pairs": 300,
+  "training_started": false
+}

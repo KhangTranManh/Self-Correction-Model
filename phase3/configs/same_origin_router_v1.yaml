@@ -1,0 +1,45 @@
+experiment:
+  name: phase3_same_origin_router_v1
+  seed: 20260907
+  upload_to_hub: false
+
+model:
+  original_base_model: Qwen/Qwen2.5-7B-Instruct
+  training_checkpoint: Kxck/Self_Correction_v1
+  initial_adapter: ../outputs/phase3_decision_only_v1/final_adapter
+  load_in_4bit: true
+  quant_type: nf4
+  double_quant: true
+  compute_dtype: bfloat16
+  new_lora_r: 32
+  new_lora_alpha: 64
+  new_lora_dropout: 0.0
+  target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+
+data:
+  train_path: ../outputs/phase3_five_stage_pipeline/stages/04_same_origin/mixed_data/train.jsonl
+  dev_path: ../outputs/phase3_five_stage_pipeline/stages/04_same_origin/mixed_data/dev.jsonl
+  expected_train_rows: 160
+  expected_dev_rows: 40
+  max_seq_length: 4096
+  train_on_final_assistant_only: true
+  target_contract: exact_decision_tag_only
+
+training:
+  epochs: 1
+  micro_batch_size: 1
+  gradient_accumulation_steps: 8
+  effective_batch_size: 8
+  learning_rate: 0.000002
+  warmup_ratio: 0.1
+  lr_scheduler_type: cosine
+  weight_decay: 0.0
+  gradient_checkpointing: true
+  optim: paged_adamw_8bit
+  logging_steps: 1
+  save_strategy: 'no'
+
+output:
+  root: ../outputs/phase3_five_stage_pipeline/stages/04_same_origin/training
+  final_adapter: ../outputs/phase3_five_stage_pipeline/stages/04_same_origin/final_adapter
+  train_report: ../outputs/phase3_five_stage_pipeline/stages/04_same_origin/train_report.json

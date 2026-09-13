@@ -1,0 +1,26 @@
+{
+  "estimated_risks": {
+    "answer_text_style": "low",
+    "model_origin": "low",
+    "simple_surface_features": "low"
+  },
+  "interpretation": "This diagnoses learnable answer-style confounds inside the training pool; it is not a frozen benchmark result.",
+  "method": "5-fold StratifiedGroupKFold grouped by pair/problem; labels are hidden from features",
+  "metrics": {
+    "char_tfidf": {
+      "balanced_accuracy": 0.5,
+      "keep_recall": 0.47,
+      "revise_recall": 0.53
+    },
+    "origin_only": {
+      "balanced_accuracy": 0.52,
+      "keep_recall": 0.52,
+      "revise_recall": 0.52
+    },
+    "surface_only": {
+      "balanced_accuracy": 0.505,
+      "keep_recall": 0.53,
+      "revise_recall": 0.48
+    }
+  }
+}

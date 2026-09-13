@@ -1,0 +1,48 @@
+experiment:
+  name: router_recovery_v2_confirmation
+  status: not_run_phase3_closed
+  seed: 20260908
+
+data:
+  manifest: data/router_recovery_v2/confirmatory_v2.jsonl
+  expected_rows: 200
+  expected_labels: {KEEP: 100, REVISE: 100}
+  sealed_before_model_run: true
+  protected_overlap_must_equal: 0
+  reasoning_retained_per_sample: true
+
+serving:
+  base_checkpoint: Kxck/Self_Correction_v1
+  adapters:
+    baseline: ../outputs/phase3_decision_only_v1/final_adapter
+    candidate: ../outputs/phase3_router_recovery_v2/05_contrastive_lora/final_adapter
+  dtype: float16
+  max_model_length: 4096
+  gpu_memory_utilization: 0.88
+  concurrency: 8
+  temperature: 0.0
+
+evaluation:
+  tune_threshold_on_confirmatory: false
+  preserve_raw_response: true
+  preserve_visible_reasoning: true
+  compare_paired_by_source: true
+  metrics:
+    - balanced_accuracy
+    - keep_recall
+    - revise_recall
+    - code_accuracy
+    - math_accuracy
+    - unseen_template_accuracy
+    - single_label_rate
+  promotion_gate:
+    balanced_accuracy_min: 0.70
+    keep_recall_min: 0.70
+    revise_recall_min: 0.65
+    code_accuracy_must_not_regress: true
+    unseen_template_accuracy_must_not_regress: true
+
+runtime:
+  minimum_gpu_vram_gib: 23
+  estimated_minutes_on_rtx_3090_ti: [30, 90]
+  shutdown_ready_after_artifact_download: true

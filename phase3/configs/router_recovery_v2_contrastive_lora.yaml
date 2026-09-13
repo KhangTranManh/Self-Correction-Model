@@ -1,0 +1,65 @@
+experiment:
+  name: router_recovery_v2_contrastive_lora
+  status: not_run_phase3_closed
+  seed: 20260908
+  upload_to_hub: false
+  run_condition: frozen_head_and_policy_calibration_both_fail
+
+model:
+  original_base_model: Qwen/Qwen2.5-7B-Instruct
+  training_checkpoint: Kxck/Self_Correction_v1
+  initial_adapter: ../outputs/phase3_decision_only_v1/final_adapter
+  load_in_4bit: true
+  quant_type: nf4
+  double_quant: true
+  compute_dtype: bfloat16
+  new_lora_r: 16
+  new_lora_alpha: 32
+  new_lora_dropout: 0.05
+  target_modules: [q_proj, k_proj, v_proj, o_proj]
+
+data:
+  train_pairs: data/router_recovery_v2/representation_train_pairs.jsonl
+  dev_pairs: data/router_recovery_v2/internal_test_pairs.jsonl
+  minimum_train_pairs: 120
+  target_train_pairs: 180
+  source_disjoint: true
+  label_balance: {KEEP: 0.50, REVISE: 0.50}
+  max_sequence_length: 4096
+
+loss:
+  decision_token_cross_entropy_weight: 1.0
+  supervised_contrastive_weight: 0.25
+  contrastive_temperature: 0.07
+  pair_margin_diagnostic: true
+  explanation_token_loss_masked: true
+  prompt_token_loss_masked: true
+
+training:
+  epochs: 1
+  micro_batch_size_pairs: 1
+  gradient_accumulation_steps: 8
+  learning_rate: 5.0e-6
+  warmup_ratio: 0.10
+  lr_scheduler_type: cosine
+  optimizer: paged_adamw_8bit
+  weight_decay: 0.01
+  gradient_checkpointing: true
+  max_grad_norm: 1.0
+  save_strategy: 'no'
+
+selection:
+  metric: balanced_accuracy
+  keep_recall_floor: 0.70
+  early_stop_if_revise_recall_below: 0.49
+  reject_if_single_label_rate_above: 0.95
+
+output:
+  root: ../outputs/phase3_router_recovery_v2/05_contrastive_lora
+  final_adapter: ../outputs/phase3_router_recovery_v2/05_contrastive_lora/final_adapter
+  train_report: ../outputs/phase3_router_recovery_v2/05_contrastive_lora/train_report.json
+
+runtime:
+  minimum_gpu_vram_gib: 20
+  recommended_gpu_vram_gib: 24
+  estimated_hours_on_rtx_3090_ti: [1, 3]

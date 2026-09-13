@@ -1,0 +1,59 @@
+{
+  "batches": [
+    {
+      "batch": "01_apps_dual",
+      "jobs": 320,
+      "path": "data/router_recovery_v2/apps_expansion/generation_batches/01_apps_dual.jsonl",
+      "sha256": "9b30f717bc0e08465876e950089af7d9793c7c37f483e7492f4eeef0c2239fff",
+      "tasks": 40
+    },
+    {
+      "batch": "02_apps_dual",
+      "jobs": 320,
+      "path": "data/router_recovery_v2/apps_expansion/generation_batches/02_apps_dual.jsonl",
+      "sha256": "672d98212493d98d803d0a21d1a6e8cc513f41ccff183db36b685fdb02c332f6",
+      "tasks": 40
+    },
+    {
+      "batch": "03_apps_dual",
+      "jobs": 320,
+      "path": "data/router_recovery_v2/apps_expansion/generation_batches/03_apps_dual.jsonl",
+      "sha256": "ec30b9e574690b936b5a58b2b8de7617d080afa35e72a23c61f1026013299ac2",
+      "tasks": 40
+    },
+    {
+      "batch": "04_apps_dual",
+      "jobs": 320,
+      "path": "data/router_recovery_v2/apps_expansion/generation_batches/04_apps_dual.jsonl",
+      "sha256": "377a0ec36d15271119fbd1a06688c64c1b3e46f0ac3930970bc598812c5a7d0f",
+      "tasks": 40
+    },
+    {
+      "batch": "05_apps_dual",
+      "jobs": 320,
+      "path": "data/router_recovery_v2/apps_expansion/generation_batches/05_apps_dual.jsonl",
+      "sha256": "c91d84a34f707968ed4a3850d32a72ed42ce21974eb849d8ae1ea194c195598a",
+      "tasks": 40
+    }
+  ],
+  "candidate_sha256": "c7f59ed0da7f5c3f2a5b8f31bf6801089f8318c67b9b708595ebfdc8e62cfe40",
+  "dataset": "codeparrot/apps",
+  "excluded_source_ids": 883,
+  "reference_failures_before_target": 36,
+  "reference_fresh_pass": 200,
+  "revision": "21e74ddf8de1a21436da12e3e653065c5213e9d1",
+  "schema_version": "phase3_router_recovery_v2_apps_expansion_v1",
+  "selected_before_model_inference": true,
+  "selected_sources": 200,
+  "source_hosts": {
+    "codeforces.com": 7,
+    "leetcode.com": 59,
+    "www.codewars.com": 89,
+    "www.hackerrank.com": 45
+  },
+  "test_modes": {
+    "call_based": 148,
+    "standard_input": 52
+  },
+  "training_started": false
+}

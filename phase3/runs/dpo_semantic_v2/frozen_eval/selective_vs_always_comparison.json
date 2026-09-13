@@ -1,0 +1,59 @@
+{
+  "accuracy_gain_per_selective_repair_call": 0.180328,
+  "always_minus_initial": -0.005,
+  "always_repair_call_rate": 1.0,
+  "always_repair_final_accuracy": 0.495,
+  "conclusion": "selective_repair_promising",
+  "initial_accuracy": 0.5,
+  "paired_repair_outputs": true,
+  "paired_tests": {
+    "initial_vs_selective": {
+      "correct_to_wrong": 1,
+      "exact_mcnemar_pvalue": 0.003418,
+      "wrong_to_correct": 12
+    },
+    "selective_vs_always": {
+      "always_only_correct": 13,
+      "exact_mcnemar_pvalue": 0.072951,
+      "selective_only_correct": 25
+    }
+  },
+  "repair_call_reduction_vs_always": 0.695,
+  "repair_calls_saved_vs_always": 139,
+  "schema_version": "phase3_selective_vs_always_v1",
+  "selective_final_accuracy": 0.555,
+  "selective_minus_always": 0.06,
+  "selective_minus_initial": 0.055,
+  "selective_repair_call_rate": 0.305,
+  "token_accounting": {
+    "accounting_scope": "operational prompts plus generated tokens; audit rationale and unseen-template control excluded",
+    "average_decision_stage_completion_tokens": 8.305,
+    "average_generated_tokens_per_request": {
+      "always_repair": 411.4,
+      "selective_repair": 237.87,
+      "v1_only": 133.855
+    },
+    "average_initial_prompt_tokens": 193.21,
+    "average_initial_solve_completion_tokens": 133.855,
+    "average_repair_completion_tokens_when_called": 313.803279,
+    "average_total_tokens_per_request": {
+      "always_repair": 963.675,
+      "selective_repair": 892.235,
+      "v1_only": 327.065
+    },
+    "initial_solve_is_cached": true,
+    "latency_seconds": {
+      "average_decision_request": 0.888554,
+      "average_repair_request_all": 7.373756,
+      "average_repair_request_selective_calls": 8.286722,
+      "initial_solve": null,
+      "initial_solve_note": "unavailable because frozen V1 generations were reused",
+      "modeled_average_additional_always": 7.373756,
+      "modeled_average_additional_selective": 3.416004,
+      "note": "Per-request service latency; modeled values exclude cached initial solve and batch wall time."
+    },
+    "selective_generated_token_reduction_vs_always": 0.421804,
+    "selective_token_reduction_vs_always": 0.074133,
+    "selective_tokens_saved_vs_always_per_request": 71.44
+  }
+}

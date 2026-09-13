@@ -1,0 +1,122 @@
+{
+  "by_dataset": {
+    "apps": {
+      "decision_accuracy": 0.65,
+      "final_accuracy": 0.5,
+      "initial_accuracy": 0.5,
+      "repair_call_rate": 0.25,
+      "total": 40
+    },
+    "gsm8k": {
+      "decision_accuracy": 0.7,
+      "final_accuracy": 0.566667,
+      "initial_accuracy": 0.5,
+      "repair_call_rate": 0.3,
+      "total": 60
+    },
+    "humaneval": {
+      "decision_accuracy": 0.6,
+      "final_accuracy": 0.5,
+      "initial_accuracy": 0.5,
+      "repair_call_rate": 0.2,
+      "total": 20
+    },
+    "mbpp": {
+      "decision_accuracy": 0.6,
+      "final_accuracy": 0.5,
+      "initial_accuracy": 0.5,
+      "repair_call_rate": 0.15,
+      "total": 40
+    },
+    "svamp": {
+      "decision_accuracy": 0.725,
+      "final_accuracy": 0.625,
+      "initial_accuracy": 0.5,
+      "repair_call_rate": 0.625,
+      "total": 40
+    }
+  },
+  "by_domain": {
+    "code": {
+      "decision_accuracy": 0.62,
+      "final_accuracy": 0.5,
+      "initial_accuracy": 0.5,
+      "repair_call_rate": 0.2,
+      "total": 100
+    },
+    "math": {
+      "decision_accuracy": 0.71,
+      "final_accuracy": 0.59,
+      "initial_accuracy": 0.5,
+      "repair_call_rate": 0.43,
+      "total": 100
+    }
+  },
+  "evaluation_rows": 200,
+  "manifest": {
+    "path": "/root/agi/phase3/data/two_stage_selective_repair/frozen_eval.jsonl",
+    "sha256": "3c05bf6950756d8f58d15aa9c1f52eec93e148785e1d918bd26c1a74a84fb15f"
+  },
+  "metrics": {
+    "absolute_accuracy_delta": 0.045,
+    "balanced_decision_accuracy": 0.665,
+    "correct_preservation_rate": 0.98,
+    "correct_to_wrong_count": 2,
+    "correct_to_wrong_degradation_rate": 0.02,
+    "decision_accuracy": 0.665,
+    "decision_distribution": {
+      "KEEP": 137,
+      "REVISE": 63
+    },
+    "exact_decision_contract_rate": 1.0,
+    "false_revision_count": 15,
+    "false_revision_rate": 0.15,
+    "final_accuracy": 0.545,
+    "initial_accuracy": 0.5,
+    "keep_precision": 0.620438,
+    "keep_recall": 0.85,
+    "missed_error_count": 52,
+    "missed_error_rate": 0.52,
+    "repair_call_count": 63,
+    "repair_call_rate": 0.315,
+    "repair_success_conditioned_on_revise": 0.380952,
+    "revise_precision": 0.761905,
+    "revise_recall": 0.48,
+    "total": 200,
+    "transition_counts": {
+      "FAILED_REPAIR": 37,
+      "HARMFUL_FALSE_REVISION": 2,
+      "MISSED_ERROR": 52,
+      "SUCCESSFUL_RECOVERY": 11,
+      "TRUE_KEEP": 85,
+      "UNNECESSARY_BUT_SAFE_REVISION": 13
+    },
+    "wrong_revise_repair_success_rate": 0.229167,
+    "wrong_to_correct_count": 11,
+    "wrong_to_correct_recovery_rate": 0.11
+  },
+  "models": {
+    "decision_router": "phase3-dpo-pilot-v1",
+    "initial_solver": "Kxck/Self_Correction_v1",
+    "repair_model": "Kxck/Self_Correction_v1",
+    "training_performed": false,
+    "weights_merged": false
+  },
+  "prompts": {
+    "decision": "Review your previous answer carefully and decide whether it should be kept or revised.",
+    "repair": "Reconsider your previous answer carefully. If it contains an error, correct it and provide the best final answer."
+  },
+  "rationale_audit": {
+    "hidden_reasoning_available": false,
+    "separate_non_scored_pass": true,
+    "substantive_count": 200,
+    "total": 200
+  },
+  "schema_version": "phase3_two_stage_selective_repair_v1",
+  "seed": 314159,
+  "unseen_template": {
+    "decision_accuracy": 0.555,
+    "exact_contract_rate": 0.955,
+    "template": "Assess the preceding response without assuming it is right or wrong. Return whether it should be kept or revised."
+  }
+}

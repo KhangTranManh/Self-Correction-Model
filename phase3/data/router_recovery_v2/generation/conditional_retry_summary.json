@@ -1,0 +1,11 @@
+{
+  "batch": "07_v1_known_code_low_temp",
+  "jobs_at_eight_samples": 168,
+  "origin": "self_correction_v1",
+  "path": "data/router_recovery_v2/generation/batches/07_v1_known_code_low_temp.jsonl",
+  "reason": "Target near-correct semantic code failures after temperature-0.9 generations were dominated by syntax/interface errors.",
+  "sha256": "999e386a14e99edd681277555df6ceb731b85f3394bdf5ebb08b02f71c40adca",
+  "tasks": 21,
+  "temperature": 0.5,
+  "top_p": 0.9
+}

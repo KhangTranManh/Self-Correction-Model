@@ -1,0 +1,25 @@
+{
+  "acceptance": "retain at most one fresh-verifier-failing answer per source; never synthesize or mutate an answer",
+  "dataset": "gsm8k",
+  "decision_only_sft_overlap": 0,
+  "frozen_200_overlap": 0,
+  "gpu_required_for_generation": true,
+  "gpu_required_for_manifest": false,
+  "manifest_sha256": "99712052111e30fa4c50119360b2abe09d8c0fd7027cc55fd5341fdfc66697ff",
+  "model_origin": "self_correction_v1",
+  "probe_256_overlap": 0,
+  "recommended_generation": {
+    "max_tokens": 1024,
+    "seed": 20260907,
+    "temperature": 0.9,
+    "top_p": 0.95
+  },
+  "samples_per_source": 4,
+  "schema_version": "phase3_calibration_generation_summary_v1",
+  "selection_bucket": {
+    "WC": 150
+  },
+  "sources": 150,
+  "total_generation_jobs": 600,
+  "validation": "PASS"
+}

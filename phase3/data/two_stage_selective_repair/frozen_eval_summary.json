@@ -1,0 +1,54 @@
+{
+  "counts_by_dataset_state": {
+    "apps": {
+      "correct": 20,
+      "wrong": 20
+    },
+    "gsm8k": {
+      "correct": 30,
+      "wrong": 30
+    },
+    "humaneval": {
+      "correct": 10,
+      "wrong": 10
+    },
+    "mbpp": {
+      "correct": 20,
+      "wrong": 20
+    },
+    "svamp": {
+      "correct": 20,
+      "wrong": 20
+    }
+  },
+  "counts_by_domain": {
+    "code": 100,
+    "math": 100
+  },
+  "counts_by_domain_state": {
+    "code": {
+      "correct": 50,
+      "wrong": 50
+    },
+    "math": {
+      "correct": 50,
+      "wrong": 50
+    }
+  },
+  "manifest_sha256": "3c05bf6950756d8f58d15aa9c1f52eec93e148785e1d918bd26c1a74a84fb15f",
+  "schema_version": "phase3_two_stage_frozen_eval_summary_v1",
+  "seed": 314159,
+  "selection_note": "Cached V1 initial generations are reused to preserve the frozen P0/APPS state; no ground-truth or verifier result is supplied to either inference stage.",
+  "total_rows": 200,
+  "validation": {
+    "all_have_verifiers": true,
+    "all_v1_cached": true,
+    "domain_balanced": true,
+    "domain_state_balanced": true,
+    "initial_state_balanced": true,
+    "no_apps_training_or_prior_eval_overlap": true,
+    "quota_match": true,
+    "total_200": true,
+    "unique_sources": true
+  }
+}

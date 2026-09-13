@@ -1,0 +1,10 @@
+{
+  "manifest_sha256": "0081ac885ba49fc186fa24db281c6b4646c6b2399b87516dc4ba54e0352090e6",
+  "new_candidates": 480,
+  "origin": "self_correction_v1",
+  "output_sha256": "21d0dff0d2e0ae7f52b4dc1c4162a027f702bd40ace950a40c2bccd98fd4900f",
+  "schema_version": "phase3_same_origin_candidates_v1",
+  "served_model": "self-correction-v1",
+  "tasks": 59,
+  "total_candidates": 480
+}

@@ -1,5 +1,9 @@
 # Phase 1 — Verified Self-Correction
 
+> Historical phase. The current project status and active codebase are documented
+> in `../README.md` and `../phase3/README.md`. Phase 1 artifacts remain the source
+> of `Kxck/Self_Correction_v1` and must not be rewritten to match later results.
+
 Research pipeline teaching a 7B LLM the foundational skill of **recognizing when
 it is wrong and correcting itself**, on domains where correctness can be checked
 programmatically (math, code) — before any domain-specific knowledge training.

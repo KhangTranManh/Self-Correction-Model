@@ -1,0 +1,56 @@
+experiment:
+  name: router_calibration_v1
+  status: completed_gate_failed
+  seed: 20260907
+
+model:
+  base_checkpoint: Kxck/Self_Correction_v1
+  router_adapter: ../outputs/phase3_decision_only_v1/final_adapter
+  llm_weights_frozen: true
+  probe_weights_frozen: true
+  selected_hidden_layer: 28
+
+data:
+  balanced_fit: data/router_calibration_v1/calibration_balanced.jsonl
+  natural_audit: data/router_calibration_v1/calibration_natural.jsonl
+  combined_extraction: data/router_calibration_v1/calibration_all.jsonl
+  expected_balanced_rows: 100
+  expected_natural_rows: 40
+  protected_probe: runs/representation_probe/probe_dataset.jsonl
+  protected_frozen: data/two_stage_selective_repair/frozen_eval.jsonl
+
+calibration:
+  method: platt_on_pretrained_probe_logit
+  selection_predictions: 5_fold_out_of_fold
+  threshold_objective: maximize_balanced_accuracy
+  keep_recall_floor: 0.70
+  threshold_grid_min: 0.05
+  threshold_grid_max: 0.95
+  threshold_grid_step: 0.01
+  refit_on_all_balanced_rows: true
+
+evaluation:
+  natural_audit_used_for_selection: false
+  frozen_200_used_for_selection: false
+  note: frozen-200 has already been inspected; any later score is exploratory, not a pristine confirmatory test
+
+gates:
+  calibration_oof_balanced_accuracy_min: 0.67
+  calibration_oof_keep_recall_min: 0.70
+  calibration_oof_revise_recall_min: 0.60
+  weight_update_allowed: false
+
+result:
+  selected_threshold: 0.61
+  balanced_fit_oof:
+    balanced_accuracy: 0.66
+    keep_recall: 0.86
+    revise_recall: 0.46
+    roc_auc: 0.708
+  natural_audit:
+    balanced_accuracy: 0.6354166667
+    keep_recall: 0.9583333333
+    revise_recall: 0.3125
+    roc_auc: 0.8463541667
+  gate_pass: false
+  report: ../outputs/phase3_five_stage_pipeline/router_calibration_v1/report.md

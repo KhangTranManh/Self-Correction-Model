@@ -1,0 +1,135 @@
+experiment:
+  name: router_recovery_v2
+  status: abandoned_phase3_closed_below_minimum_gate
+  canonical_start: Kxck/Self_Correction_v1 + Decision-Only V1 LoRA
+  objective: improve hard-REVISE detection without KEEP collapse
+  seed: 20260908
+
+protected_data:
+  frozen_200:
+    path: data/two_stage_selective_repair/frozen_eval.jsonl
+    use: exploratory_comparison_only
+    selection_allowed: false
+  old_probe_256:
+    path: runs/representation_probe/probe_dataset.jsonl
+    selection_allowed: false
+  calibration_v1:
+    path: data/router_calibration_v1/calibration_all.jsonl
+    use: diagnostic_only
+    selection_allowed: false
+  confirmatory_v2:
+    target_rows: 200
+    must_be_new_and_sealed: true
+    selection_allowed: false
+
+stage_00_score_audit:
+  status: completed
+  gpu_required: false
+  input: outputs/phase3_five_stage_pipeline/router_calibration_v1
+  group_by: [domain, dataset, error_type, answer_length, source_origin]
+  output: outputs/phase3_router_recovery_v2/00_score_audit
+
+stage_01_hard_pair_data:
+  status: closed_108_of_200_minimum_pairs
+  gpu_config: configs/router_recovery_v2_generation.yaml
+  gpu_required_for_existing_verified_pool: false
+  gpu_required_for_new_generation: true
+  minimum_pairs: 200
+  target_pairs: 300
+  behavioral_rows_per_pair: 2
+  label_balance: {KEEP: 0.50, REVISE: 0.50}
+  domain_target: {code: 0.60, math: 0.40}
+  rules:
+    - same problem inside each pair
+    - same model origin inside each pair
+    - similar length and format inside each pair
+    - identical neutral-review template distribution across labels
+    - correct member must pass a fresh verifier
+    - wrong member must fail a fresh verifier and remain plausible
+    - at most one pair per source
+    - no synthetic wrong answers
+    - no source overlap with protected data
+  split_by_source:
+    representation_train: 0.60
+    threshold_calibration: 0.20
+    internal_test: 0.20
+  output: phase3/data/router_recovery_v2
+
+stage_02_hidden_extraction:
+  status: not_run_phase_closed
+  gpu_config: configs/router_recovery_v2_extraction.yaml
+  gpu_required: true
+  weights_changed: false
+  model: Decision-Only V1
+  layers: [14, 21, 28]
+  pooling:
+    - final_prompt_token
+    - answer_end_token
+  precision: float16
+  output: outputs/phase3_router_recovery_v2/02_hidden_states
+
+stage_03_frozen_heads:
+  status: not_run_phase_closed
+  gpu_required: false
+  llm_weights_frozen: true
+  candidates:
+    - linear_class_weighted
+    - mlp_focal_loss
+  mlp_hidden_sizes: [128, 256]
+  focal_gamma: [1.0, 2.0]
+  layer_candidates: [14, 21, 28]
+  selection_metric: balanced_accuracy
+  keep_recall_floor: 0.70
+  output: outputs/phase3_router_recovery_v2/03_frozen_heads
+
+stage_04_policy_calibration:
+  status: not_run_phase_closed
+  gpu_required: false
+  fit_split: threshold_calibration
+  policies:
+    - global_binary_threshold
+    - domain_specific_binary_threshold
+    - three_way_keep_uncertain_revise
+  abstention_report:
+    coverage_targets: [0.70, 0.80, 0.90]
+    metrics: [selective_accuracy, keep_recall, revise_recall, uncertain_rate]
+  selection_metric: balanced_accuracy
+  keep_recall_floor: 0.70
+  output: outputs/phase3_router_recovery_v2/04_policy_calibration
+
+stage_05_representation_update:
+  status: not_run_phase_closed
+  gpu_config: configs/router_recovery_v2_contrastive_lora.yaml
+  run_condition: stage_03_and_04_fail_promotion_gate
+  gpu_required: true
+  start_checkpoint: Decision-Only V1
+  method: LoRA
+  epochs: 1
+  learning_rate: 5.0e-6
+  loss:
+    decision_token_cross_entropy: 1.0
+    supervised_contrastive: 0.25
+    explanation_tokens_masked: true
+  early_stop_on: internal_test_revise_recall
+  output: outputs/phase3_router_recovery_v2/05_contrastive_lora
+
+stage_06_confirmation:
+  status: not_run_phase_closed
+  gpu_config: configs/router_recovery_v2_confirmation.yaml
+  dataset: confirmatory_v2
+  tune_on_test: false
+  compare:
+    - Decision-Only V1
+    - best_frozen_head
+    - best_calibrated_policy
+    - contrastive_lora_if_run
+  output: outputs/phase3_router_recovery_v2/06_confirmation
+
+promotion_gate:
+  balanced_accuracy_min: 0.70
+  keep_recall_min: 0.70
+  revise_recall_min: 0.65
+  code_accuracy_must_not_regress: true
+  unseen_template_accuracy_must_not_regress: true
+  both_labels_predicted: true
+  confirmatory_only: true

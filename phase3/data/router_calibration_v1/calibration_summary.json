@@ -1,0 +1,96 @@
+{
+  "balanced_fit": {
+    "dataset": {
+      "apps": {
+        "KEEP": 29,
+        "REVISE": 29
+      },
+      "gsm8k": {
+        "KEEP": 21,
+        "REVISE": 21
+      }
+    },
+    "decision_only_sft_source_overlap": 0,
+    "domain": {
+      "code": {
+        "KEEP": 29,
+        "REVISE": 29
+      },
+      "math": {
+        "KEEP": 21,
+        "REVISE": 21
+      }
+    },
+    "label": {
+      "KEEP": 50,
+      "REVISE": 50
+    },
+    "rows": 100
+  },
+  "estimated_shortcut_risks": {
+    "balanced_fit_missing_mbpp": "only four eligible MBPP KEEP rows remain outside probe/frozen; MBPP is natural-audit only",
+    "balanced_prevalence": "balanced_fit must not be treated as natural deployment prevalence",
+    "decision_only_sft_source_overlap": "reported explicitly; unseen SFT sources are prioritized but strict exclusion is infeasible for GSM8K REVISE",
+    "missing_datasets": [
+      "humaneval",
+      "svamp"
+    ],
+    "single_template": "intentional: calibrates the canonical deployment prompt; does not establish template robustness"
+  },
+  "fresh_verification_exclusions": 2,
+  "max_input_tokens": 3637,
+  "natural_audit": {
+    "dataset": {
+      "apps": {
+        "KEEP": 8,
+        "REVISE": 8
+      },
+      "gsm8k": {
+        "KEEP": 16
+      },
+      "mbpp": {
+        "REVISE": 8
+      }
+    },
+    "decision_only_sft_source_overlap": 0,
+    "domain": {
+      "code": {
+        "KEEP": 8,
+        "REVISE": 16
+      },
+      "math": {
+        "KEEP": 16
+      }
+    },
+    "label": {
+      "KEEP": 24,
+      "REVISE": 16
+    },
+    "rows": 40
+  },
+  "overlap": {
+    "balanced_natural": 0,
+    "decision_only_sft": 0,
+    "frozen_200": 0,
+    "probe_256": 0
+  },
+  "overlength_exclusions": 3,
+  "schema_version": "phase3_router_calibration_summary_v1",
+  "seed": 20260907,
+  "total_rows": 140,
+  "usage_contract": {
+    "balanced_fit": "fit probability/threshold calibration only; never update LLM or probe weights",
+    "frozen_200": "final test only; never fit threshold or calibrator",
+    "natural_audit": "report expected deployment skew; do not select calibration hyperparameters"
+  },
+  "validation": {
+    "all_passed": true,
+    "balanced_fit_50_50": true,
+    "balanced_natural_disjoint": true,
+    "fresh_labels": true,
+    "frozen_200_overlap_zero": true,
+    "gpu_required": false,
+    "no_synthetic_answers": true,
+    "probe_256_overlap_zero": true
+  }
+}

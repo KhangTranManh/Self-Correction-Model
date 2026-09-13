@@ -1,3 +1,14 @@
+# Last verified together on Python 3.10 and RTX 3090 (2026-09-07).
+torch==2.7.1
+transformers==4.57.1
+peft==0.17.1
+accelerate==1.10.1
+bitsandbytes==0.47.0
+vllm==0.10.0
+numpy==2.2.6
+scikit-learn==1.7.2
+
+# Dataset construction and deterministic evaluation.
 datasets
 httpx
 pyyaml

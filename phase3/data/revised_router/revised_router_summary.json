@@ -1,0 +1,528 @@
+{
+  "answer_length_chars": {
+    "KEEP": {
+      "count": 100,
+      "max": 1404,
+      "mean": 474.41,
+      "median": 468.5,
+      "min": 55
+    },
+    "REVISE": {
+      "count": 150,
+      "max": 2658,
+      "mean": 526.393,
+      "median": 473.5,
+      "min": 64
+    }
+  },
+  "bucket_distribution": {
+    "KEEP": {
+      "CC": 81,
+      "WC": 19
+    },
+    "REVISE": {
+      "CW": 45,
+      "WW": 105
+    }
+  },
+  "candidate_pool": {
+    "apps:KEEP": {
+      "available_after_holdout_exclusion": 110,
+      "historically_hard_revise": 0
+    },
+    "apps:REVISE": {
+      "available_after_holdout_exclusion": 128,
+      "historically_hard_revise": 86
+    },
+    "gsm8k:KEEP": {
+      "available_after_holdout_exclusion": 855,
+      "historically_hard_revise": 0
+    },
+    "gsm8k:REVISE": {
+      "available_after_holdout_exclusion": 109,
+      "historically_hard_revise": 89
+    },
+    "mbpp:KEEP": {
+      "available_after_holdout_exclusion": 22,
+      "historically_hard_revise": 0
+    },
+    "mbpp:REVISE": {
+      "available_after_holdout_exclusion": 438,
+      "historically_hard_revise": 14
+    }
+  },
+  "counts_by_split": {
+    "dev": {
+      "KEEP": 20,
+      "REVISE": 30
+    },
+    "train": {
+      "KEEP": 80,
+      "REVISE": 120
+    }
+  },
+  "dataset_balance": {
+    "apps": {
+      "KEEP": 30,
+      "REVISE": 45
+    },
+    "gsm8k": {
+      "KEEP": 50,
+      "REVISE": 75
+    },
+    "mbpp": {
+      "KEEP": 20,
+      "REVISE": 30
+    }
+  },
+  "domain_balance": {
+    "code": {
+      "KEEP": 50,
+      "REVISE": 75
+    },
+    "math": {
+      "KEEP": 50,
+      "REVISE": 75
+    }
+  },
+  "duplicate_checks": {
+    "duplicate_normalized_problem_answer_pairs": 0,
+    "duplicate_normalized_problems": 0,
+    "duplicate_source_ids": 0
+  },
+  "fresh_verification": {
+    "historical_label_mismatch_exclusion_count": 19,
+    "historical_label_mismatch_exclusions": [
+      {
+        "dataset": "gsm8k",
+        "decision": "REVISE",
+        "fresh_passed": true,
+        "fresh_verifier_detail": "OK",
+        "historical_v1_correct": false,
+        "source_id": "gsm8k_train_0873"
+      },
+      {
+        "dataset": "gsm8k",
+        "decision": "REVISE",
+        "fresh_passed": true,
+        "fresh_verifier_detail": "OK",
+        "historical_v1_correct": false,
+        "source_id": "gsm8k_train_0077"
+      },
+      {
+        "dataset": "gsm8k",
+        "decision": "REVISE",
+        "fresh_passed": true,
+        "fresh_verifier_detail": "OK",
+        "historical_v1_correct": false,
+        "source_id": "gsm8k_train_0867"
+      },
+      {
+        "dataset": "gsm8k",
+        "decision": "REVISE",
+        "fresh_passed": true,
+        "fresh_verifier_detail": "OK",
+        "historical_v1_correct": false,
+        "source_id": "gsm8k_train_0007"
+      },
+      {
+        "dataset": "gsm8k",
+        "decision": "REVISE",
+        "fresh_passed": true,
+        "fresh_verifier_detail": "OK",
+        "historical_v1_correct": false,
+        "source_id": "gsm8k_train_0796"
+      },
+      {
+        "dataset": "gsm8k",
+        "decision": "REVISE",
+        "fresh_passed": true,
+        "fresh_verifier_detail": "OK",
+        "historical_v1_correct": false,
+        "source_id": "gsm8k_train_0056"
+      },
+      {
+        "dataset": "gsm8k",
+        "decision": "REVISE",
+        "fresh_passed": true,
+        "fresh_verifier_detail": "OK",
+        "historical_v1_correct": false,
+        "source_id": "gsm8k_train_0516"
+      },
+      {
+        "dataset": "gsm8k",
+        "decision": "REVISE",
+        "fresh_passed": true,
+        "fresh_verifier_detail": "OK",
+        "historical_v1_correct": false,
+        "source_id": "gsm8k_train_0744"
+      },
+      {
+        "dataset": "gsm8k",
+        "decision": "REVISE",
+        "fresh_passed": true,
+        "fresh_verifier_detail": "OK",
+        "historical_v1_correct": false,
+        "source_id": "gsm8k_train_0057"
+      },
+      {
+        "dataset": "gsm8k",
+        "decision": "REVISE",
+        "fresh_passed": true,
+        "fresh_verifier_detail": "OK",
+        "historical_v1_correct": false,
+        "source_id": "gsm8k_train_0572"
+      },
+      {
+        "dataset": "gsm8k",
+        "decision": "REVISE",
+        "fresh_passed": true,
+        "fresh_verifier_detail": "OK",
+        "historical_v1_correct": false,
+        "source_id": "gsm8k_train_0161"
+      },
+      {
+        "dataset": "gsm8k",
+        "decision": "REVISE",
+        "fresh_passed": true,
+        "fresh_verifier_detail": "OK",
+        "historical_v1_correct": false,
+        "source_id": "gsm8k_train_0415"
+      },
+      {
+        "dataset": "gsm8k",
+        "decision": "REVISE",
+        "fresh_passed": true,
+        "fresh_verifier_detail": "OK",
+        "historical_v1_correct": false,
+        "source_id": "gsm8k_train_0952"
+      },
+      {
+        "dataset": "gsm8k",
+        "decision": "REVISE",
+        "fresh_passed": true,
+        "fresh_verifier_detail": "OK",
+        "historical_v1_correct": false,
+        "source_id": "gsm8k_train_0408"
+      },
+      {
+        "dataset": "gsm8k",
+        "decision": "REVISE",
+        "fresh_passed": true,
+        "fresh_verifier_detail": "OK",
+        "historical_v1_correct": false,
+        "source_id": "gsm8k_train_0787"
+      },
+      {
+        "dataset": "gsm8k",
+        "decision": "REVISE",
+        "fresh_passed": true,
+        "fresh_verifier_detail": "OK",
+        "historical_v1_correct": false,
+        "source_id": "gsm8k_train_0511"
+      },
+      {
+        "dataset": "gsm8k",
+        "decision": "REVISE",
+        "fresh_passed": true,
+        "fresh_verifier_detail": "OK",
+        "historical_v1_correct": false,
+        "source_id": "gsm8k_train_0250"
+      },
+      {
+        "dataset": "gsm8k",
+        "decision": "REVISE",
+        "fresh_passed": true,
+        "fresh_verifier_detail": "OK",
+        "historical_v1_correct": false,
+        "source_id": "gsm8k_train_0400"
+      },
+      {
+        "dataset": "gsm8k",
+        "decision": "REVISE",
+        "fresh_passed": true,
+        "fresh_verifier_detail": "OK",
+        "historical_v1_correct": false,
+        "source_id": "gsm8k_train_0061"
+      }
+    ],
+    "selected_rows_reconfirmed": 250
+  },
+  "hard_revise_by_dataset": {
+    "apps": {
+      "2": 20,
+      "3": 25
+    },
+    "gsm8k": {
+      "2": 43,
+      "3": 27
+    },
+    "mbpp": {
+      "2": 14
+    }
+  },
+  "hard_revise_count": 129,
+  "hard_revise_percent_of_revise": 86.0,
+  "hardness_tier_distribution_for_revise": {
+    "apps": {
+      "2": 20,
+      "3": 25
+    },
+    "gsm8k": {
+      "1": 5,
+      "2": 43,
+      "3": 27
+    },
+    "mbpp": {
+      "1": 16,
+      "2": 14
+    }
+  },
+  "inputs": {
+    "frozen_eval": {
+      "path": "D:\\AGI\\phase3\\data\\two_stage_selective_repair\\frozen_eval.jsonl",
+      "sha256": "3c05bf6950756d8f58d15aa9c1f52eec93e148785e1d918bd26c1a74a84fb15f"
+    },
+    "inventory": {
+      "path": "D:\\AGI\\phase3\\data\\behavior\\unified_source_inventory.jsonl",
+      "sha256": "3428758df6a4f42c7dd28e6ccdb6c893bd340d54f3358f37634f031c3ef97c28"
+    },
+    "old_decision": {
+      "path": "D:\\AGI\\phase3\\data\\decision_only\\decision_only_dataset.jsonl",
+      "sha256": "9de0cea7c7a7c351f14d5cf944616b0c1dd612c8e6b2e33b1fc4805105c73ca1"
+    }
+  },
+  "label_counts": {
+    "KEEP": 100,
+    "REVISE": 150
+  },
+  "label_percent": {
+    "KEEP": 40.0,
+    "REVISE": 60.0
+  },
+  "outputs": {
+    "dataset": {
+      "path": "D:\\AGI\\phase3\\data\\revised_router\\revised_router_dataset.jsonl",
+      "sha256": "ec31b5d029e7aa7fdfbf2f959bafcfa2730ffbcf66729c9e8defec3e5b83f9d2"
+    },
+    "dev": {
+      "path": "D:\\AGI\\phase3\\data\\revised_router\\revised_router_dev.jsonl",
+      "sha256": "0ecdd8e50459ed0035396c5aeab57858063f52d7d2f78371cc7284de02fdd9c3"
+    },
+    "hard_revise_audit": {
+      "path": "D:\\AGI\\phase3\\data\\revised_router\\hard_revise_audit.jsonl",
+      "sha256": "76951d283a2676aed7eaffc8eda1fadd4f5dc3c86a5af4e1d5a6023843a8c1f8"
+    },
+    "summary": {
+      "path": "D:\\AGI\\phase3\\data\\revised_router\\revised_router_summary.json",
+      "sha256_before_self_reference": "0fbdbec3f10bcd58157a0a341203012f3b834fc9a2e94aacc769ff98a833d28b"
+    },
+    "train": {
+      "path": "D:\\AGI\\phase3\\data\\revised_router\\revised_router_train.jsonl",
+      "sha256": "eec3a2d74a2cb3c9adb50562f33fc15152f88c6282ad3d4a30596b72a2cc79e5"
+    }
+  },
+  "purpose": "increase neutral-review REVISE recall without collapsing KEEP behavior",
+  "schema_version": "phase3_revised_router_v1",
+  "seed": 271828,
+  "shortcut_risk_estimates": [
+    {
+      "evidence": "REVISE is intentionally 60% of rows to address low recall; evaluate balanced accuracy and KEEP recall, not raw accuracy alone.",
+      "level": "intentional_medium",
+      "risk": "class_prior_bias"
+    },
+    {
+      "evidence": "All five neutral templates have identical proportions for KEEP and REVISE within each dataset and domain.",
+      "level": "low",
+      "risk": "template_label_correlation"
+    },
+    {
+      "evidence": "Every dataset and both domains use the same 40% KEEP / 60% REVISE prior.",
+      "level": "low",
+      "risk": "dataset_or_domain_label_correlation"
+    },
+    {
+      "evidence": "Standardized mean difference (REVISE minus KEEP) is 0.157; raw answer-length distributions are included below.",
+      "level": "low",
+      "risk": "answer_length_correlation"
+    },
+    {
+      "evidence": "Verifier fields and hardness annotations are metadata only; none appears in the input messages consumed by SFT.",
+      "level": "low",
+      "risk": "verifier_or_label_metadata_leakage"
+    },
+    {
+      "evidence": "Some original training sources are intentionally reusable for a revised mix; original dev/test and frozen two-stage sources are excluded and overlap counts are explicit.",
+      "level": "medium",
+      "risk": "source_reuse_from_prior_router_training"
+    },
+    {
+      "evidence": "Hardness is a reproducible proxy based on numerical proximity, substantive reasoning, execution, and partial tests—not a human difficulty judgment. Audit rows are provided for manual review.",
+      "level": "medium",
+      "risk": "hardness_heuristic_noise"
+    }
+  ],
+  "source_overlap_checks": {
+    "behavior_selection_manifest_count": 173,
+    "frozen_eval": [],
+    "internal_train_dev": [],
+    "note": "Original train reuse is reported. Frozen evaluation plus original dev/test are protected holdouts.",
+    "original_decision_dev_count": 0,
+    "original_decision_test": [],
+    "original_decision_train_count": 56
+  },
+  "template_distribution": {
+    "by_dataset": {
+      "apps": {
+        "KEEP": {
+          "neutral_review_01": 6,
+          "neutral_review_02": 6,
+          "neutral_review_03": 6,
+          "neutral_review_04": 6,
+          "neutral_review_05": 6
+        },
+        "REVISE": {
+          "neutral_review_01": 9,
+          "neutral_review_02": 9,
+          "neutral_review_03": 9,
+          "neutral_review_04": 9,
+          "neutral_review_05": 9
+        }
+      },
+      "gsm8k": {
+        "KEEP": {
+          "neutral_review_01": 10,
+          "neutral_review_02": 10,
+          "neutral_review_03": 10,
+          "neutral_review_04": 10,
+          "neutral_review_05": 10
+        },
+        "REVISE": {
+          "neutral_review_01": 15,
+          "neutral_review_02": 15,
+          "neutral_review_03": 15,
+          "neutral_review_04": 15,
+          "neutral_review_05": 15
+        }
+      },
+      "mbpp": {
+        "KEEP": {
+          "neutral_review_01": 4,
+          "neutral_review_02": 4,
+          "neutral_review_03": 4,
+          "neutral_review_04": 4,
+          "neutral_review_05": 4
+        },
+        "REVISE": {
+          "neutral_review_01": 6,
+          "neutral_review_02": 6,
+          "neutral_review_03": 6,
+          "neutral_review_04": 6,
+          "neutral_review_05": 6
+        }
+      }
+    },
+    "by_domain": {
+      "code": {
+        "KEEP": {
+          "neutral_review_01": 10,
+          "neutral_review_02": 10,
+          "neutral_review_03": 10,
+          "neutral_review_04": 10,
+          "neutral_review_05": 10
+        },
+        "REVISE": {
+          "neutral_review_01": 15,
+          "neutral_review_02": 15,
+          "neutral_review_03": 15,
+          "neutral_review_04": 15,
+          "neutral_review_05": 15
+        }
+      },
+      "math": {
+        "KEEP": {
+          "neutral_review_01": 10,
+          "neutral_review_02": 10,
+          "neutral_review_03": 10,
+          "neutral_review_04": 10,
+          "neutral_review_05": 10
+        },
+        "REVISE": {
+          "neutral_review_01": 15,
+          "neutral_review_02": 15,
+          "neutral_review_03": 15,
+          "neutral_review_04": 15,
+          "neutral_review_05": 15
+        }
+      }
+    },
+    "by_split": {
+      "dev": {
+        "KEEP": {
+          "neutral_review_01": 4,
+          "neutral_review_02": 5,
+          "neutral_review_03": 3,
+          "neutral_review_04": 6,
+          "neutral_review_05": 2
+        },
+        "REVISE": {
+          "neutral_review_01": 4,
+          "neutral_review_02": 9,
+          "neutral_review_03": 7,
+          "neutral_review_04": 5,
+          "neutral_review_05": 5
+        }
+      },
+      "train": {
+        "KEEP": {
+          "neutral_review_01": 16,
+          "neutral_review_02": 15,
+          "neutral_review_03": 17,
+          "neutral_review_04": 14,
+          "neutral_review_05": 18
+        },
+        "REVISE": {
+          "neutral_review_01": 26,
+          "neutral_review_02": 21,
+          "neutral_review_03": 23,
+          "neutral_review_04": 25,
+          "neutral_review_05": 25
+        }
+      }
+    },
+    "overall": {
+      "KEEP": {
+        "neutral_review_01": 20,
+        "neutral_review_02": 20,
+        "neutral_review_03": 20,
+        "neutral_review_04": 20,
+        "neutral_review_05": 20
+      },
+      "REVISE": {
+        "neutral_review_01": 30,
+        "neutral_review_02": 30,
+        "neutral_review_03": 30,
+        "neutral_review_04": 30,
+        "neutral_review_05": 30
+      }
+    }
+  },
+  "total_rows": 250,
+  "unique_sources": 250,
+  "validation": {
+    "all_feedback_neutral": true,
+    "all_labels_freshly_reconfirmed": true,
+    "all_passed": true,
+    "all_sources_from_existing_phase3_inventory": true,
+    "no_frozen_eval_overlap": true,
+    "no_normalized_content_duplicates": true,
+    "no_original_decision_dev_overlap": true,
+    "no_original_decision_test_overlap": true,
+    "no_teacher_labels": true,
+    "one_row_per_source": true,
+    "same_label_prior_in_every_dataset_and_domain": true,
+    "same_template_distribution_by_label_within_domain_and_dataset": true,
+    "strict_decision_only_targets": true,
+    "training_not_started": true
+  }
+}

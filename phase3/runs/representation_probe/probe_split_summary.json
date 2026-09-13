@@ -1,0 +1,352 @@
+{
+  "bucket_by_label": {
+    "KEEP": {
+      "CC": 101,
+      "WC": 27
+    },
+    "REVISE": {
+      "WW": 128
+    }
+  },
+  "counts_by_split": {
+    "dev": 52,
+    "test": 52,
+    "train": 152
+  },
+  "counts_by_split_dataset_label": {
+    "dev": {
+      "apps": {
+        "KEEP": 8,
+        "REVISE": 8
+      },
+      "gsm8k": {
+        "KEEP": 13,
+        "REVISE": 13
+      },
+      "mbpp": {
+        "KEEP": 5,
+        "REVISE": 5
+      }
+    },
+    "test": {
+      "apps": {
+        "KEEP": 8,
+        "REVISE": 8
+      },
+      "gsm8k": {
+        "KEEP": 13,
+        "REVISE": 13
+      },
+      "mbpp": {
+        "KEEP": 5,
+        "REVISE": 5
+      }
+    },
+    "train": {
+      "apps": {
+        "KEEP": 23,
+        "REVISE": 23
+      },
+      "gsm8k": {
+        "KEEP": 38,
+        "REVISE": 38
+      },
+      "mbpp": {
+        "KEEP": 15,
+        "REVISE": 15
+      }
+    }
+  },
+  "counts_by_split_domain_label": {
+    "dev": {
+      "code": {
+        "KEEP": 13,
+        "REVISE": 13
+      },
+      "math": {
+        "KEEP": 13,
+        "REVISE": 13
+      }
+    },
+    "test": {
+      "code": {
+        "KEEP": 13,
+        "REVISE": 13
+      },
+      "math": {
+        "KEEP": 13,
+        "REVISE": 13
+      }
+    },
+    "train": {
+      "code": {
+        "KEEP": 38,
+        "REVISE": 38
+      },
+      "math": {
+        "KEEP": 38,
+        "REVISE": 38
+      }
+    }
+  },
+  "counts_by_split_label": {
+    "dev": {
+      "KEEP": 26,
+      "REVISE": 26
+    },
+    "test": {
+      "KEEP": 26,
+      "REVISE": 26
+    },
+    "train": {
+      "KEEP": 76,
+      "REVISE": 76
+    }
+  },
+  "fresh_verification_exclusion_count": 22,
+  "fresh_verification_exclusions": [
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "fresh_correct": true,
+      "historical_correct": false,
+      "label": "REVISE",
+      "source_id": "gsm8k_train_0056"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "fresh_correct": true,
+      "historical_correct": false,
+      "label": "REVISE",
+      "source_id": "gsm8k_train_0057"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "fresh_correct": true,
+      "historical_correct": false,
+      "label": "REVISE",
+      "source_id": "gsm8k_train_0796"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "fresh_correct": true,
+      "historical_correct": false,
+      "label": "REVISE",
+      "source_id": "gsm8k_train_0061"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "fresh_correct": true,
+      "historical_correct": false,
+      "label": "REVISE",
+      "source_id": "gsm8k_train_0744"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "fresh_correct": true,
+      "historical_correct": false,
+      "label": "REVISE",
+      "source_id": "gsm8k_train_0102"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "fresh_correct": true,
+      "historical_correct": false,
+      "label": "REVISE",
+      "source_id": "gsm8k_train_0516"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "fresh_correct": true,
+      "historical_correct": false,
+      "label": "REVISE",
+      "source_id": "gsm8k_train_0250"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "fresh_correct": true,
+      "historical_correct": false,
+      "label": "REVISE",
+      "source_id": "gsm8k_train_0873"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "fresh_correct": true,
+      "historical_correct": false,
+      "label": "REVISE",
+      "source_id": "gsm8k_train_0007"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "fresh_correct": true,
+      "historical_correct": false,
+      "label": "REVISE",
+      "source_id": "gsm8k_train_0415"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "fresh_correct": true,
+      "historical_correct": false,
+      "label": "REVISE",
+      "source_id": "gsm8k_train_0161"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "fresh_correct": true,
+      "historical_correct": false,
+      "label": "REVISE",
+      "source_id": "gsm8k_train_0957"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "fresh_correct": true,
+      "historical_correct": false,
+      "label": "REVISE",
+      "source_id": "gsm8k_train_0400"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "fresh_correct": true,
+      "historical_correct": false,
+      "label": "REVISE",
+      "source_id": "gsm8k_train_0787"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "fresh_correct": true,
+      "historical_correct": false,
+      "label": "REVISE",
+      "source_id": "gsm8k_train_0077"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "fresh_correct": true,
+      "historical_correct": false,
+      "label": "REVISE",
+      "source_id": "gsm8k_train_0569"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "fresh_correct": true,
+      "historical_correct": false,
+      "label": "REVISE",
+      "source_id": "gsm8k_train_0596"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "fresh_correct": true,
+      "historical_correct": false,
+      "label": "REVISE",
+      "source_id": "gsm8k_train_0952"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "fresh_correct": true,
+      "historical_correct": false,
+      "label": "REVISE",
+      "source_id": "gsm8k_train_0572"
+    },
+    {
+      "dataset": "apps",
+      "detail": "test_0:wrong_answer",
+      "fresh_correct": false,
+      "historical_correct": true,
+      "label": "KEEP",
+      "source_id": "apps_train_3492"
+    },
+    {
+      "dataset": "apps",
+      "detail": "test_0:wrong_answer",
+      "fresh_correct": false,
+      "historical_correct": true,
+      "label": "KEEP",
+      "source_id": "apps_train_2647"
+    }
+  ],
+  "frozen_benchmark_overlap": [],
+  "input": {
+    "path": "D:\\AGI\\phase3\\data\\behavior\\unified_source_inventory.jsonl",
+    "sha256": "3428758df6a4f42c7dd28e6ccdb6c893bd340d54f3358f37634f031c3ef97c28"
+  },
+  "max_input_tokens": 2962,
+  "output": {
+    "path": "D:\\AGI\\phase3\\runs\\representation_probe\\probe_dataset.jsonl",
+    "sha256": "a31be690e12fb77fa92b9a38c4b6dd57b867a18cab1a6f36504cd1419ecf4f94"
+  },
+  "overall_dataset_label": {
+    "apps": {
+      "KEEP": 39,
+      "REVISE": 39
+    },
+    "gsm8k": {
+      "KEEP": 64,
+      "REVISE": 64
+    },
+    "mbpp": {
+      "KEEP": 25,
+      "REVISE": 25
+    }
+  },
+  "overall_domain_label": {
+    "code": {
+      "KEEP": 64,
+      "REVISE": 64
+    },
+    "math": {
+      "KEEP": 64,
+      "REVISE": 64
+    }
+  },
+  "overlength_exclusion_count": 1,
+  "overlength_exclusions": [
+    {
+      "dataset": "apps",
+      "label": "REVISE",
+      "max_length": 4096,
+      "source_id": "apps_train_4694",
+      "token_length": 13748
+    }
+  ],
+  "schema_version": "phase3_representation_probe_v1",
+  "seed": 161803,
+  "size_note": "256 is the maximum clean class/domain-balanced size after fresh verification left only 64 eligible GSM8K WW rows; preferred 300-500 is infeasible without CW or frozen leakage.",
+  "source_overlap": {
+    "dev_test": [],
+    "train_dev": [],
+    "train_test": []
+  },
+  "total_sources": 256,
+  "validation": {
+    "all_existing_phase3_sources": true,
+    "all_labels_freshly_verified": true,
+    "all_passed": true,
+    "balanced_correct_wrong": true,
+    "balanced_labels_within_dataset": true,
+    "balanced_math_code": true,
+    "neutral_review_only": true,
+    "no_cw_as_wrong": true,
+    "no_frozen_leakage": true,
+    "no_generation_target_in_input": true,
+    "no_humaneval": true,
+    "zero_split_overlap": true
+  }
+}

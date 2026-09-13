@@ -1,135 +1,144 @@
-# Architecture
+# Project Architecture
 
-## File/folder tree
+This document defines ownership and dependency boundaries for the current
+repository. Phase-specific historical documents remain useful, but the root
+README and Phase 3 documentation are authoritative for current status.
 
-```
-d:\AGI/
-├── .env                          secrets (per-machine, never synced — see SKILL.md rule 6)
-├── .gitignore                    excludes .env, data/processed/, outputs/, __pycache__
-├── README.md                     setup, current result, and run instructions
-├── benchmark_testcase.txt        benchmark backlog and P0/P1/P2 priority definitions
-├── note.txt                      user's own rolling success-criteria/status notes (not part of this doc set)
-├── requirements.txt               pinned deps + WHY comments (torch pin rationale lives here)
-├── configs/
-│   └── phase1.yaml               hyperparams, file paths, non-secret provider config
-├── data/
-│   ├── problems/
-│   │   ├── math.jsonl            GSM8K subset — {id, question, reference_answer}
-│   │   └── code.jsonl            MBPP subset — {id, question, entry_point, tests}
-│   └── processed/                 generated at runtime, gitignored
-│       ├── attempts.jsonl         generate_attempts.py output — {problem_id, attempt_idx, text}
-│       ├── phase1_sft.jsonl       build_dataset.py output — verified ChatML correction data
-│       └── phase1_sft_train.jsonl prepare_training_dataset.py output — loss-ready SFT rows
-├── outputs/
-│   ├── phase1_lora/               trained LoRA adapter
-│   ├── Self_Correction_v1_merged/ standalone merged BF16 checkpoint for vLLM
-│   ├── eval_*_vllm_*.{json,jsonl} historical small HTTP evaluations
-│   ├── p0_*_100_summary.json      canonical base/trained P0 summaries
-│   ├── p0_*_100_log.jsonl         complete P0 prompts, outputs, reasoning text, scores
-│   ├── p0_benchmark_report.md     canonical human-readable P0 comparison
-│   └── p0_code_format_audit.json  strict-vs-lenient code-format diagnostic
-└── src/
-    ├── config.py                  loads .env + phase1.yaml -> Config dataclass (single source of truth for all scripts)
-    ├── data/
-    │   ├── schema.py               Problem / Attempt / VerifierResult / CorrectionRecord dataclasses
-    │   └── problem_sources.py      load_math_problems(), load_code_problems() — JSONL -> list[Problem]
-    ├── verifier/
-    │   ├── base.py                 Verifier protocol (verify(problem, candidate_text) -> VerifierResult)
-    │   ├── math_verifier.py        sympy-based objective answer checking
-    │   └── code_verifier.py        subprocess-based unit test execution
-    ├── deepseek_client.py          OpenAI-compatible chat client — critique_and_correct(), captures reasoning_content
-    ├── prepare_public_datasets.py  GSM8K/MBPP (HF datasets) -> data/problems/*.jsonl
-    ├── generate_attempts.py        small model self-attempts (no external API) -> attempts.jsonl
-    ├── build_dataset.py            verify -> API critique/correction -> re-verify -> phase1_sft.jsonl
-    ├── prepare_training_dataset.py compact/mask context -> phase1_sft_train.jsonl
-    ├── train_sft.py                QLoRA SFT via Unsloth+TRL -> outputs/phase1_lora/
-    ├── evaluate_self_correction.py held-out eval: does the trained adapter actually self-correct?
-    ├── evaluate_self_correction_vllm.py same eval through a running vLLM HTTP API
-    ├── evaluate_p0_vllm.py        B1/B2/B3/B7/B8 base-vs-tuned benchmark via vLLM
-    ├── export_merged_for_vllm.py   merge adapter into BF16 base and upload a standalone model
-    ├── push_to_hub.py              standalone: push an existing local adapter dir to HF Hub
-    └── test_deepseek_connection.py cheap API config/connectivity sanity check — no GPU needed
+## Phase boundaries
+
+```text
+Phase 1 verified solver
+        │
+        ├── Kxck/Self_Correction_v1 (base solver/repair model)
+        │
+        ▼
+Phase 3 immutable Base/V1 attempts
+        │
+        ├── verifier-labelled source inventory
+        ├── router training datasets
+        └── protected frozen evaluations
+                │
+                ▼
+        Decision-Only V1 router
+                │
+                ├── DPO Pilot V1 (not promoted)
+                └── DPO Semantic V2 (not promoted)
 ```
 
-## Dependency graph
+Phase 2 is a separate KTO exploration. Its data and scripts are not imported by
+the canonical Phase 3 pipeline.
 
-- `config.py` is imported by every other module in `src/` — it is the only place `.env`
-  and `configs/phase1.yaml` are read.
-- `data/schema.py` + `data/problem_sources.py` are used by `generate_attempts.py`,
-  `build_dataset.py`, and `evaluate_self_correction.py`.
-- `verifier/math_verifier.py` and `verifier/code_verifier.py` are used by
-  `build_dataset.py` and `evaluate_self_correction.py` (never by `generate_attempts.py`,
-  which only produces attempts, doesn't judge them).
-- `deepseek_client.py` is used only by `build_dataset.py` and
-  `test_deepseek_connection.py`. `train_sft.py`, `generate_attempts.py`, and
-  `evaluate_self_correction.py` never call the external API — they only touch the local
-  GPU model.
-- `prepare_training_dataset.py` converts verified builder output into prompt/completion
-  training rows while preserving every verified correction target.
-- `evaluate_self_correction_vllm.py` uses the same `Problem` schema and objective
-  verifiers as the local evaluator, but generations come from `/v1/chat/completions`.
-- `evaluate_p0_vllm.py` extends the HTTP evaluation into paired behavioral branches:
-  B1 and B3 share selected wrong attempts; B2, B3, and B7 share selected correct
-  attempts; B8 loads SVAMP and HumanEval as OOD sources. It writes full raw JSONL and
-  a compact JSON summary. It does not call the correction-data API.
-- `export_merged_for_vllm.py` loads the original BF16 base, applies the saved PEFT
-  adapter, saves merged safetensors, and uploads the folder using `HF_TOKEN`.
+## Top-level ownership
 
-## Runtime flow (seven stages plus optional merged serving)
+| Path | Owner | Purpose |
+|---|---|---|
+| `phase1/` | Phase 1 | Verified solve/correct pipeline and historical results |
+| `phase2/` | Phase 2 | KTO preference experiment |
+| `phase3/` | Phase 3 | Closed discrimination/selective-repair research package |
+| `outputs/` | Runtime | Local adapters, logs, activations; excluded from Git |
+| `instructionAI/` | Project | Cross-phase architecture and data invariants |
 
-```
-prepare_public_datasets.py
-    reads: HF Hub datasets (gsm8k, mbpp)
-    writes: data/problems/math.jsonl, data/problems/code.jsonl
-        │
-        ▼  (GPU)
-generate_attempts.py
-    reads: data/problems/*.jsonl
-    writes: data/processed/attempts.jsonl
-        │
-        ▼  (no GPU — API calls to whatever provider .env points at)
-build_dataset.py
-    reads: data/problems/*.jsonl, data/processed/attempts.jsonl
-    writes: data/processed/phase1_sft.jsonl
-        │
-        ▼  (no GPU)
-prepare_training_dataset.py
-    reads: data/processed/phase1_sft.jsonl
-    writes: data/processed/phase1_sft_train.jsonl
-        │
-        ▼  (GPU)
-train_sft.py
-    reads: data/processed/phase1_sft_train.jsonl
-    writes: outputs/phase1_lora/
-        │
-        ├──────────────────────────────┐
-        ▼  (GPU, direct adapter)       ▼  (GPU merge, then vLLM)
-evaluate_self_correction.py
-    reads: outputs/phase1_lora/, fresh held-out problems (offset past what training used)
-    writes: evaluation logs/summary
-                                export_merged_for_vllm.py
-                                    reads: BF16 base + outputs/phase1_lora/
-                                    writes: merged checkpoint + HF model repository
-                                        │
-                                        ▼
-                                vLLM OpenAI-compatible server
-                                        │
-                                        ▼
-                                evaluate_self_correction_vllm.py
-                                    reads: held-out datasets + vLLM responses
-                                    writes: JSONL records + JSON summary
-                                        │
-                                        ▼
-                                evaluate_p0_vllm.py
-                                    reads: GSM8K/MBPP + SVAMP/HumanEval + vLLM API
-                                    branches: guided / false feedback / neutral review
-                                    writes: p0_*_100_log.jsonl + summary.json
+## Canonical Phase 3 layers
+
+### `phase3/lib/`
+
+Reusable implementation primitives only:
+
+- provenance resolution;
+- prompt construction;
+- math/code verification;
+- APPS sandbox execution.
+
+Libraries must not select experiment samples or contain hard-coded run paths.
+
+### `phase3/scripts/data/`
+
+CPU-oriented acquisition and deterministic dataset builders. Builders may read
+immutable attempts and verifier metadata, but may not read frozen model outputs
+to choose training samples.
+
+### `phase3/scripts/training/`
+
+GPU training entry points. All hyperparameters and artifact locations come from
+YAML configs. Training scripts do not silently rebuild datasets.
+
+### `phase3/scripts/evaluation/`
+
+Frozen behavioral evaluation, model comparison, activation extraction, and
+linear probes. Evaluation outputs belong under `phase3/runs/` or a clearly named
+runtime output directory.
+
+### `phase3/scripts/serving/`
+
+vLLM launchers only. Serving is operational and never changes model weights.
+
+### `phase3/configs/`
+
+- one YAML file per training run;
+- `experiments.yaml` as the canonical model/status registry;
+- no secrets or provider passwords.
+
+### `phase3/data/`
+
+```text
+source/ and apps_pilot/candidates/    original problem records
+attempts/ and apps_pilot/attempts/    immutable natural model generations
+behavior/ and buckets/                compact provenance/index metadata
+decision_only/                        Decision-Only V1 SFT data
+revised_router/                       Router V3 experimental data
+contrastive_pairs/                    first 120-pair DPO source
+dpo_pilot/                            DPO Pilot V1 preferences
+semantic_model_dpo/                   100 model-vs-model semantic pairs
+two_stage_selective_repair/           protected frozen evaluation manifest
 ```
 
-The P0 base and fine-tuned runs are sequential because one 24 GB GPU can host only
-one merged BF16 7B model with the configured vLLM cache. Switch weights, keep every
-evaluation argument identical, then restore the fine-tuned service after comparison.
+### `phase3/runs/`
 
-Every script is invoked as `python -m src.<module_name>` from the project root (relative
-imports like `from src.config import ...` require this — running a file directly from
-inside `src/`, e.g. `cd src && python foo.py`, fails with `ModuleNotFoundError`).
+Research evidence: raw decisions, model-visible rationales, verifier results,
+metrics, and generated reports. These files are not training inputs.
+
+## Model roles
+
+| Model | Parent | Role | Status |
+|---|---|---|---|
+| `Kxck/Self_Correction_v1` | Phase 1 model | Solver and repair model | canonical solver |
+| Decision-Only V1 | Self_Correction_v1 | KEEP/REVISE router | canonical router |
+| Router V3 mini | Decision-Only V1 | REVISE-heavy router experiment | diagnostic only |
+| DPO Pilot V1 | Decision-Only V1 | First decision-token DPO | not promoted |
+| DPO Semantic V2 | Decision-Only V1 | Model-vs-model semantic DPO | not promoted |
+
+LoRA adapters are not standalone models. Serving or extraction loads
+`Kxck/Self_Correction_v1` first, then attaches the selected adapter.
+
+## Artifact lifecycle
+
+```text
+source problem
+  → natural Base/V1 attempt
+  → deterministic verification
+  → immutable inventory/bucket
+  → deterministic dataset builder
+  → reviewed YAML config
+  → adapter training
+  → immediate local backup + SHA-256
+  → frozen behavioral evaluation
+  → representation probe
+  → promote or reject in experiments.yaml
+```
+
+No later result may retroactively change an earlier frozen manifest. A new
+manifest or experiment version is required.
+
+Phase 3 is closed as of 2026-09-13. Its canonical and negative-result artifacts
+remain immutable. New discrimination research must create a new phase rather
+than adding rows, adapters, or tuned thresholds to Phase 3.
+
+## Security and operational rules
+
+- Never inspect, copy, document, or commit `.env` values.
+- Never store SSH passwords in scripts, reports, or configs.
+- vLLM binds to `127.0.0.1` by default; public binding requires an explicit
+  `PHASE3_HOST=0.0.0.0` choice and should be protected externally.
+- Stop GPU processes or the rented instance when work is complete.
+- Download adapters and small reports immediately after each stage; do not wait
+  for all downstream evaluation to finish.

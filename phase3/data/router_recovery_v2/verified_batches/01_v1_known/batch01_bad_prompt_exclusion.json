@@ -1,0 +1,7 @@
+{
+  "candidate_rows": 480,
+  "candidate_sha256": "540c3392607b0aa2cc893cdc1bcb2da278ff97a348190740c2ed3d74b7cb26a2",
+  "excluded_from_all_training_and_evaluation": true,
+  "reason": "Generation used the raw problem text rather than the exact original prompt template, so correct and wrong members were not prompt-matched.",
+  "schema_version": "phase3_router_recovery_v2_generation_exclusion_v1"
+}

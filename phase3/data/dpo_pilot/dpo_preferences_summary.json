@@ -1,0 +1,52 @@
+{
+  "answer_state_distribution": {
+    "verified_correct": 120,
+    "verified_wrong": 120
+  },
+  "dataset_distribution": {
+    "apps": 140,
+    "gsm8k": 60,
+    "mbpp": 40
+  },
+  "domain_distribution": {
+    "code": 180,
+    "math": 60
+  },
+  "output": {
+    "path": "D:\\AGI\\phase3\\data\\dpo_pilot\\dpo_preferences.jsonl",
+    "sha256": "0167cb10c0656fc62821e59f84f2f69fc30af396764b49a9c0527fbc978ab4ee"
+  },
+  "preference_rows": 240,
+  "same_problem_pairs": 120,
+  "schema_version": "phase3_dpo_preferences_v1",
+  "source": {
+    "path": "D:\\AGI\\phase3\\data\\contrastive_pairs\\contrastive_behavior_rows.jsonl",
+    "sha256": "562e47126398d6e2b1a21a8157c15527d8c9a01abe6b57c44a38d47849d5386a"
+  },
+  "template_by_answer_state": {
+    "verified_correct": {
+      "neutral_review_01": 24,
+      "neutral_review_02": 24,
+      "neutral_review_03": 24,
+      "neutral_review_04": 24,
+      "neutral_review_05": 24
+    },
+    "verified_wrong": {
+      "neutral_review_01": 24,
+      "neutral_review_02": 24,
+      "neutral_review_03": 24,
+      "neutral_review_04": 24,
+      "neutral_review_05": 24
+    }
+  },
+  "validation": {
+    "all_passed": true,
+    "chosen_matches_verified_state": true,
+    "exactly_two_preferences_per_pair": true,
+    "rejected_is_opposite_decision": true,
+    "same_template_within_pair": true,
+    "source_verification_inherited_from_validated_contrastive_rows": true,
+    "synthetic_answers": false,
+    "training_started": false
+  }
+}

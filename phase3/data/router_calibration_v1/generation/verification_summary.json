@@ -1,0 +1,10 @@
+{
+  "accepted_sha256": "8acb5bb5ceab533cae84f9a37b12f62333a765becac55823629de63954ee5adf",
+  "probe_frozen_overlap": 0,
+  "raw_candidates": 600,
+  "ready": true,
+  "required_wrong_sources": 21,
+  "schema_version": "phase3_calibration_candidate_verification_v1",
+  "unique_natural_wrong_sources": 88,
+  "verified_candidates": 413
+}

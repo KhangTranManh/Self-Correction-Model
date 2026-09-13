@@ -1,0 +1,189 @@
+{
+  "availability_after_validation": {
+    "apps": {
+      "CW": 10,
+      "WC": 10
+    },
+    "gsm8k": {
+      "CW": 35,
+      "WC": 86
+    },
+    "mbpp": {
+      "CW": 3,
+      "WC": 4
+    }
+  },
+  "behavioral_rows": 200,
+  "bucket_distribution_pairs": {
+    "CW": 48,
+    "WC": 52
+  },
+  "dataset_distribution_pairs": {
+    "apps": 20,
+    "gsm8k": 73,
+    "mbpp": 7
+  },
+  "domain_distribution_pairs": {
+    "code": 27,
+    "math": 73
+  },
+  "excluded_reason_distribution": {
+    "answer_length_ratio_below_0.5": 18,
+    "frozen_eval_overlap": 4,
+    "model_wrong_passed_fresh_verifier": 84,
+    "trivial_invalid_wrong": 4,
+    "wrong_not_semantic_assertion_failure": 9,
+    "wrong_not_semantic_execution_failure": 18,
+    "wrong_numeric_answer_not_parseable": 1,
+    "wrong_reasoning_not_substantive": 1
+  },
+  "hard_plausible_wrong_count": 100,
+  "label_distribution": {
+    "KEEP": 100,
+    "REVISE": 100
+  },
+  "matching": {
+    "char_length_ratio_min_over_max": {
+      "count": 100,
+      "max": 1.0,
+      "mean": 0.8295028380529303,
+      "median": 0.8492533018934131,
+      "min": 0.5348837209302325
+    },
+    "code_interface_preserved": 27,
+    "code_pairs": 27,
+    "similarity_score": {
+      "count": 100,
+      "max": 0.9967741935483871,
+      "mean": 0.8532607286129114,
+      "median": 0.8686606173413991,
+      "min": 0.5940264716126785
+    },
+    "token_length_ratio_min_over_max": {
+      "count": 100,
+      "max": 1.0,
+      "mean": 0.8589653208873146,
+      "median": 0.8920746926324223,
+      "min": 0.49224806201550386
+    },
+    "uniform_code_format": true
+  },
+  "near_miss_math_count": 45,
+  "neutral_template_distribution_by_label": {
+    "KEEP": {
+      "neutral_review_01": 24,
+      "neutral_review_02": 22,
+      "neutral_review_03": 20,
+      "neutral_review_04": 18,
+      "neutral_review_05": 16
+    },
+    "REVISE": {
+      "neutral_review_01": 24,
+      "neutral_review_02": 22,
+      "neutral_review_03": 20,
+      "neutral_review_04": 18,
+      "neutral_review_05": 16
+    }
+  },
+  "origin_direction_pairs": {
+    "base_correct__self_correction_v1_wrong": 48,
+    "self_correction_v1_correct__base_wrong": 52
+  },
+  "outputs": {
+    "audit": {
+      "path": "D:\\AGI\\phase3\\data\\semantic_model_dpo\\hard_semantic_audit.jsonl",
+      "sha256": "0d55ecfceba5530f0a5e85155c02f1751da31a5c242076a5009c9929566e6249"
+    },
+    "behavior": {
+      "path": "D:\\AGI\\phase3\\data\\semantic_model_dpo\\semantic_behavior_rows.jsonl",
+      "sha256": "e746a4a4dc2f458c4bc0620edae04bc36ef372043d7c2ffe5113b764c369f041"
+    },
+    "pairs": {
+      "path": "D:\\AGI\\phase3\\data\\semantic_model_dpo\\semantic_pairs.jsonl",
+      "sha256": "0d55ecfceba5530f0a5e85155c02f1751da31a5c242076a5009c9929566e6249"
+    },
+    "preferences": {
+      "path": "D:\\AGI\\phase3\\data\\semantic_model_dpo\\dpo_preferences.jsonl",
+      "sha256": "8adfb6dd07f90550a5d079b2fcd16cc0421bb58a3ac6100557c5eee3fd0a82ea"
+    }
+  },
+  "overlap": {
+    "frozen_eval": [],
+    "previous_dpo_source_count": 43,
+    "previous_dpo_source_ids": [
+      "apps_train_2431",
+      "apps_train_2433",
+      "apps_train_2802",
+      "apps_train_3140",
+      "apps_train_3408",
+      "apps_train_3446",
+      "apps_train_3995",
+      "apps_train_4270",
+      "apps_train_4537",
+      "gsm8k_train_0002",
+      "gsm8k_train_0019",
+      "gsm8k_train_0117",
+      "gsm8k_train_0203",
+      "gsm8k_train_0219",
+      "gsm8k_train_0249",
+      "gsm8k_train_0277",
+      "gsm8k_train_0373",
+      "gsm8k_train_0394",
+      "gsm8k_train_0395",
+      "gsm8k_train_0409",
+      "gsm8k_train_0425",
+      "gsm8k_train_0488",
+      "gsm8k_train_0495",
+      "gsm8k_train_0515",
+      "gsm8k_train_0532",
+      "gsm8k_train_0536",
+      "gsm8k_train_0590",
+      "gsm8k_train_0609",
+      "gsm8k_train_0615",
+      "gsm8k_train_0686",
+      "gsm8k_train_0692",
+      "gsm8k_train_0725",
+      "gsm8k_train_0753",
+      "gsm8k_train_0761",
+      "gsm8k_train_0862",
+      "gsm8k_train_0908",
+      "gsm8k_train_0931",
+      "gsm8k_train_0943",
+      "gsm8k_train_0951",
+      "mbpp_train_783",
+      "mbpp_train_873",
+      "mbpp_validation_516",
+      "mbpp_validation_526"
+    ]
+  },
+  "pairs": 100,
+  "partial_code_pass_count": 6,
+  "preference_rows": 200,
+  "same_model_origin_limitation": "The verified source pool stores one generation per model/problem. Same-origin correct/wrong pairs cannot be formed without collecting new generations; selected pairs use Base and V1 outputs only, never references.",
+  "same_model_origin_pairs": 0,
+  "schema_version": "phase3_semantic_model_dpo_v2",
+  "seed": 271828,
+  "validation": {
+    "all_passed": true,
+    "balanced_keep_revise": true,
+    "char_length_ratio_at_least_0.5": true,
+    "code_interface_and_format_matched": true,
+    "correct_and_wrong_are_model_generated": true,
+    "fresh_correct_verifier_pass": 100,
+    "fresh_wrong_verifier_fail": 100,
+    "frozen_eval_overlap": false,
+    "reference_answers_in_training_prompts": false,
+    "same_problem_within_pair": true,
+    "same_template_distribution_by_label": true,
+    "synthetic_wrong_answers": false,
+    "token_length_ratio_at_least_0.49": true,
+    "training_started": false
+  },
+  "wrong_type_distribution": {
+    "near_miss_final": 45,
+    "partial_test_pass": 6,
+    "plausible_numeric_reasoning_error": 28,
+    "semantic_test_failure": 7,
+    "semantic_wrong_answer": 14
+  }
+}

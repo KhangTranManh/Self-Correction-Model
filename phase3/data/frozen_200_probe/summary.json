@@ -1,0 +1,27 @@
+{
+  "dataset_sha256": "d3958a912507ec49aff61a00bf3541c648b6b3e3b69d3d10a52f7dd787f11812",
+  "datasets": {
+    "apps": 40,
+    "gsm8k": 60,
+    "humaneval": 20,
+    "mbpp": 40,
+    "svamp": 40
+  },
+  "domains": {
+    "code": 100,
+    "math": 100
+  },
+  "inference_contract": "same three-message neutral-review prompt as frozen behavioral benchmark",
+  "labels": {
+    "KEEP": 100,
+    "REVISE": 100
+  },
+  "rows": 200,
+  "schema_version": "phase3_frozen_200_probe_summary_v1",
+  "source_sha256": "3c05bf6950756d8f58d15aa9c1f52eec93e148785e1d918bd26c1a74a84fb15f",
+  "training_probe_overlap": 0,
+  "training_probe_sha256": "a31be690e12fb77fa92b9a38c4b6dd57b867a18cab1a6f36504cd1419ecf4f94",
+  "unique_sources": 200,
+  "usage": "external probe test only; never fit or tune on these labels",
+  "validation": "PASS"
+}

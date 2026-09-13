@@ -1,153 +1,129 @@
-# AGI — Behavior-First
+# AGI Behavior-First Research
 
-A long-horizon research project toward general capability, built on one bet:
-**teach an LLM the right *behaviors* before loading it with *knowledge*.** A model
-that cannot tell when it is wrong, cannot say "I'm not sure," and cannot revise
-itself will only fail more confidently as you make it more knowledgeable. So we
-build the behavioral foundation first — on domains where correctness is checkable
-by a program, not by another model's opinion.
+This repository studies whether a small language model can detect and correct
+its own errors under objective supervision. Math answers are checked
+symbolically and code answers are executed against tests; an LLM is never used
+as the correctness oracle.
 
-The project advances in **phases**. Each phase isolates one foundational behavior,
-proves (or disproves) that it can be taught to a small model with objective
-supervision, and hands a clear, honestly-scoped result to the next phase.
+## Current status (2026-09-13)
 
----
+Phase 3 closed on 2026-09-13. Its central result is negative but informative:
+preference tuning improved KEEP behavior and reduced harmful revisions, but it
+did not improve detection of plausible wrong answers.
 
-## The core bet
+| Router | Balanced accuracy | KEEP recall | REVISE recall | Code accuracy | Unseen-template accuracy |
+|---|---:|---:|---:|---:|---:|
+| Decision-Only V1 | 65.0% | 81.0% | 49.0% | 62.0% | 58.0% |
+| DPO Pilot V1 | 66.5% | 85.0% | 48.0% | 62.0% | 55.5% |
+| DPO Semantic V2 | 65.5% | 85.0% | 46.0% | 59.0% | 53.5% |
 
-Most capability work adds knowledge and hopes good behavior emerges. We invert it:
+The representation probe reinforces this conclusion. Decision-Only V1 reached
+67.3% balanced accuracy on the frozen probe test, while DPO Semantic V2 reached
+57.7%; probe REVISE recall fell from 53.8% to 38.5%.
 
-- **Behavior before knowledge.** Self-correction, calibration, knowing-when-to-stop
-  — these are prerequisites, not emergent bonuses.
-- **Objective supervision only.** Right/wrong is decided by a program (a symbolic
-  math check, a real unit-test run), never by an LLM judging an LLM. If a behavior
-  can't be checked mechanically, we don't train on it — we find a domain where it
-  can.
-- **Small model, honest ceilings.** We work at 7B so that when a behavior *can't*
-  be taught, we find out cheaply and say so — a clean negative result is worth more
-  than an inflated positive one.
+A later frozen activation-steering diagnostic also failed to turn the decoded
+probe direction into better semantic decisions. Probe and CAA residual
+directions were tested at layers 14, 21, and 28 without updating weights. The
+only apparent accuracy gain shifted predictions toward KEEP while reducing
+REVISE recall, so activation steering is not promoted.
 
-### Three inviolable principles (project-wide)
+Therefore:
 
-These carry across every phase. Breaking one voids the result.
+- `Decision-Only V1` remains the canonical Phase 3 router.
+- `Kxck/Self_Correction_v1` remains the solver/repair checkpoint.
+- DPO Pilot V1 and DPO Semantic V2 are retained as research artifacts, not
+  promoted models.
+- No additional experiment is authorized inside Phase 3. Any continuation must
+  open a new phase with new holdouts and a preregistered hypothesis.
 
-1. **Correctness is decided by a program, never by an LLM judging an LLM.**
-2. **Mistakes must be produced by the model itself** — never a large model
-   imagining a "plausible" wrong answer. The training distribution must match how
-   the model actually fails.
-3. **The train-time prompt must equal the inference-time prompt, byte for byte.**
+See the [Phase 3 final report](phase3/docs/FINAL_REPORT.md),
+[Phase 3 README](phase3/README.md), and
+[Phase 3 results](phase3/docs/RESULTS.md).
 
----
+## Research phases
 
-## Roadmap
+### Phase 1 — verified self-correction
 
-### Phase 1 — Verified Self-Correction  ·  `phase1/`  ·  *complete, honestly scoped*
+Phase 1 built the verified critique-and-correct pipeline and produced
+`Kxck/Self_Correction_v1`. Guided correction worked, especially for code, but
+autonomous review and resistance to false feedback remained weak. See
+[phase1/README.md](phase1/README.md).
 
-Teach a 7B model to recognize it is wrong and correct itself, on math (GSM8K,
-MATH) and code (MBPP), with correctness from sympy / unit tests.
+### Phase 2 — preference learning exploration
 
-**What it proved:** the mechanism works end to end — the verified critique→correct
-loop runs, and self-correction is *real and strong on code*, where a traceback
-points at the exact failing line.
+Phase 2 constructed KTO data from verifier-labelled behavior and validated the
+training path. A full KTO checkpoint was not completed. This phase is historical
+and is not the active training path. See [phase2/README.md](phase2/README.md).
 
-**Where it hit a ceiling:** self-correction on *math* stalls at ~32–36% and could
-not be lifted — two independent interventions (reflect-turn framing; step-localized
-error messages) both came back **negative**. The diagnosis is now evidence-backed:
-SFT on corrections teaches the *format* of correcting, not the *discriminative
-skill* of knowing when one is actually wrong. The model "corrects" largely by being
-handed the answer and working backward; remove the answer and it hallucinates or
-flips a correct answer (sycophancy).
+### Phase 3 — error discrimination and selective repair
 
-**Verdict:** original numeric targets were not met, and we have clean evidence they
-are **not reachable with 7B + SFT** — that requires changing something fundamental,
-which is Phase 2. Full research log, risks, dead ends and statistics in
-[`phase1/note.txt`](phase1/note.txt); operational detail in
-[`phase1/README.md`](phase1/README.md).
+Phase 3 separated the decision `KEEP`/`REVISE` from answer repair, evaluated the
+router on a frozen 200-row benchmark, and probed hidden representations. It is
+now a closed, reproducible research package; Decision-Only V1 is its final
+router baseline.
 
-### Phase 2 — From imitation to discrimination  ·  *in progress*
+## Non-negotiable data rules
 
-The Phase 1 ceiling is a wrong *objective*, not a tuning gap. Base models are
-optimized to *produce* a good answer; the assistant turn is always the target,
-never the object under evaluation — so the model never learned the second-order
-stance of judging its own prior output, and hallucinates when forced into it.
-
-Phase 2 changes the training objective from *imitate a good correction* to *prefer
-a real critique over a fabricated one*, using **KTO** (chosen over DPO because our
-data is unpaired) where the **verifier supplies the labels for free**: the model's
-own hallucinated fixes and its sycophantic flips become the *undesirable* signal.
-
-**Progress (2026-07-23):** generated 1741 preference examples from the model's own
-behavior on the training split — and measured a **79% sycophancy rate** (told
-falsely it was wrong, AGI_v3 caves ~4 out of 5 times). The KTO training pipeline is
-verified end-to-end (smoke-passed); a full tuning run is pending a practical config
-(the first attempt ran at ~32 s/step — too slow to finish in one rental). Details in
-[`phase2/README.md`](phase2/README.md); method survey in the *Phase 2* section of
-[`phase1/note.txt`](phase1/note.txt).
-
-### Phase 3 — Selective correction / error discrimination  ·  `phase3/`  ·  *pilot in progress*
-
-Phase 3 turns correction into a decision problem: keep a correct answer under
-neutral or misleading feedback, revise a wrong answer under neutral or true
-feedback, and preserve normal solve behavior on fresh tasks. Correctness is still
-decided only by symbolic checks or executable tests.
-
-**Progress (2026-09-05):** Base and `Self_Correction_v1` attempts were collected
-and bucketed on 1,774 GSM8K/MBPP/APPS sources. A validated 860-row behavior
-selection exists. Two smaller QLoRA pilots were run directly from the merged
-`Kxck/Self_Correction_v1` checkpoint against the same frozen 30-row micro-eval.
-
-The latest 200-row, two-epoch pilot learned the exact KEEP/REVISE contract on
-20/20 review cases, cut false-feedback flips from 5/5 to 1/5, and preserved the
-final answer on 5/5 neutral-correct cases. It still repaired 0/5 neutral-wrong
-cases and regressed to 0/5 behavioral success on both normal solve and regression
-recovery. Result: **4/8 gates; do not scale to 860 yet.** Details and exact
-artifact status are in [`phase3/README.md`](phase3/README.md).
-
-### Later phases
-
-Knowledge integration, multi-step tool use, and longer-horizon reasoning are
-downstream of a model that can reliably self-assess. They wait until the behavioral
-base is solid.
-
----
+1. Correctness comes from a deterministic verifier, not an LLM judge.
+2. Wrong answers must be natural model failures; synthetic wrong answers are not
+   accepted for canonical training.
+3. Frozen evaluation sources never enter training or dataset selection.
+4. KEEP and REVISE must share the same neutral-review template distribution.
+5. Model-visible rationales may be stored for audit, but they must not be called
+   hidden chain-of-thought.
+6. Every promoted adapter must have a reproducible config, dataset hash, frozen
+   evaluation, and local backup.
 
 ## Repository layout
 
-```
-.
-├── README.md            ← this file (project vision, roadmap)
-├── phase1/              ← Phase 1: Verified Self-Correction (self-contained)
-│   ├── README.md         ← Phase 1 operational readme
-│   ├── note.txt          ← full research log (the authoritative record)
-│   ├── src/              ← pipeline code (core / data / llm / pipeline / ops)
-│   ├── configs/ data/ instructionAI/ outputs/ ...
-├── phase2/              ← Phase 2: KTO on the critique step
-│   ├── README.md         ← Phase 2 plan + run results
-│   ├── gen_preference.py ← generate preference data from the model's own behavior
-│   ├── render_kto.py     ← conversational → standard format for trl
-│   ├── train_kto.py      ← KTO tuning from AGI_v3
-│   └── build_preference.py, configs/, data/preference/
-└── phase3/              ← Phase 3: selective correction / error discrimination
-    ├── README.md         ← current experiment record and next gate
-    ├── build_behavior_selection.py, construct_behavior_pilot.py
-    ├── build_behavior_pilot_v2.py, train_behavior_pilot.py
-    ├── evaluate_behavior_micro.py, configs/, data/, outputs/
+```text
+AGI/
+├── README.md                    # Project status and phase routing
+├── instructionAI/              # Cross-phase architecture and data rules
+├── phase1/                     # Verified correction pipeline and history
+├── phase2/                     # KTO exploration and data
+├── phase3/                     # Active router/selective-repair codebase
+│   ├── configs/                # Training configs and experiment registry
+│   ├── data/                   # Sources, immutable attempts, built datasets
+│   ├── docs/                   # Codebase and results documentation
+│   ├── lib/                    # Shared provenance and verifier utilities
+│   ├── runs/                   # Frozen evaluations and human-readable reports
+│   └── scripts/                # Data, training, evaluation, and serving CLIs
+└── outputs/                    # Local adapters and runtime artifacts (gitignored)
 ```
 
-Each phase is a **self-contained folder**: its code resolves all paths relative to
-its own root, so phases don't interfere. Later phases reuse stable Phase 1
-primitives (prompts, verifiers) via explicit path imports rather than duplicating
-them. Run each phase from inside its own folder (see its README).
+The canonical Phase 3 structure and ownership rules are defined in
+[phase3/docs/CODEBASE.md](phase3/docs/CODEBASE.md). Model status is machine-readable
+in [phase3/configs/experiments.yaml](phase3/configs/experiments.yaml).
 
----
+## Quick local audit
 
-## Status
+From the repository root:
 
-Phase 1 closed with an honest negative on its headline target and a clear,
-evidence-backed reason why. Phase 2 produced preference data and a verified KTO
-pipeline, but its full run remains unfinished. Phase 3 now has a complete source
-inventory and two controlled SFT pilots. The latest pilot proves that the exact
-decision contract and resistance to false feedback can be learned, but autonomous
-repair and fresh-task retention do not yet coexist. The immediate next step is a
-checkpointed one-versus-two-epoch ablation with more fresh-task anchors—not the
-full 860-row run.
+```bash
+python phase3/scripts/validate_local_state.py
+python phase3/scripts/validate_local_state.py --hash-adapters
+```
+
+The audit checks canonical datasets, reports, row counts, adapter presence, and
+optionally the recorded adapter hashes. It does not read `.env`.
+
+## Serving
+
+The general vLLM launcher is `phase3/scripts/serving/serve_phase3.sh`. It binds
+to localhost by default. Example:
+
+```bash
+PHASE3_LORA_MODULES="phase3-decision-only-v1=/root/agi/outputs/phase3_decision_only_v1/final_adapter" \
+bash phase3/scripts/serving/serve_phase3.sh
+```
+
+Only set `PHASE3_HOST=0.0.0.0` on a network you intend to expose. The launcher
+does not add authentication by itself.
+
+## Secrets and large artifacts
+
+- `.env` is local-only and must never be read for documentation work or committed.
+- `outputs/` is gitignored; adapters must be backed up separately.
+- Raw attempts and frozen result JSONL files are research evidence. Do not
+  rewrite or delete them during documentation cleanup.

@@ -1,0 +1,59 @@
+{
+  "dataset": {
+    "path": "/home/ezycloudx-admin/agi_phase3_run_20260905/phase3/runs/representation_probe/probe_dataset.jsonl",
+    "rows": 256,
+    "sha256": "a31be690e12fb77fa92b9a38c4b6dd57b867a18cab1a6f36504cd1419ecf4f94"
+  },
+  "forward_pass_only": true,
+  "generation_performed": false,
+  "manifest_rows": 2048,
+  "models": {
+    "decision_only_v1": {
+      "activation_path": "/home/ezycloudx-admin/agi_phase3_run_20260905/phase3/runs/representation_probe/activations/decision_only_v1_final_token.npz",
+      "activation_sha256": "94f51434193f267587a0cc036a0af96879391df5ca32e5a4d1f9358e345ff932",
+      "adapter_path": "/home/ezycloudx-admin/agi_phase3_run_20260905/outputs/phase3_decision_only_v1/final_adapter",
+      "adapter_sha256": "830ce70c813fb8800e678d7b55de499bf50a5edbefdca20737f8ba1ce8dcadff",
+      "dtype": "float16",
+      "hidden_state_entries": 29,
+      "layers": [
+        7,
+        14,
+        21,
+        28
+      ],
+      "pooling": "final_prompt_token_before_decision_generation",
+      "shape": [
+        256,
+        4,
+        3584
+      ]
+    },
+    "router_v3": {
+      "activation_path": "/home/ezycloudx-admin/agi_phase3_run_20260905/phase3/runs/representation_probe/activations/router_v3_final_token.npz",
+      "activation_sha256": "0a0c9bd3f595bae9d8b1db90cb6094c9571e5e0971f754ff4861adad1d2aaa3e",
+      "adapter_path": "/home/ezycloudx-admin/agi_phase3_run_20260905/outputs/phase3_router_v3_mini/final_adapter",
+      "adapter_sha256": "f75edad532474567d534deef3fad312acb2651c314af2d31997f4dbeab45c362",
+      "dtype": "float16",
+      "hidden_state_entries": 29,
+      "layers": [
+        7,
+        14,
+        21,
+        28
+      ],
+      "pooling": "final_prompt_token_before_decision_generation",
+      "shape": [
+        256,
+        4,
+        3584
+      ]
+    }
+  },
+  "schema_version": "phase3_representation_extraction_v1",
+  "token_lengths": {
+    "max": 2962,
+    "mean": 415.61328125,
+    "min": 102
+  },
+  "weights_changed": false
+}

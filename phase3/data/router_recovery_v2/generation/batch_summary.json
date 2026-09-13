@@ -1,0 +1,81 @@
+[
+  {
+    "batch": "01_v1_known",
+    "jobs": 480,
+    "origin": [
+      "self_correction_v1"
+    ],
+    "path": "data/router_recovery_v2/generation/batches/01_v1_known.jsonl",
+    "priority": [
+      "known_correct_code",
+      "known_correct_math"
+    ],
+    "sha256": "0081ac885ba49fc186fa24db281c6b4646c6b2399b87516dc4ba54e0352090e6",
+    "tasks": 59
+  },
+  {
+    "batch": "02_base_known",
+    "jobs": 372,
+    "origin": [
+      "base"
+    ],
+    "path": "data/router_recovery_v2/generation/batches/02_base_known.jsonl",
+    "priority": [
+      "known_correct_code"
+    ],
+    "sha256": "fd1dcca33e41e85727616d658df77289e35b9d48128e1fbcca07aabb6a080970",
+    "tasks": 31
+  },
+  {
+    "batch": "03_v1_dual_mbpp",
+    "jobs": 640,
+    "origin": [
+      "self_correction_v1"
+    ],
+    "path": "data/router_recovery_v2/generation/batches/03_v1_dual_mbpp.jsonl",
+    "priority": [
+      "dual_outcome_mbpp"
+    ],
+    "sha256": "3f112d5b51c35a825f2ba38ff1cb073e9582e9161a8ea873afbe0c0ac8d1a334",
+    "tasks": 40
+  },
+  {
+    "batch": "04_v1_dual_mbpp",
+    "jobs": 640,
+    "origin": [
+      "self_correction_v1"
+    ],
+    "path": "data/router_recovery_v2/generation/batches/04_v1_dual_mbpp.jsonl",
+    "priority": [
+      "dual_outcome_mbpp"
+    ],
+    "sha256": "a439e33d677f4772f06bdca05649c0af5720eaf953e11d91b4821429088b29c9",
+    "tasks": 40
+  },
+  {
+    "batch": "05_v1_dual_mbpp",
+    "jobs": 640,
+    "origin": [
+      "self_correction_v1"
+    ],
+    "path": "data/router_recovery_v2/generation/batches/05_v1_dual_mbpp.jsonl",
+    "priority": [
+      "dual_outcome_mbpp"
+    ],
+    "sha256": "584438b2809dd1dc439489371554f0c5cc84adac8eff3eae49caef387b6495b2",
+    "tasks": 40
+  },
+  {
+    "batch": "06_v1_dual_mbpp",
+    "jobs": 640,
+    "origin": [
+      "self_correction_v1"
+    ],
+    "path": "data/router_recovery_v2/generation/batches/06_v1_dual_mbpp.jsonl",
+    "priority": [
+      "dual_outcome_mbpp"
+    ],
+    "sha256": "1c6174c7683a3960d7d5f14da218fbc2a7f4d9cfa9b9a525101c9bb4a0c2bffb",
+    "tasks": 40
+  }
+]

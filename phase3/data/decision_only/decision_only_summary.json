@@ -1,0 +1,236 @@
+{
+  "bucket_distribution": {
+    "KEEP": {
+      "CC": 99,
+      "WC": 21
+    },
+    "REVISE": {
+      "WW": 120
+    }
+  },
+  "counts_by_split": {
+    "dev": 36,
+    "test": 36,
+    "train": 168
+  },
+  "counts_by_split_dataset_decision": {
+    "dev": {
+      "apps": {
+        "KEEP": 5,
+        "REVISE": 5
+      },
+      "gsm8k": {
+        "KEEP": 9,
+        "REVISE": 9
+      },
+      "mbpp": {
+        "KEEP": 4,
+        "REVISE": 4
+      }
+    },
+    "test": {
+      "apps": {
+        "KEEP": 6,
+        "REVISE": 6
+      },
+      "gsm8k": {
+        "KEEP": 9,
+        "REVISE": 9
+      },
+      "mbpp": {
+        "KEEP": 3,
+        "REVISE": 3
+      }
+    },
+    "train": {
+      "apps": {
+        "KEEP": 25,
+        "REVISE": 25
+      },
+      "gsm8k": {
+        "KEEP": 42,
+        "REVISE": 42
+      },
+      "mbpp": {
+        "KEEP": 17,
+        "REVISE": 17
+      }
+    }
+  },
+  "counts_by_split_domain_decision": {
+    "dev": {
+      "code": {
+        "KEEP": 9,
+        "REVISE": 9
+      },
+      "math": {
+        "KEEP": 9,
+        "REVISE": 9
+      }
+    },
+    "test": {
+      "code": {
+        "KEEP": 9,
+        "REVISE": 9
+      },
+      "math": {
+        "KEEP": 9,
+        "REVISE": 9
+      }
+    },
+    "train": {
+      "code": {
+        "KEEP": 42,
+        "REVISE": 42
+      },
+      "math": {
+        "KEEP": 42,
+        "REVISE": 42
+      }
+    }
+  },
+  "fresh_verification_exclusion_count": 2,
+  "fresh_verification_exclusions": [
+    {
+      "dataset": "apps",
+      "decision_cell": "KEEP",
+      "domain": "code",
+      "fresh_passed": false,
+      "historical_v1_correct": true,
+      "source_id": "apps_train_2647",
+      "verifier_detail": "test_0:wrong_answer"
+    },
+    {
+      "dataset": "apps",
+      "decision_cell": "KEEP",
+      "domain": "code",
+      "fresh_passed": false,
+      "historical_v1_correct": true,
+      "source_id": "apps_train_3492",
+      "verifier_detail": "test_0:wrong_answer"
+    }
+  ],
+  "input": {
+    "path": "D:\\AGI\\phase3\\data\\behavior\\unified_source_inventory.jsonl",
+    "sha256": "3428758df6a4f42c7dd28e6ccdb6c893bd340d54f3358f37634f031c3ef97c28"
+  },
+  "outputs": {
+    "all": {
+      "path": "D:\\AGI\\phase3\\data\\decision_only\\decision_only_dataset.jsonl",
+      "sha256": "9de0cea7c7a7c351f14d5cf944616b0c1dd612c8e6b2e33b1fc4805105c73ca1"
+    },
+    "dev": {
+      "path": "D:\\AGI\\phase3\\data\\decision_only\\decision_only_dev.jsonl",
+      "sha256": "f3c8eaf9d9e3a4fdf245919497b2513154942afb944731432b8e5687706dcac5"
+    },
+    "test": {
+      "path": "D:\\AGI\\phase3\\data\\decision_only\\decision_only_test.jsonl",
+      "sha256": "fe0e596eb31074e54dac47093a6a04c4b15538942798ec1310c73a5a900367ca"
+    },
+    "train": {
+      "path": "D:\\AGI\\phase3\\data\\decision_only\\decision_only_train.jsonl",
+      "sha256": "74b6663ed2adb51e552f41cc8ef470a08fcb0d16950d25ee68f7245fab53cf30"
+    }
+  },
+  "schema_version": "phase3_decision_only_v1",
+  "seed": 314159,
+  "source_overlap": {
+    "dev_test": [],
+    "train_dev": [],
+    "train_test": []
+  },
+  "template_distribution": {
+    "dev": {
+      "code": {
+        "KEEP": {
+          "neutral_review_01": 3,
+          "neutral_review_02": 3,
+          "neutral_review_03": 3
+        },
+        "REVISE": {
+          "neutral_review_01": 3,
+          "neutral_review_02": 3,
+          "neutral_review_03": 3
+        }
+      },
+      "math": {
+        "KEEP": {
+          "neutral_review_01": 3,
+          "neutral_review_02": 3,
+          "neutral_review_03": 3
+        },
+        "REVISE": {
+          "neutral_review_01": 3,
+          "neutral_review_02": 3,
+          "neutral_review_03": 3
+        }
+      }
+    },
+    "test": {
+      "code": {
+        "KEEP": {
+          "neutral_review_01": 3,
+          "neutral_review_02": 3,
+          "neutral_review_03": 3
+        },
+        "REVISE": {
+          "neutral_review_01": 3,
+          "neutral_review_02": 3,
+          "neutral_review_03": 3
+        }
+      },
+      "math": {
+        "KEEP": {
+          "neutral_review_01": 3,
+          "neutral_review_02": 3,
+          "neutral_review_03": 3
+        },
+        "REVISE": {
+          "neutral_review_01": 3,
+          "neutral_review_02": 3,
+          "neutral_review_03": 3
+        }
+      }
+    },
+    "train": {
+      "code": {
+        "KEEP": {
+          "neutral_review_01": 14,
+          "neutral_review_02": 14,
+          "neutral_review_03": 14
+        },
+        "REVISE": {
+          "neutral_review_01": 14,
+          "neutral_review_02": 14,
+          "neutral_review_03": 14
+        }
+      },
+      "math": {
+        "KEEP": {
+          "neutral_review_01": 14,
+          "neutral_review_02": 14,
+          "neutral_review_03": 14
+        },
+        "REVISE": {
+          "neutral_review_01": 14,
+          "neutral_review_02": 14,
+          "neutral_review_03": 14
+        }
+      }
+    }
+  },
+  "total_rows": 240,
+  "unique_sources": 240,
+  "validation": {
+    "all_keep_v1_correct_cc_or_wc": true,
+    "all_passed": true,
+    "all_revise_v1_wrong_ww": true,
+    "decision_only_targets": true,
+    "no_cw": true,
+    "no_frozen_eval": true,
+    "no_humaneval": true,
+    "no_teacher_labels": true,
+    "one_row_per_source": true,
+    "template_distribution_label_balanced": true
+  }
+}

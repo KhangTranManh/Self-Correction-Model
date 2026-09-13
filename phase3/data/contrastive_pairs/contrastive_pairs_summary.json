@@ -1,0 +1,2613 @@
+{
+  "answer_length": {
+    "chars": {
+      "correct": {
+        "count": 120,
+        "max": 1762,
+        "mean": 406,
+        "median": 350.5,
+        "min": 41
+      },
+      "standardized_mean_difference_wrong_minus_correct": 0.21921041064540586,
+      "wrong": {
+        "count": 120,
+        "max": 1347,
+        "mean": 467.025,
+        "median": 421.5,
+        "min": 51
+      }
+    },
+    "tokens": {
+      "correct": {
+        "count": 120,
+        "max": 1602,
+        "mean": 151.34166666666667,
+        "median": 121.5,
+        "min": 16
+      },
+      "standardized_mean_difference_wrong_minus_correct": -0.009142515957622504,
+      "wrong": {
+        "count": 120,
+        "max": 408,
+        "mean": 150.14166666666668,
+        "median": 139.0,
+        "min": 13
+      }
+    }
+  },
+  "answer_matching": {
+    "code_interface_preserved_count": 90,
+    "code_pair_count": 90,
+    "mean_absolute_line_count_difference_code": 5.4,
+    "mean_similarity_score": 0.726036596415902,
+    "same_code_fence_usage_code_pairs": 27,
+    "same_code_fence_usage_count": 57
+  },
+  "code_execution": {
+    "partial_pass_count": 34,
+    "semantic_execution_failure_count": 90,
+    "trivial_invalid_included_count": 0
+  },
+  "code_pairs": 90,
+  "duplicate_checks": {
+    "pair_ids": 0,
+    "problem_pairs": 0,
+    "source_ids": 0
+  },
+  "excluded_reason_distribution": {
+    "correct_member_failed_fresh_verifier": 1,
+    "fresh_failure_not_wrong_answer": 1,
+    "no_natural_plausible_wrong_candidate": 444,
+    "wrong_member_passed_fresh_verifier": 32
+  },
+  "excluded_source_count": 478,
+  "excluded_sources": [
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_2377"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_2385"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_2387"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_2424"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_2432"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_2434"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_2456"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_2507"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_2512"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_2569"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_2585"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_2758"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_2835"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_3137"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_3188"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_3194"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_3244"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_3309"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_3379"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_3405"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_3438"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_3521"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_3529"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_3633"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_3656"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_3714"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_3767"
+    },
+    {
+      "dataset": "apps",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "apps_train_4720"
+    },
+    {
+      "dataset": "apps",
+      "detail": "test_2:exit_code_1:Traceback (most recent call last):\n  File \"<verifier_script>.py\", line 40, in <module>\n    sys.__stdout__.write(PREFIX + json.dumps(result, ensure_ascii=False, allow_nan=False) + \"\\n\")\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<verifier_script>.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\u2572' in position 18: character maps to <undefined>",
+      "reason": "correct_member_failed_fresh_verifier",
+      "source_id": "apps_train_4583"
+    },
+    {
+      "dataset": "apps",
+      "detail": "test_0:exit_code_1:Traceback (most recent call last):\n  File \"<verifier_script>.py\", line 40, in <module>\n    sys.__stdout__.write(PREFIX + json.dumps(result, ensure_ascii=False, allow_nan=False) + \"\\n\")\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<verifier_script>.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\x95' in position 17: character maps to <undefined>",
+      "reason": "fresh_failure_not_wrong_answer",
+      "source_id": "apps_train_3428"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_601"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_603"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_605"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_606"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_607"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_608"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_609"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_611"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_612"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_613"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_614"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_615"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_617"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_618"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_619"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_620"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_621"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_622"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_623"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_624"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_625"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_626"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_627"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_629"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_630"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_631"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_632"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_633"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_634"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_635"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_636"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_637"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_639"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_640"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_641"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_642"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_643"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_644"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_645"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_646"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_647"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_648"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_649"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_650"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_651"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_652"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_653"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_655"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_656"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_657"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_658"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_659"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_660"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_661"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_662"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_663"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_664"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_665"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_666"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_667"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_668"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_669"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_670"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_671"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_672"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_673"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_674"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_675"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_676"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_677"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_679"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_680"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_681"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_682"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_683"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_684"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_685"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_686"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_687"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_688"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_689"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_690"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_691"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_692"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_694"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_695"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_696"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_697"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_698"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_699"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_700"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_701"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_702"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_705"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_706"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_707"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_708"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_709"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_710"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_711"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_712"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_713"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_714"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_715"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_716"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_717"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_718"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_719"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_721"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_722"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_723"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_724"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_725"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_726"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_727"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_728"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_729"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_730"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_731"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_732"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_734"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_735"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_736"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_737"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_739"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_741"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_742"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_743"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_744"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_745"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_747"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_748"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_750"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_751"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_752"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_753"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_754"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_756"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_758"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_759"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_760"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_762"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_763"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_764"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_765"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_766"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_767"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_768"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_769"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_770"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_771"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_772"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_773"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_774"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_775"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_776"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_777"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_778"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_779"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_781"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_782"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_784"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_785"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_786"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_787"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_788"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_789"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_790"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_791"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_792"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_793"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_794"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_795"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_796"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_797"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_798"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_799"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_800"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_801"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_802"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_803"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_804"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_805"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_806"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_807"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_808"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_809"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_810"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_811"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_812"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_813"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_814"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_815"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_816"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_817"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_818"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_819"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_820"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_822"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_823"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_824"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_826"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_828"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_829"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_831"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_832"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_833"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_834"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_835"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_836"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_837"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_838"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_839"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_840"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_841"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_842"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_844"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_845"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_846"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_847"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_849"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_850"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_851"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_852"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_853"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_854"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_855"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_856"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_857"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_858"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_859"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_860"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_861"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_862"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_863"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_864"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_865"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_866"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_867"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_868"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_869"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_870"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_871"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_872"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_874"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_875"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_877"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_878"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_879"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_880"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_881"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_882"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_883"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_884"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_885"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_886"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_888"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_889"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_890"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_891"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_892"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_893"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_894"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_895"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_896"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_897"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_898"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_899"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_900"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_902"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_903"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_904"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_905"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_907"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_908"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_910"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_911"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_912"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_913"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_914"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_915"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_916"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_917"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_918"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_919"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_920"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_922"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_923"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_924"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_925"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_926"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_927"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_928"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_929"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_930"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_931"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_932"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_934"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_935"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_936"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_937"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_938"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_939"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_941"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_942"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_943"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_944"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_946"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_947"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_948"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_949"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_951"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_952"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_953"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_954"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_956"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_957"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_959"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_960"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_962"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_963"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_964"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_966"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_967"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_968"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_970"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_971"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_972"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_973"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_train_974"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_511"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_512"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_513"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_514"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_515"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_517"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_518"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_520"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_521"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_522"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_523"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_524"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_525"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_527"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_528"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_530"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_531"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_532"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_533"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_534"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_535"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_536"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_539"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_540"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_541"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_542"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_543"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_544"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_545"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_546"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_547"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_548"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_549"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_550"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_552"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_554"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_555"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_556"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_557"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_558"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_559"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_560"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_561"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_562"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_563"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_564"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_565"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_566"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_567"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_568"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_570"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_571"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_572"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_573"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_574"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_575"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_576"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_577"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_579"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_580"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_581"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_582"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_585"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_586"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_587"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_588"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_589"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_590"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_591"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_592"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_593"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_595"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_596"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_597"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_598"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_599"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_validation_600"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_prompt_1"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_prompt_2"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_prompt_3"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_prompt_4"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_prompt_6"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_prompt_7"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_prompt_8"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_prompt_9"
+    },
+    {
+      "dataset": "mbpp",
+      "reason": "no_natural_plausible_wrong_candidate",
+      "source_id": "mbpp_prompt_10"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0410"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0293"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0848"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0254"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0895"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0889"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0638"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0980"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0663"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0729"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0331"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0697"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0165"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0014"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0717"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0949"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0917"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0592"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0244"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0420"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0438"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0238"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0508"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0145"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0239"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0918"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0348"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0308"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0125"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0670"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0782"
+    },
+    {
+      "dataset": "gsm8k",
+      "detail": "OK",
+      "reason": "wrong_member_passed_fresh_verifier",
+      "source_id": "gsm8k_train_0401"
+    }
+  ],
+  "hard_plausible_wrong_count": 120,
+  "hardness_distribution": {
+    "2": {
+      "apps": 36,
+      "mbpp": 20
+    },
+    "3": {
+      "apps": 34,
+      "gsm8k": 30
+    }
+  },
+  "label_balance": {
+    "dataset": {
+      "apps": {
+        "KEEP": 70,
+        "REVISE": 70
+      },
+      "gsm8k": {
+        "KEEP": 30,
+        "REVISE": 30
+      },
+      "mbpp": {
+        "KEEP": 20,
+        "REVISE": 20
+      }
+    },
+    "domain": {
+      "code": {
+        "KEEP": 90,
+        "REVISE": 90
+      },
+      "math": {
+        "KEEP": 30,
+        "REVISE": 30
+      }
+    }
+  },
+  "math_pairs": 30,
+  "neutral_template_distribution_by_label": {
+    "KEEP": {
+      "neutral_review_01": 24,
+      "neutral_review_02": 24,
+      "neutral_review_03": 24,
+      "neutral_review_04": 24,
+      "neutral_review_05": 24
+    },
+    "REVISE": {
+      "neutral_review_01": 24,
+      "neutral_review_02": 24,
+      "neutral_review_03": 24,
+      "neutral_review_04": 24,
+      "neutral_review_05": 24
+    }
+  },
+  "outputs": {
+    "behavior": {
+      "path": "D:\\AGI\\phase3\\data\\contrastive_pairs\\contrastive_behavior_rows.jsonl",
+      "sha256": "562e47126398d6e2b1a21a8157c15527d8c9a01abe6b57c44a38d47849d5386a"
+    },
+    "pairs": {
+      "path": "D:\\AGI\\phase3\\data\\contrastive_pairs\\contrastive_pairs.jsonl",
+      "sha256": "a4e471d31e8d868e0baae7816856170c202fcfe38671c4c86c0874d6a23a8daa"
+    }
+  },
+  "overlap_checks": {
+    "frozen_eval": [],
+    "humaneval": []
+  },
+  "pairs_by_dataset": {
+    "apps": 70,
+    "gsm8k": 30,
+    "mbpp": 20
+  },
+  "schema_version": "phase3_same_problem_contrastive_pairs_v1",
+  "seed": 141421,
+  "shortcut_risk_diagnostics": {
+    "answer_length": "report SMD and natural pair statistics; answers were selected, never rewritten",
+    "dataset_label": "low: each problem contributes one KEEP and one REVISE row",
+    "domain_label": "low: each problem contributes one KEEP and one REVISE row",
+    "formatting": "code-fence and line/length metadata retained for audit",
+    "reference_vs_model_origin": "medium: many WW pairs use verified references as KEEP and natural model attempts as REVISE",
+    "task_identity": "low: labels are paired within the identical task",
+    "template_label": "low: paired members share the same template and distributions are identical"
+  },
+  "source_origin_distribution": {
+    "correct": {
+      "self_correction_v1_natural": 43,
+      "verified_reference": 77
+    },
+    "wrong": {
+      "base": 95,
+      "v1": 25
+    }
+  },
+  "total_behavioral_rows": 240,
+  "total_pairs": 120,
+  "validation": {
+    "all_passed": true,
+    "answer_imbalance_measured": true,
+    "code_interface_preserved": true,
+    "fresh_verifier_polarity": true,
+    "label_balanced_templates": true,
+    "no_cw_wrong": true,
+    "no_frozen_eval": true,
+    "no_humaneval": true,
+    "no_template_dataset_domain_label_shortcut": true,
+    "no_trivial_invalid_outputs": true,
+    "same_dataset_domain_per_pair": true,
+    "same_problem_per_pair": true,
+    "synthetic_wrong_answers": false,
+    "training_started": false,
+    "unique_pairs_sources_problems": true
+  },
+  "verifier_checks": {
+    "failures_in_selected": 0,
+    "fresh_correct_pass_count": 120,
+    "fresh_wrong_fail_count": 120
+  },
+  "wrong_type_distribution": {
+    "near_miss_final": 30,
+    "partial_test_pass": 34,
+    "semantic_test_failure": 56
+  }
+}

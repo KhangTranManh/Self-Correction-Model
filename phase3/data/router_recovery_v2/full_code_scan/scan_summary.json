@@ -1,0 +1,77 @@
+{
+  "apps": {
+    "dataset": "codeparrot/apps",
+    "eligible_by_difficulty": {
+      "competition": 360,
+      "interview": 1692,
+      "introductory": 2035
+    },
+    "eligible_by_test_mode": {
+      "call_based": 2457,
+      "standard_input": 1630
+    },
+    "eligible_new_sources": 4087,
+    "generation_batches": 128,
+    "revision": "21e74ddf8de1a21436da12e3e653065c5213e9d1",
+    "scan": {
+      "scanned": 5000,
+      "structurally_eligible": 4450,
+      "structurally_invalid": 550
+    }
+  },
+  "attempted_candidate_files": {
+    "data/router_recovery_v2/apps_expansion/apps01_base_candidates.jsonl": 40,
+    "data/router_recovery_v2/apps_expansion/apps01_candidates.jsonl": 40,
+    "data/router_recovery_v2/apps_expansion/apps02_base_candidates.jsonl": 40,
+    "data/router_recovery_v2/apps_expansion/apps_base_adaptive_high_temp_candidates.jsonl": 46,
+    "data/router_recovery_v2/generation/batch01_v1_known_candidates.jsonl": 59,
+    "data/router_recovery_v2/generation/batch01_v1_known_v2_candidates.jsonl": 59,
+    "data/router_recovery_v2/generation/batch02_base_known_candidates.jsonl": 31,
+    "data/router_recovery_v2/generation/batch03_v1_dual_mbpp_candidates.jsonl": 40,
+    "data/router_recovery_v2/generation/batch07_v1_known_code_low_temp_candidates.jsonl": 21
+  },
+  "batch_sources": 32,
+  "current_admitted_sources": 108,
+  "exclusions": {
+    "already_admitted": 24,
+    "previously_sampled": 152,
+    "protected_source": 322
+  },
+  "mbpp": {
+    "allowed_splits": [
+      "train",
+      "validation",
+      "prompt"
+    ],
+    "dataset": "google-research-datasets/mbpp",
+    "eligible_by_split": {
+      "prompt": 8,
+      "train": 265,
+      "validation": 66
+    },
+    "eligible_new_sources": 339,
+    "generation_batches": 11,
+    "scan": {
+      "scanned": 474,
+      "structurally_eligible": 474
+    }
+  },
+  "minimum_pair_deficit": 92,
+  "previously_sampled_sources": 210,
+  "protected_sets": {
+    "calibration_v1": 140,
+    "decision_only_all": 240,
+    "frozen_200": 200,
+    "probe_256": 256
+  },
+  "protected_union_sources": 736,
+  "reference_verification": "Pending; model-generated correct and wrong candidates must both be freshly verified before admission.",
+  "run_policy": "Run one APPS batch and one MBPP batch, verify yield, then continue only while useful.",
+  "samples_per_source": 8,
+  "schema_version": "phase3_router_recovery_v2_full_code_scan_v1",
+  "selected_before_model_inference": true,
+  "status": "source_scan_complete_generation_not_started",
+  "total_eligible_sources": 4426,
+  "total_generation_jobs_if_exhausted": 35408,
+  "training_started": false
+}

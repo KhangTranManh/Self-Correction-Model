@@ -1,0 +1,62 @@
+{
+  "by_dataset": {
+    "apps": {
+      "final_accuracy": 0.4,
+      "initial_accuracy": 0.5,
+      "repair_call_rate": 1.0,
+      "total": 40
+    },
+    "gsm8k": {
+      "final_accuracy": 0.583333,
+      "initial_accuracy": 0.5,
+      "repair_call_rate": 1.0,
+      "total": 60
+    },
+    "humaneval": {
+      "final_accuracy": 0.5,
+      "initial_accuracy": 0.5,
+      "repair_call_rate": 1.0,
+      "total": 20
+    },
+    "mbpp": {
+      "final_accuracy": 0.35,
+      "initial_accuracy": 0.5,
+      "repair_call_rate": 1.0,
+      "total": 40
+    },
+    "svamp": {
+      "final_accuracy": 0.6,
+      "initial_accuracy": 0.5,
+      "repair_call_rate": 1.0,
+      "total": 40
+    }
+  },
+  "by_domain": {
+    "code": {
+      "final_accuracy": 0.4,
+      "initial_accuracy": 0.5,
+      "repair_call_rate": 1.0,
+      "total": 100
+    },
+    "math": {
+      "final_accuracy": 0.59,
+      "initial_accuracy": 0.5,
+      "repair_call_rate": 1.0,
+      "total": 100
+    }
+  },
+  "metrics": {
+    "absolute_accuracy_delta": -0.005,
+    "correct_preservation_rate": 0.74,
+    "correct_to_wrong_count": 26,
+    "correct_to_wrong_degradation_rate": 0.26,
+    "final_accuracy": 0.495,
+    "initial_accuracy": 0.5,
+    "repair_call_count": 200,
+    "repair_call_rate": 1.0,
+    "total": 200,
+    "wrong_to_correct_count": 25,
+    "wrong_to_correct_recovery_rate": 0.25
+  },
+  "schema_version": "phase3_always_repair_control_v1"
+}

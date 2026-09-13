@@ -1,0 +1,167 @@
+schema_version: phase3_experiment_registry_v2
+updated: 2026-09-13
+
+phase:
+  status: closed
+  closed_on: 2026-09-13
+  final_router: decision_only_v1
+  new_training_allowed: false
+  continuation_policy: create_a_new_phase_with_new_holdouts
+
+base_model:
+  id: Kxck/Self_Correction_v1
+  role: canonical_solver_and_repair_model
+
+frozen_evaluation:
+  manifest: phase3/data/two_stage_selective_repair/frozen_eval.jsonl
+  rows: 200
+  correct_rows: 100
+  wrong_rows: 100
+
+experiments:
+  decision_only_v1:
+    display_name: Decision-Only V1
+    parent: Kxck/Self_Correction_v1
+    method: qlora_sft
+    status: canonical
+    role: router
+    config: phase3/configs/decision_only.yaml
+    data: phase3/data/decision_only/decision_only_train.jsonl
+    adapter: outputs/phase3_decision_only_v1/final_adapter
+    adapter_sha256: 830ce70c813fb8800e678d7b55de499bf50a5edbefdca20737f8ba1ce8dcadff
+    frozen_run: phase3/runs/two_stage_selective_repair
+    metrics:
+      balanced_accuracy: 0.65
+      keep_recall: 0.81
+      revise_recall: 0.49
+      code_accuracy: 0.62
+      math_accuracy: 0.68
+      unseen_template_accuracy: 0.58
+      final_accuracy: 0.515
+
+  router_v3_mini:
+    display_name: Router V3 Mini
+    parent: decision_only_v1
+    method: qlora_sft
+    status: diagnostic
+    role: router_experiment
+    config: phase3/configs/router_v3_mini.yaml
+    data: phase3/data/revised_router/revised_router_train.jsonl
+    adapter: outputs/phase3_router_v3_mini/final_adapter
+    adapter_sha256: f75edad532474567d534deef3fad312acb2651c314af2d31997f4dbeab45c362
+    note: Increased REVISE behavior did not establish a robust correctness-representation gain.
+
+  dpo_pilot_v1:
+    display_name: DPO Pilot V1
+    parent: decision_only_v1
+    method: decision_token_dpo
+    status: rejected
+    role: router_experiment
+    config: phase3/configs/dpo_pilot.yaml
+    data: phase3/data/dpo_pilot/dpo_preferences.jsonl
+    adapter: outputs/phase3_dpo_pilot_v1/final_adapter
+    adapter_sha256: 27a784b7515ec818a79862a15194d2e57402d867e3b8fae49deae05655ec89e3
+    frozen_run: phase3/runs/dpo_pilot_v1/frozen_eval
+    metrics:
+      balanced_accuracy: 0.665
+      keep_recall: 0.85
+      revise_recall: 0.48
+      code_accuracy: 0.62
+      math_accuracy: 0.71
+      unseen_template_accuracy: 0.555
+      final_accuracy: 0.545
+    rejection_reason: REVISE recall and unseen-template accuracy regressed; code did not improve.
+
+  dpo_semantic_v2:
+    display_name: DPO Semantic V2
+    parent: decision_only_v1
+    method: decision_token_dpo
+    status: rejected
+    role: router_experiment
+    config: phase3/configs/dpo_semantic_v2.yaml
+    data: phase3/data/semantic_model_dpo/dpo_preferences.jsonl
+    adapter: outputs/phase3_dpo_semantic_v2/final_adapter
+    adapter_sha256: cef8cc95ca960670bb7e878c613aa8154873714587023342fcab4ed1c7edf0c1
+    frozen_run: phase3/runs/dpo_semantic_v2/frozen_eval
+    metrics:
+      balanced_accuracy: 0.655
+      keep_recall: 0.85
+      revise_recall: 0.46
+      code_accuracy: 0.59
+      math_accuracy: 0.72
+      unseen_template_accuracy: 0.535
+      final_accuracy: 0.555
+      probe_balanced_accuracy: 0.577
+      probe_revise_recall: 0.385
+    rejection_reason: REVISE, code, unseen-template, and representation-probe metrics regressed.
+
+  decision_token_v2:
+    display_name: Decision-Token V2
+    parent: decision_only_v1
+    method: decision_token_qlora
+    status: rejected
+    role: router_experiment
+    config: phase3/configs/decision_token_v2.yaml
+    metrics: {balanced_accuracy: 0.64, keep_recall: 0.94, revise_recall: 0.34}
+    rejection_reason: Strong KEEP collapse and lower REVISE recall.
+
+  same_origin_router_v1:
+    display_name: Same-Origin Router V1
+    parent: decision_only_v1
+    method: qlora_sft
+    status: rejected
+    role: router_experiment
+    config: phase3/configs/same_origin_router_v1.yaml
+    metrics: {balanced_accuracy: 0.61, keep_recall: 0.98, revise_recall: 0.24}
+    rejection_reason: Only 23 strict new pairs and severe KEEP collapse.
+
+  verifier_reward_pilot:
+    display_name: Verifier-Reward Pilot
+    parent: decision_only_v1
+    method: constrained_binary_grpo
+    status: rejected
+    role: router_experiment
+    metrics: {balanced_accuracy: 0.62, keep_recall: 0.98, revise_recall: 0.26}
+    rejection_reason: Reward optimization shifted policy toward KEEP.
+
+  frozen_classifier_v1:
+    display_name: Frozen Classifier V1
+    parent: decision_only_v1
+    method: frozen_linear_probe
+    status: diagnostic
+    role: representation_readout
+    weights_changed: false
+    rejection_reason: Ranking transferred but the absolute threshold did not.
+
+  router_calibration_v1:
+    display_name: Router Calibration V1
+    parent: frozen_classifier_v1
+    method: platt_scaling
+    status: rejected
+    role: policy_calibration
+    config: phase3/configs/router_calibration_v1.yaml
+    weights_changed: false
+    rejection_reason: Balanced-fit and natural-audit REVISE recall failed the gate.
+
+  activation_steering_v2:
+    display_name: Activation Steering V2
+    parent: frozen_classifier_v1
+    method: probe_and_caa_residual_addition
+    status: rejected
+    role: causal_diagnostic
+    weights_changed: false
+    report: outputs/phase3_activation_steering_v2/report.md
+    rejection_reason: No valid behavioral improvement; broader steering changed KEEP bias and reduced REVISE recall.
+
+  router_recovery_v2:
+    display_name: Router Recovery V2
+    parent: decision_only_v1
+    method: same_origin_hard_pair_recovery
+    status: abandoned
+    role: incomplete_dataset_experiment
+    config: phase3/configs/router_recovery_v2.yaml
+    data: phase3/data/router_recovery_v2/current/verified_pairs.partial.jsonl
+    pairs: 108
+    minimum_pairs: 200
+    training_started: false
+    rejection_reason: Closed 92 pairs below the minimum gate after marginal mining yield fell to 2/184.

@@ -1,0 +1,65 @@
+{
+  "schema_version": "phase3_router_recovery_v2_dataset_status_v1",
+  "status": "incomplete_closed_below_minimum_gate",
+  "as_of": "2026-09-08",
+  "pairs": 108,
+  "behavior_rows": 216,
+  "minimum_pairs": 200,
+  "target_pairs": 300,
+  "remaining_to_minimum": 92,
+  "minimum_gate_pass": false,
+  "training_started": false,
+  "final_split_created": false,
+  "labels": {
+    "KEEP": 108,
+    "REVISE": 108
+  },
+  "domains": {
+    "math": 84,
+    "code": 24
+  },
+  "datasets": {
+    "gsm8k": 84,
+    "apps": 23,
+    "mbpp": 1
+  },
+  "model_origins": {
+    "self_correction_v1": 78,
+    "base": 30
+  },
+  "validation": {
+    "fresh_correct_pass": 108,
+    "fresh_wrong_fail": 108,
+    "same_model_origin": 108,
+    "synthetic_wrong_answers": 0,
+    "duplicate_sources": 0,
+    "duplicate_pair_ids": 0,
+    "malformed_behavior_pairs": 0,
+    "protected_union_sources": 736,
+    "protected_overlap": 0,
+    "neutral_template_distribution": {
+      "KEEP": {"canonical_review_v1": 108},
+      "REVISE": {"canonical_review_v1": 108}
+    }
+  },
+  "mining": {
+    "cpu_seed_pairs": 65,
+    "new_gpu_pairs": 43,
+    "valid_prompt_candidates": 2804,
+    "excluded_bad_prompt_candidates": 480,
+    "last_batch_candidates": 184,
+    "last_batch_new_pairs": 2,
+    "gpu_mining_paused": true,
+    "pause_reason": "Marginal yield is too low and the current source/configuration strategy is exhausted."
+  },
+  "next_action": "None inside Phase 3. A future phase may import these immutable pairs under a new protocol and new holdouts.",
+  "full_code_scan": {
+    "status": "compacted_unexecuted_phase3_closed",
+    "apps_eligible_sources": 4087,
+    "mbpp_eligible_sources": 339,
+    "total_eligible_sources": 4426,
+    "batch_sources": 32,
+    "queued_generations_if_exhausted": 35408,
+    "run_policy": "Run one APPS and one MBPP batch, fresh-verify yield, and stop when the 200-pair gate is reached."
+  }
+}

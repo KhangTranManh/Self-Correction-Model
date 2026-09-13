@@ -1,0 +1,48 @@
+experiment:
+  name: router_recovery_v2_generation
+  status: abandoned_phase3_closed
+  seed: 20260908
+
+model:
+  checkpoint: Kxck/Self_Correction_v1
+  served_name: self-correction-v1
+  adapter: null
+  origin_label: self_correction_v1
+
+server:
+  host: 127.0.0.1
+  port: 8000
+  dtype: float16
+  max_model_length: 4096
+  gpu_memory_utilization: 0.88
+  max_num_sequences: 16
+  enforce_eager: true
+
+generation:
+  manifest: data/router_recovery_v2/generation/generation_manifest.jsonl
+  batch_index: data/router_recovery_v2/generation/batch_summary.json
+  output: data/router_recovery_v2/generation/raw_candidates.jsonl
+  temperature: 0.90
+  top_p: 0.95
+  samples_per_source:
+    known_correct_math: 6
+    known_correct_code: 12
+    dual_outcome_mbpp: 16
+  max_tokens: {math: 1024, code: 2048}
+  concurrency: 8
+  checkpoint_every_rows: 32
+  resumable_key: candidate_id
+
+retention:
+  maximum_wrong_per_source: 1
+  require_fresh_verifier: true
+  require_plausible_wrong: true
+  synthetic_wrong_allowed: false
+  retain_raw_generations: true
+
+preflight:
+  minimum_gpu_vram_gib: 23
+  required_manifest_status: validated
+  protected_overlap_must_equal: 0
+  start_allowed_only_if_existing_pool_cannot_fill_target: true
+  run_batches_sequentially_and_verify_yield_between_batches: true

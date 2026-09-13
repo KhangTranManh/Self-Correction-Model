@@ -1,0 +1,10 @@
+{
+  "manifest_sha256": "938a40b83e40d59adcb8c37dcb2a7627e838f8ef1bd3db3964bd7349f90c43ad",
+  "new_candidates": 184,
+  "origin": "base",
+  "output_sha256": "6f395ba65aa60c6c19af6a348234e60a336878318545dee6dbfa148e5c7d9752",
+  "schema_version": "phase3_same_origin_candidates_v1",
+  "served_model": "base-qwen2.5-7b",
+  "tasks": 46,
+  "total_candidates": 184
+}

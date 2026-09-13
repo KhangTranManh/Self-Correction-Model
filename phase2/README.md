@@ -1,5 +1,9 @@
 # Phase 2 — From imitation to discrimination (KTO on the critique step)
 
+> Historical exploration. The KTO pipeline was validated but no completed KTO
+> adapter was produced. Current discrimination experiments live in `../phase3/`;
+> this directory is retained for reproducibility rather than active execution.
+
 Phase 1 hit a ceiling that is **a wrong training objective, not a tuning gap**:
 SFT on corrections teaches the *format* of correcting, not the *discriminative
 skill* of knowing when one is actually wrong. The model "corrects" largely by being

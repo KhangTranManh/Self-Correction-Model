@@ -1,0 +1,62 @@
+experiment:
+  name: phase3_decision_only_v1
+  seed: 314159
+  upload_to_hub: false
+
+model:
+  original_base_model: Qwen/Qwen2.5-7B-Instruct
+  training_checkpoint: Kxck/Self_Correction_v1
+  load_in_4bit: true
+  quant_type: nf4
+  double_quant: true
+  compute_dtype: bfloat16
+  new_lora_r: 32
+  new_lora_alpha: 64
+  new_lora_dropout: 0.0
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+
+data:
+  train_path: data/decision_only/decision_only_train.jsonl
+  dev_path: data/decision_only/decision_only_dev.jsonl
+  test_path: data/decision_only/decision_only_test.jsonl
+  expected_train_rows: 168
+  expected_dev_rows: 36
+  expected_test_rows: 36
+  max_seq_length: 4096
+  train_on_final_assistant_only: true
+  target_contract: decision_tag_only
+
+training:
+  epochs: 2
+  micro_batch_size: 1
+  gradient_accumulation_steps: 8
+  effective_batch_size: 8
+  learning_rate: 0.00002
+  warmup_ratio: 0.1
+  lr_scheduler_type: cosine
+  weight_decay: 0.0
+  gradient_checkpointing: true
+  optim: paged_adamw_8bit
+  logging_steps: 1
+  save_strategy: 'no'
+
+output:
+  root: outputs/phase3_decision_only_v1
+  final_adapter: outputs/phase3_decision_only_v1/final_adapter
+  train_report: outputs/phase3_decision_only_v1/train_report.json
+
+evaluation:
+  temperature: 0.0
+  decision_max_tokens: 16
+  rationale_max_tokens: 256
+  seed: 314159
+  baseline_model: self-correction-v1
+  candidate_model: phase3-decision-only-v1
+  rationale_capture: separate_non_scored_visible_rationale_pass

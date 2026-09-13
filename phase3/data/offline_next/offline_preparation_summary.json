@@ -1,0 +1,173 @@
+{
+  "classifier_data": {
+    "decision_only_v1_activations": {
+      "aligned": true,
+      "available": true,
+      "layers": [
+        7,
+        14,
+        21,
+        28
+      ],
+      "path": "phase3/runs/representation_probe/activations/decision_only_v1_final_token.npz",
+      "shape": [
+        256,
+        4,
+        3584
+      ]
+    },
+    "domains": {
+      "code": 128,
+      "math": 128
+    },
+    "labels": {
+      "KEEP": 128,
+      "REVISE": 128
+    },
+    "recommended_models": [
+      "class-weighted logistic regression",
+      "small MLP with focal loss"
+    ],
+    "rows": 256,
+    "semantic_v2_activations": {
+      "aligned": true,
+      "available": true,
+      "layers": [
+        7,
+        14,
+        21,
+        28
+      ],
+      "path": "outputs/phase3_dpo_semantic_v2/representation_probe/activations/dpo_semantic_v2_final_token.npz",
+      "shape": [
+        256,
+        4,
+        3584
+      ]
+    },
+    "splits": {
+      "dev": 52,
+      "test": 52,
+      "train": 152
+    }
+  },
+  "decision_token_data": {
+    "dev_datasets": {
+      "apps": 4,
+      "gsm8k": 14,
+      "mbpp": 2
+    },
+    "dev_labels": {
+      "KEEP": 20,
+      "REVISE": 20
+    },
+    "dev_pairs": 20,
+    "dev_rows": 40,
+    "train_datasets": {
+      "apps": 16,
+      "gsm8k": 59,
+      "mbpp": 5
+    },
+    "train_dev_source_overlap": [],
+    "train_labels": {
+      "KEEP": 80,
+      "REVISE": 80
+    },
+    "train_pairs": 80,
+    "train_rows": 160
+  },
+  "future_same_origin_generation": {
+    "reason": "The current verified pool has only one generation per model/problem, so same-origin correct/wrong pairs require new sampling.",
+    "requested_generations": 762,
+    "requires_gpu_later": true,
+    "tasks": 100
+  },
+  "gpu_used": false,
+  "hard_revise_pool": {
+    "datasets": {
+      "apps": 20,
+      "gsm8k": 73,
+      "mbpp": 7
+    },
+    "manual_audit_rows": 40,
+    "near_miss_math": 45,
+    "partial_test_pass_code": 6,
+    "rows": 100
+  },
+  "outputs": {
+    "classifier_manifest": {
+      "path": "phase3/data/offline_next/classifier_manifest.jsonl",
+      "sha256": "7a166103c4db8389415e94353aee8b48f0a2fd0686c8193c0083bf3e41809f17"
+    },
+    "decision_token_dev": {
+      "path": "phase3/data/offline_next/decision_token_dev.jsonl",
+      "sha256": "e94690f85d2d20a4fbfa7fbe9b9c98b4ece52e8813638ada2006afbf87a316ae"
+    },
+    "decision_token_train": {
+      "path": "phase3/data/offline_next/decision_token_train.jsonl",
+      "sha256": "1cff1b0aaa2d775298e17f99835f17b4ee522e1c9353d270411c83e7d2a1b1f1"
+    },
+    "future_same_origin_generation_manifest": {
+      "path": "phase3/data/offline_next/future_same_origin_generation_manifest.jsonl",
+      "sha256": "a04987f8e9a9cf87a1074c96ab616c771bf70ef316a552a5b7f03c6ecf6773f8"
+    },
+    "hard_revise_existing": {
+      "path": "phase3/data/offline_next/hard_revise_existing.jsonl",
+      "sha256": "160077d055891f8048914c4103c81006c0f587dd7b4614c5ad3a89131deb2151"
+    },
+    "manual_shortcut_audit_queue": {
+      "path": "phase3/data/offline_next/manual_shortcut_audit_queue.jsonl",
+      "sha256": "ac303c9e03bc38df6a21e5c3b54d97921830e63676b0fb2ab2f977028e61bc2c"
+    },
+    "shortcut_audit": {
+      "path": "phase3/data/offline_next/shortcut_audit.json",
+      "sha256": "cfe9ae9b6d648371c8648f0a9c0a0e4b422176135738fc96809697228f34548b"
+    },
+    "shortcut_cv_predictions": {
+      "path": "phase3/data/offline_next/shortcut_cv_predictions.jsonl",
+      "sha256": "40e81758df9f8f57aec5ee2c4fe0958ea472943bffb6d2b408bcc5790587a490"
+    }
+  },
+  "schema_version": "phase3_offline_next_v1",
+  "seed": 20260907,
+  "shortcut_audit": {
+    "estimated_risks": {
+      "answer_text_style": "low",
+      "model_origin": "low",
+      "simple_surface_features": "low"
+    },
+    "interpretation": "This diagnoses learnable answer-style confounds inside the training pool; it is not a frozen benchmark result.",
+    "method": "5-fold StratifiedGroupKFold grouped by pair/problem; labels are hidden from features",
+    "metrics": {
+      "char_tfidf": {
+        "balanced_accuracy": 0.5,
+        "keep_recall": 0.47,
+        "revise_recall": 0.53
+      },
+      "origin_only": {
+        "balanced_accuracy": 0.52,
+        "keep_recall": 0.52,
+        "revise_recall": 0.52
+      },
+      "surface_only": {
+        "balanced_accuracy": 0.505,
+        "keep_recall": 0.53,
+        "revise_recall": 0.48
+      }
+    }
+  },
+  "source_verification": "Inherited from semantic_model_dpo: correct 100/100 fresh pass; wrong 100/100 fresh fail.",
+  "training_started": false,
+  "validation": {
+    "all_passed": true,
+    "decision_only_v1_activation_order_aligned": true,
+    "dev_keep_revise_balanced": true,
+    "duplicate_pair_ids": false,
+    "frozen_eval_source_overlap": [],
+    "new_model_generation": false,
+    "new_synthetic_wrong_answers": false,
+    "pair_groups_not_split": true,
+    "semantic_v2_activation_order_aligned": true,
+    "train_keep_revise_balanced": true
+  }
+}
