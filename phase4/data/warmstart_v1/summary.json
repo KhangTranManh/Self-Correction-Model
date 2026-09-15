@@ -1,0 +1,12 @@
+{
+  "wrong_initial_answers": 85,
+  "verified_guided_corrections": 73,
+  "rows_per_label": 73,
+  "train_rows": 118,
+  "dev_rows": 28,
+  "sha256": {
+    "guided": "f3dbec66cbfd78e19823469d9820f17260f0398c7a4460df671c8c6ec12f62c4",
+    "train": "a54c78dde1ae663fad007e8a65cfba93e40652fccace391b7012c956e88af446",
+    "dev": "97f5080043c2703779116792a446cb2f03577d7f3dd03eba7384b400d40d6b24"
+  }
+}

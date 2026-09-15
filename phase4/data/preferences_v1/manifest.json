@@ -1,0 +1,30 @@
+{
+  "schema_version": "phase4_preference_pairs_v1",
+  "construction": {
+    "wrong_initial": "verified REVISE is preferred over KEEP",
+    "correct_initial": "KEEP is preferred over an unnecessary same-answer revision"
+  },
+  "splits": {
+    "train": {
+      "source": "phase4\\data\\verified_corrections_v1\\warmstart_train.jsonl",
+      "rows": 904,
+      "decision_counts": {
+        "KEEP": 452,
+        "REVISE": 452
+      },
+      "output": "phase4\\data\\preferences_v1\\train.jsonl",
+      "sha256": "e8b76014587b102ea6d8d42d20328908008231e54630da711417ba2816373d68"
+    },
+    "dev": {
+      "source": "phase4\\data\\verified_corrections_v1\\warmstart_dev.jsonl",
+      "rows": 100,
+      "decision_counts": {
+        "KEEP": 50,
+        "REVISE": 50
+      },
+      "output": "phase4\\data\\preferences_v1\\dev.jsonl",
+      "sha256": "c6d48bba99fa3c52ddb9a519e9a00eeb85d12e3bbc68cc7be218d9267e9e82a6"
+    }
+  },
+  "confirmation_candidates_read": false
+}

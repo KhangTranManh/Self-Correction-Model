@@ -1,0 +1,34 @@
+{
+  "schema_version": "phase4_blind_preferences_v1",
+  "sources": 1004,
+  "attempts": 16064,
+  "decision_counts": {
+    "KEEP": 14104,
+    "REVISE": 1568,
+    "INVALID": 392
+  },
+  "verified_fixes": 108,
+  "harmful_revisions": 42,
+  "available_pairs": {
+    "train": {
+      "KEEP": 14,
+      "REVISE": 44
+    },
+    "dev": {
+      "KEEP": 2,
+      "REVISE": 4
+    }
+  },
+  "train_rows": 28,
+  "dev_rows": 4,
+  "minimum_train_per_action": 20,
+  "minimum_dev_per_action": 5,
+  "training_gate_passed": false,
+  "sha256": {
+    "train": "b37ca4032f71c433bec73b441d7bf5a745cf8fc1a8c0593eaad2b48c14a2b922",
+    "dev": "d4d86888cbc114881b5ee0e811bbdb6eeb0c1ed8f23f2114998d422e994ac5a3"
+  },
+  "model_visible_verifier_hints": false,
+  "synthetic_responses": false,
+  "confirmation_candidates_read": false
+}

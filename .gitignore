@@ -22,10 +22,16 @@ data/attempts/
 data/preference/
 
 # Model checkpoints / LoRA adapters
+.venv-phase4-verify/
 outputs/
 *.safetensors
 *.bin
 *.gguf
+
+# Phase 4 generated rollouts, checkpoints, and run evidence are synchronized
+# between the workstation and GPU host but are not committed.
+phase4/data/rollouts/
+phase4/runs/
 
 # Logs
 *.log

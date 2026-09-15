@@ -5,6 +5,13 @@
 
 ## Objective
 
+Phase 4 is closed, with its own archived protocol and diagnostics.
+Its blind preference collection excluded verifier hints from model-visible
+prompts, verifies real candidate outputs afterwards, balances action coverage
+within source-disjoint splits, and freshly validates pairs against the audit
+before training. Existing Phase 3 frozen artifacts remain unchanged. See
+`phase4/docs/FINAL_REPORT.md` for the closure and final results.
+
 Construct training and evaluation data for error discrimination without label
 leakage. The router sees a problem, a previous answer, and neutral review text,
 then emits exactly one decision tag:
@@ -157,6 +164,12 @@ For canonical semantic contrastive pairs:
 10. No frozen-evaluation overlap.
 
 ## Promotion gate
+
+Phase 4 closed on 2026-09-15 without a confirmed gain. Its blind collection
+failed the frozen coverage gate (28 train / four dev balanced pairs), so DPO V2
+was not trained. Its three-round diagnostic was negative. Keep all raw attempts,
+source splits and fixed diagnostics unchanged; do not reuse evaluation outputs
+for training or lower thresholds after closure. New work requires a new phase.
 
 An adapter is promoted only if the same frozen benchmark shows:
 

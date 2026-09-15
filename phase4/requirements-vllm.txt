@@ -1,0 +1,7 @@
+# Separate serving environment; verified project pins for Python 3.10 / RTX 3090.
+torch==2.7.1
+transformers==4.57.1
+vllm==0.10.0
+httpx
+pyyaml
+sympy==1.14.0

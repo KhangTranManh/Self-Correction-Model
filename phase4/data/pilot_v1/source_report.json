@@ -1,0 +1,26 @@
+{
+  "schema_version": "phase4_math_pilot_sources_v1",
+  "seed": 20260914,
+  "upstream": "openai/gsm8k/main/train",
+  "existing_phase1_phase3_problem_hashes": 2619,
+  "eligible_source_disjoint_rows": 6473,
+  "counts": {
+    "train_problems.jsonl": 300,
+    "dev_problems.jsonl": 100,
+    "confirmation_candidates.jsonl": 400
+  },
+  "sha256": {
+    "train_problems.jsonl": "ada991af911c1642a534074d8a86438a94260a349a077b66be858c6a15fa990f",
+    "dev_problems.jsonl": "e697cd84e77fca535cba7b28a66ee008a9e368cdacc3a8c75f3d8da2a6dd993c",
+    "confirmation_candidates.jsonl": "cedb80745c379c493e7f6e17e4610fb34c0997c094389780af0d80e2fb29f40e"
+  },
+  "limitations": [
+    "pipeline pilot is math-only",
+    "confirmation candidates are not the final sealed balanced benchmark"
+  ],
+  "validation": {
+    "source_disjoint_from_committed_phase1_phase3_jsonl": true,
+    "split_disjoint": true,
+    "natural_model_outputs_only": true
+  }
+}

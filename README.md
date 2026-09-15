@@ -5,7 +5,21 @@ its own errors under objective supervision. Math answers are checked
 symbolically and code answers are executed against tests; an LLM is never used
 as the correctness oracle.
 
-## Current status (2026-09-13)
+## Current status (2026-09-15)
+
+Phase 4 closed on 2026-09-15 with no reliable autonomous correction gain.
+Warm-start V2's historical 74% development result did not reproduce (73%).
+GRPO, expanded correction SFT and DPO did not establish a reliable gain.
+Blind preferences completed 16,064 reviews but failed the preset training
+coverage gate. Three-round autonomous review reduced mean accuracy from
+51.25% after round 1 to 49.17% after round 3 on a balanced 80-source diagnostic.
+
+V2 is retained as a Phase 4 pilot reference, not a promoted replacement for
+the canonical Phase 3 router. No compliant sealed confirmation was run;
+confirmation candidates remain unopened. Phase 3's central problem is unresolved.
+See the [Phase 4 final report](phase4/docs/FINAL_REPORT.md),
+[results](phase4/docs/RESULTS.md) and [code ownership](phase4/docs/CODEBASE.md).
+New research must open a separate phase with new hypotheses and holdouts.
 
 Phase 3 closed on 2026-09-13. Its central result is negative but informative:
 preference tuning improved KEEP behavior and reduced harmful revisions, but it
@@ -62,6 +76,12 @@ router on a frozen 200-row benchmark, and probed hidden representations. It is
 now a closed, reproducible research package; Decision-Only V1 is its final
 router baseline.
 
+### Phase 4 — selective correction pilots (closed)
+
+Exploration warm-starts, GRPO, expanded SFT, DPO, blind preferences and repeated
+review did not establish a reliable autonomous correction gain. Evidence and
+adapters are archived; no additional Phase 4 tuning is authorized.
+
 ## Non-negotiable data rules
 
 1. Correctness comes from a deterministic verifier, not an LLM judge.
@@ -82,13 +102,14 @@ AGI/
 ├── instructionAI/              # Cross-phase architecture and data rules
 ├── phase1/                     # Verified correction pipeline and history
 ├── phase2/                     # KTO exploration and data
-├── phase3/                     # Active router/selective-repair codebase
+├── phase3/                     # Closed router/selective-repair research
 │   ├── configs/                # Training configs and experiment registry
 │   ├── data/                   # Sources, immutable attempts, built datasets
 │   ├── docs/                   # Codebase and results documentation
 │   ├── lib/                    # Shared provenance and verifier utilities
 │   ├── runs/                   # Frozen evaluations and human-readable reports
 │   └── scripts/                # Data, training, evaluation, and serving CLIs
+├── phase4/                     # Closed selective-correction pilots and evidence
 └── outputs/                    # Local adapters and runtime artifacts (gitignored)
 ```
 
@@ -103,6 +124,12 @@ From the repository root:
 ```bash
 python phase3/scripts/validate_local_state.py
 python phase3/scripts/validate_local_state.py --hash-adapters
+```
+
+Phase 4 closure audit (aligned verification environment):
+
+```powershell
+.venv-phase4-verify/Scripts/python.exe phase4/scripts/validate_local_state.py --hash-adapters
 ```
 
 The audit checks canonical datasets, reports, row counts, adapter presence, and

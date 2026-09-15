@@ -1,0 +1,11 @@
+{
+  "schema_version": "phase4_math_expansion_sources_v1",
+  "seed": 20260914,
+  "upstream": "openai/gsm8k/main/train",
+  "skip": 800,
+  "rows": 2000,
+  "manifest_sha256": "b44b91de5e8ac3166748a39af62c1f1a32464653cbe3c1f4f6d969ff417bfd7a",
+  "source_disjoint_from_phase1_phase3": true,
+  "disjoint_from_original_phase4_allocation_by_deterministic_offset": true,
+  "confirmation_candidates_read": false
+}

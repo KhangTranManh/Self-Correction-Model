@@ -1,0 +1,55 @@
+experiment:
+  name: phase4_transition_rl_v1
+  status: setup_not_run
+  seed: 20260914
+
+model:
+  actor: Kxck/Self_Correction_v1
+  frozen_reference: Kxck/Self_Correction_v1
+  load_in_4bit: true
+  max_sequence_length: 4096
+  lora_r: 16
+  lora_alpha: 32
+  lora_dropout: 0.0
+  target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+
+rollout:
+  candidates_per_problem: 4
+  initial_temperature: 0.7
+  review_temperature: 0.8
+  initial_max_tokens: 1024
+  review_max_tokens: 1200
+  review_system_prompt: >-
+    You are a selective-revision policy. Return only the required XML contract.
+    Do not critique, explain, use headings, or repeat an answer after KEEP.
+  neutral_prompt: >-
+    Decide whether the previous answer is correct. For a correct answer, output
+    exactly: <decision>KEEP</decision>. For an incorrect answer, output exactly:
+    <decision>REVISE</decision><answer>COMPLETE CORRECTED ANSWER</answer>.
+
+reward:
+  wrong_to_correct: 2.0
+  correct_keep: 1.0
+  correct_safe_revision: 0.25
+  wrong_revise_wrong: -0.25
+  wrong_keep: -1.0
+  correct_to_wrong: -2.0
+  invalid_contract: -1.25
+  exact_contract_bonus: 0.10
+
+training:
+  method: grpo
+  cycles: 1
+  learning_rate: 5.0e-6
+  # Four generated completions form one GRPO comparison group.
+  micro_batch_size: 4
+  gradient_accumulation_steps: 2
+  max_steps: 50
+  beta: 0.04
+
+storage:
+  local_root: D:/AGI
+  gpu_root: /root/agi
+  rollout_dir: phase4/data/rollouts
+  run_dir: phase4/runs
+  adapter_dir: outputs/phase4_transition_rl_v1

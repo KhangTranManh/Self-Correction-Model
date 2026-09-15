@@ -1,0 +1,17 @@
+{
+  "rows": 80,
+  "per_bucket": 20,
+  "candidate_bucket_counts": {
+    "math_True": 150,
+    "math_False": 50,
+    "code_True": 37,
+    "code_False": 107
+  },
+  "sha256": {
+    "problems": "b24617fc943f48c92f5ea74680ee2d89e956173153412c6c7b96dd6275946592",
+    "initials": "2664617f15b4331f8c15808447d87cf8578f6e0c119930af8d3a921e53424a13"
+  },
+  "model_outputs_used_for_selection": "natural selected-V2 initial correctness only",
+  "purpose": "fixed fresh development diagnostic; not scientific confirmation",
+  "confirmation_candidates_read": false
+}

@@ -1,0 +1,11 @@
+{
+  "model": "phase4-actor",
+  "candidates": 16,
+  "temperature": 1.2,
+  "max_tokens": 1200,
+  "seed": 6000000,
+  "initials_sha256": "e3a453cf4c55a3c550315b70c1978e4ee064ffaa3bb4a3167277712c6cead747",
+  "train_sources_sha256": "f97c47d26033714d2654fb3d51d4a589fe915a3e20a12642065f52a244eb5ad7",
+  "dev_sources_sha256": "b81038979ddb4ab0a08abd68b0103ee7318596a6f2f2b1d55eff6d1c1958935a",
+  "config_sha256": "25e8f9369d1c6d83dcd8c578797ad6a0bea82e2e98ab58f5103de69b7b46f9bf"
+}

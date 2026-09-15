@@ -1,0 +1,60 @@
+schema_version: phase4_experiments_v1
+phase: 4
+status: closed
+closed_on: '2026-09-15'
+conclusion: no_reliable_autonomous_correction_gain
+promotion: none
+confirmation_opened: false
+confirmation_completed: false
+canonical_solver: Kxck/Self_Correction_v1
+canonical_router: phase3_decision_only_v1
+pilot_reference: warmstart_v2
+further_experiments_authorized: false
+reports:
+  - phase4/docs/FINAL_REPORT.md
+  - phase4/docs/RESULTS.md
+  - phase4/docs/CODEBASE.md
+experiments:
+  warmstart_v2:
+    status: retained_pilot_reference_gain_not_reproduced
+    adapter_path: outputs/phase4_exploration_warmstart_v2/final_adapter/adapter_model.safetensors
+    adapter_sha256: 19fb45c77d3991470ed50cc2d50f12c0cc4667802d3fdd02c6c8b48d03517be4
+    summary_path: phase4/runs/warmstart/dev_v2_summary.json
+    final_accuracy: 0.74
+    rerun_summary_path: phase4/runs/preference_v1/dev_v2_replacement_summary.json
+    rerun_final_accuracy: 0.73
+  grpo_v3:
+    status: negative_not_promoted
+    adapter_path: outputs/phase4_transition_rl_v3/final_adapter/adapter_model.safetensors
+    adapter_sha256: 23c22d0484836d4e6c5f59137c79602d90b334e158957bc749d7e7b429e50678
+    summary_path: phase4/runs/warmstart/dev_grpo_v3_summary.json
+    final_accuracy: 0.73
+  correction_sft_v3:
+    status: no_gain_not_promoted
+    adapter_path: outputs/phase4_correction_sft_v3/final_adapter/adapter_model.safetensors
+    adapter_sha256: 6181eb886cee6cbc0f5b11e4d0d521ef3c3fb550172c1dbdf2b17b137198e08a
+    summary_path: phase4/runs/expansion_v1/dev_correction_sft_v3_summary.json
+    final_accuracy: 0.74
+  preference_dpo_v1:
+    status: negative_behavioral_result_not_promoted
+    adapter_path: outputs/phase4_preference_dpo_v1/final_adapter/adapter_model.safetensors
+    adapter_sha256: 5bad7cbe4adf144b0093cad9953c93360a157c88918462df40d898407548533e
+    summary_path: phase4/runs/preference_v1/dev_dpo_v1_summary.json
+    final_accuracy: 0.73
+  blind_preference_v2:
+    status: not_trained_failed_coverage_gate
+    summary_path: phase4/data/blind_preferences_v2/summary.json
+    attempts: 16064
+    train_rows: 28
+    dev_rows: 4
+    training_gate_passed: false
+  three_round_v1:
+    status: negative_extra_rounds_reduced_accuracy
+    summary_path: phase4/runs/three_round_v1/summary.json
+    protocol_path: phase4/runs/three_round_v1/protocol.json
+    trajectories_path: phase4/runs/three_round_v1/trajectories.jsonl
+    trajectories_sha256: 8eee741af05730576ea9224116eba98349f2ba25b2c829a2b2a2e125f91c978b
+    sources: 80
+    trajectories: 240
+    round1_accuracy: 0.5125
+    round3_accuracy: 0.49166666666666664

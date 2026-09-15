@@ -1,0 +1,16 @@
+{
+  "initial_rows": 2000,
+  "wrong_initial_answers": 507,
+  "candidates_per_wrong": 4,
+  "guided_attempts": 2028,
+  "passing_attempts": 1845,
+  "wrong_sources_with_verified_correction": 502,
+  "rows_per_label": 502,
+  "train_rows": 904,
+  "dev_rows": 100,
+  "sha256": {
+    "attempts": "93af66d329e2c65c947c1681f499d1a051d59aa81fc6374ca581aba353e77eb8",
+    "train": "f97c47d26033714d2654fb3d51d4a589fe915a3e20a12642065f52a244eb5ad7",
+    "dev": "b81038979ddb4ab0a08abd68b0103ee7318596a6f2f2b1d55eff6d1c1958935a"
+  }
+}

@@ -1,8 +1,8 @@
 # Project Architecture
 
 This document defines ownership and dependency boundaries for the current
-repository. Phase-specific historical documents remain useful, but the root
-README and Phase 3 documentation are authoritative for current status.
+repository. The root README routes current work. Phase 3 documentation owns
+its closed results; Phase 4 documentation owns its closed correction pilots.
 
 ## Phase boundaries
 
@@ -35,6 +35,7 @@ the canonical Phase 3 pipeline.
 | `phase1/` | Phase 1 | Verified solve/correct pipeline and historical results |
 | `phase2/` | Phase 2 | KTO preference experiment |
 | `phase3/` | Phase 3 | Closed discrimination/selective-repair research package |
+| `phase4/` | Phase 4 | Closed selective-correction pilots and immutable evidence |
 | `outputs/` | Runtime | Local adapters, logs, activations; excluded from Git |
 | `instructionAI/` | Project | Cross-phase architecture and data invariants |
 
@@ -134,6 +135,20 @@ remain immutable. New discrimination research must create a new phase rather
 than adding rows, adapters, or tuned thresholds to Phase 3.
 
 ## Security and operational rules
+
+Phase 4 is closed as of 2026-09-15. No reliable correction gain was established
+and no compliant confirmation was run. Warm-start V2 remains an archived pilot
+reference, not a promoted canonical model. Final dispositions live in
+`phase4/configs/experiments.yaml`; ownership and closure rules live in
+`phase4/docs/CODEBASE.md` and `phase4/docs/FINAL_REPORT.md`. Preserve historical
+configs and generated evidence. Any new research must open a separate phase.
+
+- Make and check implementation changes locally before uploading to the GPU.
+- Use Luna or Terra for routine log monitoring and straightforward checks when
+  delegation is available; retain experiment design and result decisions with
+  the main agent, as requested by the user.
+- Use CPython 3.10/SymPy 1.14.0 for Phase 4 verification on both machines;
+  Python-version differences can change parsing of trailing currency symbols.
 
 - Never inspect, copy, document, or commit `.env` values.
 - Never store SSH passwords in scripts, reports, or configs.

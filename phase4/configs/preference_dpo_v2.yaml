@@ -1,0 +1,61 @@
+experiment:
+  name: phase4_preference_dpo_v2
+  seed: 20260915
+  upload_to_hub: false
+  status: not_run_insufficient_blind_coverage
+  closure_note: Phase 4 closed; frozen coverage gate failed, no adapter produced.
+  training_gate_passed: false
+  observed_train_rows: 28
+  observed_dev_rows: 4
+model:
+  original_base_model: Qwen/Qwen2.5-7B-Instruct
+  training_checkpoint: /root/models/phase4_warmstart_v2_merged
+  load_in_4bit: true
+  quant_type: nf4
+  double_quant: true
+  compute_dtype: bfloat16
+  new_lora_r: 16
+  new_lora_alpha: 32
+  new_lora_dropout: 0.0
+  target_modules:
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+data:
+  train_path: ../phase4/data/blind_preferences_v2/train.jsonl
+  dev_path: ../phase4/data/blind_preferences_v2/dev.jsonl
+  expected_train_rows: 0
+  expected_dev_rows: 0
+  max_seq_length: 4096
+  max_prompt_length: 3072
+  blind_audit_path: ../phase4/data/blind_preferences_v2/blind_attempts.jsonl
+  initials_path: ../phase4/data/expansion_v1/initial_rollouts.jsonl
+  rollout_config_path: ../phase4/configs/transition_rl_v1.yaml
+  train_sha256: UNSET
+  dev_sha256: UNSET
+training:
+  beta: 0.1
+  loss_type: sigmoid
+  epochs: 1
+  micro_batch_size: 1
+  gradient_accumulation_steps: 8
+  effective_batch_size: 8
+  learning_rate: 1.0e-06
+  warmup_ratio: 0.1
+  lr_scheduler_type: cosine
+  weight_decay: 0.0
+  gradient_checkpointing: true
+  optim: paged_adamw_8bit
+  logging_steps: 5
+  save_strategy: steps
+  save_steps: 10
+  save_total_limit: 2
+  max_steps_cap: 50
+output:
+  root: ../outputs/phase4_preference_dpo_v2
+  final_adapter: ../outputs/phase4_preference_dpo_v2/final_adapter
+  train_report: ../outputs/phase4_preference_dpo_v2/train_report.json
