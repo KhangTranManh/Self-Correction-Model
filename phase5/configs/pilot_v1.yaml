@@ -1,0 +1,47 @@
+schema_version: phase5_pilot_v1
+status: initials_complete_review_and_probe_not_run
+gpu: Tesla V100-SXM2-32GB
+seed: 20260923
+task:
+  domain: short_multistep_arithmetic
+  initial_answer_model: Kxck/Self_Correction_v1
+  natural_initial_errors_only: true
+  deterministic_final_and_step_verification: true
+  source_exclusions: all_known_phase1_through_phase4_including_confirmation
+  source_inventory_hash: 303e17aef1a37e341fd659019d39f893fb1ed8b4647946aa0697c74804a26024
+  candidate_budget: 1200
+  candidate_problems_sha256: 3dc103e168ea149f51d16e5d22fad66e97b1af9e956fba1d8914b714120e954a
+  reference_steps_model_visible: false
+splits:
+  probe_train_sources_target: 240
+  probe_dev_sources_target: 80
+  protected_test_sources_target: 160
+  balanced_by_initial_correctness: true
+  source_disjoint: true
+models:
+  original_solver: Kxck/Self_Correction_v1
+  warmstart_v2: outputs/phase4_exploration_warmstart_v2/final_adapter
+  correction_sft_v3: outputs/phase4_correction_sft_v3/final_adapter
+  verify_checkpoint_parent_and_sha256_before_execution: true
+review:
+  hint_conditions: [neutral, status, location, type]
+  same_initial_answer_across_models: true
+  include_correct_answer_controls: true
+  hint_generation_independent_of_reviewer: true
+  model_visible_reference_answer: false
+  model_visible_verifier_trace: false
+  strict_keep_revise_contract: true
+  decoding_settings: null
+probe:
+  position: after_problem_and_initial_answer_before_hint_or_decision
+  model_weights_frozen: true
+  classifier: regularized_linear
+  layer_and_regularization_selection: probe_dev_only
+  controls: [surface_features, shuffled_labels]
+  protected_metric: balanced_accuracy
+evaluation:
+  behavior_metrics: [final_accuracy, wrong_to_correct, correct_to_wrong, contract_validity]
+  paired_by_source: true
+  protected_test_reads: 1
+  promotion_on_pilot_alone: false
+result: null

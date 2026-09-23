@@ -1,0 +1,7 @@
+{
+  "rows": 1200,
+  "raw_sha256": "9556bf9d7dba73d7fcaaeff6ca814c71684db1d8e8d485d83ec62f1c428b888d",
+  "candidates_sha256": "3dc103e168ea149f51d16e5d22fad66e97b1af9e956fba1d8914b714120e954a",
+  "reference_steps_sha256": "a3ed483127f14ed07d6d78824791cbb6f8c5e3d12983ce1095bfa1f7b94a2e64",
+  "model_visible": false
+}

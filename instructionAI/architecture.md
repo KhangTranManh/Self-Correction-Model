@@ -36,6 +36,7 @@ the canonical Phase 3 pipeline.
 | `phase2/` | Phase 2 | KTO preference experiment |
 | `phase3/` | Phase 3 | Closed discrimination/selective-repair research package |
 | `phase4/` | Phase 4 | Closed selective-correction pilots and immutable evidence |
+| `phase5/` | Phase 5 | Active guided-repair and pre-hint probe design; CPU source inventory prepared |
 | `outputs/` | Runtime | Local adapters, logs, activations; excluded from Git |
 | `instructionAI/` | Project | Cross-phase architecture and data invariants |
 

@@ -1,0 +1,65 @@
+schema_version: phase5_experiments_v1
+phase: 5
+status: gpu_initial_collection_complete_awaiting_split
+created_on: '2026-09-23'
+phase4_status: closed
+gpu:
+  host_type: linux_docker
+  name: Tesla V100-SXM2-32GB
+  memory_mib_reported: 32768
+  compute_capability: '7.0'
+  driver_reported: '580.82.07'
+  python_at_inventory: '3.10.12'
+  inventory_source: remote_ssh_nvidia_smi_2026_09_23
+cpu_candidate_data_collected: true
+model_generated_data_collected: true
+model_runs: true
+probe_fits: false
+confirmation_opened: false
+promotion: none
+protocol: phase5/configs/pilot_v1.yaml
+checkpoint_roles:
+  original_solver: Kxck/Self_Correction_v1
+  phase4_warmstart_v2: outputs/phase4_exploration_warmstart_v2/final_adapter
+  phase4_correction_sft_v3: outputs/phase4_correction_sft_v3/final_adapter
+checkpoint_hashes_verified_for_phase5: false
+candidate_sources:
+  status: selected_cpu_only
+  eligible_after_rules: 3174
+  selected: 1200
+  references_verified: 1200
+  prior_source_overlap: 0
+  candidate_problems_sha256: 3dc103e168ea149f51d16e5d22fad66e97b1af9e956fba1d8914b714120e954a
+  exclusion_inventory_sha256: 303e17aef1a37e341fd659019d39f893fb1ed8b4647946aa0697c74804a26024
+  report_path: phase5/data/candidates_v1/candidate_report.json
+  verifier_audit_path: phase5/data/candidates_v1/verifier_audit.json
+initial_collection:
+  checkpoint: Kxck/Self_Correction_v1
+  revision: 6437f947999168a0ce2a98a86e4252fc77160a33
+  backend: transformers_4_57_1
+  torch: 2.7.1+cu118
+  recorded_weight_dtype: bfloat16
+  native_bfloat16_on_gpu: false
+  precision_note: PyTorch BF16 software emulation was selected by the as-run collector; no FP16 rerun has been performed
+  as_run_archive: outputs/phase5_transfer/phase5_v5_linux.zip
+  as_run_collector_sha256: 462ea16e5d10e38e6633dd908fb3dad840e5eca605389a12c282adcaecd18d3f
+  max_new_tokens: 768
+  started_on: '2026-09-23'
+  remote_audit: /root/AGI_phase5/phase5/data/initials_v1/initial_rollouts.audit.jsonl
+  local_backup: outputs/phase5_remote_v100/initial_rollouts.audit.jsonl
+  first_local_backup_completions: 10
+  completed_rows: 815
+  correct: 575
+  wrong: 240
+  token_cap_hits: 4
+  stop_rule_verified: true
+  quota_met: true
+  audit_sha256: 7d7d9b56ccfbe2bd730fe52507871f01317dc106cd2938a89557b07777478357
+  initial_rollouts_sha256: 04263288354cbfacd7f018a65e7b57394f4a21da234719b29b65cf8cccecb024
+  local_summary: outputs/phase5_remote_v100/summary.json
+  local_rollouts: outputs/phase5_remote_v100/initial_rollouts.jsonl
+experiments:
+  guided_repair_v1:
+    status: planned_not_run
+  prehint_linear_probe_v1:
+    status: planned_not_run

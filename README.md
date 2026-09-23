@@ -5,7 +5,7 @@ its own errors under objective supervision. Math answers are checked
 symbolically and code answers are executed against tests; an LLM is never used
 as the correctness oracle.
 
-## Current status (2026-09-15)
+## Current status (2026-09-23)
 
 Phase 4 closed on 2026-09-15 with no reliable autonomous correction gain.
 Warm-start V2's historical 74% development result did not reproduce (73%).
@@ -20,6 +20,13 @@ confirmation candidates remain unopened. Phase 3's central problem is unresolved
 See the [Phase 4 final report](phase4/docs/FINAL_REPORT.md),
 [results](phase4/docs/RESULTS.md) and [code ownership](phase4/docs/CODEBASE.md).
 New research must open a separate phase with new hypotheses and holdouts.
+
+Phase 5 selected 1,200 new short arithmetic candidates from GSM8K train;
+all reference answers passed verification and none overlap recorded Phase 1-4
+sources. The first GPU collection finished with 815 natural initial answers
+(575 correct, 240 wrong), backed up locally and on the GPU. Guided reviews,
+probe fits, and confirmation have not run. See the [Phase 5 overview](phase5/README.md)
+and [candidate report](phase5/data/CANDIDATE_REPORT.md).
 
 Phase 3 closed on 2026-09-13. Its central result is negative but informative:
 preference tuning improved KEEP behavior and reduced harmful revisions, but it
