@@ -25,8 +25,14 @@ Phase 5 selected 1,200 new short arithmetic candidates from GSM8K train;
 all reference answers passed verification and none overlap recorded Phase 1-4
 sources. The first GPU collection finished with 815 natural initial answers
 (575 correct, 240 wrong), backed up locally and on the GPU. Guided reviews,
-probe fits, and confirmation have not run. See the [Phase 5 overview](phase5/README.md)
-and [candidate report](phase5/data/CANDIDATE_REPORT.md).
+probe fits, and protected evaluation have not run. The next work is local:
+freeze a balanced, source-disjoint 240/80/160 train/development/protected split,
+audit hint accuracy, verify the V2/V3 adapter lineage, and lock prompts and
+precision before using the GPU again. The initial run recorded BF16 software
+emulation on the V100; its as-run setting is preserved in the evidence.
+See the [Phase 5 overview](phase5/README.md),
+[execution plan](phase5/docs/EXECUTION_PLAN.md), and
+[candidate report](phase5/data/CANDIDATE_REPORT.md).
 
 Phase 3 closed on 2026-09-13. Its central result is negative but informative:
 preference tuning improved KEEP behavior and reduced harmful revisions, but it
@@ -89,6 +95,13 @@ Exploration warm-starts, GRPO, expanded SFT, DPO, blind preferences and repeated
 review did not establish a reliable autonomous correction gain. Evidence and
 adapters are archived; no additional Phase 4 tuning is authorized.
 
+### Phase 5 — guided repair and pre-hint diagnosis (active)
+
+The original solver's natural-answer collection is complete. The active plan
+freezes a new balanced split, checks truthful hint eligibility and checkpoint
+lineage locally, then tests guided review and pre-hint probes on that split.
+No Phase 5 repair gain or detection result has been established.
+
 ## Non-negotiable data rules
 
 1. Correctness comes from a deterministic verifier, not an LLM judge.
@@ -117,6 +130,7 @@ AGI/
 │   ├── runs/                   # Frozen evaluations and human-readable reports
 │   └── scripts/                # Data, training, evaluation, and serving CLIs
 ├── phase4/                     # Closed selective-correction pilots and evidence
+├── phase5/                     # Active guided-repair and pre-hint probe pilot
 └── outputs/                    # Local adapters and runtime artifacts (gitignored)
 ```
 

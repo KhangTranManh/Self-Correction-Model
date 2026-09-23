@@ -8,8 +8,10 @@ The original GSM8K train rows are in `raw/gsm8k_train.jsonl`; reference steps
 are stored separately and must never enter model-visible prompts.
 See `CANDIDATE_REPORT.md` for exact counts and hashes.
 
-Natural original-solver answers, model-answer step annotations, hint text and
-frozen source splits remain to be collected after the GPU is assigned. The
-prospective 240/80/160 split is a maximum and feasibility target, not a claim
-that enough eligible problems exist. Raw generations and test outcomes cannot
-be used to rewrite eligibility or prompt rules.
+The original solver generated 815 natural answers on a V100: 575 correct and
+240 wrong. The checked local backup is `../../outputs/phase5_remote_v100/`,
+with its hashes and as-run precision in `../configs/experiments.yaml`. A
+balanced 480-source train/development/protected split is now feasible but has
+not been frozen. Model-answer step annotations, verified hint text, guided
+reviews, and probe outcomes do not yet exist. Raw generations and protected
+outcomes cannot be used to rewrite eligibility or prompt rules.

@@ -36,7 +36,7 @@ the canonical Phase 3 pipeline.
 | `phase2/` | Phase 2 | KTO preference experiment |
 | `phase3/` | Phase 3 | Closed discrimination/selective-repair research package |
 | `phase4/` | Phase 4 | Closed selective-correction pilots and immutable evidence |
-| `phase5/` | Phase 5 | Active guided-repair and pre-hint probe design; CPU source inventory prepared |
+| `phase5/` | Phase 5 | Active guided-repair and pre-hint probe pilot; initial-answer collection complete |
 | `outputs/` | Runtime | Local adapters, logs, activations; excluded from Git |
 | `instructionAI/` | Project | Cross-phase architecture and data invariants |
 
@@ -130,6 +130,22 @@ source problem
 
 No later result may retroactively change an earlier frozen manifest. A new
 manifest or experiment version is required.
+
+## Phase 5 boundary
+
+Phase 5 has 1,200 checked, source-disjoint arithmetic candidates and a
+completed original-solver pass over the first 815 (575 correct, 240 wrong).
+The append-only initial audit, derived rollouts, and summary are backed up
+locally under `outputs/phase5_remote_v100/` and on the V100 GPU. The run
+recorded BF16 software emulation, not native BF16 or FP16. No guided review,
+probe fit, protected evaluation, or training has run.
+
+Before further GPU calls, freeze a balanced source split and verify hint
+eligibility, checkpoint parentage, prompts, precision, and metrics locally.
+Location/type hints have a documented timing deviation from the earlier
+selection rule and must be labeled exploratory under this collection unless
+a new preregistered holdout resolves it. `phase5/docs/EXECUTION_PLAN.md` owns
+the next-stage sequence; Phase 3/4 evidence remains closed and unchanged.
 
 Phase 3 is closed as of 2026-09-13. Its canonical and negative-result artifacts
 remain immutable. New discrimination research must create a new phase rather

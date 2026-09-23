@@ -1,8 +1,11 @@
 # Phase 5 CPU candidate selection — 2026-09-23
 
-**1,200 arithmetic candidates are ready locally. No model has generated a
-Phase 5 initial answer, review, or activation.** The correct/wrong buckets and
-240/80/160 balanced split are therefore not known yet.
+**Selection-time status:** 1,200 arithmetic candidates were ready locally;
+no Phase 5 initial answer, review, or activation had been generated. A later
+GPU pass collected 815 initial answers (575 correct, 240 wrong), but the
+240/80/160 balanced source split, reviews, and probes are still pending. This
+report records the CPU candidate selection; see `../docs/EXECUTION_PLAN.md`
+for current work.
 
 The raw input is the cached official GSM8K **train** split, exported locally as
 `raw/gsm8k_train.jsonl`. It contains 7,473 questions. The official
