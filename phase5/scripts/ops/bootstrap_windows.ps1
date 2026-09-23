@@ -31,7 +31,7 @@ if (-not $SkipPackages) {
     & $uvExe pip install --python $pythonExe --index-url 'https://download.pytorch.org/whl/cu128' 'torch==2.7.1'
     if ($LASTEXITCODE -ne 0) { throw 'CUDA PyTorch installation failed' }
     Write-Host 'Installing pinned Phase 5 inference dependencies...'
-    & $uvExe pip install --python $pythonExe 'transformers==4.57.1' 'accelerate==1.10.1' 'huggingface_hub==0.35.3' 'sympy==1.14.0' 'safetensors==0.6.2' 'PyYAML==6.0.3'
+    & $uvExe pip install --python $pythonExe 'transformers==4.57.1' 'accelerate==1.10.1' 'huggingface_hub==0.35.3' 'python-dotenv==1.1.1' 'sympy==1.14.0' 'safetensors==0.6.2' 'PyYAML==6.0.3'
     if ($LASTEXITCODE -ne 0) { throw 'Phase 5 dependency installation failed' }
 }
 

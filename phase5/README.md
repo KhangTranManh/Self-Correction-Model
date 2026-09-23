@@ -36,6 +36,29 @@ They share a lineage. Results cannot establish how unrelated current models
 behave. Model paths and hashes must be verified from the local Phase 4 registry
 before execution. A newer model would require a separately frozen comparison.
 
+Checkpoint sources, checked against the `Kxck` Hugging Face account on
+2026-09-23:
+
+| Phase 5 role | Exact source | Parent |
+|---|---|---|
+| Original solver | Hugging Face `Kxck/Self_Correction_v1` (full merged model) | — |
+| Warm-start V2 | Local `outputs/phase4_exploration_warmstart_v2/final_adapter` and private Hugging Face `Kxck/phase4_exploration_warmstart_v2` (LoRA) | `Kxck/Self_Correction_v1` |
+| Correction SFT V3 | Local `outputs/phase4_correction_sft_v3/final_adapter` and private Hugging Face `Kxck/phase4_correction_sft_v3` (LoRA) | V2 merged into the original solver |
+
+The two Phase 4 adapters were uploaded as private Hugging Face repos on
+2026-09-23. Their remote weight SHA-256 hashes match the local files and Phase 4
+registry. The older Hugging Face repos `Kxck/AGI_v2` and `Kxck/AGI_V3` are
+different checkpoints; do not substitute them. The merged V2 parent must be
+recreated on the GPU before loading V3. The upload procedure is recorded in
+`scripts/ops/upload_phase4_adapters.py` and the uploaded model cards are in
+`docs/model_cards/`.
+
+The Phase 5 collector reads the exact environment variable `HF_TOKEN` from
+the project-root `.env` on the machine where it runs. `.env` is gitignored and
+excluded from transfer archives; place it separately on any new GPU if
+authenticated Hugging Face access is needed. Never put token values in configs,
+logs, or archives.
+
 ## Execution sequence
 
 The source audit and natural-answer collection are complete. Next, freeze a

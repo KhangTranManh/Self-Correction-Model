@@ -69,6 +69,10 @@ def resolve_model_revision(name: str, revision: str | None) -> str:
 
 
 def main():
+    # The project-root .env is machine-local and is never part of transfer archives.
+    from dotenv import load_dotenv
+    load_dotenv(ROOT / ".env")
+
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--candidates", type=Path,
                         default=Path("phase5/data/candidates_v1/candidate_problems.jsonl"))

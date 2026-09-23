@@ -22,6 +22,11 @@ checkpoint_roles:
   original_solver: Kxck/Self_Correction_v1
   phase4_warmstart_v2: outputs/phase4_exploration_warmstart_v2/final_adapter
   phase4_correction_sft_v3: outputs/phase4_correction_sft_v3/final_adapter
+checkpoint_hub_repos:
+  original_solver: Kxck/Self_Correction_v1
+  phase4_warmstart_v2: Kxck/phase4_exploration_warmstart_v2
+  phase4_correction_sft_v3: Kxck/phase4_correction_sft_v3
+  phase4_adapter_repos_private: true
 checkpoint_hashes_verified_for_phase5: false
 candidate_sources:
   status: selected_cpu_only
