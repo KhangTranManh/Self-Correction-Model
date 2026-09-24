@@ -1,0 +1,43 @@
+{
+  "schema_version": "phase5_checkpoint_source_audit_v1",
+  "metadata_only": true,
+  "model_weights_downloaded": false,
+  "checks": [
+    {
+      "role": "original_solver",
+      "repo_id": "Kxck/Self_Correction_v1",
+      "revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+      "revision_matches": true
+    },
+    {
+      "role": "phase4_warmstart_v2",
+      "repo_id": "Kxck/phase4_exploration_warmstart_v2",
+      "private": true,
+      "revision": "a8417cf1ed170881907910bba5ebb27c5a82bd6e",
+      "revision_matches": true,
+      "weight_bytes": 161533192,
+      "weight_sha256": "19fb45c77d3991470ed50cc2d50f12c0cc4667802d3fdd02c6c8b48d03517be4",
+      "weight_hash_matches": true,
+      "peft_type": "LORA",
+      "task_type": "CAUSAL_LM",
+      "base_model_name_or_path": "/root/models/Kxck_Self_Correction_v1",
+      "parent_matches": true
+    },
+    {
+      "role": "phase4_correction_sft_v3",
+      "repo_id": "Kxck/phase4_correction_sft_v3",
+      "private": true,
+      "revision": "2947ef2aeea951765434b2dd9db7f9bc7db8381d",
+      "revision_matches": true,
+      "weight_bytes": 161533192,
+      "weight_sha256": "6181eb886cee6cbc0f5b11e4d0d521ef3c3fb550172c1dbdf2b17b137198e08a",
+      "weight_hash_matches": true,
+      "peft_type": "LORA",
+      "task_type": "CAUSAL_LM",
+      "base_model_name_or_path": "/root/models/phase4_warmstart_v2_merged",
+      "parent_matches": true
+    }
+  ],
+  "failures": [],
+  "all_passed": true
+}

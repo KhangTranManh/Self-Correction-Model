@@ -1,0 +1,62 @@
+schema_version: phase6_verbalization_pilot_v1
+status: frozen_before_generation
+seed: 20260924
+
+scope:
+  source_split: phase5/data/splits/v1/development.jsonl
+  protected_data_used: false
+  sources: 16
+  initially_correct: 8
+  initially_wrong: 8
+  checkpoints: [original_solver, warmstart_v2, correction_sft_v3]
+  selection: sha256_rank_within_initial_correctness
+
+confidence:
+  system_prompt: >-
+    Estimate whether the previous answer is fully correct. Return only the
+    required confidence tag and do not revise or explain the answer.
+  user_prompt: >-
+    Give the probability from 0 to 100 that your previous answer is fully
+    correct. Output exactly <confidence>N</confidence>, where N is one integer
+    from 0 through 100.
+  interpretation: verbalized_probability_initial_answer_correct
+
+rationale_review:
+  system_prompt: >-
+    Review the previous answer independently. Show a concise, model-visible
+    step-by-step verification and then return the required decision contract.
+  user_prompt: >-
+    Recheck the previous answer without any verifier result or correctness
+    hint. First verify the reasoning step by step inside <review>...</review>.
+    Then, if the previous answer is correct, output
+    <decision>KEEP</decision>. If it is incorrect, output
+    <decision>REVISE</decision><answer>COMPLETE CORRECTED ANSWER</answer>.
+  explanation_is_model_visible: true
+  hidden_chain_of_thought_claimed: false
+
+generation:
+  backend: vllm_0_7_0
+  dtype: float16
+  temperature: 0.0
+  seed: 20260924
+  max_model_len: 4096
+  confidence_max_tokens: 32
+  rationale_max_tokens: 768
+
+analysis:
+  probe: existing_phase5_dev_selected_probe
+  no_probe_refit: true
+  confidence_metrics: [spearman, pearson, roc_auc, brier]
+  rationale_comparators: [existing_neutral_direct, existing_status_direct]
+  primary_repair_metrics: [wrong_to_correct, correct_to_wrong, final_accuracy]
+  interpretation_rule: >-
+    Weak confidence-probe association is evidence of a verbalization gap, not
+    proof of fully independent causal pathways. A rationale gain toward status
+    suggests accessible information benefits from additional computation.
+
+safeguards:
+  no_training: true
+  no_protected_opening: true
+  no_reference_or_verifier_detail_in_prompt: true
+  raw_outputs_retained: true
+  outputs_not_training_data: true

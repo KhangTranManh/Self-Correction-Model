@@ -1,0 +1,54 @@
+{
+  "files": {
+    "outputs/phase5_gpu_vllm/probe_v1/selection/correction_sft_v3_probe.joblib": {
+      "sha256_lf": "796a2e61b271188e6f5d3202fe9b62bbc04fde4a01fa6b59633ac926a04aa8e9"
+    },
+    "outputs/phase5_gpu_vllm/probe_v1/selection/original_solver_probe.joblib": {
+      "sha256_lf": "c002614b566f57de0b6157cd55fe9bf913155b001d9682f3629492c699dab77c"
+    },
+    "outputs/phase5_gpu_vllm/probe_v1/selection/warmstart_v2_probe.joblib": {
+      "sha256_lf": "5adafb1db43586edd38814aadddbc280401db15a83abefa555fa5c13f935c1ce"
+    },
+    "outputs/phase6_confidence_calibration_v1/report.json": {
+      "sha256_lf": "b12533dbe1b1323d9099ee028c0e91ca2f8ce647b1e815e4d3affbc7c2d77848"
+    },
+    "outputs/phase6_harness_confirmation_v1/activations/correction_sft_v3.npz": {
+      "sha256_lf": "df8312e73e620fdf8d5cc5b8c2b2d41101d1db4eac9ed560b8c575ca06a39e5f"
+    },
+    "outputs/phase6_harness_confirmation_v1/activations/original_solver.npz": {
+      "sha256_lf": "ff70344aaf6e42ff8f81548187f367d33c812d6ceb4d3aa68d53851b0c9815b7"
+    },
+    "outputs/phase6_harness_confirmation_v1/activations/warmstart_v2.npz": {
+      "sha256_lf": "41c5e9548a7f1b8792c46d62c993b85d931025416be1379d7ef9d0de3452fa40"
+    },
+    "outputs/phase6_harness_confirmation_v1/confidence/confidence_correction_sft_v3.jsonl": {
+      "sha256_lf": "69f5d3004f7ef104ade74039a2255f63f17c410dd68156d08b8e4ade1e3a505c"
+    },
+    "outputs/phase6_harness_confirmation_v1/confidence/confidence_original_solver.jsonl": {
+      "sha256_lf": "8a5c8d6d9c878813fb3f0d4a05fd04541511f4686ca83450e8a8e69b2faa1108"
+    },
+    "outputs/phase6_harness_confirmation_v1/confidence/confidence_warmstart_v2.jsonl": {
+      "sha256_lf": "b29851f57b5d6b17dd8afa430f4ad9c464fa5b04464114130ff7884ffb0a216f"
+    },
+    "phase6/configs/harness_confirmation_v1.yaml": {
+      "sha256_lf": "1868511f45ab67328247444d694c713d5e441ec7116448c91850e4c7b7fb6445"
+    },
+    "phase6/data/harness_confirmation_holdout_v1.jsonl": {
+      "sha256_lf": "fbf56e8e299a86df89e3942bd407b9dfc3070b648223b6886e213ca3ddbc2d38"
+    },
+    "phase6/data/harness_confirmation_holdout_v1_lock.json": {
+      "sha256_lf": "79dbe9d2f9a5042a96a41b4fae5447bc4c2e2006e058fe44651aa2e23e11bbf9"
+    },
+    "phase6/data/harness_confirmation_routes_v1.jsonl": {
+      "sha256_lf": "4120c3b68079465ea699a3b784f532584300006cbd76cb58f6d8e943313207f6"
+    }
+  },
+  "protected_data_used": false,
+  "route_counts": {
+    "frozen_probe": 62,
+    "oracle_known_wrong": 60,
+    "self_confidence": 41
+  },
+  "schema_version": "phase6_harness_confirmation_routes_lock_v1",
+  "status": "frozen_before_recheck_generation"
+}

@@ -1,13 +1,19 @@
 # Phase 5 preregistration — initial collection complete, tests pending
 
-The source selection and natural initial-answer pass have run. Guided review,
-probe fitting, and protected evaluation below remain prospective. The initial
-run used BF16 software emulation on a V100 and stopped after 815 answers
-(575 correct, 240 wrong). The original selection rules required model-error
+The source selection, natural initial-answer pass, and balanced 480-source split
+have run. Guided review, probe fitting, and protected evaluation below remain
+prospective. The initial run used BF16 software emulation on a V100 and stopped
+after 815 answers (575 correct, 240 wrong). The original selection rules required model-error
 alignment to be frozen before that GPU pass; it was not. See
 [the execution plan](EXECUTION_PLAN.md) for how location/type hints will be
 reported and for the remaining freeze points. This note records execution
 status; it does not retroactively change the preregistered rules below.
+
+The subsequent strict audit found location/type infeasible on this collection:
+only one wrong train row and no wrong development/protected row had a verified
+self-contained arithmetic location. Those conditions are disabled. Neutral and
+truthful status remain active for all 480 frozen sources, and the exact protocol
+was locked before any review or probe generation.
 
 ## Research questions
 

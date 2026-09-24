@@ -1,0 +1,137 @@
+schema_version: phase5_review_protocol_v1
+status: frozen_before_review_or_probe_generation
+frozen_on: '2026-09-24'
+
+scope:
+  primary_conditions: [neutral, status]
+  disabled_conditions: [location, type]
+  disabled_reason: >-
+    Strict deterministic hint audit V2 found only 1 eligible wrong train row,
+    0 eligible wrong development rows, and 0 eligible wrong protected rows.
+    Location/type comparison is infeasible and will not be run on this split.
+  guided_status_is_assisted_repair_not_autonomous_detection: true
+
+models:
+  registry: phase5/configs/experiments.yaml
+  original_solver: Kxck/Self_Correction_v1
+  warmstart_v2: Kxck/phase4_exploration_warmstart_v2
+  correction_sft_v3: Kxck/phase4_correction_sft_v3
+  correction_sft_v3_load_order:
+    - load_original_solver
+    - attach_warmstart_v2
+    - merge_warmstart_v2
+    - attach_correction_sft_v3
+  same_initial_answer_across_models_and_conditions: true
+
+input:
+  split_manifest: phase5/data/splits/v1/manifest.json
+  hint_summary: phase5/data/hints/v2/hint_summary.json
+  train: phase5/data/splits/v1/train.jsonl
+  development: phase5/data/splits/v1/development.jsonl
+  protected_test: phase5/data/splits/v1/protected_test.jsonl
+  smoke: phase5/data/protocol/smoke_v1.jsonl
+  protected_test_reads: 1
+
+conversation:
+  system_prompt: >-
+    You are a selective-revision policy. Return only the required XML contract.
+    Do not critique, explain, use headings, or repeat an answer after KEEP.
+  original_user_prompt_source: phase1/src/core/prompts.py::build_prompt(math)
+  original_user_prompt_file: phase1/src/core/prompts.py
+  message_order: [system, original_user_problem, assistant_initial_answer, user_review]
+  review_user_message_format: "{condition_message}\n\n{contract_instruction}"
+  contract_instruction: >-
+    If the previous answer is correct, output exactly
+    <decision>KEEP</decision>. If it is incorrect, output exactly
+    <decision>REVISE</decision><answer>COMPLETE CORRECTED ANSWER</answer>.
+  condition_messages:
+    neutral:
+      all: >-
+        Review the previous answer carefully. No verifier result or correctness
+        hint is provided.
+    status:
+      initially_correct: >-
+        No error was found in the previous answer.
+      initially_wrong: >-
+        The previous answer contains an error.
+  model_visible_reference_answer: false
+  model_visible_verifier_detail: false
+  model_visible_reference_steps: false
+
+generation:
+  backend: vllm_0_7_0
+  weight_dtype: float16
+  quantization: none
+  batch_size: 1
+  do_sample: false
+  temperature: null
+  top_p: null
+  max_new_tokens: 768
+  max_sequence_length: 4096
+  seed: 20260924
+  strict_parser: phase4/lib/transition.py::parse_review
+  strict_parser_file: phase4/lib/transition.py
+
+smoke_gate:
+  manifest: phase5/data/protocol/smoke_v1.jsonl
+  sources_per_initial_state_from_train: 4
+  conditions: [neutral, status]
+  checkpoints: [original_solver, warmstart_v2, correction_sft_v3]
+  require_no_cuda_oom: true
+  minimum_contract_validity: 0.75
+  prompt_changes_after_development: false
+
+behavioral_evaluation:
+  primary_unit: source
+  metrics:
+    - final_accuracy
+    - wrong_to_correct_rate
+    - correct_to_wrong_rate
+    - strict_contract_validity
+    - keep_rate
+    - revise_rate
+  paired_comparisons:
+    - status_minus_neutral_within_checkpoint
+    - checkpoint_differences_within_condition
+  uncertainty:
+    method: paired_source_bootstrap
+    resamples: 10000
+    seed: 20260924
+    confidence_level: 0.95
+  assisted_repair_success_gate:
+    status_minus_neutral_wrong_to_correct_lower_ci_gt: 0.0
+    maximum_correct_to_wrong_increase: 0.025
+    minimum_contract_validity: 0.95
+  promotion_from_pilot_alone: false
+
+probe:
+  position: final_nonpadding_token_after_system_problem_and_initial_answer
+  hint_or_decision_visible_at_extraction: false
+  apply_chat_template_add_generation_prompt: false
+  model_weights_frozen: true
+  pooling: single_registered_token
+  classifier: standardized_l2_logistic_regression
+  candidate_layers: [7, 14, 21, 28]
+  c_grid: [0.01, 0.1, 1.0, 10.0]
+  selection_split: development
+  selection_metric: balanced_accuracy
+  tie_break_order: [higher_roc_auc, smaller_c, lower_layer]
+  protected_metric: balanced_accuracy
+  report_metrics: [balanced_accuracy, roc_auc, correct_recall, wrong_recall]
+  controls:
+    surface_features:
+      - initial_output_character_count
+      - initial_output_token_count
+      - digit_count
+      - displayed_step_count
+      - generated_tokens
+    shuffled_labels:
+      repetitions: 100
+      seed: 20260924
+
+safeguards:
+  no_training: true
+  no_reference_or_verifier_trace_in_prompt: true
+  no_protected_result_for_prompt_or_model_selection: true
+  raw_outputs_and_parse_failures_are_retained: true
+  location_type_timing_deviation_preserved: true

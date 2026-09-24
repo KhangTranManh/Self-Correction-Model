@@ -12,15 +12,25 @@ solver then generated one natural answer for each of the first 815 candidates:
 are backed up under `outputs/phase5_remote_v100/`; their SHA-256 hashes and
 the recorded BF16-emulated runtime are in `phase5/configs/experiments.yaml`.
 
-The next CPU-only operation is a deterministic, balanced 480-source split:
-240 train, 80 development, and 160 protected test sources, each split evenly
-between initially correct and wrong answers. Freeze exact IDs and hashes
-before review/probe outcomes. Independently validate error-location/type
-hints; do not use the reference answer or verifier trace in model prompts,
-or refill failed hint cases after seeing outcomes. The earlier rule to freeze
-model-error alignment before the first GPU pass was missed, so current
-location/type analyses are exploratory unless a new preregistered holdout
-resolves that deviation. See `phase5/docs/EXECUTION_PLAN.md`.
+The deterministic, balanced 480-source split is frozen: 240 train, 80
+development, and 160 protected test sources, each evenly divided between
+initially correct and wrong answers. Exact IDs and hashes were fixed before
+review/probe outcomes. A strict CPU audit found neutral/status eligible on all
+480 rows, but only one wrong train row and no wrong development/protected rows
+eligible for reliable location/type hints. Location/type is therefore disabled
+for this pilot rather than refilled or weakened. The neutral/status review and
+pre-hint probe protocol was frozen before model runs. The one protected opening
+is complete, with its lock and receipt under `phase5/data/protocol/`. Raw
+prompts, outputs and activations are backed up in `outputs/phase5_gpu_vllm/`;
+none may be recycled into training or selection. See
+`phase5/docs/FINAL_REPORT.md`.
+
+The frozen linear probe is a diagnostic harness. It shows that correctness is
+partly decodable before feedback, but it is not itself a self-correction model.
+If a later pipeline routes repairs using probe predictions, record probe output
+as an external controller decision and report detection, correct-answer
+preservation, and verified repair separately. Do not label such a composition
+autonomous model-only correction without a new end-to-end protected test.
 
 ## Objective
 

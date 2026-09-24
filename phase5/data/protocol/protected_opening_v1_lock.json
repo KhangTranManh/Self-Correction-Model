@@ -1,0 +1,79 @@
+{
+  "schema_version": "phase5_protected_opening_lock_v1",
+  "status": "ready_for_single_protected_opening",
+  "protected_results_read": false,
+  "protected_open_count": 0,
+  "allowed_open_count": 1,
+  "review_checkpoints": [
+    "original_solver",
+    "warmstart_v2",
+    "correction_sft_v3"
+  ],
+  "review_conditions": [
+    "neutral",
+    "status"
+  ],
+  "probe_selection": {
+    "original_solver": {
+      "layer": 14,
+      "layer_index": 1,
+      "c": 0.01
+    },
+    "warmstart_v2": {
+      "layer": 14,
+      "layer_index": 1,
+      "c": 0.01
+    },
+    "correction_sft_v3": {
+      "layer": 14,
+      "layer_index": 1,
+      "c": 1.0
+    }
+  },
+  "files": {
+    "review_protocol_lock": {
+      "path": "phase5/data/protocol/review_protocol_v1_lock.json",
+      "sha256": "df510071055e932b916b5c5c3777ccc8b9a1b51e9c2c1db9a94f5ae332cd3be5"
+    },
+    "review_original_solver_train": {
+      "path": "outputs/phase5_gpu_vllm/review_v1/original_solver_train_summary.json",
+      "sha256": "b77cc62916ac7f3361c2a60978df02b8efaf90c3359736134d334c0261b3f416"
+    },
+    "review_original_solver_development": {
+      "path": "outputs/phase5_gpu_vllm/review_v1/original_solver_development_summary.json",
+      "sha256": "56ed98514b86921e6608b9ecd76f417107dcc612e328b122554ac7b4f8b4b700"
+    },
+    "probe_selection_original_solver": {
+      "path": "outputs/phase5_gpu_vllm/probe_v1/selection/original_solver_probe_selection.json",
+      "sha256": "4ad963875b85cddc815eaa5ba4f0689cc78ab4e15a46964bdc690520622b5234"
+    },
+    "review_warmstart_v2_train": {
+      "path": "outputs/phase5_gpu_vllm/review_v1/warmstart_v2_train_summary.json",
+      "sha256": "50f41abdc6c4424d542bcafa504233f1e861f29dc2d160f739e204f9fd6f0531"
+    },
+    "review_warmstart_v2_development": {
+      "path": "outputs/phase5_gpu_vllm/review_v1/warmstart_v2_development_summary.json",
+      "sha256": "705b5cb604b4a57434c0a37669ab2d71fe683bc5ed578e8e16a8bf82b0431b6b"
+    },
+    "probe_selection_warmstart_v2": {
+      "path": "outputs/phase5_gpu_vllm/probe_v1/selection/warmstart_v2_probe_selection.json",
+      "sha256": "253410ae1bcd29d9b21f4ef853b60eebb358fbc100d657ea52b1cb9b16756065"
+    },
+    "review_correction_sft_v3_train": {
+      "path": "outputs/phase5_gpu_vllm/review_v1/correction_sft_v3_train_summary.json",
+      "sha256": "1a7aaf2758d6df31ce8b5bb2afd976f4769b80dd53661e8ab964a1c15f168f76"
+    },
+    "review_correction_sft_v3_development": {
+      "path": "outputs/phase5_gpu_vllm/review_v1/correction_sft_v3_development_summary.json",
+      "sha256": "79d0c81890e87a56424176e9372478898aa22172b42a4b3caaa4009eba27bbef"
+    },
+    "probe_selection_correction_sft_v3": {
+      "path": "outputs/phase5_gpu_vllm/probe_v1/selection/correction_sft_v3_probe_selection.json",
+      "sha256": "e46ec6037a7545f884b98842eb5e96d2a09f11078c4b61e6df251f3c02665812"
+    },
+    "probe_controls": {
+      "path": "outputs/phase5_gpu_vllm/probe_v1/probe_controls.json",
+      "sha256": "3d3e89ed97f7fe2a715e82dec1f163257787a11e386068b037b88def01df9604"
+    }
+  }
+}

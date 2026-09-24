@@ -1,0 +1,49 @@
+schema_version: phase6_router_repair_decomposition_v1
+status: frozen_before_analysis
+created_on: '2026-09-24'
+
+scope:
+  checkpoints: [original_solver, warmstart_v2, correction_sft_v3]
+  verbal_confidence_manifest: phase6/data/pilot_v1.jsonl
+  verbal_confidence_predictions: outputs/phase6_confidence_calibration_v1/predictions.jsonl
+  development_split: phase5/data/splits/v1/development.jsonl
+  protected_data_reused: existing_phase5_opened_artifacts_only
+  no_new_protected_model_run: true
+
+verbal_router:
+  score: leave_one_out_calibrated_probability_initial_answer_wrong
+  methods: [temperature_leave_one_out, isotonic_leave_one_out]
+  thresholds_probability_wrong: [0.25, 0.30, 0.35, 0.40, 0.45, 0.50]
+  purpose: detection_and_repair_opportunity_only
+  limitation: >-
+    This is deterministic external routing from stored confidence values. It
+    does not test a new model reaction to an inserted calibrated-confidence
+    prompt.
+
+oracle_repair:
+  condition: status
+  target: initially_wrong_only
+  metrics:
+    - revise_compliance_given_known_wrong
+    - verified_repair_rate_given_known_wrong
+    - verified_repair_rate_given_valid_revise
+
+probe_harness:
+  calibration_fit_split: phase5_train
+  calibration_methods: [temperature, isotonic]
+  evaluation_split: phase5_development
+  default_route_threshold_probability_wrong: 0.50
+  repair_source: existing_status_review_outputs
+  true_positive_repair_measurement: exact_cached_status_output
+  false_positive_repair_measurement: unavailable_without_new_generation
+  protected_metrics: existing_frozen_phase5_report_only
+  deployment_claim_allowed: false
+
+safeguards:
+  cpu_only: true
+  no_model_forward_pass: true
+  no_weight_update: true
+  no_probe_refit: true
+  no_prompt_selection: true
+  no_new_protected_opening: true
+

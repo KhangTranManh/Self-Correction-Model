@@ -10,8 +10,16 @@ See `CANDIDATE_REPORT.md` for exact counts and hashes.
 
 The original solver generated 815 natural answers on a V100: 575 correct and
 240 wrong. The checked local backup is `../../outputs/phase5_remote_v100/`,
-with its hashes and as-run precision in `../configs/experiments.yaml`. A
-balanced 480-source train/development/protected split is now feasible but has
-not been frozen. Model-answer step annotations, verified hint text, guided
-reviews, and probe outcomes do not yet exist. Raw generations and protected
-outcomes cannot be used to rewrite eligibility or prompt rules.
+with its hashes and as-run precision in `../configs/experiments.yaml`. The
+balanced 480-source train/development/protected split is frozen in `splits/v1/`:
+240/80/160 rows, each evenly divided between initially correct and wrong
+answers, with no source overlap. Hint audit V2 supports neutral/status for all
+480 rows but rejects location/type as infeasible: strict wrong-case coverage is
+1 train, 0 development, and 0 protected. The neutral/status review and pre-hint
+probe protocol was frozen before model runs. The single protected opening is
+complete; its lock and receipt are under `protocol/`, compact results are in
+`results_v1.json`, and full raw prompts, outputs, verifier outcomes, activations,
+and fitted probe artifacts are backed up under
+`../../outputs/phase5_gpu_vllm/`. These outcomes cannot be recycled into
+training or selection. The probe is an external diagnostic harness and does
+not establish autonomous self-correction. See `../docs/FINAL_REPORT.md`.

@@ -1,6 +1,6 @@
 schema_version: phase5_experiments_v1
 phase: 5
-status: gpu_initial_collection_complete_awaiting_split
+status: review_protocol_frozen_awaiting_gpu_smoke
 created_on: '2026-09-23'
 phase4_status: closed
 gpu:
@@ -20,14 +20,25 @@ promotion: none
 protocol: phase5/configs/pilot_v1.yaml
 checkpoint_roles:
   original_solver: Kxck/Self_Correction_v1
-  phase4_warmstart_v2: outputs/phase4_exploration_warmstart_v2/final_adapter
-  phase4_correction_sft_v3: outputs/phase4_correction_sft_v3/final_adapter
+  phase4_warmstart_v2: Kxck/phase4_exploration_warmstart_v2
+  phase4_correction_sft_v3: Kxck/phase4_correction_sft_v3
 checkpoint_hub_repos:
   original_solver: Kxck/Self_Correction_v1
   phase4_warmstart_v2: Kxck/phase4_exploration_warmstart_v2
   phase4_correction_sft_v3: Kxck/phase4_correction_sft_v3
   phase4_adapter_repos_private: true
-checkpoint_hashes_verified_for_phase5: false
+checkpoint_hub_revisions:
+  original_solver: 6437f947999168a0ce2a98a86e4252fc77160a33
+  phase4_warmstart_v2: a8417cf1ed170881907910bba5ebb27c5a82bd6e
+  phase4_correction_sft_v3: 2947ef2aeea951765434b2dd9db7f9bc7db8381d
+checkpoint_adapter_sha256:
+  phase4_warmstart_v2: 19fb45c77d3991470ed50cc2d50f12c0cc4667802d3fdd02c6c8b48d03517be4
+  phase4_correction_sft_v3: 6181eb886cee6cbc0f5b11e4d0d521ef3c3fb550172c1dbdf2b17b137198e08a
+checkpoint_local_provenance:
+  phase4_warmstart_v2: outputs/phase4_exploration_warmstart_v2/final_adapter
+  phase4_correction_sft_v3: outputs/phase4_correction_sft_v3/final_adapter
+checkpoint_hashes_verified_for_phase5: true
+checkpoint_sources_verified_on: '2026-09-24'
 candidate_sources:
   status: selected_cpu_only
   eligible_after_rules: 3174
@@ -63,8 +74,43 @@ initial_collection:
   initial_rollouts_sha256: 04263288354cbfacd7f018a65e7b57394f4a21da234719b29b65cf8cccecb024
   local_summary: outputs/phase5_remote_v100/summary.json
   local_rollouts: outputs/phase5_remote_v100/initial_rollouts.jsonl
+frozen_split:
+  status: frozen_before_review_or_probe_outcomes
+  seed: 20260923
+  manifest: phase5/data/splits/v1/manifest.json
+  train: phase5/data/splits/v1/train.jsonl
+  development: phase5/data/splits/v1/development.jsonl
+  protected_test: phase5/data/splits/v1/protected_test.jsonl
+  train_rows: 240
+  development_rows: 80
+  protected_test_rows: 160
+  balanced_by_initial_correctness: true
+  source_disjoint: true
+  train_sha256: 1464866b4d78a2b57077c67e46260b7e772efd6fbaac148f57c4ab8d913cc392
+  development_sha256: 7be3f9dbff4548c94744d9271f2721fa8f019de1cf9017928b8f924c61439039
+  protected_test_sha256: 86104419021d2f6f6420f3e6962cbd1ba4eb9e5ff08faf36743b4d3f1e334996
+hint_feasibility:
+  status: neutral_status_ready_location_type_infeasible
+  audit: phase5/data/hints/v2/hint_audit.jsonl
+  summary: phase5/data/hints/v2/hint_summary.json
+  audit_sha256: 85148d823ea0336ca3a6b945405891b4e877449bee5509db0de72cabc100a0a9
+  neutral_eligible: 480
+  status_eligible: 480
+  location_type_wrong_eligible:
+    train: 1
+    development: 0
+    protected_test: 0
+  active_conditions: [neutral, status]
+  disabled_conditions: [location, type]
+  location_type_exploratory_timing_deviation: true
+review_protocol:
+  status: frozen_before_generation
+  config: phase5/configs/review_protocol_v1.yaml
+  lock: phase5/data/protocol/review_protocol_v1_lock.json
+  model_loaded_during_freeze: false
+  protected_evaluation_opened: false
 experiments:
   guided_repair_v1:
-    status: planned_not_run
+    status: protocol_frozen_not_run
   prehint_linear_probe_v1:
-    status: planned_not_run
+    status: protocol_frozen_not_run

@@ -1,5 +1,5 @@
 schema_version: phase5_pilot_v1
-status: initials_complete_review_and_probe_not_run
+status: review_protocol_frozen_review_and_probe_not_run
 gpu: Tesla V100-SXM2-32GB
 seed: 20260923
 task:
@@ -18,20 +18,41 @@ splits:
   protected_test_sources_target: 160
   balanced_by_initial_correctness: true
   source_disjoint: true
+  manifest: phase5/data/splits/v1/manifest.json
+  train: phase5/data/splits/v1/train.jsonl
+  development: phase5/data/splits/v1/development.jsonl
+  protected_test: phase5/data/splits/v1/protected_test.jsonl
+  frozen_before_review_or_probe_outcomes: true
 models:
   original_solver: Kxck/Self_Correction_v1
-  warmstart_v2: outputs/phase4_exploration_warmstart_v2/final_adapter
-  correction_sft_v3: outputs/phase4_correction_sft_v3/final_adapter
+  warmstart_v2: Kxck/phase4_exploration_warmstart_v2
+  correction_sft_v3: Kxck/phase4_correction_sft_v3
+  revisions:
+    original_solver: 6437f947999168a0ce2a98a86e4252fc77160a33
+    warmstart_v2: a8417cf1ed170881907910bba5ebb27c5a82bd6e
+    correction_sft_v3: 2947ef2aeea951765434b2dd9db7f9bc7db8381d
+  adapter_sha256:
+    warmstart_v2: 19fb45c77d3991470ed50cc2d50f12c0cc4667802d3fdd02c6c8b48d03517be4
+    correction_sft_v3: 6181eb886cee6cbc0f5b11e4d0d521ef3c3fb550172c1dbdf2b17b137198e08a
+  correction_sft_v3_parent: warmstart_v2_merged_into_original_solver
+  source: private_hugging_face_repositories
   verify_checkpoint_parent_and_sha256_before_execution: true
 review:
-  hint_conditions: [neutral, status, location, type]
+  protocol: phase5/configs/review_protocol_v1.yaml
+  active_hint_conditions: [neutral, status]
+  disabled_hint_conditions: [location, type]
+  disabled_hint_reason: insufficient_verified_wrong_location_coverage
   same_initial_answer_across_models: true
   include_correct_answer_controls: true
   hint_generation_independent_of_reviewer: true
   model_visible_reference_answer: false
   model_visible_verifier_trace: false
   strict_keep_revise_contract: true
-  decoding_settings: null
+  decoding_settings:
+    weight_dtype: float16
+    do_sample: false
+    max_new_tokens: 768
+    seed: 20260924
 probe:
   position: after_problem_and_initial_answer_before_hint_or_decision
   model_weights_frozen: true

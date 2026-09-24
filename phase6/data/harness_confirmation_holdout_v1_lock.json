@@ -1,0 +1,22 @@
+{
+  "files": {
+    "outputs/phase6_harness_confirmation_v1/initial/initial_original_solver.jsonl": {
+      "sha256_lf": "4bcc388367c947d191790098e4143c050b89c1699b73b84bc4d041b35cf61dce"
+    },
+    "phase6/configs/harness_confirmation_v1.yaml": {
+      "sha256_lf": "1868511f45ab67328247444d694c713d5e441ec7116448c91850e4c7b7fb6445"
+    },
+    "phase6/data/harness_confirmation_holdout_v1.jsonl": {
+      "sha256_lf": "fbf56e8e299a86df89e3942bd407b9dfc3070b648223b6886e213ca3ddbc2d38"
+    },
+    "phase6/data/harness_confirmation_source_pool_v1_lock.json": {
+      "sha256_lf": "161c03d82537885ca56430fe1807ea89bf177a01d0678327b296a03afc17140c"
+    }
+  },
+  "initially_correct": 20,
+  "initially_wrong": 20,
+  "protected_data_used": false,
+  "rows": 40,
+  "schema_version": "phase6_harness_confirmation_holdout_lock_v1",
+  "status": "frozen_before_confidence_or_recheck"
+}

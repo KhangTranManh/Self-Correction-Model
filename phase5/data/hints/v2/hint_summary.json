@@ -1,0 +1,63 @@
+{
+  "schema_version": "phase5_hint_feasibility_v2",
+  "status": "frozen_before_review_generation",
+  "method": "strict_literal_single_operation_equation_v2",
+  "policy": "Wrong rows require an explicitly numbered model step containing a literal arithmetically false equality with exactly one operation and one equals sign. Chained, percent, approximate, LaTeX, parenthesized, and algebraic expressions are rejected. Correct controls use the same rule and require a true equality.",
+  "rows": 480,
+  "counts": {
+    "train": {
+      "correct_location_type_eligible": 18,
+      "correct_total": 120,
+      "operator:addition": 2,
+      "operator:division": 3,
+      "operator:multiplication": 9,
+      "operator:subtraction": 5,
+      "reason:deterministic_true_equation_control": 18,
+      "reason:first_self_contained_false_equation": 1,
+      "reason:no_checkable_false_equation": 119,
+      "reason:no_checkable_true_equation": 102,
+      "wrong_location_type_eligible": 1,
+      "wrong_total": 120
+    },
+    "development": {
+      "correct_location_type_eligible": 9,
+      "correct_total": 40,
+      "operator:addition": 1,
+      "operator:multiplication": 6,
+      "operator:subtraction": 2,
+      "reason:deterministic_true_equation_control": 9,
+      "reason:no_checkable_false_equation": 40,
+      "reason:no_checkable_true_equation": 31,
+      "wrong_location_type_eligible": 0,
+      "wrong_total": 40
+    },
+    "protected_test": {
+      "correct_location_type_eligible": 18,
+      "correct_total": 80,
+      "operator:addition": 5,
+      "operator:division": 2,
+      "operator:multiplication": 6,
+      "operator:subtraction": 5,
+      "reason:deterministic_true_equation_control": 18,
+      "reason:no_checkable_false_equation": 80,
+      "reason:no_checkable_true_equation": 62,
+      "wrong_location_type_eligible": 0,
+      "wrong_total": 80
+    }
+  },
+  "global": {
+    "neutral_eligible": 480,
+    "status_eligible": 480,
+    "location_type_eligible": 46,
+    "correct_location_type_eligible": 45,
+    "wrong_location_type_eligible": 1
+  },
+  "safeguards": {
+    "reference_answer_used_for_annotation": false,
+    "verifier_detail_used_for_annotation": false,
+    "corrected_value_in_model_visible_hint": false,
+    "location_type_is_exploratory_due_to_timing_deviation": true,
+    "ineligible_rows_are_not_refilled": true
+  },
+  "hint_audit_sha256": "85148d823ea0336ca3a6b945405891b4e877449bee5509db0de72cabc100a0a9"
+}

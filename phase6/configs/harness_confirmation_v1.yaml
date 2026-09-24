@@ -1,0 +1,74 @@
+schema_version: phase6_harness_confirmation_v1
+status: frozen_before_generation
+seed: 20260924
+
+scope:
+  source_pool_rows: 160
+  final_holdout_rows: 40
+  initially_correct: 20
+  initially_wrong: 20
+  source_pool: phase5/data/candidates_v1/candidate_problems.jsonl
+  exclude_initial_rollouts: outputs/phase5_remote_v100/initial_rollouts.jsonl
+  excluded_phase5_splits: [train, development, protected_test]
+  excluded_phase6_manifests: [pilot_v1, fuzzy_hint_pilot_v1]
+  protected_data_used: false
+  checkpoints: [original_solver, warmstart_v2, correction_sft_v3]
+
+generation:
+  backend: vllm_0_7_0
+  dtype: float16
+  temperature: 0.0
+  seed: 20260924
+  max_model_len: 4096
+  initial_max_tokens: 768
+  confidence_max_tokens: 32
+  recheck_max_tokens: 768
+
+self_confidence_router:
+  calibration_source: outputs/phase6_confidence_calibration_v1/report.json
+  calibration: temperature_scaling_fitted_on_prior_phase6_pilot
+  probability_clip: 0.005
+  route_if_probability_wrong_at_least: 0.40
+  routing_prompt: >-
+    The prior answer was selected for rechecking solely because of the model's
+    calibrated uncertainty estimate. It may still be correct. Independently
+    solve the problem again from scratch and return a complete final answer in
+    the requested format. Do not mention this selection process.
+
+frozen_probe_router:
+  selected_probe_dir: outputs/phase5_gpu_vllm/probe_v1/selection
+  selected_layers: [14, 14, 14]
+  route_if_probability_wrong_at_least: 0.50
+  calibration: raw_frozen_logistic_probability
+  routing_prompt: >-
+    An external monitor selected the prior answer for rechecking. It may still
+    be correct. Independently solve the problem again from scratch and return
+    a complete final answer in the requested format. Do not mention this
+    selection process.
+
+oracle_known_wrong:
+  eligible: initially_wrong_only
+  routing_prompt: >-
+    A deterministic verifier determined that the prior answer is incorrect.
+    Independently solve the problem again from scratch and return a complete
+    final answer in the requested format.
+
+analysis:
+  primary_metrics:
+    - detector_wrong_recall
+    - detector_correct_preservation
+    - route_precision
+    - wrong_to_correct
+    - correct_to_wrong
+    - repair_success_given_true_positive_route
+  no_threshold_selection_on_final_holdout: true
+  no_model_promotion: true
+
+safeguards:
+  deterministic_verifier: true
+  no_reference_answer_or_verifier_detail_in_nonoracle_prompts: true
+  no_training: true
+  no_protected_opening: true
+  raw_outputs_retained: true
+  outputs_not_training_data: true
+

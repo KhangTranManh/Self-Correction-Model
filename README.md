@@ -5,7 +5,7 @@ its own errors under objective supervision. Math answers are checked
 symbolically and code answers are executed against tests; an LLM is never used
 as the correctness oracle.
 
-## Current status (2026-09-23)
+## Current status (2026-09-24)
 
 Phase 4 closed on 2026-09-15 with no reliable autonomous correction gain.
 Warm-start V2's historical 74% development result did not reproduce (73%).
@@ -21,18 +21,69 @@ See the [Phase 4 final report](phase4/docs/FINAL_REPORT.md),
 [results](phase4/docs/RESULTS.md) and [code ownership](phase4/docs/CODEBASE.md).
 New research must open a separate phase with new hypotheses and holdouts.
 
-Phase 5 selected 1,200 new short arithmetic candidates from GSM8K train;
-all reference answers passed verification and none overlap recorded Phase 1-4
-sources. The first GPU collection finished with 815 natural initial answers
-(575 correct, 240 wrong), backed up locally and on the GPU. Guided reviews,
-probe fits, and protected evaluation have not run. The next work is local:
-freeze a balanced, source-disjoint 240/80/160 train/development/protected split,
-audit hint accuracy, verify the V2/V3 adapter lineage, and lock prompts and
-precision before using the GPU again. The initial run recorded BF16 software
-emulation on the V100; its as-run setting is preserved in the evidence.
+Phase 5 is complete with no checkpoint promotion. It evaluated 480 balanced,
+source-disjoint natural answers under a frozen neutral/status protocol. On the
+160-source protected set, V2 neutral review produced 0 fixes and 2 harms; V3
+produced 4 fixes and 32 harms. Status feedback produced 5 V2 fixes and 7 V3
+fixes with no observed harms, but this is assisted repair because correctness
+was disclosed. Frozen pre-hint probes generalized: protected balanced accuracy
+was 71.25% for the original solver and V2, and 74.38% for V3. Thus correctness
+information exists internally, but the generative neutral-review policy does
+not use it safely. Raw evidence is under `outputs/phase5_gpu_vllm/`.
+
+This distinction is important: the current probe is an external diagnostic
+harness that reads frozen hidden states. It demonstrates that a correctness
+signal is accessible, but it does not make the checkpoint itself an autonomous
+self-corrector. A deployed model-plus-probe router could form an externally
+controlled correction system; the standalone model has not yet demonstrated
+reliable detect-decide-repair behavior without correctness feedback.
 See the [Phase 5 overview](phase5/README.md),
 [execution plan](phase5/docs/EXECUTION_PLAN.md), and
-[candidate report](phase5/data/CANDIDATE_REPORT.md).
+[final report](phase5/docs/FINAL_REPORT.md).
+
+Phase 6 closed as a non-protected signal-readout and harness diagnostic. On
+16 development sources, verbal confidence was positively rank-correlated with
+the frozen probe for all three checkpoints (`ρ=0.58–0.81`) but was severely
+overconfident and less predictive. Step-by-step neutral review did not improve
+wrong-to-correct repair; V3 improved preservation only. This is exploratory
+evidence and does not promote a model or reopen the Phase 5 protected set. See
+the [Phase 6 final report](phase6/docs/FINAL_REPORT.md) and
+[detailed results](phase6/docs/RESULTS.md).
+
+Two Phase 6 follow-ups reached the same non-promotion outcome. A disjoint
+8-source fuzzy-hint curve found no useful threshold from 50% through 90%:
+Original/V2 ignored the hints, while V3 at 90% fixed no wrong answer and broke
+two correct answers. A frozen layer audit found that probe ROC-AUC falls by an
+average 4.0 points from layer 14 to final hidden layer 28 across all three
+checkpoints. The final layer remains well above chance, so this supports
+partial signal attenuation rather than complete representational loss.
+
+CPU-only calibration of the stored verbal confidence scores also failed as a
+sufficient remedy. Temperature scaling identified severe overconfidence but
+its leave-one-out Brier scores (0.265--0.282) were worse than a constant 50%
+baseline (0.250); isotonic regression overfit the 16-row samples more strongly.
+This result concerns verbalized confidence, because vocabulary-token logits
+were not retained by the earlier vLLM run.
+
+A final decomposition confirms a second, independent repair bottleneck. Even
+when status identifies all wrong protected answers, V2 repairs only 5/77 valid
+REVISE attempts and V3 repairs 7/79. The raw frozen probe is a better detector
+than verbal confidence, but among its development true-positive routes the
+cached status repair succeeds 2/31 times for V2 and 5/32 for V3. A transparent
+probe → router → repair harness remains a research option, not an autonomous
+self-corrector or a deployable result until false-positive routed repairs are
+generated and verified on a fresh non-protected holdout.
+
+That fresh 40-source end-to-end confirmation is now complete. The holdout was
+selected from a new 160-source pool and frozen before confidence, activation,
+routing, or recheck generation. The frozen probe detects 65--75% of initial
+errors across the three checkpoints, but preserves only 60--80% of initially
+correct answers and leaves final accuracy at 50%. Verbal self-confidence is
+unstable as a router (it selects 1/40, 40/40, and 0/40 rows for
+original/V2/V3). Even when the verifier oracle identifies all 20 wrong
+answers, repair is only 1/20 for the original solver and 2/20 for both V2 and
+V3. This confirms repair as the binding bottleneck and keeps Phase 6
+non-promoted. See [the fresh harness result](phase6/docs/RESULTS.md).
 
 Phase 3 closed on 2026-09-13. Its central result is negative but informative:
 preference tuning improved KEEP behavior and reduced harmful revisions, but it
@@ -67,6 +118,28 @@ See the [Phase 3 final report](phase3/docs/FINAL_REPORT.md),
 [Phase 3 README](phase3/README.md), and
 [Phase 3 results](phase3/docs/RESULTS.md).
 
+## Whole-project summary
+
+| Phase | Core question | Durable finding | Final disposition |
+|---|---|---|---|
+| 1 | Can verified SFT teach critique and correction? | Guided correction is real, especially for code, but SFT mainly teaches correction format; autonomous math correction remains weak. | Closed; provides the historical solver foundation. |
+| 2 | Can verifier-labeled preferences improve error discrimination? | The KTO data/training path was validated, but no completed KTO adapter was produced. | Historical pipeline only. |
+| 3 | Can a router decide KEEP versus REVISE for plausible errors? | Decision-Only V1 reaches 65.0% balanced accuracy but only 49.0% REVISE recall; follow-ups trade error detection for excessive KEEP. | Closed; V1 retained only as the router baseline. |
+| 4 | Can on-policy/selective-correction training improve repair? | Warm-start, GRPO, expanded SFT, DPO, blind preferences, and repeated review did not establish reliable autonomous gain. | Closed; V2/V3 are archived pilots. |
+| 5 | Does a correctness signal exist before feedback? | Frozen probes generalize on protected data, but neutral generation does not use the signal safely; status gives limited assisted repair. | Closed diagnostic; probes are external readouts only. |
+| 6 | Can readout, calibration, or a harness bridge signal to repair? | Fresh end-to-end routing confirms detection exists but repair remains only 5--10% even with oracle-known-wrong status. | Closed; no router, threshold, calibration, harness, or checkpoint promoted. |
+
+Across all six phases, the evidence supports one narrow claim: correctness
+information can be verifier-labeled and, in later checkpoints, decoded from
+hidden states. It does **not** support the stronger claim that the standalone
+model reliably recognizes, preserves, and repairs its own errors. Any next step
+must treat detection and repair as separate capabilities, start a new phase,
+and use a newly frozen evaluation set.
+
+Canonical closures: [Phase 3](phase3/docs/FINAL_REPORT.md),
+[Phase 4](phase4/docs/FINAL_REPORT.md), [Phase 5](phase5/docs/FINAL_REPORT.md),
+and [Phase 6](phase6/docs/FINAL_REPORT.md).
+
 ## Research phases
 
 ### Phase 1 — verified self-correction
@@ -95,12 +168,30 @@ Exploration warm-starts, GRPO, expanded SFT, DPO, blind preferences and repeated
 review did not establish a reliable autonomous correction gain. Evidence and
 adapters are archived; no additional Phase 4 tuning is authorized.
 
-### Phase 5 — guided repair and pre-hint diagnosis (active)
+### Phase 5 — guided repair and pre-hint diagnosis (complete)
 
-The original solver's natural-answer collection is complete. The active plan
-freezes a new balanced split, checks truthful hint eligibility and checkpoint
-lineage locally, then tests guided review and pre-hint probes on that split.
-No Phase 5 repair gain or detection result has been established.
+The protected experiment is complete. Hidden-state probes establish a
+generalizing pre-hint correctness signal, but no checkpoint achieves safe
+autonomous neutral repair. V2 shows a limited assisted-repair gain under
+explicit status feedback; no model is promoted.
+
+### Phase 6 - signal readout and harness confirmation (closed)
+
+The first small pilot compares explicit confidence with the existing frozen
+probe and tests model-visible step-by-step neutral review. It finds shared but
+poorly calibrated confidence/probe ranking and no autonomous repair gain.
+Follow-up fuzzy-hint and layer-path diagnostics find no safe harness threshold
+and a modest, replicated attenuation of probe signal after layer 14.
+Calibration of verbal confidence corrects in-sample overconfidence but does not
+generalize beyond a constant 50% baseline in leave-one-out evaluation.
+The detector-to-repair decomposition finds that repair remains weak even under
+oracle error disclosure. A fresh 40-source end-to-end confirmation then
+measures probe false positives with the same non-oracle recheck prompt. Frozen
+probes detect substantially more errors than verbal confidence, but repair
+remains only 5--10% even under oracle-known-wrong status. This is evidence for
+an external detector -> router -> repair -> verifier research harness, not an
+autonomous self-corrector or deployable system. See
+[the Phase 6 final report](phase6/docs/FINAL_REPORT.md).
 
 ## Non-negotiable data rules
 
@@ -130,7 +221,8 @@ AGI/
 │   ├── runs/                   # Frozen evaluations and human-readable reports
 │   └── scripts/                # Data, training, evaluation, and serving CLIs
 ├── phase4/                     # Closed selective-correction pilots and evidence
-├── phase5/                     # Active guided-repair and pre-hint probe pilot
+├── phase5/                     # Complete guided-repair and pre-hint probe diagnostic
+├── phase6/                     # Closed signal-readout and harness diagnostic
 └── outputs/                    # Local adapters and runtime artifacts (gitignored)
 ```
 

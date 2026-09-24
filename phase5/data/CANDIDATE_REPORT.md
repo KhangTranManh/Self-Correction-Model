@@ -2,10 +2,10 @@
 
 **Selection-time status:** 1,200 arithmetic candidates were ready locally;
 no Phase 5 initial answer, review, or activation had been generated. A later
-GPU pass collected 815 initial answers (575 correct, 240 wrong), but the
-240/80/160 balanced source split, reviews, and probes are still pending. This
-report records the CPU candidate selection; see `../docs/EXECUTION_PLAN.md`
-for current work.
+GPU pass collected 815 initial answers (575 correct, 240 wrong), and the
+240/80/160 balanced source split was subsequently frozen. Reviews and probes
+later completed under the locked protocol. This report records only the CPU
+candidate selection; see `../docs/FINAL_REPORT.md` for final outcomes.
 
 The raw input is the cached official GSM8K **train** split, exported locally as
 `raw/gsm8k_train.jsonl`. It contains 7,473 questions. The official

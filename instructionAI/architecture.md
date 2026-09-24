@@ -36,7 +36,8 @@ the canonical Phase 3 pipeline.
 | `phase2/` | Phase 2 | KTO preference experiment |
 | `phase3/` | Phase 3 | Closed discrimination/selective-repair research package |
 | `phase4/` | Phase 4 | Closed selective-correction pilots and immutable evidence |
-| `phase5/` | Phase 5 | Active guided-repair and pre-hint probe pilot; initial-answer collection complete |
+| `phase5/` | Phase 5 | Complete guided-repair and pre-hint probe diagnostic; no promotion |
+| `phase6/` | Phase 6 | Exploratory verbalization-path and rationale-review pilot |
 | `outputs/` | Runtime | Local adapters, logs, activations; excluded from Git |
 | `instructionAI/` | Project | Cross-phase architecture and data invariants |
 
@@ -137,15 +138,94 @@ Phase 5 has 1,200 checked, source-disjoint arithmetic candidates and a
 completed original-solver pass over the first 815 (575 correct, 240 wrong).
 The append-only initial audit, derived rollouts, and summary are backed up
 locally under `outputs/phase5_remote_v100/` and on the V100 GPU. The run
-recorded BF16 software emulation, not native BF16 or FP16. No guided review,
-probe fit, protected evaluation, or training has run.
+recorded BF16 software emulation, not native BF16 or FP16. The balanced
+240/80/160 source split is frozen and the private V2/V3 Hub sources are pinned
+and hash-verified. Guided review and pre-hint probe evaluation are complete.
+Protected neutral review found no safe autonomous gain: V2 had 0 fixes/2 harms
+and V3 had 4 fixes/32 harms. Pre-hint correctness remained linearly decodable
+(71.25% to 74.38% protected balanced accuracy), showing a policy-use problem
+rather than absence of internal signal. No training ran and no checkpoint was
+promoted.
 
-Before further GPU calls, freeze a balanced source split and verify hint
-eligibility, checkpoint parentage, prompts, precision, and metrics locally.
+The Phase 5 linear probe is an external harness over frozen activations. Its
+result supports the existence of accessible correctness information, not a
+claim that any standalone checkpoint performs self-correction. Keep these
+layers distinct in future reports:
+
+```text
+frozen model representation -> external probe/controller -> optional repair
+```
+
+Only an end-to-end model that detects errors without a correctness label,
+preserves correct answers, and produces verified repairs should be described as
+autonomous self-correction. A probe-triggered pipeline is harness-controlled
+unless separately proven otherwise.
+
+Hint eligibility and the review/probe protocol remain frozen. Neutral/status cover
+all 480 rows; location/type is disabled because strict wrong-case coverage is
+1/120 train and 0 in development/protected.
 Location/type hints have a documented timing deviation from the earlier
-selection rule and must be labeled exploratory under this collection unless
-a new preregistered holdout resolves it. `phase5/docs/EXECUTION_PLAN.md` owns
-the next-stage sequence; Phase 3/4 evidence remains closed and unchanged.
+selection rule and remain disabled. `phase5/docs/FINAL_REPORT.md` owns the
+result; Phase 3/4 evidence remains closed and unchanged.
+
+## Phase 6 closure boundary
+
+Phase 6 uses a deterministic 16-source subset of the already-open Phase 5
+development split. It does not touch the protected set. The first pilot found
+positive rank correlation between explicit confidence and frozen-probe scores,
+but a large calibration gap, and found no wrong-to-correct benefit from an
+explicit model-visible step-by-step review. These results are exploratory;
+runtime generations remain outside training data and no model is promoted.
+
+The follow-up fuzzy-hint experiment uses a separate eight-source development
+subset and supplies identical 50--90% error-probability hints to correct and
+wrong answers. It found no useful operating point: V3's first response at 90%
+caused two verified harms and no fixes. This is evidence of harness sensitivity,
+not autonomous detection.
+
+The layer-path audit reuses frozen Phase 5 activations. At fixed probe
+regularization, layer 14 outperforms final hidden layer 28 for all three
+checkpoints (mean ROC-AUC delta -0.040), but the final layer stays above chance.
+Document this as partial attenuation of linearly decodable correctness signal.
+Do not call it signal disappearance or a logit-layer result: no vocabulary-logit
+readout was measured.
+
+CPU-only temperature scaling and isotonic regression were subsequently fitted
+to the 16 stored verbal confidence values per checkpoint using verifier labels.
+Large fitted temperatures confirm overconfidence, but held-out Brier scores do
+not beat a constant 50% predictor and isotonic regression overfits. Treat this
+as a rejection of verbal-confidence calibration as a sufficient solution on
+current evidence. It is not a test of direct vocabulary logits, which were not
+saved by the earlier vLLM generation.
+
+The final decomposition distinguishes detection from repair. On the already
+opened protected artifact, explicit wrong-status yields valid REVISE compliance
+for V2/V3 but only 5/77 and 7/79 verified repairs respectively. The frozen
+linear probe is a stronger detector than verbal confidence, but cached
+true-positive routes still repair only 2/31 V2 and 5/32 V3 development rows.
+This supports an honest external architecture (probe -> router -> repair ->
+verifier), while also showing that repair is independently inadequate. It is
+not a deployable end-to-end harness result because the prior cache has no
+matching repair generations for probe false positives. Evaluate that only on a
+new, frozen, non-protected split.
+
+That fresh confirmation is complete: it used a newly filtered 160-source pool
+to select a locked balanced 40-source holdout, and applied the same non-oracle
+recheck prompt to both frozen-probe true positives and false positives. The
+probe detects 65--75% of initial errors across original/V2/V3, but correct
+preservation is 60--80% and end-to-end final accuracy is 50%. Fixed calibrated
+verbal confidence is unstable (routes 1/40, 40/40, and 0/40 respectively).
+Most importantly, oracle-known-wrong repair is only 1/20, 2/20, and 2/20.
+Therefore detection is real but repair is the binding bottleneck. This is a
+verified external harness result, not evidence of autonomous self-correction;
+do not promote a threshold, router, or checkpoint from it.
+
+Phase 6 is closed as of 2026-09-24. Preserve its frozen configs, manifests,
+locks, scripts, and raw outputs as reproducible negative-result evidence.
+Neither Phase 6 holdouts nor the Phase 5 protected set may be used for further
+tuning. Any follow-up must open a new phase with a distinct repair hypothesis
+and a newly frozen evaluation split. The canonical closure is
+`phase6/docs/FINAL_REPORT.md`.
 
 Phase 3 is closed as of 2026-09-13. Its canonical and negative-result artifacts
 remain immutable. New discrimination research must create a new phase rather

@@ -1,0 +1,50 @@
+schema_version: phase6_confidence_calibration_v1
+status: frozen_before_fit
+created_on: '2026-09-24'
+
+scope:
+  input_dir: outputs/phase6_verbalization_pilot_v1/raw
+  source_manifest: phase6/data/pilot_v1.jsonl
+  checkpoints: [original_solver, warmstart_v2, correction_sft_v3]
+  rows_per_checkpoint: 16
+  split: phase5_development_subset
+  protected_data_used: false
+
+target:
+  probability: initial_answer_correct
+  label: deterministic_verifier_initial_correct
+  probe_used_as_label: false
+
+score:
+  source: model_verbalized_confidence_integer
+  vocabulary_token_logits_available: false
+  transform: logit_of_reported_probability
+  probability_clip: 0.005
+  clip_rationale: half_step_for_integer_percentage_endpoints
+
+methods:
+  temperature_scaling:
+    parameters: 1
+    intercept: false
+    objective: binary_negative_log_likelihood
+    log_temperature_bounds: [-6.0, 6.0]
+  isotonic_regression:
+    increasing: true
+    out_of_bounds: clip
+
+evaluation:
+  views: [full_fit_in_sample, leave_one_out]
+  metrics: [negative_log_likelihood, brier, ece_5_equal_width, roc_auc, accuracy_at_0_5]
+  primary_generalization_view: leave_one_out
+  interpretation: >-
+    A readout-only calibration hypothesis is supported only if held-out
+    calibration loss improves consistently without relying on the in-sample
+    isotonic fit. Monotone calibration cannot create missing rank information.
+
+safeguards:
+  cpu_only: true
+  no_model_forward_pass: true
+  no_weight_update: true
+  no_probe_refit: true
+  no_protected_opening: true
+

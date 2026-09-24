@@ -1,0 +1,17 @@
+{
+  "schema_version": "phase5_protected_opening_receipt_v1",
+  "status": "complete",
+  "protected_open_count": 1,
+  "selection_changed_after_opening": false,
+  "final_report": {
+    "path": "outputs/phase5_gpu_vllm/phase5_final_report.json",
+    "sha256": "c7ba6ca47a18bbb27183e7a13938aea497be9cd01e66fe15e89c9415abf81980"
+  },
+  "protected_evidence_sha256": {
+    "protected_v1/reviews/original_solver_protected_test.jsonl": "94e772f981bf584dd083e735c62b7b9daa827e142e0340a57b3433c2f78c4b09",
+    "protected_v1/reviews/warmstart_v2_protected_test.jsonl": "795597a67ffcb9dc2b2efc90510301061a0601a5f0bcd197c2784f9ed29ca3fe",
+    "protected_v1/reviews/correction_sft_v3_protected_test.jsonl": "a8f6d092a22ad5a7166430b26f9c0da666a33d6caac03364883e73d5d04f2600",
+    "protected_v1/protected_probe_report.json": "bcc0cd4406b76aa33a39ac30748447571b1a2d474b370fc3887bbc99eb467f53",
+    "probe_v1/probe_controls.json": "3d3e89ed97f7fe2a715e82dec1f163257787a11e386068b037b88def01df9604"
+  }
+}

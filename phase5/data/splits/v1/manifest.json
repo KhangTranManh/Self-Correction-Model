@@ -1,0 +1,44 @@
+{
+  "schema_version": "phase5_balanced_split_v1",
+  "status": "frozen_before_review_or_probe_outcomes",
+  "seed": 20260923,
+  "selection_rule": "Rank each initial-correctness class by SHA256 of phase5_split_v1|seed|balanced_selection|problem_id; take 240 per class. Rank selected rows within class by the split_assignment namespace, then allocate 120 train, 40 development, and 80 protected_test per class.",
+  "inputs": {
+    "candidates": "phase5/data/candidates_v1/candidate_problems.jsonl",
+    "candidates_sha256_lf": "3dc103e168ea149f51d16e5d22fad66e97b1af9e956fba1d8914b714120e954a",
+    "initial_rollouts": "outputs/phase5_remote_v100/initial_rollouts.jsonl",
+    "initial_rollouts_sha256_lf": "04263288354cbfacd7f018a65e7b57394f4a21da234719b29b65cf8cccecb024"
+  },
+  "available_initial_rows": 815,
+  "available_by_class": {
+    "correct": 575,
+    "wrong": 240
+  },
+  "split_counts": {
+    "train": {
+      "rows": 240,
+      "correct": 120,
+      "wrong": 120
+    },
+    "development": {
+      "rows": 80,
+      "correct": 40,
+      "wrong": 40
+    },
+    "protected_test": {
+      "rows": 160,
+      "correct": 80,
+      "wrong": 80
+    }
+  },
+  "total_selected": 480,
+  "source_disjoint": true,
+  "review_outcomes_seen": false,
+  "probe_outcomes_seen": false,
+  "output_sha256": {
+    "train.jsonl": "1464866b4d78a2b57077c67e46260b7e772efd6fbaac148f57c4ab8d913cc392",
+    "development.jsonl": "7be3f9dbff4548c94744d9271f2721fa8f019de1cf9017928b8f924c61439039",
+    "protected_test.jsonl": "86104419021d2f6f6420f3e6962cbd1ba4eb9e5ff08faf36743b4d3f1e334996",
+    "source_assignments.jsonl": "66737439bbb782d9e5b50ef569c1ab5502a0fdb9bfe6236fa7dcba1b24a7ff7e"
+  }
+}

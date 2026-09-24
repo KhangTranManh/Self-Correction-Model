@@ -51,3 +51,8 @@ was not frozen before that GPU pass, despite the requirement above. Preserve
 that deviation; location/type analyses on the current collection are
 exploratory unless a new preregistered holdout resolves it. See
 `../docs/EXECUTION_PLAN.md`.
+
+On 2026-09-24, before any guided-review or probe outcome existed, the collected
+pool was frozen into balanced, source-disjoint train/development/protected
+splits under `splits/v1/`. The manifest records the deterministic selection and
+assignment namespaces, seed, exact counts, and SHA-256 hashes.

@@ -1,0 +1,55 @@
+{
+  "schema_version": "phase5_review_protocol_lock_v1",
+  "status": "frozen_before_review_or_probe_generation",
+  "frozen_on": "2026-09-24",
+  "cpu_only": true,
+  "model_loaded": false,
+  "model_weights_downloaded": false,
+  "review_generation_started": false,
+  "probe_extraction_started": false,
+  "protected_evaluation_opened": false,
+  "active_conditions": [
+    "neutral",
+    "status"
+  ],
+  "disabled_conditions": [
+    "location",
+    "type"
+  ],
+  "files": {
+    "protocol_config": {
+      "path": "phase5/configs/review_protocol_v1.yaml",
+      "sha256_lf": "5eafcb9ce521e202f513d3d9be2a9cbdaef109bc58ee540f5a9ad465b705ed74"
+    },
+    "experiment_registry": {
+      "path": "phase5/configs/experiments.yaml",
+      "sha256_lf": "02dfd769a62ee1a244309de0ad2a62f8632d3eeacf04e80beb0d905b3a46440d"
+    },
+    "split_manifest": {
+      "path": "phase5/data/splits/v1/manifest.json",
+      "sha256_lf": "f90ad15bd485818840b2c427cd0a0059ae85586bdd10e9639a46a01d327cd950"
+    },
+    "hint_summary": {
+      "path": "phase5/data/hints/v2/hint_summary.json",
+      "sha256_lf": "dbac5269bb6feb63b0754dc9bf4394785cac7f9aa17bb3b7b9cb582c5af633c6"
+    },
+    "checkpoint_audit": {
+      "path": "phase5/data/checkpoint_source_audit.json",
+      "sha256_lf": "62c4108c206ccb64618e41a48ae2b57f179ece469d934d14a61af97715dcc2d4"
+    },
+    "original_prompt_source": {
+      "path": "phase1/src/core/prompts.py",
+      "sha256_lf": "7ac1b989385e293a4a4f2f343322ab9f070024d25348770aae09ed777adc629b"
+    },
+    "strict_review_parser": {
+      "path": "phase4/lib/transition.py",
+      "sha256_lf": "325d471b7fc1f2523195b1e1575173bc51d4548d335e6f212d17d35f7173a797"
+    },
+    "smoke_manifest": {
+      "path": "phase5/data/protocol/smoke_v1.jsonl",
+      "sha256_lf": "8b0ae78246bca77293db4e3c9241d4eef957f7971feda028be6e30fc39ef9f4d"
+    }
+  },
+  "failures": [],
+  "all_passed": true
+}

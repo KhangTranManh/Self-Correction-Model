@@ -1,4 +1,4 @@
-"""Read-only GPU and Python runtime inventory for the Phase 5 Windows host."""
+"""Read-only GPU and Python runtime inventory for a Phase 5 host."""
 
 from __future__ import annotations
 
@@ -58,6 +58,10 @@ def inspect():
         and bool(result["devices"])
         and not any(result["modules"][name].startswith("unavailable")
                     for name in ("torch", "transformers", "sympy"))
+    )
+    result["phase5_adapter_evaluation_ready"] = (
+        result["phase5_initial_generation_ready"]
+        and not result["modules"]["peft"].startswith("unavailable")
     )
     return result
 

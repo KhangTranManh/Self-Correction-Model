@@ -1,0 +1,42 @@
+{
+  "schema_version": "phase5_results_v1",
+  "status": "protected_evaluation_complete_no_promotion",
+  "protected_open_count": 1,
+  "review_backend": "vllm_0_7_0_fp16",
+  "probe_backend": "transformers_fp16_forward_only",
+  "guided_repair_protected": {
+    "original_solver": {
+      "neutral_fixes": 0,
+      "neutral_harms": 0,
+      "status_fixes": 0,
+      "status_harms": 0,
+      "assisted_gate_passed": false
+    },
+    "phase4_warmstart_v2": {
+      "neutral_fixes": 0,
+      "neutral_harms": 2,
+      "status_fixes": 5,
+      "status_harms": 0,
+      "assisted_gate_passed": true
+    },
+    "phase4_correction_sft_v3": {
+      "neutral_fixes": 4,
+      "neutral_harms": 32,
+      "status_fixes": 7,
+      "status_harms": 0,
+      "assisted_gate_passed": false
+    }
+  },
+  "prehint_probe_protected": {
+    "original_solver": {"balanced_accuracy": 0.7125, "wrong_recall": 0.6375},
+    "phase4_warmstart_v2": {"balanced_accuracy": 0.7125, "wrong_recall": 0.6375},
+    "phase4_correction_sft_v3": {"balanced_accuracy": 0.74375, "wrong_recall": 0.75}
+  },
+  "surface_control_development_balanced_accuracy": 0.675,
+  "shuffled_label_empirical_p": 0.009900990099009901,
+  "promotion": "none",
+  "final_report": "phase5/docs/FINAL_REPORT.md",
+  "raw_evidence": "outputs/phase5_gpu_vllm/",
+  "protected_opening_lock": "phase5/data/protocol/protected_opening_v1_lock.json",
+  "protected_opening_receipt": "phase5/data/protocol/protected_opening_v1_receipt.json"
+}

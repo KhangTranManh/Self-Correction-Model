@@ -1,9 +1,8 @@
 # Phase 5 execution plan after initial collection
 
-**Status (2026-09-23):** CPU source selection and the first GPU collection are
-complete. Guided reviews, representation probes, and protected evaluation have
-not run. This is a diagnostic experiment; no new model training or promotion is
-planned from the pilot alone.
+**Status (2026-09-24): complete.** Guided reviews, representation probes,
+controls, and the single protected opening finished without post-lock changes.
+No model was trained or promoted. Results are in `phase5/docs/FINAL_REPORT.md`.
 
 ## Fixed inputs and current limit
 
@@ -23,50 +22,42 @@ initial answers as FP16 or silently regenerate them.
 
 ## Next steps
 
-1. **Freeze a source-disjoint split locally.** Verify the final hashes and
-   ordered audit. Choose 240 natural correct and all 240 natural wrong sources
-   by a written deterministic rule and seed, before viewing review or probe
-   outcomes. Assign balanced train (120 + 120), development (40 + 40), and
-   protected test (80 + 80) sources. Save the exact IDs, source hashes,
-   selection rule, seed, and manifest hash. The protected set is not a source
-   for prompt changes, model choice, or training.
-2. **Audit hint feasibility locally.** Freeze a rule for locating the model's
-   first erroneous calculation and for naming an error type. Verify each hint
-   independently of the reviewing model, and ensure no reference answer,
-   correction, or verifier trace enters its prompt. The earlier
-   [selection rules](../data/SELECTION_RULES.md) called for this alignment
-   rule *before the first GPU pass*, which did not happen. Record that
-   deviation. Neutral/status review and the pre-hint probe can use the frozen
-   split; location/type
-   analyses under the current run must be labeled exploratory unless a new
-   untouched source pool is registered with the alignment rule frozen before
-   its initial generation. Report eligible coverage;
-   never refill failed cases from the protected set.
-3. **Lock the GPU protocol before model calls.** Verify the exact parent and
-   SHA-256 of the Phase 4 warm-start V2 and correction SFT V3 adapters. Freeze
-   the same initial answer, prompt, output contract, decoding settings, seed
-   schedule, precision, and verification method across the original solver and
-   both adapters. Check adapter metadata and prompt/output parsing locally;
-   keep the protected set sealed.
-4. **Run paired guided reviews.** Start with a small train/development GPU
-   smoke test for loading and output validity. Then, for each eligible source,
-   checkpoint, and condition, collect neutral, truthful status, location, and
-   type reviews as permitted by step 2. Store every exact hint, raw output,
-   parsed KEEP/REVISE
-   decision, final verified answer, and failure. Compare wrong-to-correct fixes
-   with correct-to-wrong harms and contract validity. Status hints disclose
-   correctness; improvement there is assisted repair, not autonomous error
-   detection.
-5. **Probe before the hint.** Extract frozen hidden states at the registered
+1. **Completed - freeze a source-disjoint split locally.** The deterministic
+   manifest contains 240 train, 80 development, and 160 protected rows, each
+   balanced by initial correctness. Exact IDs, rules, seed, and hashes are in
+   `phase5/data/splits/v1/manifest.json`. The protected set is not a source for
+   prompt changes, model choice, or training.
+2. **Completed - audit hint feasibility locally.** Strict parser V2 uses only
+   literal single-operation equations from the model's own answer; it does not
+   use a reference answer, correction, or verifier trace. Neutral/status covers
+   all 480 rows. Location/type wrong-case coverage is one train row and zero
+   development/protected rows, so those conditions are disabled rather than
+   weakened or refilled. Parser V1 is retained as rejected audit evidence.
+3. **Completed - lock the GPU protocol before model calls.** Private Hub
+   revisions, exact parents, and SHA-256 values are pinned. The protocol fixes
+   FP16, greedy decoding, strict XML, prompts, seed, metrics, bootstrap, probe
+   layers/C-grid, and the V2-merge/V3-attach order. The config and controlling
+   input hashes are in `phase5/configs/review_protocol_v1.yaml` and
+   `phase5/data/protocol/review_protocol_v1_lock.json`.
+4. **Completed - run paired guided reviews.** Begin with the frozen eight-source
+   train GPU smoke across all three checkpoints and both active conditions.
+   Require successful model loading, no OOM, and at least 75% strict contract
+   validity. Then collect neutral/status train and development reviews. Store
+   every exact prompt, raw output, parsed action, final verification, and
+   failure. Status discloses correctness, so any gain is assisted repair rather
+   than autonomous detection. Do not run location/type.
+5. **Completed - probe before the hint.** Extract frozen hidden states at the registered
    problem-plus-initial-answer position for each checkpoint. Fit regularized
    linear probes and surface-feature/shuffled-label controls on train; choose
    layer and regularization on development only. Read the protected test once
    after prompts, eligibility, metrics, and selection rules are locked.
-6. **Report the result, including failures.** Publish paired accuracy changes,
+6. **Completed - report the result, including failures.** Publish paired accuracy changes,
    source-level uncertainty, fixes, harms, probe balanced accuracy and both
    class recalls, hint coverage, and all deviations. A pilot result alone does
    not promote a checkpoint or establish a solution to Phase 3's error-detection
    problem.
 
-Steps 1-3 are local CPU work. The GPU is needed again for steps 4-5 after those
-gates are complete. Keep raw evidence and checked copies on both machines.
+All steps are complete. The protected set was opened once only after
+development choices and controls were frozen. Raw evidence is backed up under
+`outputs/phase5_gpu_vllm/`; reopening it for model or threshold selection is
+not allowed.
