@@ -1,0 +1,130 @@
+schema_version: phase7_blind_resolve_v1
+status: initial_collection_frozen
+seed: 20260924
+
+source_plan:
+  task: short_verifiable_arithmetic_word_problems
+  source: phase5/data/raw/gsm8k_train.jsonl
+  exclude_all_recorded_phase1_through_phase6: true
+  exclude_entire_phase5_selected_candidate_manifest: true
+  exclude_entire_phase6_confirmation_source_pool: true
+  deduplicate_by: [source_id, normalized_question]
+  candidate_order: deterministic_sha256_of_source_id_and_seed
+  candidate_manifest: phase7/data/candidates_v1/candidate_problems.jsonl
+  candidate_manifest_sha256: ac1ebd0612e20c599905c547554d0c95d07f0932e99c58aef6e1dd478fb11799
+  initial_generation_ceiling: 600
+  stop_at_first_prefix_with_each_class_at_least: 100
+  if_quota_fails: report_infeasible_without_posthoc_refill
+  development: {initially_correct: 20, initially_wrong: 20}
+  protected: {initially_correct: 80, initially_wrong: 80}
+  split_selection: deterministic_hash_before_resolve_outcomes
+
+models:
+  registry: phase7/configs/experiments.yaml
+  original_solver: Kxck/Self_Correction_v1
+  warmstart_v2: Kxck/phase4_exploration_warmstart_v2
+  correction_sft_v3: Kxck/phase4_correction_sft_v3
+  correction_sft_v3_load_order:
+    - load_original_solver
+    - attach_warmstart_v2
+    - merge_warmstart_v2
+    - attach_correction_sft_v3
+  same_original_initial_answer_for_all_checkpoints: true
+
+initial_answer:
+  model: original_solver
+  prompt_source: phase1/src/core/prompts.py::build_prompt(math)
+  one_natural_generation_per_source: true
+  output_and_verifier_audit_append_only: true
+  decoding_draft:
+    temperature: 0.7
+    top_p: 1.0
+    top_k: -1
+    max_new_tokens: 768
+    max_model_len: 4096
+  decoding_to_lock_before_initial_generation: true
+
+paired_arms:
+  common:
+    fresh_single_turn_conversation: true
+    same_problem_and_ordinary_solve_instruction: true
+    same_complete_answer_output_format: true
+    same_decoding_settings_and_token_budget: true
+    no_correctness_label_or_verifier_trace: true
+    no_probe_score_visible: true
+  blind_resolve:
+    previous_answer_visible: false
+    previous_conversation_visible: false
+    alert_or_recheck_reason_visible: false
+    prompt_template_to_lock: true
+  answer_visible_resolve:
+    previous_answer_visible: true
+    previous_answer_label: unverified_candidate
+    previous_conversation_visible: false
+    no_claim_that_candidate_is_wrong: true
+    prompt_template_to_lock: true
+  paired_by: [source_id, checkpoint]
+  run_on_both_initial_correctness_classes: true
+  generate_both_arms_before_router_analysis: true
+
+router:
+  kind: frozen_phase5_prehint_probe
+  checkpoint_specific: true
+  probe_artifact_source: outputs/phase5_gpu_vllm/probe_v1/selection
+  artifact_must_be_recovered_and_hash_verified: true
+  if_artifact_missing: skip_nonoracle_route_and_report_unavailable
+  score_context: original_problem_plus_initial_answer_before_resolve_prompt
+  probability_wrong_threshold: 0.50
+  refit_or_calibration: false
+  unselected_action: retain_original_answer
+  selected_action: use_arm_new_answer
+  oracle_known_wrong_analysis:
+    initially_wrong_only: true
+    correctness_disclosed_to_model: false
+    reported_separately_from_nonoracle_route: true
+
+generation_draft:
+  backend: vllm_0_7_0
+  dtype: float16
+  quantization: none
+  quantize_all_three_checkpoints_consistently: false
+  materialize_v2_fp16_parent_on_cpu: true
+  v2_runtime: fp16_v2_merged
+  v3_runtime: v3_lora_on_fp16_v2_merged
+  batch_size: 1
+  temperature: 0.0
+  max_new_tokens: 768
+  max_model_len: 4096
+  gpu_memory_utilization: 0.85
+  seed: 20260924
+  target_vram_class_gb: 32
+  preflight_must_verify_memory_and_lineage: true
+  final_values_must_be_locked_before_resolve_generation: true
+
+analysis:
+  primary_metric: blind_minus_visible_verified_wrong_to_correct_rate
+  paired_unit: source_within_checkpoint
+  primary_interval: paired_source_bootstrap_95_percent
+  bootstrap_resamples: 10000
+  checkpoint_tests: holm_adjusted_p_values_across_three_checkpoints
+  practically_meaningful_gain_absolute: 0.10
+  maximum_material_correct_to_wrong_increase_absolute: 0.025
+  secondary_metrics:
+    - verified_initially_correct_to_wrong_rate
+    - old_vs_new_final_answer_agreement
+    - blind_vs_visible_final_answer_agreement
+    - verifier_validity
+    - truncation_and_generation_failure_rate
+    - frozen_probe_wrong_recall_and_precision
+    - frozen_probe_correct_preservation
+    - routed_final_accuracy
+  protected_openings: 1
+  promotion_from_diagnostic_alone: false
+
+safeguards:
+  no_phase5_or_phase6_evaluation_source_reuse: true
+  no_reference_answer_in_prompts: true
+  blind_prompt_must_exclude_prior_answer_and_metadata: true
+  no_training_or_probe_refit: true
+  preserve_raw_prompts_outputs_verdicts_routes_and_hashes: true
+  outputs_not_training_data: true

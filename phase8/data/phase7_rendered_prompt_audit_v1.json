@@ -1,0 +1,10 @@
+{
+  "schema_version": "phase8_phase7_rendered_prompt_audit_v1",
+  "tokenizer_model": "Kxck/Self_Correction_v1",
+  "revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+  "rows": 334,
+  "same_rendered_prompt": 0,
+  "same_token_ids": 0,
+  "initial_rendered_sequence_sha256": "50bfcd3cc59c6e683b6c85559dcf8fec1cd253371c92e05107f139b3e1aa09e6",
+  "blind_rendered_sequence_sha256": "84daeb679a05a85fe71f3e77f186bd1e96c7777a2ad0c351e3a5e6d3d559082c"
+}

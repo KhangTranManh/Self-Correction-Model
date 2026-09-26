@@ -1,0 +1,72 @@
+schema_version: phase7_experiments_v1
+phase: 7
+status: gpu_inventory_complete_awaiting_vllm_smoke
+created_on: '2026-09-24'
+phase5_status: closed_no_promotion
+phase6_status: closed_no_promotion
+protocol_draft: phase7/configs/blind_resolve_v1.yaml
+preregistration: phase7/docs/PREREGISTRATION.md
+execution_plan: phase7/docs/EXECUTION_PLAN.md
+cpu_source_audit_complete: true
+candidate_manifest_frozen: true
+initial_answers_collected: false
+initial_collector_prepared: true
+initial_collector: phase7/scripts/collect_initials_vllm.py
+balanced_split_frozen: false
+paired_protocol_frozen: false
+frozen_phase5_probe_local_status: missing_at_documented_outputs_path
+gpu_generation_started: false
+protected_opened: false
+model_weights_updated: false
+promotion: none
+
+gpu:
+  host_type: linux_docker
+  name: Tesla V100-SXM2-32GB
+  memory_mib_reported: 32768
+  compute_capability: '7.0'
+  python_at_inventory: '3.10.12'
+  ram_gib_approx: 94
+  disk_free_gib_approx: 100
+  endpoint_inventory_on: '2026-09-24'
+
+candidate_sources:
+  status: cpu_candidates_frozen_no_model_answers
+  report: phase7/data/candidates_v1/candidate_report.json
+  manifest: phase7/data/candidates_v1/candidate_problems.jsonl
+  eligible_after_cpu_rules_and_verifier: 1974
+  selected: 600
+  manifest_sha256: ac1ebd0612e20c599905c547554d0c95d07f0932e99c58aef6e1dd478fb11799
+  prior_inventory_files_verified: 286
+  initial_correctness_unknown_until_gpu: true
+
+models:
+  original_solver:
+    repo: Kxck/Self_Correction_v1
+    revision: 6437f947999168a0ce2a98a86e4252fc77160a33
+  warmstart_v2:
+    repo: Kxck/phase4_exploration_warmstart_v2
+    revision: a8417cf1ed170881907910bba5ebb27c5a82bd6e
+    adapter_sha256: 19fb45c77d3991470ed50cc2d50f12c0cc4667802d3fdd02c6c8b48d03517be4
+    parent: original_solver
+  correction_sft_v3:
+    repo: Kxck/phase4_correction_sft_v3
+    revision: 2947ef2aeea951765434b2dd9db7f9bc7db8381d
+    adapter_sha256: 6181eb886cee6cbc0f5b11e4d0d521ef3c3fb550172c1dbdf2b17b137198e08a
+    parent: warmstart_v2_merged_into_original_solver
+
+source_exclusions:
+  all_recorded_phase1_through_phase6: true
+  full_phase5_selected_candidate_pool: true
+  full_phase6_confirmation_source_pool: true
+  phase5_protected_reused: false
+  phase6_holdout_reused: false
+
+planned_analysis:
+  paired_arms: [blind_resolve, answer_visible_resolve]
+  initial_answer_model: original_solver
+  frozen_probe_router: true
+  oracle_known_wrong_separate: true
+  primary_metric: paired_wrong_to_correct_difference
+  protected_test_reads: 1
+  no_training: true

@@ -38,6 +38,7 @@ the canonical Phase 3 pipeline.
 | `phase4/` | Phase 4 | Closed selective-correction pilots and immutable evidence |
 | `phase5/` | Phase 5 | Complete guided-repair and pre-hint probe diagnostic; no promotion |
 | `phase6/` | Phase 6 | Exploratory verbalization-path and rationale-review pilot |
+| `phase7/` | Phase 7 | Planned paired blind/answer-visible re-solving diagnostic |
 | `outputs/` | Runtime | Local adapters, logs, activations; excluded from Git |
 | `instructionAI/` | Project | Cross-phase architecture and data invariants |
 
@@ -226,6 +227,16 @@ Neither Phase 6 holdouts nor the Phase 5 protected set may be used for further
 tuning. Any follow-up must open a new phase with a distinct repair hypothesis
 and a newly frozen evaluation split. The canonical closure is
 `phase6/docs/FINAL_REPORT.md`.
+
+Phase 7 has a frozen 600-source CPU candidate pool but no model results. Its central
+comparison is a new single-turn solution with only the original problem versus
+the same re-solving task with the earlier answer visible as an unverified
+candidate. It uses fresh Phase 1-6-disjoint sources and verifies every final
+answer deterministically. The old answer stays outside the blind model
+context. A frozen Phase 5 probe may supply an external route only if the exact
+artifact is recovered and hash-verified; oracle-known-wrong solving is a
+separate diagnostic. Do not reuse Phase 5 protected or Phase 6 holdout rows.
+`phase7/docs/PREREGISTRATION.md` owns the draft hypothesis and boundaries.
 
 Phase 3 is closed as of 2026-09-13. Its canonical and negative-result artifacts
 remain immutable. New discrimination research must create a new phase rather

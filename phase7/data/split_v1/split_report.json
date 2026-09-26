@@ -1,0 +1,15 @@
+{
+  "schema_version": "phase7_split_v1",
+  "rank_rule": "sha256(phase7-split-v1|seed|problem_id)",
+  "seed": 20260924,
+  "candidate_manifest_sha256": "ac1ebd0612e20c599905c547554d0c95d07f0932e99c58aef6e1dd478fb11799",
+  "initial_audit_sha256": "f396a37e76da9281fb0f1120dcf8cb979b4ecac06d3827dd241a5a738b14812b",
+  "initial_rollouts_sha256": "42a3dd8a3d8a7f86575a9ee4abf6a4f759e366daf25759cebe4c0663e6566340",
+  "prefix_length": 334,
+  "prefix_correct": 234,
+  "prefix_wrong": 100,
+  "development_count": 40,
+  "protected_count": 160,
+  "development_ids_sha256": "684be0385685bcf95f3542cbeefbd44a0da12c4de76dc5f1ed18780a20f2e19a",
+  "protected_ids_sha256": "7422a63870ba6e3f1e190b95ba32d19064f853341b7f0857827a08ca770f4d37"
+}

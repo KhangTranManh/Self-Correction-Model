@@ -1,5 +1,23 @@
 # Verified Data Pipeline
 
+## Planned Phase 7 boundary
+
+Phase 7 has 600 CPU-selected, verifier-checked fresh candidates but no model
+generations. Its proposed blind re-solve
+experiment must audit fresh problems against every recorded Phase 1-6 source,
+including the entire Phase 5 selected candidate manifest and Phase 6
+confirmation source pool. Natural first answers come from the original solver;
+the paired second-pass blind prompt contains only the original problem and
+ordinary solve instruction. The old answer stays in harness metadata for
+comparison and deterministic verification, never in the blind prompt.
+
+The answer-visible paired arm may show the old answer as an unverified
+candidate. Both arms use the same source, checkpoint, decoding settings, and
+verifier. A frozen probe may route answers only if its original artifact is
+recovered and verified. No Phase 5 protected or Phase 6 holdout source may be
+reused, and Phase 7 results cannot enter training. See
+`phase7/docs/PREREGISTRATION.md` and `phase7/docs/EXECUTION_PLAN.md`.
+
 > Phase 3 closed on 2026-09-13. The commands below document reproduction; they
 > are not an active data-collection or training queue.
 

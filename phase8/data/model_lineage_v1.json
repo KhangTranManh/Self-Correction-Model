@@ -1,0 +1,13 @@
+{
+  "schema_version": "phase8_model_lineage_lock_v1",
+  "v2_merged_lineage": {
+    "schema_version": "phase7_v2_merged_lineage_v1",
+    "original_repo": "Kxck/Self_Correction_v1",
+    "original_revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+    "adapter_repo": "Kxck/phase4_exploration_warmstart_v2",
+    "adapter_revision": "a8417cf1ed170881907910bba5ebb27c5a82bd6e",
+    "adapter_weight_sha256": "19fb45c77d3991470ed50cc2d50f12c0cc4667802d3fdd02c6c8b48d03517be4",
+    "dtype": "float16"
+  },
+  "v3_adapter_sha256": "6181eb886cee6cbc0f5b11e4d0d521ef3c3fb550172c1dbdf2b17b137198e08a"
+}

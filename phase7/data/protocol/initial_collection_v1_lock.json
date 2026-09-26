@@ -1,0 +1,11 @@
+{
+  "files": {
+    "phase1/src/core/prompts.py": "7ac1b989385e293a4a4f2f343322ab9f070024d25348770aae09ed777adc629b",
+    "phase7/configs/blind_resolve_v1.yaml": "da5d04c99c2888ee0e4fa25167a06cf7ebcfad86ce20b27603f3301b6c755748",
+    "phase7/configs/experiments.yaml": "a35fd5cd9a59a195bef2d0455b8adfe90afd8e2a767f6e1b263cc5d1bf612c0c",
+    "phase7/data/candidates_v1/candidate_problems.jsonl": "ac1ebd0612e20c599905c547554d0c95d07f0932e99c58aef6e1dd478fb11799",
+    "phase7/scripts/collect_initials_4bit.py": "b5c09202630b08c6c4f7f9ace86c758612227cc50e18a3b3335e6d3b087e41cd",
+    "phase7/scripts/collect_initials_vllm.py": "bb134ffa50ec1a3bf653d3fa7c3c89d7d6f72c07cfbb78351c3ca25bc678ae12"
+  },
+  "schema_version": "phase7_initial_collection_lock_v1"
+}

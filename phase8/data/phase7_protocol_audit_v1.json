@@ -1,0 +1,53 @@
+{
+  "schema_version": "phase8_phase7_as_run_protocol_audit_v1",
+  "status": "completed_from_locked_local_artifacts",
+  "initial_count": 334,
+  "initial_correct": 234,
+  "initial_wrong": 100,
+  "protected_count": 160,
+  "protected_wrong": 80,
+  "initial_decoding": {
+    "temperature": 0.7,
+    "top_p": 1.0,
+    "top_k": -1,
+    "seed": 20260924,
+    "max_new_tokens": 768,
+    "max_model_len": 4096
+  },
+  "paired_decoding": {
+    "temperature": 0.0,
+    "top_p": null,
+    "top_k": null,
+    "seed": 20260924,
+    "max_new_tokens": 768,
+    "max_model_len": 4096
+  },
+  "prompt_comparison_across_334": {
+    "exact_same_user_text": 0,
+    "blind_equals_initial_plus_fixed_suffix": 334,
+    "fixed_suffix": "\n\nGive a complete solution from scratch.",
+    "chat_template_calls_both_single_user_and_add_generation_prompt": true,
+    "rendered_token_ids_compared": false
+  },
+  "protected_pair_summaries": {
+    "original_solver": {
+      "summary_sha256": "025c68011df8a9351059bfa96962ebd425bd08bbd22f241b607ee0728ec00697",
+      "temperature": 0.0,
+      "max_tokens": 768,
+      "gpu": "RTX 3090 24 GB (per Phase 7 final report)"
+    },
+    "warmstart_v2": {
+      "summary_sha256": "3beece66cd84adb382dd8c03fc278e55d9694af3516b88cee37e24674747fbae",
+      "temperature": 0.0,
+      "max_tokens": 768,
+      "gpu": "RTX 3090 24 GB (per Phase 7 final report)"
+    },
+    "correction_sft_v3": {
+      "summary_sha256": "28f6d363b820783aea32c8893412173baa33c6edab7b7cdbf8a6f145f88a2314",
+      "temperature": 0.0,
+      "max_tokens": 768,
+      "gpu": "RTX 3090 24 GB (per Phase 7 final report)"
+    }
+  },
+  "interpretation": "Initial-vs-second-pass comparisons mix prompt and decoding changes; within-Phase-7 blind-vs-visible comparison keeps paired decoding fixed."
+}

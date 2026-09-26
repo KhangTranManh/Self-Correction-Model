@@ -1,0 +1,26 @@
+{
+  "files": {
+    "models/phase7_v2_merged_fp16/model-00001-of-00004.safetensors": "a011225345b7b53791357b9c033e737f6d731d5e7a53363bd5fc8f3979b3e317",
+    "models/phase7_v2_merged_fp16/model-00002-of-00004.safetensors": "3882e765bb8741b5e84a1ee7f1c58144988f24517ba55945ec183a12c2c0085d",
+    "models/phase7_v2_merged_fp16/model-00003-of-00004.safetensors": "1c32c10bfa00d290f24f62b5df9a034fe4406f7fe60095da51f3227494de4a7e",
+    "models/phase7_v2_merged_fp16/model-00004-of-00004.safetensors": "2b2cd870072c47a7abd9ad6c322ffd5dfc75c55ffd4f24e8cd2c6257c66c0e74",
+    "models/phase7_v2_merged_fp16/phase7_lineage.json": "a75855b78d902b9bf1994de0ad58377c5041d63192d6f6c349f5d13075ac7c4d",
+    "outputs/phase4_correction_sft_v3/final_adapter/adapter_model.safetensors": "6181eb886cee6cbc0f5b11e4d0d521ef3c3fb550172c1dbdf2b17b137198e08a",
+    "outputs/phase4_exploration_warmstart_v2/final_adapter/adapter_model.safetensors": "19fb45c77d3991470ed50cc2d50f12c0cc4667802d3fdd02c6c8b48d03517be4",
+    "outputs/phase7_initials_v1/initial_rollouts.jsonl": "42a3dd8a3d8a7f86575a9ee4abf6a4f759e366daf25759cebe4c0663e6566340",
+    "outputs/phase7_initials_v1/summary.json": "f255bb3c2dca666ed44f8d14adf705f278bd1ea376f376f9e71c83e20f93dba4",
+    "phase1/src/core/prompts.py": "7ac1b989385e293a4a4f2f343322ab9f070024d25348770aae09ed777adc629b",
+    "phase7/configs/blind_resolve_v1.yaml": "da5d04c99c2888ee0e4fa25167a06cf7ebcfad86ce20b27603f3301b6c755748",
+    "phase7/configs/experiments.yaml": "a35fd5cd9a59a195bef2d0455b8adfe90afd8e2a767f6e1b263cc5d1bf612c0c",
+    "phase7/data/candidates_v1/candidate_problems.jsonl": "ac1ebd0612e20c599905c547554d0c95d07f0932e99c58aef6e1dd478fb11799",
+    "phase7/data/split_v1/development_ids.json": "684be0385685bcf95f3542cbeefbd44a0da12c4de76dc5f1ed18780a20f2e19a",
+    "phase7/data/split_v1/protected_ids.json": "7422a63870ba6e3f1e190b95ba32d19064f853341b7f0857827a08ca770f4d37",
+    "phase7/data/split_v1/split_report.json": "19294afe452a79127e210cd38093aa280d6888b5badc990919326ad5fe9125d1",
+    "phase7/scripts/analyze_paired.py": "69acf0e954eec7206dc735508a58479e9f638cb26ee3e11364f6268077912a7a",
+    "phase7/scripts/collect_initials_4bit.py": "b5c09202630b08c6c4f7f9ace86c758612227cc50e18a3b3335e6d3b087e41cd",
+    "phase7/scripts/collect_paired_vllm.py": "167e7182a4aab90d4aaf9d52c5082370fd515280840a541b0937ff96252f273a",
+    "phase7/scripts/paired_prompts.py": "c165b9198f2f30dc42a18b412c9d70a12a19f7d5bc8e60b12a5ecf2e1cb87811"
+  },
+  "purpose": "same frozen inputs for both arms and all three checkpoints",
+  "schema_version": "phase7_paired_generation_lock_v1"
+}

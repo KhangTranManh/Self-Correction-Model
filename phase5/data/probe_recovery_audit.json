@@ -1,0 +1,75 @@
+{
+  "schema_version": "phase5_probe_data_recovery_audit_v1",
+  "phase5_splits_verified": {
+    "train": 240,
+    "development": 80,
+    "protected_test": 160
+  },
+  "phase6_holdout_rows": 40,
+  "phase7_candidate_rows": 600,
+  "question_hash_overlap": 0,
+  "locked_files": {
+    "review_protocol_lock": {
+      "path": "phase5/data/protocol/review_protocol_v1_lock.json",
+      "status": "lf_only"
+    },
+    "review_original_solver_train": {
+      "path": "outputs/phase5_gpu_vllm/review_v1/original_solver_train_summary.json",
+      "status": "missing"
+    },
+    "review_original_solver_development": {
+      "path": "outputs/phase5_gpu_vllm/review_v1/original_solver_development_summary.json",
+      "status": "missing"
+    },
+    "probe_selection_original_solver": {
+      "path": "outputs/phase5_gpu_vllm/probe_v1/selection/original_solver_probe_selection.json",
+      "status": "missing"
+    },
+    "review_warmstart_v2_train": {
+      "path": "outputs/phase5_gpu_vllm/review_v1/warmstart_v2_train_summary.json",
+      "status": "missing"
+    },
+    "review_warmstart_v2_development": {
+      "path": "outputs/phase5_gpu_vllm/review_v1/warmstart_v2_development_summary.json",
+      "status": "missing"
+    },
+    "probe_selection_warmstart_v2": {
+      "path": "outputs/phase5_gpu_vllm/probe_v1/selection/warmstart_v2_probe_selection.json",
+      "status": "missing"
+    },
+    "review_correction_sft_v3_train": {
+      "path": "outputs/phase5_gpu_vllm/review_v1/correction_sft_v3_train_summary.json",
+      "status": "missing"
+    },
+    "review_correction_sft_v3_development": {
+      "path": "outputs/phase5_gpu_vllm/review_v1/correction_sft_v3_development_summary.json",
+      "status": "missing"
+    },
+    "probe_selection_correction_sft_v3": {
+      "path": "outputs/phase5_gpu_vllm/probe_v1/selection/correction_sft_v3_probe_selection.json",
+      "status": "missing"
+    },
+    "probe_controls": {
+      "path": "outputs/phase5_gpu_vllm/probe_v1/probe_controls.json",
+      "status": "missing"
+    }
+  },
+  "probe_files": {
+    "original_solver": {
+      "model": false,
+      "train_activations": false,
+      "development_activations": false
+    },
+    "warmstart_v2": {
+      "model": false,
+      "train_activations": false,
+      "development_activations": false
+    },
+    "correction_sft_v3": {
+      "model": false,
+      "train_activations": false,
+      "development_activations": false
+    }
+  },
+  "recovery_status": "exact_probe_missing"
+}

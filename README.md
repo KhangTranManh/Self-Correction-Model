@@ -29,7 +29,9 @@ fixes with no observed harms, but this is assisted repair because correctness
 was disclosed. Frozen pre-hint probes generalized: protected balanced accuracy
 was 71.25% for the original solver and V2, and 74.38% for V3. Thus correctness
 information exists internally, but the generative neutral-review policy does
-not use it safely. Raw evidence is under `outputs/phase5_gpu_vllm/`.
+not use it safely. The original `outputs/phase5_gpu_vllm/` evidence directory
+is absent from the current local workspace; see the
+[probe recovery audit](phase5/data/probe_recovery_audit.json).
 
 This distinction is important: the current probe is an external diagnostic
 harness that reads frozen hidden states. It demonstrates that a correctness
@@ -128,13 +130,29 @@ See the [Phase 3 final report](phase3/docs/FINAL_REPORT.md),
 | 4 | Can on-policy/selective-correction training improve repair? | Warm-start, GRPO, expanded SFT, DPO, blind preferences, and repeated review did not establish reliable autonomous gain. | Closed; V2/V3 are archived pilots. |
 | 5 | Does a correctness signal exist before feedback? | Frozen probes generalize on protected data, but neutral generation does not use the signal safely; status gives limited assisted repair. | Closed diagnostic; probes are external readouts only. |
 | 6 | Can readout, calibration, or a harness bridge signal to repair? | Fresh end-to-end routing confirms detection exists but repair remains only 5--10% even with oracle-known-wrong status. | Closed; no router, threshold, calibration, harness, or checkpoint promoted. |
+| 7 | Is weak repair caused partly by seeing the earlier answer? | On 80 initially wrong protected sources per checkpoint, blind re-solving fixed 25/28/32 versus 4/5/8 when the prior answer was visible. | Completed diagnostic; answer visibility has a strong paired effect, but no autonomous router or model was promoted. |
 
-Across all six phases, the evidence supports one narrow claim: correctness
+Across the completed phases, the evidence supports one narrow claim: correctness
 information can be verifier-labeled and, in later checkpoints, decoded from
 hidden states. It does **not** support the stronger claim that the standalone
 model reliably recognizes, preserves, and repairs its own errors. Any next step
 must treat detection and repair as separate capabilities, start a new phase,
 and use a newly frozen evaluation set.
+
+Phase 7 tested whether poor repair reflects answer anchoring. It compared a
+fresh solution that never sees the prior answer with a paired fresh solution
+that does see it, on new source-disjoint problems. The run collected 334
+natural initial answers, froze a balanced development/protected split, and
+completed the paired protected evaluation. Blind re-solving fixed substantially
+more initially wrong answers under all three checkpoints, but the frozen probe
+needed for non-oracle routing was unavailable. See the
+[Phase 7 final report](phase7/docs/FINAL_REPORT.md).
+
+Phase 8 has frozen a new 400-source protected pool and audited the exact
+Phase 7 initial and paired prompts/decoding. It will test resampling,
+length-matched distractors, and a probe-routed blind pipeline. First-pass
+generation is in progress on a new RTX 3090 host; no Phase 8 effectiveness
+result is available. See the [Phase 8 preregistration](phase8/docs/PREREGISTRATION.md).
 
 Canonical closures: [Phase 3](phase3/docs/FINAL_REPORT.md),
 [Phase 4](phase4/docs/FINAL_REPORT.md), [Phase 5](phase5/docs/FINAL_REPORT.md),
@@ -193,6 +211,22 @@ an external detector -> router -> repair -> verifier research harness, not an
 autonomous self-corrector or deployable system. See
 [the Phase 6 final report](phase6/docs/FINAL_REPORT.md).
 
+### Phase 7 - blind re-solving and answer anchoring (completed diagnostic)
+
+The next diagnostic compares independent re-solving from the original problem
+with re-solving that can see the earlier answer. Both arms use the same source
+and checkpoint, and deterministic verification separates wrong-to-correct
+fixes from correct-to-wrong harms. A frozen-probe route, if its artifact is
+recovered, and an oracle-known-wrong ceiling are reported separately. See
+[the Phase 7 final report](phase7/docs/FINAL_REPORT.md).
+
+### Phase 8 - reproducibility, distractor, and non-oracle routing (in progress)
+
+The [Phase 8 preregistration](phase8/docs/PREREGISTRATION.md) fixes the
+controls and analysis before new protected outcomes. Its
+[source pool](phase8/data/fresh_source_pool_v1/candidate_report.json) contains
+400 verifier-checked questions disjoint from Phase 1-7 source inventories.
+
 ## Non-negotiable data rules
 
 1. Correctness comes from a deterministic verifier, not an LLM judge.
@@ -223,6 +257,7 @@ AGI/
 ├── phase4/                     # Closed selective-correction pilots and evidence
 ├── phase5/                     # Complete guided-repair and pre-hint probe diagnostic
 ├── phase6/                     # Closed signal-readout and harness diagnostic
+├── phase7/                     # Completed blind re-solving diagnostic
 └── outputs/                    # Local adapters and runtime artifacts (gitignored)
 ```
 

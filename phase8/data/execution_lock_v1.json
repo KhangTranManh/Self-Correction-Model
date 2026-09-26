@@ -1,0 +1,33 @@
+{
+  "schema_version": "phase8_execution_lock_v1",
+  "status": "frozen_before_three_arm_probe_and_protected_analysis",
+  "timing_note": "First-pass collection had started; no first-answer contents, probe scores, or protected labels were inspected before this lock.",
+  "files": {
+    "phase1/src/core/prompts.py": "7ac1b989385e293a4a4f2f343322ab9f070024d25348770aae09ed777adc629b",
+    "phase1/src/data/verifiers/math.py": "14b282b8bf703dfcd3e68e1587e1299a3672c555de160e18dc992981d9638960",
+    "phase5/configs/review_protocol_v1.yaml": "cc5fa1fd34f3d1140c8854252789d12b3fdd534625f6bf43c9abfd93a4f7e5a2",
+    "phase5/data/splits/v1/train.jsonl": "4663931cc1c93c8b92df3feb2ea42a4b2cb3c77e9c25ceacb5414c503358c295",
+    "phase5/data/splits/v1/development.jsonl": "26aad823d764c8d787fb1933841c0246da88a302cfb41bb90c7b498923aaecd4",
+    "phase5/scripts/extract_prehint_activations.py": "bfb4b183a9e5c38e0f6d0e4fec6f5fc97918d8b35a3552aba2d1fb598f205bff",
+    "phase7/scripts/paired_prompts.py": "c165b9198f2f30dc42a18b412c9d70a12a19f7d5bc8e60b12a5ecf2e1cb87811",
+    "phase7/scripts/materialize_v2_local.py": "a7276f3774f77f435c219890130b502856021d242707d1c47a959fd4c09f93a9",
+    "phase7/data/split_v1/protected_ids.json": "7422a63870ba6e3f1e190b95ba32d19064f853341b7f0857827a08ca770f4d37",
+    "outputs/phase7_initials_v1/initial_rollouts.jsonl": "42a3dd8a3d8a7f86575a9ee4abf6a4f759e366daf25759cebe4c0663e6566340",
+    "phase8/data/fresh_source_pool_v1/candidate_problems.jsonl": "a4d2829140292cce1b86ccf3c758e7b30641ee829452698a9ca139462eae7e24",
+    "phase8/data/model_lineage_v1.json": "c6d65f077ade7c6a103b785f1cec2a405b69435ec8b3cd15b52988e9817c5c1d",
+    "phase8/docs/PREREGISTRATION.md": "1645b8a2c81816257813ae6e8db7509b19d28d70a25753d015372c0fc7eb5416",
+    "phase8/scripts/collect_first_pass_vllm.py": "785f003c88c1e804ea45b915de9cff90611cdb91dca01560afcf009b1841f0d5",
+    "phase8/scripts/reproduce_phase7_initials.py": "86c804d8bfdcd93b99fcc22fafa5c7103e44668a095a725d9c0a6518d3ba030d",
+    "phase8/scripts/freeze_distractors.py": "287fd23c9f7a4b93cf498acc6010e628de0958b635a0ed5485cf3dd56dabea01",
+    "phase8/scripts/collect_three_arms_vllm.py": "35bf2701b6e5c3533b064054d8dbc8b8c102119fa48b6a89d06283da421125be",
+    "phase8/scripts/fit_locked_probe.py": "1dc22489825391097df7d62a74752453529b175772e0572a26e2f42feb8242b7",
+    "phase8/scripts/score_probe.py": "e6d3eba4864dedf01c0977115fd408ca2e334cadcbb2d494225a6a26bb40677b",
+    "phase8/scripts/analyze_protected.py": "be0273c9d891c2a6f6df2e73e699b8cd80496efe53dda643ff811f52c7399f97",
+    "phase8/scripts/mark_phase5_lineage.py": "26eb0273c23b9051d7978eebac7686f9087d7574fd11d358136ad6f491df8b00",
+    "phase8/scripts/verify_adapters.py": "ea1c61d53aff3f8b745bd055e29bb752aaeb22725586cada5a2877bbd4f46f11",
+    "phase8/scripts/verify_execution_lock.py": "c9b35b749f4dc604238fa952ef36e23267133279ce5f162d3a652bfba42443d3",
+    "phase8/scripts/ops/run_remote.sh": "2c839b32139af4161d95959f5f2bb9aae03f13f7931e9e2bdb3702463ca97d87"
+  },
+  "amendment": "Adapter preflight path correction before any Phase 8 three-arm/probe generation or protected outcome inspection; see RUN_STATUS.md",
+  "export_amendment": "After all 400 first-pass audit completions and before any answer/label inspection, fix in-memory audit wrapper during answers.jsonl export; no generation, prompt, seed, or analysis change"
+}
