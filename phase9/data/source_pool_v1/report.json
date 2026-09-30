@@ -1,0 +1,36 @@
+{
+  "schema_version": "phase9_source_pool_v1",
+  "status": "frozen_before_any_phase9_generation",
+  "raw_dataset_sha256": "9556bf9d7dba73d7fcaaeff6ca814c71684db1d8e8d485d83ec62f1c428b888d",
+  "phase8_reproduction": {
+    "phase5_listed_inventory_files": 286,
+    "available_inventory_files": 252,
+    "eligible_reproduced": 1374,
+    "eligible_recorded": 1374,
+    "selection_matches_frozen_phase8": true
+  },
+  "exclusion_files_scanned": 291,
+  "over_exclusion_dirs": [
+    "phase1",
+    "phase2",
+    "phase3",
+    "phase4",
+    "phase5/data",
+    "phase6/data",
+    "phase7/data"
+  ],
+  "eligible_after_exclusions": 974,
+  "rejected_by_first_reason": {
+    "prior_source": 6200,
+    "question_too_long": 7,
+    "step_count": 291,
+    "unverifiable_reference": 1
+  },
+  "seed": 20260930,
+  "selection_rule": "lexicographic SHA256(phase9_source_pool_v1|seed|raw_index); first 40 development, next 400 protected",
+  "protected_labels_opened": false,
+  "development_rows": 40,
+  "development_sha256": "6a3aacb391e462d61499a8b52f9d96d008b3a4a60a35ae9f62a05f061ac17983",
+  "protected_rows": 400,
+  "protected_sha256": "7409de7712a6f426e35e59ddc239f4a03b1fa520bf6425051575513b6d464ffe"
+}

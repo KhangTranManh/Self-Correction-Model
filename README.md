@@ -5,7 +5,30 @@ its own errors under objective supervision. Math answers are checked
 symbolically and code answers are executed against tests; an LLM is never used
 as the correctness oracle.
 
-## Current status (2026-09-24)
+## Current status (2026-10-01)
+
+Phase 9 closed on 2026-10-01. On 400 fresh protected GSM8K sources, a
+plurality vote over five independent attempts raised accuracy from 75.0% to
+83.25–85.5% for all three checkpoints (Holm p < 0.001). Letting the model
+judge two conflicting solutions itself did not help (72.25–74.0%) and was
+significantly worse than voting. Disagreement between two independent
+attempts caught 82–85% of wrong first answers, better than the Phase 5 probe,
+but when exactly one of two solutions was right the model chose it only
+44–52% of the time. The model can tell *that* it may be wrong, not *which*
+answer is right. See the [Phase 9 final report](phase9/docs/FINAL_REPORT.md)
+and [case report](phase9/docs/CASE_REPORT.md).
+
+Phase 8 completed on 2026-09-30. On 400 fresh protected GSM8K sources, the
+original solver answered 70.75% correctly on its first attempt. Routing
+probe-flagged answers to a blind re-solve raised accuracy to 74.5% (original),
+75.0% (V2), and 77.5% (V3); all three gains over KEEP-all pass the
+preregistered Holm-corrected gate. However, blind re-solving every answer is
+at least as accurate, and a plain greedy second attempt alone reaches 76.75%,
+so the gain comes mainly from an answer-hidden second attempt, not from model
+self-correction. Showing any candidate answer sharply reduces repair; an
+irrelevant wrong answer explains most of that drop, and the extra penalty for
+the model's own answer is not significant after correction. No checkpoint is
+promoted. See the [Phase 8 final report](phase8/docs/FINAL_REPORT.md).
 
 Phase 4 closed on 2026-09-15 with no reliable autonomous correction gain.
 Warm-start V2's historical 74% development result did not reproduce (73%).
@@ -29,8 +52,9 @@ fixes with no observed harms, but this is assisted repair because correctness
 was disclosed. Frozen pre-hint probes generalized: protected balanced accuracy
 was 71.25% for the original solver and V2, and 74.38% for V3. Thus correctness
 information exists internally, but the generative neutral-review policy does
-not use it safely. The original `outputs/phase5_gpu_vllm/` evidence directory
-is absent from the current local workspace; see the
+not use it safely. The exact frozen probe models were later recovered under
+`outputs/phase5_gpu_vllm/probe_v1/selection/` with matching SHA-256 and were
+used by Phase 8; see also the
 [probe recovery audit](phase5/data/probe_recovery_audit.json).
 
 This distinction is important: the current probe is an external diagnostic
@@ -131,13 +155,16 @@ See the [Phase 3 final report](phase3/docs/FINAL_REPORT.md),
 | 5 | Does a correctness signal exist before feedback? | Frozen probes generalize on protected data, but neutral generation does not use the signal safely; status gives limited assisted repair. | Closed diagnostic; probes are external readouts only. |
 | 6 | Can readout, calibration, or a harness bridge signal to repair? | Fresh end-to-end routing confirms detection exists but repair remains only 5--10% even with oracle-known-wrong status. | Closed; no router, threshold, calibration, harness, or checkpoint promoted. |
 | 7 | Is weak repair caused partly by seeing the earlier answer? | On 80 initially wrong protected sources per checkpoint, blind re-solving fixed 25/28/32 versus 4/5/8 when the prior answer was visible. | Completed diagnostic; answer visibility has a strong paired effect, but no autonomous router or model was promoted. |
+| 8 | Is the Phase 7 effect resampling, generic distraction, or self-anchoring, and does probe routing help? | A second attempt alone gains ~6 points; any visible candidate hurts, mostly as generic distraction; probe → blind re-solve beats KEEP-all (+3.75 to +6.75 points) but not BLIND-all. | Completed; the external harness gain is supported, no checkpoint or autonomous self-corrector promoted. |
+| 9 | Can the model check itself with its own independent attempts? | Voting over five attempts gains 8–10.5 points; disagreement is a strong error signal; the model's own judgment between two solutions is at chance. | Closed; voting is the best supported method, self-check failed, nothing promoted. |
 
 Across the completed phases, the evidence supports one narrow claim: correctness
 information can be verifier-labeled and, in later checkpoints, decoded from
-hidden states. It does **not** support the stronger claim that the standalone
-model reliably recognizes, preserves, and repairs its own errors. Any next step
-must treat detection and repair as separate capabilities, start a new phase,
-and use a newly frozen evaluation set.
+hidden states, and an external harness that re-solves flagged answers without
+showing the old answer improves accuracy. It does **not** support the stronger
+claim that the standalone model reliably recognizes, preserves, and repairs its
+own errors: repair works best when the model never sees its earlier answer.
+Any next step must start a new phase with a newly frozen evaluation set.
 
 Phase 7 tested whether poor repair reflects answer anchoring. It compared a
 fresh solution that never sees the prior answer with a paired fresh solution
@@ -148,15 +175,14 @@ more initially wrong answers under all three checkpoints, but the frozen probe
 needed for non-oracle routing was unavailable. See the
 [Phase 7 final report](phase7/docs/FINAL_REPORT.md).
 
-Phase 8 has frozen a new 400-source protected pool and audited the exact
-Phase 7 initial and paired prompts/decoding. It will test resampling,
-length-matched distractors, and a probe-routed blind pipeline. First-pass
-generation is in progress on a new RTX 3090 host; no Phase 8 effectiveness
-result is available. See the [Phase 8 preregistration](phase8/docs/PREREGISTRATION.md).
+Phase 8 then separated resampling, generic distraction, and self-anchoring,
+and tested a non-oracle probe → blind re-solve pipeline on 400 fresh protected
+sources. See the [Phase 8 final report](phase8/docs/FINAL_REPORT.md).
 
 Canonical closures: [Phase 3](phase3/docs/FINAL_REPORT.md),
 [Phase 4](phase4/docs/FINAL_REPORT.md), [Phase 5](phase5/docs/FINAL_REPORT.md),
-and [Phase 6](phase6/docs/FINAL_REPORT.md).
+[Phase 6](phase6/docs/FINAL_REPORT.md), [Phase 7](phase7/docs/FINAL_REPORT.md),
+[Phase 8](phase8/docs/FINAL_REPORT.md), and [Phase 9](phase9/docs/FINAL_REPORT.md).
 
 ## Research phases
 
@@ -213,19 +239,32 @@ autonomous self-corrector or deployable system. See
 
 ### Phase 7 - blind re-solving and answer anchoring (completed diagnostic)
 
-The next diagnostic compares independent re-solving from the original problem
-with re-solving that can see the earlier answer. Both arms use the same source
-and checkpoint, and deterministic verification separates wrong-to-correct
-fixes from correct-to-wrong harms. A frozen-probe route, if its artifact is
-recovered, and an oracle-known-wrong ceiling are reported separately. See
+Phase 7 compared independent re-solving from the original problem with
+re-solving that can see the earlier answer. Both arms used the same source and
+checkpoint, and deterministic verification separated wrong-to-correct fixes
+from correct-to-wrong harms. Blind re-solving fixed far more wrong answers for
+every checkpoint; the probe-routed analysis was unavailable because the probe
+artifacts were then missing. See
 [the Phase 7 final report](phase7/docs/FINAL_REPORT.md).
 
-### Phase 8 - reproducibility, distractor, and non-oracle routing (in progress)
+### Phase 8 - resampling, distractor, and non-oracle routing (completed)
 
-The [Phase 8 preregistration](phase8/docs/PREREGISTRATION.md) fixes the
-controls and analysis before new protected outcomes. Its
-[source pool](phase8/data/fresh_source_pool_v1/candidate_report.json) contains
-400 verifier-checked questions disjoint from Phase 1-7 source inventories.
+After the original RTX 3090 run was lost, Phase 8 was rerun in full on one
+V100 under a logged amendment (batched generation, regenerated distractor
+donors, exact recovered Phase 5 probes). A second attempt alone gains about
+six points; visible candidates hurt mostly as generic distraction; and probe →
+blind re-solve beats KEEP-all for all three checkpoints but not BLIND-all. See
+[the Phase 8 final report](phase8/docs/FINAL_REPORT.md) and
+[run record](phase8/RUN_STATUS.md).
+
+### Phase 9 - independent attempts, voting, and self-check (closed)
+
+Phase 9 compared keeping the first answer, voting over three or five
+independent attempts, agreement-gated voting, and a model self-check that
+sees two conflicting solutions. Voting over five attempts is the only large,
+significant gain; the self-check writes plausible error explanations but picks
+the right solution at chance. See
+[the Phase 9 final report](phase9/docs/FINAL_REPORT.md).
 
 ## Non-negotiable data rules
 
@@ -258,6 +297,8 @@ AGI/
 ├── phase5/                     # Complete guided-repair and pre-hint probe diagnostic
 ├── phase6/                     # Closed signal-readout and harness diagnostic
 ├── phase7/                     # Completed blind re-solving diagnostic
+├── phase8/                     # Completed resampling/distractor/probe-routing study
+├── phase9/                     # Closed voting and self-check study
 └── outputs/                    # Local adapters and runtime artifacts (gitignored)
 ```
 

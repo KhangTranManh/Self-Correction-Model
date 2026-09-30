@@ -1,0 +1,30 @@
+{
+  "schema_version": "phase9_execution_lock_v1",
+  "status": "frozen_before_any_phase9_generation",
+  "hashing": "sha256 of CRLF->LF normalized bytes for text files",
+  "files": {
+    "phase1/src/core/prompts.py": "7ac1b989385e293a4a4f2f343322ab9f070024d25348770aae09ed777adc629b",
+    "phase1/src/data/verifiers/math.py": "41fd5fb9a0bc35eba231be14fd8c3f3232564cbdf1d97763e5cb5483eee82189",
+    "phase5/configs/review_protocol_v1.yaml": "5eafcb9ce521e202f513d3d9be2a9cbdaef109bc58ee540f5a9ad465b705ed74",
+    "outputs/phase5_gpu_vllm/probe_v1/selection/original_solver_probe.joblib": "c002614b566f57de0b6157cd55fe9bf913155b001d9682f3629492c699dab77c",
+    "outputs/phase5_gpu_vllm/probe_v1/selection/original_solver_probe_selection.json": "4ad963875b85cddc815eaa5ba4f0689cc78ab4e15a46964bdc690520622b5234",
+    "outputs/phase5_gpu_vllm/probe_v1/selection/warmstart_v2_probe.joblib": "a8d1249efeae7856aac10bd9445d6dbac5cb3d7937b1daade4585070294975de",
+    "outputs/phase5_gpu_vllm/probe_v1/selection/warmstart_v2_probe_selection.json": "253410ae1bcd29d9b21f4ef853b60eebb358fbc100d657ea52b1cb9b16756065",
+    "outputs/phase5_gpu_vllm/probe_v1/selection/correction_sft_v3_probe.joblib": "796a2e61b271188e6f5d3202fe9b62bbc04fde4a01fa6b59633ac926a04aa8e9",
+    "outputs/phase5_gpu_vllm/probe_v1/selection/correction_sft_v3_probe_selection.json": "e46ec6037a7545f884b98842eb5e96d2a09f11078c4b61e6df251f3c02665812",
+    "phase7/scripts/paired_prompts.py": "c165b9198f2f30dc42a18b412c9d70a12a19f7d5bc8e60b12a5ecf2e1cb87811",
+    "phase8/data/model_lineage_v1.json": "c6d65f077ade7c6a103b785f1cec2a405b69435ec8b3cd15b52988e9817c5c1d",
+    "phase8/scripts/batched.py": "e97e96fdecd380fca59662f29e158abf08b21408a4cd8633dac33c4d4f3bb242",
+    "phase9/data/source_pool_v1/development.jsonl": "6a3aacb391e462d61499a8b52f9d96d008b3a4a60a35ae9f62a05f061ac17983",
+    "phase9/data/source_pool_v1/protected.jsonl": "7409de7712a6f426e35e59ddc239f4a03b1fa520bf6425051575513b6d464ffe",
+    "phase9/data/source_pool_v1/report.json": "d5784a4a4e92b1540b4809364bbbbd9152821868f97bc18492fa95354ecb673d",
+    "phase9/docs/PREREGISTRATION.md": "67f6379b7e8a1d08d5fb9db29343f79439b535d6658b791d5881f8f5bd73c0a9",
+    "phase9/scripts/answers.py": "1e7d062c79ad8a9c2be7f34ef90294129801cd84ca4a180f6652dae086d6cc0a",
+    "phase9/scripts/collect_first.py": "d4246a9aaf629780e1421b2cb420bf19d63af72a553b2b29944bcddca5f76661",
+    "phase9/scripts/collect_checkpoint.py": "ee3abeac3276679f40df73f7c67612c2cb9c760faff0b9ea81cde7ac28bc2beb",
+    "phase9/scripts/score_probe.py": "83f87acc39e8b4c05f48d47cee8be68e8988685ed698a878bf2b7db9bec4aa6c",
+    "phase9/scripts/analyze.py": "82ce08800df75bbb2e0a098de2495bad5daff375deba24aafad4e2a6fb7133af",
+    "phase9/scripts/verify_lock.py": "6bfb62de0bd2c7cefc51ffdfbf624c58a8df48fd9703bcd1aa47a73b0241c927",
+    "phase9/scripts/ops/run_remote.sh": "21a6a6003df82d3ae2833dad0edd4059cf7ef29b5c18230e6e1e455a9b25dfac"
+  }
+}
