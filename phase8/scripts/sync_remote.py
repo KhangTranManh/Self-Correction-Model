@@ -1,9 +1,13 @@
-"""Mirror Phase 8 remote audits to local storage without embedding SSH secrets."""
+"""Mirror Phase 8 remote audits and results to local storage without embedding SSH secrets.
+
+The SSH host, port, user, and password are read from a local JSON file passed
+with --config (kept outside the repository), never from this source file.
+"""
 
 from __future__ import annotations
 
 import argparse
-import os
+import json
 from pathlib import Path
 import time
 
@@ -12,31 +16,25 @@ import paramiko
 
 ROOT = Path(__file__).resolve().parents[2]
 REMOTE = "/root/AGI_phase8"
-PATHS = ["logs/phase8_initial.log", "logs/phase8_pipeline.log",
-         "phase8/data/distractors_v1/assignments.jsonl",
-         "phase8/data/distractors_v1/report.json",
-         "outputs/phase8_phase7_replay_v1/audit.jsonl",
-         "outputs/phase8_phase7_replay_v1/answers.jsonl",
-         "outputs/phase8_phase7_replay_v1/summary.json",
-         "outputs/phase8_analysis_v1/verdicts.jsonl",
-         "outputs/phase8_analysis_v1/report.json"]
+LOCAL = ROOT / "outputs/phase8_remote_v100"
+PATHS = ["logs/pipeline.log", "logs/materialize_v2.log", "logs/phase8_analysis_stdout.json",
+         "logs/PIPELINE_DONE", "logs/PIPELINE_FAILED",
+         "phase8/data/execution_lock_v2.json",
+         "phase8/data/distractors_v2/assignments.jsonl",
+         "phase8/data/distractors_v2/report.json",
+         "outputs/phase7_initials_regen_v2/initial_rollouts.audit.jsonl",
+         "outputs/phase7_initials_regen_v2/initial_rollouts.jsonl",
+         "outputs/phase7_initials_regen_v2/summary.json",
+         "outputs/phase8_analysis_v2/verdicts.jsonl",
+         "outputs/phase8_analysis_v2/report.json"]
 for stage in ("initial", "sample_repeat", "greedy_same_prompt"):
-    PATHS.extend(f"outputs/phase8_first_pass_v1/{stage}/{name}"
+    PATHS.extend(f"outputs/phase8_first_pass_v2/{stage}/{name}"
                  for name in ("audit.jsonl", "answers.jsonl", "summary.json"))
 for checkpoint in ("original_solver", "warmstart_v2", "correction_sft_v3"):
-    PATHS.extend(f"outputs/phase8_three_arms_v1/{checkpoint}/{name}"
+    PATHS.extend(f"outputs/phase8_three_arms_v2/{checkpoint}/{name}"
                  for name in ("audit.jsonl", "answers.jsonl", "summary.json"))
-    PATHS.extend(f"outputs/phase8_probe_scores_v1/{checkpoint}/{name}"
+    PATHS.extend(f"outputs/phase8_probe_scores_v2/{checkpoint}/{name}"
                  for name in ("scores.audit.jsonl", "scores.jsonl", "summary.json"))
-    PATHS.extend((
-        f"outputs/phase8_probe_v1/selection/{checkpoint}_probe.joblib",
-        f"outputs/phase8_probe_v1/selection/{checkpoint}_probe_selection.json",
-    ))
-    for split in ("train", "development"):
-        PATHS.extend((
-            f"outputs/phase8_probe_v1/activations/{checkpoint}_{split}.npz",
-            f"outputs/phase8_probe_v1/activations/{checkpoint}_{split}_summary.json",
-        ))
 
 
 def sync_once(sftp: paramiko.SFTPClient) -> int:
@@ -47,7 +45,7 @@ def sync_once(sftp: paramiko.SFTPClient) -> int:
             info = sftp.stat(remote)
         except FileNotFoundError:
             continue
-        local = ROOT / "outputs/phase8_remote_3090" / relative
+        local = LOCAL / relative
         local.parent.mkdir(parents=True, exist_ok=True)
         if local.exists() and local.stat().st_size == info.st_size:
             continue
@@ -78,20 +76,21 @@ def sync_once(sftp: paramiko.SFTPClient) -> int:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--config", type=Path, required=True,
+                        help="JSON with host, port, user, password (outside the repo)")
     parser.add_argument("--once", action="store_true")
     parser.add_argument("--interval", type=int, default=60)
     args = parser.parse_args()
-    password = os.environ.get("PHASE8_SSH_PASSWORD")
-    if not password:
-        raise RuntimeError("Set PHASE8_SSH_PASSWORD in the process environment")
+    config = json.loads(args.config.read_text(encoding="utf-8"))
+    final_pass = False
     while True:
         client = paramiko.SSHClient()
         client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         try:
-            client.connect("209.121.195.118", port=12017, username="root",
-                           password=password, timeout=20)
+            client.connect(config["host"], port=int(config["port"]), username=config["user"],
+                           password=config["password"], timeout=20)
             sftp = client.open_sftp()
-            print(f"copied={sync_once(sftp)}", flush=True)
+            print(f"{time.strftime('%H:%M:%S')} copied={sync_once(sftp)}", flush=True)
             sftp.close()
         except Exception as exc:
             if args.once:
@@ -99,8 +98,11 @@ def main() -> None:
             print(f"sync_retry={type(exc).__name__}: {exc}", flush=True)
         finally:
             client.close()
-        if args.once or (ROOT / "outputs/phase8_remote_3090/outputs/phase8_analysis_v1/report.json").exists():
+        # The done marker can arrive before the last outputs; sync once more after it.
+        done = (LOCAL / "logs/PIPELINE_DONE").exists() or (LOCAL / "logs/PIPELINE_FAILED").exists()
+        if args.once or final_pass:
             break
+        final_pass = done
         time.sleep(args.interval)
 
 

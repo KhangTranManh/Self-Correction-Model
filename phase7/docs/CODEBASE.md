@@ -1,18 +1,20 @@
 # Phase 7 ownership and artifact rules
 
-| Path | Planned role |
+| Path | Role |
 |---|---|
 | `README.md` | Phase question, status, and result boundary |
-| `configs/experiments.yaml` | Mutable Phase 7 status registry until a protocol lock is created |
-| `configs/blind_resolve_v1.yaml` | Draft experimental settings; freeze a versioned lock before GPU re-solving |
+| `configs/experiments.yaml` | Status registry; hash-bound pre-smoke snapshot left unchanged to preserve the protocol locks |
+| `configs/blind_resolve_v1.yaml` | Frozen experimental settings (hashed in `data/protocol/`) |
 | `docs/PREREGISTRATION.md` | Hypotheses, metrics, decisions, and data safeguards |
-| `docs/EXECUTION_PLAN.md` | CPU-first and GPU-later execution order |
-| `data/` | Future source inventory, selected manifests, split locks, and receipts |
-| `scripts/` | CPU candidate builder, FP16 vLLM smoke and resumable initial collector; 4-bit fallback scripts; paired runner and analysis remain future work |
-| `outputs/phase7_*` | Future raw outputs, activations, audit logs and reports; gitignored |
+| `docs/EXECUTION_PLAN.md` | Executed CPU-first and GPU-later order |
+| `docs/FINAL_REPORT.md` | Protected result and limitations |
+| `data/` | Source inventory, balanced split, and protocol locks |
+| `scripts/` | CPU candidate builder, FP16 vLLM smoke, resumable initial and paired collectors, paired analysis, and 4-bit fallback scripts |
+| `outputs/phase7_*` | Raw outputs and reports; gitignored, and no longer present on this workstation |
 
-Current Phase 7 files contain a plan and CPU candidate manifest only. Keep old Phase 5/6 manifests and
-results immutable. No Phase 7 output may silently enter training data. A
-source audit, exact protocol lock and checkpoint hash verification must precede
-protected model generation. Store raw GPU evidence both on the GPU and on this
-workstation, with matching hashes.
+Phase 7 is a completed diagnostic. Keep old Phase 5/6 manifests and results
+immutable. No Phase 7 output may enter training data. The raw
+`outputs/phase7_*` evidence was later lost from this workstation; the final
+report, protocol locks, and split files remain the record. Phase 8
+regenerated a separate donor pool with the frozen initial protocol for
+distractor text only.

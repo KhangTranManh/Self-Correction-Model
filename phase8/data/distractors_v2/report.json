@@ -1,0 +1,13 @@
+{
+  "schema_version": "phase8_distractor_map_v2",
+  "initial_answers_sha256": "859f37392c4bcd6eeeb747f5b4f3af4b4256da6236b405369e0ad18cbaca9f81",
+  "historical_donors_sha256": "30c357949eda8f9cd101fb41043c23a20981aa135d47404263b69b3697b16094",
+  "tokenizer_model": "Kxck/Self_Correction_v1",
+  "tokenizer_revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+  "target_rows": 400,
+  "historical_wrong_donors": 100,
+  "matched": 395,
+  "unmatched": 5,
+  "assignments_sha256": "f096fabe68625713d86bd4e84683da472c8cf41c85c4b7cb54f052f94f0ddc18",
+  "protected_correctness_labels_read": false
+}

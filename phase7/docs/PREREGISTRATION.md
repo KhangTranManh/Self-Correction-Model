@@ -1,4 +1,4 @@
-# Phase 7 preregistration draft - blind re-solving
+# Phase 7 preregistration - blind re-solving
 
 **Status: preregistered protocol executed.** The source pool and
 initial-collection inputs were frozen at

@@ -1,10 +1,15 @@
 # Verified Data Pipeline
 
-## Planned Phase 7 boundary
+## Phase 7 and Phase 8 boundaries
 
-Phase 7 has 600 CPU-selected, verifier-checked fresh candidates but no model
-generations. Its proposed blind re-solve
-experiment must audit fresh problems against every recorded Phase 1-6 source,
+Phase 7 and Phase 8 are complete, and both protected sets are opened. Phase 8
+drew 400 fresh GSM8K sources disjoint from every Phase 1-7 inventory and
+regenerated a Phase 7 donor pool (`outputs/phase7_initials_regen_v2/`) for
+distractor text only. No Phase 7 or Phase 8 source, answer, probe score, or
+distractor may enter training or selection. See `phase7/docs/FINAL_REPORT.md`
+and `phase8/docs/FINAL_REPORT.md`.
+
+The Phase 7 blind re-solve experiment audited fresh problems against every recorded Phase 1-6 source,
 including the entire Phase 5 selected candidate manifest and Phase 6
 confirmation source pool. Natural first answers come from the original solver;
 the paired second-pass blind prompt contains only the original problem and

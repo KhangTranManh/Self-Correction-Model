@@ -90,6 +90,64 @@
   on another host until remote availability and append-only audit state are
   reconciled. The prior completion-time estimate is no longer valid.
 
+2026-09-30, amendment v2 and full restart on a Tesla V100 32 GB:
+
+- The RTX 3090 host never returned. On this workstation, the documented
+  Phase 8 mirror (`outputs/phase8_remote_3090/`), all Phase 7 outputs
+  (`outputs/phase7_initials_v1/`, `outputs/phase7_paired_v1/`) and the local
+  Phase 4 adapter folders were absent, with no other local copy found.
+  Every v1 Phase 8 generation is therefore unrecoverable. No v1 answer
+  content, probe score, or protected label was ever inspected beyond the
+  single inadvertent row already recorded above.
+- The exact Phase 5 probe artifacts **are** present at
+  `outputs/phase5_gpu_vllm/probe_v1/selection/`, and all three `.joblib`
+  files match the SHA-256 recorded in their selection reports (layer 14;
+  C = 0.01 / 0.01 / 1.0; scikit-learn 1.6.1). Phase 8 v2 uses these frozen
+  probes directly; no probe is rebuilt or refit.
+- Amendment v2, made before any v2 generation or outcome inspection:
+  1. restart all Phase 8 generation on one Tesla V100-SXM2-32GB
+     (vLLM 0.7.0, FP16, xFormers attention backend); every checkpoint,
+     arm, and stage runs on this single host;
+  2. submit requests in ordered batches of 64 (`phase8/scripts/batched.py`)
+     for budget reasons; prompts, per-request seeds, temperature, top-p/top-k
+     and the 768-token cap are unchanged, and every completion is still
+     appended durably in task order;
+  3. regenerate the Phase 7 donor pool with the frozen Phase 7 initial
+     prompt, candidate order, seeds, and 100/100 stop rule
+     (`outputs/phase7_initials_regen_v2/`); these rows are donor text only
+     and are not Phase 7 results;
+  4. drop the exploratory historical Phase 7 replay, which needs the lost
+     historical text.
+- Adapters were re-downloaded from the pinned private Hugging Face revisions;
+  both weight SHA-256 values match `data/model_lineage_v1.json`.
+- `data/execution_lock_v2.json` (SHA-256
+  `c0858a6d5758606082db300726a12e24e32338bf070d943d1b8a3673a0e65543`)
+  hashes all 30 controlling files as LF bytes, matching the Git blobs. A
+  first launch failed its manifest check before any generation because the
+  Windows checkout (`core.autocrlf=true`) had CRLF line endings; the bundle
+  was rebuilt from LF copies. Local verification on a CRLF checkout will
+  report a mismatch for that reason alone.
+- v2 outputs: `outputs/phase8_first_pass_v2/`, `outputs/phase8_three_arms_v2/`,
+  `outputs/phase8_probe_scores_v2/`, `outputs/phase8_analysis_v2/`, mirrored
+  locally to `outputs/phase8_remote_v100/` by `scripts/sync_remote.py`.
+
+2026-09-30, v2 run completed:
+
+- Pipeline attempt 1 started 14:19 UTC. Donor regeneration stopped at 339
+  rows (239 correct, 100 wrong); all three 400-row first passes completed;
+  395/400 sources received a distractor.
+- V3 failed twice at vLLM warm-up, before any V3 output was saved: the host
+  lacked a C compiler and then Python headers for the LoRA Triton kernels.
+  `gcc` and `python3.10-dev` were installed; attempt 3 resumed with every
+  completed stage skipped.
+- `PHASE8_PIPELINE_COMPLETE` at 15:12:30 UTC. The lock was re-verified
+  immediately before the single protected opening.
+- A Haiku sub-agent compared all 35 mirrored files with the remote SHA-256
+  (all match after refreshing one stale mirror copy of the lock) and checked
+  every summary hash against its sibling file (19/19 pass).
+- The `HF_TOKEN` file was deleted from the GPU host. Results are in
+  [docs/FINAL_REPORT.md](docs/FINAL_REPORT.md).
+
 Do not report Phase 8 efficacy until all outputs are complete, checked and
 copied locally. The Phase 7 protected follow-up is exploratory because it was
 opened in the completed prior phase.

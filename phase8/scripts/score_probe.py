@@ -1,4 +1,8 @@
-"""Score Phase 8 first answers with a locked Phase 5-style hidden-state probe."""
+"""Score Phase 8 first answers with the exact frozen Phase 5 hidden-state probe.
+
+Amendment v2: the original Phase 5 probe artifacts were recovered locally and
+match their recorded SHA-256, so they are used directly (no rebuilt probe).
+"""
 
 from __future__ import annotations
 
@@ -19,7 +23,7 @@ from src.core.schema import Problem  # noqa: E402
 MODEL = "Kxck/Self_Correction_v1"
 REVISION = "6437f947999168a0ce2a98a86e4252fc77160a33"
 SOURCE = ROOT / "phase8/data/fresh_source_pool_v1/candidate_problems.jsonl"
-FIRST = ROOT / "outputs/phase8_first_pass_v1/initial/answers.jsonl"
+FIRST = ROOT / "outputs/phase8_first_pass_v2/initial/answers.jsonl"
 CHECKPOINTS = ("original_solver", "warmstart_v2", "correction_sft_v3")
 
 
@@ -38,8 +42,8 @@ def read_jsonl(path: Path) -> list[dict]:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--checkpoint", required=True, choices=CHECKPOINTS)
-    parser.add_argument("--probe-dir", type=Path, default=ROOT / "outputs/phase8_probe_v1/selection")
-    parser.add_argument("--output-root", type=Path, default=ROOT / "outputs/phase8_probe_scores_v1")
+    parser.add_argument("--probe-dir", type=Path, default=ROOT / "outputs/phase5_gpu_vllm/probe_v1/selection")
+    parser.add_argument("--output-root", type=Path, default=ROOT / "outputs/phase8_probe_scores_v2")
     args = parser.parse_args()
     if sys.version_info[:2] != (3, 10):
         raise RuntimeError("Use Python 3.10")
@@ -121,7 +125,7 @@ def main() -> None:
     output_dir = args.output_root / args.checkpoint
     output_dir.mkdir(parents=True, exist_ok=True)
     audit = output_dir / "scores.audit.jsonl"
-    settings = {"schema_version": "phase8_probe_scores_v1", "checkpoint": args.checkpoint,
+    settings = {"schema_version": "phase8_probe_scores_v2", "checkpoint": args.checkpoint,
                 "source_sha256": sha256(SOURCE), "initial_answers_sha256": sha256(FIRST),
                 "probe_sha256": sha256(model_path), "selection_sha256": sha256(selection_path),
                 "layer": layer, "threshold": 0.5, "dtype": "float16",

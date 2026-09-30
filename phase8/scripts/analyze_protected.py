@@ -18,10 +18,10 @@ from src.data.verifiers.math import MathVerifier  # noqa: E402
 
 
 SOURCE = ROOT / "phase8/data/fresh_source_pool_v1/candidate_problems.jsonl"
-FIRST_ROOT = ROOT / "outputs/phase8_first_pass_v1"
-THREE_ROOT = ROOT / "outputs/phase8_three_arms_v1"
-PROBE_ROOT = ROOT / "outputs/phase8_probe_scores_v1"
-OUT = ROOT / "outputs/phase8_analysis_v1"
+FIRST_ROOT = ROOT / "outputs/phase8_first_pass_v2"
+THREE_ROOT = ROOT / "outputs/phase8_three_arms_v2"
+PROBE_ROOT = ROOT / "outputs/phase8_probe_scores_v2"
+OUT = ROOT / "outputs/phase8_analysis_v2"
 CHECKPOINTS = ("original_solver", "warmstart_v2", "correction_sft_v3")
 
 
@@ -84,7 +84,7 @@ def main() -> None:
     for checkpoint in CHECKPOINTS:
         three[checkpoint] = checked_answers(THREE_ROOT / checkpoint, "answers.jsonl")
         scores[checkpoint] = checked_answers(PROBE_ROOT / checkpoint, "scores.jsonl", 400)
-    donors_path = ROOT / "phase8/data/distractors_v1/assignments.jsonl"
+    donors_path = ROOT / "phase8/data/distractors_v2/assignments.jsonl"
     donors_report = json.loads(donors_path.with_name("report.json").read_text(encoding="utf-8"))
     if sha256(donors_path) != donors_report["assignments_sha256"]:
         raise RuntimeError("Frozen distractor map changed")
@@ -113,7 +113,7 @@ def main() -> None:
         first_correct[stage] = np.array([correct(pid, by_id[pid]) for pid in ids], dtype=bool)
     baseline = first_correct["initial"]
     report = {
-        "schema_version": "phase8_protected_analysis_v1",
+        "schema_version": "phase8_protected_analysis_v2",
         "source_manifest_sha256": sha256(SOURCE), "protected_rows": 400,
         "natural_initial_correct": int(baseline.sum()),
         "natural_initial_wrong": int((~baseline).sum()),

@@ -5,7 +5,6 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import os
 from pathlib import Path
 import sys
 
@@ -15,11 +14,12 @@ sys.path.insert(0, str(ROOT / "phase1"))
 from src.core.schema import Problem  # noqa: E402
 sys.path.insert(0, str(ROOT))
 from phase7.scripts.paired_prompts import paired_prompt  # noqa: E402
+from phase8.scripts.batched import BATCH_SIZE, generate_ordered, open_audit  # noqa: E402
 
 
 SOURCE = ROOT / "phase8/data/fresh_source_pool_v1/candidate_problems.jsonl"
-FIRST = ROOT / "outputs/phase8_first_pass_v1/initial/answers.jsonl"
-DONORS = ROOT / "phase8/data/distractors_v1/assignments.jsonl"
+FIRST = ROOT / "outputs/phase8_first_pass_v2/initial/answers.jsonl"
+DONORS = ROOT / "phase8/data/distractors_v2/assignments.jsonl"
 MODELS = ("original_solver", "warmstart_v2", "correction_sft_v3")
 ARMS = ("blind", "own_visible", "distractor")
 BASE = "Kxck/Self_Correction_v1"
@@ -38,13 +38,6 @@ def read_jsonl(path: Path) -> list[dict]:
     return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line]
 
 
-def append_durable(path: Path, row: dict) -> None:
-    with path.open("a", encoding="utf-8", newline="\n") as stream:
-        stream.write(json.dumps(row, sort_keys=True, ensure_ascii=False) + "\n")
-        stream.flush()
-        os.fsync(stream.fileno())
-
-
 def seed_for(checkpoint: str, pid: str) -> int:
     return int(hashlib.sha256(f"phase8_three_arms_v1|{checkpoint}|{pid}".encode()).hexdigest()[:8], 16)
 
@@ -52,7 +45,7 @@ def seed_for(checkpoint: str, pid: str) -> int:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--checkpoint", required=True, choices=MODELS)
-    parser.add_argument("--output-root", type=Path, default=ROOT / "outputs/phase8_three_arms_v1")
+    parser.add_argument("--output-root", type=Path, default=ROOT / "outputs/phase8_three_arms_v2")
     args = parser.parse_args()
     if sys.version_info[:2] != (3, 10):
         raise RuntimeError("Use Python 3.10")
@@ -92,7 +85,8 @@ def main() -> None:
             if sha256(lora / "adapter_model.safetensors") != registry["v3_adapter_sha256"]:
                 raise RuntimeError("V3 adapter hash mismatch")
     settings = {
-        "schema_version": "phase8_three_arms_v1", "checkpoint": args.checkpoint,
+        "schema_version": "phase8_three_arms_v2", "checkpoint": args.checkpoint,
+        "batch_size": BATCH_SIZE,
         "model_path": model_path, "revision": revision,
         "lora_path": str(lora) if lora else None,
         "source_sha256": sha256(SOURCE), "first_answers_sha256": sha256(FIRST),
@@ -105,18 +99,7 @@ def main() -> None:
     output_dir = args.output_root / args.checkpoint
     output_dir.mkdir(parents=True, exist_ok=True)
     audit = output_dir / "audit.jsonl"
-    if audit.exists():
-        records = read_jsonl(audit)
-        if not records or records[0] != {"type": "metadata", "settings": settings}:
-            raise RuntimeError("Existing audit settings differ")
-        completed = records[1:]
-        for index, entry in enumerate(completed):
-            if (entry.get("type") != "completion" or entry.get("index") != index or
-                    (entry["row"]["problem_id"], entry["row"]["arm"]) != tasks[index]):
-                raise RuntimeError("Existing audit is not an ordered prefix")
-    else:
-        append_durable(audit, {"type": "metadata", "settings": settings})
-        completed = []
+    completed = open_audit(audit, settings, tasks, lambda row: (row["problem_id"], row["arm"]))
     if len(completed) < len(tasks):
         tokenizer = AutoTokenizer.from_pretrained(model_path, revision=revision)
         llm = LLM(model=model_path, revision=revision, tokenizer=model_path,
@@ -125,10 +108,9 @@ def main() -> None:
                   enable_lora=bool(lora), max_loras=1, max_lora_rank=16)
         lora_request = LoRARequest("phase8_v3", 1, str(lora)) if lora else None
         source_by_id = {row["id"]: row for row in sources}
-        for index in range(len(completed), len(tasks)):
-            pid, arm = tasks[index]
-            source = source_by_id[pid]
-            problem = Problem(id=pid, domain="math", question=source["question"])
+        requests = []
+        for pid, arm in tasks:
+            problem = Problem(id=pid, domain="math", question=source_by_id[pid]["question"])
             if arm == "blind":
                 prompt = paired_prompt(problem, "blind_resolve")
             elif arm == "own_visible":
@@ -140,22 +122,22 @@ def main() -> None:
                 add_generation_prompt=True)
             if len(tokenizer.encode(rendered, add_special_tokens=False)) + 768 > 4096:
                 raise RuntimeError(f"Context exceeds budget: {pid}, {arm}")
-            seed = seed_for(args.checkpoint, pid)
-            result = llm.generate([rendered], SamplingParams(temperature=0.0,
-                                  max_tokens=768, seed=seed),
-                                  lora_request=lora_request, use_tqdm=False)[0].outputs[0]
-            row = {"problem_id": pid, "arm": arm, "index": index,
-                   "request_seed": seed, "output": result.text,
-                   "generated_tokens": len(result.token_ids),
-                   "finish_reason": result.finish_reason,
-                   "hit_token_cap": len(result.token_ids) >= 768}
-            append_durable(audit, {"type": "completion", "index": index, "row": row})
-            completed.append({"row": row})
-            if len(completed) % 30 == 0:
-                print(f"{args.checkpoint}: {len(completed)}/{len(tasks)}", flush=True)
+            requests.append((rendered, SamplingParams(
+                temperature=0.0, max_tokens=768, seed=seed_for(args.checkpoint, pid))))
+
+        def make_row(index: int, result) -> dict:
+            pid, arm = tasks[index]
+            return {"problem_id": pid, "arm": arm, "index": index,
+                    "request_seed": seed_for(args.checkpoint, pid), "output": result.text,
+                    "generated_tokens": len(result.token_ids),
+                    "finish_reason": result.finish_reason,
+                    "hit_token_cap": len(result.token_ids) >= 768}
+
+        completed = generate_ordered(llm, requests, len(completed), audit, make_row,
+                                     args.checkpoint, lora_request=lora_request, done=completed)
     output = output_dir / "answers.jsonl"
-    output.write_text("".join(json.dumps(entry["row"], sort_keys=True, ensure_ascii=False) + "\n"
-                              for entry in completed), encoding="utf-8", newline="\n")
+    output.write_text("".join(json.dumps(row, sort_keys=True, ensure_ascii=False) + "\n"
+                              for row in completed), encoding="utf-8", newline="\n")
     summary = {"status": "complete", "tasks": len(completed),
                "audit_sha256": sha256(audit), "answers_sha256": sha256(output),
                "settings": settings}

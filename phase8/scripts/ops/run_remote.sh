@@ -1,51 +1,59 @@
 #!/usr/bin/env bash
+# Phase 8 amendment v2: full sequential pipeline on one V100 32 GB.
+# Every step is resumable or skipped when its summary already exists, so the
+# supervisor may rerun this script after any failure.
 set -euo pipefail
 
 project_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 cd "$project_root"
-python_bin="$project_root/.venv-vllm/bin/python"
-mkdir -p logs outputs/phase8_probe_v1/activations outputs/phase8_probe_v1/selection
+py="$project_root/.venv-vllm/bin/python"
+step() { echo "=== $(date -u +%FT%TZ) $*"; }
 
-"$python_bin" phase8/scripts/verify_execution_lock.py
-"$python_bin" phase8/scripts/verify_adapters.py
+step verify lock
+"$py" phase8/scripts/verify_execution_lock.py
+step fetch adapters
+"$py" phase8/scripts/fetch_adapters.py
+"$py" phase8/scripts/verify_adapters.py
 
-while [[ ! -f outputs/phase8_first_pass_v1/initial/summary.json ]]; do
-  if ! pgrep -f 'phase8/scripts/collect_first_pass_vllm.py --stage initial' >/dev/null; then
-    echo "Initial collector stopped without complete summary" >&2
-    exit 1
+# Merge V2 on CPU in parallel with GPU generation; a partial merge is discarded.
+if [[ ! -f models/phase7_v2_merged_fp16/phase7_lineage.json ]]; then
+  rm -rf models/phase7_v2_merged_fp16
+fi
+"$py" phase7/scripts/materialize_v2_local.py > logs/materialize_v2.log 2>&1 &
+merge_pid=$!
+
+step phase7 donor regeneration
+"$py" phase8/scripts/regen_phase7_donors.py
+
+for stage in initial sample_repeat greedy_same_prompt; do
+  step "first pass $stage"
+  "$py" phase8/scripts/collect_first_pass_vllm.py --stage "$stage"
+done
+
+if [[ ! -f phase8/data/distractors_v2/report.json ]]; then
+  step freeze distractors
+  rm -rf phase8/data/distractors_v2
+  "$py" phase8/scripts/freeze_distractors.py
+fi
+
+for checkpoint in original_solver warmstart_v2 correction_sft_v3; do
+  if [[ "$checkpoint" == warmstart_v2 ]]; then
+    step wait for merged V2
+    wait "$merge_pid"
   fi
-  sleep 30
+  step "three arms $checkpoint"
+  "$py" phase8/scripts/collect_three_arms_vllm.py --checkpoint "$checkpoint"
+  if [[ ! -f "outputs/phase8_probe_scores_v2/$checkpoint/summary.json" ]]; then
+    step "probe scores $checkpoint"
+    "$py" phase8/scripts/score_probe.py --checkpoint "$checkpoint"
+  fi
 done
 
-"$python_bin" phase8/scripts/collect_first_pass_vllm.py --stage sample_repeat
-"$python_bin" phase8/scripts/collect_first_pass_vllm.py --stage greedy_same_prompt
-"$python_bin" phase8/scripts/reproduce_phase7_initials.py
-"$python_bin" phase8/scripts/freeze_distractors.py
-"$python_bin" phase8/scripts/collect_three_arms_vllm.py --checkpoint original_solver
-
-"$python_bin" phase5/scripts/extract_prehint_activations.py \
-  --checkpoint original_solver --split train --batch-size 1 \
-  --output-dir outputs/phase8_probe_v1/activations
-"$python_bin" phase5/scripts/extract_prehint_activations.py \
-  --checkpoint original_solver --split development --batch-size 1 \
-  --output-dir outputs/phase8_probe_v1/activations
-"$python_bin" phase8/scripts/fit_locked_probe.py --checkpoint original_solver
-"$python_bin" phase8/scripts/score_probe.py --checkpoint original_solver
-
-"$python_bin" phase7/scripts/materialize_v2_local.py
-"$python_bin" phase8/scripts/mark_phase5_lineage.py
-for checkpoint in warmstart_v2 correction_sft_v3; do
-  "$python_bin" phase8/scripts/collect_three_arms_vllm.py --checkpoint "$checkpoint"
-  for split in train development; do
-    "$python_bin" phase5/scripts/extract_prehint_activations.py \
-      --checkpoint "$checkpoint" --split "$split" --batch-size 1 \
-      --merged-v2 "$project_root/models/phase7_v2_merged_fp16" \
-      --output-dir outputs/phase8_probe_v1/activations
-  done
-  "$python_bin" phase8/scripts/fit_locked_probe.py --checkpoint "$checkpoint"
-  "$python_bin" phase8/scripts/score_probe.py --checkpoint "$checkpoint"
-done
-
-"$python_bin" phase8/scripts/verify_execution_lock.py
-"$python_bin" phase8/scripts/analyze_protected.py
+step verify lock before protected opening
+"$py" phase8/scripts/verify_execution_lock.py
+if [[ ! -f outputs/phase8_analysis_v2/report.json ]]; then
+  step protected analysis
+  rm -rf outputs/phase8_analysis_v2
+  "$py" phase8/scripts/analyze_protected.py > logs/phase8_analysis_stdout.json
+fi
 echo PHASE8_PIPELINE_COMPLETE

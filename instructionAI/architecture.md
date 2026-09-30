@@ -37,8 +37,9 @@ the canonical Phase 3 pipeline.
 | `phase3/` | Phase 3 | Closed discrimination/selective-repair research package |
 | `phase4/` | Phase 4 | Closed selective-correction pilots and immutable evidence |
 | `phase5/` | Phase 5 | Complete guided-repair and pre-hint probe diagnostic; no promotion |
-| `phase6/` | Phase 6 | Exploratory verbalization-path and rationale-review pilot |
-| `phase7/` | Phase 7 | Planned paired blind/answer-visible re-solving diagnostic |
+| `phase6/` | Phase 6 | Closed signal-readout and harness diagnostic; no promotion |
+| `phase7/` | Phase 7 | Completed paired blind/answer-visible re-solving diagnostic |
+| `phase8/` | Phase 8 | Completed resampling, distractor, and probe-routed blind re-solve study |
 | `outputs/` | Runtime | Local adapters, logs, activations; excluded from Git |
 | `instructionAI/` | Project | Cross-phase architecture and data invariants |
 
@@ -228,15 +229,23 @@ tuning. Any follow-up must open a new phase with a distinct repair hypothesis
 and a newly frozen evaluation split. The canonical closure is
 `phase6/docs/FINAL_REPORT.md`.
 
-Phase 7 has a frozen 600-source CPU candidate pool but no model results. Its central
-comparison is a new single-turn solution with only the original problem versus
-the same re-solving task with the earlier answer visible as an unverified
-candidate. It uses fresh Phase 1-6-disjoint sources and verifies every final
-answer deterministically. The old answer stays outside the blind model
-context. A frozen Phase 5 probe may supply an external route only if the exact
-artifact is recovered and hash-verified; oracle-known-wrong solving is a
-separate diagnostic. Do not reuse Phase 5 protected or Phase 6 holdout rows.
-`phase7/docs/PREREGISTRATION.md` owns the draft hypothesis and boundaries.
+Phase 7 is a completed diagnostic. It compared a new single-turn solution
+with only the original problem against the same re-solving task with the
+earlier answer visible as an unverified candidate, on fresh Phase 1-6-disjoint
+sources, with every final answer verified deterministically. Its protected set
+is opened. `phase7/docs/FINAL_REPORT.md` owns the result.
+
+## Phase 8 boundary
+
+Phase 8 completed on 2026-09-30 under execution-lock amendment v2
+(`phase8/data/execution_lock_v2.json`). Its 400-source protected pool is
+opened. The only supported system claim is an external harness: the frozen
+Phase 5 probe (read from `outputs/phase5_gpu_vllm/probe_v1/selection/`, hash
+verified) flags first answers, and flagged answers are replaced by a blind
+re-solve that never sees the old answer. Blind re-solving every answer is at
+least as accurate, so no checkpoint, probe, or threshold is promoted. Phase 8
+outputs are evidence only and must never enter training. See
+`phase8/docs/FINAL_REPORT.md`.
 
 Phase 3 is closed as of 2026-09-13. Its canonical and negative-result artifacts
 remain immutable. New discrimination research must create a new phase rather

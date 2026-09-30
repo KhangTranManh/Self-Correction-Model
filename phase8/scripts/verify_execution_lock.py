@@ -8,7 +8,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-LOCK = ROOT / "phase8/data/execution_lock_v1.json"
+LOCK = ROOT / "phase8/data/execution_lock_v2.json"
 
 
 def sha256(path: Path) -> str:

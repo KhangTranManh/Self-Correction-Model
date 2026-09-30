@@ -1,4 +1,8 @@
-"""Freeze deterministic, length-matched Phase 7 wrong-answer distractors."""
+"""Freeze deterministic, length-matched Phase 7 wrong-answer distractors.
+
+Amendment v2: donors come from the regenerated Phase 7 donor pool
+(outputs/phase7_initials_regen_v2); the matching rule is unchanged.
+"""
 
 from __future__ import annotations
 
@@ -25,15 +29,15 @@ def read_jsonl(path: Path) -> list[dict]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output-dir", type=Path, default=ROOT / "phase8/data/distractors_v1")
+    parser.add_argument("--output-dir", type=Path, default=ROOT / "phase8/data/distractors_v2")
     args = parser.parse_args()
     if args.output_dir.exists():
         raise RuntimeError("Refusing to overwrite frozen donor map")
-    first = ROOT / "outputs/phase8_first_pass_v1/initial/answers.jsonl"
+    first = ROOT / "outputs/phase8_first_pass_v2/initial/answers.jsonl"
     first_summary = json.loads(first.with_name("summary.json").read_text(encoding="utf-8"))
     if first_summary["rows"] != 400 or sha256(first) != first_summary["answers_sha256"]:
         raise RuntimeError("First-pass source is incomplete or changed")
-    old = ROOT / "outputs/phase7_initials_v1/initial_rollouts.jsonl"
+    old = ROOT / "outputs/phase7_initials_regen_v2/initial_rollouts.jsonl"
     old_summary = json.loads(old.with_name("summary.json").read_text(encoding="utf-8"))
     if sha256(old) != old_summary["rollouts_sha256"]:
         raise RuntimeError("Historical donor answers changed")
@@ -65,7 +69,7 @@ def main() -> None:
     output.write_text("".join(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n"
                               for row in assignments), encoding="utf-8", newline="\n")
     report = {
-        "schema_version": "phase8_distractor_map_v1",
+        "schema_version": "phase8_distractor_map_v2",
         "initial_answers_sha256": sha256(first),
         "historical_donors_sha256": sha256(old),
         "tokenizer_model": MODEL, "tokenizer_revision": REVISION,
