@@ -1,0 +1,25 @@
+{
+  "schema_version": "phase10_execution_lock_v1",
+  "status": "frozen_before_any_phase10_generation",
+  "hashing": "sha256 of CRLF->LF normalized bytes for text files",
+  "files": {
+    "phase1/src/core/prompts.py": "7ac1b989385e293a4a4f2f343322ab9f070024d25348770aae09ed777adc629b",
+    "phase1/src/data/verifiers/math.py": "41fd5fb9a0bc35eba231be14fd8c3f3232564cbdf1d97763e5cb5483eee82189",
+    "phase7/scripts/paired_prompts.py": "c165b9198f2f30dc42a18b412c9d70a12a19f7d5bc8e60b12a5ecf2e1cb87811",
+    "phase8/scripts/batched.py": "e97e96fdecd380fca59662f29e158abf08b21408a4cd8633dac33c4d4f3bb242",
+    "phase9/scripts/answers.py": "1e7d062c79ad8a9c2be7f34ef90294129801cd84ca4a180f6652dae086d6cc0a",
+    "phase9/scripts/analyze.py": "82ce08800df75bbb2e0a098de2495bad5daff375deba24aafad4e2a6fb7133af",
+    "phase9/scripts/collect_checkpoint.py": "ee3abeac3276679f40df73f7c67612c2cb9c760faff0b9ea81cde7ac28bc2beb",
+    "phase9/scripts/collect_first.py": "d4246a9aaf629780e1421b2cb420bf19d63af72a553b2b29944bcddca5f76661",
+    "phase10/data/sources_v1/train_pool.jsonl": "fe6d578c7351230c02e6562eccf2c4a4244bdec9b007187aba7ba6735f424893",
+    "phase10/data/sources_v1/holdout.jsonl": "eb4f8760b04b0dd84f0aab2003dfb170ad4731849953791a0c77bc0e80803a6d",
+    "phase10/data/sources_v1/report.json": "978504b638991360705a535bd0fb7e4084d0dff42f691117f93801286ca118e4",
+    "phase10/docs/PREREGISTRATION.md": "c9354ce97eeac6ea3021d4f1c06f6ba26d19be764a501f82c1a63b90729684d7",
+    "phase10/scripts/generate.py": "c667d3617406a2593a3c6c1090b099c2c7b9de41776d91eb11499809a8c3e844",
+    "phase10/scripts/build_data.py": "b95197324a7204bf424985c6b7926810a11cbbb08c37a6354c4cadbeaed8120a",
+    "phase10/scripts/train_judge.py": "62796e41fe7ff212ec36c71843e4aeced2a219acf4028407d7e4cfc94e75d51f",
+    "phase10/scripts/analyze.py": "4a7dc7f9202683d470bebdf30ba8a655f4ec99e3d004b0d17628d9eabf76232b",
+    "phase10/scripts/verify_lock.py": "dcc95061f2dddce5b03a8d83a14a1cfc8051c8a781703012c45edd3dc0fa0b35",
+    "phase10/scripts/ops/run_remote.sh": "2abdd286ca56493ec47dfc442ecb5632e5c63212bf2550791226e7cfb02a7d44"
+  }
+}

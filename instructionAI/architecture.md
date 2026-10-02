@@ -40,6 +40,9 @@ the canonical Phase 3 pipeline.
 | `phase6/` | Phase 6 | Closed signal-readout and harness diagnostic; no promotion |
 | `phase7/` | Phase 7 | Completed paired blind/answer-visible re-solving diagnostic |
 | `phase8/` | Phase 8 | Completed resampling, distractor, and probe-routed blind re-solve study |
+| `phase9/` | Phase 9 | Closed voting and self-check study; voting passed, self-check failed |
+| `phase10/` | Phase 10 | Closed judge-LoRA training study; negative, adapter not promoted |
+| `serving/` | Project | vLLM serving profiles for all checkpoints and the strategy client |
 | `outputs/` | Runtime | Local adapters, logs, activations; excluded from Git |
 | `instructionAI/` | Project | Cross-phase architecture and data invariants |
 
@@ -246,6 +249,32 @@ re-solve that never sees the old answer. Blind re-solving every answer is at
 least as accurate, so no checkpoint, probe, or threshold is promoted. Phase 8
 outputs are evidence only and must never enter training. See
 `phase8/docs/FINAL_REPORT.md`.
+
+## Phase 9 and Phase 10 boundaries
+
+Phase 9 (closed 2026-10-01) compared voting over independent attempts with a
+model self-check of two conflicting solutions on 400 fresh protected sources.
+Voting over five attempts passed (+8 to +10.5 points); the self-check failed.
+Phase 10 (closed 2026-10-01) trained a LoRA judge (`phase10-judge`) on the
+original solver from the model's own verifier-correct judgments; on a
+300-source holdout its choice between two solutions stayed at chance and it
+trailed voting. Both protected sets are opened. The judge adapter is kept for
+reproducibility only. See `phase9/docs/FINAL_REPORT.md` and
+`phase10/docs/FINAL_REPORT.md`.
+
+**Harness versus model.** Every accuracy gain established so far (probe
+routing, blind re-solving, voting) is an external harness around an unchanged
+model. No training intervention has yet changed the model's own ability to
+recognize which of its answers is right. Report harness and model-level
+results separately.
+
+## Serving
+
+`serving/serve.sh` serves one base model per GPU: profile `original`
+(`original-solver`, `warmstart-v2` LoRA, `phase10-judge` LoRA) or profile `v3`
+(`warmstart-v2-merged`, `correction-sft-v3` LoRA). `serving/client.py` runs the
+`single`, `vote`, and `self_check` strategies with the exact experimental
+prompts. Phase 3 routers keep their own launcher in `phase3/scripts/serving/`.
 
 Phase 3 is closed as of 2026-09-13. Its canonical and negative-result artifacts
 remain immutable. New discrimination research must create a new phase rather

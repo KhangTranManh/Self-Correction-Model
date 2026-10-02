@@ -7,6 +7,14 @@ as the correctness oracle.
 
 ## Current status (2026-10-01)
 
+Phase 10 closed on 2026-10-01 with a negative result. A LoRA judge trained on
+the model's own verifier-correct judgments of its conflicting solutions (808
+balanced examples) did not improve its choice between two solutions (52.1% →
+50.7% when exactly one is right) and was 6 points worse than agreement-gated
+voting at equal compute. Voting over five attempts again gained 9 points
+(73.67% → 82.67%). See the [Phase 10 final report](phase10/docs/FINAL_REPORT.md).
+All checkpoints can be served with [serving/](serving/README.md).
+
 Phase 9 closed on 2026-10-01. On 400 fresh protected GSM8K sources, a
 plurality vote over five independent attempts raised accuracy from 75.0% to
 83.25–85.5% for all three checkpoints (Holm p < 0.001). Letting the model
@@ -157,6 +165,7 @@ See the [Phase 3 final report](phase3/docs/FINAL_REPORT.md),
 | 7 | Is weak repair caused partly by seeing the earlier answer? | On 80 initially wrong protected sources per checkpoint, blind re-solving fixed 25/28/32 versus 4/5/8 when the prior answer was visible. | Completed diagnostic; answer visibility has a strong paired effect, but no autonomous router or model was promoted. |
 | 8 | Is the Phase 7 effect resampling, generic distraction, or self-anchoring, and does probe routing help? | A second attempt alone gains ~6 points; any visible candidate hurts, mostly as generic distraction; probe → blind re-solve beats KEEP-all (+3.75 to +6.75 points) but not BLIND-all. | Completed; the external harness gain is supported, no checkpoint or autonomous self-corrector promoted. |
 | 9 | Can the model check itself with its own independent attempts? | Voting over five attempts gains 8–10.5 points; disagreement is a strong error signal; the model's own judgment between two solutions is at chance. | Closed; voting is the best supported method, self-check failed, nothing promoted. |
+| 10 | Can fine-tuning on its own correct judgments teach the model to pick the right solution? | No: the trained judge picks the right one at chance (51%) and trails voting; voting again gains 9 points. | Closed; negative result, judge adapter not promoted. |
 
 Across the completed phases, the evidence supports one narrow claim: correctness
 information can be verifier-labeled and, in later checkpoints, decoded from
@@ -164,6 +173,15 @@ hidden states, and an external harness that re-solves flagged answers without
 showing the old answer improves accuracy. It does **not** support the stronger
 claim that the standalone model reliably recognizes, preserves, and repairs its
 own errors: repair works best when the model never sees its earlier answer.
+
+Phases 9 and 10 sharpen the distinction between **harness** and **model**.
+Every accuracy gain so far — probe routing, blind re-solving, and voting over
+five attempts (+8 to +10.5 points, replicated on three fresh sets) — comes from
+a system wrapped around an unchanged model. At the model level, the checkpoint
+notices that its own attempts disagree (82–85% of errors) but cannot reliably
+tell which attempt is right (about 50%), and fine-tuning on its own correct
+judgments did not change that. The core Phase 0 goal, a model that recognizes,
+explains, and repairs its own errors, is not yet achieved.
 Any next step must start a new phase with a newly frozen evaluation set.
 
 Phase 7 tested whether poor repair reflects answer anchoring. It compared a
@@ -182,7 +200,8 @@ sources. See the [Phase 8 final report](phase8/docs/FINAL_REPORT.md).
 Canonical closures: [Phase 3](phase3/docs/FINAL_REPORT.md),
 [Phase 4](phase4/docs/FINAL_REPORT.md), [Phase 5](phase5/docs/FINAL_REPORT.md),
 [Phase 6](phase6/docs/FINAL_REPORT.md), [Phase 7](phase7/docs/FINAL_REPORT.md),
-[Phase 8](phase8/docs/FINAL_REPORT.md), and [Phase 9](phase9/docs/FINAL_REPORT.md).
+[Phase 8](phase8/docs/FINAL_REPORT.md), [Phase 9](phase9/docs/FINAL_REPORT.md),
+and [Phase 10](phase10/docs/FINAL_REPORT.md).
 
 ## Research phases
 
@@ -266,6 +285,14 @@ significant gain; the self-check writes plausible error explanations but picks
 the right solution at chance. See
 [the Phase 9 final report](phase9/docs/FINAL_REPORT.md).
 
+### Phase 10 - training the judgment step (closed)
+
+Phase 10 fine-tuned a LoRA judge on the original solver with its own
+verifier-correct judgments of its own conflicting solutions, then tested it on
+300 fresh holdout problems. The judgment did not improve and the trained
+self-check trailed voting. See
+[the Phase 10 final report](phase10/docs/FINAL_REPORT.md).
+
 ## Non-negotiable data rules
 
 1. Correctness comes from a deterministic verifier, not an LLM judge.
@@ -299,6 +326,8 @@ AGI/
 ├── phase7/                     # Completed blind re-solving diagnostic
 ├── phase8/                     # Completed resampling/distractor/probe-routing study
 ├── phase9/                     # Closed voting and self-check study
+├── phase10/                    # Closed judge-training study (negative)
+├── serving/                    # vLLM serving profiles and strategy client
 └── outputs/                    # Local adapters and runtime artifacts (gitignored)
 ```
 

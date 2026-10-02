@@ -26,6 +26,24 @@ reused, and Phase 7 results cannot enter training. See
 > Phase 3 closed on 2026-09-13. The commands below document reproduction; they
 > are not an active data-collection or training queue.
 
+## Phase 9 and Phase 10 boundaries
+
+Phase 9 drew 40 development and 400 protected fresh GSM8K train sources. Its
+builder reproduced the Phase 8 selection exactly from the available inventory
+and then over-excluded all Phase 1-8 JSON/JSONL, because several Phase 1-4
+inventory files are missing or changed locally. Phase 10 drew a 300-source
+holdout the same way, and used the Phase 4 expansion sources (minus the Phase
+4 development split) as its only training pool. Training data in Phase 10
+comes from the model's own attempts and judgments, labeled by the verifier;
+holdout gold is read only by the single analysis. No Phase 5-10 protected or
+holdout source may enter training or selection.
+
+Text-file hashes in the Phase 9 and Phase 10 locks are taken over CRLF -> LF
+normalized bytes, so they verify on Windows (`core.autocrlf=true`) and Linux
+checkouts alike. JSONL readers must split on `"
+"` only: `str.splitlines()`
+also breaks on U+2028, which occurs inside some GSM8K questions.
+
 ## Active Phase 5 data boundary
 
 Phase 5's CPU audit selected 1,200 new GSM8K train candidates with fresh

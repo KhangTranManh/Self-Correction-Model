@@ -1,0 +1,26 @@
+{
+  "schema_version": "phase10_sources_v1",
+  "status": "frozen_before_any_phase10_generation",
+  "train_pool": {
+    "source": "phase4\\data\\expansion_v1\\train_problems.jsonl",
+    "expansion_rows": 2000,
+    "excluded_phase4_dev_ids": 100,
+    "rows": 1900,
+    "sha256": "fe6d578c7351230c02e6562eccf2c4a4244bdec9b007187aba7ba6735f424893"
+  },
+  "holdout": {
+    "eligible": 534,
+    "rows": 300,
+    "exclusion_files_scanned": 293,
+    "rejected_by_first_reason": {
+      "prior_source": 6640,
+      "question_too_long": 7,
+      "step_count": 291,
+      "unverifiable_reference": 1
+    },
+    "selection_rule": "lexicographic SHA256(phase10_holdout_v1|seed|raw_index)",
+    "seed": 20261001,
+    "sha256": "eb4f8760b04b0dd84f0aab2003dfb170ad4731849953791a0c77bc0e80803a6d"
+  },
+  "protected_labels_opened": false
+}
