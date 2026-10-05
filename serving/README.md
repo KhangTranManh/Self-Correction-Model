@@ -15,6 +15,7 @@ LoRA rank 16 (alpha 32) on all attention and MLP projections.
 | `warmstart-v2-merged` | V2 merged into the original solver (FP16) | — | Base for V3; built by `phase7/scripts/materialize_v2_local.py`. |
 | `correction-sft-v3` | Phase 4 correction SFT LoRA | `warmstart-v2-merged` | Archived pilot; best blind re-solver in Phase 8, but over-revises when shown an answer. |
 | `phase10-judge` | **Phase 10 judge LoRA** — trained to choose between two conflicting solutions and explain the error | `original-solver` | Trained in Phase 10 on the model's own verifier-correct judgments. **Not promoted:** on the holdout it picked the right solution at chance (50.7% vs 52.1% untrained) and trailed voting. Served for inspection only. |
+| `phase11-dpo-judge` | **Phase 11 DPO judge LoRA** — prefers correct over incorrect judgments of the same pair | `original-solver` | **Not promoted:** 67% validation preference, but on fresh problems it picks the right solution 49.4% (vs 46.6% untrained, n.s.) and favors the second solution shown. Served for inspection only. |
 
 Phase 3 routers (Decision-Only V1 and DPO variants) are served by
 `phase3/scripts/serving/serve_phase3.sh`.
@@ -24,8 +25,8 @@ Phase 3 routers (Decision-Only V1 and DPO variants) are served by
 | Method | How | Evidence |
 |---|---|---|
 | `single` | One answer | Phase 9 protected: 75.0% |
-| `vote` | Plurality over five independent attempts; later attempts never see earlier ones | Phase 9: 83.25–85.5%, +8 to +10.5 points (Holm p < 0.001) |
-| `self_check` | Keep if two independent attempts agree; otherwise a judge compares both | No gain: Phase 9 untrained judge 72.25–74.0%; Phase 10 trained `phase10-judge` 73.0% (same as untrained). |
+| `vote` | Plurality over five independent attempts; later attempts never see earlier ones | Phase 9: 83.25–85.5%, +8 to +10.5 points (Holm p < 0.001); Phase 10: +9.0; Phase 11: +12.8 |
+| `self_check` | Keep if two independent attempts agree; otherwise a judge compares both | No gain: Phase 9 untrained judge 72.25–74.0%; Phase 10 `phase10-judge` 73.0% (same as untrained); Phase 11 `phase11-dpo-judge` 72.2% vs 77.4% for agreement-gated voting. |
 
 Never show the model an earlier answer and ask it to re-solve: Phases 7–8
 showed visible answers cut repair from ~45% to ~15% and break ~25% of

@@ -5,7 +5,15 @@ its own errors under objective supervision. Math answers are checked
 symbolically and code answers are executed against tests; an LLM is never used
 as the correctness oracle.
 
-## Current status (2026-10-01)
+## Current status (2026-10-02)
+
+Phase 11 closed on 2026-10-02 with a negative result. DPO on contrasting
+judgments of the same two solutions (542 pairs) taught the model to prefer
+correct judgments in likelihood (67% of unseen validation pairs) but barely
+changed which solution it picks on fresh problems (46.6% → 49.4%, not
+significant), and the judge strongly favors whichever solution is shown
+second. Voting over five attempts gained 12.8 points (71.4% → 84.2%). See the
+[Phase 11 final report](phase11/docs/FINAL_REPORT.md).
 
 Phase 10 closed on 2026-10-01 with a negative result. A LoRA judge trained on
 the model's own verifier-correct judgments of its conflicting solutions (808
@@ -166,6 +174,7 @@ See the [Phase 3 final report](phase3/docs/FINAL_REPORT.md),
 | 8 | Is the Phase 7 effect resampling, generic distraction, or self-anchoring, and does probe routing help? | A second attempt alone gains ~6 points; any visible candidate hurts, mostly as generic distraction; probe → blind re-solve beats KEEP-all (+3.75 to +6.75 points) but not BLIND-all. | Completed; the external harness gain is supported, no checkpoint or autonomous self-corrector promoted. |
 | 9 | Can the model check itself with its own independent attempts? | Voting over five attempts gains 8–10.5 points; disagreement is a strong error signal; the model's own judgment between two solutions is at chance. | Closed; voting is the best supported method, self-check failed, nothing promoted. |
 | 10 | Can fine-tuning on its own correct judgments teach the model to pick the right solution? | No: the trained judge picks the right one at chance (51%) and trails voting; voting again gains 9 points. | Closed; negative result, judge adapter not promoted. |
+| 11 | Can DPO on correct vs incorrect judgments of the same pair teach the choice? | DPO shifts likelihoods (67% validation preference) but not greedy choices on fresh problems (+2.8 points, n.s.); the judge has a strong order bias; voting gains 12.8 points. | Closed; negative result, DPO adapter not promoted. |
 
 Across the completed phases, the evidence supports one narrow claim: correctness
 information can be verifier-labeled and, in later checkpoints, decoded from
@@ -180,7 +189,8 @@ five attempts (+8 to +10.5 points, replicated on three fresh sets) — comes fro
 a system wrapped around an unchanged model. At the model level, the checkpoint
 notices that its own attempts disagree (82–85% of errors) but cannot reliably
 tell which attempt is right (about 50%), and fine-tuning on its own correct
-judgments did not change that. The core Phase 0 goal, a model that recognizes,
+judgments (Phase 10) or DPO on contrasting judgments (Phase 11) did not
+change that. The core Phase 0 goal, a model that recognizes,
 explains, and repairs its own errors, is not yet achieved.
 Any next step must start a new phase with a newly frozen evaluation set.
 
@@ -201,7 +211,33 @@ Canonical closures: [Phase 3](phase3/docs/FINAL_REPORT.md),
 [Phase 4](phase4/docs/FINAL_REPORT.md), [Phase 5](phase5/docs/FINAL_REPORT.md),
 [Phase 6](phase6/docs/FINAL_REPORT.md), [Phase 7](phase7/docs/FINAL_REPORT.md),
 [Phase 8](phase8/docs/FINAL_REPORT.md), [Phase 9](phase9/docs/FINAL_REPORT.md),
-and [Phase 10](phase10/docs/FINAL_REPORT.md).
+[Phase 10](phase10/docs/FINAL_REPORT.md), and [Phase 11](phase11/docs/FINAL_REPORT.md).
+
+## Next steps (proposed Phase 12)
+
+A post-hoc analysis of Phase 11 (exploratory, section 5b of its report) shows
+the judge's failure has three parts: a strong order bias toward the second
+solution shown, a weak real skill (about 59% correct when it picks one of the
+two solutions), and invented third answers in 15–19% of cases. Phase 12 will
+test whether removing the fixable parts reveals a usable judgment:
+
+1. **New evaluation dataset.** No unused GSM8K train source remains; freeze a
+   fresh holdout from another verifiable numeric dataset (for example SVAMP,
+   ASDiv, or MATH levels 1–3).
+2. **Order-swap judging.** Judge every pair in both orders (A-B and B-A) and
+   trust the verdict only when both orders agree; otherwise fall back to
+   voting.
+3. **Order-swapped DPO.** Retrain on the Phase 11 preference pairs in both
+   orders (about 1,084 pairs), with invented third answers among the rejected
+   judgments.
+4. **Gates (preregistered):** P1 the both-orders judge picks the right
+   solution significantly above chance; P2 the trained both-orders self-check
+   beats equal-compute voting. Voting over five attempts remains the baseline.
+
+Preparation runs locally at no GPU cost; the GPU run is about 3 hours. If P1
+passes but P2 fails, the next lever is step-level verification or a larger
+model; if neither passes, the evidence favors a larger model or step-level
+supervision over further final-answer training at 7B.
 
 ## Research phases
 
@@ -293,6 +329,14 @@ verifier-correct judgments of its own conflicting solutions, then tested it on
 self-check trailed voting. See
 [the Phase 10 final report](phase10/docs/FINAL_REPORT.md).
 
+### Phase 11 - preference training of the judgment step (closed)
+
+Phase 11 trained a DPO LoRA to prefer the correct over the incorrect judgment
+of the same pair of conflicting solutions and tested it on the last 234
+never-used GSM8K problems. The preference was learned in likelihood but did
+not translate into better choices, and the judge's order bias remained. See
+[the Phase 11 final report](phase11/docs/FINAL_REPORT.md).
+
 ## Non-negotiable data rules
 
 1. Correctness comes from a deterministic verifier, not an LLM judge.
@@ -327,6 +371,7 @@ AGI/
 ├── phase8/                     # Completed resampling/distractor/probe-routing study
 ├── phase9/                     # Closed voting and self-check study
 ├── phase10/                    # Closed judge-training study (negative)
+├── phase11/                    # Closed DPO judge study (negative)
 ├── serving/                    # vLLM serving profiles and strategy client
 └── outputs/                    # Local adapters and runtime artifacts (gitignored)
 ```
@@ -355,7 +400,11 @@ optionally the recorded adapter hashes. It does not read `.env`.
 
 ## Serving
 
-The general vLLM launcher is `phase3/scripts/serving/serve_phase3.sh`. It binds
+All solver checkpoints and the Phase 10/11 judge adapters are served by
+[`serving/serve.sh`](serving/README.md) (profiles `original` and `v3`), and
+`serving/client.py` runs the `single`, `vote`, and `self_check` strategies with
+the exact experimental prompts. Phase 3 routers keep their own launcher,
+`phase3/scripts/serving/serve_phase3.sh`. Both launchers bind
 to localhost by default. Example:
 
 ```bash

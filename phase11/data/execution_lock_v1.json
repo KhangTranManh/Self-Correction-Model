@@ -1,0 +1,26 @@
+{
+  "schema_version": "phase11_execution_lock_v1",
+  "status": "frozen_before_any_phase11_generation",
+  "hashing": "sha256 of CRLF->LF normalized bytes for text files",
+  "files": {
+    "phase1/src/core/prompts.py": "7ac1b989385e293a4a4f2f343322ab9f070024d25348770aae09ed777adc629b",
+    "phase1/src/data/verifiers/math.py": "41fd5fb9a0bc35eba231be14fd8c3f3232564cbdf1d97763e5cb5483eee82189",
+    "phase7/scripts/paired_prompts.py": "c165b9198f2f30dc42a18b412c9d70a12a19f7d5bc8e60b12a5ecf2e1cb87811",
+    "phase8/scripts/batched.py": "e97e96fdecd380fca59662f29e158abf08b21408a4cd8633dac33c4d4f3bb242",
+    "phase9/scripts/answers.py": "1e7d062c79ad8a9c2be7f34ef90294129801cd84ca4a180f6652dae086d6cc0a",
+    "phase9/scripts/analyze.py": "82ce08800df75bbb2e0a098de2495bad5daff375deba24aafad4e2a6fb7133af",
+    "phase9/scripts/collect_checkpoint.py": "ee3abeac3276679f40df73f7c67612c2cb9c760faff0b9ea81cde7ac28bc2beb",
+    "phase11/data/sources_v1/holdout.jsonl": "fa2b4655d6e54120e2642dce39bc61bb6ad46501fafb5477d3f6e2ede40e6d42",
+    "phase11/data/sources_v1/report.json": "a1c96ca76d302e2708bf375065ab257ad346eef783dffd0ebd33fb51378d4593",
+    "phase11/data/dpo_v1_report.json": "88d9eba22a3998820574f9b7dfd36453dc540bc452f16e5858196df7ffce1365",
+    "outputs/phase11_v1/dpo/train.jsonl": "4fe87841f430c7bffb54ca8cee7bc74411cd7c02941fb1df5869db2242054bea",
+    "outputs/phase11_v1/dpo/validation.jsonl": "5c57df9ecc77934bf851c9dc7696edb622513ecbf27ddcca54a60557e5a79c46",
+    "phase11/docs/PREREGISTRATION.md": "9baebd92b844c03572a4036492b824ae97ca2f878484fc8b841e86e0521b1c78",
+    "phase11/scripts/build_dpo.py": "94ef53c554f5ea38bc949b3eeb1d3b5718ef41b70a5f9ee98e78ae4bce9258d9",
+    "phase11/scripts/generate.py": "c50b1af9086a28ab4883845297073e24e26de406cc02280691b5cc5dafd2b900",
+    "phase11/scripts/train_dpo.py": "68362a502e1ddf219ab0b1b775257ad59bc48b77a94379d2a623f26547700090",
+    "phase11/scripts/analyze.py": "74e86d906affd2cfb72fd361f5dd35a8db535a4dac02594ef8faabc724e50c26",
+    "phase11/scripts/verify_lock.py": "9803c99f48ff03bde217839c25856ff446e735231216754721bdf0a9b21a3c81",
+    "phase11/scripts/ops/run_remote.sh": "36f4632db50770c0ace121003117488c699e8da6959fa08c55a8874c880fe6e4"
+  }
+}

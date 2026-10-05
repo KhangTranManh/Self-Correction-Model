@@ -1,0 +1,52 @@
+{
+  "schema_version": "phase11_dpo_data_v1",
+  "source": "Phase 10 training-pool pairs and judge candidates (verified mirror)",
+  "verifier": "Python 3.10.11, SymPy",
+  "pair_stats": {
+    "A_right_all_right": 77,
+    "A_right_all_wrong": 201,
+    "A_right_pairs": 672,
+    "B_right_all_right": 119,
+    "B_right_all_wrong": 54,
+    "B_right_pairs": 414,
+    "both_wrong_all_right": 1,
+    "both_wrong_all_wrong": 447,
+    "both_wrong_pairs": 535
+  },
+  "usable": {
+    "A_right": 394,
+    "B_right": 241,
+    "both_wrong": 87
+  },
+  "selected": {
+    "A_right": 241,
+    "B_right": 241,
+    "both_wrong": 60
+  },
+  "train": {
+    "rows": 472,
+    "kinds": {
+      "A_right": 215,
+      "both_wrong": 54,
+      "B_right": 203
+    },
+    "rejected_types": {
+      "sided_with_wrong_solution": 281,
+      "other_incorrect": 191
+    },
+    "sha256": "4fe87841f430c7bffb54ca8cee7bc74411cd7c02941fb1df5869db2242054bea"
+  },
+  "validation": {
+    "rows": 70,
+    "kinds": {
+      "A_right": 26,
+      "B_right": 38,
+      "both_wrong": 6
+    },
+    "rejected_types": {
+      "sided_with_wrong_solution": 51,
+      "other_incorrect": 19
+    },
+    "sha256": "5c57df9ecc77934bf851c9dc7696edb622513ecbf27ddcca54a60557e5a79c46"
+  }
+}

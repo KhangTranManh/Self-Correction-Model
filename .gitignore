@@ -41,3 +41,5 @@ phase4/runs/
 Thumbs.db
 .vscode/
 .idea/
+
+.venv-*/

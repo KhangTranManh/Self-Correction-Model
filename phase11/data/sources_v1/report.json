@@ -1,0 +1,19 @@
+{
+  "schema_version": "phase11_sources_v1",
+  "status": "frozen_before_any_phase11_generation",
+  "holdout": {
+    "rows": 234,
+    "rule": "all remaining eligible never-used sources",
+    "exclusion_files_scanned": 295,
+    "rejected_by_first_reason": {
+      "prior_source": 6940,
+      "question_too_long": 7,
+      "step_count": 291,
+      "unverifiable_reference": 1
+    },
+    "order": "lexicographic SHA256(phase11_holdout_v1|seed|raw_index)",
+    "seed": 20261002,
+    "sha256": "fa2b4655d6e54120e2642dce39bc61bb6ad46501fafb5477d3f6e2ede40e6d42"
+  },
+  "protected_labels_opened": false
+}
