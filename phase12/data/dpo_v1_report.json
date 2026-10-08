@@ -1,0 +1,54 @@
+{
+  "schema_version": "phase12_dpo_data_v1",
+  "source": "Phase 10 training-pool pairs and judge candidates (verified mirror)",
+  "verifier": "Python 3.10.11, SymPy",
+  "construction": "Phase 11 contrast + order swap (A/B tokens exchanged) + invented-answer negatives",
+  "stats": {
+    "A_right:invented_third_answer": 238,
+    "A_right:sided_with_wrong_solution": 269,
+    "B_right:invented_third_answer": 152,
+    "B_right:sided_with_wrong_solution": 165,
+    "both_wrong:invented_third_answer": 51,
+    "both_wrong:other_incorrect": 36,
+    "skipped_no_contrast": 899
+  },
+  "selected": 1822,
+  "train": {
+    "rows": 1592,
+    "sources": 520,
+    "kinds": {
+      "B_right": 726,
+      "A_right": 726,
+      "both_wrong": 140
+    },
+    "orders": {
+      "swapped": 796,
+      "original": 796
+    },
+    "rejected_types": {
+      "invented_third_answer": 770,
+      "sided_with_wrong_solution": 762,
+      "other_incorrect": 60
+    },
+    "sha256": "c4fd36bbd9ee1df0381d4c24b92062a3be3c7781e11a6cea55b7e319039123b8"
+  },
+  "validation": {
+    "rows": 230,
+    "sources": 73,
+    "kinds": {
+      "A_right": 98,
+      "B_right": 98,
+      "both_wrong": 34
+    },
+    "orders": {
+      "original": 115,
+      "swapped": 115
+    },
+    "rejected_types": {
+      "invented_third_answer": 112,
+      "sided_with_wrong_solution": 106,
+      "other_incorrect": 12
+    },
+    "sha256": "74c8a01996b25a1dcfa29336b8e722c1e46369a1c1f84665abef8ee7076e1ee1"
+  }
+}

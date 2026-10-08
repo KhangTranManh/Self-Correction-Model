@@ -5,7 +5,18 @@ its own errors under objective supervision. Math answers are checked
 symbolically and code answers are executed against tests; an LLM is never used
 as the correctness oracle.
 
-## Current status (2026-10-02)
+## Current status (2026-10-09)
+
+Phase 12 closed on 2026-10-09 with both primary endpoints passing — the
+project's first preregistered model-level positive result. On SVAMP (960
+problems never used for training), judging each pair of the model's own
+conflicting solutions in both orders gives consistent verdicts that are right
+74.9% of the time after order-swapped DPO (68.7% untrained; coverage about
+60%), and the DPO self-check is non-inferior to compute-matched vote@3
+(−0.63 points, CI [−1.56, +0.31]). Order bias falls within target; invented
+answers (10.5%) do not. Caveats: the untrained judge is already above chance
+on this easier dataset, and vote@5 (90.1%) remains the most accurate method.
+See the [Phase 12 final report](phase12/docs/FINAL_REPORT.md).
 
 Phase 11 closed on 2026-10-02 with a negative result. DPO on contrasting
 judgments of the same two solutions (542 pairs) taught the model to prefer
@@ -175,6 +186,7 @@ See the [Phase 3 final report](phase3/docs/FINAL_REPORT.md),
 | 9 | Can the model check itself with its own independent attempts? | Voting over five attempts gains 8–10.5 points; disagreement is a strong error signal; the model's own judgment between two solutions is at chance. | Closed; voting is the best supported method, self-check failed, nothing promoted. |
 | 10 | Can fine-tuning on its own correct judgments teach the model to pick the right solution? | No: the trained judge picks the right one at chance (51%) and trails voting; voting again gains 9 points. | Closed; negative result, judge adapter not promoted. |
 | 11 | Can DPO on correct vs incorrect judgments of the same pair teach the choice? | DPO shifts likelihoods (67% validation preference) but not greedy choices on fresh problems (+2.8 points, n.s.); the judge has a strong order bias; voting gains 12.8 points. | Closed; negative result, DPO adapter not promoted. |
+| 12 | Does both-orders judging plus order-swapped DPO reveal a real, useful judgment (new dataset, SVAMP)? | Yes on SVAMP: consistent verdicts 74.9% right (untrained 68.7%), DPO gain significant; self-check non-inferior to vote@3; vote@5 still best; invented answers 10.5%. | Closed; P1 and P2 passed; best judge so far, not a replacement for voting. |
 
 Across the completed phases, the evidence supports one narrow claim: correctness
 information can be verifier-labeled and, in later checkpoints, decoded from
@@ -190,8 +202,13 @@ a system wrapped around an unchanged model. At the model level, the checkpoint
 notices that its own attempts disagree (82–85% of errors) but cannot reliably
 tell which attempt is right (about 50%), and fine-tuning on its own correct
 judgments (Phase 10) or DPO on contrasting judgments (Phase 11) did not
-change that. The core Phase 0 goal, a model that recognizes,
-explains, and repairs its own errors, is not yet achieved.
+change that on GSM8K. Phase 12 gives the first preregistered model-level
+positive result: judged in both orders, the model's choice between its own
+conflicting answers is right 74.9% of the time on SVAMP after order-swapped
+DPO, and the resulting self-check is non-inferior to compute-matched voting.
+That result still needs confirmation on a harder dataset, and five-way voting
+remains more accurate, so the Phase 0 goal of a model that reliably
+recognizes, explains, and repairs its own errors is only partly achieved.
 Any next step must start a new phase with a newly frozen evaluation set.
 
 Phase 7 tested whether poor repair reflects answer anchoring. It compared a
@@ -211,33 +228,21 @@ Canonical closures: [Phase 3](phase3/docs/FINAL_REPORT.md),
 [Phase 4](phase4/docs/FINAL_REPORT.md), [Phase 5](phase5/docs/FINAL_REPORT.md),
 [Phase 6](phase6/docs/FINAL_REPORT.md), [Phase 7](phase7/docs/FINAL_REPORT.md),
 [Phase 8](phase8/docs/FINAL_REPORT.md), [Phase 9](phase9/docs/FINAL_REPORT.md),
-[Phase 10](phase10/docs/FINAL_REPORT.md), and [Phase 11](phase11/docs/FINAL_REPORT.md).
+[Phase 10](phase10/docs/FINAL_REPORT.md), [Phase 11](phase11/docs/FINAL_REPORT.md),
+and [Phase 12](phase12/docs/FINAL_REPORT.md).
 
-## Next steps (proposed Phase 12)
+## Next steps
 
-A post-hoc analysis of Phase 11 (exploratory, section 5b of its report) shows
-the judge's failure has three parts: a strong order bias toward the second
-solution shown, a weak real skill (about 59% correct when it picks one of the
-two solutions), and invented third answers in 15–19% of cases. Phase 12 will
-test whether removing the fixable parts reveals a usable judgment:
+Phase 12 produced the first preregistered model-level positive result, on
+SVAMP. Three questions remain, each a candidate for Phase 13:
 
-1. **New evaluation dataset.** No unused GSM8K train source remains; freeze a
-   fresh holdout from another verifiable numeric dataset (for example SVAMP,
-   ASDiv, or MATH levels 1–3).
-2. **Order-swap judging.** Judge every pair in both orders (A-B and B-A) and
-   trust the verdict only when both orders agree; otherwise fall back to
-   voting.
-3. **Order-swapped DPO.** Retrain on the Phase 11 preference pairs in both
-   orders (about 1,084 pairs), with invented third answers among the rejected
-   judgments.
-4. **Gates (preregistered):** P1 the both-orders judge picks the right
-   solution significantly above chance; P2 the trained both-orders self-check
-   beats equal-compute voting. Voting over five attempts remains the baseline.
+| Option | Question | How | Effort |
+|---|---|---|---|
+| **A. Confirm on a harder dataset** (recommended first) | Is the Phase 12 gain the method or SVAMP's ease? (The untrained judge is already 68.7% on SVAMP.) | Rerun the Phase 12 protocol, with the existing `phase12-dpo-judge`, on a fresh, harder verifiable set (for example MATH levels 1–3 with numeric answers, or ASDiv); no new training | ~1–2 h prep, ~1.5 h GPU |
+| **B. Remove invented answers** | Can the 10.5% invented-answer rate fall below 5%? | Require the verdict to be "Solution A" or "Solution B" before the solution, add more invented-answer rejections, retrain DPO | ~2 h prep, ~2.5 h GPU |
+| **C. Judge only on split votes** | Can the judge add accuracy on top of voting? | Run vote@3; call the both-orders judge only when the three answers do not all agree; compare with vote@5 at matched compute | ~1 h prep, ~1 h GPU (can reuse A's samples) |
 
-Preparation runs locally at no GPU cost; the GPU run is about 3 hours. If P1
-passes but P2 fails, the next lever is step-level verification or a larger
-model; if neither passes, the evidence favors a larger model or step-level
-supervision over further final-answer training at 7B.
+A and C can share one GPU run. B is the main lever if A confirms the gain.
 
 ## Research phases
 
@@ -337,6 +342,13 @@ never-used GSM8K problems. The preference was learned in likelihood but did
 not translate into better choices, and the judge's order bias remained. See
 [the Phase 11 final report](phase11/docs/FINAL_REPORT.md).
 
+### Phase 12 - both-orders judging and order-swapped DPO (closed)
+
+Phase 12 judged every pair of conflicting solutions in both orders, trained a
+DPO judge on order-swapped preference pairs, and evaluated on SVAMP. Both
+primary endpoints passed; see
+[the Phase 12 final report](phase12/docs/FINAL_REPORT.md).
+
 ## Non-negotiable data rules
 
 1. Correctness comes from a deterministic verifier, not an LLM judge.
@@ -372,6 +384,7 @@ AGI/
 ├── phase9/                     # Closed voting and self-check study
 ├── phase10/                    # Closed judge-training study (negative)
 ├── phase11/                    # Closed DPO judge study (negative)
+├── phase12/                    # Closed both-orders judging study (P1 and P2 passed)
 ├── serving/                    # vLLM serving profiles and strategy client
 └── outputs/                    # Local adapters and runtime artifacts (gitignored)
 ```

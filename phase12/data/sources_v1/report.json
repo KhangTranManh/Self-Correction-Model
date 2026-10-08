@@ -1,0 +1,25 @@
+{
+  "schema_version": "phase12_sources_v1",
+  "status": "frozen_before_any_phase12_generation",
+  "dataset": "SVAMP (github.com/arkilpatel/SVAMP, SVAMP.json)",
+  "raw_sha256": "5be77703a6d891ae476d7c082787ad361392aa02453b132516cdd5f4e7934e3e",
+  "raw_rows": 1000,
+  "exclusion_files_scanned": 296,
+  "rejected": {
+    "prior_source": 40
+  },
+  "types": {
+    "Subtraction": 511,
+    "Multiplication": 104,
+    "Addition": 187,
+    "Common-Division": 157,
+    "Common-Divison": 1
+  },
+  "holdout": {
+    "rows": 960,
+    "order": "lexicographic SHA256(phase12_holdout_v1|seed|svamp_id)",
+    "seed": 20261006,
+    "sha256": "0cc22a07dc8096f68417389796386511152e9b42f9525f9f77352f2f605255b5"
+  },
+  "protected_labels_opened": false
+}

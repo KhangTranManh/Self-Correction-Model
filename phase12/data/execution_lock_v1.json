@@ -1,0 +1,31 @@
+{
+  "schema_version": "phase12_execution_lock_v1",
+  "status": "frozen_before_any_phase12_generation",
+  "hashing": "sha256 of CRLF->LF normalized bytes for text files",
+  "files": {
+    "phase1/src/core/prompts.py": "7ac1b989385e293a4a4f2f343322ab9f070024d25348770aae09ed777adc629b",
+    "phase1/src/data/verifiers/math.py": "41fd5fb9a0bc35eba231be14fd8c3f3232564cbdf1d97763e5cb5483eee82189",
+    "phase7/scripts/paired_prompts.py": "c165b9198f2f30dc42a18b412c9d70a12a19f7d5bc8e60b12a5ecf2e1cb87811",
+    "phase8/scripts/batched.py": "e97e96fdecd380fca59662f29e158abf08b21408a4cd8633dac33c4d4f3bb242",
+    "phase9/scripts/answers.py": "1e7d062c79ad8a9c2be7f34ef90294129801cd84ca4a180f6652dae086d6cc0a",
+    "phase9/scripts/analyze.py": "82ce08800df75bbb2e0a098de2495bad5daff375deba24aafad4e2a6fb7133af",
+    "phase9/scripts/collect_checkpoint.py": "ee3abeac3276679f40df73f7c67612c2cb9c760faff0b9ea81cde7ac28bc2beb",
+    "phase11/scripts/analyze.py": "74e86d906affd2cfb72fd361f5dd35a8db535a4dac02594ef8faabc724e50c26",
+    "phase11/scripts/build_dpo.py": "94ef53c554f5ea38bc949b3eeb1d3b5718ef41b70a5f9ee98e78ae4bce9258d9",
+    "phase11/scripts/generate.py": "c50b1af9086a28ab4883845297073e24e26de406cc02280691b5cc5dafd2b900",
+    "phase12/data/raw/SVAMP.json": "5be77703a6d891ae476d7c082787ad361392aa02453b132516cdd5f4e7934e3e",
+    "phase12/data/sources_v1/holdout.jsonl": "0cc22a07dc8096f68417389796386511152e9b42f9525f9f77352f2f605255b5",
+    "phase12/data/sources_v1/report.json": "a8964a8cf757ede16886f10cb01a0cf5820922d41e864e06b505b37d0e4be239",
+    "phase12/data/dpo_v1_report.json": "968f77ef7f047a8c7cd3889c7d5a4327a129b8f2823274cf972fc8218af05313",
+    "outputs/phase12_v1/dpo/train.jsonl": "c4fd36bbd9ee1df0381d4c24b92062a3be3c7781e11a6cea55b7e319039123b8",
+    "outputs/phase12_v1/dpo/validation.jsonl": "74c8a01996b25a1dcfa29336b8e722c1e46369a1c1f84665abef8ee7076e1ee1",
+    "phase12/docs/PREREGISTRATION.md": "a2865afb33903223ca3cedccb72b01c0736d7ebfdd501dc4f3816f80cb948831",
+    "phase12/scripts/prepare_sources.py": "dcbe5a78d54c16dd789b8458a8351b03ebddc18f87cb4ee5fe9848385dbca93e",
+    "phase12/scripts/build_dpo.py": "38c2fc45f70a27560b19e7f794a10de339bc03d84df0801004071b67202eff67",
+    "phase12/scripts/generate.py": "5e8ce10d2eb59b281ebdbe3a0a22bba2026d6b89cddbe44d2ded4441a5254e95",
+    "phase12/scripts/train_dpo.py": "492b6f3e56079d0e94334f6b377b3522c93d2198b9be4f5c4eeac4f0d956d66b",
+    "phase12/scripts/analyze.py": "0f55fbd0f295322372ece8e519ac095150dc7d547e1808d04885781b1f92006e",
+    "phase12/scripts/verify_lock.py": "7abd81229ee92ce4e90307a9ff5fe91f017502071252e1613cd5d8f58c9f776f",
+    "phase12/scripts/ops/run_remote.sh": "95f033fb767797566ee34308def6b7e1215b07685607dc11ba6e850018299c65"
+  }
+}

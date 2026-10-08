@@ -43,6 +43,7 @@ the canonical Phase 3 pipeline.
 | `phase9/` | Phase 9 | Closed voting and self-check study; voting passed, self-check failed |
 | `phase10/` | Phase 10 | Closed judge-LoRA training study; negative, adapter not promoted |
 | `phase11/` | Phase 11 | Closed DPO judge study; negative, adapter not promoted |
+| `phase12/` | Phase 12 | Closed both-orders judging study on SVAMP; P1 and P2 passed |
 | `serving/` | Project | vLLM serving profiles for all checkpoints and the strategy client |
 | `outputs/` | Runtime | Local adapters, logs, activations; excluded from Git |
 | `instructionAI/` | Project | Cross-phase architecture and data invariants |
@@ -268,6 +269,12 @@ contrasting judgments of the same pair; the preference was learned in
 likelihood but did not change choices on a 234-source holdout, and the judge
 favors the second-shown solution. See `phase11/docs/FINAL_REPORT.md`.
 
+Phase 12 (closed 2026-10-09) judged pairs in both orders and trained a DPO
+judge (`phase12-dpo-judge`) on order-swapped pairs. On the SVAMP holdout its
+consistent verdicts were right 74.9% of the time and its self-check was
+non-inferior to compute-matched voting — the first preregistered
+model-level positive result. See `phase12/docs/FINAL_REPORT.md`.
+
 **Harness versus model.** Every accuracy gain established so far (probe
 routing, blind re-solving, voting) is an external harness around an unchanged
 model. No training intervention has yet changed the model's own ability to
@@ -278,7 +285,7 @@ results separately.
 
 `serving/serve.sh` serves one base model per GPU: profile `original`
 (`original-solver` plus whichever of the `warmstart-v2`, `phase10-judge`, and
-`phase11-dpo-judge` LoRAs exist on the host) or profile `v3`
+`phase11-dpo-judge`, and `phase12-dpo-judge` LoRAs exist on the host) or profile `v3`
 (`warmstart-v2-merged`, `correction-sft-v3` LoRA). `serving/client.py` runs the
 `single`, `vote`, and `self_check` strategies with the exact experimental
 prompts. Phase 3 routers keep their own launcher in `phase3/scripts/serving/`.

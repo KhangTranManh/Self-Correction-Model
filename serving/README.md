@@ -15,6 +15,7 @@ LoRA rank 16 (alpha 32) on all attention and MLP projections.
 | `warmstart-v2-merged` | V2 merged into the original solver (FP16) | — | Base for V3; built by `phase7/scripts/materialize_v2_local.py`. |
 | `correction-sft-v3` | Phase 4 correction SFT LoRA | `warmstart-v2-merged` | Archived pilot; best blind re-solver in Phase 8, but over-revises when shown an answer. |
 | `phase10-judge` | **Phase 10 judge LoRA** — trained to choose between two conflicting solutions and explain the error | `original-solver` | Trained in Phase 10 on the model's own verifier-correct judgments. **Not promoted:** on the holdout it picked the right solution at chance (50.7% vs 52.1% untrained) and trailed voting. Served for inspection only. |
+| `phase12-dpo-judge` | **Phase 12 order-swapped DPO judge LoRA** — best judge so far | `original-solver` | On SVAMP its consistent both-orders verdicts were right 74.9% (untrained 68.7%); its self-check was non-inferior to compute-matched vote@3. Not a replacement for vote@5. Note: `serving/client.py` `self_check` judges in one order; the both-orders rule is in `phase12/scripts/analyze.py`. |
 | `phase11-dpo-judge` | **Phase 11 DPO judge LoRA** — prefers correct over incorrect judgments of the same pair | `original-solver` | **Not promoted:** 67% validation preference, but on fresh problems it picks the right solution 49.4% (vs 46.6% untrained, n.s.) and favors the second solution shown. Served for inspection only. |
 
 Phase 3 routers (Decision-Only V1 and DPO variants) are served by

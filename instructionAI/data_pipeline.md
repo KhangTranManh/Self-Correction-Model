@@ -38,8 +38,11 @@ comes from the model's own attempts and judgments, labeled by the verifier;
 holdout gold is read only by the single analysis. Phase 11 built DPO pairs locally from Phase 10
 training-pool judgments (Python 3.10 + SymPy 1.14, reproducing Phase 10's
 counts exactly) and used the last 234 never-used GSM8K train sources as its
-holdout; no unused GSM8K train source remains under the current filters. No
-Phase 5-11 protected or holdout source may enter training or selection.
+holdout; no unused GSM8K train source remains under the current filters. Phase 12
+evaluated on SVAMP (960 of its 1,000 problems; 40 overlapped Phase 3's frozen
+evaluation and were excluded) and trained on order-swapped DPO pairs built
+locally from Phase 10 training-pool judgments. No Phase 5-12 protected or
+holdout source may enter training or selection.
 
 Text-file hashes in the Phase 9 and Phase 10 locks are taken over CRLF -> LF
 normalized bytes, so they verify on Windows (`core.autocrlf=true`) and Linux
