@@ -41,8 +41,12 @@ counts exactly) and used the last 234 never-used GSM8K train sources as its
 holdout; no unused GSM8K train source remains under the current filters. Phase 12
 evaluated on SVAMP (960 of its 1,000 problems; 40 overlapped Phase 3's frozen
 evaluation and were excluded) and trained on order-swapped DPO pairs built
-locally from Phase 10 training-pool judgments. No Phase 5-12 protected or
-holdout source may enter training or selection.
+locally from Phase 10 training-pool judgments. Phase 13
+evaluated on GSM8K test problems 750–1318 (indices 0–749 excluded as Phase 1's
+evaluation range; 8 more overlapped earlier files; 561 remain) and trained a
+constrained-verdict DPO judge from Phase 10 training-pool judgments. GSM8K
+train, GSM8K test 750–1318, and SVAMP are now all opened. No Phase 5-13
+protected or holdout source may enter training or selection.
 
 Text-file hashes in the Phase 9 and Phase 10 locks are taken over CRLF -> LF
 normalized bytes, so they verify on Windows (`core.autocrlf=true`) and Linux

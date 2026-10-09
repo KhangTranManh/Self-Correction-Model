@@ -7,6 +7,18 @@ as the correctness oracle.
 
 ## Current status (2026-10-09)
 
+Phase 13 closed on 2026-10-09. On 561 GSM8K test problems — the difficulty
+where Phases 9–11 failed — the unchanged Phase 12 judge's consistent
+both-orders verdicts are right 79.3% of the time (untrained 71.0%), so the
+judgment transfers beyond SVAMP. A constrained "Verdict: Solution A/B" judge
+cuts invented answers from 9.9% to 2.1% and raises coverage to 63%. But no
+judge-based strategy beats voting: vote@5 reaches 77.5% versus 72.2% for the
+best self-check, and calling the judge only on split votes does not help. An
+exploratory layer study finds the right answer is readable from the untrained
+model's hidden states (about 70% cross-dataset, layers 16–23); DPO changes how
+it is expressed, not whether it is known. See the
+[Phase 13 final report](phase13/docs/FINAL_REPORT.md).
+
 Phase 12 closed on 2026-10-09 with both primary endpoints passing — the
 project's first preregistered model-level positive result. On SVAMP (960
 problems never used for training), judging each pair of the model's own
@@ -187,6 +199,7 @@ See the [Phase 3 final report](phase3/docs/FINAL_REPORT.md),
 | 10 | Can fine-tuning on its own correct judgments teach the model to pick the right solution? | No: the trained judge picks the right one at chance (51%) and trails voting; voting again gains 9 points. | Closed; negative result, judge adapter not promoted. |
 | 11 | Can DPO on correct vs incorrect judgments of the same pair teach the choice? | DPO shifts likelihoods (67% validation preference) but not greedy choices on fresh problems (+2.8 points, n.s.); the judge has a strong order bias; voting gains 12.8 points. | Closed; negative result, DPO adapter not promoted. |
 | 12 | Does both-orders judging plus order-swapped DPO reveal a real, useful judgment (new dataset, SVAMP)? | Yes on SVAMP: consistent verdicts 74.9% right (untrained 68.7%), DPO gain significant; self-check non-inferior to vote@3; vote@5 still best; invented answers 10.5%. | Closed; P1 and P2 passed; best judge so far, not a replacement for voting. |
+| 13 | Does the judgment transfer to harder data, can invented answers be removed, and can the judge beat voting? | Transfers to GSM8K (79.3% consistent, untrained 71.0%); forced verdict cuts invented answers to 2.1%; no judge strategy beats vote@5 (77.5%). Layer probe: the answer is already readable internally (~70%, layers 16–23). | Closed; A judgment and B passed, A practical and C failed; nothing replaces voting. |
 
 Across the completed phases, the evidence supports one narrow claim: correctness
 information can be verifier-labeled and, in later checkpoints, decoded from
@@ -206,8 +219,8 @@ change that on GSM8K. Phase 12 gives the first preregistered model-level
 positive result: judged in both orders, the model's choice between its own
 conflicting answers is right 74.9% of the time on SVAMP after order-swapped
 DPO, and the resulting self-check is non-inferior to compute-matched voting.
-That result still needs confirmation on a harder dataset, and five-way voting
-remains more accurate, so the Phase 0 goal of a model that reliably
+Phase 13 confirmed the judgment on GSM8K-level problems (79.3% consistent),
+but five-way voting remains more accurate, so the Phase 0 goal of a model that reliably
 recognizes, explains, and repairs its own errors is only partly achieved.
 Any next step must start a new phase with a newly frozen evaluation set.
 
@@ -229,20 +242,25 @@ Canonical closures: [Phase 3](phase3/docs/FINAL_REPORT.md),
 [Phase 6](phase6/docs/FINAL_REPORT.md), [Phase 7](phase7/docs/FINAL_REPORT.md),
 [Phase 8](phase8/docs/FINAL_REPORT.md), [Phase 9](phase9/docs/FINAL_REPORT.md),
 [Phase 10](phase10/docs/FINAL_REPORT.md), [Phase 11](phase11/docs/FINAL_REPORT.md),
-and [Phase 12](phase12/docs/FINAL_REPORT.md).
+[Phase 12](phase12/docs/FINAL_REPORT.md), and [Phase 13](phase13/docs/FINAL_REPORT.md).
 
 ## Next steps
 
-Phase 12 produced the first preregistered model-level positive result, on
-SVAMP. Three questions remain, each a candidate for Phase 13:
+Phase 13 settled the three questions Phase 12 left open: the judgment
+transfers to harder data, a forced verdict removes invented answers, and the
+judge does not add accuracy on top of voting. Its layer study shows the shared
+ceiling: every judge-like method only chooses between existing solutions, so
+it cannot recover when both are wrong, while more attempts can. The most
+promising next phase therefore targets **when to spend more attempts**:
 
-| Option | Question | How | Effort |
-|---|---|---|---|
-| **A. Confirm on a harder dataset** (recommended first) | Is the Phase 12 gain the method or SVAMP's ease? (The untrained judge is already 68.7% on SVAMP.) | Rerun the Phase 12 protocol, with the existing `phase12-dpo-judge`, on a fresh, harder verifiable set (for example MATH levels 1–3 with numeric answers, or ASDiv); no new training | ~1–2 h prep, ~1.5 h GPU |
-| **B. Remove invented answers** | Can the 10.5% invented-answer rate fall below 5%? | Require the verdict to be "Solution A" or "Solution B" before the solution, add more invented-answer rejections, retrain DPO | ~2 h prep, ~2.5 h GPU |
-| **C. Judge only on split votes** | Can the judge add accuracy on top of voting? | Run vote@3; call the both-orders judge only when the three answers do not all agree; compare with vote@5 at matched compute | ~1 h prep, ~1 h GPU (can reuse A's samples) |
-
-A and C can share one GPU run. B is the main lever if A confirms the gain.
+1. **Adaptive sampling.** Use a "both candidates may be wrong" signal (judge
+   inconsistency, low probe confidence, or disagreement) to trigger extra
+   attempts only where needed; test against vote@5 at matched compute.
+2. **A fresh evaluation set.** GSM8K train and test (750–1318) and SVAMP are
+   all opened; the next phase needs a new verifiable dataset (for example
+   ASDiv or MATH levels 1–3 with numeric answers).
+3. **Model scale.** Repeat the both-orders judge and layer probe on a larger
+   checkpoint to see whether the internal signal (about 70%) grows.
 
 ## Research phases
 
@@ -349,6 +367,14 @@ DPO judge on order-swapped preference pairs, and evaluated on SVAMP. Both
 primary endpoints passed; see
 [the Phase 12 final report](phase12/docs/FINAL_REPORT.md).
 
+### Phase 13 - confirm, constrain, and combine (closed)
+
+Phase 13 re-tested the Phase 12 judge on GSM8K test problems, trained a
+constrained-verdict judge, and tried calling the judge only on split votes,
+plus an exploratory hidden-state probe by layer. The judgment transfers and
+invented answers can be removed, but voting stays more accurate; see
+[the Phase 13 final report](phase13/docs/FINAL_REPORT.md).
+
 ## Non-negotiable data rules
 
 1. Correctness comes from a deterministic verifier, not an LLM judge.
@@ -385,6 +411,7 @@ AGI/
 ├── phase10/                    # Closed judge-training study (negative)
 ├── phase11/                    # Closed DPO judge study (negative)
 ├── phase12/                    # Closed both-orders judging study (P1 and P2 passed)
+├── phase13/                    # Closed confirm/constrain/combine study + layer probe
 ├── serving/                    # vLLM serving profiles and strategy client
 └── outputs/                    # Local adapters and runtime artifacts (gitignored)
 ```

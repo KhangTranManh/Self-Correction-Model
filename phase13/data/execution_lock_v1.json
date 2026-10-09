@@ -1,0 +1,33 @@
+{
+  "schema_version": "phase13_execution_lock_v1",
+  "status": "frozen_before_any_phase13_generation",
+  "hashing": "sha256 of CRLF->LF normalized bytes for text files",
+  "files": {
+    "phase1/src/core/prompts.py": "7ac1b989385e293a4a4f2f343322ab9f070024d25348770aae09ed777adc629b",
+    "phase1/src/data/verifiers/math.py": "41fd5fb9a0bc35eba231be14fd8c3f3232564cbdf1d97763e5cb5483eee82189",
+    "phase7/scripts/paired_prompts.py": "c165b9198f2f30dc42a18b412c9d70a12a19f7d5bc8e60b12a5ecf2e1cb87811",
+    "phase8/scripts/batched.py": "e97e96fdecd380fca59662f29e158abf08b21408a4cd8633dac33c4d4f3bb242",
+    "phase9/scripts/answers.py": "1e7d062c79ad8a9c2be7f34ef90294129801cd84ca4a180f6652dae086d6cc0a",
+    "phase9/scripts/analyze.py": "82ce08800df75bbb2e0a098de2495bad5daff375deba24aafad4e2a6fb7133af",
+    "phase9/scripts/collect_checkpoint.py": "ee3abeac3276679f40df73f7c67612c2cb9c760faff0b9ea81cde7ac28bc2beb",
+    "phase11/scripts/analyze.py": "74e86d906affd2cfb72fd361f5dd35a8db535a4dac02594ef8faabc724e50c26",
+    "phase11/scripts/build_dpo.py": "94ef53c554f5ea38bc949b3eeb1d3b5718ef41b70a5f9ee98e78ae4bce9258d9",
+    "phase12/scripts/build_dpo.py": "38c2fc45f70a27560b19e7f794a10de339bc03d84df0801004071b67202eff67",
+    "phase12/scripts/train_dpo.py": "492b6f3e56079d0e94334f6b377b3522c93d2198b9be4f5c4eeac4f0d956d66b",
+    "phase13/data/raw/gsm8k_test.jsonl": "3730d312f6e3440559ace48831e51066acaca737f6eabec99bccb9e4b3c39d14",
+    "phase13/data/sources_v1/holdout.jsonl": "bb964c4de63b2adefb0f8ea56bd0249105768961a2f1f1240cf814a95490dc48",
+    "phase13/data/sources_v1/report.json": "07f25c7d2400ee063eb4ab92c49dfea9329c091d94c058bfdf27bc669aa90e15",
+    "phase13/data/dpo_b_v1_report.json": "94e55d5b97e4efe4776273922d20a534fbb31369320d6826ffca3632310901c0",
+    "outputs/phase13_v1/dpo_b/train.jsonl": "6f17338ae892dd4d431e362f8bb1cd08fa19f546d7703cecac846557b3cea2a4",
+    "outputs/phase13_v1/dpo_b/validation.jsonl": "b78e14266c9ee2a7f0c04d38d8f49174d5ef98ecd455be3d9a5bd20156e46dd6",
+    "phase13/docs/PREREGISTRATION.md": "a437edda426e88ffb188ec988f6f36ae5b688069a438221b8b51cf508c427ad1",
+    "phase13/scripts/prepare_sources.py": "08893d114299243e09214bb1fda3ee8865b258672951a8aada8a08a65df6737d",
+    "phase13/scripts/constrained.py": "993a711e36fe58b99e27a324c011104b055afcc1ad3bfb76b8c650bc461d3eeb",
+    "phase13/scripts/build_dpo_b.py": "c1c832a75c8954228efd3c51246a7017fbed8b5dacd3e51e0c5172b855a5a6b9",
+    "phase13/scripts/generate.py": "b14a6ebc60e46756a903111735048ee21b4d208911407f1a83048da514bd4f15",
+    "phase13/scripts/train_dpo_b.py": "96b9d7a9164117bcffec5812058664e9c48d78aaab92d792567093048b82e42e",
+    "phase13/scripts/analyze.py": "e94c25eaee83b6cf64744e06f43d4ae788b8eed4209b8d9f4f813f64dadb5902",
+    "phase13/scripts/verify_lock.py": "602247651a8639384bac004d2f796cae32e0974fbf40204a8df7712a95447a0b",
+    "phase13/scripts/ops/run_remote.sh": "95209858980fffc400708013b93e993733bcb2ed2ca0446b29c263975e12f4b3"
+  }
+}

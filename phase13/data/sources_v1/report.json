@@ -1,0 +1,23 @@
+{
+  "schema_version": "phase13_sources_v1",
+  "status": "frozen_before_any_phase13_generation",
+  "dataset": "GSM8K test (github.com/openai/grade-school-math, test.jsonl)",
+  "raw_sha256": "3730d312f6e3440559ace48831e51066acaca737f6eabec99bccb9e4b3c39d14",
+  "raw_rows": 1319,
+  "index_range": [
+    750,
+    1318
+  ],
+  "exclusion_files_scanned": 315,
+  "rejected": {
+    "index_below_750": 750,
+    "prior_source": 8
+  },
+  "holdout": {
+    "rows": 561,
+    "order": "lexicographic SHA256(phase13_holdout_v1|seed|index)",
+    "seed": 20261009,
+    "sha256": "bb964c4de63b2adefb0f8ea56bd0249105768961a2f1f1240cf814a95490dc48"
+  },
+  "protected_labels_opened": false
+}

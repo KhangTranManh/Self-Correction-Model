@@ -1,0 +1,48 @@
+{
+  "schema_version": "phase13_dpo_b_data_v1",
+  "source": "Phase 10 training-pool pairs and judge candidates (verified mirror)",
+  "verifier": "Python 3.10.11, SymPy",
+  "construction": "constrained verdict line + order swap; one-right pairs only",
+  "stats": {
+    "A_right:invented_third_answer": 238,
+    "A_right:sided_with_wrong_solution": 269,
+    "B_right:invented_third_answer": 152,
+    "B_right:sided_with_wrong_solution": 165,
+    "skipped_no_contrast": 451
+  },
+  "pairs": 1648,
+  "train": {
+    "rows": 1470,
+    "sources": 471,
+    "kinds": {
+      "A_right": 735,
+      "B_right": 735
+    },
+    "orders": {
+      "swapped": 735,
+      "original": 735
+    },
+    "rejected_types": {
+      "invented_third_answer": 694,
+      "sided_with_wrong_solution": 776
+    },
+    "sha256": "6f17338ae892dd4d431e362f8bb1cd08fa19f546d7703cecac846557b3cea2a4"
+  },
+  "validation": {
+    "rows": 178,
+    "sources": 58,
+    "kinds": {
+      "A_right": 89,
+      "B_right": 89
+    },
+    "orders": {
+      "original": 89,
+      "swapped": 89
+    },
+    "rejected_types": {
+      "invented_third_answer": 86,
+      "sided_with_wrong_solution": 92
+    },
+    "sha256": "b78e14266c9ee2a7f0c04d38d8f49174d5ef98ecd455be3d9a5bd20156e46dd6"
+  }
+}

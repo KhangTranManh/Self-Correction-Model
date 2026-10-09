@@ -44,6 +44,7 @@ the canonical Phase 3 pipeline.
 | `phase10/` | Phase 10 | Closed judge-LoRA training study; negative, adapter not promoted |
 | `phase11/` | Phase 11 | Closed DPO judge study; negative, adapter not promoted |
 | `phase12/` | Phase 12 | Closed both-orders judging study on SVAMP; P1 and P2 passed |
+| `phase13/` | Phase 13 | Closed confirm/constrain/combine study on GSM8K test; exploratory layer probe |
 | `serving/` | Project | vLLM serving profiles for all checkpoints and the strategy client |
 | `outputs/` | Runtime | Local adapters, logs, activations; excluded from Git |
 | `instructionAI/` | Project | Cross-phase architecture and data invariants |
@@ -275,6 +276,14 @@ consistent verdicts were right 74.9% of the time and its self-check was
 non-inferior to compute-matched voting — the first preregistered
 model-level positive result. See `phase12/docs/FINAL_REPORT.md`.
 
+Phase 13 (closed 2026-10-09) confirmed the Phase 12 judge on GSM8K test
+problems 750–1318 (79.3% consistent), trained a constrained-verdict judge
+(`phase13-verdict-judge`, invented answers 2.1%), and found that calling the
+judge on split votes does not beat voting. Its exploratory layer study reads
+the right solution from the last prompt token's hidden state (~70%
+cross-dataset, layers 16–23) already in the untrained model. See
+`phase13/docs/FINAL_REPORT.md`.
+
 **Harness versus model.** Every accuracy gain established so far (probe
 routing, blind re-solving, voting) is an external harness around an unchanged
 model. No training intervention has yet changed the model's own ability to
@@ -285,7 +294,8 @@ results separately.
 
 `serving/serve.sh` serves one base model per GPU: profile `original`
 (`original-solver` plus whichever of the `warmstart-v2`, `phase10-judge`, and
-`phase11-dpo-judge`, and `phase12-dpo-judge` LoRAs exist on the host) or profile `v3`
+`phase11-dpo-judge`, `phase12-dpo-judge`, and `phase13-verdict-judge` LoRAs
+exist on the host) or profile `v3`
 (`warmstart-v2-merged`, `correction-sft-v3` LoRA). `serving/client.py` runs the
 `single`, `vote`, and `self_check` strategies with the exact experimental
 prompts. Phase 3 routers keep their own launcher in `phase3/scripts/serving/`.
