@@ -1,0 +1,17 @@
+{
+  "schema_version": "phase14_raw_manifest_v1",
+  "asdiv_url": "https://raw.githubusercontent.com/chaochun/nlu-asdiv-dataset/master/dataset/ASDiv.xml",
+  "math_url_template": "https://huggingface.co/api/datasets/EleutherAI/hendrycks_math/parquet/{subject}/test/0.parquet",
+  "math_rows": 5000,
+  "sha256": {
+    "ASDiv.xml": "ef8904068482919ac48c8eeaaf6df344b8a308ba66d048c2d4d87eab82dc4929",
+    "math_test.jsonl": "414ec5fe6bf8b50bae5f4267ab181089682d50b81bbe11a75d0db086a4076cfb",
+    "math_test/algebra.parquet": "0e04a850dac9cfc758eac0c80afd2d0cc65e29ea72f916c8ac1045b12af937f5",
+    "math_test/counting_and_probability.parquet": "c324818949c75a6227c0328a8499d58023cbbf6757cfc1736f5ab24cc8d87966",
+    "math_test/geometry.parquet": "98720f3a8134ad9784fd8951195245264495df03ffc5c9485a9a54ff5ae2431a",
+    "math_test/intermediate_algebra.parquet": "e859f72486c951c2017da880541ca729940eaa986b0364eb23e238983df9bfeb",
+    "math_test/number_theory.parquet": "ba156c9c9fa2040836ba12135fd964e6e67d6bccd8c469ec4a3ad941f8f6fbe9",
+    "math_test/prealgebra.parquet": "301e5d8ade5c7b5038032532e498bdc9dca799e7f1061a63f2e7d980803240cc",
+    "math_test/precalculus.parquet": "da37474ba3761ae5727af3844a7ba963a735bd6a14c65e6137593669a4fe3b9c"
+  }
+}

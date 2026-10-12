@@ -1,0 +1,56 @@
+{
+  "schema_version": "phase14_sources_v1",
+  "status": "frozen_before_any_phase14_generation",
+  "seed": 20261012,
+  "pilot_size": 100,
+  "exclusion_files_scanned": 353,
+  "svamp_jaccard_max": 0.5,
+  "datasets": {
+    "asdiv": {
+      "eligible": 2019,
+      "rejected": {
+        "duplicate_question": 1,
+        "formula_mismatch": 7,
+        "near_svamp": 132,
+        "non_numeric_answer": 146
+      },
+      "main_pool_mix": {
+        "grade 1": 165,
+        "grade 2": 276,
+        "grade 3": 716,
+        "grade 4": 248,
+        "grade 5": 121,
+        "grade 6": 393
+      },
+      "pilot": {
+        "rows": 100,
+        "sha256": "42a7bc03f411d7176e4363e63ba70c0351b303e5e0d9cd3a6b7d983bcf7a16b3"
+      },
+      "main_pool": {
+        "rows": 1919,
+        "sha256": "11206679d906ae44e18882147b841f43e5c46290258114fb0de6c81bde3d519c"
+      }
+    },
+    "math13": {
+      "eligible": 2057,
+      "rejected": {
+        "level_4_or_5": 2538,
+        "non_constant_answer": 405
+      },
+      "main_pool_mix": {
+        "Level 1": 369,
+        "Level 2": 687,
+        "Level 3": 901
+      },
+      "pilot": {
+        "rows": 100,
+        "sha256": "5ea72485348eebbfbe05f3000b6162b113278cffab296d5dfaf228bc9b98ae5d"
+      },
+      "main_pool": {
+        "rows": 1957,
+        "sha256": "fd6be9ea2ab6b0cd480f207d59e31ef57171bc735de01826c253d32bfc489759"
+      }
+    }
+  },
+  "protected_labels_opened": false
+}
