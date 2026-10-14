@@ -1,0 +1,90 @@
+{
+  "schema_version": "paper_d1_g1_v1",
+  "post_hoc": true,
+  "gsm8k": {
+    "one_right_pairs": 288,
+    "tables": {
+      "d0_base": {
+        "B1_skill_index": 0.2222222222222222,
+        "B1_skill_index_ci": [
+          0.13357400722021662,
+          0.3116541581657436
+        ],
+        "B1_position2_rate_among_AB": 0.5541666666666667,
+        "B2_tie_break": 0.5989583333333334,
+        "B2_consistent_accuracy": 0.7050359712230215,
+        "B2_coverage": 0.4826388888888889,
+        "B4_single_order_accuracy": 0.5277777777777778,
+        "token_cap_rate": 0.03806584362139918
+      },
+      "d1_instruct": {
+        "B1_skill_index": 0.6458333333333334,
+        "B1_skill_index_ci": [
+          0.5714285714285714,
+          0.7152783956109134
+        ],
+        "B1_position2_rate_among_AB": 0.48535564853556484,
+        "B2_tie_break": 0.7743055555555556,
+        "B2_consistent_accuracy": 0.9488636363636364,
+        "B2_coverage": 0.6111111111111112,
+        "B4_single_order_accuracy": 0.7239583333333334,
+        "token_cap_rate": 0.205761316872428
+      },
+      "d1_instruct_long": {
+        "B1_skill_index": 0.6944444444444444,
+        "B1_skill_index_ci": [
+          0.6236933797909407,
+          0.7628865979381443
+        ],
+        "B1_position2_rate_among_AB": 0.491395793499044,
+        "B2_tie_break": 0.8194444444444444,
+        "B2_consistent_accuracy": 0.9509803921568627,
+        "B2_coverage": 0.7083333333333334,
+        "B4_single_order_accuracy": 0.7934027777777778,
+        "token_cap_rate": 0.00823045267489712
+      }
+    },
+    "tests": {
+      "d1_instruct_minus_d0_base": {
+        "net_position2": {
+          "variant": -0.024305555555555556,
+          "reference": 0.09027777777777778,
+          "difference": -0.11458333333333333,
+          "ci": [
+            -0.1914902632527948,
+            -0.03728678326721964
+          ],
+          "p_boot": 0.0034
+        },
+        "tie_break_difference": {
+          "estimate": 0.1753472222222222,
+          "ci": [
+            0.1284710331050228,
+            0.2222268673355629
+          ],
+          "p_boot": 0.0
+        }
+      },
+      "d1_instruct_long_minus_d0_base": {
+        "net_position2": {
+          "variant": -0.015625,
+          "reference": 0.09027777777777778,
+          "difference": -0.10590277777777778,
+          "ci": [
+            -0.18600682593856654,
+            -0.027586206896551724
+          ],
+          "p_boot": 0.0094
+        },
+        "tie_break_difference": {
+          "estimate": 0.2204861111111111,
+          "ci": [
+            0.17407203907203908,
+            0.26804752325873765
+          ],
+          "p_boot": 0.0
+        }
+      }
+    }
+  }
+}

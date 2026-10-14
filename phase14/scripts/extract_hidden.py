@@ -38,7 +38,8 @@ sys.path.insert(0, str(ROOT))
 from src.core.prompts import build_prompt  # noqa: E402
 from src.core.schema import Problem  # noqa: E402
 from phase7.scripts.paired_prompts import paired_prompt  # noqa: E402
-from phase14.scripts.config import BRIDGE, COMPARISON, DATASETS, EAGER_ATTENTION, JUDGED, MODELS, OUT, REGRESSION_SETS  # noqa: E402
+from phase14.scripts.config import (BRIDGE, COMPARISON, DATASETS, EAGER_ATTENTION, JUDGED, MODELS, OUT,  # noqa: E402
+                                    REGRESSION_SETS, tokenizer_source)
 from phase14.scripts.generate import JUDGES, completed, folder, load_samples, problems  # noqa: E402
 
 _VERDICT_PREFIX = re.compile(r"Verdict:\s*Solution")
@@ -53,7 +54,8 @@ def load_model(model: str):
     from transformers import AutoModelForCausalLM, AutoTokenizer
 
     spec = MODELS[model]
-    tokenizer = AutoTokenizer.from_pretrained(spec["repo"], revision=spec["revision"])
+    tok_repo, tok_revision = tokenizer_source(spec)
+    tokenizer = AutoTokenizer.from_pretrained(tok_repo, revision=tok_revision)
     attention = "eager" if spec["family"] in EAGER_ATTENTION else "sdpa"
     network = AutoModelForCausalLM.from_pretrained(spec["repo"], revision=spec["revision"],
                                                    torch_dtype=torch.float16, device_map={"": 0},

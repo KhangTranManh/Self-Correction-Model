@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(break)",
+      "Bash(tasklist //FI \"PID eq 30444\")",
+      "Bash(tasklist //FI \"PID eq 9832\")",
+      "Bash([ -s \"$S/pull_hidden.log\" ])",
+      "Bash(tasklist //FI \"PID eq 34168\")",
+      "Bash(awk '{print $2, $3, $4, $5, $6, $7, $8}')",
+      "Bash(grep -v \"^$\")",
+      "Bash(PYTHONIOENCODING=utf-8 D:/AGI/.venv-verify310/Scripts/python.exe -c ' *)",
+      "Bash(time PYTHONIOENCODING=utf-8 D:/AGI/.venv-verify310/Scripts/python.exe paper/scripts/phase14_catalog.py)",
+      "Bash(sed -n '/^## 6/,/^### Mỗi stage/p' phase14/DATA_CATALOG.md)",
+      "Bash(PYTHONIOENCODING=utf-8 python -c ' *)",
+      "Bash(PYTHONIOENCODING=utf-8 D:/AGI/.venv-verify310/Scripts/python.exe paper/scripts/phase14_preliminary.py)"
+    ]
+  }
+}

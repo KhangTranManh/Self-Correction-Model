@@ -46,7 +46,7 @@ from phase9.scripts.collect_checkpoint import judge_prompt  # noqa: E402
 from phase13.scripts.constrained import constrained_prompt  # noqa: E402
 from phase14.scripts.answers import parse, same  # noqa: E402
 from phase14.scripts.config import (BRIDGE, COMPARISON, DATASETS, GENERATION_CAP, REGRESSION_SETS, JUDGED, MAX_MODEL_LEN,  # noqa: E402
-                                    MODELS, OUT, PHASE, PRIMARY_CAP, SAMPLES, SOURCES, TEMPERATURE,
+                                    MODELS, OUT, PHASE, PRIMARY_CAP, SAMPLES, SOURCES, TEMPERATURE, tokenizer_source,
                                     VERDICT_TOP_LOGPROBS)
 
 JUDGES = {"base": judge_prompt, "base_c": constrained_prompt}
@@ -170,6 +170,26 @@ def judge_tasks(rows: list[dict], samples: dict) -> list[tuple[str, int, str]]:
     return tasks
 
 
+def primary_view(tokenizer, ids: list[int], text: str) -> str:
+    """The first PRIMARY_CAP tokens as text, written the way vLLM writes the full output.
+
+    Decoding uses clean_up_tokenization_spaces=False (as vLLM's detokenizer); a leading
+    space that vLLM keeps but SentencePiece decoding drops (Mistral) is restored.
+    """
+    if len(ids) < PRIMARY_CAP:
+        return text
+    head = tokenizer.decode(ids[:PRIMARY_CAP], skip_special_tokens=True, clean_up_tokenization_spaces=False)
+    full = tokenizer.decode(ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
+    lead = text[:len(text) - len(full)] if text.endswith(full) else ""
+    return (lead if not lead.strip() else "") + head
+
+
+def decode_matches(tokenizer, ids: list[int], text: str) -> bool:
+    """vLLM's text equals the decoded ids, up to the leading whitespace primary_view restores."""
+    full = tokenizer.decode(ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
+    return text == full or (text.endswith(full) and not text[:len(text) - len(full)].strip())
+
+
 def verdict_logprobs(result) -> dict | None:
     """Log-probabilities of "A" and "B" at the token after the last "Verdict: Solution"."""
     if not result.logprobs:
@@ -212,9 +232,10 @@ def run(model: str, base: Path, stage: str, tasks: list[tuple], prompts: list[st
     audit = path / "audit.jsonl"
     done = open_audit(audit, settings, [list(t) for t in tasks], lambda row: row["task"])
     if len(done) < len(tasks):
-        tokenizer = AutoTokenizer.from_pretrained(spec["repo"], revision=spec["revision"])
-        llm = LLM(model=spec["repo"], revision=spec["revision"], tokenizer=spec["repo"],
-                  tokenizer_revision=spec["revision"], dtype="half", max_model_len=MAX_MODEL_LEN,
+        tok_repo, tok_revision = tokenizer_source(spec)
+        tokenizer = AutoTokenizer.from_pretrained(tok_repo, revision=tok_revision)
+        llm = LLM(model=spec["repo"], revision=spec["revision"], tokenizer=tok_repo,
+                  tokenizer_revision=tok_revision, dtype="half", max_model_len=MAX_MODEL_LEN,
                   gpu_memory_utilization=0.85, enforce_eager=True, trust_remote_code=False)
         requests = []
         for prompt, request_seed in zip(prompts, seeds):
@@ -232,8 +253,7 @@ def run(model: str, base: Path, stage: str, tasks: list[tuple], prompts: list[st
                    "generated_tokens": len(ids), "hit_token_cap": len(ids) >= max_tokens}
             if max_tokens > PRIMARY_CAP:  # attempts: primary view = first 768 tokens
                 row["output_full"] = result.text
-                row["output"] = result.text if len(ids) < PRIMARY_CAP else \
-                    tokenizer.decode(ids[:PRIMARY_CAP], skip_special_tokens=True)
+                row["output"] = primary_view(tokenizer, ids, result.text)
                 row["hit_primary_cap"] = len(ids) >= PRIMARY_CAP
             else:
                 row["output"] = result.text

@@ -1,0 +1,3401 @@
+{
+ "schema_version": "paper_phase14_decomposition_v1",
+ "descriptive": true,
+ "root": "D:\\AGI\\outputs\\phase14_remote\\outputs\\phase14_v1",
+ "cells": {
+  "llama31_8b/asdiv": {
+   "base": {
+    "one_right_pairs": 274,
+    "pair_share": {
+     "consistent_right": 0.39416058394160586,
+     "consistent_wrong": 0.10218978102189781,
+     "locked_A": 0.1386861313868613,
+     "locked_B": 0.051094890510948905,
+     "invented_with_right": 0.1678832116788321,
+     "invented_without_right": 0.145985401459854
+    },
+    "single_order_accuracy": 0.572992700729927,
+    "tie_break": 0.6459854014598541,
+    "tie_minus_single": 0.07299270072992703,
+    "judgment_share": {
+     "invented": 0.19343065693430658,
+     "right": 0.572992700729927,
+     "wrong": 0.23357664233576642
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.7147447144090678,
+     "model_single_order": 0.5722232315025466,
+     "observed_single_order": 0.572992700729927,
+     "gap": 0.14252148290652122,
+     "shapley_position_bias": 0.004089044682440257,
+     "shapley_invented": 0.13843243822408097,
+     "beta_bias_toward_A": 0.3004697637854441,
+     "delta_skill": 0.9185409179050326,
+     "pi_A": 0.2116788321167883,
+     "pi_B": 0.17518248175182483,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.6602798978896687,
+       0.7669056293322576
+      ],
+      "observed_single_order": [
+       0.5216548478597215,
+       0.6218193222548061
+      ],
+      "gap": [
+       0.11379924625047812,
+       0.17289237870292595
+      ],
+      "shapley_position_bias": [
+       0.0008748559256295197,
+       0.009999772159491339
+      ],
+      "shapley_invented": [
+       0.10995109558748345,
+       0.1671464106039317
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.7147447144090678,
+     "model_single_order": 0.5722232315025466,
+     "gap": 0.14252148290652122,
+     "shapley_position_bias": 0.00408904468244022,
+     "shapley_cut_at_cap": 0.06243412916983827,
+     "shapley_invented_uncut": 0.07599830905424272,
+     "share_cut": 0.08759124087591241,
+     "share_invented_uncut": 0.10583941605839416,
+     "ci": {
+      "gap": [
+       0.11453453221947518,
+       0.17381784571787703
+      ],
+      "shapley_position_bias": [
+       0.0008252427437764997,
+       0.01105574837481548
+      ],
+      "shapley_cut_at_cap": [
+       0.04280710226663291,
+       0.0826871742753906
+      ],
+      "shapley_invented_uncut": [
+       0.057085234725490944,
+       0.09730847247497386
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match": 0.8065693430656934,
+     "invented_answer_cap": 0.08759124087591241,
+     "invented_answer_no_cap": 0.10583941605839416
+    },
+    "third_outcome_name": "invented answer (final answer matches neither solution)"
+   },
+   "base_c": {
+    "one_right_pairs": 274,
+    "pair_share": {
+     "consistent_right": 0.3686131386861314,
+     "consistent_wrong": 0.14233576642335766,
+     "locked_A": 0.3175182481751825,
+     "locked_B": 0.06204379562043796,
+     "invented_with_right": 0.058394160583941604,
+     "invented_without_right": 0.051094890510948905
+    },
+    "single_order_accuracy": 0.5875912408759124,
+    "tie_break": 0.6131386861313869,
+    "tie_minus_single": 0.025547445255474477,
+    "judgment_share": {
+     "right": 0.5875912408759124,
+     "wrong": 0.3521897810218978,
+     "invented": 0.060218978102189784
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.6369336634609446,
+     "model_single_order": 0.5871329746327971,
+     "observed_single_order": 0.5875912408759124,
+     "gap": 0.04980068882814748,
+     "shapley_position_bias": 0.011406953671500575,
+     "shapley_invented": 0.0383937351566469,
+     "beta_bias_toward_A": 0.6159391179726246,
+     "delta_skill": 0.5620799482998953,
+     "pi_A": 0.06569343065693431,
+     "pi_B": 0.05474452554744526,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.5877612037697537,
+       0.6851746789359519
+      ],
+      "observed_single_order": [
+       0.5431011308861698,
+       0.6312817516764885
+      ],
+      "gap": [
+       0.03494801117211754,
+       0.06776316987018925
+      ],
+      "shapley_position_bias": [
+       0.004996156032131478,
+       0.02104820826853104
+      ],
+      "shapley_invented": [
+       0.02570802263050723,
+       0.05271304766020203
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.6369336634609446,
+     "model_single_order": 0.5871329746327971,
+     "gap": 0.04980068882814748,
+     "shapley_position_bias": 0.011406953671500557,
+     "shapley_cut_at_cap": 0.0373686693491657,
+     "shapley_invented_uncut": 0.0010250658074812216,
+     "share_cut": 0.058394160583941604,
+     "share_invented_uncut": 0.0018248175182481751,
+     "ci": {
+      "gap": [
+       0.034545975865858024,
+       0.06707992956385277
+      ],
+      "shapley_position_bias": [
+       0.005352406053776439,
+       0.02102312705672623
+      ],
+      "shapley_cut_at_cap": [
+       0.02457598381941142,
+       0.05064561460986973
+      ],
+      "shapley_invented_uncut": [
+       0.0,
+       0.0032960023459959816
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match_no_verdict_line": 0.05656934306569343,
+     "no_valid_choice_cap": 0.058394160583941604,
+     "no_valid_choice_no_cap": 0.0018248175182481751,
+     "verdict_line": 0.8832116788321168
+    },
+    "third_outcome_name": "no valid choice (no Verdict line and the final answer matches neither solution)",
+    "logprob": {
+     "coverage": 0.7956204379562044,
+     "missing_judgments_no_verdict_cap": 48,
+     "missing_judgments_no_verdict_other": 16,
+     "bias_logodds": 1.6513761476302318,
+     "single_order_accuracy": 0.6169724770642202,
+     "order_averaged_accuracy": 0.6238532110091743
+    }
+   },
+   "base_1536": {
+    "one_right_pairs": 274,
+    "pair_share": {
+     "consistent_right": 0.38686131386861317,
+     "consistent_wrong": 0.09854014598540146,
+     "locked_A": 0.14233576642335766,
+     "locked_B": 0.051094890510948905,
+     "invented_with_right": 0.1678832116788321,
+     "invented_without_right": 0.15328467153284672
+    },
+    "single_order_accuracy": 0.5675182481751825,
+    "tie_break": 0.6441605839416058,
+    "tie_minus_single": 0.07664233576642332,
+    "judgment_share": {
+     "invented": 0.19708029197080293,
+     "right": 0.5675182481751825,
+     "wrong": 0.2354014598540146
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.7121907852128984,
+     "model_single_order": 0.5667612345001161,
+     "observed_single_order": 0.5675182481751825,
+     "gap": 0.1454295507127823,
+     "shapley_position_bias": 0.0049199105344000515,
+     "shapley_invented": 0.14050964017838224,
+     "beta_bias_toward_A": 0.33337153300800676,
+     "delta_skill": 0.9060480203136765,
+     "pi_A": 0.21532846715328466,
+     "pi_B": 0.17883211678832117,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.6580688284847674,
+       0.7636672607673746
+      ],
+      "observed_single_order": [
+       0.5171728043665165,
+       0.6179801194079356
+      ],
+      "gap": [
+       0.11655971926723,
+       0.17612445460812756
+      ],
+      "shapley_position_bias": [
+       0.001281066302153254,
+       0.01145883937945709
+      ],
+      "shapley_invented": [
+       0.11138749663501772,
+       0.17002738174677973
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.7121907852128984,
+     "model_single_order": 0.5667612345001161,
+     "gap": 0.1454295507127823,
+     "shapley_position_bias": 0.0049199105344000515,
+     "shapley_cut_at_cap": 0.04243340098722875,
+     "shapley_invented_uncut": 0.09807623919115348,
+     "share_cut": 0.060218978102189784,
+     "share_invented_uncut": 0.13686131386861314,
+     "ci": {
+      "gap": [
+       0.11684297010858931,
+       0.1777324765866797
+      ],
+      "shapley_position_bias": [
+       0.0012191536461784243,
+       0.012568662547441623
+      ],
+      "shapley_cut_at_cap": [
+       0.026300471063127887,
+       0.059630352275015786
+      ],
+      "shapley_invented_uncut": [
+       0.07663168701990108,
+       0.12338664533497805
+      ]
+     }
+    },
+    "token_cap": 1536,
+    "choice_source": {
+     "final_answer_match": 0.8029197080291971,
+     "invented_answer_cap": 0.060218978102189784,
+     "invented_answer_no_cap": 0.13686131386861314
+    },
+    "third_outcome_name": "invented answer (final answer matches neither solution)"
+   },
+   "base_c_1536": {
+    "one_right_pairs": 274,
+    "pair_share": {
+     "consistent_right": 0.36496350364963503,
+     "consistent_wrong": 0.13138686131386862,
+     "locked_A": 0.3248175182481752,
+     "locked_B": 0.06204379562043796,
+     "invented_with_right": 0.06204379562043796,
+     "invented_without_right": 0.05474452554744526
+    },
+    "single_order_accuracy": 0.5894160583941606,
+    "tie_break": 0.6167883211678832,
+    "tie_minus_single": 0.027372262773722622,
+    "judgment_share": {
+     "right": 0.5894160583941606,
+     "wrong": 0.34854014598540145,
+     "invented": 0.06204379562043796
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.6399778364788399,
+     "model_single_order": 0.5889492446104228,
+     "observed_single_order": 0.5894160583941606,
+     "gap": 0.05102859186841713,
+     "shapley_position_bias": 0.01169639875748385,
+     "shapley_invented": 0.03933219311093328,
+     "beta_bias_toward_A": 0.6295448372150498,
+     "delta_skill": 0.5752679503606113,
+     "pi_A": 0.06204379562043796,
+     "pi_B": 0.06204379562043796,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.5924142329461607,
+       0.6865662858656993
+      ],
+      "observed_single_order": [
+       0.5464252645502645,
+       0.6318681318681318
+      ],
+      "gap": [
+       0.03713876633225499,
+       0.06796453131734644
+      ],
+      "shapley_position_bias": [
+       0.005104635356792652,
+       0.02161355639129322
+      ],
+      "shapley_invented": [
+       0.027007886214873725,
+       0.05319022276353077
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.6399778364788399,
+     "model_single_order": 0.5889492446104228,
+     "gap": 0.05102859186841713,
+     "shapley_position_bias": 0.011696398757483833,
+     "shapley_cut_at_cap": 0.022366998226175754,
+     "shapley_invented_uncut": 0.01696519488475754,
+     "share_cut": 0.03467153284671533,
+     "share_invented_uncut": 0.02737226277372263,
+     "ci": {
+      "gap": [
+       0.036421289122335755,
+       0.06788953526472176
+      ],
+      "shapley_position_bias": [
+       0.005442819423024755,
+       0.021398414588680675
+      ],
+      "shapley_cut_at_cap": [
+       0.012984054306748507,
+       0.03256043865344625
+      ],
+      "shapley_invented_uncut": [
+       0.008939577336110489,
+       0.02659768527818556
+      ]
+     }
+    },
+    "token_cap": 1536,
+    "choice_source": {
+     "final_answer_match_no_verdict_line": 0.058394160583941604,
+     "no_valid_choice_cap": 0.03467153284671533,
+     "no_valid_choice_no_cap": 0.02737226277372263,
+     "verdict_line": 0.8795620437956204
+    },
+    "third_outcome_name": "no valid choice (no Verdict line and the final answer matches neither solution)",
+    "logprob": {
+     "coverage": 0.8503649635036497,
+     "missing_judgments_no_verdict_cap": 29,
+     "missing_judgments_no_verdict_other": 17,
+     "bias_logodds": 1.5932135197342798,
+     "single_order_accuracy": 0.6180257510729614,
+     "order_averaged_accuracy": 0.6223175965665236
+    }
+   }
+  },
+  "llama31_8b/math13": {
+   "base": {
+    "one_right_pairs": 434,
+    "pair_share": {
+     "consistent_right": 0.34101382488479265,
+     "consistent_wrong": 0.08525345622119816,
+     "locked_A": 0.09907834101382489,
+     "locked_B": 0.05069124423963134,
+     "invented_with_right": 0.22811059907834103,
+     "invented_without_right": 0.195852534562212
+    },
+    "single_order_accuracy": 0.5299539170506913,
+    "tie_break": 0.6278801843317972,
+    "tie_minus_single": 0.09792626728110587,
+    "judgment_share": {
+     "wrong": 0.20276497695852536,
+     "invented": 0.2672811059907834,
+     "right": 0.5299539170506913
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.7230454416648359,
+     "model_single_order": 0.5294465829739985,
+     "observed_single_order": 0.5299539170506913,
+     "gap": 0.19359885869083737,
+     "shapley_position_bias": 0.0016024628706564625,
+     "shapley_invented": 0.1919963958201809,
+     "beta_bias_toward_A": 0.2541103509438908,
+     "delta_skill": 0.9596186283274099,
+     "pi_A": 0.23271889400921658,
+     "pi_B": 0.30184331797235026,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.681918419807245,
+       0.7646425461141173
+      ],
+      "observed_single_order": [
+       0.49084615707597673,
+       0.5694469424460431
+      ],
+      "gap": [
+       0.16988777806638347,
+       0.22086948462817704
+      ],
+      "shapley_position_bias": [
+       9.399985959494818e-06,
+       0.005188342172100359
+      ],
+      "shapley_invented": [
+       0.16838222234353217,
+       0.21844614752715577
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.7230454416648359,
+     "model_single_order": 0.5294465829739986,
+     "gap": 0.19359885869083726,
+     "shapley_position_bias": 0.001602462870656407,
+     "shapley_cut_at_cap": 0.10261977184617777,
+     "shapley_invented_uncut": 0.08937662397400309,
+     "share_cut": 0.14285714285714285,
+     "share_invented_uncut": 0.12442396313364056,
+     "ci": {
+      "gap": [
+       0.16858431315805317,
+       0.22017454408310688
+      ],
+      "shapley_position_bias": [
+       -6.83292942139597e-06,
+       0.005204754675114613
+      ],
+      "shapley_cut_at_cap": [
+       0.08439630659374506,
+       0.12268452429072646
+      ],
+      "shapley_invented_uncut": [
+       0.07089287852229254,
+       0.11044058529396929
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match": 0.7327188940092166,
+     "invented_answer_cap": 0.14285714285714285,
+     "invented_answer_no_cap": 0.12442396313364056
+    },
+    "third_outcome_name": "invented answer (final answer matches neither solution)"
+   },
+   "base_c": {
+    "one_right_pairs": 434,
+    "pair_share": {
+     "consistent_right": 0.2557603686635945,
+     "consistent_wrong": 0.11059907834101383,
+     "locked_A": 0.21428571428571427,
+     "locked_B": 0.07142857142857142,
+     "invented_with_right": 0.16129032258064516,
+     "invented_without_right": 0.18663594470046083
+    },
+    "single_order_accuracy": 0.4792626728110599,
+    "tie_break": 0.5725806451612903,
+    "tie_minus_single": 0.09331797235023037,
+    "judgment_share": {
+     "right": 0.4792626728110599,
+     "wrong": 0.3099078341013825,
+     "invented": 0.2108294930875576
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.6153740565469523,
+     "model_single_order": 0.4790125792951573,
+     "observed_single_order": 0.4792626728110599,
+     "gap": 0.13636147725179504,
+     "shapley_position_bias": 0.006727973747989974,
+     "shapley_invented": 0.12963350350380506,
+     "beta_bias_toward_A": 0.5101943305781322,
+     "delta_skill": 0.469959018386233,
+     "pi_A": 0.22119815668202766,
+     "pi_B": 0.20046082949308755,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.5722290289654954,
+       0.6572800142434151
+      ],
+      "observed_single_order": [
+       0.4429522539916031,
+       0.5145814948025161
+      ],
+      "gap": [
+       0.11476105644632248,
+       0.16010272260397795
+      ],
+      "shapley_position_bias": [
+       0.0028732050146960753,
+       0.012592183682604938
+      ],
+      "shapley_invented": [
+       0.10905228738126203,
+       0.15198829113993528
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.6153740565469523,
+     "model_single_order": 0.4790125792951573,
+     "gap": 0.13636147725179504,
+     "shapley_position_bias": 0.006727973747989965,
+     "shapley_cut_at_cap": 0.12103663033346138,
+     "shapley_invented_uncut": 0.00859687317034368,
+     "share_cut": 0.19700460829493088,
+     "share_invented_uncut": 0.013824884792626729,
+     "ci": {
+      "gap": [
+       0.1148726244744031,
+       0.16046456110702376
+      ],
+      "shapley_position_bias": [
+       0.002934015712199631,
+       0.012539607555155072
+      ],
+      "shapley_cut_at_cap": [
+       0.10025214820288855,
+       0.1436659938489364
+      ],
+      "shapley_invented_uncut": [
+       0.0035158640982107274,
+       0.014855644130690163
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match_no_verdict_line": 0.12672811059907835,
+     "no_valid_choice_cap": 0.19700460829493088,
+     "no_valid_choice_no_cap": 0.013824884792626729,
+     "verdict_line": 0.6624423963133641
+    },
+    "third_outcome_name": "no valid choice (no Verdict line and the final answer matches neither solution)",
+    "logprob": {
+     "coverage": 0.5023041474654378,
+     "missing_judgments_no_verdict_cap": 254,
+     "missing_judgments_no_verdict_other": 39,
+     "bias_logodds": 1.346581143687718,
+     "single_order_accuracy": 0.6238532110091743,
+     "order_averaged_accuracy": 0.6743119266055045
+    }
+   },
+   "base_1536": {
+    "one_right_pairs": 434,
+    "pair_share": {
+     "consistent_right": 0.33640552995391704,
+     "consistent_wrong": 0.08525345622119816,
+     "locked_A": 0.09907834101382489,
+     "locked_B": 0.052995391705069124,
+     "invented_with_right": 0.23271889400921658,
+     "invented_without_right": 0.1935483870967742
+    },
+    "single_order_accuracy": 0.5288018433179723,
+    "tie_break": 0.6255760368663594,
+    "tie_minus_single": 0.09677419354838712,
+    "judgment_share": {
+     "wrong": 0.20161290322580644,
+     "invented": 0.2695852534562212,
+     "right": 0.5288018433179723
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.7239723467386209,
+     "model_single_order": 0.5282926287371167,
+     "observed_single_order": 0.5288018433179723,
+     "gap": 0.1956797180015042,
+     "shapley_position_bias": 0.0017403340289930402,
+     "shapley_invented": 0.19393938397251115,
+     "beta_bias_toward_A": 0.2587438654861629,
+     "delta_skill": 0.964252142869682,
+     "pi_A": 0.23732718894009217,
+     "pi_B": 0.30184331797235026,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.6828893398717232,
+       0.765484318542168
+      ],
+      "observed_single_order": [
+       0.4898390874795139,
+       0.5670457887700534
+      ],
+      "gap": [
+       0.17168753550333285,
+       0.22360120779502668
+      ],
+      "shapley_position_bias": [
+       6.148458406185221e-05,
+       0.005272500190498973
+      ],
+      "shapley_invented": [
+       0.16992204912738562,
+       0.22080580133518174
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.7239723467386209,
+     "model_single_order": 0.5282926287371167,
+     "gap": 0.1956797180015042,
+     "shapley_position_bias": 0.001740334028993022,
+     "shapley_cut_at_cap": 0.051546687196282845,
+     "shapley_invented_uncut": 0.14239269677622832,
+     "share_cut": 0.07142857142857142,
+     "share_invented_uncut": 0.19815668202764977,
+     "ci": {
+      "gap": [
+       0.17081465095278717,
+       0.2223576800371782
+      ],
+      "shapley_position_bias": [
+       3.2036971298783614e-05,
+       0.005418583180503891
+      ],
+      "shapley_cut_at_cap": [
+       0.03862773233414832,
+       0.06663438140448587
+      ],
+      "shapley_invented_uncut": [
+       0.12048854316692263,
+       0.1668439226730737
+      ]
+     }
+    },
+    "token_cap": 1536,
+    "choice_source": {
+     "final_answer_match": 0.7304147465437788,
+     "invented_answer_cap": 0.07142857142857142,
+     "invented_answer_no_cap": 0.19815668202764977
+    },
+    "third_outcome_name": "invented answer (final answer matches neither solution)"
+   },
+   "base_c_1536": {
+    "one_right_pairs": 434,
+    "pair_share": {
+     "consistent_right": 0.26036866359447003,
+     "consistent_wrong": 0.11059907834101383,
+     "locked_A": 0.21889400921658986,
+     "locked_B": 0.06912442396313365,
+     "invented_with_right": 0.1543778801843318,
+     "invented_without_right": 0.18663594470046083
+    },
+    "single_order_accuracy": 0.4815668202764977,
+    "tie_break": 0.5748847926267282,
+    "tie_minus_single": 0.09331797235023048,
+    "judgment_share": {
+     "right": 0.4815668202764977,
+     "wrong": 0.3087557603686636,
+     "invented": 0.20967741935483872
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.6173938761310659,
+     "model_single_order": 0.4813131979530754,
+     "observed_single_order": 0.4815668202764977,
+     "gap": 0.13608067817799047,
+     "shapley_position_bias": 0.006974455635560289,
+     "shapley_invented": 0.12910622254243018,
+     "beta_bias_toward_A": 0.5246188125025317,
+     "delta_skill": 0.47850113040756614,
+     "pi_A": 0.21658986175115208,
+     "pi_B": 0.20276497695852536,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.5754259979176244,
+       0.6598010146864031
+      ],
+      "observed_single_order": [
+       0.44581837586740236,
+       0.5173611111111112
+      ],
+      "gap": [
+       0.11401724597358345,
+       0.1601140919215037
+      ],
+      "shapley_position_bias": [
+       0.002952189040768291,
+       0.012773018200564774
+      ],
+      "shapley_invented": [
+       0.10818922839008069,
+       0.15141449495945872
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.6173938761310659,
+     "model_single_order": 0.4813131979530755,
+     "gap": 0.1360806781779904,
+     "shapley_position_bias": 0.006974455635560262,
+     "shapley_cut_at_cap": 0.038041453428012406,
+     "shapley_invented_uncut": 0.09106476911441774,
+     "share_cut": 0.06221198156682028,
+     "share_invented_uncut": 0.14746543778801843,
+     "ci": {
+      "gap": [
+       0.11476027248813102,
+       0.1602609483557512
+      ],
+      "shapley_position_bias": [
+       0.003049321154854729,
+       0.012951216429839974
+      ],
+      "shapley_cut_at_cap": [
+       0.02616716162952337,
+       0.05133571571734689
+      ],
+      "shapley_invented_uncut": [
+       0.07513965323306075,
+       0.1084495767181104
+      ]
+     }
+    },
+    "token_cap": 1536,
+    "choice_source": {
+     "final_answer_match_no_verdict_line": 0.12557603686635946,
+     "no_valid_choice_cap": 0.06221198156682028,
+     "no_valid_choice_no_cap": 0.14746543778801843,
+     "verdict_line": 0.6647465437788018
+    },
+    "third_outcome_name": "no valid choice (no Verdict line and the final answer matches neither solution)",
+    "logprob": {
+     "coverage": 0.7419354838709677,
+     "missing_judgments_no_verdict_cap": 80,
+     "missing_judgments_no_verdict_other": 57,
+     "bias_logodds": 1.3440775506680087,
+     "single_order_accuracy": 0.6428571428571429,
+     "order_averaged_accuracy": 0.7018633540372671
+    }
+   }
+  },
+  "llama31_8b/gsm8k13": {
+   "base": {
+    "one_right_pairs": 264,
+    "pair_share": {
+     "consistent_right": 0.2878787878787879,
+     "consistent_wrong": 0.07954545454545454,
+     "locked_A": 0.125,
+     "locked_B": 0.041666666666666664,
+     "invented_with_right": 0.26136363636363635,
+     "invented_without_right": 0.20454545454545456
+    },
+    "single_order_accuracy": 0.5018939393939394,
+    "tie_break": 0.6041666666666667,
+    "tie_minus_single": 0.10227272727272729,
+    "judgment_share": {
+     "invented": 0.2916666666666667,
+     "right": 0.5018939393939394,
+     "wrong": 0.20643939393939395
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.7139453481204923,
+     "model_single_order": 0.5011134230375068,
+     "observed_single_order": 0.5018939393939394,
+     "gap": 0.21283192508298543,
+     "shapley_position_bias": 0.006243447618398956,
+     "shapley_invented": 0.20658847746458647,
+     "beta_bias_toward_A": 0.42966141993313806,
+     "delta_skill": 0.9146235331092094,
+     "pi_A": 0.2803030303030303,
+     "pi_B": 0.30303030303030304,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.6488604302913331,
+       0.7722493943853247
+      ],
+      "observed_single_order": [
+       0.4485246635554591,
+       0.5519242831541219
+      ],
+      "gap": [
+       0.17771107807218445,
+       0.2506524345073611
+      ],
+      "shapley_position_bias": [
+       0.0014259891205581445,
+       0.01598387210364628
+      ],
+      "shapley_invented": [
+       0.172786157134699,
+       0.24125213070474613
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.7139453481204923,
+     "model_single_order": 0.5011134230375068,
+     "gap": 0.21283192508298543,
+     "shapley_position_bias": 0.006243447618398956,
+     "shapley_cut_at_cap": 0.06311831525861689,
+     "shapley_invented_uncut": 0.1434701622059696,
+     "share_cut": 0.08901515151515152,
+     "share_invented_uncut": 0.20265151515151514,
+     "ci": {
+      "gap": [
+       0.1759677020043217,
+       0.25336908439644545
+      ],
+      "shapley_position_bias": [
+       0.0015238498058570936,
+       0.015173524029818138
+      ],
+      "shapley_cut_at_cap": [
+       0.04566169998409235,
+       0.0831227666388609
+      ],
+      "shapley_invented_uncut": [
+       0.11558849941771321,
+       0.17516423373705578
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match": 0.7083333333333334,
+     "invented_answer_cap": 0.08901515151515152,
+     "invented_answer_no_cap": 0.20265151515151514
+    },
+    "third_outcome_name": "invented answer (final answer matches neither solution)"
+   },
+   "base_c": {
+    "one_right_pairs": 264,
+    "pair_share": {
+     "consistent_right": 0.22348484848484848,
+     "consistent_wrong": 0.12878787878787878,
+     "locked_A": 0.42424242424242425,
+     "locked_B": 0.07196969696969698,
+     "invented_with_right": 0.06060606060606061,
+     "invented_without_right": 0.09090909090909091
+    },
+    "single_order_accuracy": 0.5018939393939394,
+    "tie_break": 0.5473484848484849,
+    "tie_minus_single": 0.045454545454545414,
+    "judgment_share": {
+     "right": 0.5018939393939394,
+     "wrong": 0.4015151515151515,
+     "invented": 0.09659090909090909
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.5624338438851393,
+     "model_single_order": 0.5016992441418017,
+     "observed_single_order": 0.5018939393939394,
+     "gap": 0.060734599743337614,
+     "shapley_position_bias": 0.008721450389881924,
+     "shapley_invented": 0.05201314935345569,
+     "beta_bias_toward_A": 0.9029825198614807,
+     "delta_skill": 0.25104560794819825,
+     "pi_A": 0.07954545454545454,
+     "pi_B": 0.11363636363636363,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.5110607617601649,
+       0.6138078899261096
+      ],
+      "observed_single_order": [
+       0.45985191710713985,
+       0.5435606060606061
+      ],
+      "gap": [
+       0.040407830602070295,
+       0.08403802629508578
+      ],
+      "shapley_position_bias": [
+       5.620576127735661e-05,
+       0.019984114122220464
+      ],
+      "shapley_invented": [
+       0.035113799127092116,
+       0.07132236654664731
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.5624338438851393,
+     "model_single_order": 0.5016992441418017,
+     "gap": 0.060734599743337614,
+     "shapley_position_bias": 0.008721450389881924,
+     "shapley_cut_at_cap": 0.04950807407784114,
+     "shapley_invented_uncut": 0.0025050752756145545,
+     "share_cut": 0.0928030303030303,
+     "share_invented_uncut": 0.003787878787878788,
+     "ci": {
+      "gap": [
+       0.040182119385401456,
+       0.08590447167420784
+      ],
+      "shapley_position_bias": [
+       0.00034093555383813985,
+       0.02016530189973674
+      ],
+      "shapley_cut_at_cap": [
+       0.032378882114366306,
+       0.06816768338268832
+      ],
+      "shapley_invented_uncut": [
+       0.0,
+       0.006425153779909814
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match_no_verdict_line": 0.056818181818181816,
+     "no_valid_choice_cap": 0.0928030303030303,
+     "no_valid_choice_no_cap": 0.003787878787878788,
+     "verdict_line": 0.8465909090909091
+    },
+    "third_outcome_name": "no valid choice (no Verdict line and the final answer matches neither solution)",
+    "logprob": {
+     "coverage": 0.7613636363636364,
+     "missing_judgments_no_verdict_cap": 61,
+     "missing_judgments_no_verdict_other": 20,
+     "bias_logodds": 2.607625913951616,
+     "single_order_accuracy": 0.5422885572139303,
+     "order_averaged_accuracy": 0.6517412935323383
+    }
+   }
+  },
+  "llama31_8b/svamp12": {
+   "base": {
+    "one_right_pairs": 389,
+    "pair_share": {
+     "consistent_right": 0.3856041131105398,
+     "consistent_wrong": 0.09254498714652956,
+     "locked_A": 0.13110539845758354,
+     "locked_B": 0.043701799485861184,
+     "invented_with_right": 0.18251928020565553,
+     "invented_without_right": 0.16452442159383032
+    },
+    "single_order_accuracy": 0.5642673521850899,
+    "tie_break": 0.6465295629820051,
+    "tie_minus_single": 0.0822622107969152,
+    "judgment_share": {
+     "right": 0.5642673521850899,
+     "invented": 0.2210796915167095,
+     "wrong": 0.21465295629820053
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.7303211666167938,
+     "model_single_order": 0.5636943589473671,
+     "observed_single_order": 0.5642673521850899,
+     "gap": 0.16662680766942672,
+     "shapley_position_bias": 0.006297213294141124,
+     "shapley_invented": 0.1603295943752856,
+     "beta_bias_toward_A": 0.4084659817719151,
+     "delta_skill": 0.996252646674034,
+     "pi_A": 0.2133676092544987,
+     "pi_B": 0.22879177377892032,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.6885748385271813,
+       0.7759606779388727
+      ],
+      "observed_single_order": [
+       0.5234255420918368,
+       0.6057971934209413
+      ],
+      "gap": [
+       0.14022168753728997,
+       0.19628827554893413
+      ],
+      "shapley_position_bias": [
+       0.0022905111427621873,
+       0.012940477801217744
+      ],
+      "shapley_invented": [
+       0.13469487419529938,
+       0.1884313240996226
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.7303211666167938,
+     "model_single_order": 0.5636943589473671,
+     "gap": 0.16662680766942672,
+     "shapley_position_bias": 0.006297213294141124,
+     "shapley_cut_at_cap": 0.06822928750723506,
+     "shapley_invented_uncut": 0.09210030686805054,
+     "share_cut": 0.09383033419023136,
+     "share_invented_uncut": 0.12724935732647816,
+     "ci": {
+      "gap": [
+       0.13981329646997873,
+       0.1968225640832964
+      ],
+      "shapley_position_bias": [
+       0.0021428125672697295,
+       0.012807999128705942
+      ],
+      "shapley_cut_at_cap": [
+       0.05102525690448232,
+       0.08690064202951857
+      ],
+      "shapley_invented_uncut": [
+       0.07238720536962247,
+       0.11354171580898263
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match": 0.7789203084832905,
+     "invented_answer_cap": 0.09383033419023136,
+     "invented_answer_no_cap": 0.12724935732647816
+    },
+    "third_outcome_name": "invented answer (final answer matches neither solution)"
+   },
+   "base_c": {
+    "one_right_pairs": 389,
+    "pair_share": {
+     "consistent_right": 0.4241645244215938,
+     "consistent_wrong": 0.13624678663239073,
+     "locked_A": 0.2622107969151671,
+     "locked_B": 0.05912596401028278,
+     "invented_with_right": 0.07197943444730077,
+     "invented_without_right": 0.04627249357326478
+    },
+    "single_order_accuracy": 0.6208226221079691,
+    "tie_break": 0.6439588688946015,
+    "tie_minus_single": 0.023136246786632397,
+    "judgment_share": {
+     "right": 0.6208226221079691,
+     "wrong": 0.31362467866323906,
+     "invented": 0.06555269922879177
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.6732740165157431,
+     "model_single_order": 0.6204040822346555,
+     "observed_single_order": 0.6208226221079691,
+     "gap": 0.05286993428108766,
+     "shapley_position_bias": 0.009598505487298237,
+     "shapley_invented": 0.043271428793789424,
+     "beta_bias_toward_A": 0.5341049609520545,
+     "delta_skill": 0.723030554955923,
+     "pi_A": 0.056555269922879174,
+     "pi_B": 0.07455012853470437,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.6313619255719765,
+       0.7147649669267268
+      ],
+      "observed_single_order": [
+       0.5800968484922278,
+       0.660049709848097
+      ],
+      "gap": [
+       0.03985334286720077,
+       0.06797497617309176
+      ],
+      "shapley_position_bias": [
+       0.004745852644041126,
+       0.01652657585776132
+      ],
+      "shapley_invented": [
+       0.03133339310082566,
+       0.05714727513055339
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.6732740165157431,
+     "model_single_order": 0.6204040822346555,
+     "gap": 0.05286993428108766,
+     "shapley_position_bias": 0.009598505487298292,
+     "shapley_cut_at_cap": 0.04248713224542294,
+     "shapley_invented_uncut": 0.0007842965483664255,
+     "share_cut": 0.06426735218508997,
+     "share_invented_uncut": 0.0012853470437017994,
+     "ci": {
+      "gap": [
+       0.039611834764397995,
+       0.06763893150938839
+      ],
+      "shapley_position_bias": [
+       0.0047580992167394285,
+       0.016636101238421873
+      ],
+      "shapley_cut_at_cap": [
+       0.030421984939179202,
+       0.055747059848553306
+      ],
+      "shapley_invented_uncut": [
+       0.0,
+       0.0025162817025609807
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match_no_verdict_line": 0.06555269922879177,
+     "no_valid_choice_cap": 0.06426735218508997,
+     "no_valid_choice_no_cap": 0.0012853470437017994,
+     "verdict_line": 0.8688946015424165
+    },
+    "third_outcome_name": "no valid choice (no Verdict line and the final answer matches neither solution)",
+    "logprob": {
+     "coverage": 0.7737789203084833,
+     "missing_judgments_no_verdict_cap": 77,
+     "missing_judgments_no_verdict_other": 25,
+     "bias_logodds": 1.5219840118349635,
+     "single_order_accuracy": 0.6661129568106312,
+     "order_averaged_accuracy": 0.6943521594684385
+    }
+   }
+  },
+  "mistral_7b/asdiv": {
+   "base": {
+    "one_right_pairs": 558,
+    "pair_share": {
+     "consistent_right": 0.33154121863799285,
+     "consistent_wrong": 0.1003584229390681,
+     "locked_A": 0.08243727598566308,
+     "locked_B": 0.05197132616487455,
+     "invented_with_right": 0.22939068100358423,
+     "invented_without_right": 0.20430107526881722
+    },
+    "single_order_accuracy": 0.5134408602150538,
+    "tie_break": 0.6155913978494623,
+    "tie_minus_single": 0.10215053763440851,
+    "judgment_share": {
+     "invented": 0.2921146953405018,
+     "right": 0.5134408602150538,
+     "wrong": 0.19444444444444445
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.7256734694731892,
+     "model_single_order": 0.5130397311261972,
+     "observed_single_order": 0.5134408602150538,
+     "gap": 0.21263373834699206,
+     "shapley_position_bias": 0.0012486458931830757,
+     "shapley_invented": 0.211385092453809,
+     "beta_bias_toward_A": 0.2030508116621969,
+     "delta_skill": 0.9727810329757691,
+     "pi_A": 0.27598566308243727,
+     "pi_B": 0.30824372759856633,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.6833574045199161,
+       0.7673875601013708
+      ],
+      "observed_single_order": [
+       0.4746789329275322,
+       0.5517264890282132
+      ],
+      "gap": [
+       0.18758547781474172,
+       0.23800784413575252
+      ],
+      "shapley_position_bias": [
+       7.249285395520417e-05,
+       0.003874436377953576
+      ],
+      "shapley_invented": [
+       0.1865212814512796,
+       0.23698316895023303
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.7256734694731892,
+     "model_single_order": 0.5130397311261972,
+     "gap": 0.21263373834699206,
+     "shapley_position_bias": 0.0012486458931830757,
+     "shapley_cut_at_cap": 0.008460534504031947,
+     "shapley_invented_uncut": 0.20292455794977704,
+     "share_cut": 0.011648745519713262,
+     "share_invented_uncut": 0.28046594982078854,
+     "ci": {
+      "gap": [
+       0.18820321843011178,
+       0.2395584252354457
+      ],
+      "shapley_position_bias": [
+       5.372605209125747e-05,
+       0.003798454627246916
+      ],
+      "shapley_cut_at_cap": [
+       0.004424912023971711,
+       0.013372048637430448
+      ],
+      "shapley_invented_uncut": [
+       0.17921737474853805,
+       0.22890240753074168
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match": 0.7078853046594982,
+     "invented_answer_cap": 0.011648745519713262,
+     "invented_answer_no_cap": 0.28046594982078854
+    },
+    "third_outcome_name": "invented answer (final answer matches neither solution)"
+   },
+   "base_c": {
+    "one_right_pairs": 558,
+    "pair_share": {
+     "consistent_right": 0.5931899641577061,
+     "consistent_wrong": 0.09498207885304659,
+     "locked_A": 0.2168458781362007,
+     "locked_B": 0.04121863799283154,
+     "invented_with_right": 0.025089605734767026,
+     "invented_without_right": 0.02867383512544803
+    },
+    "single_order_accuracy": 0.7347670250896058,
+    "tie_break": 0.7491039426523297,
+    "tie_minus_single": 0.014336917562723928,
+    "judgment_share": {
+     "wrong": 0.2302867383512545,
+     "right": 0.7347670250896058,
+     "invented": 0.03494623655913978
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.7720078884158257,
+     "model_single_order": 0.734300500963075,
+     "observed_single_order": 0.7347670250896058,
+     "gap": 0.03770738745275071,
+     "shapley_position_bias": 0.011208021485184239,
+     "shapley_invented": 0.02649936596756647,
+     "beta_bias_toward_A": 0.49983082426782155,
+     "delta_skill": 1.2196837380869048,
+     "pi_A": 0.02867383512544803,
+     "pi_B": 0.04121863799283154,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.7395939126753921,
+       0.8065650553243353
+      ],
+      "observed_single_order": [
+       0.7025268076677897,
+       0.7695099818511797
+      ],
+      "gap": [
+       0.02727279859791684,
+       0.049873953504288644
+      ],
+      "shapley_position_bias": [
+       0.005893985615474451,
+       0.018384361012128765
+      ],
+      "shapley_invented": [
+       0.01697459450722029,
+       0.03661428741111
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.7720078884158257,
+     "model_single_order": 0.734300500963075,
+     "gap": 0.03770738745275071,
+     "shapley_position_bias": 0.011208021485184239,
+     "shapley_cut_at_cap": 0.0,
+     "shapley_invented_uncut": 0.026499365967566472,
+     "share_cut": 0.0,
+     "share_invented_uncut": 0.03494623655913978,
+     "ci": {
+      "gap": [
+       0.027396098622733154,
+       0.050249052678513796
+      ],
+      "shapley_position_bias": [
+       0.005989768295046513,
+       0.01803553797877163
+      ],
+      "shapley_cut_at_cap": [
+       0.0,
+       0.0
+      ],
+      "shapley_invented_uncut": [
+       0.017263454674899897,
+       0.037113455946667366
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match_no_verdict_line": 0.22132616487455198,
+     "no_valid_choice_no_cap": 0.03494623655913978,
+     "verdict_line": 0.7437275985663082
+    },
+    "third_outcome_name": "no valid choice (no Verdict line and the final answer matches neither solution)",
+    "logprob": {
+     "coverage": 0.6881720430107527,
+     "missing_judgments_no_verdict_cap": 0,
+     "missing_judgments_no_verdict_other": 286,
+     "bias_logodds": 1.8909810340744624,
+     "single_order_accuracy": 0.7174479166666666,
+     "order_averaged_accuracy": 0.7239583333333334
+    }
+   }
+  },
+  "mistral_7b/math13": {
+   "base": {
+    "one_right_pairs": 331,
+    "pair_share": {
+     "consistent_right": 0.3021148036253776,
+     "consistent_wrong": 0.08459214501510574,
+     "locked_A": 0.09063444108761329,
+     "locked_B": 0.027190332326283987,
+     "invented_with_right": 0.28700906344410876,
+     "invented_without_right": 0.2084592145015106
+    },
+    "single_order_accuracy": 0.5045317220543807,
+    "tie_break": 0.6087613293051359,
+    "tie_minus_single": 0.10422960725075525,
+    "judgment_share": {
+     "right": 0.5045317220543807,
+     "invented": 0.31419939577039274,
+     "wrong": 0.18126888217522658
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.7391123461775165,
+     "model_single_order": 0.5038296767077833,
+     "observed_single_order": 0.5045317220543807,
+     "gap": 0.2352826694697332,
+     "shapley_position_bias": 0.004894676674071841,
+     "shapley_invented": 0.23038799279566136,
+     "beta_bias_toward_A": 0.3853166341045041,
+     "delta_skill": 1.041360064461072,
+     "pi_A": 0.2930513595166163,
+     "pi_B": 0.33534743202416917,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.6840109707056846,
+       0.7918018052659218
+      ],
+      "observed_single_order": [
+       0.4588018901254195,
+       0.548993564470218
+      ],
+      "gap": [
+       0.20132578629198689,
+       0.2705098239706873
+      ],
+      "shapley_position_bias": [
+       0.0014520789531269293,
+       0.011413759035700227
+      ],
+      "shapley_invented": [
+       0.19700187311018774,
+       0.2642239091206346
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.7391123461775165,
+     "model_single_order": 0.5038296767077833,
+     "gap": 0.2352826694697332,
+     "shapley_position_bias": 0.00489467667407186,
+     "shapley_cut_at_cap": 0.0307837357637731,
+     "shapley_invented_uncut": 0.19960425703188828,
+     "share_cut": 0.04229607250755287,
+     "share_invented_uncut": 0.2719033232628399,
+     "ci": {
+      "gap": [
+       0.20124897266801173,
+       0.27140621794694747
+      ],
+      "shapley_position_bias": [
+       0.0012593127919829066,
+       0.01184376813297524
+      ],
+      "shapley_cut_at_cap": [
+       0.017571852910908806,
+       0.0463549950649315
+      ],
+      "shapley_invented_uncut": [
+       0.16715505902060396,
+       0.23169395534041431
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match": 0.6858006042296072,
+     "invented_answer_cap": 0.04229607250755287,
+     "invented_answer_no_cap": 0.2719033232628399
+    },
+    "third_outcome_name": "invented answer (final answer matches neither solution)"
+   },
+   "base_c": {
+    "one_right_pairs": 331,
+    "pair_share": {
+     "consistent_right": 0.40483383685800606,
+     "consistent_wrong": 0.13293051359516617,
+     "locked_A": 0.4078549848942598,
+     "locked_B": 0.021148036253776436,
+     "invented_with_right": 0.015105740181268883,
+     "invented_without_right": 0.01812688821752266
+    },
+    "single_order_accuracy": 0.6268882175226587,
+    "tie_break": 0.63595166163142,
+    "tie_minus_single": 0.009063444108761365,
+    "judgment_share": {
+     "right": 0.6268882175226587,
+     "wrong": 0.3504531722054381,
+     "invented": 0.022658610271903322
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.6697489542539911,
+     "model_single_order": 0.6264650550969744,
+     "observed_single_order": 0.6268882175226587,
+     "gap": 0.04328389915701669,
+     "shapley_position_bias": 0.02889525498753609,
+     "shapley_invented": 0.014388644169480602,
+     "beta_bias_toward_A": 0.9434386151643444,
+     "delta_skill": 0.7070498371001139,
+     "pi_A": 0.01812688821752266,
+     "pi_B": 0.027190332326283987,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.6160447691923657,
+       0.7237159518515504
+      ],
+      "observed_single_order": [
+       0.5810335785410606,
+       0.6711319578507078
+      ],
+      "gap": [
+       0.02833693543630671,
+       0.06289969164705844
+      ],
+      "shapley_position_bias": [
+       0.017211511647695427,
+       0.045339229660544336
+      ],
+      "shapley_invented": [
+       0.0059849027095117135,
+       0.0241458973613763
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.6697489542539911,
+     "model_single_order": 0.6264650550969744,
+     "gap": 0.04328389915701669,
+     "shapley_position_bias": 0.028895254987536086,
+     "shapley_cut_at_cap": 0.0,
+     "shapley_invented_uncut": 0.0143886441694806,
+     "share_cut": 0.0,
+     "share_invented_uncut": 0.022658610271903322,
+     "ci": {
+      "gap": [
+       0.02833768436258325,
+       0.062369078953136994
+      ],
+      "shapley_position_bias": [
+       0.017295578428292054,
+       0.04523721029482571
+      ],
+      "shapley_cut_at_cap": [
+       0.0,
+       0.0
+      ],
+      "shapley_invented_uncut": [
+       0.006002782006533472,
+       0.024380596443210438
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match_no_verdict_line": 0.07401812688821752,
+     "no_valid_choice_no_cap": 0.022658610271903322,
+     "verdict_line": 0.9033232628398792
+    },
+    "third_outcome_name": "no valid choice (no Verdict line and the final answer matches neither solution)",
+    "logprob": {
+     "coverage": 0.8700906344410876,
+     "missing_judgments_no_verdict_cap": 1,
+     "missing_judgments_no_verdict_other": 63,
+     "bias_logodds": 2.3963758557295343,
+     "single_order_accuracy": 0.6267361111111112,
+     "order_averaged_accuracy": 0.6597222222222222
+    }
+   }
+  },
+  "mistral_7b/gsm8k13": {
+   "base": {
+    "one_right_pairs": 411,
+    "pair_share": {
+     "consistent_right": 0.2725060827250608,
+     "consistent_wrong": 0.12165450121654502,
+     "locked_A": 0.11192214111922141,
+     "locked_B": 0.0413625304136253,
+     "invented_with_right": 0.25060827250608275,
+     "invented_without_right": 0.20194647201946472
+    },
+    "single_order_accuracy": 0.4744525547445255,
+    "tie_break": 0.5754257907542579,
+    "tie_minus_single": 0.1009732360097324,
+    "judgment_share": {
+     "invented": 0.2871046228710462,
+     "wrong": 0.2384428223844282,
+     "right": 0.4744525547445255
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.6676639571286398,
+     "model_single_order": 0.4740565142145845,
+     "observed_single_order": 0.4744525547445255,
+     "gap": 0.1936074429140553,
+     "shapley_position_bias": 0.00340466681045809,
+     "shapley_invented": 0.1902027761035972,
+     "beta_bias_toward_A": 0.365959416387037,
+     "delta_skill": 0.6976383544359703,
+     "pi_A": 0.26763990267639903,
+     "pi_B": 0.30656934306569344,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.6171439440022071,
+       0.7151929594633563
+      ],
+      "observed_single_order": [
+       0.43341700938104566,
+       0.5138539042821159
+      ],
+      "gap": [
+       0.16650857982982303,
+       0.22298512053423628
+      ],
+      "shapley_position_bias": [
+       0.0009165174259108039,
+       0.0074211826043725565
+      ],
+      "shapley_invented": [
+       0.16357918983137923,
+       0.21847548805626735
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.6676639571286398,
+     "model_single_order": 0.4740565142145845,
+     "gap": 0.1936074429140553,
+     "shapley_position_bias": 0.0034046668104580624,
+     "shapley_cut_at_cap": 0.005811965195532037,
+     "shapley_invented_uncut": 0.1843908109080652,
+     "share_cut": 0.00851581508515815,
+     "share_invented_uncut": 0.27858880778588807,
+     "ci": {
+      "gap": [
+       0.16533341036145724,
+       0.22128287922143514
+      ],
+      "shapley_position_bias": [
+       0.0009427127400354644,
+       0.007284460184012438
+      ],
+      "shapley_cut_at_cap": [
+       0.001719564414738075,
+       0.010513610521372797
+      ],
+      "shapley_invented_uncut": [
+       0.15734730465010038,
+       0.2104638275326968
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match": 0.7128953771289538,
+     "invented_answer_cap": 0.00851581508515815,
+     "invented_answer_no_cap": 0.27858880778588807
+    },
+    "third_outcome_name": "invented answer (final answer matches neither solution)"
+   },
+   "base_c": {
+    "one_right_pairs": 411,
+    "pair_share": {
+     "consistent_right": 0.48418491484184917,
+     "consistent_wrong": 0.04866180048661801,
+     "locked_A": 0.40389294403892945,
+     "locked_B": 0.024330900243309004,
+     "invented_with_right": 0.019464720194647202,
+     "invented_without_right": 0.019464720194647202
+    },
+    "single_order_accuracy": 0.708029197080292,
+    "tie_break": 0.7177615571776156,
+    "tie_minus_single": 0.009732360097323589,
+    "judgment_share": {
+     "right": 0.708029197080292,
+     "wrong": 0.26763990267639903,
+     "invented": 0.024330900243309004
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.7797543765477949,
+     "model_single_order": 0.7074837844185877,
+     "observed_single_order": 0.708029197080292,
+     "gap": 0.07227059212920717,
+     "shapley_position_bias": 0.05444411938326904,
+     "shapley_invented": 0.017826472745938127,
+     "beta_bias_toward_A": 1.1390724314755576,
+     "delta_skill": 1.2642355744295637,
+     "pi_A": 0.019464720194647202,
+     "pi_B": 0.029197080291970802,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.7419954737334558,
+       0.8178504560137362
+      ],
+      "observed_single_order": [
+       0.67594977453058,
+       0.7406114255627221
+      ],
+      "gap": [
+       0.0538803899301036,
+       0.09459725168580102
+      ],
+      "shapley_position_bias": [
+       0.03836269710056893,
+       0.0756614699594301
+      ],
+      "shapley_invented": [
+       0.008972217358466811,
+       0.02832868498824882
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.7797543765477949,
+     "model_single_order": 0.7074837844185877,
+     "gap": 0.07227059212920717,
+     "shapley_position_bias": 0.054444119383269034,
+     "shapley_cut_at_cap": 0.0,
+     "shapley_invented_uncut": 0.017826472745938127,
+     "share_cut": 0.0,
+     "share_invented_uncut": 0.024330900243309004,
+     "ci": {
+      "gap": [
+       0.054040393276689275,
+       0.09541065199107857
+      ],
+      "shapley_position_bias": [
+       0.037404619319756804,
+       0.07574009574850825
+      ],
+      "shapley_cut_at_cap": [
+       0.0,
+       0.0
+      ],
+      "shapley_invented_uncut": [
+       0.008821677578397804,
+       0.028624924777857
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match_no_verdict_line": 0.12287104622871046,
+     "no_valid_choice_no_cap": 0.024330900243309004,
+     "verdict_line": 0.8527980535279805
+    },
+    "third_outcome_name": "no valid choice (no Verdict line and the final answer matches neither solution)",
+    "logprob": {
+     "coverage": 0.8248175182481752,
+     "missing_judgments_no_verdict_cap": 0,
+     "missing_judgments_no_verdict_other": 121,
+     "bias_logodds": 2.2287403287925027,
+     "single_order_accuracy": 0.700589970501475,
+     "order_averaged_accuracy": 0.7020648967551623
+    }
+   }
+  },
+  "mistral_7b/svamp12": {
+   "base": {
+    "one_right_pairs": 681,
+    "pair_share": {
+     "consistent_right": 0.29955947136563876,
+     "consistent_wrong": 0.13069016152716592,
+     "locked_A": 0.09397944199706314,
+     "locked_B": 0.0381791483113069,
+     "invented_with_right": 0.21585903083700442,
+     "invented_without_right": 0.22173274596182085
+    },
+    "single_order_accuracy": 0.473568281938326,
+    "tie_break": 0.5844346549192364,
+    "tie_minus_single": 0.1108663729809104,
+    "judgment_share": {
+     "right": 0.473568281938326,
+     "invented": 0.2922173274596182,
+     "wrong": 0.2342143906020558
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.6698213951779964,
+     "model_single_order": 0.473322129045853,
+     "observed_single_order": 0.473568281938326,
+     "gap": 0.1964992661321434,
+     "shapley_position_bias": 0.0014785617809320306,
+     "shapley_invented": 0.19502070435121138,
+     "beta_bias_toward_A": 0.24252396443362492,
+     "delta_skill": 0.7073773677030447,
+     "pi_A": 0.2775330396475771,
+     "pi_B": 0.3069016152716593,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.632585469583262,
+       0.7066030914310163
+      ],
+      "observed_single_order": [
+       0.4384272997032641,
+       0.5072888957459939
+      ],
+      "gap": [
+       0.1751702812906233,
+       0.22041141867192804
+      ],
+      "shapley_position_bias": [
+       0.0002628158509713735,
+       0.00358615174314325
+      ],
+      "shapley_invented": [
+       0.173482362323648,
+       0.21873929323593178
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.6698213951779964,
+     "model_single_order": 0.473322129045853,
+     "gap": 0.1964992661321434,
+     "shapley_position_bias": 0.0014785617809320213,
+     "shapley_cut_at_cap": 0.013197795616362628,
+     "shapley_invented_uncut": 0.18182290873484874,
+     "share_cut": 0.019823788546255508,
+     "share_invented_uncut": 0.2723935389133627,
+     "ci": {
+      "gap": [
+       0.17375450846679324,
+       0.2200753077724859
+      ],
+      "shapley_position_bias": [
+       0.0002662028378794206,
+       0.003460605411425036
+      ],
+      "shapley_cut_at_cap": [
+       0.00814125280620189,
+       0.01873092116675968
+      ],
+      "shapley_invented_uncut": [
+       0.1602407692917706,
+       0.20404493253551848
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match": 0.7077826725403817,
+     "invented_answer_cap": 0.019823788546255508,
+     "invented_answer_no_cap": 0.2723935389133627
+    },
+    "third_outcome_name": "invented answer (final answer matches neither solution)"
+   },
+   "base_c": {
+    "one_right_pairs": 681,
+    "pair_share": {
+     "consistent_right": 0.566813509544787,
+     "consistent_wrong": 0.13656387665198239,
+     "locked_A": 0.20411160058737152,
+     "locked_B": 0.06020558002936858,
+     "invented_with_right": 0.016152716593245228,
+     "invented_without_right": 0.016152716593245228
+    },
+    "single_order_accuracy": 0.7070484581497798,
+    "tie_break": 0.7151248164464024,
+    "tie_minus_single": 0.008076358296622566,
+    "judgment_share": {
+     "right": 0.7070484581497798,
+     "wrong": 0.27312775330396477,
+     "invented": 0.019823788546255508
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.7274070069912999,
+     "model_single_order": 0.7067238282106431,
+     "observed_single_order": 0.7070484581497798,
+     "gap": 0.02068317878065684,
+     "shapley_position_bias": 0.006298617263126305,
+     "shapley_invented": 0.014384561517530536,
+     "beta_bias_toward_A": 0.37787223235852085,
+     "delta_skill": 0.9815063507984672,
+     "pi_A": 0.020558002936857563,
+     "pi_B": 0.01908957415565345,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.6954904976169142,
+       0.7598262386711196
+      ],
+      "observed_single_order": [
+       0.6752522118503403,
+       0.7375215899131926
+      ],
+      "gap": [
+       0.013935637383468022,
+       0.02915714428616587
+      ],
+      "shapley_position_bias": [
+       0.003125106783719735,
+       0.01052834292784431
+      ],
+      "shapley_invented": [
+       0.008257263271466855,
+       0.02177490694635114
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.7274070069912999,
+     "model_single_order": 0.7067238282106431,
+     "gap": 0.02068317878065684,
+     "shapley_position_bias": 0.006298617263126304,
+     "shapley_cut_at_cap": 0.0,
+     "shapley_invented_uncut": 0.014384561517530538,
+     "share_cut": 0.0,
+     "share_invented_uncut": 0.019823788546255508,
+     "ci": {
+      "gap": [
+       0.01361792032611103,
+       0.02938763536599588
+      ],
+      "shapley_position_bias": [
+       0.0032308036874869436,
+       0.0106063083707775
+      ],
+      "shapley_cut_at_cap": [
+       0.0,
+       0.0
+      ],
+      "shapley_invented_uncut": [
+       0.008330365100400871,
+       0.021937982526428222
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match_no_verdict_line": 0.20044052863436124,
+     "no_valid_choice_no_cap": 0.019823788546255508,
+     "verdict_line": 0.7797356828193832
+    },
+    "third_outcome_name": "no valid choice (no Verdict line and the final answer matches neither solution)",
+    "logprob": {
+     "coverage": 0.7298091042584435,
+     "missing_judgments_no_verdict_cap": 0,
+     "missing_judgments_no_verdict_other": 300,
+     "bias_logodds": 1.4108164495525042,
+     "single_order_accuracy": 0.6800804828973843,
+     "order_averaged_accuracy": 0.7082494969818913
+    }
+   }
+  },
+  "original_solver/asdiv": {
+   "base": {
+    "one_right_pairs": 311,
+    "pair_share": {
+     "consistent_right": 0.39228295819935693,
+     "consistent_wrong": 0.1864951768488746,
+     "locked_A": 0.10610932475884244,
+     "locked_B": 0.13183279742765272,
+     "invented_with_right": 0.09646302250803858,
+     "invented_without_right": 0.08681672025723473
+    },
+    "single_order_accuracy": 0.5594855305466238,
+    "tie_break": 0.6028938906752411,
+    "tie_minus_single": 0.043408360128617374,
+    "judgment_share": {
+     "right": 0.5594855305466238,
+     "wrong": 0.3311897106109325,
+     "invented": 0.10932475884244373
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.6277826714778361,
+     "model_single_order": 0.5590754045921458,
+     "observed_single_order": 0.5594855305466238,
+     "gap": 0.06870726688569029,
+     "shapley_position_bias": 0.00015428867804834212,
+     "shapley_invented": 0.06855297820764195,
+     "beta_bias_toward_A": -0.08848296362112751,
+     "delta_skill": 0.5227161419057345,
+     "pi_A": 0.1157556270096463,
+     "pi_B": 0.10289389067524116,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.5759863696062663,
+       0.6776475301562144
+      ],
+      "observed_single_order": [
+       0.5099651327258972,
+       0.6068194383016364
+      ],
+      "gap": [
+       0.051268187767398915,
+       0.08738947559130679
+      ],
+      "shapley_position_bias": [
+       -5.943251800485383e-05,
+       0.0015518898274052477
+      ],
+      "shapley_invented": [
+       0.050988530296271296,
+       0.08713315817822803
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.6277826714778361,
+     "model_single_order": 0.5590754045921458,
+     "gap": 0.06870726688569029,
+     "shapley_position_bias": 0.00015428867804836063,
+     "shapley_cut_at_cap": 0.014094305127607362,
+     "shapley_invented_uncut": 0.05445867308003457,
+     "share_cut": 0.022508038585209004,
+     "share_invented_uncut": 0.08681672025723473,
+     "ci": {
+      "gap": [
+       0.05145398694340882,
+       0.08750257505755926
+      ],
+      "shapley_position_bias": [
+       -6.5141270944212e-05,
+       0.0014324743944597498
+      ],
+      "shapley_cut_at_cap": [
+       0.006865192010344545,
+       0.022416939576327982
+      ],
+      "shapley_invented_uncut": [
+       0.03887366481968077,
+       0.07081780736227
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match": 0.8906752411575563,
+     "invented_answer_cap": 0.022508038585209004,
+     "invented_answer_no_cap": 0.08681672025723473
+    },
+    "third_outcome_name": "invented answer (final answer matches neither solution)"
+   },
+   "base_c": {
+    "one_right_pairs": 311,
+    "pair_share": {
+     "consistent_right": 0.2797427652733119,
+     "consistent_wrong": 0.16720257234726688,
+     "locked_A": 0.39228295819935693,
+     "locked_B": 0.05144694533762058,
+     "invented_with_right": 0.06109324758842444,
+     "invented_without_right": 0.04823151125401929
+    },
+    "single_order_accuracy": 0.5321543408360129,
+    "tie_break": 0.5562700964630225,
+    "tie_minus_single": 0.024115755627009627,
+    "judgment_share": {
+     "right": 0.5321543408360129,
+     "wrong": 0.409967845659164,
+     "invented": 0.05787781350482315
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.5761676077386912,
+     "model_single_order": 0.5319444922368852,
+     "observed_single_order": 0.5321543408360129,
+     "gap": 0.04422311550180602,
+     "shapley_position_bias": 0.010890243781795483,
+     "shapley_invented": 0.03333287172001054,
+     "beta_bias_toward_A": 0.8052506048103614,
+     "delta_skill": 0.30706052821591,
+     "pi_A": 0.06109324758842444,
+     "pi_B": 0.05466237942122187,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.525452727967973,
+       0.6250399512740278
+      ],
+      "observed_single_order": [
+       0.49041379452040723,
+       0.5734870602021092
+      ],
+      "gap": [
+       0.02995249654558908,
+       0.06030293813811373
+      ],
+      "shapley_position_bias": [
+       0.0034338756851498087,
+       0.02042480777974332
+      ],
+      "shapley_invented": [
+       0.022673427097671717,
+       0.04572589854733919
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.5761676077386912,
+     "model_single_order": 0.5319444922368852,
+     "gap": 0.04422311550180602,
+     "shapley_position_bias": 0.010890243781795482,
+     "shapley_cut_at_cap": 0.012078692604107431,
+     "shapley_invented_uncut": 0.021254179115903105,
+     "share_cut": 0.02090032154340836,
+     "share_invented_uncut": 0.03697749196141479,
+     "ci": {
+      "gap": [
+       0.029113188851377533,
+       0.058999893318203704
+      ],
+      "shapley_position_bias": [
+       0.0036016417843709385,
+       0.020056750826879605
+      ],
+      "shapley_cut_at_cap": [
+       0.005766978531497658,
+       0.019578976291351448
+      ],
+      "shapley_invented_uncut": [
+       0.01293578790318744,
+       0.030041562381275807
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match_no_verdict_line": 0.1495176848874598,
+     "no_valid_choice_cap": 0.02090032154340836,
+     "no_valid_choice_no_cap": 0.03697749196141479,
+     "verdict_line": 0.792604501607717
+    },
+    "third_outcome_name": "no valid choice (no Verdict line and the final answer matches neither solution)",
+    "logprob": {
+     "coverage": 0.684887459807074,
+     "missing_judgments_no_verdict_cap": 35,
+     "missing_judgments_no_verdict_other": 94,
+     "bias_logodds": 1.5404929487423276,
+     "single_order_accuracy": 0.5751173708920188,
+     "order_averaged_accuracy": 0.6338028169014085
+    }
+   }
+  },
+  "original_solver/math13": {
+   "base": {
+    "one_right_pairs": 452,
+    "pair_share": {
+     "consistent_right": 0.334070796460177,
+     "consistent_wrong": 0.18805309734513273,
+     "locked_A": 0.061946902654867256,
+     "locked_B": 0.10398230088495575,
+     "invented_with_right": 0.14601769911504425,
+     "invented_without_right": 0.16592920353982302
+    },
+    "single_order_accuracy": 0.49004424778761063,
+    "tie_break": 0.5730088495575221,
+    "tie_minus_single": 0.08296460176991144,
+    "judgment_share": {
+     "invented": 0.19579646017699115,
+     "right": 0.49004424778761063,
+     "wrong": 0.3141592920353982
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.60898270008715,
+     "model_single_order": 0.48980609974265166,
+     "observed_single_order": 0.49004424778761063,
+     "gap": 0.1191766003444984,
+     "shapley_position_bias": 0.0006398635620500359,
+     "shapley_invented": 0.11853673678244836,
+     "beta_bias_toward_A": -0.22813021792459454,
+     "delta_skill": 0.4430380559165754,
+     "pi_A": 0.2168141592920354,
+     "pi_B": 0.1747787610619469,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.5637662273103925,
+       0.6569222132072895
+      ],
+      "observed_single_order": [
+       0.4490016516584461,
+       0.5307847533632286
+      ],
+      "gap": [
+       0.09893762959857823,
+       0.14096599640378935
+      ],
+      "shapley_position_bias": [
+       -0.0001677632948089397,
+       0.0021822652173481617
+      ],
+      "shapley_invented": [
+       0.09855362350989486,
+       0.13982088100037235
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.60898270008715,
+     "model_single_order": 0.48980609974265166,
+     "gap": 0.1191766003444984,
+     "shapley_position_bias": 0.0006398635620499989,
+     "shapley_cut_at_cap": 0.03585831562670937,
+     "shapley_invented_uncut": 0.08267842115573902,
+     "share_cut": 0.059734513274336286,
+     "share_invented_uncut": 0.13606194690265486,
+     "ci": {
+      "gap": [
+       0.09924322865285022,
+       0.14020908955054617
+      ],
+      "shapley_position_bias": [
+       -0.00016789096363089328,
+       0.0022580035612431563
+      ],
+      "shapley_cut_at_cap": [
+       0.025866051781953142,
+       0.04748982623335288
+      ],
+      "shapley_invented_uncut": [
+       0.06622983494563972,
+       0.10004688930674673
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match": 0.8042035398230089,
+     "invented_answer_cap": 0.059734513274336286,
+     "invented_answer_no_cap": 0.13606194690265486
+    },
+    "third_outcome_name": "invented answer (final answer matches neither solution)"
+   },
+   "base_c": {
+    "one_right_pairs": 452,
+    "pair_share": {
+     "consistent_right": 0.2234513274336283,
+     "consistent_wrong": 0.17920353982300885,
+     "locked_A": 0.3694690265486726,
+     "locked_B": 0.06415929203539823,
+     "invented_with_right": 0.06415929203539823,
+     "invented_without_right": 0.09955752212389381
+    },
+    "single_order_accuracy": 0.4723451327433628,
+    "tie_break": 0.5221238938053098,
+    "tie_minus_single": 0.04977876106194695,
+    "judgment_share": {
+     "wrong": 0.43805309734513276,
+     "invented": 0.08960176991150443,
+     "right": 0.4723451327433628
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.5235509726914949,
+     "model_single_order": 0.47229936313832854,
+     "observed_single_order": 0.4723451327433628,
+     "gap": 0.05125160955316632,
+     "shapley_position_bias": 0.003601813488544048,
+     "shapley_invented": 0.047649796064622274,
+     "beta_bias_toward_A": 0.7286327569069283,
+     "delta_skill": 0.09427365035611612,
+     "pi_A": 0.09955752212389381,
+     "pi_B": 0.07964601769911504,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.4829104104621529,
+       0.5636203803863793
+      ],
+      "observed_single_order": [
+       0.43693592850119395,
+       0.5054365782417162
+      ],
+      "gap": [
+       0.037758557983972124,
+       0.06573169759314154
+      ],
+      "shapley_position_bias": [
+       -0.001523796829604667,
+       0.009590131772291672
+      ],
+      "shapley_invented": [
+       0.0366074414400647,
+       0.058938694423111886
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.5235509726914949,
+     "model_single_order": 0.47229936313832854,
+     "gap": 0.05125160955316632,
+     "shapley_position_bias": 0.0036018134885440296,
+     "shapley_cut_at_cap": 0.03446211458998706,
+     "shapley_invented_uncut": 0.013187681474635237,
+     "share_cut": 0.06415929203539823,
+     "share_invented_uncut": 0.025442477876106196,
+     "ci": {
+      "gap": [
+       0.03822868100282868,
+       0.0654587274110846
+      ],
+      "shapley_position_bias": [
+       -0.0014472636648415382,
+       0.0096474231999012
+      ],
+      "shapley_cut_at_cap": [
+       0.02501360700115218,
+       0.044526532546757404
+      ],
+      "shapley_invented_uncut": [
+       0.00805494553857979,
+       0.0187229922699852
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match_no_verdict_line": 0.13163716814159293,
+     "no_valid_choice_cap": 0.06415929203539823,
+     "no_valid_choice_no_cap": 0.025442477876106196,
+     "verdict_line": 0.7787610619469026
+    },
+    "third_outcome_name": "no valid choice (no Verdict line and the final answer matches neither solution)",
+    "logprob": {
+     "coverage": 0.6548672566371682,
+     "missing_judgments_no_verdict_cap": 99,
+     "missing_judgments_no_verdict_other": 101,
+     "bias_logodds": 1.4555004194230483,
+     "single_order_accuracy": 0.5253378378378378,
+     "order_averaged_accuracy": 0.5472972972972973
+    }
+   }
+  },
+  "original_solver/gsm8k13": {
+   "base": {
+    "one_right_pairs": 277,
+    "pair_share": {
+     "consistent_right": 0.34657039711191334,
+     "consistent_wrong": 0.16606498194945848,
+     "locked_A": 0.08303249097472924,
+     "locked_B": 0.15162454873646208,
+     "invented_with_right": 0.11552346570397112,
+     "invented_without_right": 0.1371841155234657
+    },
+    "single_order_accuracy": 0.5216606498194946,
+    "tie_break": 0.5902527075812274,
+    "tie_minus_single": 0.06859205776173283,
+    "judgment_share": {
+     "wrong": 0.34115523465703973,
+     "right": 0.5216606498194946,
+     "invented": 0.1371841155234657
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.6062289037127641,
+     "model_single_order": 0.5212820933776318,
+     "observed_single_order": 0.5216606498194946,
+     "gap": 0.0849468103351323,
+     "shapley_position_bias": 0.0015753018456505785,
+     "shapley_invented": 0.08337150848948172,
+     "beta_bias_toward_A": -0.23331094848597073,
+     "delta_skill": 0.4314878770697194,
+     "pi_A": 0.1263537906137184,
+     "pi_B": 0.148014440433213,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.5549748687528877,
+       0.6576192165442022
+      ],
+      "observed_single_order": [
+       0.4744525547445255,
+       0.5716726607704258
+      ],
+      "gap": [
+       0.06674270769756496,
+       0.1054752734582808
+      ],
+      "shapley_position_bias": [
+       0.00010180412864889272,
+       0.004937182374915103
+      ],
+      "shapley_invented": [
+       0.06556579388842004,
+       0.1027259904902153
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.6062289037127641,
+     "model_single_order": 0.5212820933776318,
+     "gap": 0.0849468103351323,
+     "shapley_position_bias": 0.0015753018456505785,
+     "shapley_cut_at_cap": 0.0066583836329836,
+     "shapley_invented_uncut": 0.07671312485649812,
+     "share_cut": 0.010830324909747292,
+     "share_invented_uncut": 0.1263537906137184,
+     "ci": {
+      "gap": [
+       0.06662034756437096,
+       0.10421100803890808
+      ],
+      "shapley_position_bias": [
+       9.688524784420283e-05,
+       0.004958133822396536
+      ],
+      "shapley_cut_at_cap": [
+       0.0021205430977222356,
+       0.012431474135835978
+      ],
+      "shapley_invented_uncut": [
+       0.05881822546706428,
+       0.09511581811936641
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match": 0.8628158844765343,
+     "invented_answer_cap": 0.010830324909747292,
+     "invented_answer_no_cap": 0.1263537906137184
+    },
+    "third_outcome_name": "invented answer (final answer matches neither solution)"
+   },
+   "base_c": {
+    "one_right_pairs": 277,
+    "pair_share": {
+     "consistent_right": 0.30685920577617326,
+     "consistent_wrong": 0.19855595667870035,
+     "locked_A": 0.3212996389891697,
+     "locked_B": 0.07581227436823104,
+     "invented_with_right": 0.04332129963898917,
+     "invented_without_right": 0.05415162454873646
+    },
+    "single_order_accuracy": 0.5270758122743683,
+    "tie_break": 0.5541516245487365,
+    "tie_minus_single": 0.02707581227436817,
+    "judgment_share": {
+     "wrong": 0.4223826714801444,
+     "right": 0.5270758122743683,
+     "invented": 0.05054151624548736
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.5609741077543186,
+     "model_single_order": 0.5268719870111321,
+     "observed_single_order": 0.5270758122743683,
+     "gap": 0.034102120743186415,
+     "shapley_position_bias": 0.005132074300372325,
+     "shapley_invented": 0.02897004644281409,
+     "beta_bias_toward_A": 0.5623572340208715,
+     "delta_skill": 0.2451163593275463,
+     "pi_A": 0.061371841155234655,
+     "pi_B": 0.039711191335740074,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.5128570930701167,
+       0.6126732982528448
+      ],
+      "observed_single_order": [
+       0.48239124463090605,
+       0.5763706038487061
+      ],
+      "gap": [
+       0.022928312554518337,
+       0.04776667701738223
+      ],
+      "shapley_position_bias": [
+       0.001129967592305843,
+       0.011094745695242615
+      ],
+      "shapley_invented": [
+       0.019618240543016106,
+       0.03980619381791111
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.5609741077543186,
+     "model_single_order": 0.5268719870111321,
+     "gap": 0.034102120743186415,
+     "shapley_position_bias": 0.005132074300372325,
+     "shapley_cut_at_cap": 0.005164512465400062,
+     "shapley_invented_uncut": 0.023805533977414032,
+     "share_cut": 0.009025270758122744,
+     "share_invented_uncut": 0.04151624548736462,
+     "ci": {
+      "gap": [
+       0.022074357327231432,
+       0.047732824443009386
+      ],
+      "shapley_position_bias": [
+       0.0010873112134671622,
+       0.011239252492523987
+      ],
+      "shapley_cut_at_cap": [
+       0.0010982327549479943,
+       0.010226866975674735
+      ],
+      "shapley_invented_uncut": [
+       0.014651738151789153,
+       0.034005997510244274
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match_no_verdict_line": 0.16064981949458484,
+     "no_valid_choice_cap": 0.009025270758122744,
+     "no_valid_choice_no_cap": 0.04151624548736462,
+     "verdict_line": 0.7888086642599278
+    },
+    "third_outcome_name": "no valid choice (no Verdict line and the final answer matches neither solution)",
+    "logprob": {
+     "coverage": 0.6606498194945848,
+     "missing_judgments_no_verdict_cap": 11,
+     "missing_judgments_no_verdict_other": 106,
+     "bias_logodds": 1.2806523302226465,
+     "single_order_accuracy": 0.5655737704918032,
+     "order_averaged_accuracy": 0.5901639344262295
+    }
+   }
+  },
+  "original_solver/svamp12": {
+   "base": {
+    "one_right_pairs": 371,
+    "pair_share": {
+     "consistent_right": 0.4123989218328841,
+     "consistent_wrong": 0.215633423180593,
+     "locked_A": 0.05660377358490566,
+     "locked_B": 0.1347708894878706,
+     "invented_with_right": 0.1105121293800539,
+     "invented_without_right": 0.07008086253369272
+    },
+    "single_order_accuracy": 0.5633423180592992,
+    "tie_break": 0.5983827493261455,
+    "tie_minus_single": 0.035040431266846306,
+    "judgment_share": {
+     "right": 0.5633423180592992,
+     "invented": 0.09973045822102426,
+     "wrong": 0.33692722371967654
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.6272817326750647,
+     "model_single_order": 0.5630027995265572,
+     "observed_single_order": 0.5633423180592992,
+     "gap": 0.06427893314850752,
+     "shapley_position_bias": 0.001520097771490203,
+     "shapley_invented": 0.06275883537701732,
+     "beta_bias_toward_A": -0.2113476111300807,
+     "delta_skill": 0.5205729553558253,
+     "pi_A": 0.0889487870619946,
+     "pi_B": 0.1105121293800539,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.5788850238505449,
+       0.6754580845816672
+      ],
+      "observed_single_order": [
+       0.5177571498574483,
+       0.6085209627329192
+      ],
+      "gap": [
+       0.04949517993316621,
+       0.081120320579042
+      ],
+      "shapley_position_bias": [
+       0.00033206134138529105,
+       0.0037076595406103155
+      ],
+      "shapley_invented": [
+       0.04827508647840499,
+       0.07915787857677507
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.6272817326750647,
+     "model_single_order": 0.5630027995265572,
+     "gap": 0.06427893314850752,
+     "shapley_position_bias": 0.0015200977714901474,
+     "shapley_cut_at_cap": 0.005000625491255295,
+     "shapley_invented_uncut": 0.05775820988576207,
+     "share_cut": 0.008086253369272238,
+     "share_invented_uncut": 0.09164420485175202,
+     "ci": {
+      "gap": [
+       0.049287004154192855,
+       0.08111630885118362
+      ],
+      "shapley_position_bias": [
+       0.0003031616623820066,
+       0.0036369961311936276
+      ],
+      "shapley_cut_at_cap": [
+       0.0015924490641633414,
+       0.009645995203490968
+      ],
+      "shapley_invented_uncut": [
+       0.04402137283505772,
+       0.07408182847366036
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match": 0.9002695417789758,
+     "invented_answer_cap": 0.008086253369272238,
+     "invented_answer_no_cap": 0.09164420485175202
+    },
+    "third_outcome_name": "invented answer (final answer matches neither solution)"
+   },
+   "base_c": {
+    "one_right_pairs": 371,
+    "pair_share": {
+     "consistent_right": 0.31805929919137466,
+     "consistent_wrong": 0.21024258760107817,
+     "locked_A": 0.3557951482479784,
+     "locked_B": 0.05121293800539083,
+     "invented_with_right": 0.0431266846361186,
+     "invented_without_right": 0.0215633423180593
+    },
+    "single_order_accuracy": 0.5431266846361186,
+    "tie_break": 0.5539083557951483,
+    "tie_minus_single": 0.010781671159029727,
+    "judgment_share": {
+     "wrong": 0.42183288409703507,
+     "right": 0.5431266846361186,
+     "invented": 0.03504043126684636
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.5707198892804077,
+     "model_single_order": 0.5429553831672218,
+     "observed_single_order": 0.5431266846361186,
+     "gap": 0.027764506113185927,
+     "shapley_position_bias": 0.007466639689971133,
+     "shapley_invented": 0.020297866423214794,
+     "beta_bias_toward_A": 0.6660731929250967,
+     "delta_skill": 0.28478888301414695,
+     "pi_A": 0.04043126684636118,
+     "pi_B": 0.029649595687331536,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.5260316710038908,
+       0.6150968064972766
+      ],
+      "observed_single_order": [
+       0.5027238800503941,
+       0.582433139946229
+      ],
+      "gap": [
+       0.017576246352265228,
+       0.03986214399810531
+      ],
+      "shapley_position_bias": [
+       0.002584224178475815,
+       0.013968244662666645
+      ],
+      "shapley_invented": [
+       0.012470820549382667,
+       0.029149098804720643
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.5707198892804077,
+     "model_single_order": 0.5429553831672218,
+     "gap": 0.027764506113185927,
+     "shapley_position_bias": 0.007466639689971152,
+     "shapley_cut_at_cap": 0.004586008359465451,
+     "shapley_invented_uncut": 0.015711858063749324,
+     "share_cut": 0.008086253369272238,
+     "share_invented_uncut": 0.026954177897574125,
+     "ci": {
+      "gap": [
+       0.017677602658782477,
+       0.04017572420481208
+      ],
+      "shapley_position_bias": [
+       0.0026854772244571893,
+       0.014100212557645854
+      ],
+      "shapley_cut_at_cap": [
+       0.0014303265039935283,
+       0.008296044115413704
+      ],
+      "shapley_invented_uncut": [
+       0.00892483544846612,
+       0.02366034614978038
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match_no_verdict_line": 0.13611859838274934,
+     "no_valid_choice_cap": 0.008086253369272238,
+     "no_valid_choice_no_cap": 0.026954177897574125,
+     "verdict_line": 0.8288409703504043
+    },
+    "third_outcome_name": "no valid choice (no Verdict line and the final answer matches neither solution)",
+    "logprob": {
+     "coverage": 0.7358490566037735,
+     "missing_judgments_no_verdict_cap": 15,
+     "missing_judgments_no_verdict_other": 112,
+     "bias_logodds": 1.4861206522536798,
+     "single_order_accuracy": 0.5311355311355311,
+     "order_averaged_accuracy": 0.6007326007326007
+    }
+   }
+  },
+  "qwen25_instruct/asdiv": {
+   "base": {
+    "one_right_pairs": 256,
+    "pair_share": {
+     "consistent_right": 0.42578125,
+     "consistent_wrong": 0.0234375,
+     "locked_A": 0.12109375,
+     "locked_B": 0.015625,
+     "invented_with_right": 0.28125,
+     "invented_without_right": 0.1328125
+    },
+    "single_order_accuracy": 0.634765625,
+    "tie_break": 0.701171875,
+    "tie_minus_single": 0.06640625,
+    "judgment_share": {
+     "right": 0.634765625,
+     "invented": 0.255859375,
+     "wrong": 0.109375
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.8705635897155005,
+     "model_single_order": 0.6334383792029136,
+     "observed_single_order": 0.634765625,
+     "gap": 0.23712521051258695,
+     "shapley_position_bias": 0.022586010105797194,
+     "shapley_invented": 0.21453920040678975,
+     "beta_bias_toward_A": 0.8691345165193626,
+     "delta_skill": 1.9059510859190065,
+     "pi_A": 0.171875,
+     "pi_B": 0.33984375,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.8270507068469591,
+       0.9147357713588223
+      ],
+      "observed_single_order": [
+       0.5859291403210116,
+       0.6799261363636364
+      ],
+      "gap": [
+       0.1991615827601033,
+       0.2798816324816324
+      ],
+      "shapley_position_bias": [
+       0.009500631604537992,
+       0.04404693424589189
+      ],
+      "shapley_invented": [
+       0.17893966500830918,
+       0.2529301334123618
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.8705635897155005,
+     "model_single_order": 0.6334383792029136,
+     "gap": 0.23712521051258695,
+     "shapley_position_bias": 0.022586010105797198,
+     "shapley_cut_at_cap": 0.03123899766791072,
+     "shapley_invented_uncut": 0.18330020273887904,
+     "share_cut": 0.037109375,
+     "share_invented_uncut": 0.21875,
+     "ci": {
+      "gap": [
+       0.19782605672367934,
+       0.28101069539995555
+      ],
+      "shapley_position_bias": [
+       0.009602256758779818,
+       0.04364344650482169
+      ],
+      "shapley_cut_at_cap": [
+       0.015417569293528624,
+       0.04900701289341991
+      ],
+      "shapley_invented_uncut": [
+       0.15059303142863842,
+       0.21941482312908173
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match": 0.744140625,
+     "invented_answer_cap": 0.037109375,
+     "invented_answer_no_cap": 0.21875
+    },
+    "third_outcome_name": "invented answer (final answer matches neither solution)"
+   },
+   "base_c": {
+    "one_right_pairs": 256,
+    "pair_share": {
+     "consistent_right": 0.234375,
+     "consistent_wrong": 0.12109375,
+     "locked_A": 0.58203125,
+     "locked_B": 0.02734375,
+     "invented_with_right": 0.0234375,
+     "invented_without_right": 0.01171875
+    },
+    "single_order_accuracy": 0.55078125,
+    "tie_break": 0.556640625,
+    "tie_minus_single": 0.005859375,
+    "judgment_share": {
+     "right": 0.55078125,
+     "wrong": 0.431640625,
+     "invented": 0.017578125
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.5857183358772265,
+     "model_single_order": 0.5505562959558823,
+     "observed_single_order": 0.55078125,
+     "gap": 0.03516203992134426,
+     "shapley_position_bias": 0.026498155190805617,
+     "shapley_invented": 0.00866388473053864,
+     "beta_bias_toward_A": 1.320714836346152,
+     "delta_skill": 0.3462929279094263,
+     "pi_A": 0.0078125,
+     "pi_B": 0.02734375,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.5250979257193562,
+       0.647141859666694
+      ],
+      "observed_single_order": [
+       0.5111713807505681,
+       0.5901968155683326
+      ],
+      "gap": [
+       0.01353422258246877,
+       0.06125509542719348
+      ],
+      "shapley_position_bias": [
+       0.00599651933621155,
+       0.05213993681452619
+      ],
+      "shapley_invented": [
+       0.003025995569577787,
+       0.015264684047366242
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.5857183358772265,
+     "model_single_order": 0.5505562959558823,
+     "gap": 0.03516203992134426,
+     "shapley_position_bias": 0.026498155190805603,
+     "shapley_cut_at_cap": 0.003912158021579274,
+     "shapley_invented_uncut": 0.004751726708959385,
+     "share_cut": 0.0078125,
+     "share_invented_uncut": 0.009765625,
+     "ci": {
+      "gap": [
+       0.015261792199228241,
+       0.05948897567501188
+      ],
+      "shapley_position_bias": [
+       0.007761460450240788,
+       0.050720942061727115
+      ],
+      "shapley_cut_at_cap": [
+       0.000803288849476408,
+       0.008070157458594306
+      ],
+      "shapley_invented_uncut": [
+       0.0009398522267981533,
+       0.009217329266117284
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match_no_verdict_line": 0.04296875,
+     "no_valid_choice_cap": 0.0078125,
+     "no_valid_choice_no_cap": 0.009765625,
+     "verdict_line": 0.939453125
+    },
+    "third_outcome_name": "no valid choice (no Verdict line and the final answer matches neither solution)",
+    "logprob": {
+     "coverage": 0.87890625,
+     "missing_judgments_no_verdict_cap": 5,
+     "missing_judgments_no_verdict_other": 26,
+     "bias_logodds": 5.086006920426533,
+     "single_order_accuracy": 0.5533333333333333,
+     "order_averaged_accuracy": 0.6133333333333333
+    }
+   }
+  },
+  "qwen25_instruct/math13": {
+   "base": {
+    "one_right_pairs": 380,
+    "pair_share": {
+     "consistent_right": 0.2394736842105263,
+     "consistent_wrong": 0.021052631578947368,
+     "locked_A": 0.034210526315789476,
+     "locked_B": 0.018421052631578946,
+     "invented_with_right": 0.37105263157894736,
+     "invented_without_right": 0.3157894736842105
+    },
+    "single_order_accuracy": 0.4513157894736842,
+    "tie_break": 0.6092105263157895,
+    "tie_minus_single": 0.1578947368421053,
+    "judgment_share": {
+     "wrong": 0.05789473684210526,
+     "right": 0.4513157894736842,
+     "invented": 0.49078947368421055
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.8836001446804056,
+     "model_single_order": 0.4503164900639688,
+     "observed_single_order": 0.4513157894736842,
+     "gap": 0.4332836546164368,
+     "shapley_position_bias": 0.0017441868249971626,
+     "shapley_invented": 0.43153946779143965,
+     "beta_bias_toward_A": 0.31335207802899057,
+     "delta_skill": 2.0269733429479024,
+     "pi_A": 0.41842105263157897,
+     "pi_B": 0.5631578947368421,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.8448110213801929,
+       0.9216377650439651
+      ],
+      "observed_single_order": [
+       0.4103862803862804,
+       0.4944459706959707
+      ],
+      "gap": [
+       0.3892844913524942,
+       0.47689670707199666
+      ],
+      "shapley_position_bias": [
+       -9.207046113305362e-05,
+       0.008042333720713767
+      ],
+      "shapley_invented": [
+       0.38750980131254764,
+       0.4736649358099582
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.8836001446804056,
+     "model_single_order": 0.4503164900639688,
+     "gap": 0.4332836546164368,
+     "shapley_position_bias": 0.0017441868249971626,
+     "shapley_cut_at_cap": 0.14477633407589463,
+     "shapley_invented_uncut": 0.286763133715545,
+     "share_cut": 0.16447368421052633,
+     "share_invented_uncut": 0.3263157894736842,
+     "ci": {
+      "gap": [
+       0.3909939242890603,
+       0.47883196783011417
+      ],
+      "shapley_position_bias": [
+       -0.00010142728716058672,
+       0.00788507472104926
+      ],
+      "shapley_cut_at_cap": [
+       0.11436240773570858,
+       0.1770121243018871
+      ],
+      "shapley_invented_uncut": [
+       0.2449222123440152,
+       0.33103506995759097
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match": 0.5092105263157894,
+     "invented_answer_cap": 0.16447368421052633,
+     "invented_answer_no_cap": 0.3263157894736842
+    },
+    "third_outcome_name": "invented answer (final answer matches neither solution)"
+   },
+   "base_c": {
+    "one_right_pairs": 380,
+    "pair_share": {
+     "consistent_right": 0.22631578947368422,
+     "consistent_wrong": 0.11052631578947368,
+     "locked_A": 0.5131578947368421,
+     "locked_B": 0.06578947368421052,
+     "invented_with_right": 0.05789473684210526,
+     "invented_without_right": 0.02631578947368421
+    },
+    "single_order_accuracy": 0.5447368421052632,
+    "tie_break": 0.5578947368421052,
+    "tie_minus_single": 0.013157894736842035,
+    "judgment_share": {
+     "wrong": 0.4118421052631579,
+     "right": 0.5447368421052632,
+     "invented": 0.04342105263157895
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.5885706301768131,
+     "model_single_order": 0.5445607158081733,
+     "observed_single_order": 0.5447368421052632,
+     "gap": 0.04400991436863977,
+     "shapley_position_bias": 0.02004809767050464,
+     "shapley_invented": 0.02396181669813513,
+     "beta_bias_toward_A": 1.0993836080855406,
+     "delta_skill": 0.3580595721763694,
+     "pi_A": 0.034210526315789476,
+     "pi_B": 0.05263157894736842,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.5443707501266893,
+       0.6333128673870554
+      ],
+      "observed_single_order": [
+       0.5131207964238845,
+       0.576722160218254
+      ],
+      "gap": [
+       0.028237795911514946,
+       0.06353263109016158
+      ],
+      "shapley_position_bias": [
+       0.00877985407253636,
+       0.035233942815539675
+      ],
+      "shapley_invented": [
+       0.01565957179558067,
+       0.03304654810523028
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.5885706301768131,
+     "model_single_order": 0.5445607158081733,
+     "gap": 0.04400991436863977,
+     "shapley_position_bias": 0.020048097670504656,
+     "shapley_cut_at_cap": 0.011884946895016641,
+     "shapley_invented_uncut": 0.012076869803118468,
+     "share_cut": 0.019736842105263157,
+     "share_invented_uncut": 0.02368421052631579,
+     "ci": {
+      "gap": [
+       0.029131724169377062,
+       0.06396719097967415
+      ],
+      "shapley_position_bias": [
+       0.008779124439297098,
+       0.035315662521669226
+      ],
+      "shapley_cut_at_cap": [
+       0.006242573287161253,
+       0.018741138411097875
+      ],
+      "shapley_invented_uncut": [
+       0.006706956519884553,
+       0.01892553889317857
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match_no_verdict_line": 0.046052631578947366,
+     "no_valid_choice_cap": 0.019736842105263157,
+     "no_valid_choice_no_cap": 0.02368421052631579,
+     "verdict_line": 0.9105263157894737
+    },
+    "third_outcome_name": "no valid choice (no Verdict line and the final answer matches neither solution)",
+    "logprob": {
+     "coverage": 0.8368421052631579,
+     "missing_judgments_no_verdict_cap": 29,
+     "missing_judgments_no_verdict_other": 39,
+     "bias_logodds": 4.477987395280391,
+     "single_order_accuracy": 0.5534591194968553,
+     "order_averaged_accuracy": 0.5691823899371069
+    }
+   }
+  },
+  "qwen25_instruct/gsm8k13": {
+   "base": {
+    "one_right_pairs": 241,
+    "pair_share": {
+     "consistent_right": 0.35269709543568467,
+     "consistent_wrong": 0.04979253112033195,
+     "locked_A": 0.08713692946058091,
+     "locked_B": 0.02074688796680498,
+     "invented_with_right": 0.3153526970954357,
+     "invented_without_right": 0.17427385892116182
+    },
+    "single_order_accuracy": 0.5643153526970954,
+    "tie_break": 0.6514522821576763,
+    "tie_minus_single": 0.08713692946058083,
+    "judgment_share": {
+     "right": 0.5643153526970954,
+     "invented": 0.3112033195020747,
+     "wrong": 0.12448132780082988
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.82119360322897,
+     "model_single_order": 0.5630149364443504,
+     "observed_single_order": 0.5643153526970954,
+     "gap": 0.25817866678461954,
+     "shapley_position_bias": 0.005206888911655827,
+     "shapley_invented": 0.2529717778729637,
+     "beta_bias_toward_A": 0.4086751650592195,
+     "delta_skill": 1.5244552573496946,
+     "pi_A": 0.26556016597510373,
+     "pi_B": 0.35684647302904565,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.7659297355125069,
+       0.8734762998960167
+      ],
+      "observed_single_order": [
+       0.512498703319502,
+       0.6120384875942079
+      ],
+      "gap": [
+       0.2155168279622605,
+       0.3026044797022208
+      ],
+      "shapley_position_bias": [
+       0.0004943828380043578,
+       0.015611236613513373
+      ],
+      "shapley_invented": [
+       0.20983383980334086,
+       0.29839401598106186
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.82119360322897,
+     "model_single_order": 0.5630149364443504,
+     "gap": 0.25817866678461954,
+     "shapley_position_bias": 0.005206888911655828,
+     "shapley_cut_at_cap": 0.10211286964799783,
+     "shapley_invented_uncut": 0.1508589082249659,
+     "share_cut": 0.12448132780082988,
+     "share_invented_uncut": 0.18672199170124482,
+     "ci": {
+      "gap": [
+       0.2164590944086439,
+       0.3032178194306873
+      ],
+      "shapley_position_bias": [
+       0.0005724200425972035,
+       0.015467483331757183
+      ],
+      "shapley_cut_at_cap": [
+       0.07351493688934317,
+       0.13156619996697946
+      ],
+      "shapley_invented_uncut": [
+       0.11638839927503135,
+       0.18850622717836893
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match": 0.6887966804979253,
+     "invented_answer_cap": 0.12448132780082988,
+     "invented_answer_no_cap": 0.18672199170124482
+    },
+    "third_outcome_name": "invented answer (final answer matches neither solution)"
+   },
+   "base_c": {
+    "one_right_pairs": 241,
+    "pair_share": {
+     "consistent_right": 0.24066390041493776,
+     "consistent_wrong": 0.07468879668049792,
+     "locked_A": 0.6058091286307054,
+     "locked_B": 0.03319502074688797,
+     "invented_with_right": 0.024896265560165973,
+     "invented_without_right": 0.02074688796680498
+    },
+    "single_order_accuracy": 0.5726141078838174,
+    "tie_break": 0.58298755186722,
+    "tie_minus_single": 0.010373443983402564,
+    "judgment_share": {
+     "wrong": 0.4004149377593361,
+     "right": 0.5726141078838174,
+     "invented": 0.026970954356846474
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.6361639926555989,
+     "model_single_order": 0.5722616981186006,
+     "observed_single_order": 0.5726141078838174,
+     "gap": 0.06390229453699825,
+     "shapley_position_bias": 0.048988791882983496,
+     "shapley_invented": 0.014913502654014754,
+     "beta_bias_toward_A": 1.4765465051043,
+     "delta_skill": 0.55875314334561,
+     "pi_A": 0.016597510373443983,
+     "pi_B": 0.03734439834024896,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.5766073436722546,
+       0.7028137311551197
+      ],
+      "observed_single_order": [
+       0.5343347639484979,
+       0.6129756616216402
+      ],
+      "gap": [
+       0.03617917086769973,
+       0.1027143426458051
+      ],
+      "shapley_position_bias": [
+       0.02420856620399603,
+       0.0862608187749735
+      ],
+      "shapley_invented": [
+       0.005996002091915041,
+       0.026274757384729636
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.6361639926555989,
+     "model_single_order": 0.5722616981186006,
+     "gap": 0.06390229453699825,
+     "shapley_position_bias": 0.048988791882983516,
+     "shapley_cut_at_cap": 0.01204554087607653,
+     "shapley_invented_uncut": 0.002867961777938207,
+     "share_cut": 0.02074688796680498,
+     "share_invented_uncut": 0.006224066390041493,
+     "ci": {
+      "gap": [
+       0.036083075200983056,
+       0.10197414885441752
+      ],
+      "shapley_position_bias": [
+       0.02344291621870938,
+       0.08521164981379759
+      ],
+      "shapley_cut_at_cap": [
+       0.00356326513603526,
+       0.022659189965543378
+      ],
+      "shapley_invented_uncut": [
+       0.0,
+       0.006481484418082241
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match_no_verdict_line": 0.03734439834024896,
+     "no_valid_choice_cap": 0.02074688796680498,
+     "no_valid_choice_no_cap": 0.006224066390041493,
+     "verdict_line": 0.9356846473029046
+    },
+    "third_outcome_name": "no valid choice (no Verdict line and the final answer matches neither solution)",
+    "logprob": {
+     "coverage": 0.8921161825726142,
+     "missing_judgments_no_verdict_cap": 19,
+     "missing_judgments_no_verdict_other": 12,
+     "bias_logodds": 5.321838636335383,
+     "single_order_accuracy": 0.5883720930232558,
+     "order_averaged_accuracy": 0.586046511627907
+    }
+   }
+  },
+  "qwen25_instruct/svamp12": {
+   "base": {
+    "one_right_pairs": 358,
+    "pair_share": {
+     "consistent_right": 0.4022346368715084,
+     "consistent_wrong": 0.0446927374301676,
+     "locked_A": 0.17039106145251395,
+     "locked_B": 0.01675977653631285,
+     "invented_with_right": 0.2709497206703911,
+     "invented_without_right": 0.09497206703910614
+    },
+    "single_order_accuracy": 0.6312849162011173,
+    "tie_break": 0.6787709497206704,
+    "tie_minus_single": 0.04748603351955316,
+    "judgment_share": {
+     "invented": 0.22206703910614525,
+     "right": 0.6312849162011173,
+     "wrong": 0.14664804469273743
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.8299762508297259,
+     "model_single_order": 0.6304587781497146,
+     "observed_single_order": 0.6312849162011173,
+     "gap": 0.1995174726800113,
+     "shapley_position_bias": 0.024712966278700677,
+     "shapley_invented": 0.17480450640131062,
+     "beta_bias_toward_A": 0.8770907840582112,
+     "delta_skill": 1.5854589586285117,
+     "pi_A": 0.13128491620111732,
+     "pi_B": 0.3128491620111732,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.7890448271641289,
+       0.8697115985373864
+      ],
+      "observed_single_order": [
+       0.592214368844412,
+       0.6662012140392145
+      ],
+      "gap": [
+       0.1706791755138493,
+       0.23107982606083247
+      ],
+      "shapley_position_bias": [
+       0.01396002694573172,
+       0.04056925529309214
+      ],
+      "shapley_invented": [
+       0.14801402748070477,
+       0.20350682278333174
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.8299762508297259,
+     "model_single_order": 0.6304587781497146,
+     "gap": 0.1995174726800113,
+     "shapley_position_bias": 0.024712966278700697,
+     "shapley_cut_at_cap": 0.023402110652938974,
+     "shapley_invented_uncut": 0.15140239574837164,
+     "share_cut": 0.029329608938547486,
+     "share_invented_uncut": 0.19273743016759776,
+     "ci": {
+      "gap": [
+       0.17096614229594254,
+       0.23190645957379546
+      ],
+      "shapley_position_bias": [
+       0.013811537455689145,
+       0.039921067256741063
+      ],
+      "shapley_cut_at_cap": [
+       0.011896315595580543,
+       0.03607905809460347
+      ],
+      "shapley_invented_uncut": [
+       0.1277551018187613,
+       0.1778700243717436
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match": 0.7779329608938548,
+     "invented_answer_cap": 0.029329608938547486,
+     "invented_answer_no_cap": 0.19273743016759776
+    },
+    "third_outcome_name": "invented answer (final answer matches neither solution)"
+   },
+   "base_c": {
+    "one_right_pairs": 358,
+    "pair_share": {
+     "consistent_right": 0.2988826815642458,
+     "consistent_wrong": 0.11731843575418995,
+     "locked_A": 0.4972067039106145,
+     "locked_B": 0.07541899441340782,
+     "invented_with_right": 0.008379888268156424,
+     "invented_without_right": 0.002793296089385475
+    },
+    "single_order_accuracy": 0.5893854748603352,
+    "tie_break": 0.5907821229050279,
+    "tie_minus_single": 0.0013966480446926388,
+    "judgment_share": {
+     "right": 0.5893854748603352,
+     "wrong": 0.40502793296089384,
+     "invented": 0.00558659217877095
+    },
+    "exploratory_shapley": {
+     "reference_no_bias_no_invention": 0.6123911358470695,
+     "model_single_order": 0.589130594400345,
+     "observed_single_order": 0.5893854748603352,
+     "gap": 0.023260541446724514,
+     "shapley_position_bias": 0.02049164654369745,
+     "shapley_invented": 0.0027688949030270638,
+     "beta_bias_toward_A": 0.951707935987469,
+     "delta_skill": 0.45737444014246226,
+     "pi_A": 0.0,
+     "pi_B": 0.0111731843575419,
+     "ci": {
+      "reference_no_bias_no_invention": [
+       0.5689406366310888,
+       0.6555594671591453
+      ],
+      "observed_single_order": [
+       0.553715318772137,
+       0.625
+      ],
+      "gap": [
+       0.013422164008125275,
+       0.03589991023685876
+      ],
+      "shapley_position_bias": [
+       0.011052458612479261,
+       0.03308033118241905
+      ],
+      "shapley_invented": [
+       0.0006589596846066373,
+       0.00583208653333085
+      ]
+     },
+     "bootstrap": "2000 resamples of problems"
+    },
+    "exploratory_shapley3": {
+     "reference": 0.6123911358470695,
+     "model_single_order": 0.589130594400345,
+     "gap": 0.023260541446724514,
+     "shapley_position_bias": 0.02049164654369747,
+     "shapley_cut_at_cap": 0.0006922237257567427,
+     "shapley_invented_uncut": 0.002076671177270302,
+     "share_cut": 0.0013966480446927375,
+     "share_invented_uncut": 0.004189944134078212,
+     "ci": {
+      "gap": [
+       0.013754438046323527,
+       0.036210664387194294
+      ],
+      "shapley_position_bias": [
+       0.011236854074454369,
+       0.032851611989656686
+      ],
+      "shapley_cut_at_cap": [
+       0.0,
+       0.0021419275599289813
+      ],
+      "shapley_invented_uncut": [
+       0.0,
+       0.004804755261381451
+      ]
+     }
+    },
+    "token_cap": 768,
+    "choice_source": {
+     "final_answer_match_no_verdict_line": 0.040502793296089384,
+     "no_valid_choice_cap": 0.0013966480446927375,
+     "no_valid_choice_no_cap": 0.004189944134078212,
+     "verdict_line": 0.9539106145251397
+    },
+    "third_outcome_name": "no valid choice (no Verdict line and the final answer matches neither solution)",
+    "logprob": {
+     "coverage": 0.9134078212290503,
+     "missing_judgments_no_verdict_cap": 5,
+     "missing_judgments_no_verdict_other": 28,
+     "bias_logodds": 3.0913369483303064,
+     "single_order_accuracy": 0.5840978593272171,
+     "order_averaged_accuracy": 0.6269113149847095
+    }
+   }
+  }
+ }
+}

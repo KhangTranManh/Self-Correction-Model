@@ -26,9 +26,27 @@ OUT = ROOT / "outputs/phase14_v1"
 # Revisions pinned from the Hugging Face API on 2026-10-12. "gated" models need
 # an accepted license and HF_TOKEN on the GPU host.
 MODELS = {
-    "llama31_8b": {"repo": "meta-llama/Llama-3.1-8B-Instruct",
-                   "revision": "0e9e39f249a16976918f6564b8830bc894c89659",
-                   "family": "llama", "gated": True},
+    # Amendment 2026-10-13 (before any generation): Meta's gated repo was still awaiting
+    # access review, so Llama-3.1-8B-Instruct is loaded from the ungated NousResearch copy.
+    # Its four weight shards are byte-identical to meta-llama/Llama-3.1-8B-Instruct at
+    # 0e9e39f249a16976918f6564b8830bc894c89659 (LFS sha256 below, compared via the Hub API),
+    # as are config.json, generation_config.json, tokenizer.json and
+    # special_tokens_map.json; only tokenizer_config.json (the chat template) differs.
+    "llama31_8b": {"repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+                   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+                   "family": "llama", "gated": False,
+                   "weights_identical_to": "meta-llama/Llama-3.1-8B-Instruct@0e9e39f249a16976918f6564b8830bc894c89659",
+                   "weight_sha256": {
+                       "model-00001-of-00004.safetensors": "2b1879f356aed350030bb40eb45ad362c89d9891096f79a3ab323d3ba5607668",
+                       "model-00002-of-00004.safetensors": "09d433f650646834a83c580877bd60c6d1f88f7755305c12576b5c7058f9af15",
+                       "model-00003-of-00004.safetensors": "fc1cdddd6bfa91128d6e94ee73d0ce62bfcdb7af29e978ddcab30c66ae9ea7fa",
+                       "model-00004-of-00004.safetensors": "92ecfe1a2414458b4821ac8c13cf8cb70aed66b5eea8dc5ad9eeb4ff309d6d7b"},
+                   # NousResearch's tokenizer_config.json is an older copy (no system date block in
+                   # the chat template, clean_up_tokenization_spaces=True). The tokenizer is taken
+                   # from this ungated repo, whose tokenizer_config.json, tokenizer.json and
+                   # special_tokens_map.json have the same git blob ids as Meta's @ 0e9e39f2.
+                   "tokenizer_repo": "RedHatAI/Meta-Llama-3.1-8B-Instruct-FP8-dynamic",
+                   "tokenizer_revision": "442e7f522277df12f53d63e8384087af31fbfc4b"},
     "mistral_7b": {"repo": "mistralai/Mistral-7B-Instruct-v0.3",
                    "revision": "c170c708c41dac9275d15a8fff4eca08d52bab71",
                    "family": "mistral", "gated": False},
@@ -52,9 +70,26 @@ MODELS = {
 # Qwen. A model that fails scripts/smoke_model.py is replaced only by
 # phi35_mini, and the swap is recorded before any holdout run. gemma2_9b stays
 # listed but is not run (BF16-trained; FP16 on a V100 is risky).
+
+
+def tokenizer_source(spec: dict) -> tuple[str, str]:
+    """(repo, revision) of the tokenizer: the model repo unless a separate one is pinned."""
+    return spec.get("tokenizer_repo", spec["repo"]), spec.get("tokenizer_revision", spec["revision"])
+
+
 SELECTED = ("llama31_8b", "mistral_7b")
 ANCHOR = ("original_solver", "qwen25_instruct")  # comparison rows; not counted in the generality rule
+# Amendment 2026-10-13 after the pilot (GPU time: ~7.5 h left of 10 h, full main ~18 h; decided by
+# the user): the main run covers only the two new models. The anchors were run in smoke and pilot
+# but are not regenerated in main; the report's Self_Correction and Qwen-Instruct GSM8K results come
+# from Phases 12-13 and the paper checks.
+RUN_MODELS = SELECTED
+# Amendment 2026-10-13 after the protected opening (decided by the user, same host still
+# running): a completion run fills the whole grid with the identical protocol - the anchors on
+# all four datasets, the new models on GSM8K and SVAMP, the bridge set, the base_c regression
+# re-run. These cells are added with analyze.py --add-comparison; E1/E2 are not recomputed.
 RUN_MODELS = (*SELECTED, *ANCHOR)
+PILOT_MODELS = (*SELECTED, *ANCHOR)  # models of the completed pilot
 
 DATASETS = ("asdiv", "math13")  # endpoint datasets: fresh, easier-or-equal to GSM8K; MATH levels 1-3
 # Comparison datasets: the frozen Phase 13 (GSM8K test 750-1318, 561 problems)
@@ -95,11 +130,14 @@ REPORT_REFERENCE = {
 }
 EXACT = {"base"}               # reused judgments must match the report to its printed precision
 RERUN_TOLERANCE = 0.03         # re-generated judgments: allowed absolute difference per measure
-# Report section 4.5 (descriptive): Qwen2.5-7B-Instruct judging its own GSM8K pairs,
-# tie-break strict / lenient, from a run with a 1536-token judge view and its own
-# seeds. Phase 14 judges a 768-token view with new seeds, so only agreement within
-# the bootstrap interval is checked, not equality.
-INSTRUCT_REFERENCE = {"qwen25_instruct/gsm8k13": {"tie_break_strict": 0.655, "tie_break_lenient": 0.658}}
+# Report section 4.5 (descriptive): Qwen2.5-7B-Instruct judging its own GSM8K pairs
+# (paper check T1: 768-token judge view, Phase 13 seeds tagged "t1"). Keys use the
+# Phase 14 mode names: "lenient" = the project parser (what the paper checks call
+# "strict"), "rescued" = the T4b reading (what they call "lenient"). Corrected
+# 2026-10-12 before any lock: the earlier values 0.655 / 0.658 came from the
+# 1536-token view (T3) and had the two mode names swapped. Phase 14 uses new seeds,
+# so only agreement within the bootstrap interval is checked, not equality.
+INSTRUCT_REFERENCE = {"qwen25_instruct/gsm8k13": {"tie_break_lenient": 0.629, "tie_break_rescued": 0.605}}
 # Bridge to the old results: the 486 judged pairs of Phase 13 (GSM8K test
 # 750-1318, solutions by the original solver) re-judged by each model. The
 # solutions are Phase 13's own outputs, so only the judge differs. Requires

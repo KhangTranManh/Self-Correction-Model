@@ -1,0 +1,116 @@
+{
+  "schema_version": "paper_t2_v1",
+  "post_hoc": true,
+  "gsm8k_self_correction_solutions": {
+    "problems": 561,
+    "accuracy": {
+      "keep": 0.661319073083779,
+      "random_s1_s2": 0.6568627450980392,
+      "vote3": 0.7201426024955436,
+      "vote5": 0.7754010695187166,
+      "judge_or_random_p12": 0.6987522281639929,
+      "self_check_p12": 0.7219251336898396,
+      "judge_or_random_d0_base": 0.6818181818181818,
+      "self_check_d0_base": 0.7058823529411765,
+      "judge_or_random_d1_instruct": 0.7165775401069518,
+      "self_check_d1_instruct": 0.7397504456327986,
+      "judge_or_random_d1_instruct_long": 0.7290552584670231,
+      "self_check_d1_instruct_long": 0.7468805704099821
+    },
+    "mean_calls": {
+      "vote3": 3.0,
+      "self_check_p12": 3.090909090909091,
+      "self_check_d0_base": 3.0802139037433154,
+      "self_check_d1_instruct": 3.122994652406417,
+      "self_check_d1_instruct_long": 3.0837789661319075
+    },
+    "vs_vote3": {
+      "judge_or_random_p12": {
+        "difference": -0.0213903743315508,
+        "ci": [
+          -0.040998217468805706,
+          -0.0017825311942959
+        ]
+      },
+      "self_check_p12": {
+        "difference": 0.0017825311942959,
+        "ci": [
+          -0.0106951871657754,
+          0.016042780748663103
+        ]
+      },
+      "judge_or_random_d0_base": {
+        "difference": -0.03832442067736185,
+        "ci": [
+          -0.059714795008912656,
+          -0.01693404634581105
+        ]
+      },
+      "self_check_d0_base": {
+        "difference": -0.0142602495543672,
+        "ci": [
+          -0.030303030303030304,
+          0.0
+        ]
+      },
+      "judge_or_random_d1_instruct": {
+        "difference": -0.0035650623885918,
+        "ci": [
+          -0.023172905525846704,
+          0.01693404634581105
+        ]
+      },
+      "self_check_d1_instruct": {
+        "difference": 0.0196078431372549,
+        "ci": [
+          0.0053475935828877,
+          0.0338680926916221
+        ]
+      },
+      "judge_or_random_d1_instruct_long": {
+        "difference": 0.008912655971479501,
+        "ci": [
+          -0.0106951871657754,
+          0.029411764705882353
+        ]
+      },
+      "self_check_d1_instruct_long": {
+        "difference": 0.026737967914438502,
+        "ci": [
+          0.0106951871657754,
+          0.044563279857397504
+        ]
+      }
+    }
+  },
+  "gsm8k_instruct_own_solutions": {
+    "problems": 561,
+    "accuracy": {
+      "keep": 0.8128342245989305,
+      "random_s1_s2": 0.7647058823529411,
+      "vote3": 0.8698752228163993,
+      "judge_or_random_t1_parent_self": 0.803030303030303,
+      "self_check_t1_parent_self": 0.8716577540106952
+    },
+    "mean_calls": {
+      "vote3": 3.0,
+      "self_check_t1_parent_self": 2.875222816399287
+    },
+    "vs_vote3": {
+      "judge_or_random_t1_parent_self": {
+        "difference": -0.06684491978609626,
+        "ci": [
+          -0.08645276292335116,
+          -0.04723707664884135
+        ]
+      },
+      "self_check_t1_parent_self": {
+        "difference": 0.0017825311942959,
+        "ci": [
+          -0.0071301247771836,
+          0.0106951871657754
+        ]
+      }
+    }
+  }
+}

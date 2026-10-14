@@ -94,7 +94,7 @@ def main() -> None:
             continue
         rows = problems(dataset, "main")
         samples = load_samples(model, dataset, "main")
-        cells[key] = {mode: cell(rows, samples, judges, 20261012, mode) for mode in ("lenient", "strict")}
+        cells[key] = {mode: cell(rows, samples, judges, 20261012, mode) for mode in ("lenient", "strict", "rescued")}
     report = {"schema_version": "phase14_regression_v1", "report_reproduction": compare(cells),
               "base_c_rerun_vs_phase13": text_agreement(), "instruct_section_4_5": {}}
     for key, ref in INSTRUCT_REFERENCE.items():
@@ -102,7 +102,7 @@ def main() -> None:
             report["instruct_section_4_5"][key] = {"status": "cell not run"}
             continue
         entry = {}
-        for mode in ("strict", "lenient"):
+        for mode in (m for m in ("lenient", "rescued") if f"tie_break_{m}" in ref):
             block = cells[key][mode]["judges"]["base"]
             low, high = block["tie_break_ci"]
             value = ref[f"tie_break_{mode}"]

@@ -1,0 +1,9 @@
+{
+  "schema_version": "phase14_main_size_v1",
+  "status": "fixed_from_pilot_before_main_generation",
+  "pilot_report": "outputs/phase14_v1/pilot/pilot_report.json",
+  "main_size": {
+    "asdiv": 822,
+    "math13": 785
+  }
+}

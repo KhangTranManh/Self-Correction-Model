@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Phase 14 GPU pipeline. Usage: run_remote.sh smoke | pilot | main | comparison
-#   smoke       technical check of every model (no project data)
+#   smoke       technical check of every model, vLLM then Transformers hidden states (no project data)
 #   comparison  after main, with the report's outputs uploaded: regression check on
 #               Self_Correction's report outputs and the bridge set; never touches main cells
 #   pilot       verify the pilot lock, generate pilot samples and judges, write the pilot report
@@ -24,8 +24,10 @@ bridge=$(cfg BRIDGE)
 
 if [[ "$mode" == smoke ]]; then
   for model in $models; do
-    step "smoke $model"
+    step "smoke $model (vLLM)"
     "$py" phase14/scripts/smoke_model.py --model "$model"
+    step "smoke $model (Transformers hidden states)"
+    "$py" phase14/scripts/smoke_hidden.py --model "$model"
   done
   echo PHASE14_SMOKE_COMPLETE
   exit 0

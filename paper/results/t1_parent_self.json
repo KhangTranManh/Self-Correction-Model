@@ -1,0 +1,63 @@
+{
+  "schema_version": "paper_t1_v1",
+  "post_hoc": false,
+  "t1_one_right_pairs": 264,
+  "t1_problems_with_one_right_pair": 211,
+  "t1_solver_accuracy_s1": 0.8128342245989305,
+  "t1_token_cap_rate_judge": 0.1996996996996997,
+  "tables": {
+    "t1_parent_self": {
+      "B1_skill_index": 0.43939393939393934,
+      "B1_skill_index_ci": [
+        0.3612167300380228,
+        0.5167317572365397
+      ],
+      "B1_position2_rate_among_AB": 0.3672316384180791,
+      "B2_tie_break": 0.6287878787878788,
+      "B2_consistent_accuracy": 0.9146341463414634,
+      "B2_coverage": 0.3106060606060606,
+      "B4_single_order_accuracy": 0.5321969696969697
+    },
+    "d0_base": {
+      "B1_skill_index": 0.2222222222222222,
+      "B1_skill_index_ci": [
+        0.13357400722021662,
+        0.3116541581657436
+      ],
+      "B1_position2_rate_among_AB": 0.5541666666666667,
+      "B2_tie_break": 0.5989583333333334,
+      "B2_consistent_accuracy": 0.7050359712230215,
+      "B2_coverage": 0.4826388888888889,
+      "B4_single_order_accuracy": 0.5277777777777778
+    },
+    "d1_instruct": {
+      "B1_skill_index": 0.6458333333333334,
+      "B1_skill_index_ci": [
+        0.5714285714285714,
+        0.7152783956109134
+      ],
+      "B1_position2_rate_among_AB": 0.48535564853556484,
+      "B2_tie_break": 0.7743055555555556,
+      "B2_consistent_accuracy": 0.9488636363636364,
+      "B2_coverage": 0.6111111111111112,
+      "B4_single_order_accuracy": 0.7239583333333334
+    }
+  },
+  "differences": {
+    "t1_minus_d0_base": {
+      "tie_break_difference": 0.029829545454545414,
+      "ci": [
+        -0.019357389467455518,
+        0.07975978615351555
+      ]
+    },
+    "t1_minus_d1_instruct": {
+      "tie_break_difference": -0.1455176767676768,
+      "ci": [
+        -0.18909111392010364,
+        -0.10025729075402233
+      ]
+    }
+  },
+  "rule_reading": "in between"
+}

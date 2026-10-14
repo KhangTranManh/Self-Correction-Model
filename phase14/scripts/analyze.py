@@ -81,7 +81,7 @@ def score(model: str, dataset: str, excluded: set | None) -> dict:
     samples = load_samples(model, dataset, "main")
     judges = {j: completed(folder(model, dataset, "main"), f"judge_{j}") for j in JUDGES}
     seed = 20261100 + 10 * ALL_DATASETS.index(dataset) + RUN_MODELS.index(model)
-    result = {mode: cell(rows, samples, judges, seed, mode) for mode in ("lenient", "strict")}
+    result = {mode: cell(rows, samples, judges, seed, mode) for mode in ("lenient", "strict", "rescued")}
     if excluded is not None and dataset in ("gsm8k13", "gsm8k13_report", BRIDGE):  # report: GSM8K after audit (519)
         result["lenient_audited"] = cell([r for r in rows if r["id"] not in excluded], samples, judges, seed, "lenient")
     return result
@@ -92,10 +92,10 @@ def opening() -> None:
         raise RuntimeError("Refusing a second protected opening")
     excluded = audit_excluded()
     cells, e1, e2, dose = {}, {}, {}, []
-    for dataset in (*DATASETS, *COMPARISON):  # uniform cells: every model, every dataset, required
-        for model in RUN_MODELS:
+    for dataset in DATASETS:  # endpoint cells: required (amendment 2026-10-13: comparison cells optional)
+        for model in SELECTED:
             if not ready(model, dataset):
-                raise RuntimeError(f"Uniform cell missing: {model}/{dataset}")
+                raise RuntimeError(f"Endpoint cell missing: {model}/{dataset}")
     for dataset in ALL_DATASETS:
         for model in models_for(dataset):
             if not ready(model, dataset):
@@ -146,7 +146,7 @@ def add_comparison() -> None:
     report = json.loads(path.read_text(encoding="utf-8"))
     excluded = audit_excluded()
     added = []
-    for dataset in LATER:  # never the uniform cells
+    for dataset in ALL_DATASETS:  # cells generated after the opening; scored cells (endpoints) are never recomputed
         for model in models_for(dataset):
             key = f"{model}/{dataset}"
             if key in report["cells"] or not ready(model, dataset):

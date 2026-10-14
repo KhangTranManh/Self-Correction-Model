@@ -1,10 +1,12 @@
 # Phase 14 — does the judgment generalize to other model families?
 
-**Status: prepared, not started (2026-10-12).** Sources are frozen and the
-pipeline is written and dry-run tested on fake outputs. No model has been run,
-no lock is frozen. The [preregistration](docs/PREREGISTRATION.md) is settled:
-new models Llama-3.1-8B-Instruct and Mistral-7B-Instruct-v0.3, one protocol for
-all four models, E1 = skill index, E2 = log-prob order averaging.
+**Status: main run closed (2026-10-13).** Run on a V100 32 GB in one 10 h rental, cut by
+recorded amendments to the endpoint cells: Llama-3.1-8B-Instruct (Meta weights via the
+NousResearch copy, Meta tokenizer) and Mistral-7B-Instruct-v0.3 on ASDiv (822) and MATH
+1–3 (785). **E1 (skill index) 4/4 cells → general; E2 (log-prob debiasing gain) 1/4 →
+conditional.** Exploratory probes for both models. Not run: GSM8K/SVAMP cells, the anchors'
+fresh cells, the bridge set. Full record and every amendment: [RUN_STATUS.md](RUN_STATUS.md);
+mirrored outputs: `outputs/phase14_remote/`.
 
 ## Question
 
@@ -24,12 +26,14 @@ logit lens.
 | Path | Contents |
 |---|---|
 | `docs/PREREGISTRATION.md` | Draft design, endpoints, limits |
+| `DATA_CATALOG.md`, `DATA_MANIFEST.json` | Where every output and hidden-state file is, its schema and sha256, and how to reload each result without re-running (`paper/scripts/phase14_data.py`) |
 | `RUN_STATUS.md` | Setup log and, later, the run record |
 | `data/raw/` | ASDiv XML, MATH test (parquet and normalized JSONL), `manifest.json` hashes |
 | `data/sources_v1/` | Frozen pilot (100) and ranked main pools per dataset, `report.json` |
 | `scripts/config.py` | Models (pinned revisions), datasets, caps, sizes |
 | `scripts/prepare_sources.py` | Builds `data/sources_v1/` |
 | `scripts/smoke_model.py` | GPU check per model (FP16, 768-prefix equality, verdict log-probs) |
+| `scripts/smoke_hidden.py` | Transformers check per model on the smoke outputs: hidden-state shapes, finiteness, vLLM/Transformers log-prob agreement, logit lens, timing |
 | `scripts/generate.py` | Attempts and judges, Phase 13 prompts imported unchanged |
 | `scripts/metrics.py` | Per-cell measures, shared by pilot and main |
 | `scripts/pilot_report.py` | Pilot scoring and main size (`--write` fixes it) |
@@ -39,14 +43,17 @@ logit lens.
 | `scripts/report_tables.py` | All results in the layout of the report template's tables (Markdown) |
 | `scripts/regression.py` | Reproduces the report with the two original models (run in `comparison`) |
 | `scripts/verify_lock.py` | Pilot and main execution locks |
-| `scripts/ops/` | `run_remote.sh smoke|pilot|main`, retry wrapper |
+| `scripts/dry_run.py` | CPU dry run of the whole pipeline on fake generations, in a separate work folder |
+| `scripts/ops/` | `bootstrap.sh` (host setup), `run_sequential.sh smoke|pilot|main` (used on the 100 GB host: one model at a time, weights deleted after each), `run_remote.sh` (all models together), retry wrapper |
 | `scripts/sync_remote.py` | Mirror remote outputs to `outputs/phase14_remote/` |
 
 ## Run order on the GPU host
 
-1. Environment: Python 3.10, vLLM 0.7.0 and Transformers in `.venv-vllm`
-   (as in Phases 8–13), plus scikit-learn; `HF_TOKEN` with accepted licenses
-   for gated models. For the bridge set, upload `outputs/phase13_v1/`
+1. Environment: `bash phase14/scripts/ops/bootstrap.sh` — Python 3.10, vLLM
+   0.7.0 and Transformers in `.venv-vllm` (as in Phases 8–13), plus
+   scikit-learn; reads `HF_TOKEN` from `.env` (licenses accepted for gated
+   models), checks access, downloads the four models at their pinned revisions,
+   and writes `logs/phase14_bootstrap.json` (GPU name, BF16 support). For the bridge set, upload `outputs/phase13_v1/`
    (samples, judges, analysis) from the machine that holds the Phase 13 mirror.
 2. `bash phase14/scripts/ops/supervise.sh smoke` — replace a failing model with
    `phi35_mini` in `config.py`, record it in `RUN_STATUS.md`.

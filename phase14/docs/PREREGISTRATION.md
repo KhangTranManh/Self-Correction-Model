@@ -29,7 +29,7 @@ The protocol is Phase 13's, changed only where a new model forces it:
 | Attempts | 5, temperature 0.7, per-request seeds | same |
 | Judged pairs | (s1, s2), (s1, s3) with different final answers, both orders, greedy | same |
 | Token cap / context | 768 / 4096 | **primary view 768 / 4096**; attempts also generated to 1536 for a cap-sensitivity view |
-| Answer reading | Phase 1 extraction + SymPy | same (lenient, primary) + strict (boxed or labelled only) as a check |
+| Answer reading | Phase 1 extraction + SymPy | same (lenient, primary) + strict (boxed or labelled only) + rescued (first number on the last "Đáp số" line when lenient is non-numeric; added 2026-10-12) as checks |
 | Chat template | Qwen | each model's own template, user role only |
 | Hardware | V100, vLLM 0.7.0, FP16 | same if the models pass the smoke test |
 
@@ -105,8 +105,9 @@ endpoints.
 `scripts/report_tables.py` prints all of these in the report's layout.
 
 Not reproduced here (definitions live outside this repository): the 4-candidate
-comparison of Table 3, DPO judges p12/p13b on new models, and the reverse
-direction of section 4.5 (Self_Correction judging other models' solutions).
+comparison of Table 3 and DPO judges p12/p13b on new models. The reverse
+direction of section 4.5 (Self_Correction judging Qwen2.5-7B-Instruct's
+solutions) was run outside Phase 14 as paper check T5.
 The surface features follow the report's wording (length, step count,
 answer); their exact earlier definition should be checked.
 - **Bridge set (`bridge13`).** Every model re-judges the 486 judged pairs of

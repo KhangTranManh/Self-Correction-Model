@@ -1,0 +1,212 @@
+{
+  "schema_version": "paper_d_e_v1",
+  "post_hoc": true,
+  "one_right_pairs": 288,
+  "tables": {
+    "base": {
+      "B1_position_table": {
+        "right_is_A": {
+          "n": 288,
+          "picks_A": 0.4930555555555556,
+          "picks_B": 0.34375,
+          "picks_invented": 0.16319444444444445
+        },
+        "right_is_B": {
+          "n": 288,
+          "picks_A": 0.2777777777777778,
+          "picks_B": 0.5520833333333334,
+          "picks_invented": 0.1701388888888889
+        }
+      },
+      "B1_skill_index": 0.2152777777777778,
+      "B1_skill_index_ci": [
+        0.12811172406999227,
+        0.3038946477550717
+      ],
+      "B1_position2_rate_among_AB": 0.5375,
+      "B2_tie_break": 0.6006944444444444,
+      "B2_consistent_accuracy": 0.7101449275362319,
+      "B2_coverage": 0.4791666666666667,
+      "B4_single_order_accuracy": 0.5225694444444444,
+      "token_cap_rate": 0.033950617283950615
+    },
+    "d0_base": {
+      "B1_position_table": {
+        "right_is_A": {
+          "n": 288,
+          "picks_A": 0.4826388888888889,
+          "picks_B": 0.3506944444444444,
+          "picks_invented": 0.16666666666666666
+        },
+        "right_is_B": {
+          "n": 288,
+          "picks_A": 0.2604166666666667,
+          "picks_B": 0.5729166666666666,
+          "picks_invented": 0.16666666666666666
+        }
+      },
+      "B1_skill_index": 0.2222222222222222,
+      "B1_skill_index_ci": [
+        0.13357400722021662,
+        0.3116541581657436
+      ],
+      "B1_position2_rate_among_AB": 0.5541666666666667,
+      "B2_tie_break": 0.5989583333333334,
+      "B2_consistent_accuracy": 0.7050359712230215,
+      "B2_coverage": 0.4826388888888889,
+      "B4_single_order_accuracy": 0.5277777777777778,
+      "token_cap_rate": 0.03806584362139918
+    },
+    "d1_instruct": {
+      "B1_position_table": {
+        "right_is_A": {
+          "n": 288,
+          "picks_A": 0.75,
+          "picks_B": 0.1076388888888889,
+          "picks_invented": 0.1423611111111111
+        },
+        "right_is_B": {
+          "n": 288,
+          "picks_A": 0.10416666666666667,
+          "picks_B": 0.6979166666666666,
+          "picks_invented": 0.19791666666666666
+        }
+      },
+      "B1_skill_index": 0.6458333333333334,
+      "B1_skill_index_ci": [
+        0.5714285714285714,
+        0.7152783956109134
+      ],
+      "B1_position2_rate_among_AB": 0.48535564853556484,
+      "B2_tie_break": 0.7743055555555556,
+      "B2_consistent_accuracy": 0.9488636363636364,
+      "B2_coverage": 0.6111111111111112,
+      "B4_single_order_accuracy": 0.7239583333333334,
+      "token_cap_rate": 0.205761316872428
+    },
+    "d2_relabel": {
+      "B1_position_table": {
+        "right_is_A": {
+          "n": 288,
+          "picks_A": 0.4652777777777778,
+          "picks_B": 0.3680555555555556,
+          "picks_invented": 0.16666666666666666
+        },
+        "right_is_B": {
+          "n": 288,
+          "picks_A": 0.2604166666666667,
+          "picks_B": 0.5729166666666666,
+          "picks_invented": 0.16666666666666666
+        }
+      },
+      "B1_skill_index": 0.2048611111111111,
+      "B1_skill_index_ci": [
+        0.11224489795918369,
+        0.297945205479452
+      ],
+      "B1_position2_rate_among_AB": 0.5645833333333333,
+      "B2_tie_break": 0.5902777777777778,
+      "B2_consistent_accuracy": 0.6830985915492958,
+      "B2_coverage": 0.4930555555555556,
+      "B4_single_order_accuracy": 0.5190972222222222,
+      "token_cap_rate": 0.037037037037037035
+    },
+    "d3_restate": {
+      "B1_position_table": {
+        "right_is_A": {
+          "n": 288,
+          "picks_A": 0.5451388888888888,
+          "picks_B": 0.3125,
+          "picks_invented": 0.1423611111111111
+        },
+        "right_is_B": {
+          "n": 288,
+          "picks_A": 0.2986111111111111,
+          "picks_B": 0.5486111111111112,
+          "picks_invented": 0.1527777777777778
+        }
+      },
+      "B1_skill_index": 0.24652777777777773,
+      "B1_skill_index_ci": [
+        0.14965502215120924,
+        0.3393664259927796
+      ],
+      "B1_position2_rate_among_AB": 0.505091649694501,
+      "B2_tie_break": 0.6024305555555556,
+      "B2_consistent_accuracy": 0.6745562130177515,
+      "B2_coverage": 0.5868055555555556,
+      "B4_single_order_accuracy": 0.546875,
+      "token_cap_rate": 0.033950617283950615
+    }
+  },
+  "D0_control": {
+    "tasks": 972,
+    "exact_text_match": 0.8631687242798354,
+    "same_pick_one_right": 0.9513888888888888
+  },
+  "D1_instruct_net_position2_alone": {
+    "estimate": -0.024305555555555556,
+    "ci": [
+      -0.07342657342657342,
+      0.025547445255474453
+    ]
+  },
+  "net_position2_preference": {
+    "d0_base": 0.09027777777777778,
+    "d1_instruct": -0.024305555555555556,
+    "d2_relabel": 0.1076388888888889,
+    "d3_restate": 0.008680555555555556
+  },
+  "D_tests": {
+    "D1_instruct_minus_d0": {
+      "estimate": -0.11458333333333333,
+      "ci": [
+        -0.19088072447447446,
+        -0.036094613304349044
+      ],
+      "p_boot": 0.0054,
+      "p_holm": 0.0162,
+      "confirmed": true
+    },
+    "D2_relabel_minus_d0": {
+      "estimate": 0.017361111111111112,
+      "ci": [
+        -0.047872340425531915,
+        0.08503489937641721
+      ],
+      "p_boot": 0.6338,
+      "p_holm": 0.6338
+    },
+    "D3_restate_minus_d0": {
+      "estimate": -0.08159722222222222,
+      "ci": [
+        -0.15892857142857142,
+        -0.00524384469696971
+      ],
+      "p_boot": 0.04,
+      "p_holm": 0.08,
+      "confirmed": false
+    }
+  },
+  "E1": {
+    "problems": 347,
+    "judgments": 1388,
+    "position_pick_share": {
+      "invented": 0.164985590778098,
+      "0": 0.3638328530259366,
+      "1": 0.19956772334293948,
+      "2": 0.11023054755043228,
+      "3": 0.16138328530259366
+    },
+    "single_judgment_accuracy": 0.4488472622478386,
+    "uniform_random_candidate_accuracy": 0.4546109510086455,
+    "accuracy_same_problems": {
+      "rotation0_only": 0.4553314121037464,
+      "plurality_over_4_rotations": 0.5389048991354467,
+      "vote4": 0.6512968299711815,
+      "vote5": 0.6512968299711815,
+      "keep": 0.4668587896253602
+    },
+    "note": "four-rotation plurality costs 4 candidates + 4 judge calls = 8 calls"
+  }
+}

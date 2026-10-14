@@ -24,7 +24,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from phase14.scripts.config import DATASETS, OUT, RUN_MODELS, SELECTED, SOURCES, TARGET_ONE_RIGHT_PAIRS  # noqa: E402
+from phase14.scripts.config import DATASETS, OUT, PILOT_MODELS as RUN_MODELS, SELECTED, SOURCES, TARGET_ONE_RIGHT_PAIRS  # noqa: E402
 from phase14.scripts.generate import JUDGES, MAIN_SIZE, completed, folder, problems  # noqa: E402
 from phase14.scripts.metrics import cell  # noqa: E402
 

@@ -1,0 +1,150 @@
+{
+ "self_correction_s1": {
+  "n": 561,
+  "verifier_accuracy": 0.661319073083779,
+  "format_misses": 4,
+  "corrected_accuracy": 0.6684491978609626,
+  "examples": [
+   [
+    "phase13_gsm8k_test_1139",
+    "Đáp số: 1 USD/bánh."
+   ],
+   [
+    "phase13_gsm8k_test_968",
+    "Đáp số: 227 phút hoặc 3 giờ 47 phút"
+   ],
+   [
+    "phase13_gsm8k_test_891",
+    "Đáp số: 55 m/s"
+   ],
+   [
+    "phase13_gsm8k_test_1313",
+    "Đáp số: 2.00"
+   ]
+  ]
+ },
+ "instruct_s1": {
+  "n": 561,
+  "verifier_accuracy": 0.8128342245989305,
+  "format_misses": 29,
+  "corrected_accuracy": 0.8645276292335116,
+  "examples": [
+   [
+    "phase13_gsm8k_test_1033",
+    "Đáp số: $2/giờ"
+   ],
+   [
+    "phase13_gsm8k_test_1148",
+    "Đáp số: Mỗi trẻ nhận được 9 trứng."
+   ],
+   [
+    "phase13_gsm8k_test_781",
+    "Đáp số: Mỗi pizza còn lại có giá 17 đô la."
+   ],
+   [
+    "phase13_gsm8k_test_940",
+    "Đáp số:** 280"
+   ],
+   [
+    "phase13_gsm8k_test_949",
+    "Đáp số: Leo is 42 years old."
+   ],
+   [
+    "phase13_gsm8k_test_981",
+    "Đáp số: 7份"
+   ],
+   [
+    "phase13_gsm8k_test_817",
+    "Đáp số: Paul cần mua 15 cái cupcake thêm."
+   ],
+   [
+    "phase13_gsm8k_test_813",
+    "Đáp số: Mỗi đứa trẻ có thể có 7 S'mores với số marshmallow còn lại trong bọc."
+   ],
+   [
+    "phase13_gsm8k_test_993",
+    "Đáp số: } 11 \\]"
+   ],
+   [
+    "phase13_gsm8k_test_1046",
+    "Đáp số: Mỗi họa sĩ đã làm việc 189 giờ."
+   ],
+   [
+    "phase13_gsm8k_test_778",
+    "Đáp số: \\$38.00"
+   ],
+   [
+    "phase13_gsm8k_test_830",
+    "Đáp số: 1128 phút hoặc 18.8 giờ"
+   ],
+   [
+    "phase13_gsm8k_test_1115",
+    "Đáp số: Mỗi quyển sách đã được Anna mua với giá $5."
+   ],
+   [
+    "phase13_gsm8k_test_1250",
+    "Đáp số: Mỗi người nhận được 22 chip."
+   ],
+   [
+    "phase13_gsm8k_test_1091",
+    "Đáp số:** $1000"
+   ],
+   [
+    "phase13_gsm8k_test_975",
+    "Đáp số: Robert có 20 cherries nhiều hơn Jerry."
+   ],
+   [
+    "phase13_gsm8k_test_1181",
+    "Đáp số: Colin hiện tại 20 tuổi."
+   ],
+   [
+    "phase13_gsm8k_test_977",
+    "Đáp số: Pamela cần 4 chai kem chống nắng để đủ dùng trong chuyến du lịch 8 ngày."
+   ],
+   [
+    "phase13_gsm8k_test_1178",
+    "Đáp số: Johnny mua 17 mặt nạClassNotFoundException."
+   ],
+   [
+    "phase13_gsm8k_test_891",
+    "Đáp số: 55 mét/giây"
+   ],
+   [
+    "phase13_gsm8k_test_1020",
+    "Đáp số: \\(22\\)"
+   ],
+   [
+    "phase13_gsm8k_test_1130",
+    "Đáp số:** 25 pounds"
+   ],
+   [
+    "phase13_gsm8k_test_1302",
+    "Đáp số: 72美元"
+   ],
+   [
+    "phase13_gsm8k_test_1043",
+    "Đáp số: 130,000 người"
+   ],
+   [
+    "phase13_gsm8k_test_1276",
+    "Đáp số: James cần mua 70 feet của giấy dán tường để trang trí hàng rào."
+   ],
+   [
+    "phase13_gsm8k_test_866",
+    "Đáp số: Fawn có 28 sách."
+   ],
+   [
+    "phase13_gsm8k_test_829",
+    "Đáp số: 14,000 bars"
+   ],
+   [
+    "phase13_gsm8k_test_999",
+    "Đáp số: 25%"
+   ],
+   [
+    "phase13_gsm8k_test_1206",
+    "Đáp số: $40,000**"
+   ]
+  ]
+ }
+}

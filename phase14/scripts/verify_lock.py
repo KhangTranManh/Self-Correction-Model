@@ -57,15 +57,20 @@ PHASE14 = (
     "phase14/scripts/pilot_report.py",
     "phase14/scripts/analyze.py",
     "phase14/scripts/smoke_model.py",
+    "phase14/scripts/smoke_hidden.py",
     "phase14/scripts/extract_hidden.py",
     "phase14/scripts/probe_analysis.py",
     "phase14/scripts/report_tables.py",
     "phase14/scripts/regression.py",
     "phase14/scripts/verify_lock.py",
     "phase14/scripts/ops/run_remote.sh",
+    "phase14/scripts/ops/run_sequential.sh",
 )
 MAIN_EXTRA = ("phase14/data/main_size.json", "outputs/phase14_v1/pilot/pilot_report.json")
-LOCKS = {"pilot": ROOT / "phase14/data/execution_lock_pilot.json",
+COMPLETION_EXTRA = ("phase14/scripts/ops/run_complete.sh", "phase14/scripts/ops/fetch_model.py",
+                    "phase14/scripts/ops/gen_batch.py", "phase14/scripts/ops/run_tail.sh")
+LOCKS = {"completion": ROOT / "phase14/data/execution_lock_completion.json",  # after the opening (amendment)
+         "pilot": ROOT / "phase14/data/execution_lock_pilot.json",
          "main": ROOT / "phase14/data/execution_lock_main.json"}
 
 
@@ -82,7 +87,8 @@ def main() -> None:
     parser.add_argument("--freeze", action="store_true")
     args = parser.parse_args()
     lock_path = LOCKS[args.stage]
-    files = (*SHARED, *PHASE14, *(MAIN_EXTRA if args.stage == "main" else ()))
+    files = (*SHARED, *PHASE14, *(MAIN_EXTRA if args.stage in ("main", "completion") else ()),
+             *(COMPLETION_EXTRA if args.stage == "completion" else ()))
     if args.freeze:
         if lock_path.exists():
             raise RuntimeError(f"Refusing to replace {lock_path.name}")

@@ -1,0 +1,3809 @@
+{
+ "schema_version": "phase14_data_manifest_v1",
+ "built": "2026-10-14 05:38 (local)",
+ "roots": {
+  "mirror": "D:\\AGI\\outputs\\phase14_remote\\outputs\\phase14_v1",
+  "hidden": "F:\\AGI_data\\phase14_hidden",
+  "repo": "D:\\AGI"
+ },
+ "groups": {
+  "text_outputs": {
+   "base": "D:\\AGI\\outputs\\phase14_remote\\outputs\\phase14_v1",
+   "files": [
+    {
+     "path": "main/llama31_8b/asdiv/judge_base/answers.jsonl",
+     "bytes": 1522795,
+     "sha256": "23baac41e43340b7112e08a12fe17b6add9ddfa4e079fc317df7f94f9cb7527f",
+     "rows": 860
+    },
+    {
+     "path": "main/llama31_8b/asdiv/judge_base/audit.jsonl",
+     "bytes": 1561780,
+     "sha256": "a345b8955826f3f69b63906cb2fbb2a0a7ba8cb5630f454d6af9d538b81e435a",
+     "rows": 861
+    },
+    {
+     "path": "main/llama31_8b/asdiv/judge_base/summary.json",
+     "bytes": 648,
+     "sha256": "6235d5b08d791db49d95cf6e68c600ceac595d829f6a4cdcac909499377c5e8e"
+    },
+    {
+     "path": "main/llama31_8b/asdiv/judge_base_1536/answers.jsonl",
+     "bytes": 3303714,
+     "sha256": "6b66b35f85cb8080a3857cc870b88c015a6308101f5412fdb631cc7726337c77",
+     "rows": 860
+    },
+    {
+     "path": "main/llama31_8b/asdiv/judge_base_1536/audit.jsonl",
+     "bytes": 3342706,
+     "sha256": "1a79b9f0e20563773420ac78cc6676fa042ca350f3265cf0a1f9fcd6afb4b695",
+     "rows": 861
+    },
+    {
+     "path": "main/llama31_8b/asdiv/judge_base_1536/summary.json",
+     "bytes": 655,
+     "sha256": "e85934304cf1bfeacf991ebd3f52312c7255d8406eaceaf954e76c2d7dc6f6d6"
+    },
+    {
+     "path": "main/llama31_8b/asdiv/judge_base_c/answers.jsonl",
+     "bytes": 1505215,
+     "sha256": "149517c6f303f0e78ed4dd18c34dfa673011f705557c8408ecaefd2b2efa1ad1",
+     "rows": 860
+    },
+    {
+     "path": "main/llama31_8b/asdiv/judge_base_c/audit.jsonl",
+     "bytes": 1544200,
+     "sha256": "24ace29477d56c5f3af854b863d6d18c0fefe2547059f9b4c336afcfed4a78b8",
+     "rows": 861
+    },
+    {
+     "path": "main/llama31_8b/asdiv/judge_base_c/summary.json",
+     "bytes": 648,
+     "sha256": "e62a526982174b11736d63de1b335febb89360fe1b8846ea59bb69bad21e19db"
+    },
+    {
+     "path": "main/llama31_8b/asdiv/judge_base_c_1536/answers.jsonl",
+     "bytes": 3093412,
+     "sha256": "0379929faffcc7a438e5a031ece44bc2c3021bc9e2fef0af1fd77d9730cab3f2",
+     "rows": 860
+    },
+    {
+     "path": "main/llama31_8b/asdiv/judge_base_c_1536/audit.jsonl",
+     "bytes": 3132404,
+     "sha256": "dea60091a6a6cfdee5929b94a6fae66147982cafc66b6bc6fa0982aa260dbc2f",
+     "rows": 861
+    },
+    {
+     "path": "main/llama31_8b/asdiv/judge_base_c_1536/summary.json",
+     "bytes": 655,
+     "sha256": "19f65589f5d10d9657d7466d5c7116c797e0cf46f906502ff60c6310563e0ec8"
+    },
+    {
+     "path": "main/llama31_8b/asdiv/samples/answers.jsonl",
+     "bytes": 7813826,
+     "sha256": "b6cd5c90115e2c8b9d4fd1ccf245d3dbb559bf72a4e1762879cd169e0e2ef120",
+     "rows": 4110
+    },
+    {
+     "path": "main/llama31_8b/asdiv/samples/audit.jsonl",
+     "bytes": 8002169,
+     "sha256": "e0d4ff927058c633b6e1ed1d34ea2199a0d077254b3b3ed9c490eeb9bfdc4b9b",
+     "rows": 4111
+    },
+    {
+     "path": "main/llama31_8b/asdiv/samples/summary.json",
+     "bytes": 647,
+     "sha256": "d5c01aa368c01289024bbdf38ae7083e2d45be0ff8988fa86ba279ca010370b3"
+    },
+    {
+     "path": "main/llama31_8b/bridge13/judge_base/answers.jsonl",
+     "bytes": 1447320,
+     "sha256": "53da295663ebb1c961452ee4576c9c4ccf2c41939cbd40287944fdff4c512e47",
+     "rows": 972
+    },
+    {
+     "path": "main/llama31_8b/bridge13/judge_base/audit.jsonl",
+     "bytes": 1491346,
+     "sha256": "9d6fec12095d6e7b7e13a673d5d63fbf3215196305808f617d55371f1ad147a1",
+     "rows": 973
+    },
+    {
+     "path": "main/llama31_8b/bridge13/judge_base/summary.json",
+     "bytes": 649,
+     "sha256": "28a4947e3b360466b6287e90274566ef57a71f99ac91e02355f32ecb73911406"
+    },
+    {
+     "path": "main/llama31_8b/bridge13/judge_base_c/answers.jsonl",
+     "bytes": 1717543,
+     "sha256": "3a0db2f5495fd4b83e99fc51a21d72bd337e1efbf7e4ae4a98529829007a317d",
+     "rows": 972
+    },
+    {
+     "path": "main/llama31_8b/bridge13/judge_base_c/audit.jsonl",
+     "bytes": 1761569,
+     "sha256": "22a73cc8f3f6d633ac640a6bb47a7eab9787d146a869908d943dcb97cbf946d6",
+     "rows": 973
+    },
+    {
+     "path": "main/llama31_8b/bridge13/judge_base_c/summary.json",
+     "bytes": 649,
+     "sha256": "23621df595cabc61b173d9af541ffaee4e5131565c68d3b583e7f16712dd8899"
+    },
+    {
+     "path": "main/llama31_8b/gsm8k13/judge_base/answers.jsonl",
+     "bytes": 1520156,
+     "sha256": "6b630afbbc3c79b8c554e10d5f6d93b53e4ca3c71b09dccc49b5acefdf6368f0",
+     "rows": 804
+    },
+    {
+     "path": "main/llama31_8b/gsm8k13/judge_base/audit.jsonl",
+     "bytes": 1556622,
+     "sha256": "f545b07e47d42f0f2bdaeef9d2622d71170477f03bdcac2b2cd94707bd82c971",
+     "rows": 805
+    },
+    {
+     "path": "main/llama31_8b/gsm8k13/judge_base/summary.json",
+     "bytes": 649,
+     "sha256": "2e512b525bc13947657047abebdf6558501fb0229ae838fc73a4d0b17bc85b90"
+    },
+    {
+     "path": "main/llama31_8b/gsm8k13/judge_base_c/answers.jsonl",
+     "bytes": 1544367,
+     "sha256": "5543b0609793985af8c293e8356896e4c94ab677556d83dca86212890a4ab28c",
+     "rows": 804
+    },
+    {
+     "path": "main/llama31_8b/gsm8k13/judge_base_c/audit.jsonl",
+     "bytes": 1580833,
+     "sha256": "a83de9e28ac87465fc8495a76ec93c4a47ac7ac009481d6108a7133b188fa196",
+     "rows": 805
+    },
+    {
+     "path": "main/llama31_8b/gsm8k13/judge_base_c/summary.json",
+     "bytes": 649,
+     "sha256": "7b0521ce6385a7fafd879c6f638e9b3f61b9d2186269daf59145dee0883f3820"
+    },
+    {
+     "path": "main/llama31_8b/gsm8k13/samples/answers.jsonl",
+     "bytes": 6396525,
+     "sha256": "ca644718340b0e4636c7d92c9ede38c30d12d1c94ef4381d9fe0adc9e3751435",
+     "rows": 2805
+    },
+    {
+     "path": "main/llama31_8b/gsm8k13/samples/audit.jsonl",
+     "bytes": 6524839,
+     "sha256": "d69be11a2efa5ffefa2f4d4bdf958128eba6c54bb64d0e03815a5f6625bc97bc",
+     "rows": 2806
+    },
+    {
+     "path": "main/llama31_8b/gsm8k13/samples/summary.json",
+     "bytes": 648,
+     "sha256": "76bbecb93bf09e84ce9ea258e69b0d3e9d8ae3dea4f9ca076a8531150646df2e"
+    },
+    {
+     "path": "main/llama31_8b/math13/judge_base/answers.jsonl",
+     "bytes": 3512983,
+     "sha256": "ef11bac761628a708a0117bb4d43952a931b5b910f0b23de1a645c256d91f4ea",
+     "rows": 2042
+    },
+    {
+     "path": "main/llama31_8b/math13/judge_base/audit.jsonl",
+     "bytes": 3606200,
+     "sha256": "66bb1985fcc0a52c95298e9cfef8935be502bc6b67827d6ab94189c82d1f10e7",
+     "rows": 2043
+    },
+    {
+     "path": "main/llama31_8b/math13/judge_base/summary.json",
+     "bytes": 649,
+     "sha256": "4837418a1efada971405658730bbffc6f55034210e73dfdb31105f568181a71a"
+    },
+    {
+     "path": "main/llama31_8b/math13/judge_base_1536/answers.jsonl",
+     "bytes": 7753053,
+     "sha256": "25497cc7f31ef90500d82a2a5a8328a9f47ac8de7206fbaeff2b1ccd892703c5",
+     "rows": 2042
+    },
+    {
+     "path": "main/llama31_8b/math13/judge_base_1536/audit.jsonl",
+     "bytes": 7846277,
+     "sha256": "c2f7633c57ce1d954b31c8e6cee101ce07e2f747832cb9f4b92100b131796c48",
+     "rows": 2043
+    },
+    {
+     "path": "main/llama31_8b/math13/judge_base_1536/summary.json",
+     "bytes": 656,
+     "sha256": "b7ebd51ccbc8f9ee354cf90527742b0288eb727b38fdf2990e5f0cf7e9b4dd27"
+    },
+    {
+     "path": "main/llama31_8b/math13/judge_base_c/answers.jsonl",
+     "bytes": 3914932,
+     "sha256": "c83f2feaaf6a2b72bd9c8246a1765f907d60a95c95fab1d6adb661d9ffc77371",
+     "rows": 2042
+    },
+    {
+     "path": "main/llama31_8b/math13/judge_base_c/audit.jsonl",
+     "bytes": 4008149,
+     "sha256": "d75c3c219a2a4debec0d86ceba952cb2e0ff45a39870b24807c0b15a4041c3b5",
+     "rows": 2043
+    },
+    {
+     "path": "main/llama31_8b/math13/judge_base_c/summary.json",
+     "bytes": 649,
+     "sha256": "b9520bc86f7d4ef1233e4d7b654938e428949f627891ea48b266498b95c9a644"
+    },
+    {
+     "path": "main/llama31_8b/math13/judge_base_c_1536/answers.jsonl",
+     "bytes": 8471753,
+     "sha256": "9c0deeac9d22f33fbebaa5a0c3dcdf370451c658fb208d1027b913595501ba9c",
+     "rows": 2042
+    },
+    {
+     "path": "main/llama31_8b/math13/judge_base_c_1536/audit.jsonl",
+     "bytes": 8564977,
+     "sha256": "ae04935e46f58a2b7edeb73ce3d47c9db82656b01298a4353b6f45084645cda1",
+     "rows": 2043
+    },
+    {
+     "path": "main/llama31_8b/math13/judge_base_c_1536/summary.json",
+     "bytes": 656,
+     "sha256": "19be05fae47823b3a5272b4674525cd80157e0988dc01089db6808329a57fc34"
+    },
+    {
+     "path": "main/llama31_8b/math13/samples/answers.jsonl",
+     "bytes": 11505131,
+     "sha256": "96311483a5d57168bc31d0ff51c3e406d75b58b2b8bad55b1b2833f03b54825f",
+     "rows": 3925
+    },
+    {
+     "path": "main/llama31_8b/math13/samples/audit.jsonl",
+     "bytes": 11684964,
+     "sha256": "6dd31759ff1a697dcd3c99d1488dbe86fb5d3cd3417a4a467b0972e6e0a3ec34",
+     "rows": 3926
+    },
+    {
+     "path": "main/llama31_8b/math13/samples/summary.json",
+     "bytes": 647,
+     "sha256": "c85b947cc7befb9b9f78b6e8d95d0e37e8f20a5948ca0ec2c62a20b52e9de906"
+    },
+    {
+     "path": "main/llama31_8b/svamp12/judge_base/answers.jsonl",
+     "bytes": 2143194,
+     "sha256": "d5754ae6fef3717ede6e2311b6cf44b3bcaa0a608fa0b2aa5f21391ae4f437f2",
+     "rows": 1172
+    },
+    {
+     "path": "main/llama31_8b/svamp12/judge_base/audit.jsonl",
+     "bytes": 2196392,
+     "sha256": "8d5a1237d8225a38bac74ad84464fc56a2804501ef5d63d4193fc2189a8d7573",
+     "rows": 1173
+    },
+    {
+     "path": "main/llama31_8b/svamp12/judge_base/summary.json",
+     "bytes": 650,
+     "sha256": "63fd655ae3274d15ae278ff33077418c79fd36c4ef9785180d617f51d4ec2152"
+    },
+    {
+     "path": "main/llama31_8b/svamp12/judge_base_c/answers.jsonl",
+     "bytes": 2071601,
+     "sha256": "6f2df85a935ef329982d4a2079d00a9623951b8afeb64a124ed2566b500fb2d3",
+     "rows": 1172
+    },
+    {
+     "path": "main/llama31_8b/svamp12/judge_base_c/audit.jsonl",
+     "bytes": 2124799,
+     "sha256": "ef5856015190e7a63046583b39ba2499e205be56a4b66d14134e6017960e00a0",
+     "rows": 1173
+    },
+    {
+     "path": "main/llama31_8b/svamp12/judge_base_c/summary.json",
+     "bytes": 650,
+     "sha256": "c11acdc30bdb97baa811c55e7c39ca105a3a4fb1bd3cb7005e20d23561d49f03"
+    },
+    {
+     "path": "main/llama31_8b/svamp12/samples/answers.jsonl",
+     "bytes": 9852899,
+     "sha256": "231e89e037cd5a7bf34f81d3c98761fe74b3decfac7cc756a80530b535ac5a53",
+     "rows": 4800
+    },
+    {
+     "path": "main/llama31_8b/svamp12/samples/audit.jsonl",
+     "bytes": 10072983,
+     "sha256": "3e36472995b4a5b08816be01a19fb059048536f1c3986504e41821d1d0ae1218",
+     "rows": 4801
+    },
+    {
+     "path": "main/llama31_8b/svamp12/samples/summary.json",
+     "bytes": 648,
+     "sha256": "8077673dc6b5d2376e21deff376baf88c4af3b21fcb1cc9d0370d33a7e684f4b"
+    },
+    {
+     "path": "main/mistral_7b/asdiv/judge_base/answers.jsonl",
+     "bytes": 2129994,
+     "sha256": "05f9754b07d6cb708199bd152c248439a50ce26adc8151e42ae202080e8f8d9a",
+     "rows": 1866
+    },
+    {
+     "path": "main/mistral_7b/asdiv/judge_base/audit.jsonl",
+     "bytes": 2215111,
+     "sha256": "e64989ba08b406220c78a730c18990b2961a28d9356a88b4ea6caaeebb013e16",
+     "rows": 1867
+    },
+    {
+     "path": "main/mistral_7b/asdiv/judge_base/summary.json",
+     "bytes": 645,
+     "sha256": "04d8a3b2463f8db41b73618208605b5d00ef730c21a99c7350e9a1e24023be9e"
+    },
+    {
+     "path": "main/mistral_7b/asdiv/judge_base_c/answers.jsonl",
+     "bytes": 784526,
+     "sha256": "0908410075836c33c9f2511369eab9b96b32424347db170d027d9599290c8ea4",
+     "rows": 1866
+    },
+    {
+     "path": "main/mistral_7b/asdiv/judge_base_c/audit.jsonl",
+     "bytes": 869643,
+     "sha256": "c308040b783433455a5ff63a6f3299dea06c5880fc16d81bc3d30c21a2da75ff",
+     "rows": 1867
+    },
+    {
+     "path": "main/mistral_7b/asdiv/judge_base_c/summary.json",
+     "bytes": 645,
+     "sha256": "a864c85cf3f28d46b71587888a99da4c48c1ae512fa9cb5aadded1f6da97733e"
+    },
+    {
+     "path": "main/mistral_7b/asdiv/samples/answers.jsonl",
+     "bytes": 6961776,
+     "sha256": "74a1b6421da757dc3811ace88998155a35c2c7057150aa4b0f562ee640a50cbb",
+     "rows": 4110
+    },
+    {
+     "path": "main/mistral_7b/asdiv/samples/audit.jsonl",
+     "bytes": 7150115,
+     "sha256": "d2b9d144fa4b55a340f533e2bcbe7d52a34b5bb7fdb85d4122a71c018cd885a1",
+     "rows": 4111
+    },
+    {
+     "path": "main/mistral_7b/asdiv/samples/summary.json",
+     "bytes": 643,
+     "sha256": "9728d368b902a7dc808026a4626a3c378a2788dae9020584bf6c22ab3a8c0cfc"
+    },
+    {
+     "path": "main/mistral_7b/bridge13/judge_base/answers.jsonl",
+     "bytes": 1142287,
+     "sha256": "7052a2cbc5684cd2a7c2a7b6516dd685cb8ea90f1fdd3761a926d65aefa3d756",
+     "rows": 972
+    },
+    {
+     "path": "main/mistral_7b/bridge13/judge_base/audit.jsonl",
+     "bytes": 1186308,
+     "sha256": "3d20ada9d784dcae3f1f0001d12d71e56bf131744a3ea9feb3d4a97cdcf430ba",
+     "rows": 973
+    },
+    {
+     "path": "main/mistral_7b/bridge13/judge_base/summary.json",
+     "bytes": 644,
+     "sha256": "ba1bf2973f8dd886ee5e80f9459a3acbce9819d539af86c1dbbf883c14f354ad"
+    },
+    {
+     "path": "main/mistral_7b/bridge13/judge_base_c/answers.jsonl",
+     "bytes": 591949,
+     "sha256": "98fc42df3d15f68e00ae9af921d1d5a8d20d310f823ec0738968935021ee6a35",
+     "rows": 972
+    },
+    {
+     "path": "main/mistral_7b/bridge13/judge_base_c/audit.jsonl",
+     "bytes": 635970,
+     "sha256": "9ee276bc7f9032d29af73bc7ce528c6bdea698d10ad3130c969098ffd3d19a48",
+     "rows": 973
+    },
+    {
+     "path": "main/mistral_7b/bridge13/judge_base_c/summary.json",
+     "bytes": 644,
+     "sha256": "b06108533a7aa7db9155d1c552696f153c18d9da9c838819ca8821c78ca4378a"
+    },
+    {
+     "path": "main/mistral_7b/gsm8k13/judge_base/answers.jsonl",
+     "bytes": 1979830,
+     "sha256": "09c8062a5913405834295035d0637439562fe78fec143e02098141f93bca4033",
+     "rows": 1560
+    },
+    {
+     "path": "main/mistral_7b/gsm8k13/judge_base/audit.jsonl",
+     "bytes": 2050871,
+     "sha256": "c7cd9b3d030ab89cd954b00015166ea8e548c3001088bd4148da0e6767c0c2b2",
+     "rows": 1561
+    },
+    {
+     "path": "main/mistral_7b/gsm8k13/judge_base/summary.json",
+     "bytes": 645,
+     "sha256": "7fa31191f5b08860b66a36fca35915c76bdcfc69035ca1db911d18ab54ab66ce"
+    },
+    {
+     "path": "main/mistral_7b/gsm8k13/judge_base_c/answers.jsonl",
+     "bytes": 679118,
+     "sha256": "63b59b0fd5bf34e794355ced7f7cc1419d23ebf83fa94f503fdc49701f137097",
+     "rows": 1560
+    },
+    {
+     "path": "main/mistral_7b/gsm8k13/judge_base_c/audit.jsonl",
+     "bytes": 750159,
+     "sha256": "6fc56dca0e394339b30dabcedd487236422e288582d5585a3fde585acc46d024",
+     "rows": 1561
+    },
+    {
+     "path": "main/mistral_7b/gsm8k13/judge_base_c/summary.json",
+     "bytes": 645,
+     "sha256": "45d3f04ef284c2c1c5c3f2f630a364a8fa2eede4385cf0d3cfc77580a5ac6564"
+    },
+    {
+     "path": "main/mistral_7b/gsm8k13/samples/answers.jsonl",
+     "bytes": 6079443,
+     "sha256": "b5697aded30cfdff55685c374af8df901be1863f9925b6a8a22df68fc98698bf",
+     "rows": 2805
+    },
+    {
+     "path": "main/mistral_7b/gsm8k13/samples/audit.jsonl",
+     "bytes": 6207752,
+     "sha256": "6302648fa83948fde03fbf89d8139f614d774d9d50d6a5d2adde09e3b2da14a2",
+     "rows": 2806
+    },
+    {
+     "path": "main/mistral_7b/gsm8k13/samples/summary.json",
+     "bytes": 643,
+     "sha256": "f1c440b561f542dc93a8cc859e2e44bd7ea9743fb3976e0afe2d0144ef9f5087"
+    },
+    {
+     "path": "main/mistral_7b/math13/judge_base/answers.jsonl",
+     "bytes": 3896816,
+     "sha256": "c749053c575b59564ace1e211b48fc21a38c789f56e797ff8fa404205d136d93",
+     "rows": 2754
+    },
+    {
+     "path": "main/mistral_7b/math13/judge_base/audit.jsonl",
+     "bytes": 4022781,
+     "sha256": "bf5706449d1d77b46835f9020b9e29c94bd1cbdc5e0208c2c4218a798f6e947a",
+     "rows": 2755
+    },
+    {
+     "path": "main/mistral_7b/math13/judge_base/summary.json",
+     "bytes": 645,
+     "sha256": "dcad34871d45eae2834a76c223fb3e4357f4fbcdaf43ec9766e17277da043052"
+    },
+    {
+     "path": "main/mistral_7b/math13/judge_base_c/answers.jsonl",
+     "bytes": 1334471,
+     "sha256": "84020e68d73ddfabda5dd6576ec7f10795c0fed7c431b8316456e64796de97d0",
+     "rows": 2754
+    },
+    {
+     "path": "main/mistral_7b/math13/judge_base_c/audit.jsonl",
+     "bytes": 1460436,
+     "sha256": "4d7c727972f119cd397f8f5f4e0d80368b9fe75843012c0035ca1c43c15a5ff4",
+     "rows": 2755
+    },
+    {
+     "path": "main/mistral_7b/math13/judge_base_c/summary.json",
+     "bytes": 645,
+     "sha256": "476d52710956a4a13b959cb3dfd765d21737beaf31e2b83fb0dee278ef6c4f1c"
+    },
+    {
+     "path": "main/mistral_7b/math13/samples/answers.jsonl",
+     "bytes": 10808273,
+     "sha256": "d990fb27662d1e8ed74c1d366648d4e647eacbfa8c837596a46ab2d0d40d684c",
+     "rows": 3925
+    },
+    {
+     "path": "main/mistral_7b/math13/samples/audit.jsonl",
+     "bytes": 10988102,
+     "sha256": "820dfdcd5277ab5e32fbfc188da8a9b58450601ff17e6cb1fcac985bb7392529",
+     "rows": 3926
+    },
+    {
+     "path": "main/mistral_7b/math13/samples/summary.json",
+     "bytes": 643,
+     "sha256": "3907b6cb0fdae7625175489984dae0685e6072dc8a961fdd1a5c549b1f412f4e"
+    },
+    {
+     "path": "main/mistral_7b/svamp12/judge_base/answers.jsonl",
+     "bytes": 2574165,
+     "sha256": "24273481b7c3b57a117e6690cf1fcc17901cb04f7f41049ec81b6ff58b3390da",
+     "rows": 2318
+    },
+    {
+     "path": "main/mistral_7b/svamp12/judge_base/audit.jsonl",
+     "bytes": 2680074,
+     "sha256": "6f1ab54f0a159010ad8829a7d0979f67b88d8c2dde6ccb61d2869665a200c0ff",
+     "rows": 2319
+    },
+    {
+     "path": "main/mistral_7b/svamp12/judge_base/summary.json",
+     "bytes": 645,
+     "sha256": "cbd4cad269bffc6b2d006cea162a11941e0fc117da1a082093e35ec08d8c24b7"
+    },
+    {
+     "path": "main/mistral_7b/svamp12/judge_base_c/answers.jsonl",
+     "bytes": 950749,
+     "sha256": "a5bb13078a88b6b2ba1b61989586433b0fdc21a2eee5efc09bf78eb39c7630cf",
+     "rows": 2318
+    },
+    {
+     "path": "main/mistral_7b/svamp12/judge_base_c/audit.jsonl",
+     "bytes": 1056658,
+     "sha256": "4036865b5a5ced1953e5c429d81d61a3391c55960fc519797b625549be8fe789",
+     "rows": 2319
+    },
+    {
+     "path": "main/mistral_7b/svamp12/judge_base_c/summary.json",
+     "bytes": 645,
+     "sha256": "0cb508d212cabe6030d2642a0c890023bdb85c7da6e74aa672a75bbc1f7d4be0"
+    },
+    {
+     "path": "main/mistral_7b/svamp12/samples/answers.jsonl",
+     "bytes": 8234788,
+     "sha256": "4e1ae544b8509f037d1850210071b2cd915f61df570ba320e55df05c1b85635b",
+     "rows": 4800
+    },
+    {
+     "path": "main/mistral_7b/svamp12/samples/audit.jsonl",
+     "bytes": 8454867,
+     "sha256": "2d4aec3567958566f653d79de62a662bbfca9c64dcc57d9a27c4c115f4eb2b7e",
+     "rows": 4801
+    },
+    {
+     "path": "main/mistral_7b/svamp12/samples/summary.json",
+     "bytes": 643,
+     "sha256": "9aedd27c5c71b3a9fc5a89e3af06ce1a2e1072351ed8481d1b2549640794be72"
+    },
+    {
+     "path": "main/original_solver/asdiv/judge_base/answers.jsonl",
+     "bytes": 1117387,
+     "sha256": "1c90a514cb6990edf13cbe6510a694ebab41f881e2bab19711ae71e4bbdab1a3",
+     "rows": 892
+    },
+    {
+     "path": "main/original_solver/asdiv/judge_base/audit.jsonl",
+     "bytes": 1157797,
+     "sha256": "46b0ed3fb0937b25f20fed80ba5a1c3859cfddb4234ae20799966b60007728d5",
+     "rows": 893
+    },
+    {
+     "path": "main/original_solver/asdiv/judge_base/summary.json",
+     "bytes": 633,
+     "sha256": "6b82b4c71f92ddc31cafc8b3eb680f334f17ec26861dd73fe7edc86e931b83ed"
+    },
+    {
+     "path": "main/original_solver/asdiv/judge_base_c/answers.jsonl",
+     "bytes": 1159617,
+     "sha256": "a3d4c72346c8d4020d46a9b935d02ab8202df687aa7463ebbca777526872aae3",
+     "rows": 892
+    },
+    {
+     "path": "main/original_solver/asdiv/judge_base_c/audit.jsonl",
+     "bytes": 1200027,
+     "sha256": "52e9c6306c5b1d45227c731f38323ec7f0d9a3e3f02cfb48dedec73e4d0a92fc",
+     "rows": 893
+    },
+    {
+     "path": "main/original_solver/asdiv/judge_base_c/summary.json",
+     "bytes": 633,
+     "sha256": "982765827edb8b83712d3ecc76248325ec4e64d34d2e221ddcd979e12e7e5dd1"
+    },
+    {
+     "path": "main/original_solver/asdiv/samples/answers.jsonl",
+     "bytes": 5970867,
+     "sha256": "daf2d70b5ec4ec1191c20467c387275c9b01c41ac472c73e884e9b769577fd64",
+     "rows": 4110
+    },
+    {
+     "path": "main/original_solver/asdiv/samples/audit.jsonl",
+     "bytes": 6159195,
+     "sha256": "21561695ba4eaba87208185d6e94eb111646d7dd513bb54170e139fb5866227d",
+     "rows": 4111
+    },
+    {
+     "path": "main/original_solver/asdiv/samples/summary.json",
+     "bytes": 632,
+     "sha256": "d010578fa51d9b9951389ddca830b99da7fca3b81741384cf1a2bc9eceb60cf1"
+    },
+    {
+     "path": "main/original_solver/gsm8k13/judge_base/answers.jsonl",
+     "bytes": 1308007,
+     "sha256": "44f7adfa958b6579b4454528aaeabfdef127f3f2a7ae6829413331870330538a",
+     "rows": 986
+    },
+    {
+     "path": "main/original_solver/gsm8k13/judge_base/audit.jsonl",
+     "bytes": 1352647,
+     "sha256": "4831020943a8a4438c95f38620c4bcb4871db68731dfcc70ad98674ac8a14c61",
+     "rows": 987
+    },
+    {
+     "path": "main/original_solver/gsm8k13/judge_base/summary.json",
+     "bytes": 633,
+     "sha256": "0496d274265a02d8f88ad18cac6003de920b29a3939e879301f8e4b7ed1f73e0"
+    },
+    {
+     "path": "main/original_solver/gsm8k13/judge_base_c/answers.jsonl",
+     "bytes": 1368014,
+     "sha256": "baedcad914c2bc482e07fa34ba74f9e4e210e4c6e566aecb42eb1ff149ef207e",
+     "rows": 986
+    },
+    {
+     "path": "main/original_solver/gsm8k13/judge_base_c/audit.jsonl",
+     "bytes": 1412654,
+     "sha256": "fb42e12790562af662be715171c56084745f52337a69fff75807dc96ca1d61a0",
+     "rows": 987
+    },
+    {
+     "path": "main/original_solver/gsm8k13/judge_base_c/summary.json",
+     "bytes": 633,
+     "sha256": "0fe8936d8573ec0034ed8727413f17f60cff17a257f257f55e5193a7e4a2f040"
+    },
+    {
+     "path": "main/original_solver/gsm8k13/samples/answers.jsonl",
+     "bytes": 5075746,
+     "sha256": "224f05a5f614ccc8333c90112f6be1c3df4a284ce20bde00052b24de0207cd02",
+     "rows": 2805
+    },
+    {
+     "path": "main/original_solver/gsm8k13/samples/audit.jsonl",
+     "bytes": 5204044,
+     "sha256": "90d46efd794bcca32c6c4fc7851934d822269e0a81c5a8df2c9b12c61c348fae",
+     "rows": 2806
+    },
+    {
+     "path": "main/original_solver/gsm8k13/samples/summary.json",
+     "bytes": 632,
+     "sha256": "7ee7d259b9f01ef2636ef7ca6f49a1b435f70a6320015bddf17ae2497337bf44"
+    },
+    {
+     "path": "main/original_solver/gsm8k13_report/judge_base/answers.jsonl",
+     "bytes": 1229265,
+     "sha256": "fc26c14605c9d322a354e6c599895c503f31a557affa15edd594a0ebe86aca8c",
+     "rows": 972
+    },
+    {
+     "path": "main/original_solver/gsm8k13_report/judge_base/summary.json",
+     "bytes": 277,
+     "sha256": "6a1e6c0b07aec0b7c9ecf2a7113e0b88d94714ce6083474904b47a733ff8d334"
+    },
+    {
+     "path": "main/original_solver/gsm8k13_report/judge_base_c/answers.jsonl",
+     "bytes": 1341744,
+     "sha256": "233df334354316de272bccbf6b1a9f6ccd9a080bb932de9871ffd238dad3daf7",
+     "rows": 972
+    },
+    {
+     "path": "main/original_solver/gsm8k13_report/judge_base_c/audit.jsonl",
+     "bytes": 1385754,
+     "sha256": "04d5dedb1bcdfb59f84dbc82a3ed46bde210ed5c49cd627776692c6222e89c32",
+     "rows": 973
+    },
+    {
+     "path": "main/original_solver/gsm8k13_report/judge_base_c/summary.json",
+     "bytes": 633,
+     "sha256": "4a80e291503436d88911f195fe53ab83af0e68ebd6b1a94c31d7649d737ded8f"
+    },
+    {
+     "path": "main/original_solver/math13/judge_base/answers.jsonl",
+     "bytes": 2724447,
+     "sha256": "5c7a4845468fedf4685a612c6ef1c36f696ff861d813e9b2eab929e37c0cb262",
+     "rows": 1940
+    },
+    {
+     "path": "main/original_solver/math13/judge_base/audit.jsonl",
+     "bytes": 2812957,
+     "sha256": "495d668b80776beafab492055c5e4dc487afb269da6bbd183af91f6c9beba052",
+     "rows": 1941
+    },
+    {
+     "path": "main/original_solver/math13/judge_base/summary.json",
+     "bytes": 634,
+     "sha256": "85672a3652f606b0bf23e91bf47441c8af824ac54be7655ef499bcfd7ff66e5a"
+    },
+    {
+     "path": "main/original_solver/math13/judge_base_c/answers.jsonl",
+     "bytes": 2789284,
+     "sha256": "ec1becf0cebe11d843be8d4e8e550b96fb874f11abad4b3d03f0a74c890e4fcf",
+     "rows": 1940
+    },
+    {
+     "path": "main/original_solver/math13/judge_base_c/audit.jsonl",
+     "bytes": 2877794,
+     "sha256": "ec25c9befc06de3555e89142b95ba113dcf4b2cd7a0dce945b33bed0bc98d54b",
+     "rows": 1941
+    },
+    {
+     "path": "main/original_solver/math13/judge_base_c/summary.json",
+     "bytes": 634,
+     "sha256": "1806e18308d702e14698377ddd69418fe0f7e7d8851018e54a7b45e45f58e403"
+    },
+    {
+     "path": "main/original_solver/math13/samples/answers.jsonl",
+     "bytes": 8521564,
+     "sha256": "ff8b87767d10b7c500bc0457df014eb760dfe920161ef810234d13663695d2b9",
+     "rows": 3925
+    },
+    {
+     "path": "main/original_solver/math13/samples/audit.jsonl",
+     "bytes": 8701382,
+     "sha256": "0bf8422711119cca8099ae8a109f90e609a1011575f0ecb39c5c90fd0b3df3b8",
+     "rows": 3926
+    },
+    {
+     "path": "main/original_solver/math13/samples/summary.json",
+     "bytes": 632,
+     "sha256": "2ec931dfe274f1f6e11c84dd5776bb0602fe8a8fd293ed20e7715524479babb1"
+    },
+    {
+     "path": "main/original_solver/svamp12/judge_base/answers.jsonl",
+     "bytes": 1120692,
+     "sha256": "042872800b531679b20c6a75196d7577b4d8d6c5590d651d17d4262d50ce883f",
+     "rows": 1000
+    },
+    {
+     "path": "main/original_solver/svamp12/judge_base/audit.jsonl",
+     "bytes": 1165962,
+     "sha256": "e47906398539497fd26b3bdddb0b634963e56f6c3349241f0b74639f16a48190",
+     "rows": 1001
+    },
+    {
+     "path": "main/original_solver/svamp12/judge_base/summary.json",
+     "bytes": 634,
+     "sha256": "e266ef90471639987ec8f82f933464c58cbc6e14921ee9596dbfe9878aa00c6b"
+    },
+    {
+     "path": "main/original_solver/svamp12/judge_base_c/answers.jsonl",
+     "bytes": 1176923,
+     "sha256": "d684fe7ff510c730bb462c5c4f5b82b8daf7de0eff86ffbbc4dd1e7776d71a66",
+     "rows": 1000
+    },
+    {
+     "path": "main/original_solver/svamp12/judge_base_c/audit.jsonl",
+     "bytes": 1222193,
+     "sha256": "50da3e2244e1f9407493894160242ca43f65fa23263836a871094b32e83689ff",
+     "rows": 1001
+    },
+    {
+     "path": "main/original_solver/svamp12/judge_base_c/summary.json",
+     "bytes": 634,
+     "sha256": "ccc1119a614766a2e667394b318be5e08a35e2e57369482dbcaae22f478579ef"
+    },
+    {
+     "path": "main/original_solver/svamp12/samples/answers.jsonl",
+     "bytes": 7089785,
+     "sha256": "66470e4c07195e4dde9593f097cbf4bf5e2a44d14551e2712e7da5f22b3e8ab9",
+     "rows": 4800
+    },
+    {
+     "path": "main/original_solver/svamp12/samples/audit.jsonl",
+     "bytes": 7309853,
+     "sha256": "c7e88ff3b2765e7caa3e3527dba4c1c90f801b1c0fff184dff81541b3f122503",
+     "rows": 4801
+    },
+    {
+     "path": "main/original_solver/svamp12/samples/summary.json",
+     "bytes": 632,
+     "sha256": "0b2f4f433032d1c5da3646157ef144df7af5bf96cfca381859b65761ca26fd30"
+    },
+    {
+     "path": "main/original_solver/svamp12_report/judge_base/answers.jsonl",
+     "bytes": 1072435,
+     "sha256": "8b699e20dbd91e63a46190d429d357e9a2335313f26058256dda1979e8b9cea2",
+     "rows": 1002
+    },
+    {
+     "path": "main/original_solver/svamp12_report/judge_base/summary.json",
+     "bytes": 278,
+     "sha256": "6a4367fe57e097603d7c9d32adf49e329f5055da5012d46d9daf8caba6ffa956"
+    },
+    {
+     "path": "main/original_solver/svamp12_report/judge_base_c/answers.jsonl",
+     "bytes": 1205387,
+     "sha256": "1fbac11bfb7794178b51b65ad82d5f29466499c201d33743f9523c5ec7fccd72",
+     "rows": 1002
+    },
+    {
+     "path": "main/original_solver/svamp12_report/judge_base_c/audit.jsonl",
+     "bytes": 1250749,
+     "sha256": "172042fef8f840018c9538eb4bbc495d27d26f17fcb23e007e98df4e7984df26",
+     "rows": 1003
+    },
+    {
+     "path": "main/original_solver/svamp12_report/judge_base_c/summary.json",
+     "bytes": 634,
+     "sha256": "3c56b679803703b6c33680387780fb096e45c7bed7c8be14cc0e13a6429554eb"
+    },
+    {
+     "path": "main/qwen25_instruct/asdiv/judge_base/answers.jsonl",
+     "bytes": 1217566,
+     "sha256": "2601a77dac5d2ddfa80abaca1a771aa354eb00ad386a058187ad5c06e88cae02",
+     "rows": 722
+    },
+    {
+     "path": "main/qwen25_instruct/asdiv/judge_base/audit.jsonl",
+     "bytes": 1250327,
+     "sha256": "96925d73cc4ea7c503fc4a92b3ad620896737284013ffd52f5bec56550778b99",
+     "rows": 723
+    },
+    {
+     "path": "main/qwen25_instruct/asdiv/judge_base/summary.json",
+     "bytes": 634,
+     "sha256": "ca04fb21a2a5665905ff75b4d86b8b62ef13e9937de0bd0c4adc1d9f1c8fd2db"
+    },
+    {
+     "path": "main/qwen25_instruct/asdiv/judge_base_c/answers.jsonl",
+     "bytes": 841975,
+     "sha256": "65408d79f247c4f069906ee88a454b6aeceffb103555a51df3b762a66cb62950",
+     "rows": 722
+    },
+    {
+     "path": "main/qwen25_instruct/asdiv/judge_base_c/audit.jsonl",
+     "bytes": 874736,
+     "sha256": "6786efd41ec2b911fbe5cfedf9f85f1bf58f804a96257d811d77f135acec1303",
+     "rows": 723
+    },
+    {
+     "path": "main/qwen25_instruct/asdiv/judge_base_c/summary.json",
+     "bytes": 634,
+     "sha256": "e6136ae80c3242a28b560047512260c07229620d90d4fca22d0498239e5ea4d9"
+    },
+    {
+     "path": "main/qwen25_instruct/asdiv/samples/answers.jsonl",
+     "bytes": 7736487,
+     "sha256": "361ce8e8b41907f2324bac683589cb4206787d7945593b2b5c7e350bc8c54f48",
+     "rows": 4110
+    },
+    {
+     "path": "main/qwen25_instruct/asdiv/samples/audit.jsonl",
+     "bytes": 7924816,
+     "sha256": "bb4ecc53a879f4627741d1f3bde65fff5606e8439e63b8a1e4fd628d49096af4",
+     "rows": 4111
+    },
+    {
+     "path": "main/qwen25_instruct/asdiv/samples/summary.json",
+     "bytes": 633,
+     "sha256": "e016359c0e487774899dc6bb1fdcfd9cf7b820f3c52addb0c79cb6e99d8e9729"
+    },
+    {
+     "path": "main/qwen25_instruct/bridge13/judge_base/answers.jsonl",
+     "bytes": 1929051,
+     "sha256": "36d1ed468cddd43f6f065b5848355919ed4aa0199165d031ef26e99d269e5577",
+     "rows": 972
+    },
+    {
+     "path": "main/qwen25_instruct/bridge13/judge_base/audit.jsonl",
+     "bytes": 1973062,
+     "sha256": "015dc4b7be27bde498a67e4615c44be8a2fefccb03d71b837ad1eba72d458519",
+     "rows": 973
+    },
+    {
+     "path": "main/qwen25_instruct/bridge13/judge_base/summary.json",
+     "bytes": 634,
+     "sha256": "3cdfcb57056c313699de9a115fd691e9241855377c2959a3ab97c66c95125478"
+    },
+    {
+     "path": "main/qwen25_instruct/bridge13/judge_base_c/answers.jsonl",
+     "bytes": 1655586,
+     "sha256": "bdb0f33c19f92e013de8e0ea92279908a4dcb58f6460772a44473ee857520bda",
+     "rows": 972
+    },
+    {
+     "path": "main/qwen25_instruct/bridge13/judge_base_c/audit.jsonl",
+     "bytes": 1699597,
+     "sha256": "3389e0b2179fafbdb55a27871683370c8bafa0d98da2b0051500c46e78e2a00c",
+     "rows": 973
+    },
+    {
+     "path": "main/qwen25_instruct/bridge13/judge_base_c/summary.json",
+     "bytes": 634,
+     "sha256": "216813ab1fa4a4c1319a2540325049b426b52773c5b09c4854f22b03024af422"
+    },
+    {
+     "path": "main/qwen25_instruct/gsm8k13/judge_base/answers.jsonl",
+     "bytes": 1298710,
+     "sha256": "cec21097cf33f6dbb9d52c897515761e8e8ed2e26cd74e5161d3364c068941ca",
+     "rows": 676
+    },
+    {
+     "path": "main/qwen25_instruct/gsm8k13/judge_base/audit.jsonl",
+     "bytes": 1329401,
+     "sha256": "d0312cb7b6ef03a25717087ea3322bf5720fe1cf8f03360da8125e51c9d8dfe9",
+     "rows": 677
+    },
+    {
+     "path": "main/qwen25_instruct/gsm8k13/judge_base/summary.json",
+     "bytes": 634,
+     "sha256": "7cb8ba88c2e73411e49c63ef3f82a1df642be36b30daa7100c4c5e1af4db3850"
+    },
+    {
+     "path": "main/qwen25_instruct/gsm8k13/judge_base_c/answers.jsonl",
+     "bytes": 1033694,
+     "sha256": "137a0ef85e6238fe50873f6d11987af9f3d2bef2c53d910147f3c22210d9f531",
+     "rows": 676
+    },
+    {
+     "path": "main/qwen25_instruct/gsm8k13/judge_base_c/audit.jsonl",
+     "bytes": 1064385,
+     "sha256": "4e3e3bcb0e46c0d5bed4da9e810574d92cc689b86e9c1f33b911865cf33cb120",
+     "rows": 677
+    },
+    {
+     "path": "main/qwen25_instruct/gsm8k13/judge_base_c/summary.json",
+     "bytes": 634,
+     "sha256": "f448c73e5fb366dfb1655c98494a5e494c5e14a1db3dbcfadaa58079420bd26c"
+    },
+    {
+     "path": "main/qwen25_instruct/gsm8k13/samples/answers.jsonl",
+     "bytes": 6107345,
+     "sha256": "7e5458a425e743e46feca2a354dcc5d851c9afd30a0fac461c413af1713e1f9d",
+     "rows": 2805
+    },
+    {
+     "path": "main/qwen25_instruct/gsm8k13/samples/audit.jsonl",
+     "bytes": 6235644,
+     "sha256": "becd92b951cba076fc7d57cabbb162741875f9012d5a051d90fe99ac640bc493",
+     "rows": 2806
+    },
+    {
+     "path": "main/qwen25_instruct/gsm8k13/samples/summary.json",
+     "bytes": 633,
+     "sha256": "fc5c0426fae77cbf3a2fad754262e81214aa91476b374dc80cecb6d6c30dcab8"
+    },
+    {
+     "path": "main/qwen25_instruct/math13/judge_base/answers.jsonl",
+     "bytes": 3170293,
+     "sha256": "77e774a0042276065d069757675a8230a3a2e43e257e2be364e0652b123def8e",
+     "rows": 1730
+    },
+    {
+     "path": "main/qwen25_instruct/math13/judge_base/audit.jsonl",
+     "bytes": 3249144,
+     "sha256": "ab591b90f3ad35480a97e8c373d6e209b24191ebd45fe9d9bc40acb18893494f",
+     "rows": 1731
+    },
+    {
+     "path": "main/qwen25_instruct/math13/judge_base/summary.json",
+     "bytes": 635,
+     "sha256": "451dffab7d9bd61087b92bcd525990f7ca87bdad6406306039f36c71e833b2b4"
+    },
+    {
+     "path": "main/qwen25_instruct/math13/judge_base_c/answers.jsonl",
+     "bytes": 1911676,
+     "sha256": "12d2661d21ca80ad58b680e29ae74fe051d5f25e7339e51938edbea5ef49bad0",
+     "rows": 1730
+    },
+    {
+     "path": "main/qwen25_instruct/math13/judge_base_c/audit.jsonl",
+     "bytes": 1990527,
+     "sha256": "967fb8134850ede229cdd0ca1a0ce81424186ebe06ea96cf21f81e9b08f5b6dd",
+     "rows": 1731
+    },
+    {
+     "path": "main/qwen25_instruct/math13/judge_base_c/summary.json",
+     "bytes": 635,
+     "sha256": "c23450420a094d54c93458354c9491de621e257cbece981778bf7eda613f833f"
+    },
+    {
+     "path": "main/qwen25_instruct/math13/samples/answers.jsonl",
+     "bytes": 11285170,
+     "sha256": "6dc1d4216dc29597d7dfe7ce762195f894712df6e3dc3ff9eb55f676df65cf51",
+     "rows": 3925
+    },
+    {
+     "path": "main/qwen25_instruct/math13/samples/audit.jsonl",
+     "bytes": 11464989,
+     "sha256": "9001e33f67bf1441e10fce0c245b7142bff1b93fdf9ba8a19e7024798c819deb",
+     "rows": 3926
+    },
+    {
+     "path": "main/qwen25_instruct/math13/samples/summary.json",
+     "bytes": 633,
+     "sha256": "7793e88afbde5f6822a19e8b817e9f9211c69c50fc83e3d3f6265fc216cb7471"
+    },
+    {
+     "path": "main/qwen25_instruct/svamp12/judge_base/answers.jsonl",
+     "bytes": 1576241,
+     "sha256": "57854330660c685fa2300129de1ea2bb801774c620d0504a79dd2b24b922335f",
+     "rows": 910
+    },
+    {
+     "path": "main/qwen25_instruct/svamp12/judge_base/audit.jsonl",
+     "bytes": 1617462,
+     "sha256": "c6e0543156868116454f4d822689d8fa4c95c632fae18e1648bde0396203da17",
+     "rows": 911
+    },
+    {
+     "path": "main/qwen25_instruct/svamp12/judge_base/summary.json",
+     "bytes": 634,
+     "sha256": "5549f072de67463a27cbf879437590be9e08640cc180d92ffb3c9b3232e67516"
+    },
+    {
+     "path": "main/qwen25_instruct/svamp12/judge_base_c/answers.jsonl",
+     "bytes": 1198262,
+     "sha256": "de96895542c43e1095dc809cdde4f5aef2d73eea3a41370b080c535d2a2e6c81",
+     "rows": 910
+    },
+    {
+     "path": "main/qwen25_instruct/svamp12/judge_base_c/audit.jsonl",
+     "bytes": 1239483,
+     "sha256": "ab496c02a92e2d317e7ea660475769c44d52815f1248f93ccb0f8105367901b0",
+     "rows": 911
+    },
+    {
+     "path": "main/qwen25_instruct/svamp12/judge_base_c/summary.json",
+     "bytes": 634,
+     "sha256": "020bb50ad8e63f66e2d34da6df3fb1ba7e036217011b1a15791a3642e21c153f"
+    },
+    {
+     "path": "main/qwen25_instruct/svamp12/samples/answers.jsonl",
+     "bytes": 8752222,
+     "sha256": "de43065fb33a612c4405da47a9820cd4db52bbfe5096267489488d69bde0a910",
+     "rows": 4800
+    },
+    {
+     "path": "main/qwen25_instruct/svamp12/samples/audit.jsonl",
+     "bytes": 8972291,
+     "sha256": "426f0f2544c553db677fa298ae3b298820ddf70595170969f0a0d7b671a0c4f6",
+     "rows": 4801
+    },
+    {
+     "path": "main/qwen25_instruct/svamp12/samples/summary.json",
+     "bytes": 633,
+     "sha256": "089da0fd4e0e7c4fa9e077e9fbb91fc54a8e19c458ac54a227157f10b127d515"
+    },
+    {
+     "path": "pilot/llama31_8b/asdiv/judge_base/answers.jsonl",
+     "bytes": 215625,
+     "sha256": "c8825f2b95e270c1c3860b7f916096414a6ad6f1f333192f45cf97e503791643",
+     "rows": 118
+    },
+    {
+     "path": "pilot/llama31_8b/asdiv/judge_base/audit.jsonl",
+     "bytes": 221220,
+     "sha256": "2f69eb85b6375210b65bca23d2eaf15300da66828f51d24b92b4ad24c82d39a9",
+     "rows": 119
+    },
+    {
+     "path": "pilot/llama31_8b/asdiv/judge_base/summary.json",
+     "bytes": 648,
+     "sha256": "462c9113c8341b91d4f861155ee7fcdb787132b6562b619627576189a298d7de"
+    },
+    {
+     "path": "pilot/llama31_8b/asdiv/judge_base_c/answers.jsonl",
+     "bytes": 213524,
+     "sha256": "485c0167aa49bbcdfd02258180b01255178bda6f1c41c7276009375137a090ae",
+     "rows": 118
+    },
+    {
+     "path": "pilot/llama31_8b/asdiv/judge_base_c/audit.jsonl",
+     "bytes": 219119,
+     "sha256": "af5d831ea4f2e88dee604d22e166e0a6b89b128da20ad3c622a93da0827fcedb",
+     "rows": 119
+    },
+    {
+     "path": "pilot/llama31_8b/asdiv/judge_base_c/summary.json",
+     "bytes": 648,
+     "sha256": "79a8514790fe8d6fc1c055df0f3597ca2b5250bcfdddf5e22291e1e7e4b50f56"
+    },
+    {
+     "path": "pilot/llama31_8b/asdiv/samples/answers.jsonl",
+     "bytes": 956667,
+     "sha256": "5054c9d1186031ef5b8008f156eecf61874f142c5c826e6f0c7bb2f1c0d879b0",
+     "rows": 500
+    },
+    {
+     "path": "pilot/llama31_8b/asdiv/samples/audit.jsonl",
+     "bytes": 979450,
+     "sha256": "4b39b78d8c3674afe18e41491ba461f5a0c538a0b7eee1109e58238d2ec3c7bf",
+     "rows": 501
+    },
+    {
+     "path": "pilot/llama31_8b/asdiv/samples/summary.json",
+     "bytes": 646,
+     "sha256": "60c362120fa315c308d6f33df56b60ce2a86f850253dae9c04b288f6b064e158"
+    },
+    {
+     "path": "pilot/llama31_8b/math13/judge_base/answers.jsonl",
+     "bytes": 421110,
+     "sha256": "101afa8d9300178ca6877a8b5ff224ff59d33004656b2f6e5e8a29dd0276f0b7",
+     "rows": 244
+    },
+    {
+     "path": "pilot/llama31_8b/math13/judge_base/audit.jsonl",
+     "bytes": 432375,
+     "sha256": "10f2c080f76ea78407d8a6abc61437d06a76dd8bf707d77c3d6541d71ea1eb7c",
+     "rows": 245
+    },
+    {
+     "path": "pilot/llama31_8b/math13/judge_base/summary.json",
+     "bytes": 648,
+     "sha256": "0eb57ecd5e19c573a3dc4310c42e10a4ab0154818d1d8c07fbbbcd98aa1d3e32"
+    },
+    {
+     "path": "pilot/llama31_8b/math13/judge_base_c/answers.jsonl",
+     "bytes": 468958,
+     "sha256": "8ca0541acdbf203a69ace0d5635a6be13113d8ff8c888971770795503555b8e6",
+     "rows": 244
+    },
+    {
+     "path": "pilot/llama31_8b/math13/judge_base_c/audit.jsonl",
+     "bytes": 480223,
+     "sha256": "f9ac64fa7ef551cdd8d3615079b156484902f7641fce12e5207ebe52601b1c2d",
+     "rows": 245
+    },
+    {
+     "path": "pilot/llama31_8b/math13/judge_base_c/summary.json",
+     "bytes": 648,
+     "sha256": "34d8083005111d030af552c5959de7500c8049d309cb291b4fc8f2d861f49568"
+    },
+    {
+     "path": "pilot/llama31_8b/math13/samples/answers.jsonl",
+     "bytes": 1446523,
+     "sha256": "5e474ec77f4265d41cd95bbdb2f68d534e1580d73360498c089cfac868a8e15d",
+     "rows": 500
+    },
+    {
+     "path": "pilot/llama31_8b/math13/samples/audit.jsonl",
+     "bytes": 1469306,
+     "sha256": "24ee08945c89f6e4dc2b7a7544d37696b07a50ea4e5d1f8856eb659a9379d5f9",
+     "rows": 501
+    },
+    {
+     "path": "pilot/llama31_8b/math13/samples/summary.json",
+     "bytes": 646,
+     "sha256": "7b53ffad2f616b7fd44278544fb35f28d6fc32fc7baecd335deac70c6517ad0c"
+    },
+    {
+     "path": "pilot/mistral_7b/asdiv/judge_base/answers.jsonl",
+     "bytes": 244359,
+     "sha256": "67951d55d78f2f6a3af23cf290362b49b97363f28d66afb129670b8584670860",
+     "rows": 228
+    },
+    {
+     "path": "pilot/mistral_7b/asdiv/judge_base/audit.jsonl",
+     "bytes": 254899,
+     "sha256": "d8b02e88e993ad033bdfb8534e0f5fff2d9fd27fcaceb5976571089969c9e3a0",
+     "rows": 229
+    },
+    {
+     "path": "pilot/mistral_7b/asdiv/judge_base/summary.json",
+     "bytes": 643,
+     "sha256": "1be26a6477e023ee3b5aa3e785defcfea9e298197365eb4f796e26394ee565fe"
+    },
+    {
+     "path": "pilot/mistral_7b/asdiv/judge_base_c/answers.jsonl",
+     "bytes": 89831,
+     "sha256": "d4ead4324de70e6c34221bda3de8fd862eeac1cfac0d5fa2e18629e7627cacc3",
+     "rows": 228
+    },
+    {
+     "path": "pilot/mistral_7b/asdiv/judge_base_c/audit.jsonl",
+     "bytes": 100371,
+     "sha256": "3faa7c3bb9a3393becb22072cf0d079e613e8dfe700925a5f45a3a820356f1fe",
+     "rows": 229
+    },
+    {
+     "path": "pilot/mistral_7b/asdiv/judge_base_c/summary.json",
+     "bytes": 643,
+     "sha256": "776ead827d16e8eacf3d6ee34f58712964708c16a810a83a984727b606603120"
+    },
+    {
+     "path": "pilot/mistral_7b/asdiv/samples/answers.jsonl",
+     "bytes": 832265,
+     "sha256": "a61377d1fa380b4a528bb594481c8581c64785cf60b4d214a80ac90759d87064",
+     "rows": 500
+    },
+    {
+     "path": "pilot/mistral_7b/asdiv/samples/audit.jsonl",
+     "bytes": 855043,
+     "sha256": "882beaf8e5789eec14e77916b3af4ed4e2e4dd332370d0423ff1a859d578c18f",
+     "rows": 501
+    },
+    {
+     "path": "pilot/mistral_7b/asdiv/samples/summary.json",
+     "bytes": 641,
+     "sha256": "bd3e8dd39e8410485e6a09b442e26153d4eaf3e54522fab150f2ae221a42ec8e"
+    },
+    {
+     "path": "pilot/mistral_7b/math13/judge_base/answers.jsonl",
+     "bytes": 491564,
+     "sha256": "5039722aeda8be31de282e92f8ac361cde0b02c16f8dbfdcd772fa514db86d5d",
+     "rows": 350
+    },
+    {
+     "path": "pilot/mistral_7b/math13/judge_base/audit.jsonl",
+     "bytes": 507594,
+     "sha256": "6d79ce62f5d236381bc6808a05efc0a4000762f2fa451e74b7c7b3f338a634f1",
+     "rows": 351
+    },
+    {
+     "path": "pilot/mistral_7b/math13/judge_base/summary.json",
+     "bytes": 643,
+     "sha256": "ab61fc76325b141b6472fb86f543944662db7c0a61e90cce3281b84889e1851a"
+    },
+    {
+     "path": "pilot/mistral_7b/math13/judge_base_c/answers.jsonl",
+     "bytes": 169980,
+     "sha256": "70f2624c3550e736063ae683ba48c0be3827680e059482d96e3c171993901c9d",
+     "rows": 350
+    },
+    {
+     "path": "pilot/mistral_7b/math13/judge_base_c/audit.jsonl",
+     "bytes": 186010,
+     "sha256": "28008715abd4788d40b72976271ce5f4ed8d4670f55688a6e9efd7ce74ec11b9",
+     "rows": 351
+    },
+    {
+     "path": "pilot/mistral_7b/math13/judge_base_c/summary.json",
+     "bytes": 643,
+     "sha256": "3559a11a8159857117bebbfd1db958b2378ba9a04592d380308ac163501bdd79"
+    },
+    {
+     "path": "pilot/mistral_7b/math13/samples/answers.jsonl",
+     "bytes": 1340897,
+     "sha256": "a185182e0993cd0c3a0b3b183b4a9d93a882e8e1001f1c6613d31ef758df547c",
+     "rows": 500
+    },
+    {
+     "path": "pilot/mistral_7b/math13/samples/audit.jsonl",
+     "bytes": 1363675,
+     "sha256": "4c02628471a729935d0907adb7781bf8c78dd5c7369f2209c655dd2b97545d65",
+     "rows": 501
+    },
+    {
+     "path": "pilot/mistral_7b/math13/samples/summary.json",
+     "bytes": 641,
+     "sha256": "24573eb64e2f2938baaa7a0579a41e79572d346de61c5884b3c6ab63406b2698"
+    },
+    {
+     "path": "pilot/original_solver/asdiv/judge_base/answers.jsonl",
+     "bytes": 119422,
+     "sha256": "ceb46c21e89fc928a5e1791524859f7a4270325e9123842ccff11e321c2e22f4",
+     "rows": 98
+    },
+    {
+     "path": "pilot/original_solver/asdiv/judge_base/audit.jsonl",
+     "bytes": 124103,
+     "sha256": "cca0a7029d3c3313cd0c76671687f02c542c31e1ca727de4fef462cc2f0eb10a",
+     "rows": 99
+    },
+    {
+     "path": "pilot/original_solver/asdiv/judge_base/summary.json",
+     "bytes": 631,
+     "sha256": "e0d4b6f2d4ac3ff10ed588f338651069b44ac3eb4f323e77deacf164fae622c0"
+    },
+    {
+     "path": "pilot/original_solver/asdiv/judge_base_c/answers.jsonl",
+     "bytes": 131970,
+     "sha256": "bd15f46d850e4d92e932fdd5408dde15f37a1e0a1cd794fe3a159fe5d0284b96",
+     "rows": 98
+    },
+    {
+     "path": "pilot/original_solver/asdiv/judge_base_c/audit.jsonl",
+     "bytes": 136651,
+     "sha256": "8f41c375d3ede7c298328432ffeea450c04fb85382955a090e44b403c750d1d8",
+     "rows": 99
+    },
+    {
+     "path": "pilot/original_solver/asdiv/judge_base_c/summary.json",
+     "bytes": 631,
+     "sha256": "169260f5c9b1acda7ba296fdcc9290e5f78a9e3afad6feac635aa7c4ac09b088"
+    },
+    {
+     "path": "pilot/original_solver/asdiv/samples/answers.jsonl",
+     "bytes": 738911,
+     "sha256": "88600bcca15c9f3399add4fc0a8b27e04b72d2e8034d31c71727e972dc7de631",
+     "rows": 500
+    },
+    {
+     "path": "pilot/original_solver/asdiv/samples/audit.jsonl",
+     "bytes": 761678,
+     "sha256": "7024f0a328188d66ca8ea1e4eb4e9508cd3e3671e4704b7da2217ca5ed654158",
+     "rows": 501
+    },
+    {
+     "path": "pilot/original_solver/asdiv/samples/summary.json",
+     "bytes": 630,
+     "sha256": "5ff5df0ff5e12834683e08a1aa676f86050f2922e437462e7fd0981a67fefc58"
+    },
+    {
+     "path": "pilot/original_solver/math13/judge_base/answers.jsonl",
+     "bytes": 345147,
+     "sha256": "f1c670ac1bbf88d58a2797db70510fe0dc9653749d6928d85ec1cc0502f96e43",
+     "rows": 238
+    },
+    {
+     "path": "pilot/original_solver/math13/judge_base/audit.jsonl",
+     "bytes": 356126,
+     "sha256": "5630a27a9d985faed2c2746ac0d4df874cfacfe4ddfdb1a681961bfc1ca046b2",
+     "rows": 239
+    },
+    {
+     "path": "pilot/original_solver/math13/judge_base/summary.json",
+     "bytes": 632,
+     "sha256": "af0fb25b59b99692637f23227e8941b55ea6d6c72913b68cc4726b6d5eb8417f"
+    },
+    {
+     "path": "pilot/original_solver/math13/judge_base_c/answers.jsonl",
+     "bytes": 354585,
+     "sha256": "03e5da296ac59712eb0874678d903ec96143dc720556452e5d79ccde76129aff",
+     "rows": 238
+    },
+    {
+     "path": "pilot/original_solver/math13/judge_base_c/audit.jsonl",
+     "bytes": 365564,
+     "sha256": "6efda541f89adea6bbd2a1d32ce20b971c57a7c714ea263e265ccc40f66ab0b8",
+     "rows": 239
+    },
+    {
+     "path": "pilot/original_solver/math13/judge_base_c/summary.json",
+     "bytes": 632,
+     "sha256": "63eb1278d03102d70c3860d8330645cf23d725acb2cdd7f836985d1723a3dcd0"
+    },
+    {
+     "path": "pilot/original_solver/math13/samples/answers.jsonl",
+     "bytes": 1105760,
+     "sha256": "8c98b110c48853690ae5d1f8aa82f73659fd8dc7a40b716638d9f6280e8936e3",
+     "rows": 500
+    },
+    {
+     "path": "pilot/original_solver/math13/samples/audit.jsonl",
+     "bytes": 1128527,
+     "sha256": "b0aa7fbdd513b83136d6c0811e6bd8149be213ecf71e93711a7440675387cb4c",
+     "rows": 501
+    },
+    {
+     "path": "pilot/original_solver/math13/samples/summary.json",
+     "bytes": 630,
+     "sha256": "6b62cc417bb74b2a92a42265d487c3d818d68dedddeef2ed38e5e8f2f7a3d0fb"
+    },
+    {
+     "path": "pilot/qwen25_instruct/asdiv/judge_base/answers.jsonl",
+     "bytes": 130407,
+     "sha256": "5df6e36b187ad16d098651d14308039bd8adedae5518a5664f1c6e928cfdcb22",
+     "rows": 72
+    },
+    {
+     "path": "pilot/qwen25_instruct/asdiv/judge_base/audit.jsonl",
+     "bytes": 133945,
+     "sha256": "3703820873f30467527dedb7a58beb1de980db55e2ad3b94a344af2d3e1b6059",
+     "rows": 73
+    },
+    {
+     "path": "pilot/qwen25_instruct/asdiv/judge_base/summary.json",
+     "bytes": 632,
+     "sha256": "dcda4f8259a75c7f6caafdac137e192959ea8f4e0ce5222ef40f4716a34f5425"
+    },
+    {
+     "path": "pilot/qwen25_instruct/asdiv/judge_base_c/answers.jsonl",
+     "bytes": 91240,
+     "sha256": "630ec491852214bf22d2b17db07698aafa569af239f56183ee5cce78510fb4e4",
+     "rows": 72
+    },
+    {
+     "path": "pilot/qwen25_instruct/asdiv/judge_base_c/audit.jsonl",
+     "bytes": 94778,
+     "sha256": "9a5723ab929eaad1e84773e44d8fde3936fe863949da1f376a185143b3ab798b",
+     "rows": 73
+    },
+    {
+     "path": "pilot/qwen25_instruct/asdiv/judge_base_c/summary.json",
+     "bytes": 632,
+     "sha256": "e2537582f3ac7e8a59797ec1cb8a34ea3c4eed9bf68a98453c420e25c4d636a7"
+    },
+    {
+     "path": "pilot/qwen25_instruct/asdiv/samples/answers.jsonl",
+     "bytes": 947694,
+     "sha256": "c3539d3ee3243aba9c53d4737a31a8bcd4081a0ef4b4a8247000da69befee977",
+     "rows": 500
+    },
+    {
+     "path": "pilot/qwen25_instruct/asdiv/samples/audit.jsonl",
+     "bytes": 970462,
+     "sha256": "d7fa4cb90ad0c839c8675b2dd5a4afe57962cb7cdd2a99d443b103ba8a7aa853",
+     "rows": 501
+    },
+    {
+     "path": "pilot/qwen25_instruct/asdiv/samples/summary.json",
+     "bytes": 631,
+     "sha256": "244bca461749cb60ab4704f13b6ed071a56422013a06d110476a00b7fd667667"
+    },
+    {
+     "path": "pilot/qwen25_instruct/math13/judge_base/answers.jsonl",
+     "bytes": 389708,
+     "sha256": "48829181bdac4ae04fed7caabac48c32faf9581188699a01ed8160bb8091c113",
+     "rows": 212
+    },
+    {
+     "path": "pilot/qwen25_instruct/math13/judge_base/audit.jsonl",
+     "bytes": 399518,
+     "sha256": "b6f854cc27dd7b2affed936e16d79efc4fefd4e0106e2a2d39c2a43b0fec99f7",
+     "rows": 213
+    },
+    {
+     "path": "pilot/qwen25_instruct/math13/judge_base/summary.json",
+     "bytes": 633,
+     "sha256": "36b0f42c844c3e98ae48df29b39d829914b55b504efb4b68b4c3f4ee148385c6"
+    },
+    {
+     "path": "pilot/qwen25_instruct/math13/judge_base_c/answers.jsonl",
+     "bytes": 227863,
+     "sha256": "ed0a1881c45d39d7bc3911877c7d4fd7c9895a184d43d8c5c618b28fd48446c3",
+     "rows": 212
+    },
+    {
+     "path": "pilot/qwen25_instruct/math13/judge_base_c/audit.jsonl",
+     "bytes": 237673,
+     "sha256": "f989c6b17104c11b8e865c210f3dac91791e7cf1f24f40ff99c5fbe1780935c5",
+     "rows": 213
+    },
+    {
+     "path": "pilot/qwen25_instruct/math13/judge_base_c/summary.json",
+     "bytes": 633,
+     "sha256": "cf2da7ae437f7996783d1b28cce75642d3f3adf4e7daa50ab8b7760c43865277"
+    },
+    {
+     "path": "pilot/qwen25_instruct/math13/samples/answers.jsonl",
+     "bytes": 1445135,
+     "sha256": "d5d3f98492aa7bec18e5d37e9cf82e5e5b3102691e52381416608e854d709f35",
+     "rows": 500
+    },
+    {
+     "path": "pilot/qwen25_instruct/math13/samples/audit.jsonl",
+     "bytes": 1467903,
+     "sha256": "06647fb03957f9a7d78735ecd9914c217a1c0aaf98d9c9d2d5378cba92142458",
+     "rows": 501
+    },
+    {
+     "path": "pilot/qwen25_instruct/math13/samples/summary.json",
+     "bytes": 631,
+     "sha256": "8c25b59258a80209d1aebc92e93b5356de6bc05759f3d0292092d607db154a42"
+    }
+   ]
+  },
+  "analysis": {
+   "base": "D:\\AGI\\outputs\\phase14_remote\\outputs\\phase14_v1\\main\\analysis",
+   "files": [
+    {
+     "path": "probe_report.json",
+     "bytes": 197164,
+     "sha256": "e083e5ab375b2fa41154d2352086580071d7637fbfdba77cfb4baaf30dad6eb0"
+    },
+    {
+     "path": "report.json",
+     "bytes": 387758,
+     "sha256": "840c4326b8280c17fd32cf003cd355b9ed7c9d0bd2b1a0fe0a6a5ce4a832eee9"
+    },
+    {
+     "path": "report_tables.md",
+     "bytes": 41701,
+     "sha256": "999207470f1853b5eaeaede0070f4949a3d0f7fe930beea1aba0bd6ecf6c6ac3"
+    }
+   ]
+  },
+  "smoke": {
+   "base": "D:\\AGI\\outputs\\phase14_remote\\outputs\\phase14_v1\\smoke",
+   "files": [
+    {
+     "path": "llama31_8b.json",
+     "bytes": 2562,
+     "sha256": "6d3e155142df747a13932ffe0ede3b8f6cd14d9a1ea8a9958d93d0f6189737f3"
+    },
+    {
+     "path": "llama31_8b_hidden.json",
+     "bytes": 846,
+     "sha256": "c126b5024e6fd331ae00aa45b3c1caaedecd43ac8b4814da986a60a9bc7c4c16"
+    },
+    {
+     "path": "llama31_8b_toy.json",
+     "bytes": 29789,
+     "sha256": "da81033b7ad6d16d05458c6cb541c9d9f85cb656fbd6720749c8cda979bf3b84"
+    },
+    {
+     "path": "mistral_7b.json",
+     "bytes": 1911,
+     "sha256": "dec1be8049f6d053f141cb3145613de425bb5d1328c52e12d00abf70b57a2cc1"
+    },
+    {
+     "path": "mistral_7b_hidden.json",
+     "bytes": 826,
+     "sha256": "4659c46f15cfe6694f27ee65e6f109f058c29d7f37884a21add4431e1b263827"
+    },
+    {
+     "path": "mistral_7b_toy.json",
+     "bytes": 13882,
+     "sha256": "ad26f305fb5a2d7030a630f3c0eef38136b862b16e94cf094636acf2cbc34188"
+    },
+    {
+     "path": "original_solver.json",
+     "bytes": 1942,
+     "sha256": "aff909aa98ecaf2c65ba72b9f7872f3d8927599fa9058964207fb3a286fcba27"
+    },
+    {
+     "path": "original_solver_hidden.json",
+     "bytes": 818,
+     "sha256": "69594538bb79f881906e8ba51e726a71e5ab0e4873c273c023f6d2a744e73ddf"
+    },
+    {
+     "path": "original_solver_toy.json",
+     "bytes": 18098,
+     "sha256": "cdb7503085c0833685425937944fd2ac4f6669af2ccd7cc9b85e09974aadf99d"
+    },
+    {
+     "path": "qwen25_instruct.json",
+     "bytes": 2314,
+     "sha256": "da1ef29b02ed875502992a66dfbdd2905dbf34e07680e767126f96ce59f92c71"
+    },
+    {
+     "path": "qwen25_instruct_hidden.json",
+     "bytes": 819,
+     "sha256": "ea4d3d0619fd045a1996fe738fe11f3129e7230920b82abeb947024070f14623"
+    },
+    {
+     "path": "qwen25_instruct_toy.json",
+     "bytes": 21738,
+     "sha256": "66ab4629f35b59b82f85c1df5cff98f0e8ed44396a0c63a0e65dc083805f296c"
+    }
+   ]
+  },
+  "hidden_summaries": {
+   "base": "D:\\AGI\\outputs\\phase14_remote\\outputs\\phase14_v1\\hidden",
+   "files": [
+    {
+     "path": "main/llama31_8b/asdiv/answer.json",
+     "bytes": 192,
+     "sha256": "bece38e976255c2b8baf36300163f3422384eb7707529d48a0e047d4d330223e"
+    },
+    {
+     "path": "main/llama31_8b/asdiv/direct.json",
+     "bytes": 144,
+     "sha256": "b0cb61c19b3785ab901d37cbb161d6618ee6efc46c156571cf1f40e8db22627a"
+    },
+    {
+     "path": "main/llama31_8b/asdiv/judge.json",
+     "bytes": 198,
+     "sha256": "8d27f8c2e76a093f486bee20495bf23b3909f0c89a70b02218bdf7a7b2c13b63"
+    },
+    {
+     "path": "main/llama31_8b/bridge13/answer.json",
+     "bytes": 195,
+     "sha256": "4b756a39af6da9a1c56484014117ec133eb3ec4dd109d402de0919fba69ebd49"
+    },
+    {
+     "path": "main/llama31_8b/bridge13/direct.json",
+     "bytes": 147,
+     "sha256": "43b4ac7e3eb070b7a8c40f238c419bb9c9867f911a891a33260fcc2ec22cc127"
+    },
+    {
+     "path": "main/llama31_8b/bridge13/judge.json",
+     "bytes": 201,
+     "sha256": "e500a4b1a0630b7fcee431fd52d9c56d6e09ec73544857901b1a6588dfb205fa"
+    },
+    {
+     "path": "main/llama31_8b/gsm8k13/answer.json",
+     "bytes": 194,
+     "sha256": "89628f4ee0ec304bf7f29eb2553475bfbac4d6df59b4486203c0ac1a68f2c715"
+    },
+    {
+     "path": "main/llama31_8b/gsm8k13/direct.json",
+     "bytes": 146,
+     "sha256": "c921ec3d234464db32e31fe6a3d3c9e16c9a335d066d64fed8bd85f5627c9722"
+    },
+    {
+     "path": "main/llama31_8b/gsm8k13/judge.json",
+     "bytes": 200,
+     "sha256": "d630982726e8655df5e8efcb94d0f7aa3bce586b84fcfb0b809e75c7559a6c5a"
+    },
+    {
+     "path": "main/llama31_8b/math13/answer.json",
+     "bytes": 193,
+     "sha256": "97936ec2a0bb3b03aa0fad5c1c1678678723b874c1581fff0384bf164ec6ce32"
+    },
+    {
+     "path": "main/llama31_8b/math13/direct.json",
+     "bytes": 145,
+     "sha256": "4986d24518acee63f5ec589d8abfca9ff93e0f88f40c98086937ddc8e68985b8"
+    },
+    {
+     "path": "main/llama31_8b/math13/judge.json",
+     "bytes": 199,
+     "sha256": "2752d84ee4fe3d3a6f5d47f01d0bf83f03972683bf59f94584a0e7e185817798"
+    },
+    {
+     "path": "main/llama31_8b/svamp12/answer.json",
+     "bytes": 194,
+     "sha256": "0cbb7a3c2d146cbc9e09b3ccd0ead6a6579b59909b2fd6da03151a1e42d5f86d"
+    },
+    {
+     "path": "main/llama31_8b/svamp12/direct.json",
+     "bytes": 146,
+     "sha256": "87d3b03687212adc244bd6174e00c5ba0e417f1dc83e8dfddb680cde6597e9b7"
+    },
+    {
+     "path": "main/llama31_8b/svamp12/judge.json",
+     "bytes": 200,
+     "sha256": "2ed18772ffd32f3b69e363749e6a0d1c13e88f887863eb26f718924acb4cea48"
+    },
+    {
+     "path": "main/mistral_7b/asdiv/answer.json",
+     "bytes": 192,
+     "sha256": "424a140691f50ba4b66ef8a3258e5f16c572b1f99e9645c34727bc9aadb7f0ea"
+    },
+    {
+     "path": "main/mistral_7b/asdiv/direct.json",
+     "bytes": 144,
+     "sha256": "41023e674e96d9a53bbe98fbffad75fba797d93d109a5da3c20ca1a726e60ffd"
+    },
+    {
+     "path": "main/mistral_7b/asdiv/judge.json",
+     "bytes": 198,
+     "sha256": "6f808157d3d8d7e67062fb60d747b70926be6f0411466f06ea257c6ada0a5641"
+    },
+    {
+     "path": "main/mistral_7b/bridge13/answer.json",
+     "bytes": 195,
+     "sha256": "fd431ae265591cb079037d090e3659b5807a2d674bc4896876ef0297c437120c"
+    },
+    {
+     "path": "main/mistral_7b/bridge13/direct.json",
+     "bytes": 147,
+     "sha256": "307205dd951d0d12b3aac0df765015eef6389f417fd25f9ddc5e3d3ce152d62d"
+    },
+    {
+     "path": "main/mistral_7b/bridge13/judge.json",
+     "bytes": 201,
+     "sha256": "5b9cc9d8ea3a44d5b5dc844146f23832e58ea4c4e3f78f0ceac07dc90c82d0a7"
+    },
+    {
+     "path": "main/mistral_7b/gsm8k13/answer.json",
+     "bytes": 194,
+     "sha256": "96eae957eb9f2d102d480f3d5c90374fbb2b739b973bcd26170337c9a1a18226"
+    },
+    {
+     "path": "main/mistral_7b/gsm8k13/direct.json",
+     "bytes": 146,
+     "sha256": "a7e7710f083084a578b4d2d85d08880c469cf2e506c472db6c946259c5f8b912"
+    },
+    {
+     "path": "main/mistral_7b/gsm8k13/judge.json",
+     "bytes": 200,
+     "sha256": "1ff11ad7ac0846c01b297f6297a36777823fc6367feb055626f5466644062908"
+    },
+    {
+     "path": "main/mistral_7b/math13/answer.json",
+     "bytes": 193,
+     "sha256": "8dcc4330f46ad255a4c508a2691879d8fa0a7f03b65678d2080c129564a3df89"
+    },
+    {
+     "path": "main/mistral_7b/math13/direct.json",
+     "bytes": 145,
+     "sha256": "79dfaeb7549d6ef9f9fe059db8cbb4153fe636227a4b300c4d0ab1640416ec04"
+    },
+    {
+     "path": "main/mistral_7b/math13/judge.json",
+     "bytes": 199,
+     "sha256": "97c661f8d79ac4b6f6628c24796cd2209b48d796d7bec74daa9ecf0c43f88f16"
+    },
+    {
+     "path": "main/mistral_7b/svamp12/answer.json",
+     "bytes": 194,
+     "sha256": "96846e6618233a9598e8d19c79e1663f8d8b6534c9b370f780a00483877a4381"
+    },
+    {
+     "path": "main/mistral_7b/svamp12/direct.json",
+     "bytes": 146,
+     "sha256": "837adc15fd32f30d938e01cdd4b9ebe22aa499d5e7d525061cb02dedccb8a24c"
+    },
+    {
+     "path": "main/mistral_7b/svamp12/judge.json",
+     "bytes": 200,
+     "sha256": "c09360d058677714cc25e6d447ceea1f2a47522a42d66186ff8872a84931526f"
+    },
+    {
+     "path": "main/original_solver/asdiv/answer.json",
+     "bytes": 197,
+     "sha256": "7d66b98c7ccb1c9fd0265df0a615db6fb1bf4401d52a25ef84dd7c3a6d0f281d"
+    },
+    {
+     "path": "main/original_solver/asdiv/direct.json",
+     "bytes": 149,
+     "sha256": "ae0c1773f6e99f08daf08e7b0db8de5d02bae9323070c0ea0f3725ffe8d82bf9"
+    },
+    {
+     "path": "main/original_solver/asdiv/judge.json",
+     "bytes": 203,
+     "sha256": "187ef229a369ae2335c4a4fa9fdaa2ffb5b98ee3e31c23ee52ddecbd95b517ba"
+    },
+    {
+     "path": "main/original_solver/gsm8k13/answer.json",
+     "bytes": 199,
+     "sha256": "e5bad7b86cb376bcdae6e49c957e0bd65a78eaa782260568ce4fcd9a7bb2ea81"
+    },
+    {
+     "path": "main/original_solver/gsm8k13/direct.json",
+     "bytes": 151,
+     "sha256": "80d0452c884a7d8496758485c198067d5a47c01bd5e35bd7e634b4974740cf45"
+    },
+    {
+     "path": "main/original_solver/gsm8k13/judge.json",
+     "bytes": 205,
+     "sha256": "c41148e8940b3f8a0607422294acace32eddaa65dcb62c33bef34d42af555dc7"
+    },
+    {
+     "path": "main/original_solver/math13/answer.json",
+     "bytes": 198,
+     "sha256": "07d357954b35dc70cec1353f139bdeb5ecb94c94b7316fa4d2a9e0dab83d681c"
+    },
+    {
+     "path": "main/original_solver/math13/direct.json",
+     "bytes": 150,
+     "sha256": "f62bf15867b9d004cdc8a272d997f0bcbb2dec90c37e29ade60c6275209dbf3b"
+    },
+    {
+     "path": "main/original_solver/math13/judge.json",
+     "bytes": 204,
+     "sha256": "a8dfa7998c320d42dafa49bab605aed1555dd559d0d5443c013e8c305b364849"
+    },
+    {
+     "path": "main/original_solver/svamp12/answer.json",
+     "bytes": 199,
+     "sha256": "8d1ece1457139b1d97c36f1304e504dbb466dce6470af9cb6a8068bdc3d0bd47"
+    },
+    {
+     "path": "main/original_solver/svamp12/direct.json",
+     "bytes": 151,
+     "sha256": "942c5288b7b6215aa3f118edbe0d53f994f3b04c6d1cad473cf3902a393f0253"
+    },
+    {
+     "path": "main/original_solver/svamp12/judge.json",
+     "bytes": 205,
+     "sha256": "9613735fe55d46988e92d423a401114d744c314682b6e77651aeb94fed242982"
+    },
+    {
+     "path": "main/qwen25_instruct/asdiv/answer.json",
+     "bytes": 197,
+     "sha256": "a822956aa2396acd833df0cae58e09dc8b43e7d4a0f2cd066e20d12b9ff22e30"
+    },
+    {
+     "path": "main/qwen25_instruct/asdiv/direct.json",
+     "bytes": 149,
+     "sha256": "2d055720433b5e77e63e27f8ea505012a0767bfd7794c9f3681892daaf75ada3"
+    },
+    {
+     "path": "main/qwen25_instruct/asdiv/judge.json",
+     "bytes": 203,
+     "sha256": "25a1ac475c8078877202f6c244441f18c13a4c9295ba92a0366b371b5bca1b19"
+    },
+    {
+     "path": "main/qwen25_instruct/bridge13/answer.json",
+     "bytes": 200,
+     "sha256": "bd87df88864fcccf1542ea90dd26b4e464f93ebacca630407afc6344c17ae5a4"
+    },
+    {
+     "path": "main/qwen25_instruct/bridge13/direct.json",
+     "bytes": 152,
+     "sha256": "5e9cade77f167b77f2460a57e60503333090814a0496d3132c84f0ba70f37820"
+    },
+    {
+     "path": "main/qwen25_instruct/bridge13/judge.json",
+     "bytes": 206,
+     "sha256": "0cc3b173fad282f5b2de78af6b492797812408225d2fc8827330807d6e47c224"
+    },
+    {
+     "path": "main/qwen25_instruct/gsm8k13/answer.json",
+     "bytes": 199,
+     "sha256": "e4cd3f843658284a38e28a35f7ae31b09ff3be5ef941090790d0bac46c372e2b"
+    },
+    {
+     "path": "main/qwen25_instruct/gsm8k13/direct.json",
+     "bytes": 151,
+     "sha256": "e4ae3699b79dcb86eb076f6d71e97f5fc3ae771b95a9002c3926842f8e162f7d"
+    },
+    {
+     "path": "main/qwen25_instruct/gsm8k13/judge.json",
+     "bytes": 205,
+     "sha256": "eb07bd5670c486fcf5934120f9d0252e8cbc4dcf9c06798ca58d96758f7eaa26"
+    },
+    {
+     "path": "main/qwen25_instruct/math13/answer.json",
+     "bytes": 198,
+     "sha256": "de9ded4851dfa56447b7223b29bdd8dee4f7d06c4f1245b1d57fad7274873ede"
+    },
+    {
+     "path": "main/qwen25_instruct/math13/direct.json",
+     "bytes": 150,
+     "sha256": "e774db3bd8923e0f61aa6517f6d1b5ebc99065f95086a4a1e3dc83914739e956"
+    },
+    {
+     "path": "main/qwen25_instruct/math13/judge.json",
+     "bytes": 204,
+     "sha256": "152f695b0426fccbae2ea003449d3a8b8ed22c34474bbc5e63ca7158ade5845f"
+    },
+    {
+     "path": "main/qwen25_instruct/svamp12/answer.json",
+     "bytes": 199,
+     "sha256": "2f269f9c6828bc333be18ec7ab6f4d1eebeff1575fae74b965f36760b1f9127b"
+    },
+    {
+     "path": "main/qwen25_instruct/svamp12/direct.json",
+     "bytes": 151,
+     "sha256": "d6509ea0b07711a8b0924080b6304587cf0ff0d6e23083bc1ca3512db2ba9a59"
+    },
+    {
+     "path": "main/qwen25_instruct/svamp12/judge.json",
+     "bytes": 205,
+     "sha256": "d0d1a8649ed84e74e9b3b49343228ff682570467ab3855342321906116b25227"
+    }
+   ]
+  },
+  "logs": {
+   "base": "D:\\AGI\\outputs\\phase14_remote\\logs",
+   "files": [
+    {
+     "path": "phase14_analysis_stdout.txt",
+     "bytes": 3830,
+     "sha256": "0e142c16b1464de84a5a5a3ed2ffdcc339138ef3eaf62103f140cc0da46badfe"
+    },
+    {
+     "path": "phase14_bootstrap.json",
+     "bytes": 1417,
+     "sha256": "2bc172483b3a4378a3a2a0eea34a08af9b8a0fedd050cf26e7f8558af7fa42a7"
+    },
+    {
+     "path": "phase14_bootstrap.log",
+     "bytes": 14961,
+     "sha256": "eb7e21eb97a8cab15c69399d072338e6e9d041632c2e0459dd332c0497109c13"
+    },
+    {
+     "path": "phase14_bootstrap2.log",
+     "bytes": 2215,
+     "sha256": "cb9bace8e287a9b154006f27106150eee3bd181924d0bf1c9f110c6da7dbff94"
+    },
+    {
+     "path": "phase14_bootstrap3.log",
+     "bytes": 1368,
+     "sha256": "d32a551e02aea7a60355ab9db5759c9f3a75027cf6f94bb4cab049445f830056"
+    },
+    {
+     "path": "phase14_bootstrap4.log",
+     "bytes": 1415,
+     "sha256": "bd1718a07493400c84e1e5c306b3c04e2c796c213babf47993497a41675128ed"
+    },
+    {
+     "path": "phase14_comparison_stdout.txt",
+     "bytes": 1002,
+     "sha256": "25491b65be21387daf29033505ee40a487c2268197f231abdf4b4fd218fafd06"
+    },
+    {
+     "path": "phase14_complete.log",
+     "bytes": 247175,
+     "sha256": "21ceaf8e56aecb939d6abad30c49afe481fd45a096ad306561f2444c3374844d"
+    },
+    {
+     "path": "phase14_long_judge.log",
+     "bytes": 25852,
+     "sha256": "24aa937c68bc812710cb88ea0b94af506e13baa44f80a9ab62ee94dc4e6085cc"
+    },
+    {
+     "path": "phase14_main.log",
+     "bytes": 69303,
+     "sha256": "9c1cbeddb96a14d978016a8bed0faff966466417de556665a4f4852757a82bdb"
+    },
+    {
+     "path": "phase14_pilot.log",
+     "bytes": 104470,
+     "sha256": "6942944d501643f35eb842563b37121eb143ab7633bd1ec8c0b0c902c73486d1"
+    },
+    {
+     "path": "phase14_pilot_report.txt",
+     "bytes": 326,
+     "sha256": "c8c27a788bc348b8656ee3282bd95eef58256b09b7c7c0611d335bf27dce2185"
+    },
+    {
+     "path": "phase14_probe_early.txt",
+     "bytes": 344,
+     "sha256": "d8028432bb81264cc0fb6b6311b3c3ace184a6d48276c7333c7a1149b1eb7a35"
+    },
+    {
+     "path": "phase14_probe_now.txt",
+     "bytes": 1385,
+     "sha256": "16ba3e31b5677a94a1aba9372c2fd2fd6f998ad8f5d4e6900911004855ffb9b0"
+    },
+    {
+     "path": "phase14_probe_stdout.txt",
+     "bytes": 27806,
+     "sha256": "8cff62170d994fee890cdede1f02054f0f2845ab4ed4dbb3eda1a525b4168a87"
+    },
+    {
+     "path": "phase14_regression.txt",
+     "bytes": 1243,
+     "sha256": "246f70f3cd47990df662fd2c410916e48bc0b31cd85da4c6a037f3909392fef3"
+    },
+    {
+     "path": "phase14_report_tables.md",
+     "bytes": 41701,
+     "sha256": "999207470f1853b5eaeaede0070f4949a3d0f7fe930beea1aba0bd6ecf6c6ac3"
+    },
+    {
+     "path": "phase14_report_tables_endpoints.md",
+     "bytes": 5593,
+     "sha256": "c7443ea0819e061387ce85f702511c009aa60a1f699931df060ced43e2d435fe"
+    },
+    {
+     "path": "phase14_report_tables_now.md",
+     "bytes": 6560,
+     "sha256": "2e5d1f6e52fa054eb0d5c9dbb9dc6bf89ee7931ece839a7e5fc97dfff097f74f"
+    },
+    {
+     "path": "phase14_smoke.log",
+     "bytes": 24134,
+     "sha256": "38aaf8bb0850f7c1bf81f2811526591b38d645efcc533d95ae947ec38ce5433c"
+    },
+    {
+     "path": "phase14_smoke2.log",
+     "bytes": 6265,
+     "sha256": "f8bbba87e930bf04e8d8ea4b05e769d74b74dc486cf4928506cb73413527777f"
+    },
+    {
+     "path": "phase14_smoke3.log",
+     "bytes": 25068,
+     "sha256": "78e9d54cad808d983175749067ad735ed93700392de2dc575ff4d45d8876cef9"
+    }
+   ]
+  },
+  "paper_results": {
+   "base": "D:\\AGI\\paper\\results",
+   "files": [
+    {
+     "path": "phase14_decomposition.json",
+     "bytes": 103524,
+     "sha256": "f1a21800806b04a8fb7be445ffcd5b05ada8c53a7763bdacfe2b9220f39cfc25"
+    },
+    {
+     "path": "phase14_decomposition.md",
+     "bytes": 21791,
+     "sha256": "4ede427dbe4c458ebc98a15a256a6137b3f6d8286b1f3a13bb63de0ed206f1f7"
+    },
+    {
+     "path": "phase14_preliminary.json",
+     "bytes": 120078,
+     "sha256": "b79d58e08954a7b2c982eab908e11a729547593b7fdfee1b2b3fb0f25d9ac89b"
+    },
+    {
+     "path": "phase14_preliminary.md",
+     "bytes": 9513,
+     "sha256": "ef8e98de101f44b14af2286da3afa572af38129e6078cbe3f0937d12fb7945fd"
+    },
+    {
+     "path": "phase14_truncation.json",
+     "bytes": 288459,
+     "sha256": "99d68337ea4895c65e02a61a99b328591b0070afd688650aa762e9fdeb0e4f2a"
+    },
+    {
+     "path": "phase14_truncation.md",
+     "bytes": 12709,
+     "sha256": "8576dbe93be5843312af26f6a4be69b2fcfcca3e6f99891d854c61e475777290"
+    }
+   ]
+  },
+  "frozen_sources": {
+   "base": "D:\\AGI\\phase14\\data",
+   "files": [
+    {
+     "path": "execution_lock_completion.json",
+     "bytes": 5604,
+     "sha256": "bbff8d736a80b971418735aa5a5768ff2345a1965fa1d0daf378d08a77b12c58"
+    },
+    {
+     "path": "execution_lock_main.json",
+     "bytes": 5156,
+     "sha256": "5b7829726c90972923fd3bcc15f8d339093ab7a3af1c0a4e7a141fa5f26e241c"
+    },
+    {
+     "path": "execution_lock_pilot.json",
+     "bytes": 4937,
+     "sha256": "dbf9460493bc09ae5fecf3f78fa7429535ad585fc479fa4b86fafd7995204d11"
+    },
+    {
+     "path": "gsm8k13_audit_excluded.json",
+     "bytes": 1415,
+     "sha256": "141db2caf2813dcafbf0a13c30da8df5a242496aa399a1b4c82814a4a605039f"
+    },
+    {
+     "path": "main_size.json",
+     "bytes": 224,
+     "sha256": "cac54d436454d6d094c3cbe7589e2bba16da05cb0eca57aba96523057cd7eba1"
+    },
+    {
+     "path": "raw/manifest.json",
+     "bytes": 1258,
+     "sha256": "ac37808c979c1a3e64a015aa1277184956e46564d49a6e00307b869c097b21ab"
+    },
+    {
+     "path": "sources_v1/asdiv_main_pool.jsonl",
+     "bytes": 1005933,
+     "sha256": "f663463e6e7fec9fe77eaa3fe0a684b300387c3ce30ee4469c651618a029d14c",
+     "rows": 1919
+    },
+    {
+     "path": "sources_v1/asdiv_pilot.jsonl",
+     "bytes": 51832,
+     "sha256": "b38e2ab4150179d81a3ff9fae40fa8d8911344ddb128a608077f03bf1676f95a",
+     "rows": 100
+    },
+    {
+     "path": "sources_v1/math13_main_pool.jsonl",
+     "bytes": 1084049,
+     "sha256": "66feb0224b822046b46b0f97afd819067ebdaecc8671619e12c9d2029f1e373c",
+     "rows": 1957
+    },
+    {
+     "path": "sources_v1/math13_pilot.jsonl",
+     "bytes": 54653,
+     "sha256": "705f3dc3c6ddf6dbcacc212b6f3e9cdab34fdbae8d222fc4b8687d0c5cac6083",
+     "rows": 100
+    },
+    {
+     "path": "sources_v1/report.json",
+     "bytes": 1471,
+     "sha256": "63a185e7c0dd8d70f03243572401d8074238b2ee824410007c013f78c3451fb8"
+    }
+   ]
+  },
+  "hidden_arrays": {
+   "base": "F:\\AGI_data\\phase14_hidden",
+   "files": [
+    {
+     "path": "main/llama31_8b/asdiv/answer.npz",
+     "bytes": 613668157,
+     "sha256": "f8318155aab532b20514c5d978d7c1fb80203bb869dc51389dcd786a2f50db2b"
+    },
+    {
+     "path": "main/llama31_8b/asdiv/direct.npz",
+     "bytes": 81835,
+     "sha256": "ab5dab1b1de9127e14eb22f5845c1d9c7c490e08d2a25ca32983fea772d89c64"
+    },
+    {
+     "path": "main/llama31_8b/asdiv/judge.npz",
+     "bytes": 427590649,
+     "sha256": "c678d4a6684035dff013ef9dfb58d628ea96231d1b3076378ecdc5f4525778ab"
+    },
+    {
+     "path": "main/llama31_8b/bridge13/answer.npz",
+     "bytes": 418805917,
+     "sha256": "0d0ac7a9287382fba0b1e1c89b47500e1ed1b5d436f12f5a90aaa0d434b57252"
+    },
+    {
+     "path": "main/llama31_8b/bridge13/direct.npz",
+     "bytes": 91785,
+     "sha256": "5609791fed42d7b462bea9eaddc8acbdc87d69445d1c88bad1ae5948c7296897"
+    },
+    {
+     "path": "main/llama31_8b/bridge13/judge.npz",
+     "bytes": 483254135,
+     "sha256": "8ee3551a33c3147d2fec10f3b747e37593eeeabc87505f89ff9bd7041205083c"
+    },
+    {
+     "path": "main/llama31_8b/gsm8k13/answer.npz",
+     "bytes": 418831140,
+     "sha256": "62cee15c7ed8d4fbd0464c9adf9326423858068745fa684ca0d7c7396871183c"
+    },
+    {
+     "path": "main/llama31_8b/gsm8k13/direct.npz",
+     "bytes": 76020,
+     "sha256": "f3c9beb1866dfa7899b7801ed4ff98317b9df423b813b7f46f8a6fc5b678f47b"
+    },
+    {
+     "path": "main/llama31_8b/gsm8k13/judge.npz",
+     "bytes": 399753757,
+     "sha256": "8e992814f2e5fa0c3ff5b953e63ce7e162d0a970b77ddab9f0578b0097b44893"
+    },
+    {
+     "path": "main/llama31_8b/math13/answer.npz",
+     "bytes": 585969337,
+     "sha256": "05161d11e00cd6adb34effbb5e3ca9156187895141bee483e9df648c26da7cc1"
+    },
+    {
+     "path": "main/llama31_8b/math13/direct.npz",
+     "bytes": 193980,
+     "sha256": "6e605a609b55910bbd49e74deb585eac048a7a76ba8ca46ba38fb9bfa0f58838"
+    },
+    {
+     "path": "main/llama31_8b/math13/judge.npz",
+     "bytes": 1015259339,
+     "sha256": "00725b25a3f019a41f7bd1622b15154ef5385ed767304313276e4104e9b6abe3"
+    },
+    {
+     "path": "main/llama31_8b/svamp12/answer.npz",
+     "bytes": 716718367,
+     "sha256": "c3867e7b714e52826da82cc16897515e7ea00a7edece994ede960498c9193344"
+    },
+    {
+     "path": "main/llama31_8b/svamp12/direct.npz",
+     "bytes": 110617,
+     "sha256": "fd74324c680f099914204a56dafaaa340dfb835aa3d0c26ef95cd81932928fd3"
+    },
+    {
+     "path": "main/llama31_8b/svamp12/judge.npz",
+     "bytes": 582714767,
+     "sha256": "0cbb3ce2309bfa60c401e0661b7d20869a976990b561c069ed5e05388a0b0edb"
+    },
+    {
+     "path": "main/mistral_7b/asdiv/answer.npz",
+     "bytes": 614884296,
+     "sha256": "3ba118c905cddc5c73b8235c4662687876101f8a85f85550c75f2bb292c4d5f9"
+    },
+    {
+     "path": "main/mistral_7b/asdiv/direct.npz",
+     "bytes": 177805,
+     "sha256": "104d826714cf22dcdb5591674ce1579f8e72250d2b566f92414209f7865475c3"
+    },
+    {
+     "path": "main/mistral_7b/asdiv/judge.npz",
+     "bytes": 931520128,
+     "sha256": "8c78d5831a7d0fbe442a68e1edb3405682b50b3cab9d7cd80b4c94e2c641d66a"
+    },
+    {
+     "path": "main/mistral_7b/bridge13/answer.npz",
+     "bytes": 419583158,
+     "sha256": "78f3a3d8ebd53acf439f180c8275dfeadb66279dce0c5d9d01f0011a6a883f9f"
+    },
+    {
+     "path": "main/mistral_7b/bridge13/direct.npz",
+     "bytes": 92881,
+     "sha256": "cd312686d7419cf94614cdab167e26523c473ada3de10f108b8d6efdd9b59513"
+    },
+    {
+     "path": "main/mistral_7b/bridge13/judge.npz",
+     "bytes": 485102427,
+     "sha256": "0486a357b24031a74e0428137bc96c6d417761e203704562c401c91b619b057b"
+    },
+    {
+     "path": "main/mistral_7b/gsm8k13/answer.npz",
+     "bytes": 419662896,
+     "sha256": "f9a0d317f8e677aef012a8d03245b02cfce47bfbbd30500c053cc0b9aa298074"
+    },
+    {
+     "path": "main/mistral_7b/gsm8k13/direct.npz",
+     "bytes": 147911,
+     "sha256": "07000c36b210f560e5943e26edfee927821609515bb8969e9399b99901534465"
+    },
+    {
+     "path": "main/mistral_7b/gsm8k13/judge.npz",
+     "bytes": 778770142,
+     "sha256": "6af6a64a9250210d11903f85f48eca974c5da013618843c2214e25678624e5fa"
+    },
+    {
+     "path": "main/mistral_7b/math13/answer.npz",
+     "bytes": 587122032,
+     "sha256": "a9817af91fdd4972ee6f429e7f03999422d1aa66f2c7556720e32a0f93677f67"
+    },
+    {
+     "path": "main/mistral_7b/math13/direct.npz",
+     "bytes": 264258,
+     "sha256": "512aface63299a54ef3ea228312d6e61aaeeb5c6629ac5b2689af7f7b9134e56"
+    },
+    {
+     "path": "main/mistral_7b/math13/judge.npz",
+     "bytes": 1374736471,
+     "sha256": "afb37eb51fef51897d855a0bbbd9a788a224f693f8a1377751f66c00bdebb285"
+    },
+    {
+     "path": "main/mistral_7b/svamp12/answer.npz",
+     "bytes": 718121433,
+     "sha256": "1aa0b0a5020bcf6c505a8f1d46d6e4b3b2cf4dac367d350220865e6d786d8579"
+    },
+    {
+     "path": "main/mistral_7b/svamp12/direct.npz",
+     "bytes": 220791,
+     "sha256": "94469c4a1e5b8caf89c832268fc894da35877e88db25cb2ed5565ba62c82e5c6"
+    },
+    {
+     "path": "main/mistral_7b/svamp12/judge.npz",
+     "bytes": 1157151719,
+     "sha256": "bb6f34c116714959f0bd6da64e371e0ff3d048c222924359aa64c1a1299f6136"
+    },
+    {
+     "path": "main/original_solver/asdiv/answer.npz",
+     "bytes": 474559097,
+     "sha256": "9594acb1592f62ee132b1379bc594814e54621a5c9d9b6abe14cc7fbf7ccca14"
+    },
+    {
+     "path": "main/original_solver/asdiv/direct.npz",
+     "bytes": 61865,
+     "sha256": "24d48e25d7c03429de0d2ab16a15bef43c604cdb78f3c3765d15e278af3ab189"
+    },
+    {
+     "path": "main/original_solver/asdiv/judge.npz",
+     "bytes": 342747027,
+     "sha256": "206de0b829bb2586fd7bd7e776067b3ef06fa87fb76198ec9e37e6738f45e494"
+    },
+    {
+     "path": "main/original_solver/gsm8k13/answer.npz",
+     "bytes": 323906288,
+     "sha256": "56ea62603683a25e66585a7aa99fdf6bf30621a87076830c4fd05e947cf5f378"
+    },
+    {
+     "path": "main/original_solver/gsm8k13/direct.npz",
+     "bytes": 67595,
+     "sha256": "939ea324f7f2dc17a5f0f3da62e3feaf6468e1cebad30c5bf1858c6e0a839411"
+    },
+    {
+     "path": "main/original_solver/gsm8k13/judge.npz",
+     "bytes": 378862361,
+     "sha256": "5b8d58b69faf17c1eab6c67056e95a2463db7ec662dd81dd95f96e7938e9f329"
+    },
+    {
+     "path": "main/original_solver/math13/answer.npz",
+     "bytes": 453126801,
+     "sha256": "d0ea85a049624538e1353403da4edf503b1172dba33061a1415d5446e0bb609c"
+    },
+    {
+     "path": "main/original_solver/math13/direct.npz",
+     "bytes": 132257,
+     "sha256": "bd0c0155894b28832991bb830f018a084561b99c7eb73538cd4935d957b4df77"
+    },
+    {
+     "path": "main/original_solver/math13/judge.npz",
+     "bytes": 745432456,
+     "sha256": "a095efe2e65e0e646aebe9fcd041be8d10d4f86399ebc2e2141485d5ca39fa50"
+    },
+    {
+     "path": "main/original_solver/svamp12/answer.npz",
+     "bytes": 554190749,
+     "sha256": "4fe03798b35be52442bf99cb2929c7b71dad5c8bc02306ed64c455713e4a9fc9"
+    },
+    {
+     "path": "main/original_solver/svamp12/direct.npz",
+     "bytes": 68754,
+     "sha256": "3dcd818c42b92a0fcfa8fe12be6cffe742f9607c8b7965d2b4f995925bf9547d"
+    },
+    {
+     "path": "main/original_solver/svamp12/judge.npz",
+     "bytes": 384247705,
+     "sha256": "26a846116dbb9183b5dc2d3a57425056733202bdbe7c50e01c11f957afd9dc0e"
+    },
+    {
+     "path": "main/qwen25_instruct/asdiv/answer.npz",
+     "bytes": 474510049,
+     "sha256": "b53725b462e0c01dbffa456f570f027509b29b5f289404b1cdae5672ac7732db"
+    },
+    {
+     "path": "main/qwen25_instruct/asdiv/direct.npz",
+     "bytes": 52244,
+     "sha256": "71dcd511acac95d189c870f641ee5d25806c1718b03b980bbe2d032ed9883393"
+    },
+    {
+     "path": "main/qwen25_instruct/asdiv/judge.npz",
+     "bytes": 277263305,
+     "sha256": "7620ddf13928994deee938febee42058015a4a9882635ad9a17d0d71dde248b9"
+    },
+    {
+     "path": "main/qwen25_instruct/bridge13/answer.npz",
+     "bytes": 323888334,
+     "sha256": "e9a62cd1628dfff152693b8abf2c1c363b5465634a23d7179a9e13773ed7d256"
+    },
+    {
+     "path": "main/qwen25_instruct/bridge13/direct.npz",
+     "bytes": 70856,
+     "sha256": "5e40a274eda7e67ef410bca48d9e4c555f818d7540e7ddd1051e0aed97539222"
+    },
+    {
+     "path": "main/qwen25_instruct/bridge13/judge.npz",
+     "bytes": 373261674,
+     "sha256": "d2c9c6a6ccf8015253e7b48a72781c843c55227d71d02ed3beacbd7d8826dc7e"
+    },
+    {
+     "path": "main/qwen25_instruct/gsm8k13/answer.npz",
+     "bytes": 323890557,
+     "sha256": "b0b55fa8e870d00ee72a15cc494271609a110de47dc13a4501655637d80504d1"
+    },
+    {
+     "path": "main/qwen25_instruct/gsm8k13/direct.npz",
+     "bytes": 49529,
+     "sha256": "abeba8fd808a3a543eb1f9bafa6b5a078f61cffddaec2b39ab9f463ac9ba3579"
+    },
+    {
+     "path": "main/qwen25_instruct/gsm8k13/judge.npz",
+     "bytes": 259613246,
+     "sha256": "87d297a81eb0ebeb176940688056af08f8a93e27b16a4bbf0ce2c599bc573e9d"
+    },
+    {
+     "path": "main/qwen25_instruct/math13/answer.npz",
+     "bytes": 453146527,
+     "sha256": "34118007dba39a0321079072f1c3eb18e9620540c644774226f5bbacecd1a409"
+    },
+    {
+     "path": "main/qwen25_instruct/math13/direct.npz",
+     "bytes": 123536,
+     "sha256": "db47a655c990c2726349db41ac5c7b30b97e02a586d3a1eadc9d77e217eb71c8"
+    },
+    {
+     "path": "main/qwen25_instruct/math13/judge.npz",
+     "bytes": 664421056,
+     "sha256": "e5519ee0f5faf622343c9b3a3c1dd430ee01206a459965b147557db863a587c9"
+    },
+    {
+     "path": "main/qwen25_instruct/svamp12/answer.npz",
+     "bytes": 554123587,
+     "sha256": "b5acbf5c3e781466f96e8fc6fe7bd8aa71ee6fc3c77eb32f598fa56d1ddc5281"
+    },
+    {
+     "path": "main/qwen25_instruct/svamp12/direct.npz",
+     "bytes": 65278,
+     "sha256": "a20930cf1387743e7a51d8ae975b57379165a794bc7264b36fa5ec0ba7162af4"
+    },
+    {
+     "path": "main/qwen25_instruct/svamp12/judge.npz",
+     "bytes": 349457577,
+     "sha256": "9dfd511020ce5913896c5f68e728ba3a78e1106570bdc8fa97d87d2792cf6267"
+    }
+   ]
+  }
+ },
+ "stages": [
+  {
+   "split": "main",
+   "model": "llama31_8b",
+   "dataset": "asdiv",
+   "stage": "judge_base",
+   "rows": 860,
+   "answers_sha256_lf": "23baac41e43340b7112e08a12fe17b6add9ddfa4e079fc317df7f94f9cb7527f",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 64,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "llama31_8b",
+   "dataset": "asdiv",
+   "stage": "judge_base_1536",
+   "rows": 860,
+   "answers_sha256_lf": "6b66b35f85cb8080a3857cc870b88c015a6308101f5412fdb631cc7726337c77",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "llama31_8b",
+   "dataset": "asdiv",
+   "stage": "judge_base_c",
+   "rows": 860,
+   "answers_sha256_lf": "149517c6f303f0e78ed4dd18c34dfa673011f705557c8408ecaefd2b2efa1ad1",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 64,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "llama31_8b",
+   "dataset": "asdiv",
+   "stage": "judge_base_c_1536",
+   "rows": 860,
+   "answers_sha256_lf": "0379929faffcc7a438e5a031ece44bc2c3021bc9e2fef0af1fd77d9730cab3f2",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 256,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "llama31_8b",
+   "dataset": "asdiv",
+   "stage": "samples",
+   "rows": 4110,
+   "answers_sha256_lf": "b6cd5c90115e2c8b9d4fd1ccf245d3dbb559bf72a4e1762879cd169e0e2ef120",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 64,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "llama31_8b",
+   "dataset": "bridge13",
+   "stage": "judge_base",
+   "rows": 972,
+   "answers_sha256_lf": "53da295663ebb1c961452ee4576c9c4ccf2c41939cbd40287944fdff4c512e47",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "llama31_8b",
+   "dataset": "bridge13",
+   "stage": "judge_base_c",
+   "rows": 972,
+   "answers_sha256_lf": "3a0db2f5495fd4b83e99fc51a21d72bd337e1efbf7e4ae4a98529829007a317d",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "llama31_8b",
+   "dataset": "gsm8k13",
+   "stage": "judge_base",
+   "rows": 804,
+   "answers_sha256_lf": "6b630afbbc3c79b8c554e10d5f6d93b53e4ca3c71b09dccc49b5acefdf6368f0",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "llama31_8b",
+   "dataset": "gsm8k13",
+   "stage": "judge_base_c",
+   "rows": 804,
+   "answers_sha256_lf": "5543b0609793985af8c293e8356896e4c94ab677556d83dca86212890a4ab28c",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "llama31_8b",
+   "dataset": "gsm8k13",
+   "stage": "samples",
+   "rows": 2805,
+   "answers_sha256_lf": "ca644718340b0e4636c7d92c9ede38c30d12d1c94ef4381d9fe0adc9e3751435",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "llama31_8b",
+   "dataset": "math13",
+   "stage": "judge_base",
+   "rows": 2042,
+   "answers_sha256_lf": "ef11bac761628a708a0117bb4d43952a931b5b910f0b23de1a645c256d91f4ea",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 64,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "llama31_8b",
+   "dataset": "math13",
+   "stage": "judge_base_1536",
+   "rows": 2042,
+   "answers_sha256_lf": "25497cc7f31ef90500d82a2a5a8328a9f47ac8de7206fbaeff2b1ccd892703c5",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "llama31_8b",
+   "dataset": "math13",
+   "stage": "judge_base_c",
+   "rows": 2042,
+   "answers_sha256_lf": "c83f2feaaf6a2b72bd9c8246a1765f907d60a95c95fab1d6adb661d9ffc77371",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 64,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "llama31_8b",
+   "dataset": "math13",
+   "stage": "judge_base_c_1536",
+   "rows": 2042,
+   "answers_sha256_lf": "9c0deeac9d22f33fbebaa5a0c3dcdf370451c658fb208d1027b913595501ba9c",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 256,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "llama31_8b",
+   "dataset": "math13",
+   "stage": "samples",
+   "rows": 3925,
+   "answers_sha256_lf": "96311483a5d57168bc31d0ff51c3e406d75b58b2b8bad55b1b2833f03b54825f",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 64,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "llama31_8b",
+   "dataset": "svamp12",
+   "stage": "judge_base",
+   "rows": 1172,
+   "answers_sha256_lf": "d5754ae6fef3717ede6e2311b6cf44b3bcaa0a608fa0b2aa5f21391ae4f437f2",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "llama31_8b",
+   "dataset": "svamp12",
+   "stage": "judge_base_c",
+   "rows": 1172,
+   "answers_sha256_lf": "6f2df85a935ef329982d4a2079d00a9623951b8afeb64a124ed2566b500fb2d3",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "llama31_8b",
+   "dataset": "svamp12",
+   "stage": "samples",
+   "rows": 4800,
+   "answers_sha256_lf": "231e89e037cd5a7bf34f81d3c98761fe74b3decfac7cc756a80530b535ac5a53",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "mistral_7b",
+   "dataset": "asdiv",
+   "stage": "judge_base",
+   "rows": 1866,
+   "answers_sha256_lf": "05f9754b07d6cb708199bd152c248439a50ce26adc8151e42ae202080e8f8d9a",
+   "imported_from": null,
+   "repo": "mistralai/Mistral-7B-Instruct-v0.3",
+   "revision": "c170c708c41dac9275d15a8fff4eca08d52bab71",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "mistral_7b",
+   "dataset": "asdiv",
+   "stage": "judge_base_c",
+   "rows": 1866,
+   "answers_sha256_lf": "0908410075836c33c9f2511369eab9b96b32424347db170d027d9599290c8ea4",
+   "imported_from": null,
+   "repo": "mistralai/Mistral-7B-Instruct-v0.3",
+   "revision": "c170c708c41dac9275d15a8fff4eca08d52bab71",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "mistral_7b",
+   "dataset": "asdiv",
+   "stage": "samples",
+   "rows": 4110,
+   "answers_sha256_lf": "74a1b6421da757dc3811ace88998155a35c2c7057150aa4b0f562ee640a50cbb",
+   "imported_from": null,
+   "repo": "mistralai/Mistral-7B-Instruct-v0.3",
+   "revision": "c170c708c41dac9275d15a8fff4eca08d52bab71",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "mistral_7b",
+   "dataset": "bridge13",
+   "stage": "judge_base",
+   "rows": 972,
+   "answers_sha256_lf": "7052a2cbc5684cd2a7c2a7b6516dd685cb8ea90f1fdd3761a926d65aefa3d756",
+   "imported_from": null,
+   "repo": "mistralai/Mistral-7B-Instruct-v0.3",
+   "revision": "c170c708c41dac9275d15a8fff4eca08d52bab71",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "mistral_7b",
+   "dataset": "bridge13",
+   "stage": "judge_base_c",
+   "rows": 972,
+   "answers_sha256_lf": "98fc42df3d15f68e00ae9af921d1d5a8d20d310f823ec0738968935021ee6a35",
+   "imported_from": null,
+   "repo": "mistralai/Mistral-7B-Instruct-v0.3",
+   "revision": "c170c708c41dac9275d15a8fff4eca08d52bab71",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "mistral_7b",
+   "dataset": "gsm8k13",
+   "stage": "judge_base",
+   "rows": 1560,
+   "answers_sha256_lf": "09c8062a5913405834295035d0637439562fe78fec143e02098141f93bca4033",
+   "imported_from": null,
+   "repo": "mistralai/Mistral-7B-Instruct-v0.3",
+   "revision": "c170c708c41dac9275d15a8fff4eca08d52bab71",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "mistral_7b",
+   "dataset": "gsm8k13",
+   "stage": "judge_base_c",
+   "rows": 1560,
+   "answers_sha256_lf": "63b59b0fd5bf34e794355ced7f7cc1419d23ebf83fa94f503fdc49701f137097",
+   "imported_from": null,
+   "repo": "mistralai/Mistral-7B-Instruct-v0.3",
+   "revision": "c170c708c41dac9275d15a8fff4eca08d52bab71",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "mistral_7b",
+   "dataset": "gsm8k13",
+   "stage": "samples",
+   "rows": 2805,
+   "answers_sha256_lf": "b5697aded30cfdff55685c374af8df901be1863f9925b6a8a22df68fc98698bf",
+   "imported_from": null,
+   "repo": "mistralai/Mistral-7B-Instruct-v0.3",
+   "revision": "c170c708c41dac9275d15a8fff4eca08d52bab71",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "mistral_7b",
+   "dataset": "math13",
+   "stage": "judge_base",
+   "rows": 2754,
+   "answers_sha256_lf": "c749053c575b59564ace1e211b48fc21a38c789f56e797ff8fa404205d136d93",
+   "imported_from": null,
+   "repo": "mistralai/Mistral-7B-Instruct-v0.3",
+   "revision": "c170c708c41dac9275d15a8fff4eca08d52bab71",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "mistral_7b",
+   "dataset": "math13",
+   "stage": "judge_base_c",
+   "rows": 2754,
+   "answers_sha256_lf": "84020e68d73ddfabda5dd6576ec7f10795c0fed7c431b8316456e64796de97d0",
+   "imported_from": null,
+   "repo": "mistralai/Mistral-7B-Instruct-v0.3",
+   "revision": "c170c708c41dac9275d15a8fff4eca08d52bab71",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "mistral_7b",
+   "dataset": "math13",
+   "stage": "samples",
+   "rows": 3925,
+   "answers_sha256_lf": "d990fb27662d1e8ed74c1d366648d4e647eacbfa8c837596a46ab2d0d40d684c",
+   "imported_from": null,
+   "repo": "mistralai/Mistral-7B-Instruct-v0.3",
+   "revision": "c170c708c41dac9275d15a8fff4eca08d52bab71",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "mistral_7b",
+   "dataset": "svamp12",
+   "stage": "judge_base",
+   "rows": 2318,
+   "answers_sha256_lf": "24273481b7c3b57a117e6690cf1fcc17901cb04f7f41049ec81b6ff58b3390da",
+   "imported_from": null,
+   "repo": "mistralai/Mistral-7B-Instruct-v0.3",
+   "revision": "c170c708c41dac9275d15a8fff4eca08d52bab71",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "mistral_7b",
+   "dataset": "svamp12",
+   "stage": "judge_base_c",
+   "rows": 2318,
+   "answers_sha256_lf": "a5bb13078a88b6b2ba1b61989586433b0fdc21a2eee5efc09bf78eb39c7630cf",
+   "imported_from": null,
+   "repo": "mistralai/Mistral-7B-Instruct-v0.3",
+   "revision": "c170c708c41dac9275d15a8fff4eca08d52bab71",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "mistral_7b",
+   "dataset": "svamp12",
+   "stage": "samples",
+   "rows": 4800,
+   "answers_sha256_lf": "4e1ae544b8509f037d1850210071b2cd915f61df570ba320e55df05c1b85635b",
+   "imported_from": null,
+   "repo": "mistralai/Mistral-7B-Instruct-v0.3",
+   "revision": "c170c708c41dac9275d15a8fff4eca08d52bab71",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "original_solver",
+   "dataset": "asdiv",
+   "stage": "judge_base",
+   "rows": 892,
+   "answers_sha256_lf": "1c90a514cb6990edf13cbe6510a694ebab41f881e2bab19711ae71e4bbdab1a3",
+   "imported_from": null,
+   "repo": "Kxck/Self_Correction_v1",
+   "revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "original_solver",
+   "dataset": "asdiv",
+   "stage": "judge_base_c",
+   "rows": 892,
+   "answers_sha256_lf": "a3d4c72346c8d4020d46a9b935d02ab8202df687aa7463ebbca777526872aae3",
+   "imported_from": null,
+   "repo": "Kxck/Self_Correction_v1",
+   "revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "original_solver",
+   "dataset": "asdiv",
+   "stage": "samples",
+   "rows": 4110,
+   "answers_sha256_lf": "daf2d70b5ec4ec1191c20467c387275c9b01c41ac472c73e884e9b769577fd64",
+   "imported_from": null,
+   "repo": "Kxck/Self_Correction_v1",
+   "revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "original_solver",
+   "dataset": "gsm8k13",
+   "stage": "judge_base",
+   "rows": 986,
+   "answers_sha256_lf": "44f7adfa958b6579b4454528aaeabfdef127f3f2a7ae6829413331870330538a",
+   "imported_from": null,
+   "repo": "Kxck/Self_Correction_v1",
+   "revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "original_solver",
+   "dataset": "gsm8k13",
+   "stage": "judge_base_c",
+   "rows": 986,
+   "answers_sha256_lf": "baedcad914c2bc482e07fa34ba74f9e4e210e4c6e566aecb42eb1ff149ef207e",
+   "imported_from": null,
+   "repo": "Kxck/Self_Correction_v1",
+   "revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "original_solver",
+   "dataset": "gsm8k13",
+   "stage": "samples",
+   "rows": 2805,
+   "answers_sha256_lf": "224f05a5f614ccc8333c90112f6be1c3df4a284ce20bde00052b24de0207cd02",
+   "imported_from": null,
+   "repo": "Kxck/Self_Correction_v1",
+   "revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "original_solver",
+   "dataset": "gsm8k13_report",
+   "stage": "judge_base",
+   "rows": 972,
+   "answers_sha256_lf": "fc26c14605c9d322a354e6c599895c503f31a557affa15edd594a0ebe86aca8c",
+   "imported_from": "outputs/phase13_v1/judge_base",
+   "repo": null,
+   "revision": null,
+   "temperature": null,
+   "top_p": null,
+   "max_new_tokens": null,
+   "batch_size": null,
+   "logprobs": null,
+   "gpu": null
+  },
+  {
+   "split": "main",
+   "model": "original_solver",
+   "dataset": "gsm8k13_report",
+   "stage": "judge_base_c",
+   "rows": 972,
+   "answers_sha256_lf": "233df334354316de272bccbf6b1a9f6ccd9a080bb932de9871ffd238dad3daf7",
+   "imported_from": null,
+   "repo": "Kxck/Self_Correction_v1",
+   "revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "original_solver",
+   "dataset": "math13",
+   "stage": "judge_base",
+   "rows": 1940,
+   "answers_sha256_lf": "5c7a4845468fedf4685a612c6ef1c36f696ff861d813e9b2eab929e37c0cb262",
+   "imported_from": null,
+   "repo": "Kxck/Self_Correction_v1",
+   "revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "original_solver",
+   "dataset": "math13",
+   "stage": "judge_base_c",
+   "rows": 1940,
+   "answers_sha256_lf": "ec1becf0cebe11d843be8d4e8e550b96fb874f11abad4b3d03f0a74c890e4fcf",
+   "imported_from": null,
+   "repo": "Kxck/Self_Correction_v1",
+   "revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "original_solver",
+   "dataset": "math13",
+   "stage": "samples",
+   "rows": 3925,
+   "answers_sha256_lf": "ff8b87767d10b7c500bc0457df014eb760dfe920161ef810234d13663695d2b9",
+   "imported_from": null,
+   "repo": "Kxck/Self_Correction_v1",
+   "revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "original_solver",
+   "dataset": "svamp12",
+   "stage": "judge_base",
+   "rows": 1000,
+   "answers_sha256_lf": "042872800b531679b20c6a75196d7577b4d8d6c5590d651d17d4262d50ce883f",
+   "imported_from": null,
+   "repo": "Kxck/Self_Correction_v1",
+   "revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "original_solver",
+   "dataset": "svamp12",
+   "stage": "judge_base_c",
+   "rows": 1000,
+   "answers_sha256_lf": "d684fe7ff510c730bb462c5c4f5b82b8daf7de0eff86ffbbc4dd1e7776d71a66",
+   "imported_from": null,
+   "repo": "Kxck/Self_Correction_v1",
+   "revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "original_solver",
+   "dataset": "svamp12",
+   "stage": "samples",
+   "rows": 4800,
+   "answers_sha256_lf": "66470e4c07195e4dde9593f097cbf4bf5e2a44d14551e2712e7da5f22b3e8ab9",
+   "imported_from": null,
+   "repo": "Kxck/Self_Correction_v1",
+   "revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "original_solver",
+   "dataset": "svamp12_report",
+   "stage": "judge_base",
+   "rows": 1002,
+   "answers_sha256_lf": "8b699e20dbd91e63a46190d429d357e9a2335313f26058256dda1979e8b9cea2",
+   "imported_from": "outputs/phase12_v1/judge_base",
+   "repo": null,
+   "revision": null,
+   "temperature": null,
+   "top_p": null,
+   "max_new_tokens": null,
+   "batch_size": null,
+   "logprobs": null,
+   "gpu": null
+  },
+  {
+   "split": "main",
+   "model": "original_solver",
+   "dataset": "svamp12_report",
+   "stage": "judge_base_c",
+   "rows": 1002,
+   "answers_sha256_lf": "1fbac11bfb7794178b51b65ad82d5f29466499c201d33743f9523c5ec7fccd72",
+   "imported_from": null,
+   "repo": "Kxck/Self_Correction_v1",
+   "revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "qwen25_instruct",
+   "dataset": "asdiv",
+   "stage": "judge_base",
+   "rows": 722,
+   "answers_sha256_lf": "2601a77dac5d2ddfa80abaca1a771aa354eb00ad386a058187ad5c06e88cae02",
+   "imported_from": null,
+   "repo": "Qwen/Qwen2.5-7B-Instruct",
+   "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "qwen25_instruct",
+   "dataset": "asdiv",
+   "stage": "judge_base_c",
+   "rows": 722,
+   "answers_sha256_lf": "65408d79f247c4f069906ee88a454b6aeceffb103555a51df3b762a66cb62950",
+   "imported_from": null,
+   "repo": "Qwen/Qwen2.5-7B-Instruct",
+   "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "qwen25_instruct",
+   "dataset": "asdiv",
+   "stage": "samples",
+   "rows": 4110,
+   "answers_sha256_lf": "361ce8e8b41907f2324bac683589cb4206787d7945593b2b5c7e350bc8c54f48",
+   "imported_from": null,
+   "repo": "Qwen/Qwen2.5-7B-Instruct",
+   "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "qwen25_instruct",
+   "dataset": "bridge13",
+   "stage": "judge_base",
+   "rows": 972,
+   "answers_sha256_lf": "36d1ed468cddd43f6f065b5848355919ed4aa0199165d031ef26e99d269e5577",
+   "imported_from": null,
+   "repo": "Qwen/Qwen2.5-7B-Instruct",
+   "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "qwen25_instruct",
+   "dataset": "bridge13",
+   "stage": "judge_base_c",
+   "rows": 972,
+   "answers_sha256_lf": "bdb0f33c19f92e013de8e0ea92279908a4dcb58f6460772a44473ee857520bda",
+   "imported_from": null,
+   "repo": "Qwen/Qwen2.5-7B-Instruct",
+   "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "qwen25_instruct",
+   "dataset": "gsm8k13",
+   "stage": "judge_base",
+   "rows": 676,
+   "answers_sha256_lf": "cec21097cf33f6dbb9d52c897515761e8e8ed2e26cd74e5161d3364c068941ca",
+   "imported_from": null,
+   "repo": "Qwen/Qwen2.5-7B-Instruct",
+   "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "qwen25_instruct",
+   "dataset": "gsm8k13",
+   "stage": "judge_base_c",
+   "rows": 676,
+   "answers_sha256_lf": "137a0ef85e6238fe50873f6d11987af9f3d2bef2c53d910147f3c22210d9f531",
+   "imported_from": null,
+   "repo": "Qwen/Qwen2.5-7B-Instruct",
+   "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "qwen25_instruct",
+   "dataset": "gsm8k13",
+   "stage": "samples",
+   "rows": 2805,
+   "answers_sha256_lf": "7e5458a425e743e46feca2a354dcc5d851c9afd30a0fac461c413af1713e1f9d",
+   "imported_from": null,
+   "repo": "Qwen/Qwen2.5-7B-Instruct",
+   "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "qwen25_instruct",
+   "dataset": "math13",
+   "stage": "judge_base",
+   "rows": 1730,
+   "answers_sha256_lf": "77e774a0042276065d069757675a8230a3a2e43e257e2be364e0652b123def8e",
+   "imported_from": null,
+   "repo": "Qwen/Qwen2.5-7B-Instruct",
+   "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "qwen25_instruct",
+   "dataset": "math13",
+   "stage": "judge_base_c",
+   "rows": 1730,
+   "answers_sha256_lf": "12d2661d21ca80ad58b680e29ae74fe051d5f25e7339e51938edbea5ef49bad0",
+   "imported_from": null,
+   "repo": "Qwen/Qwen2.5-7B-Instruct",
+   "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "qwen25_instruct",
+   "dataset": "math13",
+   "stage": "samples",
+   "rows": 3925,
+   "answers_sha256_lf": "6dc1d4216dc29597d7dfe7ce762195f894712df6e3dc3ff9eb55f676df65cf51",
+   "imported_from": null,
+   "repo": "Qwen/Qwen2.5-7B-Instruct",
+   "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "qwen25_instruct",
+   "dataset": "svamp12",
+   "stage": "judge_base",
+   "rows": 910,
+   "answers_sha256_lf": "57854330660c685fa2300129de1ea2bb801774c620d0504a79dd2b24b922335f",
+   "imported_from": null,
+   "repo": "Qwen/Qwen2.5-7B-Instruct",
+   "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "qwen25_instruct",
+   "dataset": "svamp12",
+   "stage": "judge_base_c",
+   "rows": 910,
+   "answers_sha256_lf": "de96895542c43e1095dc809cdde4f5aef2d73eea3a41370b080c535d2a2e6c81",
+   "imported_from": null,
+   "repo": "Qwen/Qwen2.5-7B-Instruct",
+   "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 256,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "main",
+   "model": "qwen25_instruct",
+   "dataset": "svamp12",
+   "stage": "samples",
+   "rows": 4800,
+   "answers_sha256_lf": "de43065fb33a612c4405da47a9820cd4db52bbfe5096267489488d69bde0a910",
+   "imported_from": null,
+   "repo": "Qwen/Qwen2.5-7B-Instruct",
+   "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 256,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "llama31_8b",
+   "dataset": "asdiv",
+   "stage": "judge_base",
+   "rows": 118,
+   "answers_sha256_lf": "c8825f2b95e270c1c3860b7f916096414a6ad6f1f333192f45cf97e503791643",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 64,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "llama31_8b",
+   "dataset": "asdiv",
+   "stage": "judge_base_c",
+   "rows": 118,
+   "answers_sha256_lf": "485c0167aa49bbcdfd02258180b01255178bda6f1c41c7276009375137a090ae",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 64,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "llama31_8b",
+   "dataset": "asdiv",
+   "stage": "samples",
+   "rows": 500,
+   "answers_sha256_lf": "5054c9d1186031ef5b8008f156eecf61874f142c5c826e6f0c7bb2f1c0d879b0",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 64,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "llama31_8b",
+   "dataset": "math13",
+   "stage": "judge_base",
+   "rows": 244,
+   "answers_sha256_lf": "101afa8d9300178ca6877a8b5ff224ff59d33004656b2f6e5e8a29dd0276f0b7",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 64,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "llama31_8b",
+   "dataset": "math13",
+   "stage": "judge_base_c",
+   "rows": 244,
+   "answers_sha256_lf": "8ca0541acdbf203a69ace0d5635a6be13113d8ff8c888971770795503555b8e6",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 64,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "llama31_8b",
+   "dataset": "math13",
+   "stage": "samples",
+   "rows": 500,
+   "answers_sha256_lf": "5e474ec77f4265d41cd95bbdb2f68d534e1580d73360498c089cfac868a8e15d",
+   "imported_from": null,
+   "repo": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+   "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 64,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "mistral_7b",
+   "dataset": "asdiv",
+   "stage": "judge_base",
+   "rows": 228,
+   "answers_sha256_lf": "67951d55d78f2f6a3af23cf290362b49b97363f28d66afb129670b8584670860",
+   "imported_from": null,
+   "repo": "mistralai/Mistral-7B-Instruct-v0.3",
+   "revision": "c170c708c41dac9275d15a8fff4eca08d52bab71",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 64,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "mistral_7b",
+   "dataset": "asdiv",
+   "stage": "judge_base_c",
+   "rows": 228,
+   "answers_sha256_lf": "d4ead4324de70e6c34221bda3de8fd862eeac1cfac0d5fa2e18629e7627cacc3",
+   "imported_from": null,
+   "repo": "mistralai/Mistral-7B-Instruct-v0.3",
+   "revision": "c170c708c41dac9275d15a8fff4eca08d52bab71",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 64,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "mistral_7b",
+   "dataset": "asdiv",
+   "stage": "samples",
+   "rows": 500,
+   "answers_sha256_lf": "a61377d1fa380b4a528bb594481c8581c64785cf60b4d214a80ac90759d87064",
+   "imported_from": null,
+   "repo": "mistralai/Mistral-7B-Instruct-v0.3",
+   "revision": "c170c708c41dac9275d15a8fff4eca08d52bab71",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 64,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "mistral_7b",
+   "dataset": "math13",
+   "stage": "judge_base",
+   "rows": 350,
+   "answers_sha256_lf": "5039722aeda8be31de282e92f8ac361cde0b02c16f8dbfdcd772fa514db86d5d",
+   "imported_from": null,
+   "repo": "mistralai/Mistral-7B-Instruct-v0.3",
+   "revision": "c170c708c41dac9275d15a8fff4eca08d52bab71",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 64,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "mistral_7b",
+   "dataset": "math13",
+   "stage": "judge_base_c",
+   "rows": 350,
+   "answers_sha256_lf": "70f2624c3550e736063ae683ba48c0be3827680e059482d96e3c171993901c9d",
+   "imported_from": null,
+   "repo": "mistralai/Mistral-7B-Instruct-v0.3",
+   "revision": "c170c708c41dac9275d15a8fff4eca08d52bab71",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 64,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "mistral_7b",
+   "dataset": "math13",
+   "stage": "samples",
+   "rows": 500,
+   "answers_sha256_lf": "a185182e0993cd0c3a0b3b183b4a9d93a882e8e1001f1c6613d31ef758df547c",
+   "imported_from": null,
+   "repo": "mistralai/Mistral-7B-Instruct-v0.3",
+   "revision": "c170c708c41dac9275d15a8fff4eca08d52bab71",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 64,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "original_solver",
+   "dataset": "asdiv",
+   "stage": "judge_base",
+   "rows": 98,
+   "answers_sha256_lf": "ceb46c21e89fc928a5e1791524859f7a4270325e9123842ccff11e321c2e22f4",
+   "imported_from": null,
+   "repo": "Kxck/Self_Correction_v1",
+   "revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 64,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "original_solver",
+   "dataset": "asdiv",
+   "stage": "judge_base_c",
+   "rows": 98,
+   "answers_sha256_lf": "bd15f46d850e4d92e932fdd5408dde15f37a1e0a1cd794fe3a159fe5d0284b96",
+   "imported_from": null,
+   "repo": "Kxck/Self_Correction_v1",
+   "revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 64,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "original_solver",
+   "dataset": "asdiv",
+   "stage": "samples",
+   "rows": 500,
+   "answers_sha256_lf": "88600bcca15c9f3399add4fc0a8b27e04b72d2e8034d31c71727e972dc7de631",
+   "imported_from": null,
+   "repo": "Kxck/Self_Correction_v1",
+   "revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 64,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "original_solver",
+   "dataset": "math13",
+   "stage": "judge_base",
+   "rows": 238,
+   "answers_sha256_lf": "f1c670ac1bbf88d58a2797db70510fe0dc9653749d6928d85ec1cc0502f96e43",
+   "imported_from": null,
+   "repo": "Kxck/Self_Correction_v1",
+   "revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 64,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "original_solver",
+   "dataset": "math13",
+   "stage": "judge_base_c",
+   "rows": 238,
+   "answers_sha256_lf": "03e5da296ac59712eb0874678d903ec96143dc720556452e5d79ccde76129aff",
+   "imported_from": null,
+   "repo": "Kxck/Self_Correction_v1",
+   "revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 64,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "original_solver",
+   "dataset": "math13",
+   "stage": "samples",
+   "rows": 500,
+   "answers_sha256_lf": "8c98b110c48853690ae5d1f8aa82f73659fd8dc7a40b716638d9f6280e8936e3",
+   "imported_from": null,
+   "repo": "Kxck/Self_Correction_v1",
+   "revision": "6437f947999168a0ce2a98a86e4252fc77160a33",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 64,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "qwen25_instruct",
+   "dataset": "asdiv",
+   "stage": "judge_base",
+   "rows": 72,
+   "answers_sha256_lf": "5df6e36b187ad16d098651d14308039bd8adedae5518a5664f1c6e928cfdcb22",
+   "imported_from": null,
+   "repo": "Qwen/Qwen2.5-7B-Instruct",
+   "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 64,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "qwen25_instruct",
+   "dataset": "asdiv",
+   "stage": "judge_base_c",
+   "rows": 72,
+   "answers_sha256_lf": "630ec491852214bf22d2b17db07698aafa569af239f56183ee5cce78510fb4e4",
+   "imported_from": null,
+   "repo": "Qwen/Qwen2.5-7B-Instruct",
+   "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 64,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "qwen25_instruct",
+   "dataset": "asdiv",
+   "stage": "samples",
+   "rows": 500,
+   "answers_sha256_lf": "c3539d3ee3243aba9c53d4737a31a8bcd4081a0ef4b4a8247000da69befee977",
+   "imported_from": null,
+   "repo": "Qwen/Qwen2.5-7B-Instruct",
+   "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 64,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "qwen25_instruct",
+   "dataset": "math13",
+   "stage": "judge_base",
+   "rows": 212,
+   "answers_sha256_lf": "48829181bdac4ae04fed7caabac48c32faf9581188699a01ed8160bb8091c113",
+   "imported_from": null,
+   "repo": "Qwen/Qwen2.5-7B-Instruct",
+   "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 64,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "qwen25_instruct",
+   "dataset": "math13",
+   "stage": "judge_base_c",
+   "rows": 212,
+   "answers_sha256_lf": "ed0a1881c45d39d7bc3911877c7d4fd7c9895a184d43d8c5c618b28fd48446c3",
+   "imported_from": null,
+   "repo": "Qwen/Qwen2.5-7B-Instruct",
+   "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "max_new_tokens": 768,
+   "batch_size": 64,
+   "logprobs": 20,
+   "gpu": "Tesla V100-SXM2-32GB"
+  },
+  {
+   "split": "pilot",
+   "model": "qwen25_instruct",
+   "dataset": "math13",
+   "stage": "samples",
+   "rows": 500,
+   "answers_sha256_lf": "d5d3f98492aa7bec18e5d37e9cf82e5e5b3102691e52381416608e854d709f35",
+   "imported_from": null,
+   "repo": "Qwen/Qwen2.5-7B-Instruct",
+   "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+   "temperature": 0.7,
+   "top_p": 1.0,
+   "max_new_tokens": 1536,
+   "batch_size": 64,
+   "logprobs": null,
+   "gpu": "Tesla V100-SXM2-32GB"
+  }
+ ]
+}
