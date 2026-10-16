@@ -329,3 +329,24 @@ MATH). Raising the cap halves the share of cut judgments (`base` MATH 14.3% → 
 `base` MATH 12.4% → 19.8%, `base_c` MATH 1.4% → 14.7%). By the reading rule written before the run (gap shrink
 < 5 points): **raising the cap does not recover Llama's loss** — consistent with most capped judgments being
 loops (`paper/results/phase14_truncation.md`). The locked claim is unchanged.
+
+2026-10-15, **amendment before the paper analyses (all exploratory, post-hoc; written before running them;
+`paper/PAPER_TODO.md` holds the full definitions).** None of these changes E1/E2 or the locked claim L1–L3.
+(i) *Seven-way classification of every one-right single-order judgment* (16 grid cells + bridge, `base` and
+`base_c`), first match wins: 1 valid choice (project `pick()` gives A/B); 2 format error (rescued reading matches
+exactly one shown solution); 3 cut while looping (`hit_token_cap`, truncation label b); 4 cut otherwise (capped,
+label a/c/d); 5 re-solved (not capped, truncation label d); 6 other third answer (not capped, a number that
+matches neither); 7 no answer (not capped, no number by either reading). The two report-regression cells have no
+cap flag and get only classes 1, 2, 5–7.
+(ii) *Rescued audit:* 50 class-2 judgments per model (seed 20261015, spread over datasets) are read and marked
+"the rescued number is the solution the judge meant" or not. Thresholds: misreading < 5% → rescued is the main
+sensitivity reading; 5–15% → reported with a warning; > 15% → appendix only. The audit is done by the analysis
+assistant (Claude), not by an independent human rater; this is stated in the paper.
+(iii) *Decomposition sensitivity:* lower bound of the loss due to invalid choices = π·0.5, upper bound = π·acc_AB;
+the Shapley value must lie between them. Probit link instead of logit; criterion: the bias share stays ≤ 3 points
+in every cell. Model-free identity single-order = (1 − π)·acc_AB, and π_A − π_B with a bootstrap CI.
+(iv) *Out-of-sample F2:* answer-site pointwise probe trained on X, layer by 5-fold grouped CV on X, tested on Y;
+probability-weighted vote over s1–s3 vs vote@3; "confirmed out of sample for a model" if the paired CI is above 0
+in ≥ 2 of 3 train/test pairs (ASDiv→MATH, MATH→ASDiv, SVAMP→GSM8K).
+(v) Practical table: calls = 2 + 2·P(s1 ≠ s2) for judge-or-random, plus P(disagree and inconsistent) for
+self-check; paired bootstrap against vote@3 and vote@5.

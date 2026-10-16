@@ -2,7 +2,7 @@
 
 **Mô tả, chưa phải kết quả cuối.** 20 ô (4 mô hình × 4 dataset + bridge + 2 bộ hồi quy) đã đồng bộ về local,
 trừ bridge của Qwen-Instruct (đang chạy). Số được tính tại local bằng đúng `phase14/scripts/metrics.cell`
-(như `analyze.py`), file riêng [`results/phase14_preliminary.md`](results/phase14_preliminary.md); ô endpoint
+(như `analyze.py`), file riêng [`results/phase14_preliminary.md`](../../results/phase14_preliminary.md); ô endpoint
 lấy nguyên từ báo cáo đã mở lúc 03:55 UTC 13/10. Không ô nào thay đổi E1/E2. Mọi đánh giá dưới đây theo
 **quy tắc diễn giải ghi trước** trong `phase14/RUN_STATUS.md` (claim khóa L1–L3). Parser chuẩn (`lenient`),
 judge `base` trừ khi ghi khác; [a; b] = KTC 95% bootstrap theo bài.

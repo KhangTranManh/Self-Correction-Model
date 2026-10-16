@@ -38,8 +38,8 @@ Hệ quả cho tiêu đề "Position bias che khuất khả năng tự phân x�
 | Phần cứng | Phase 9–13 V100; kiểm tra paper RTX 3090; Phase 14 V100 32 GB, FP16, vLLM 0.7.0 + Transformers (hidden state) |
 | Thống kê | bootstrap theo bài 10.000 lần; Holm khi so nhiều cặp; endpoint đăng ký trước, mở một lần |
 
-Định nghĩa thước đo: [`REPORT_SPEC.md`](REPORT_SPEC.md) mục 3; vị trí và lược đồ dữ liệu:
-[`../phase14/DATA_CATALOG.md`](../phase14/DATA_CATALOG.md).
+Định nghĩa thước đo: [`REPORT_SPEC.md`](../../REPORT_SPEC.md) mục 3; vị trí và lược đồ dữ liệu:
+[`../../../phase14/DATA_CATALOG.md`](../../../phase14/DATA_CATALOG.md).
 
 ## 2. Toàn vẹn và tái lập
 
@@ -68,7 +68,7 @@ Hệ quả cho tiêu đề "Position bias che khuất khả năng tự phân x�
 | C5 logit lens | verdict giải mã được từ ~layer 22; probe đã đọc được từ layer 16–21 |
 | F2 / F2b (khám phá) | probe pointwise AUC 0,84 (bề mặt pointwise 0,72); vote@5 có trọng số probe 79,3% (+1,8 [+0,2; +3,4]) |
 | D1–D3 nguồn bias | Instruct gốc không lệch vị trí trên cặp của Self_Correction (D1, Holm 0,016); thiên lệch theo vị trí, không theo nhãn (D2); nhắc lại đề không đổi đáng kể (D3) |
-| D1b | dữ liệu SFT có tiên nghiệm "câu sau là đúng" 631/631 — **phù hợp với**, không chứng minh, thiên lệch vị trí 2 của Self_Correction (file train 513 dòng chưa xác nhận) |
+| D1b | dữ liệu SFT có tiên nghiệm "câu sau là đúng" 513/513 (file train đối chiếu 2026-10-16) — **phù hợp với**, không chứng minh, thiên lệch vị trí 2 của Self_Correction (file train 513 dòng chưa xác nhận) |
 | T1–T6 | Instruct tự chấm bài mình: tie-break 0,63–0,66, nghiêng vị trí 1 (63–65%); không mô hình nào lệch vị trí trên bài của mô hình kia; "chấm bài người khác dễ hơn" chỉ đúng một chiều |
 | E1 bốn ứng viên | nghiêng vị trí đầu (36%), mỗi lần chấm ngang ngẫu nhiên |
 
@@ -232,18 +232,17 @@ kế cùng tập cặp.
 
 - Dữ liệu sinh ra: `outputs/phase14_remote/outputs/phase14_v1/` (đồng bộ có kiểm tra SHA-256); hidden state:
   `F:\AGI_data\phase14_hidden` (57 file, 19,4 GB; `D:\AGI\outputs\phase14_hidden` là junction).
-- Danh mục, lược đồ, SHA-256: [`../phase14/DATA_CATALOG.md`](../phase14/DATA_CATALOG.md),
-  [`../phase14/DATA_MANIFEST.json`](../phase14/DATA_MANIFEST.json).
+- Danh mục, lược đồ, SHA-256: [`../../../phase14/DATA_CATALOG.md`](../../../phase14/DATA_CATALOG.md),
+  [`../../../phase14/DATA_MANIFEST.json`](../../../phase14/DATA_MANIFEST.json).
 - Nạp mọi thứ: `paper/scripts/phase14_data.py`. Tính lại: `phase14_decomposition.py`, `phase14_truncation.py`,
   `phase14_preliminary.py`, `phase14_probe_local.py`, `phase14_catalog.py`.
-- Nhật ký và sửa đổi: [`../phase14/RUN_STATUS.md`](../phase14/RUN_STATUS.md); trạng thái cuối:
-  [`../phase14/FINAL_STATUS.md`](../phase14/FINAL_STATUS.md).
+- Nhật ký và sửa đổi: [`../../../phase14/RUN_STATUS.md`](../../../phase14/RUN_STATUS.md); trạng thái cuối:
+  [`../../../phase14/FINAL_STATUS.md`](../../../phase14/FINAL_STATUS.md).
 
 ## 14. Việc còn mở
 
-- Chuyển các số ở đây vào [`PHASE14_REPORT.md`](PHASE14_REPORT.md), [`REPORT_SPEC.md`](REPORT_SPEC.md),
-  [`CHECKLIST_RESULTS.md`](CHECKLIST_RESULTS.md) (các file đó còn mang số tạm của từng giai đoạn).
+- Chuyển các số ở đây vào [`PHASE14_REPORT.md`](PHASE14_REPORT.md), [`REPORT_SPEC.md`](../../REPORT_SPEC.md),
+  [`CHECKLIST_RESULTS.md`](../../CHECKLIST_RESULTS.md) (các file đó còn mang số tạm của từng giai đoạn).
 - Quyết định tiêu đề và cách viết câu hỏi mở mẹ–con; nếu muốn trả lời: cho cả hai mô hình chấm cùng một tập cặp.
-- File 513 dòng train của Self_Correction_v1 (D1b).
 - Xác nhận F2 (probe-weighted vote) trên tập mới.
 - Viết báo cáo theo bản mẫu .docx; commit `phase14/` và `paper/`.

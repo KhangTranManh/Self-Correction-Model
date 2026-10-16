@@ -249,7 +249,7 @@ dùng rescued vì nhiều cặp "bất đồng" của Instruct chỉ khác cách
 - Các ô còn lại của lưới (Self_Correction và Qwen-Instruct ở cả 4 dataset; Llama và Mistral ở GSM8K,
   SVAMP) đến từ lần chạy hoàn thiện, được ghi là **mô tả**, không thay đổi E1/E2. **Claim đã khóa
   (L1–L3) và bảng quy tắc diễn giải từng tình huống** ghi trong `phase14/RUN_STATUS.md` trước khi
-  chấm các ô mới; tóm tắt ở [`PHASE14_REPORT.md`](PHASE14_REPORT.md) mục 5.
+  chấm các ô mới; tóm tắt ở [`PHASE14_REPORT.md`](summary/sources/PHASE14_REPORT.md) mục 5.
 - **Coverage của E2:** mọi lần thiếu log-prob là lần không ghi dòng "Verdict: Solution" (Llama chủ yếu
   do chạm trần 768: 740/840 ở MATH; Mistral do không theo định dạng). Vị trí `verdict` không lấp được;
   thước đo phủ 100% là vị trí `direct` (cột "verdict ép ngay" ở Bảng 3), cho cùng kết luận.

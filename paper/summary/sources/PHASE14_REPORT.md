@@ -2,7 +2,7 @@
 
 Kết quả endpoint đã mở một lần và đã khóa. Các ô còn lại của lưới 4 × 4 đang chạy (lần chạy hoàn
 thiện) và sẽ được điền vào mục 6 theo đúng quy tắc ở mục 5. Nhật ký đầy đủ và mọi sửa đổi:
-[`phase14/RUN_STATUS.md`](../phase14/RUN_STATUS.md). Định nghĩa thước đo: [`REPORT_SPEC.md`](REPORT_SPEC.md).
+[`phase14/RUN_STATUS.md`](../../../phase14/RUN_STATUS.md). Định nghĩa thước đo: [`REPORT_SPEC.md`](../../REPORT_SPEC.md).
 
 ## 1. Câu hỏi và thiết kế
 

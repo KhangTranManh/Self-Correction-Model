@@ -21,7 +21,7 @@ Mọi stage chạy lại được từ audit log trên một host mới (`phase1
 
 ## Tóm tắt kết quả
 
-Bản tổng kết đầy đủ (mọi số cuối, 4 mô hình, claim được / không được viết): [`../paper/FINAL_SUMMARY.md`](../paper/FINAL_SUMMARY.md).
+Bản tổng kết đầy đủ (mọi số cuối, 4 mô hình, claim được / không được viết): [`FINAL_SUMMARY.md`](FINAL_SUMMARY.md).
 
 ### Tóm tắt nhanh
 

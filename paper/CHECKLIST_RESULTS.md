@@ -291,19 +291,16 @@ layers 16–21, several layers before it becomes decodable as the verdict token
 the first answer is verifier-wrong ("SAI") and the later answer (the
 correction) is the right one. The data carry a perfect "later = right" prior,
 which is **consistent with** H1; it does not show that the prior caused the bias.
-*Provenance (checked 2026-10-09).* The 631-row file is **not** the exact
-training set. `phase1/instructionAI/results.md` (run of 2026-09-02, the canonical
-record) states that `Kxck/Self_Correction_v1` = Qwen2.5-7B-Instruct + Unsloth
-QLoRA (r32, α64, 3 epochs) on **513 objectively verified correction rows**,
-merged to BF16 (`phase1/src/pipeline/export_merged_for_vllm.py`; the HF model
-card says only "verified math and code correction examples"). The 513-row file
-itself is not in the repo. What is confirmed is the **row format by
-construction**: every row is a failed attempt plus verifier feedback (context)
-followed by the verified correction (the only tokens with loss), so the
-"later = right" prior holds for the training set by design, whatever the exact
-513 rows. The 631/631 count is on a superset-era backup with the same format.
-Wording stays "consistent with"; to cite an exact count, recover the 513-row
-file from the training host or HF dataset.
+*Exact training file (checked 2026-10-16).* The 513-row training file is in the repo:
+`data/processed/phase1_sft_train.jsonl` (config `phase1.yaml`: the training copy of `phase1_sft.jsonl`, with the long
+`<thinking>` trace removed and the critique + verified corrected solution kept; `phase1_sft.jsonl` has the same 513
+problem ids). Counts on the 513 rows (147 GSM8K, 366 MBPP): every row has the message order
+system, user, assistant (first attempt), tool, assistant (correction) = 513/513; the tool message reports
+"Kết quả kiểm tra: SAI" (verifier says the first attempt is wrong) = 513/513. For the 78 GSM8K rows whose tool message
+states the gold answer, the correction contains that answer in its last 400 characters = 78/78 (MBPP and the other
+GSM8K rows were not re-verified). So the "later answer is right, first is wrong" prior holds for the training
+set itself, by construction and by this count. The earlier 631/631 count was on a superset-era backup and is superseded.
+Wording stays "consistent with": a prior in the data does not show that it caused the bias.
 
 ### D0 ✅ 3090 control
 
