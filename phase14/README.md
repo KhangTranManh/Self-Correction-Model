@@ -1,5 +1,9 @@
 # Phase 14 — does the judgment generalize to other model families?
 
+**Paper from this phase:** *Why Self-Arbitration Looks Like Guessing: A Diagnostic Study of Small Language
+Models*, [doi:10.5281/zenodo.23541462](https://doi.org/10.5281/zenodo.23541462)
+([Zenodo record](https://zenodo.org/records/23541462)).
+
 **Status: closed (2026-10-14); paper analyses finished 2026-10-16.** The endpoints were opened once on 2026-10-13:
 Llama-3.1-8B-Instruct (Meta weights via the NousResearch copy, Meta tokenizer) and Mistral-7B-Instruct-v0.3 on ASDiv
 (822) and MATH 1–3 (785). **E1 (skill index) 4/4 cells → general; E2 (log-prob debiasing gain) 1/4 → conditional.**

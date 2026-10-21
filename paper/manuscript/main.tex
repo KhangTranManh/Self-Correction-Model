@@ -23,7 +23,9 @@ accuracy points (at most 1.9 under a probit link); most of the gap comes from th
 choice between the two solutions --- writing its choice in an unreadable format, giving a third answer, or
 being cut off at the token limit while looping. Only 51--90\% of single-order judgments are valid choices. Part of this is an
 answer-format artefact: re-reading the judge's final line raises the untrained Qwen2.5-7B-Instruct from
-45--64\% to 72--88\%. Averaging verdict probabilities over both orders, the debiasing method of
+45--64\% to 72--88\%. For Qwen the split between position bias and invalid choices is not clean: it fails to
+choose more often when the correct solution is shown second, so part of its position preference appears as
+invalid choices. Averaging verdict probabilities over both orders, the debiasing method of
 \citet{ren2023selfeval}, adds little (1/4 preregistered cells reach $\geq$3 points). Hidden states carry a
 right/wrong signal in all four models, but beat simple surface features consistently only for the
 self-correction model. At the system level, using the judge's verdict loses to majority voting over three
@@ -289,6 +291,12 @@ analysis exactly from the saved outputs, and a fresh sample reproduces it within
 little accuracy because a moderate symmetric bias reduces accuracy only to second order. The large cost is the
 judge failing to commit to one of the two solutions. For instruction models this is partly a reading problem
 (answers written as sentences); for the others it is invented third answers or loops cut by the token limit.
+\paragraph{A weak point: Qwen.} The decomposition assumes that how often a judge fails to choose does not
+depend on where the correct solution is shown. This holds in 15 of 21 cells but not for Qwen: its invalid
+share is 7--18 points higher when the correct solution is second (CIs excluding 0 in all 5 Qwen cells, and
+in Llama MATH). For these cells part of the position preference is expressed as a failure to choose rather
+than a wrong choice, so the bias share in Table~\ref{tab:decomp} is a lower bound and the invalid-choice
+share an upper bound. The conclusion that bias costs little is weakest for Qwen.
 \paragraph{Parent vs fine-tuned model (open question).} The untrained parent has a 2--3$\times$ larger skill
 index than the self-correction model on all four datasets, and the gap widens under the rescued reading. Each
 model judges its own pairs, which differ in difficulty, so we do not claim that self-correction SFT reduces
@@ -385,9 +393,10 @@ datasets) and Self\_Correction (73--100\% in the pilot). Mistral and Qwen also r
 to 1536 tokens lowers the capped share (18.1\% $\to$ 12.8\% on ASDiv, 31.9\% $\to$ 15.8\% on MATH), but 74--76\%
 of the outputs still capped are loops, and the single-order gap does not shrink (Section~\ref{sec:decomp}). Full tables:
 \texttt{paper/results/phase14\_truncation.md}.
-\section{Tie-break identity and four candidates}\label{app:identity}Per pair, tie-break minus mean
-single-order accuracy equals $\tfrac12\,\mathbb{1}[\text{no order picks the right solution and one order
-invents}]$; a judge with pure position bias and no invented answers gets 0.
+\section{Tie-break identity}\label{app:identity}Per pair, tie-break minus mean
+single-order accuracy equals
+\[\tfrac12\,\mathbf{1}\bigl[\text{no order picks the right solution and one order gives a third answer}\bigr];\]
+a judge with pure position bias and no invalid choices gets 0.
 \section{Prompts, hyperparameters, code and hashes}See \texttt{phase14/DATA\_CATALOG.md} and
 \texttt{phase14/DATA\_MANIFEST.json}.
 

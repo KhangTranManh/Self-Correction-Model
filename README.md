@@ -6,9 +6,16 @@ verifier (SymPy for math, test execution for code); an LLM is never the correctn
 
 ## Main result: the paper (Phases 9–14)
 
-**Draft:** *Why Self-Arbitration Looks Like Guessing: A Diagnostic Study of Small Language Models*
-([paper/manuscript/main.tex](paper/manuscript/main.tex); arXiv package in `paper/arxiv/`; remaining author tasks in
-[paper/PAPER_TODO.md](paper/PAPER_TODO.md); all numbers in [paper/summary/SUMMARY_ALL.md](paper/summary/SUMMARY_ALL.md)).
+**Published preprint (Phase 14):** Manh Khang Tran, *Why Self-Arbitration Looks Like Guessing: A Diagnostic Study
+of Small Language Models*, Zenodo, 2026. [doi:10.5281/zenodo.23541462](https://doi.org/10.5281/zenodo.23541462) ·
+[Zenodo record](https://zenodo.org/records/23541462)
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23541462.svg)](https://doi.org/10.5281/zenodo.23541462)
+
+LaTeX source of the Zenodo version: [paper/zenodo/main.tex](paper/zenodo/main.tex) (PDF:
+[paper/Self_Arbitration_Zenodo.pdf](paper/Self_Arbitration_Zenodo.pdf)); working draft [paper/manuscript/main.tex](paper/manuscript/main.tex);
+arXiv package in `paper/arxiv/`; remaining author tasks in [paper/PAPER_TODO.md](paper/PAPER_TODO.md); all numbers in
+[paper/summary/SUMMARY_ALL.md](paper/summary/SUMMARY_ALL.md).
 
 A 7B model solves a problem twice, gets two different answers, and is asked which of its own solutions is right.
 Four models (Llama-3.1-8B, Mistral-7B, Self_Correction_v1, Qwen2.5-7B-Instruct) × four datasets (ASDiv, MATH
@@ -40,7 +47,7 @@ fine-tune, but each model judged its own pairs. The fine-tune's SFT data carry a
 | 11 | Does DPO on correct vs incorrect judgments teach it? | Likelihood moves (67%), choices do not (+2.8, n.s.); strong order bias |
 | 12 | Does judging both orders reveal a skill? (SVAMP) | **Yes, preregistered:** consistent verdicts 74.9% right after order-swapped DPO (68.7% untrained); self-check non-inferior to vote@3; vote@5 still best |
 | 13 | Does it transfer to GSM8K, and can invented answers be removed? | Transfers (79.3% consistent); forced verdict cuts invented answers to 2.1%; no judge strategy beats vote@5; the answer is readable in hidden states (~70%) and DPO does not change that |
-| 14 | Is the skill general across model families and datasets? | **E1 4/4 (general), E2 1/4 (conditional)**; full 4 × 4 grid, bridge, regression and probes; paper analyses above |
+| 14 | Is the skill general across model families and datasets? | **E1 4/4 (general), E2 1/4 (conditional)**; full 4 × 4 grid, bridge, regression and probes. **Produced the paper** ([doi:10.5281/zenodo.23541462](https://doi.org/10.5281/zenodo.23541462)) |
 
 Reports: [Phase 9](phase9/docs/FINAL_REPORT.md), [10](phase10/docs/FINAL_REPORT.md),
 [11](phase11/docs/FINAL_REPORT.md), [12](phase12/docs/FINAL_REPORT.md), [13](phase13/docs/FINAL_REPORT.md),
