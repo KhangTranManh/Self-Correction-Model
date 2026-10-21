@@ -35,6 +35,7 @@ Ký hiệu: `[x]` xong · `[ ]` cần làm · `(tùy chọn)` làm nếu còn th
 | 05:41 | Mục 6, 8 xong (bản thảo đủ số, phụ lục A–F, README). Mục 7: tầng claim đã áp dụng; tiêu đề/SFT để R2–R3. Thêm R9 (biên dịch PDF). Còn: mục 4 (F2 đang chạy). |
 | 06:12 | Mục 4 (F2) xong: xác nhận ngoài mẫu cho Llama và Mistral, không cho Self_Correction và Qwen; đã viết vào bản thảo. **Mọi mục không cần bạn đã xong**; còn lại R1–R9. |
 | 2026-10-16 | R1 (bản trợ lý) và R5 (513/513) xong. Gộp tổng kết: `paper/summary/SUMMARY_ALL.md`; 4 file gốc chuyển vào `paper/summary/sources/` (FINAL_SUMMARY, PHASE14_PRELIMINARY, PHASE14_REPORT, FINAL_STATUS); đường dẫn đã sửa. |
+| 2026-10-17 | Cập nhật tài liệu trước khi đẩy GitHub: `README.md` gốc (trạng thái, bảng Phase 14, bố cục repo), `phase14/README.md`, `paper/README.md` (gói arXiv). Gói nộp: `paper/arxiv/` + `paper/arxiv_submission.zip`. |
 
 Mỗi mục có: **Định nghĩa** (làm chính xác cái gì), **Đầu vào** (file đã có), **Đầu ra** (file sẽ ghi), và
 **Ghi chú** (khác với kế hoạch ban đầu, hoặc phần đã có sẵn). Số liệu tham chiếu: [`summary/SUMMARY_ALL.md`](summary/SUMMARY_ALL.md).

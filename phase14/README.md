@@ -1,12 +1,15 @@
 # Phase 14 — does the judgment generalize to other model families?
 
-**Status: main run closed (2026-10-13).** Run on a V100 32 GB in one 10 h rental, cut by
-recorded amendments to the endpoint cells: Llama-3.1-8B-Instruct (Meta weights via the
-NousResearch copy, Meta tokenizer) and Mistral-7B-Instruct-v0.3 on ASDiv (822) and MATH
-1–3 (785). **E1 (skill index) 4/4 cells → general; E2 (log-prob debiasing gain) 1/4 →
-conditional.** Exploratory probes for both models. Not run: GSM8K/SVAMP cells, the anchors'
-fresh cells, the bridge set. Full record and every amendment: [RUN_STATUS.md](RUN_STATUS.md);
-mirrored outputs: `outputs/phase14_remote/`.
+**Status: closed (2026-10-14); paper analyses finished 2026-10-16.** The endpoints were opened once on 2026-10-13:
+Llama-3.1-8B-Instruct (Meta weights via the NousResearch copy, Meta tokenizer) and Mistral-7B-Instruct-v0.3 on ASDiv
+(822) and MATH 1–3 (785). **E1 (skill index) 4/4 cells → general; E2 (log-prob debiasing gain) 1/4 → conditional.**
+The completion run then filled the rest of the 4 × 4 grid (Self_Correction and Qwen2.5-7B-Instruct on all four
+datasets, Llama and Mistral on GSM8K and SVAMP), the bridge set (each model re-judges the 288 Phase 13 pairs), the
+regression cells, hidden states for probes on all models, and a 1536-token sensitivity run for Llama. Full record
+and every amendment, including the 2026-10-15 amendment written before the paper analyses:
+[RUN_STATUS.md](RUN_STATUS.md); mirrored outputs: `outputs/phase14_remote/`; hidden states: `F:\AGI_data\phase14_hidden`
+(junction `outputs/phase14_hidden`). Consolidated results and claims: [../paper/summary/SUMMARY_ALL.md](../paper/summary/SUMMARY_ALL.md); the
+final pipeline status written on 2026-10-14 is archived in [../paper/summary/sources/FINAL_STATUS.md](../paper/summary/sources/FINAL_STATUS.md).
 
 ## Question
 
@@ -20,6 +23,35 @@ run alongside as anchors, every model also solves and judges the Phase 13
 GSM8K and Phase 12 SVAMP holdouts, every model re-judges the Phase 13 pairs,
 and hidden states are read with Transformers for layer-wise probes and the
 logit lens.
+
+## Results
+
+Endpoints (opened once on 2026-10-13; problem-clustered bootstrap, 10,000 resamples):
+
+| Cell | E1 skill index [95% CI] | E2 log-prob order-averaging gain [95% CI] |
+|---|---|---|
+| Llama · ASDiv | **+0.321 [0.230, 0.413]** | +0.6 [−3.7, +4.8] |
+| Llama · MATH 1–3 | **+0.362 [0.291, 0.428]** | **+5.0 [+0.9, +9.3]** |
+| Mistral · ASDiv | **+0.335 [0.269, 0.400]** | +0.7 [−2.3, +3.6] |
+| Mistral · MATH 1–3 | **+0.344 [0.261, 0.431]** | +3.3 [−0.7, +7.3] |
+
+**E1 4/4 → general. E2 1/4 → conditional.** Descriptive grid (16 cells): skill index above 0 in every cell;
+single-order accuracy 45–64%; Self_Correction prefers the second position (52–56%), the other models the first.
+
+Paper analyses (exploratory, rules written in `RUN_STATUS.md` on 2026-10-15 before running):
+
+| Analysis | Result | File |
+|---|---|---|
+| Seven-way outcome of each judgment | valid choice in 51–90% (`base`), 79–99% (`base_c`) | `paper/results/phase14_invalid_types.md` |
+| Four-factor split of the single-order gap | gap 6.4–43.3 points: bias 0–2.5, format 0.2–22.8, cut 0.5–13.9, no choice 2.6–16.4 | `paper/results/phase14_decomp4.md` |
+| Rescued reading | Qwen 45–64% → 72–88% single-order; assistant audit: 2.2% clear misreadings | `paper/results/phase14_rescued_picks.md`, `phase14_rescued_audit.md` |
+| Practical value | judge loses to vote@3 in 15/16 cells; vote@5 best everywhere | `paper/results/phase14_practical.md` |
+| Probe-weighted vote@3 out of sample | confirmed for Llama and Mistral, not Self_Correction or Qwen | `paper/results/phase14_f2_oos.md` |
+| Token cap 1536 (Llama) | gap unchanged; capped judgments are mostly loops | `paper/results/phase14_truncation.md` |
+| Counts per cell | 21 cells | `paper/results/phase14_counts.md` |
+
+Consolidated numbers and claim wording: [../paper/summary/SUMMARY_ALL.md](../paper/summary/SUMMARY_ALL.md); paper
+draft: [../paper/manuscript/main.tex](../paper/manuscript/main.tex).
 
 ## Layout
 

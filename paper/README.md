@@ -46,3 +46,9 @@ $PY paper/scripts/phase14_f2_oos.py           # -> results/phase14_f2_oos.{json,
 
 Compile the manuscript from `paper/manuscript/` with `pdflatex main && bibtex main && pdflatex main && pdflatex main`
 (no LaTeX installation was available on the analysis machine, so the source has not been compiled yet).
+
+## arXiv package
+
+`paper/arxiv/` is a flat copy of the manuscript for submission (figure paths changed from `../figures/` to `figures/`;
+only `main.tex`, `refs.bib`, `tables/*.tex` and the two PDF figures) and `paper/arxiv_submission.zip` is the same folder zipped.
+Regenerate the tables and figures first (commands above), then copy; fill the `\authorinfo{}` fields in `main.tex` before submitting.
