@@ -1,0 +1,16 @@
+{
+  "id": "khangkxcp/phase-15-s-format-continuation-v1",
+  "title": "Phase 15 S-format Continuation v1",
+  "code_file": "phase15_kaggle_pilot_a2_standalone.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "keywords": ["phase15", "pilot", "continuation", "qlora"],
+  "dataset_sources": [],
+  "kernel_sources": [],
+  "competition_sources": [],
+  "model_sources": []
+}

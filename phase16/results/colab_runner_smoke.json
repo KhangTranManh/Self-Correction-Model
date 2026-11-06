@@ -1,0 +1,199 @@
+{
+  "schema_version": "phase16_colab_runner_smoke_v1",
+  "purpose": "trusted_fixture_mechanics_only",
+  "model_generation": false,
+  "tasks_sha256": "cabac7e679b2de020e9de2cefa9c8d01d0f4b3c4f6f364600508aaafb7154cde",
+  "scorer_sha256": "4cabc19a099497ca5b9d5f388fb3d8f7be6102c71cbd82aaa6f9f5e86cf52b21",
+  "runner_sha256": "7cbb623ccbf33dae23a4c6d7fa0f3b59168b5f304ae198aa813608daf0d282a5",
+  "tasks": [
+    {
+      "task_id": "eng_count_integers",
+      "correct": {
+        "task_id": "eng_count_integers",
+        "variant": "count",
+        "full_correct": true,
+        "label": "correct",
+        "signature_pairs": 0,
+        "passed_cases": 10,
+        "total_cases": 10
+      },
+      "exclusive_upper": {
+        "task_id": "eng_count_integers",
+        "variant": "count",
+        "full_correct": false,
+        "label": "upper_boundary_signature",
+        "signature_pairs": 2,
+        "passed_cases": 6,
+        "total_cases": 10
+      }
+    },
+    {
+      "task_id": "eng_count_scores",
+      "correct": {
+        "task_id": "eng_count_scores",
+        "variant": "count",
+        "full_correct": true,
+        "label": "correct",
+        "signature_pairs": 0,
+        "passed_cases": 10,
+        "total_cases": 10
+      },
+      "exclusive_upper": {
+        "task_id": "eng_count_scores",
+        "variant": "count",
+        "full_correct": false,
+        "label": "upper_boundary_signature",
+        "signature_pairs": 2,
+        "passed_cases": 6,
+        "total_cases": 10
+      }
+    },
+    {
+      "task_id": "eng_count_events",
+      "correct": {
+        "task_id": "eng_count_events",
+        "variant": "count",
+        "full_correct": true,
+        "label": "correct",
+        "signature_pairs": 0,
+        "passed_cases": 10,
+        "total_cases": 10
+      },
+      "exclusive_upper": {
+        "task_id": "eng_count_events",
+        "variant": "count",
+        "full_correct": false,
+        "label": "upper_boundary_signature",
+        "signature_pairs": 2,
+        "passed_cases": 6,
+        "total_cases": 10
+      }
+    },
+    {
+      "task_id": "eng_sum_payments",
+      "correct": {
+        "task_id": "eng_sum_payments",
+        "variant": "sum",
+        "full_correct": true,
+        "label": "correct",
+        "signature_pairs": 0,
+        "passed_cases": 10,
+        "total_cases": 10
+      },
+      "exclusive_upper": {
+        "task_id": "eng_sum_payments",
+        "variant": "sum",
+        "full_correct": false,
+        "label": "upper_boundary_signature",
+        "signature_pairs": 2,
+        "passed_cases": 6,
+        "total_cases": 10
+      }
+    },
+    {
+      "task_id": "eng_sum_readings",
+      "correct": {
+        "task_id": "eng_sum_readings",
+        "variant": "sum",
+        "full_correct": true,
+        "label": "correct",
+        "signature_pairs": 0,
+        "passed_cases": 10,
+        "total_cases": 10
+      },
+      "exclusive_upper": {
+        "task_id": "eng_sum_readings",
+        "variant": "sum",
+        "full_correct": false,
+        "label": "upper_boundary_signature",
+        "signature_pairs": 2,
+        "passed_cases": 6,
+        "total_cases": 10
+      }
+    },
+    {
+      "task_id": "eng_sum_weights",
+      "correct": {
+        "task_id": "eng_sum_weights",
+        "variant": "sum",
+        "full_correct": true,
+        "label": "correct",
+        "signature_pairs": 0,
+        "passed_cases": 10,
+        "total_cases": 10
+      },
+      "exclusive_upper": {
+        "task_id": "eng_sum_weights",
+        "variant": "sum",
+        "full_correct": false,
+        "label": "upper_boundary_signature",
+        "signature_pairs": 2,
+        "passed_cases": 6,
+        "total_cases": 10
+      }
+    },
+    {
+      "task_id": "eng_select_names",
+      "correct": {
+        "task_id": "eng_select_names",
+        "variant": "select",
+        "full_correct": true,
+        "label": "correct",
+        "signature_pairs": 0,
+        "passed_cases": 10,
+        "total_cases": 10
+      },
+      "exclusive_upper": {
+        "task_id": "eng_select_names",
+        "variant": "select",
+        "full_correct": false,
+        "label": "upper_boundary_signature",
+        "signature_pairs": 2,
+        "passed_cases": 6,
+        "total_cases": 10
+      }
+    },
+    {
+      "task_id": "eng_select_labels",
+      "correct": {
+        "task_id": "eng_select_labels",
+        "variant": "select",
+        "full_correct": true,
+        "label": "correct",
+        "signature_pairs": 0,
+        "passed_cases": 10,
+        "total_cases": 10
+      },
+      "exclusive_upper": {
+        "task_id": "eng_select_labels",
+        "variant": "select",
+        "full_correct": false,
+        "label": "upper_boundary_signature",
+        "signature_pairs": 2,
+        "passed_cases": 6,
+        "total_cases": 10
+      }
+    },
+    {
+      "task_id": "eng_select_ids",
+      "correct": {
+        "task_id": "eng_select_ids",
+        "variant": "select",
+        "full_correct": true,
+        "label": "correct",
+        "signature_pairs": 0,
+        "passed_cases": 10,
+        "total_cases": 10
+      },
+      "exclusive_upper": {
+        "task_id": "eng_select_ids",
+        "variant": "select",
+        "full_correct": false,
+        "label": "upper_boundary_signature",
+        "signature_pairs": 2,
+        "passed_cases": 6,
+        "total_cases": 10
+      }
+    }
+  ]
+}

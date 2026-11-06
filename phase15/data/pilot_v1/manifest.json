@@ -1,0 +1,19 @@
+{
+  "amendment": "P15-A1",
+  "seed": "phase15_pilot_v1|20261027",
+  "eligible": 2900,
+  "exact_overlap_removed": 0,
+  "rejected": {
+    "prior_source": 0,
+    "non_constant_answer": 604,
+    "reference_failed_verifier": 0,
+    "level_4_or_5": 3996
+  },
+  "screen_rows": 100,
+  "reserve_rows": 300,
+  "unallocated_rows": 2500,
+  "evaluation_split_opened": false,
+  "files_scanned": 377,
+  "screen_sha256": "d3556f2b780566912ad7409ebe1c1e385f15631d912d21a4984a23b6d645608b",
+  "reserve_sha256": "2870b489fa7dc0e172b2ed5ec16ceabefeb8abf2a5ba7e2898b02c08060ff7ee"
+}

@@ -1,0 +1,376 @@
+{
+  "schema_version": "p16_kodcode_family_contract_review_v1",
+  "family_manifest_sha256": "2ba149755b51df844b54910fd4c2f91ee1d2683e04e74a8b3b63c42265e10ac5",
+  "shortlist_sha256": "476500cf4768723b41138d131724628055673fb21f554702cafb556badd4c158",
+  "frozen_batch_rule": "first 20 families in review_order",
+  "counts": {
+    "reviewed": 20,
+    "applicable_candidate": 6,
+    "near_negative_candidate": 1,
+    "reject": 13,
+    "fully_certified": 0
+  },
+  "rows": [
+    {
+      "review_index": 0,
+      "family_id": "kc_2c3fb3a26c845690b192",
+      "subset": "Taco",
+      "seed_ids": [
+        "22932"
+      ],
+      "representative_id": "Taco_4674_C",
+      "question_sha256": "b89738b627e81a441e54403c8176195c2a3e0c1120023ee970dbd6a469fc2369",
+      "contract_decision": "applicable_candidate",
+      "variant": "select",
+      "universe_mode": "implicit_integer_range",
+      "reason": "explicit inclusive bounds and returns all integers satisfying a defined predicate",
+      "oracle_status": "pending",
+      "history_status": "pending",
+      "near_duplicate_status": "pending",
+      "sandbox_status": "pending"
+    },
+    {
+      "review_index": 1,
+      "family_id": "kc_4171df85676ca489b198",
+      "subset": "Prefill",
+      "seed_ids": [
+        "magpie_prefill_7303"
+      ],
+      "representative_id": "Prefill_7303_C",
+      "question_sha256": "323f2bcf8139d46bcbce282d5f65e67e354bf00b012dc643d36460f5393e3838",
+      "contract_decision": "reject",
+      "variant": "none",
+      "universe_mode": "not_applicable",
+      "reason": "returns only the first qualifying scalar, not the selected set required by the locked select variant",
+      "oracle_status": "pending",
+      "history_status": "pending",
+      "near_duplicate_status": "pending",
+      "sandbox_status": "pending"
+    },
+    {
+      "review_index": 2,
+      "family_id": "kc_7a77cafe00a01d3be0a0",
+      "subset": "Prefill",
+      "seed_ids": [
+        "magpie_prefill_302"
+      ],
+      "representative_id": "Prefill_302_I",
+      "question_sha256": "6e0b090ceb6b1b81bf76ab8148423f5e864bf914b6c03678f4075f97fb0b3593",
+      "contract_decision": "applicable_candidate",
+      "variant": "count",
+      "universe_mode": "implicit_integer_range",
+      "reason": "direct count over explicit inclusive integer bounds",
+      "oracle_status": "pending",
+      "history_status": "pending",
+      "near_duplicate_status": "pending",
+      "sandbox_status": "pending"
+    },
+    {
+      "review_index": 3,
+      "family_id": "kc_59ddcf96bed7d921e327",
+      "subset": "Prefill",
+      "seed_ids": [
+        "magpie_prefill_23513"
+      ],
+      "representative_id": "Prefill_23513_C",
+      "question_sha256": "5a5d8bc657f41a254154e7cc0278362a2d1a59b72a8abd983d99fd51e11d33c9",
+      "contract_decision": "applicable_candidate",
+      "variant": "select",
+      "universe_mode": "implicit_integer_range",
+      "reason": "explicit function and inclusive bounds return all qualifying primes",
+      "oracle_status": "pending",
+      "history_status": "pending",
+      "near_duplicate_status": "pending",
+      "sandbox_status": "pending"
+    },
+    {
+      "review_index": 4,
+      "family_id": "kc_d6ef57eff1aa834cacf8",
+      "subset": "Code_Contests",
+      "seed_ids": [
+        "7985"
+      ],
+      "representative_id": "Code_Contests_44603_I",
+      "question_sha256": "659d3e172ed0a672582505c528cb824c1ce7505666c10de48ad46d3f63fd3fa7",
+      "contract_decision": "reject",
+      "variant": "none",
+      "universe_mode": "not_applicable",
+      "reason": "standard-I/O multi-query program has no single explicit Python function contract",
+      "oracle_status": "pending",
+      "history_status": "pending",
+      "near_duplicate_status": "pending",
+      "sandbox_status": "pending"
+    },
+    {
+      "review_index": 5,
+      "family_id": "kc_045d53717791b2d79a3a",
+      "subset": "Taco",
+      "seed_ids": [
+        "24315"
+      ],
+      "representative_id": "Taco_55579_I",
+      "question_sha256": "ff563af9ef1a345290189793485e76643f883b4ca52346dab4ee3db9c1d87aed",
+      "contract_decision": "reject",
+      "variant": "none",
+      "universe_mode": "not_applicable",
+      "reason": "tree row maximum; range language is only a value constraint",
+      "oracle_status": "pending",
+      "history_status": "pending",
+      "near_duplicate_status": "pending",
+      "sandbox_status": "pending"
+    },
+    {
+      "review_index": 6,
+      "family_id": "kc_794cb9c01bb5d0496ecd",
+      "subset": "Algorithm",
+      "seed_ids": [
+        "2852"
+      ],
+      "representative_id": "Algorithm_12026_I",
+      "question_sha256": "3f4ab8f2a3d0b9d003bd93f439a38eeb97e38cfae7b1c902a4dc4bd10276da56",
+      "contract_decision": "reject",
+      "variant": "none",
+      "universe_mode": "not_applicable",
+      "reason": "array rotation; range language is only a constraint",
+      "oracle_status": "pending",
+      "history_status": "pending",
+      "near_duplicate_status": "pending",
+      "sandbox_status": "pending"
+    },
+    {
+      "review_index": 7,
+      "family_id": "kc_772255d94506ca5bf925",
+      "subset": "Algorithm",
+      "seed_ids": [
+        "2383"
+      ],
+      "representative_id": "Algorithm_9324_I",
+      "question_sha256": "8041b562ba7c25159bdef09ca1d94acab3c3ae45a8c592084db734349192bb14",
+      "contract_decision": "applicable_candidate",
+      "variant": "sum",
+      "universe_mode": "implicit_integer_range",
+      "reason": "explicit function sums all primes in inclusive integer bounds",
+      "oracle_status": "pending",
+      "history_status": "pending",
+      "near_duplicate_status": "pending",
+      "sandbox_status": "pending"
+    },
+    {
+      "review_index": 8,
+      "family_id": "kc_3fb5ff0a1a9ce8002b13",
+      "subset": "Codeforces",
+      "seed_ids": [
+        "199"
+      ],
+      "representative_id": "Codeforces_19867_I",
+      "question_sha256": "6ea933419952a4a27a93f4bd6942fa83e25276e0d1155145958b8cebb1d92cd4",
+      "contract_decision": "reject",
+      "variant": "none",
+      "universe_mode": "not_applicable",
+      "reason": "k-th largest search; range language is only an input constraint",
+      "oracle_status": "pending",
+      "history_status": "pending",
+      "near_duplicate_status": "pending",
+      "sandbox_status": "pending"
+    },
+    {
+      "review_index": 9,
+      "family_id": "kc_2770df63debd7f6420dc",
+      "subset": "Filter",
+      "seed_ids": [
+        "Meta-Llama-3.1-70B-Instruct_11945"
+      ],
+      "representative_id": "Filter_3857_I",
+      "question_sha256": "b5c4534aced4808c838e8d4e5e167ea1a474773489a37a6e2082e0f29219961c",
+      "contract_decision": "reject",
+      "variant": "none",
+      "universe_mode": "not_applicable",
+      "reason": "target operation fits but the displayed function scaffold is syntactically malformed",
+      "oracle_status": "pending",
+      "history_status": "pending",
+      "near_duplicate_status": "pending",
+      "sandbox_status": "pending"
+    },
+    {
+      "review_index": 10,
+      "family_id": "kc_1b962a30388143c357fb",
+      "subset": "Taco",
+      "seed_ids": [
+        "9823"
+      ],
+      "representative_id": "Taco_50044_I",
+      "question_sha256": "defa97165cc3caf0de6431596646e7feee5b675c94e640e203d34dbe02a521a7",
+      "contract_decision": "reject",
+      "variant": "none",
+      "universe_mode": "not_applicable",
+      "reason": "multi-operation range-update/query API cannot isolate the locked single function",
+      "oracle_status": "pending",
+      "history_status": "pending",
+      "near_duplicate_status": "pending",
+      "sandbox_status": "pending"
+    },
+    {
+      "review_index": 11,
+      "family_id": "kc_15ace8ed10efc8a450b9",
+      "subset": "Filter",
+      "seed_ids": [
+        "Llama-3.3-70B-Instruct_60923"
+      ],
+      "representative_id": "Filter_24499_I",
+      "question_sha256": "b1f43375cb864252cb35fa6496fa2eb429a22b150e46042396b3bc82461a7e55",
+      "contract_decision": "reject",
+      "variant": "none",
+      "universe_mode": "not_applicable",
+      "reason": "function name/signature is not explicitly specified in the source contract",
+      "oracle_status": "pending",
+      "history_status": "pending",
+      "near_duplicate_status": "pending",
+      "sandbox_status": "pending"
+    },
+    {
+      "review_index": 12,
+      "family_id": "kc_84632a3c91d9e2d89678",
+      "subset": "Taco",
+      "seed_ids": [
+        "5745"
+      ],
+      "representative_id": "Taco_17042_I",
+      "question_sha256": "d78421a129017ebd66fbbc2ee6df9a6b6ecf933efac2b1ea26eda2ea2e3e850a",
+      "contract_decision": "reject",
+      "variant": "none",
+      "universe_mode": "not_applicable",
+      "reason": "standard-I/O sequence of range updates, not a single count/sum/select function",
+      "oracle_status": "pending",
+      "history_status": "pending",
+      "near_duplicate_status": "pending",
+      "sandbox_status": "pending"
+    },
+    {
+      "review_index": 13,
+      "family_id": "kc_7ade91a5f19fb0f41769",
+      "subset": "Apps",
+      "seed_ids": [
+        "1079"
+      ],
+      "representative_id": "Apps_10559_I",
+      "question_sha256": "06ae3d2145ff75862eaa30274894f1dcfe8b09e6301dc106ee147e5b8dc60f98",
+      "contract_decision": "reject",
+      "variant": "none",
+      "universe_mode": "not_applicable",
+      "reason": "standard-I/O problem has no explicit Python function signature",
+      "oracle_status": "pending",
+      "history_status": "pending",
+      "near_duplicate_status": "pending",
+      "sandbox_status": "pending"
+    },
+    {
+      "review_index": 14,
+      "family_id": "kc_60463e25cc5178ff79d9",
+      "subset": "Algorithm",
+      "seed_ids": [
+        "2676"
+      ],
+      "representative_id": "Algorithm_6681_I",
+      "question_sha256": "ff1781ec90657f3fafea297c308df7aebafac58982e8e6769cb16d18e93c6a6c",
+      "contract_decision": "applicable_candidate",
+      "variant": "count",
+      "universe_mode": "explicit_collection",
+      "reason": "explicit function counts list elements within stated inclusive value bounds",
+      "oracle_status": "pending",
+      "history_status": "pending",
+      "near_duplicate_status": "pending",
+      "sandbox_status": "pending"
+    },
+    {
+      "review_index": 15,
+      "family_id": "kc_3f82fe63a265a47628eb",
+      "subset": "Code_Contests",
+      "seed_ids": [
+        "3831"
+      ],
+      "representative_id": "Code_Contests_39693_I",
+      "question_sha256": "181a651aa00df68ab84ae0d0f6f6b1f2ae5643e7a8d7cae712138cd695d30be9",
+      "contract_decision": "reject",
+      "variant": "none",
+      "universe_mode": "not_applicable",
+      "reason": "odd/even sorting; range language is only a constraint",
+      "oracle_status": "pending",
+      "history_status": "pending",
+      "near_duplicate_status": "pending",
+      "sandbox_status": "pending"
+    },
+    {
+      "review_index": 16,
+      "family_id": "kc_ae2c9b33d997f712ac68",
+      "subset": "Algorithm",
+      "seed_ids": [
+        "4166"
+      ],
+      "representative_id": "Algorithm_38927_I",
+      "question_sha256": "9921d1cc1482b10df171cf20bd118217b5c77d498576f60e63423fcf48ceb8c9",
+      "contract_decision": "near_negative_candidate",
+      "variant": "none",
+      "universe_mode": "not_applicable",
+      "reason": "structurally matched range selection but the upper endpoint is explicitly exclusive",
+      "oracle_status": "pending",
+      "history_status": "pending",
+      "near_duplicate_status": "pending",
+      "sandbox_status": "pending"
+    },
+    {
+      "review_index": 17,
+      "family_id": "kc_a470385b5b81b3e33d06",
+      "subset": "Taco",
+      "seed_ids": [
+        "3657"
+      ],
+      "representative_id": "Taco_60971_OJ",
+      "question_sha256": "3ffe93af0d777aedd8374779bbee52a65f476b36f2d58589c55347a0a55ad672",
+      "contract_decision": "reject",
+      "variant": "none",
+      "universe_mode": "not_applicable",
+      "reason": "word-ladder shortest path; range language is only a constraint",
+      "oracle_status": "pending",
+      "history_status": "pending",
+      "near_duplicate_status": "pending",
+      "sandbox_status": "pending"
+    },
+    {
+      "review_index": 18,
+      "family_id": "kc_963b8d6cba97b2b685f3",
+      "subset": "Algorithm",
+      "seed_ids": [
+        "2390"
+      ],
+      "representative_id": "Algorithm_24602_C",
+      "question_sha256": "e01075c3c8415b481572f7f9c0e1fac74c437eeefeb2b41c83164e9bcfe31942",
+      "contract_decision": "applicable_candidate",
+      "variant": "select",
+      "universe_mode": "implicit_integer_range",
+      "reason": "explicit function returns all qualifying integers within inclusive bounds",
+      "oracle_status": "pending",
+      "history_status": "pending",
+      "near_duplicate_status": "pending",
+      "sandbox_status": "pending"
+    },
+    {
+      "review_index": 19,
+      "family_id": "kc_8008ea2b8901b39bf313",
+      "subset": "Taco",
+      "seed_ids": [
+        "16674"
+      ],
+      "representative_id": "Taco_88882_I",
+      "question_sha256": "583ae57e63399b0ce5ed134e38bd1f761a7b5a323a8f605c43bbbae197edde76",
+      "contract_decision": "reject",
+      "variant": "none",
+      "universe_mode": "not_applicable",
+      "reason": "standard-I/O circular range-update/query API is not the locked single function",
+      "oracle_status": "pending",
+      "history_status": "pending",
+      "near_duplicate_status": "pending",
+      "sandbox_status": "pending"
+    }
+  ],
+  "limitations": "Manual text-contract review; oracle/history/near-duplicate/sandbox gates remain separate."
+}

@@ -1,328 +1,546 @@
-GIAI ĐOẠN 0: DẠY MODEL BIẾT ĐÚNG - SAI & TỰ SỬA CHỮA
-Mục tiêu giai đoạn:
+# AGI PROJECT HANDOFF PROMPT
 
-Model không chỉ trả lời, mà biết phân biệt đúng/sai, tự phê bình và tự sửa lỗi.
-Đây là nền tảng quan trọng nhất trước khi nạp kiến thức chuyên sâu 
+Updated: 2026-10-22
+Workspace: `D:\AGI`
+Current state: Phases 1–14 are closed. The paper from Phase 14 is published.
+Phase 15 is a draft design only; nothing has been generated for it.
 
+Use this file as the first context for another AI taking over the project.
+Then inspect the repository artifacts before making claims or running work.
+Do not ask the user to reconstruct this history.
 
-1. Điều kiện để model ổn định sau giai đoạn này
-Để giai đoạn này thành công và model ổn định, cần đạt được các điều kiện sau:
+## 1. What this project studies
 
-Accuracy tự critique ≥ 75–80% trên tập validation (model tự đánh giá đúng lỗi của chính nó).
-Tỷ lệ sửa chữa thành công ≥ 70% (sau khi critique, model sửa được lỗi).
-Giảm hallucination rõ rệt so với trước khi train.
-Model không lặp lại lỗi trên cùng loại input sau 2–3 lần sửa.
-Độ dài phản hồi hợp lý, không quá dài dòng.
-Stable loss trong training (không bị overfitting sớm).
+The project asks whether a small language model can recognize, judge, and
+repair its own mistakes without being given the correct answer.
 
+Correctness is determined by objective tools:
 
-2. Cách thực hiện giai đoạn này
-Bước 1: Tạo dữ liệu bằng DeepSeek V4 Pro (khoảng 800–1500 mẫu)
-Bước 2: Định dạng dataset (chat format hoặc JSONL)
-Bước 3: Fine-tune với Unsloth (SFT hoặc DPO)
-Bước 4: Đánh giá & lặp lại
+- SymPy and deterministic answer parsing for mathematics.
+- Executed tests for code.
+- An LLM is never the correctness oracle.
 
+The central distinction throughout the project is:
 
-3. Rủi ro cần cân nhắc khi dạy hành vi (không phải dạy kiến thức)
-Vì mục tiêu là dạy HÀNH VI (biết sai -> tự sửa), không phải nạp kiến thức, nên khi
-đánh giá kết quả phải cân nhắc cả các khả năng sau, không chỉ nhìn con số % thô:
+- **Detection:** recognizing that an answer may be wrong.
+- **Selection:** choosing the correct answer among alternatives.
+- **Repair:** producing a correct replacement.
+- **Harness performance:** gains produced by external sampling, voting,
+  probes, routing, or verification.
+- **Autonomous self-correction:** the standalone model detects and repairs its
+  own errors without external correctness information.
 
-- Rò rỉ đáp án trong lời nhắc sửa lỗi (nghiêm trọng nhất, o phan toan):
-  Nếu câu thông báo lỗi đưa cho model tự sửa có ghi thẳng đáp án đúng (vd
-  "dap so dung la 48"), model có thể học hành vi "chép lại số trong thông báo lỗi"
-  thay vì thực sự suy luận lại. % tự sửa cao ở toán có thể là GIẢ (kỹ năng
-  đọc-chép, không phải tự sửa thật). Nên đổi thông báo lỗi thành gợi ý chẩn đoán
-  (vd "sai ở bước tính X") thay vì lộ thẳng đáp án, để đo đúng kỹ năng.
+Do not merge these claims. A hidden-state probe is an external diagnostic.
+Status feedback is assisted repair. Voting is a sampling harness. None alone
+proves autonomous self-correction.
 
-- Sycophancy (vâng lời quá mức): Data train hiện chỉ có case "bị báo SAI -> sửa",
-  chưa có case "bị báo SAI nhưng thực ra đang ĐÚNG -> giữ nguyên". Model có thể
-  học phản xạ "hễ bị nói sai là đổi đáp án" bất kể đúng/sai thật. Cần test thêm:
-  cố tình báo SAI cho câu model làm đúng, xem model có tự đổi thành sai không.
+## 2. Read these files first
 
-- Học thuộc format, không học kỹ năng thật: model có thể chỉ chép khung
-  <thinking>/### Sửa lại mà không suy luận thật bên trong. Nếu tỷ lệ tự sửa
-  gần 0% thì đây là dấu hiệu rõ của tình trạng này.
+1. `README.md` — current project overview and phase table.
+2. `paper/summary/SUMMARY_ALL.md` — consolidated Phase 9–14 findings.
+3. `paper/README.md` — how to reproduce paper tables and figures.
+4. `phase14/README.md` and `phase14/RUN_STATUS.md`.
+5. `phase15/README.md`, `phase15/RUN_STATUS.md`, and
+   `phase15/docs/PREREGISTRATION.md`.
+6. `instructionAI/architecture.md` and
+   `instructionAI/data_pipeline.md` for cross-phase rules.
 
-- Overfit trên tập nhỏ (hiện chỉ ~143 mẫu, note yêu cầu 800-1500) làm quên năng
-  lực gốc: cần so sánh tỷ lệ giải đúng lần đầu (initial_correct) của model SAU
-  train với model GỐC (chưa train) trên cùng bộ đề, để phát hiện nếu LoRA làm
-  hỏng năng lực giải bài gốc.
+For historical details, each phase has a README and final report. Prefer final
+reports, execution locks, output summaries, hashes, and run records over older
+planning text.
 
-- Chỉ test 1 vòng sửa, chưa test lặp lỗi nhiều vòng: điều kiện ở mục 1 yêu cầu
-  "không lặp lỗi sau 2-3 lần sửa", nhưng quy trình đánh giá hiện tại dừng ngay
-  sau 1 lần phản tư -- chưa biết model có tiến bộ dần qua nhiều vòng sửa hay
-  lặp lại y hệt lỗi cũ.
+Some older documents describe Phase 7 or Phase 8 as planned or incomplete.
+Those statements are stale. The canonical later records are:
 
-- Verifier code có thể yếu (false positive): test case MBPP ít, code "sửa" có
-  thể pass test nhưng chưa chắc giải đúng bài toán tổng quát.
+- `phase7/docs/FINAL_REPORT.md`
+- `phase8/docs/FINAL_REPORT.md`
+- `phase8/RUN_STATUS.md`
+- the root `README.md`
 
-- Da phat hien qua du lieu that (lan chay dau tren adapter da train): ~1/3 case
-  duoc tinh "tu sua thanh cong" thuc ra bi cat ngang giua <thinking> vi het
-  max_new_tokens (chua bao gio toi "### Sua lai"), verifier vo tinh bat trung
-  so/code nhap con dang do dang. Da sua: tach rieng max_new_tokens_correction
-  (tang len 2048, gap doi luc giai dau) + neu khong tim thay "### Sua lai" thi
-  tinh thang la chua sua duoc, KHONG fallback dung ca doan text tho de verify.
+The previous version of this note described the original “Phase 0” aspiration
+and stopped during a lost Phase 8 v1 GPU run. It is preserved at
+`outputs/phase8_transfer/note_before_handoff_20260928.txt`. Its target numbers
+were aspirations, not achieved results.
 
+## 3. Current headline result
 
-4. Dinh huong tiep theo (da quyet dinh 2026-07-19)
-Da can nhac them huong "tu phat hien loi KHONG can goi y" (model tu ra soat bai
-lam cua chinh no ma khong duoc cho biet dung/sai truoc) -- day moi la dung y
-nghia "tu critique" (75-80%) trong muc 1, con huong dang lam hien tai ("cho biet
-loi that -> sua") chi la 1 nua cua ky nang (tuong ung chi so "ty le sua chua
-thanh cong" 70%).
+The project found that a 7B model contains a real but imperfect ability to
+distinguish which of two conflicting solutions is correct. When judged in only
+one presentation order, performance often looks close to guessing. Across
+both orders, a positive skill signal appears consistently.
 
-QUYET DINH: CHUA lam huong "tu phat hien khong goi y" ngay. Tiep tuc cung co
-huong hien tai (cho biet loi that -> sua) truoc, vi 2 ly do:
-- Rui ro hallucinate cao: khi bi yeu cau tu tim loi ma khong co moc khach quan
-  de dua vao, model de (a) tu bia ra loi khong co that o cau da dung (doi dung
-  thanh sai chi vi bi ep phai tim ra cai gi do sai), hoac (b) khong thay duoc
-  loi that o bai phuc tap vi dung lai chinh cach suy luan da gay ra loi de tu
-  kiem tra no (diem mu lap lai chinh no, khong phai co che kiem tra doc lap).
-  Day chinh la van de "LLM tu cham diem cho LLM" ma toan bo Phase 1 dang co
-  tranh (da chon dung verifier khach quan sympy/unit-test thay vi LLM judge).
-- Du lieu qua nho (143/800-1500 mau) de dua them 1 huong hoc moi (tu phat hien)
-  ma khong lam loang/hong huong dang hoc (tu sua khi duoc cho biet).
+The main limitation is not primarily position bias. The judge often fails to
+make a valid A/B choice: it emits format errors, loops until the token cap,
+re-solves the task, or invents a third answer. Forcing a final
+`Verdict: Solution A/B` line removes much of this failure.
 
-Dieu kien de chuyen sang lam huong "tu phat hien khong goi y":
-  (a) huong hien tai da on dinh (ty le tu sua that ro rang tang so voi baseline,
-      khong con rui ro ro ri dap an/hallucinate da neu o muc 3),
-  (b) da scale du lieu len 800-1500 mau theo muc 2,
-  (c) neu lam, nen bat dau tu muc do goi y trung gian (vd "co the dung co the
-      sai, hay kiem tra ky" thay vi im lang hoan toan) roi moi bo dan xuong
-      khong goi y, thay vi nhay thang len no-hint tu dau.
+At the system level, self-arbitration does not beat simple voting:
 
+- A judge loses to vote@3 in 15 of 16 model-dataset cells.
+- Self-check is approximately tied with vote@3.
+- Vote@5 beats essentially every two-candidate strategy.
+- Probe-weighted vote@3 improves over vote@3 out of sample for Llama and
+  Mistral, but not for Self_Correction or Qwen, and still does not beat vote@5.
 
-5. Tham khao: paper "The Self-Correction Illusion" (arXiv 2606.05976, Chen et al.
-2026 NCKU) -- ban PDF luu tai d:\AGI\2606.05976v1.pdf
-Phat hien chinh: LLM khong tu sua duoc loi trong <thought> cua chinh no KHONG
-phai vi thieu nang luc suy luan, ma vi thieu "addressability" -- khong co thoi
-quen coi 1 menh de nam trong suy nghi rieng la 1 "doi tuong" co the goi ten/bac
-bo. Dua lai byte-identical claim sai duoi role BEN NGOAI (user/tool/system
-<memory>) thay vi de no nam trong <thought> giup tang ty le tu sua 23-93 diem %,
-KHONG can train lai. Tu-audit khong goi y (giong huong da hoan o muc 4) chi dat
-0-23% -- xac nhan doc lap quyet dinh hoan o tren la dung.
+Overall, every robust accuracy gain comes from a harness around an unchanged
+model: blind re-solving, routing, or voting. Model-level judgment skill exists,
+but training mostly changes how that skill is expressed rather than creating a
+reliably superior autonomous correction policy.
 
-Doi chieu voi pipeline: _REFLECT_PROMPT_TEMPLATE dang dua verifier_detail qua
-role "user" (khong de trong <thought>) -- vo tinh da dung dung co che chinh cua
-paper. Dang thu nghiem doi role "user" -> "tool" (--reflect-role tool trong
-evaluate_self_correction.py) vi verifier_detail von la output that tu 1 tool
-(checker), hop voi dieu kien L_TOOL cua paper -- CHUA co ket qua, dang cho.
+## 4. Published paper
 
-Phat hien tu du lieu that (lan chay adapter da train, sau khi sua bug format-cat-
-ngang o muc 3): ty le tu sua TOAN = 0/7 (0%) dù verifier_detail LO THANG dap an
-dung (case 0154: bao dung la '272', model sua lai van ra '2'; case 0169: bao
-dung la '120', model sua lai van ra lai '130' y het loi cu). Code = 8/16 (50%
-tren cac case hoan tat dinh dang) dù KHONG lo dap an, chi co traceback chi dich
-danh dong/ham loi. => Dao nguoc gia thuyet cu (nghi toan "an gian" nho lo dap
-an) -- hoa ra LO DAP AN KHONG DU, model van khong dinh vi duoc BUOC nao trong
-loi giai cu la sai (thieu "dia chi" cu the, dung y addressability cua paper).
-Code co traceback chi ro dong/ham -> addressable hon nhieu -> tu sua tot hon
-han dù kho hon o nang luc goc. KET LUAN: can sua verifier_detail cua TOAN thanh
-dang chi diem (buoc tinh nao sai) thay vi chi noi dap so dung/sai, giong cach
-traceback code dang lam.
+Title:
 
-Phat hien phu (bug rieng): math_verifier co the bat sai dap so vi dinh ky tu
-rac trong chuoi trich xuat (vd '$18,000`' co dau backtick lan vao) -- can lam
-sach _extract_answer/_to_sympy tot hon, doc lap voi van de addressability o tren.
+*Why Self-Arbitration Looks Like Guessing: A Diagnostic Study of Small
+Language Models*
 
+Author: Manh Khang Tran
+Zenodo DOI: https://doi.org/10.5281/zenodo.23541462
+Zenodo record: https://zenodo.org/records/23541462
 
-6. Y tuong dang can nhac (chua trien khai, chua quyet dinh) 2026-07-19
-De xuat: dung generate_attempts sinh ~150 mau co <thinking>, giu lai neu dung,
-neu sai thi KHONG thay the truc tiep bang thinking cua model to hon roi gia vo
-la cua chinh model (rui ro: day model "noi doi" ve nguon goc suy nghi cua chinh
-no -- lam nang them van de unfaithful reasoning trace, nguoc voi muc tieu giam
-hallucination). Thay vao do, ap dung kieu ORPO/DPO: dung chinh cac lan model TU
-SUA SAI that (da thu duoc tu log eval, vd case 0154/0169 o muc 5) lam "rejected",
-va ban DeepSeek sinh loi phe binh+sua ĐUNG cho dung case do lam "chosen" --
-khong can mao danh nguon goc, chi day model uu tien cach phe binh TOT hon cach
-DO. Day chinh la huan luyen "tu critique" bang DPO da nhac o muc 4(c)/muc 2
-buoc 3 (SFT hoac DPO), ap dung cu the o buoc PHAN TU/SUA LOI (khong phai buoc
-giai lan dau, de tranh lech sang day kien thuc).
-Dieu kien de lam: nen hoan tat cac fix dang do (test --reflect-role tool, sua
-bug trich xuat cua math_verifier o muc 5) de co nen SFT + verifier_detail sach
-truoc, vi "chosen" cua ORPO cung phai dua tren verifier_detail dung/sach moi co
-gia tri.
+Artifacts:
 
+- Published PDF: `paper/Self_Arbitration_Zenodo.pdf`
+- Zenodo LaTeX: `paper/zenodo/main.tex`
+- Working manuscript: `paper/manuscript/main.tex`
+- arXiv package: `paper/arxiv/`
+- arXiv ZIP: `paper/arxiv_submission.zip`
+- Consolidated results: `paper/summary/SUMMARY_ALL.md`
+- Reproduction instructions: `paper/README.md`
+- Remaining human tasks: `paper/PAPER_TODO.md`
 
-7. Da doi role "user" -> "tool" cho ca pipeline, dang train lai (2026-07-19)
-Ket qua do --reflect-role tool (muc 5) du tot va re (khong can train lai de
-test) nen quyet dinh doi luon lam mac dinh cho ca pipeline, khong chi eval:
-- evaluate_self_correction.py: default --reflect-role doi "user" -> "tool".
-- build_dataset.py: _REFLECT_ROLE = "tool" (hang cung, ap dung cho MOI mau
-  sinh ra tu day).
-- Da sinh lai data/processed/phase1_sft.jsonl voi role moi: 135 mau (giam nhe
-  so voi 143 cu -- do doi sang model DeepSeek khac (op/deepseek/deepseek-v4-pro,
-  model cu op/z-ai/glm-5.2 bi 404 MODEL_NOT_FOUND voi key moi), khong phai loi
-  pipeline. Stats: total=300, already_correct=132, sent_to_deepseek=168,
-  kept=135, discarded=33.
-- Nhan tien fix 2 bug crash o deepseek_client.py phat hien trong luc chay lai:
-  (a) response.choices co the la None (loi tam thoi API/proxy vilao.ai) -- truoc
-  do TypeError thoat khoi vong retry, lam crash ca script; (b) UnicodeEncodeError
-  khi print tren console Windows (cp1252) neu response DeepSeek co ky tu dac
-  biet -- workaround bang PYTHONIOENCODING=utf-8 luc chay tren may local.
-- Adapter cu Kxck/AGI_v1 (train voi role "user") KHONG con la ban moi nhat --
-  se train lai adapter moi tren phase1_sft.jsonl 135-mau-role-"tool" nay. Khi
-  train xong, nho eval lai bang --reflect-role tool (khop voi du lieu da train,
-  chu khong con la thu nghiem lech phan phoi nhu truoc).
+The paper is published on Zenodo. arXiv submission and human endorsement may
+still require the author. Do not claim arXiv publication unless a later record
+confirms it.
 
+## 5. Phase history
 
-8. KET QUA adapter MOI (train+eval role "tool" khop nhau) 2026-07-20
-Da train lai tren phase1_sft.jsonl 135 mau (role "tool" xuyen suot) qua Colab,
-eval lai voi --reflect-role tool (dung boi vi day gio la default). So sanh 3
-diem du lieu:
+### Phase 1 — verified critique and correction
 
-                          Toan    Code    Tong
-Baseline goc (user/user)   0%    28.6%   22.9%
-Adapter cu + test tool*   33.3%  28.6%   29.7%   (*lech phan phoi, chua train voi role nay)
-Adapter MOI (tool/tool)   22.2%  46.4%   40.5%   (khop phan phoi -- so lieu chinh thuc)
+Produced `Kxck/Self_Correction_v1`. Guided correction worked, especially for
+code, but autonomous mathematics correction was weak. SFT largely taught the
+correction format. It did not establish reliable autonomous detection.
 
-- Tong the gan gap doi baseline goc (22.9% -> 40.5%).
-- Code cai thien manh nhat (28.6% -> 46.4%) -- hop ly vi TOAN BO data train gio
-  nhat quan dung role "tool", khong chi eval.
-- format_incomplete (bi cat ngang giua <thinking>) giam manh: 43% -> 13.5%
-  (15/35 -> 5/37) -- model gio hoan tat dinh dang "### Sua lai" dang tin cay
-  hon nhieu, it "nghi lan man" toi het token hon truoc.
-- Toan giam nhe so voi lan test lech phan phoi (33.3% -> 22.2%), nhung chi la
-  2/9 vs 3/9 tren nen qua nho (9 case sai) -- nam trong nhieu thong ke, KHONG
-  phai regression that. Van vuot xa baseline goc (0%).
+### Phase 2 — KTO exploration
 
-KET LUAN: doi role "user" -> "tool" + train lai la cai thien that, do duoc ro
-rang qua ca 2 buoc (test lech phan phoi VA train khop). Van con xa muc tieu
-70-80% trong muc 1 -- nut that chinh gio la QUY MO DU LIEU (135 mau, muc tieu
-800-1500), khong con la van de thiet ke role/format nhu truoc.
+The verifier-labelled preference-data path was validated. No completed KTO
+adapter was produced. This is historical infrastructure, not an active model.
 
+### Phase 3 — KEEP/REVISE router
 
-9. Bat dau scale du lieu train (2026-07-20) -- muc tieu trung gian ~400-500 mau
-Quyet dinh: scale trung gian truoc (khong nhay thang len 800-1500 full) de kiem
-chung viec scale co that su cai thien % hay khong, rui ro chi phi API thap hon.
+Closed 2026-09-13.
 
-Van de phai sua TRUOC khi scale: prepare_public_datasets.py (sinh data train)
-va evaluate_self_correction.py (held-out eval) truoc gio dung CHUNG split "test"
-cua GSM8K/MBPP (train index 0-149, eval offset 150+) -- neu scale limit qua 150
-ma van dung "test" se DE LEN vung held-out dang dung xuyen suot de so sanh. Da
-sua bang cach dung split KHAC HOAN TOAN cho du lieu train moi:
-- Toan: GSM8K split "train" (7473 dong, tach biet voi "test").
-- Code: MBPP "full/train" (374 dong, tach biet voi "full/test").
-Them ham prepare_math_extra/prepare_code_extra (APPEND, id prefix rieng
-"gsm8k_train_"/"mbpp_train_" de khong dam id) vao prepare_public_datasets.py.
+- Decision-Only V1: 65.0% balanced accuracy, 81% KEEP recall, 49% REVISE
+  recall.
+- DPO Pilot V1: 66.5%, 85%, 48%.
+- DPO Semantic V2: 65.5%, 85%, 46%.
 
-Da chay local (khong can GPU): --math-extra 626 --code-extra 374 (het sach
-MBPP full/train) -> data/problems/math.jsonl: 150->776, code.jsonl: 150->524,
-tong 300->1300 bai.
+Preference tuning increased KEEP behavior but did not improve detection of
+plausible wrong answers. Decision-Only V1 remains the historical router
+baseline. Phase 3 protected data must not be reused for tuning.
 
-Them 2 tinh nang RESUMABLE de khong ton GPU/API goi lai cho ~300 bai cu:
-- generate_attempts.py: tu doc attempts.jsonl da co, bo qua problem_id da co
-  attempt, chi sinh cho bai moi, APPEND (khong ghi de).
-- build_dataset.py: them file ledger data/processed/build_dataset_seen_ids.txt
-  ghi MOI problem_id da xu ly (bat ke ket qua), bo qua khi chay lai, APPEND vao
-  phase1_sft.jsonl. Da seed ledger nay bang 300 problem_id cua lan chay dau
-  (truoc khi co tinh nang nay) de khong bi goi lai DeepSeek oan cho chung.
-- _to_chat_record them field "problem_id" (khong anh huong train_sft.py, chi
-  doc "messages") de cac cong cu sau nay co the truy vet mau tu problem nao.
+### Phase 4 — selective correction training
 
-Buoc tiep theo (chua chay, can GPU + DeepSeek API that, se ton thoi gian/tien):
-  Buoc 6a (moi trong notebook): generate_attempts.py -- sinh attempt cho ~1000
-    bai moi (uoc luong vai chuc phut tren T4/L40S tuy toc do).
-  Buoc 6a2 (moi): build_dataset.py -- goi DeepSeek cho phan sai trong ~1000 bai
-    moi (uoc luong theo ty le cu ~56% sai -> ~560 lan goi DeepSeek that).
-  Sau do train_sft.py tren phase1_sft.jsonl da lon hon (135 + so mau moi giu
-  duoc, ky vong ~400-500+135), roi eval lai --reflect-role tool nhu cu de so
-  sanh truc tiep voi 40.5% hien tai.
+Closed 2026-09-15.
 
+Warm-start V2, GRPO, expanded correction SFT V3, DPO, blind preferences, and
+three-round review did not establish reliable autonomous gain. Mean accuracy
+fell from 51.25% after round 1 to 49.17% after round 3 in the repeated-review
+diagnostic. V2 and V3 are retained as research checkpoints, not promoted
+models.
 
-10. generate_attempts.py doi sang vLLM (2026-07-20)
-Ly do: Buoc 6a can sinh attempt cho ~1000 bai moi -- cach cu (Unsloth/HF
-generate() tung bai mot, tuan tu) se cham. generate_attempts.py la truong hop
-don gian nhat de doi sang vLLM: chi la inference thuan tren model GOC (chua
-LoRA), khong can cac toi uu train cua Unsloth. vLLM dung continuous batching +
-PagedAttention -> xay tat ca prompt truoc, goi generate() 1 LAN DUY NHAT cho ca
-~1000 prompt thay vi vong lap tung bai, nhanh hon nhieu.
+### Phase 5 — correctness signal before feedback
 
-KHONG doi evaluate_self_correction.py (can LoRA adapter qua LoRARequest + luong
-2 buoc tuan tu attempt->reflect moi bai, loi ich it chac chan hon neu khong
-viet lai thanh batch) va train_sft.py (Unsloth QLoRA can cho train, vLLM khong
-phuc vu train) -- 2 file nay van dung Unsloth nhu cu.
+Closed diagnostic.
 
-Rui ro da luu y trong notebook: cai vllm co the keo theo ban torch khac voi
-ban Unsloth dang dung TRONG CUNG 1 SESSION Colab (chay generate_attempts.py
-truoc, train_sft.py sau, chung 1 moi truong pip). Da them ghi chu trong
-notebook (cell 6a + 1 cell rieng truoc train_sft): neu train_sft loi la sau
-khi chay xong 6a, Runtime > Restart session + `pip install unsloth` lai truoc
-khi chay train_sft -- CHUA verify thuc te tren Colab, can theo doi khi chay
-that.
+- Frozen pre-hint probe balanced accuracy: 71.25% for original and V2,
+  74.38% for V3.
+- Neutral V2 review: 0 fixes, 2 harms.
+- Neutral V3 review: 4 fixes, 32 harms.
+- Explicit status feedback produced 5 V2 fixes and 7 V3 fixes without observed
+  harms, but this is assisted repair.
 
-Chi tiet ky thuat: dung "bitsandbytes" quantization cua vLLM (tuong duong
-load_in_4bit cua Unsloth) khi small_model.load_in_4bit=true trong
-phase1.yaml -- ten tham so nay dung voi vLLM >=0.5.x, neu ban vLLM moi hon
-tren Colab doi ten thi can sua lai theo docs vLLM hien tai.
+Conclusion: correctness information is linearly decodable, but the generative
+policy does not use it safely. The exact frozen Phase 5 probes were later
+recovered and used in Phase 8 v2.
 
+### Phase 6 — signal readout and harness
 
+Closed 2026-09-24.
 
-| ID  | Test                         | Câu hỏi nghiên cứu chính                                       | Metric quan trọng                 |
-| --- | ---------------------------- | -------------------------------------------------------------- | --------------------------------- |
-| B1  | Verifier-Guided Correction   | Khi biết mình sai, model sửa được không?                       | Correction Rate                   |
-| B2  | False-Feedback / Sycophancy  | Khi đang đúng nhưng bị bảo sai, có bị dụ sửa không?            | False-Flip Rate                   |
-| B3  | Autonomous Self-Review       | Không ai báo sai, model có tự phát hiện lỗi không?             | Detection + Autonomous Correction |
-| B4  | Multi-Round Correction       | Nếu sửa lần 1 vẫn sai, các vòng sau có tiến bộ không?          | Correction@1/@2/@3                |
-| B5  | Feedback Specificity         | Feedback càng cụ thể có giúp sửa tốt hơn không?                | Gain by feedback type             |
-| B6  | Addressability / Role        | Cùng lỗi nhưng đặt dưới tool/user/self role khác nhau thì sao? | Role-conditioned correction       |
-| B7  | Correct-Answer Preservation  | Khi review câu vốn đúng, có giữ được không?                    | Preservation Rate                 |
-| B8  | Cross-Domain Generalization  | Behavior có transfer sang task chưa train không?               | OOD Correction Rate               |
-| B9  | Prompt Robustness            | Behavior có phụ thuộc đúng một câu prompt không?               | Prompt variance                   |
-| B10 | Calibration / Abstention     | Model có biết lúc nào không chắc không?                        | Selective accuracy                |
-| B11 | Error-Type Breakdown         | Nó sửa loại lỗi nào tốt/xấu?                                   | per-error-type metrics            |
-| B12 | Base vs Tuned vs Large Model | Behavior là do fine-tune hay do model vốn đã có?               | comparative benchmark             |
+Verbal confidence correlated with probe ranks but was badly calibrated.
+Fuzzy hints and explicit review did not create a safe policy. Signal strength
+declined modestly from layer 14 to layer 28 but remained above chance.
 
+On a fresh 40-source holdout, the probe recalled 65–75% of errors, but final
+accuracy stayed at 50%. Even an oracle identifying all 20 wrong answers
+produced only 1/20, 2/20, and 2/20 repairs for original, V2, and V3.
+Repair remained the bottleneck.
 
-4. KẾT QUẢ P0 ĐÃ VERIFY — 2026-09-02
+### Phase 7 — blind versus answer-visible re-solving
 
-Đã chạy `src/evaluate_p0_vllm.py` trên cùng vLLM protocol cho:
-- Base: `Qwen/Qwen2.5-7B-Instruct`
-- Tuned: `Kxck/Self_Correction_v1`
+Completed 2026-09-25.
 
-Pool:
-- in-domain: 600 GSM8K test + 300 MBPP test, offset 200;
-- OOD: 200 SVAMP test + toàn bộ 164 HumanEval;
-- 100 initial-wrong cho B1/B3 và 100 initial-correct cho B2/B3/B7 trong mỗi model.
+On 80 initially wrong protected sources per checkpoint:
 
-Kết quả:
-- B1 guided correction: Base 15%, Tuned 56% -> tuned tăng mạnh.
-- B2 false-flip: Base 12%, Tuned 22% -> tuned dễ bị feedback sai hơn.
-- B3 autonomous correction: Base 6%, Tuned 8% -> chưa có gain đáng kể.
-- B7 preservation: Base 74%, Tuned 86% -> tăng chủ yếu ở math; code chỉ có n=10.
-- B8 conditional OOD: Base 26/76, Tuned 44/100; không so aggregate trực tiếp
-  vì denominator và sample mix khác nhau. Trên 31 problem sai chung: Base 12,
-  Tuned 11 -> chưa có bằng chứng OOD correction gain.
-- HumanEval strict initial: Base 130/164, Tuned 14/164. Lenient extract phần
-  `Sửa lại` của Tuned: 77/164, vẫn thấp hơn Base.
+| Checkpoint | Blind fixes | Visible fixes | Difference |
+|---|---:|---:|---:|
+| Original | 25/80 | 4/80 | +26.25 points |
+| V2 | 28/80 | 5/80 | +28.75 points |
+| V3 | 32/80 | 8/80 | +30.00 points |
 
-Phát hiện quan trọng:
-- Tuned học rất rõ hành vi "có verifier feedback -> viết correction report".
-- Nhưng khi neutral review, Tuned tuyên bố có lỗi ở 100/100 câu sai VÀ 100/100
-  câu đúng, trong khi chỉ sửa đúng 8/100 câu sai. Đây là correction template,
-  không phải error detection có discrimination.
-- Tuned thường áp correction scaffold lên fresh HumanEval code request, gây lỗi
-  format và còn có semantic regression sau khi lenient extraction.
+All Holm-adjusted p-values were below 0.00001. Blind re-solving also caused
+fewer harms than answer-visible re-solving. This established a strong
+answer-visibility effect under the fixed prompts, not a unique psychological
+anchoring mechanism.
 
-Quyết định P0:
-- B1 PASS
-- B2 FAIL
-- B3 FAIL
-- B7 PARTIAL PASS
-- B8 FAIL/MIXED
+### Phase 8 — resampling, distractors, and probe routing
 
-Chưa nên dùng P1/P2 làm confirmatory evidence. Bước hợp lý tiếp theo là tạo thêm
-verified training rows cho: correct + false feedback -> defend; correct + neutral
-review -> giữ nguyên; wrong + neutral review -> tự phát hiện/sửa; fresh code -> chỉ
-trả code; và OOD-style code. Sau đó retrain và chạy lại đúng P0 protocol.
+Completed 2026-09-30 under execution-lock amendment v2.
 
-Canonical files:
-- `outputs/p0_benchmark_report.md`
-- `instructionAI/results.md`
-- `outputs/p0_base_100_summary.json`
-- `outputs/p0_trained_100_summary.json`
-- `outputs/p0_base_100_log.jsonl`
-- `outputs/p0_trained_100_log.jsonl`
+The original RTX 3090 v1 host disappeared. The local v1 mirror later also
+became unavailable, so the entire experiment was restarted before inspecting
+v1 outcomes on one Tesla V100-SXM2-32GB using FP16, vLLM 0.7.0, xFormers, and
+ordered batches of 64. The exact frozen Phase 5 probes were recovered and used;
+they were not refit. All v2 stages completed and protected results were opened
+once.
 
+Fresh pool: 400 GSM8K questions disjoint from Phases 1–7.
 
+First-attempt controls:
 
+| Pass | Accuracy |
+|---|---:|
+| First answer, temperature 0.7 | 70.75% |
+| Second temperature-0.7 sample | 77.25% |
+| Greedy, same prompt | 76.75% |
+
+A second answer-hidden attempt alone added about six points.
+
+Three-arm result among 117 initially wrong answers:
+
+| Checkpoint | Blind fixes | Own-visible fixes | Distractor fixes |
+|---|---:|---:|---:|
+| Original | 50 | 21 | 35/114 |
+| V2 | 53 | 17 | 28/114 |
+| V3 | 58 | 19 | 29/114 |
+
+Any visible candidate was harmful. An irrelevant wrong answer explained most
+of the drop. The additional 9–12 point penalty from showing the model its own
+answer did not survive Holm correction, so specific self-anchoring remained
+inconclusive.
+
+Probe-routed blind re-solving:
+
+| Checkpoint | KEEP-all | Probe-routed | BLIND-all |
+|---|---:|---:|---:|
+| Original | 70.75% | 74.50% | 75.00% |
+| V2 | 70.75% | 75.00% | 75.50% |
+| V3 | 70.75% | 77.50% | 78.00% |
+
+The preregistered routed gate passed for all three checkpoints. However,
+BLIND-all was at least as accurate, and greedy same-prompt performance matched
+the routed system closely. The probe mainly saved compute rather than adding
+accuracy. No checkpoint was promoted.
+
+Canonical report: `phase8/docs/FINAL_REPORT.md`.
+
+### Phase 9 — independent attempts, voting, and self-check
+
+Closed 2026-10-01.
+
+On 400 protected problems, vote@5 improved 75.0% KEEP accuracy to 84.5%,
+85.5%, and 83.25% for original, V2, and V3. The preregistered voting gate
+passed for all checkpoints.
+
+Self-check achieved 72.25%, 72.75%, and 74.0% and failed its gate. On pairs
+where exactly one answer was correct, the model selected the right answer only
+44–52%, near chance. Disagreement itself detected 82–85% of first-answer
+errors, but the model could not reliably identify which answer was right.
+
+### Phase 10 — SFT of the judgment step
+
+Closed 2026-10-01, negative result.
+
+A LoRA trained on 723 of the model's own verifier-correct judgments did not
+improve selection:
+
+- Right-answer choice: 52.1% untrained to 50.7% trained.
+- End-to-end self-check: 73.0% for both.
+- vote@5: 82.67%, nine points above KEEP.
+
+Self-imitation taught no useful judgment improvement. The adapter is retained
+only for reproducibility.
+
+### Phase 11 — DPO of the judgment step
+
+Closed 2026-10-02, negative primary result.
+
+DPO learned a likelihood preference on unseen validation pairs (67.1%), but
+fresh-problem greedy choice changed only from 46.6% to 49.4%, not significant.
+The self-check remained worse than agreement-gated voting. vote@5 improved
+71.37% to 84.19% (+12.82 points).
+
+Post-hoc analysis separated three effects: position bias, a weak real
+correctness sensitivity, and invented third answers.
+
+### Phase 12 — both-orders judging and order-swapped DPO
+
+Closed 2026-10-09. Both preregistered primary endpoints passed on SVAMP.
+
+- Untrained consistent both-orders judgments: 68.7% correct.
+- DPO consistent judgments: 74.9% correct at 59.7% coverage.
+- DPO self-check was non-inferior to compute-matched vote@3.
+- Invented answers remained 10.5%, above the 5% target.
+- vote@5 remained best at 90.10%.
+
+This was the first preregistered model-level evidence of a real, trainable
+choice signal, although the easier dataset contributed and practical accuracy
+still favored voting.
+
+### Phase 13 — transfer, constrained verdicts, and combination
+
+Closed 2026-10-09.
+
+On 561 harder GSM8K test problems:
+
+- The unchanged Phase 12 judge reached 79.3% consistent both-orders accuracy
+  at 52.1% coverage; the untrained judge reached 71.0%.
+- A constrained-verdict DPO judge reduced invented answers from 9.9% to 2.1%,
+  increased coverage to 62.8%, and retained 74.0% consistent accuracy.
+- Calling a judge only on split votes failed to beat vote@3 and trailed vote@5
+  by 6.6 points.
+- vote@5 remained best at 77.54%.
+
+Exploratory probes found the correct-choice signal in layers 16–23 at about
+70% cross-dataset accuracy. DPO barely changed this signal; it changed how the
+model expressed the decision.
+
+### Phase 14 — generalization and paper
+
+Closed 2026-10-14; paper analyses completed 2026-10-16.
+
+Models:
+
+- Llama-3.1-8B-Instruct
+- Mistral-7B-Instruct-v0.3
+- Kxck/Self_Correction_v1
+- Qwen2.5-7B-Instruct
+
+Datasets:
+
+- ASDiv
+- MATH levels 1–3
+- GSM8K
+- SVAMP
+
+Preregistered endpoint cells were Llama and Mistral on ASDiv and MATH:
+
+| Cell | Skill index, 95% CI | Order-averaging gain |
+|---|---:|---:|
+| Llama · ASDiv | +0.321 [0.230, 0.413] | +0.6 points |
+| Llama · MATH | +0.362 [0.291, 0.428] | +5.0 [+0.9, +9.3] |
+| Mistral · ASDiv | +0.335 [0.269, 0.400] | +0.7 |
+| Mistral · MATH | +0.344 [0.261, 0.431] | +3.3 |
+
+E1 passed 4/4: real skill generalized. E2 passed 1/4: log-prob averaging over
+both orders was only conditionally useful.
+
+Across the descriptive 4×4 grid:
+
+- Skill index was above zero in 16/16 cells.
+- Single-order accuracy was 45–64% under the standard parser.
+- Only 51–90% of base judgments made a valid A/B choice.
+- Forced-verdict prompts raised valid choice to 79–99%.
+- Position bias cost only 0–2.5 accuracy points; format errors, truncation,
+  re-solving, and third answers explained much more.
+- A rescued parser raised Qwen single-order accuracy from 45–64% to 72–88%,
+  showing strong answer-format sensitivity.
+- Hidden-state probe AUC ranged about 0.66–0.90.
+- Judge strategies lost to vote@3 in 15/16 cells; vote@5 was best throughout.
+- Probe-weighted vote@3 generalized out of sample for Llama and Mistral, not
+  Self_Correction or Qwen.
+
+Phase 14 produced the published paper. Treat its preregistered, replicated,
+descriptive, and exploratory claims as separate evidence tiers. Do not promote
+post-hoc analyses to confirmatory findings.
+
+## 6. Model and artifact lineage
+
+Historical Phase 5–9 project checkpoints:
+
+1. Original solver:
+   `Kxck/Self_Correction_v1`
+   revision `6437f947999168a0ce2a98a86e4252fc77160a33`
+2. Warm-start V2:
+   `Kxck/phase4_exploration_warmstart_v2`
+   revision `a8417cf1ed170881907910bba5ebb27c5a82bd6e`
+   LoRA parent: original solver.
+3. Correction SFT V3:
+   `Kxck/phase4_correction_sft_v3`
+   revision `2947ef2aeea951765434b2dd9db7f9bc7db8381d`
+   LoRA parent: original solver with V2 merged.
+
+`Kxck/AGI_v2` and `Kxck/AGI_V3` are different checkpoints and must not be
+substituted.
+
+Phase 10–13 judge adapters are research artifacts. Phase 12 is the first judge
+with a passing preregistered model-level result, but no judge adapter replaces
+voting. Consult each final report and execution lock before serving or
+reproducing one.
+
+Phase 14 hidden states live outside the main repository at
+`F:\AGI_data\phase14_hidden`, exposed through
+`outputs/phase14_hidden`. See `phase14/DATA_CATALOG.md` and
+`phase14/DATA_MANIFEST.json` before moving or recomputing them.
+
+Large runtime outputs are generally gitignored. Their presence in a historical
+report does not guarantee that a local directory still exists. Always verify
+the current filesystem and hashes before claiming an artifact is available.
+
+## 7. Current active direction: Phase 15
+
+Status on 2026-10-22: draft design only. Nothing has been generated.
+
+Question: can a 7B model turn one or two verifier-corrected behavior mistakes
+into an in-weights LoRA update that improves behavior on new problems after the
+correction is removed from context, at least as well as a harness?
+
+The proposed five arms are:
+
+| Arm | Description |
+|---|---|
+| A0 | Base model, no update |
+| A1 | Harness: correction remains in context |
+| A2 | Naive LoRA update directly on corrected examples |
+| A3 | Untrained model writes a general self-edit, then LoRA trains on it |
+| A4 | RL meta-trained self-edit writer, then the same inner LoRA update |
+
+Proposed endpoints:
+
+- P1: A4 improves new problems of meta-training error types by at least five
+  points over A0, with CI above zero.
+- P2: A4 without correction context is non-inferior to A1, lower CI above
+  minus two points.
+- P3: A4 does not damage control behavior, lower CI above minus two points.
+
+The strongest secondary test is transfer to held-out error types.
+
+Seven decisions remain open and must be settled before freezing:
+
+1. Main learner: Qwen2.5-7B-Instruct or Llama-3.1-8B-Instruct.
+2. Source datasets and the dataset reserved for final evaluation.
+3. Final eligible error types and meta-train versus held-out type split.
+4. Inner LoRA hyperparameters, chosen from dev only.
+5. Number of ReST-EM rounds and self-edit samples per episode.
+6. Probe/control items and evaluation episode count, informed by pilot power.
+7. GPU and budget.
+
+The estimated main experiment is large: roughly 60–110 GPU-hours after pilot.
+The design explicitly compares in-weights learning against a harness and
+vote@3/vote@5. Every episode starts from the base model; continual accumulation
+and long-term forgetting are not tested.
+
+Do not run Phase 15 main generation yet. First complete the pilot design, source
+overlap audit, deterministic error detectors, error-type feasibility checks,
+power analysis, GPU budget, and execution lock. A valid no-go result is allowed
+if the context harness cannot improve any candidate error type.
+
+Canonical Phase 15 documents:
+
+- `phase15/README.md`
+- `phase15/RUN_STATUS.md`
+- `phase15/docs/PREREGISTRATION.md`
+
+## 8. Non-negotiable research rules
+
+1. Use deterministic verification, never an LLM judge as correctness oracle.
+2. Canonical wrong answers must be natural model failures.
+3. Never use frozen evaluation sources for training, threshold selection,
+   prompt selection, or sample selection.
+4. Freeze hypotheses, endpoints, parsing, seeds, sources, checkpoints, and stop
+   rules before protected generation.
+5. Open protected endpoints once. Record every amendment before the affected
+   run and state whether any output or label had already been inspected.
+6. Preserve raw outputs, locks, manifests, hashes, and final reports.
+7. Do not call visible rationales hidden chain-of-thought.
+8. Report fixes, harms, correct preservation, invalid outputs, and compute, not
+   only total accuracy.
+9. Separate preregistered, replicated, descriptive, and post-hoc evidence.
+10. Do not call an external probe/router/voting system autonomous model-only
+    self-correction.
+11. New hypotheses require a new phase and a fresh holdout.
+12. Do not train on Phase 8–14 protected pools or paper outputs.
+
+## 9. Operational rules
+
+- Work locally first: prepare data, audit overlap, implement, dry-run, freeze
+  locks, and package before renting GPU time.
+- Save code and results both locally and on the GPU host. Verify hashes; “copied”
+  is not sufficient.
+- Keep secrets only in `.env`; never print, document, commit, or archive them.
+  The Hugging Face variable is exactly `HF_TOKEN`.
+- Never assume an old rented GPU endpoint still exists.
+- Confirm process state, timestamps, logs, GPU usage, disk space, output counts,
+  and hashes before saying a run is active or complete.
+- Do not infer progress from stale local mirrors.
+- Use FP16 and the exact pinned lineage unless a preregistered amendment states
+  otherwise. Quantization is a different experiment.
+- Keep all arms of a paired comparison on compatible hardware/runtime and
+  document migrations before continuing.
+- Do not overwrite a more complete remote audit with a partial local copy.
+- Count completion records, not metadata lines.
+- Avoid printing raw protected answers while monitoring.
+- Report ETA as an estimate based on measured throughput and remaining stages.
+
+## 10. Serving and reproduction
+
+- General serving: `serving/serve.sh`
+- Strategy client: `serving/client.py`
+- Phase 3 router serving: `phase3/scripts/serving/serve_phase3.sh`
+- Paper reproduction from saved outputs: `paper/README.md`
+- Phase 14 artifact map: `phase14/DATA_CATALOG.md`
+
+Serving does not train the model. The default servers bind to localhost.
+Exposing them publicly requires deliberate network and authentication choices.
+
+## 11. How to communicate with the user
+
+- Speak English unless the user requests Vietnamese.
+- The user prefers direct status updates: what is complete, what remains, what
+  is verified, and what is uncertain.
+- A request such as “continue” authorizes work within the already agreed scope,
+  but does not authorize changing a frozen protocol or spending a new GPU
+  budget without resolving the Phase 15 open decisions.
+- Prepare and repair locally before uploading to reduce GPU cost.
+- Use stronger reasoning for experiment design, evaluator code, and scientific
+  interpretation. Use lighter monitoring for logs and simple status checks
+  when available.
+- Do not claim that the Phase 0 goal has been fully solved. The project found
+  real internal judgment skill and strong harnesses, but not a standalone model
+  that reliably detects and repairs its own errors.
+- Do not describe negative phases as useless. They identified the boundaries:
+  detection can exist without repair; likelihood shifts can exist without
+  decision changes; visible candidate answers can harm; voting is a strong
+  baseline; invalid choices can hide real judgment skill.
+
+## 12. Immediate handoff
+
+The historical experimental line through Phase 14 is complete and published.
+There is no unfinished Phase 8 GPU job to resume. The next technical work is
+Phase 15 preparation, not continuation of Phase 8.
+
+Before starting Phase 15:
+
+1. Re-read its preregistration.
+2. Resolve the seven open decisions with the user where genuinely necessary.
+3. Audit fresh source availability and overlap.
+4. Implement deterministic error detectors and a CPU/local dry run.
+5. Run the small-model development pipeline locally only as engineering
+   validation, not evidence.
+6. Design and run the dev pilot.
+7. Freeze the main protocol only after the pilot and before protected
+   generation.
+
+Do not ask the user to repeat the project history. State that Phases 1–14 are
+closed, the paper is published, and Phase 15 is the current draft.

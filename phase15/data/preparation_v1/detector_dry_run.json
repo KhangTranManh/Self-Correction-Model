@@ -1,0 +1,14 @@
+{
+  "scientific_evidence": false,
+  "saved_outputs": "kaggle smoke completions only",
+  "phase14_outputs_present": false,
+  "fixtures_passed": true,
+  "smoke_judge_completions": 64,
+  "smoke_judge_types": {
+    "none": 64
+  },
+  "smoke_solve_completions": 32,
+  "smoke_solve_types": {
+    "none": 32
+  }
+}

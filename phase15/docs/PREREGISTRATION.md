@@ -1,6 +1,8 @@
 # Phase 15 preregistration (draft)
 
-**Status: draft written on 2026-10-22; nothing has been generated. Open decisions are listed at the end and must be
+**Historical draft, superseded by the completed development pilots and the [final report](FINAL_REPORT.md). The main preregistered evaluation and P1–P3 endpoints were never run.**
+
+**Original status at drafting on 2026-10-22: nothing had been generated. Open decisions were listed at the end and had to be
 settled, recorded in `RUN_STATUS.md`, and the file frozen before the first GPU run.** After freezing, any change is
 an amendment recorded in `RUN_STATUS.md` before the generation it affects.
 

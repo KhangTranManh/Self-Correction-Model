@@ -1,0 +1,97 @@
+{
+  "counts": {
+    "missing_or_invalid_url": 5224,
+    "picture_flag": 630,
+    "rows": 25443
+  },
+  "difficulty_counts": {
+    "EASY": 8904,
+    "HARD": 3162,
+    "MEDIUM": 3244,
+    "MEDIUM_HARD": 2745,
+    "UNKNOWN_DIFFICULTY": 5014,
+    "VERY_HARD": 2374
+  },
+  "eligibility_assessed": false,
+  "historical_overlap_assessed": false,
+  "io_counts": {
+    "call_based": 2893,
+    "standard_input": 21809,
+    "unpaired_or_empty": 741
+  },
+  "metadata_sha256": "3bc4902460890c3d5cbb422a7ad20647c33e90c22cee20a3ef6747e09c731b48",
+  "revision": "d593ed0a2becbbc952230bb89be09189bf1056dc",
+  "schema_version": "p16_taco_train_inventory_v1",
+  "shards": [
+    {
+      "bytes": 286917870,
+      "name": "train-00000-of-00009.parquet",
+      "sha256": "bee336c14dda183b1f700d54a149173418c7b3def295666159dd72c32aa8b326"
+    },
+    {
+      "bytes": 327223660,
+      "name": "train-00001-of-00009.parquet",
+      "sha256": "1934cd4c4e8784bfc231b0294326a308dc2b7abf5e3c7f17622ece10ae8d8b56"
+    },
+    {
+      "bytes": 177530416,
+      "name": "train-00002-of-00009.parquet",
+      "sha256": "1ad70829b190935c6cbded92d013b9b1fc10cd154dc0814c929716a1ea9ad1ae"
+    },
+    {
+      "bytes": 179463335,
+      "name": "train-00003-of-00009.parquet",
+      "sha256": "934953c5693650a58ede19966db7ec1322f721e9c91b4d62e90a67dced86121d"
+    },
+    {
+      "bytes": 205709320,
+      "name": "train-00004-of-00009.parquet",
+      "sha256": "d634726c27b85171494f7d38abfcd31d773a205002f9218bb54bc2cba49c99d4"
+    },
+    {
+      "bytes": 271713449,
+      "name": "train-00005-of-00009.parquet",
+      "sha256": "c604f98dc0d1568939372f78fc6ed654c31b34ed3e0302636efcc8547802439c"
+    },
+    {
+      "bytes": 213807578,
+      "name": "train-00006-of-00009.parquet",
+      "sha256": "e6ebb62153e93828e631f985d29466d7819262a6811a49b00a23a3cdb1904a11"
+    },
+    {
+      "bytes": 260118596,
+      "name": "train-00007-of-00009.parquet",
+      "sha256": "e3dfc9a787b2234fbb25f31a7d15fad734c518c5fb6fc62a71616dae69944aef"
+    },
+    {
+      "bytes": 251576257,
+      "name": "train-00008-of-00009.parquet",
+      "sha256": "16d88e9c6d4ddb5d28805dc6e03f2fb349ccf858436b86191f4c2b97170c1304"
+    }
+  ],
+  "skill_counts": {
+    "Amortized analysis": 554,
+    "Bit manipulation": 814,
+    "Complete search": 1886,
+    "Data structures": 4695,
+    "Dynamic programming": 2585,
+    "Greedy algorithms": 2649,
+    "Range queries": 220,
+    "Sorting": 2234
+  },
+  "source_counts": {
+    "aizu": 2151,
+    "atcoder": 1440,
+    "codechef": 3352,
+    "codeforces": 8193,
+    "codewars": 2460,
+    "geeksforgeeks": 2680,
+    "hackerearth": 2390,
+    "hackerrank": 764,
+    "kattis": 1236,
+    "leetcode": 777
+  },
+  "source_repo": "BAAI/TACO",
+  "split_opened": "train",
+  "test_opened": false
+}

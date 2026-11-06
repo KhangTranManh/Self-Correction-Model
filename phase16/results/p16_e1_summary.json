@@ -1,0 +1,11 @@
+{
+  "audit_sha256": "11b5f13417fe5af11b353512f1df227c1ff30d7d725417a2c32979c29433e420",
+  "completed": 9,
+  "evaluation_split_opened": false,
+  "labels": {
+    "correct": 9
+  },
+  "schema_version": "phase16_a0_engineering_smoke_v1",
+  "scope": "engineering_only",
+  "task_count": 9
+}

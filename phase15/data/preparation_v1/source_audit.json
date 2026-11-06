@@ -1,0 +1,68 @@
+{
+  "schema_version": "phase15_source_audit_v1",
+  "scientific_evidence": false,
+  "splits_drawn": false,
+  "key_fields": [
+    "question",
+    "problem",
+    "Body+Question"
+  ],
+  "files_scanned": 377,
+  "question_keys": 18324,
+  "question_keys_before_phase14": 11305,
+  "inventory_sha256": "b876a6b1e7db8f0776c13b03875c66bee2e97a5487bc95e11eccc99d1adaab50",
+  "asdiv": {
+    "raw": "phase14/data/raw/ASDiv.xml",
+    "eligible_excluding_phase14_files": 2019,
+    "rejected_excluding_phase14_files": {
+      "duplicate_question": 1,
+      "formula_mismatch": 7,
+      "near_svamp": 132,
+      "non_numeric_answer": 146
+    },
+    "pool_rows": 2019,
+    "pilot_rows": 100,
+    "main_rows_generated": 822,
+    "stored_in_phase14_pool_but_not_generated": 1097,
+    "strict_eligible_absent_from_phase1_14": 0,
+    "strict_rejected": {
+      "formula_mismatch": 7,
+      "near_svamp": 132,
+      "non_numeric_answer": 146,
+      "prior_source": 2020
+    },
+    "fresh_pool": false
+  },
+  "math_train": {
+    "source": "EleutherAI/hendrycks_math train",
+    "rows_read": 7500,
+    "exact_question_overlap": 0,
+    "eligible_levels_1_to_3": 2900,
+    "eligible_by_level": {
+      "Level 1": 495,
+      "Level 2": 1121,
+      "Level 3": 1284
+    },
+    "rejected": {
+      "level_4_or_5": 3996,
+      "non_constant_answer": 604
+    },
+    "raw_kept": false
+  },
+  "reserved_candidate": {
+    "name": "ChilleD/MultiArith",
+    "rows": 420,
+    "duplicate_rows": 12,
+    "unique_rows": 408,
+    "exact_question_overlap": 40,
+    "overlap_before_phase14": 0,
+    "overlap_phase14_only": 40,
+    "overlap_asdiv_pool": 40,
+    "overlap_math_test_pool": 0,
+    "absent": 368,
+    "absent_near_asdiv_jaccard": 361,
+    "jaccard_max": 0.5,
+    "reserved": false,
+    "status": "candidate_not_reserved"
+  }
+}

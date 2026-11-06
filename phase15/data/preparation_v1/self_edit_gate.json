@@ -1,0 +1,85 @@
+{
+  "self_edits": 8,
+  "by_status": {
+    "normalize": 8
+  },
+  "episodes": [
+    {
+      "episode_id": "smoke_00",
+      "status": "normalize",
+      "reasons": [
+        "committed_side"
+      ],
+      "list_markers": 0,
+      "stripped_verdict": true
+    },
+    {
+      "episode_id": "smoke_01",
+      "status": "normalize",
+      "reasons": [
+        "list_markers",
+        "committed_side"
+      ],
+      "list_markers": 4,
+      "stripped_verdict": true
+    },
+    {
+      "episode_id": "smoke_02",
+      "status": "normalize",
+      "reasons": [
+        "list_markers",
+        "committed_side"
+      ],
+      "list_markers": 4,
+      "stripped_verdict": true
+    },
+    {
+      "episode_id": "smoke_03",
+      "status": "normalize",
+      "reasons": [
+        "list_markers",
+        "committed_side"
+      ],
+      "list_markers": 3,
+      "stripped_verdict": true
+    },
+    {
+      "episode_id": "smoke_04",
+      "status": "normalize",
+      "reasons": [
+        "list_markers",
+        "committed_side"
+      ],
+      "list_markers": 3,
+      "stripped_verdict": true
+    },
+    {
+      "episode_id": "smoke_05",
+      "status": "normalize",
+      "reasons": [
+        "committed_side"
+      ],
+      "list_markers": 0,
+      "stripped_verdict": true
+    },
+    {
+      "episode_id": "smoke_06",
+      "status": "normalize",
+      "reasons": [
+        "committed_side"
+      ],
+      "list_markers": 0,
+      "stripped_verdict": true
+    },
+    {
+      "episode_id": "smoke_07",
+      "status": "normalize",
+      "reasons": [
+        "committed_side"
+      ],
+      "list_markers": 0,
+      "stripped_verdict": true
+    }
+  ],
+  "scientific_evidence": false
+}

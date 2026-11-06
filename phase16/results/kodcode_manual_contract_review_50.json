@@ -1,0 +1,414 @@
+{
+  "schema_version": "p16_kodcode_manual_contract_review_v1",
+  "shortlist_sha256": "159e52c7c32ecf4a8979bcc44c18ce353e5d84e70673e30cb1ce99691a623f4b",
+  "frozen_sample_rule": "first 50 rows in hashed review_order",
+  "counts": {
+    "reviewed": 50,
+    "contract_text_eligible": 24,
+    "rejected": 26,
+    "oracle_validated": 0
+  },
+  "rows": [
+    {
+      "review_index": 0,
+      "id": "Prefill_35655_C",
+      "subset": "Prefill",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "5424c1332958a3d2350f610993f9a02cc2a1782fa011c114a127efb5f24d1d4a"
+    },
+    {
+      "review_index": 1,
+      "id": "Prefill_26404_C",
+      "subset": "Prefill",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "7df5d16b36237ea0facb4e620029f657a050098e3bb5ad11265fa858a212f6f2"
+    },
+    {
+      "review_index": 2,
+      "id": "Docs: Python310_25840_C",
+      "subset": "Docs",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "a55445107d3d24904952d7451edd31e16c69e9f89148726754ef4ee75922a9bf"
+    },
+    {
+      "review_index": 3,
+      "id": "Data_Structure_30859_I",
+      "subset": "Data_Structure",
+      "contract_text_eligible": false,
+      "reason": "summarizes consecutive runs; does not select/count/sum by key range",
+      "question_sha256": "0b2b9cb8088a39684ffb539b59d52aa0af2db09d0fc87863dcb274f08340b816"
+    },
+    {
+      "review_index": 4,
+      "id": "Filter_73071_I",
+      "subset": "Filter",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "f625071e4ec09d469cca9f123b6626b11b99daed3609eac9271503d9b58a49a6"
+    },
+    {
+      "review_index": 5,
+      "id": "Prefill_34824_C",
+      "subset": "Prefill",
+      "contract_text_eligible": false,
+      "reason": "malformed/nested scaffold makes the target function ambiguous",
+      "question_sha256": "e1d6e6d14f0f72827964ad685c1798a2791ecacfd66cfd6bc90e67d7982462b2"
+    },
+    {
+      "review_index": 6,
+      "id": "Data_Structure_8706_I",
+      "subset": "Data_Structure",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "ee8c7230a978027c8e0dcc66cf15dcc59d4580483ede2093fd59f3a776742c52"
+    },
+    {
+      "review_index": 7,
+      "id": "Data_Structure_7050_I",
+      "subset": "Data_Structure",
+      "contract_text_eligible": false,
+      "reason": "returns index runs whose contents are prime, not elements keyed by [L,R]",
+      "question_sha256": "c2aaa06c931a1f9054844463cf680f3a48d28a3589e18b288ef403ca2f7de346"
+    },
+    {
+      "review_index": 8,
+      "id": "Algorithm_25746_I",
+      "subset": "Algorithm",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "71989299fb4c9c7bfe3cfbb2095a1b8d6dd0528012a5322aec8877f2d61b9736"
+    },
+    {
+      "review_index": 9,
+      "id": "Prefill_30860_I",
+      "subset": "Prefill",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "abfa35289409cedab703accbf3c9d7d017d721f141c92f919f2110d5528c8de7"
+    },
+    {
+      "review_index": 10,
+      "id": "Docs: Python310_44150_I",
+      "subset": "Docs",
+      "contract_text_eligible": false,
+      "reason": "multi-operation sequence API; range mention is incidental",
+      "question_sha256": "6a79f179df4867fc252bae8782f0c7f2a0f9aa71bd18f81a63a323f36cc580a8"
+    },
+    {
+      "review_index": 11,
+      "id": "Data_Structure_41932_I",
+      "subset": "Data_Structure",
+      "contract_text_eligible": false,
+      "reason": "license-key formatting; range mention is incidental",
+      "question_sha256": "0bf54c3992c5039072754fb78223f6bcdd025491ec598533f873f476f8fb049a"
+    },
+    {
+      "review_index": 12,
+      "id": "Algorithm_12015_C",
+      "subset": "Algorithm",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "744d59e6338aa321e1614b8530d9b348e20e7d265b24f794414329dc7cef857d"
+    },
+    {
+      "review_index": 13,
+      "id": "Filter_17162_I",
+      "subset": "Filter",
+      "contract_text_eligible": false,
+      "reason": "hard-coded 100..200 conflicts with general start/end scaffold",
+      "question_sha256": "adda07197b9b8ae8ba7b5fe9c67b462607e1502643f46b40e46cf89bda867eca"
+    },
+    {
+      "review_index": 14,
+      "id": "Algorithm_14941_I",
+      "subset": "Algorithm",
+      "contract_text_eligible": false,
+      "reason": "median-stream task; range mention is incidental",
+      "question_sha256": "ab685d426de22e0614007f204136f403088aad5007a631ecbbf80a04a1eefe09"
+    },
+    {
+      "review_index": 15,
+      "id": "Docs: Python310_17503_I",
+      "subset": "Docs",
+      "contract_text_eligible": false,
+      "reason": "simple-statements API; range mention is incidental",
+      "question_sha256": "8f4ab68bbe27b07642f09d84eca82293ba91a9e343531b1d5865dc5b642251b5"
+    },
+    {
+      "review_index": 16,
+      "id": "Docs: Python310_44150_C",
+      "subset": "Docs",
+      "contract_text_eligible": false,
+      "reason": "multi-operation sequence API; range mention is incidental",
+      "question_sha256": "fc3b1e0c215b01172bb9c36a78d285d0059c1e02c54f60004a305bb220484c45"
+    },
+    {
+      "review_index": 17,
+      "id": "Package_2516_I",
+      "subset": "Package",
+      "contract_text_eligible": false,
+      "reason": "mode-dependent prime/palindrome contract is outside one frozen variant",
+      "question_sha256": "f1578e984454fc4b5bf0f095fe9a706b766760718ce25d4dd100a06f22912b49"
+    },
+    {
+      "review_index": 18,
+      "id": "Data_Structure_43503_C",
+      "subset": "Data_Structure",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "912fa26cafba8289c0c61447b631b10c5f0d11b3a3f13f7a65a748a8f2a8e53b"
+    },
+    {
+      "review_index": 19,
+      "id": "Data_Structure_46625_I",
+      "subset": "Data_Structure",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "8aa2ed93b0e8e08cf1a844cf17e2c2aa1e628e19493b582f21cb94557bcb5999"
+    },
+    {
+      "review_index": 20,
+      "id": "Algorithm_24181_I",
+      "subset": "Algorithm",
+      "contract_text_eligible": false,
+      "reason": "elevator simulation; range mention is incidental",
+      "question_sha256": "0af2329f6346515ffdbd3717b84430c3c348197252a419bcb5412da1c1bdd2e8"
+    },
+    {
+      "review_index": 21,
+      "id": "Package_2790_I",
+      "subset": "Package",
+      "contract_text_eligible": false,
+      "reason": "generator demonstration with ambiguous scored output",
+      "question_sha256": "8ad3742f1393e37243b3c134569a43d7196b237c529a8dfb7a5f78239e24ce61"
+    },
+    {
+      "review_index": 22,
+      "id": "Data_Structure_48522_I",
+      "subset": "Data_Structure",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "50dfa6880003a43d49a0e9c74f268157fba2dcbfa538f0cdc0eae037c32a3b37"
+    },
+    {
+      "review_index": 23,
+      "id": "Prefill_1089_C",
+      "subset": "Prefill",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "85deb69cb56bfbce6743b8a43af877dcef9f832ec3e41c01f02501c359d82778"
+    },
+    {
+      "review_index": 24,
+      "id": "Prefill_4392_C",
+      "subset": "Prefill",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "f32e05a297718192e5912920adf5b7c02d2880724368aa66f4cbbfce22668f2e"
+    },
+    {
+      "review_index": 25,
+      "id": "Prefill_23013_C",
+      "subset": "Prefill",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "1d0bdf216ad3a64e6d2297e2e8a3499255dc1b37a9d98b5ee044f198b26149a5"
+    },
+    {
+      "review_index": 26,
+      "id": "Algorithm_41604_I",
+      "subset": "Algorithm",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "5a88cba57b161bee0d2ecdbb70a8785f74debd962acd0efe2a914f66baab62eb"
+    },
+    {
+      "review_index": 27,
+      "id": "Package_6873_I",
+      "subset": "Package",
+      "contract_text_eligible": false,
+      "reason": "list rotation; range mention is incidental",
+      "question_sha256": "05e84ae158b44be84f509cd12449a87d65f67d145460bc7bf638fc8b6582b810"
+    },
+    {
+      "review_index": 28,
+      "id": "Algorithm_6222_I",
+      "subset": "Algorithm",
+      "contract_text_eligible": false,
+      "reason": "median-maintenance task; range mention is incidental",
+      "question_sha256": "2dafee5ddcad95c6c47bd8f5cc0686eb7a6cb5a8adf5ff24e6f6999769cd6609"
+    },
+    {
+      "review_index": 29,
+      "id": "Data_Structure_6168_I",
+      "subset": "Data_Structure",
+      "contract_text_eligible": false,
+      "reason": "oracle dispute: stated output 9 conflicts with shown totient sum 10",
+      "question_sha256": "06dbd7203de64ef9a781d3f16b164dd3b0f58d2301422eed9a3810b0c2d7a9e5"
+    },
+    {
+      "review_index": 30,
+      "id": "Algorithm_45330_I",
+      "subset": "Algorithm",
+      "contract_text_eligible": false,
+      "reason": "single missing-number task, not count/sum/selection of qualifying elements",
+      "question_sha256": "b05875430a59a0f3020175e80cb9c85497cd8a3d620493298f2089a6a4d753d9"
+    },
+    {
+      "review_index": 31,
+      "id": "Algorithm_16558_I",
+      "subset": "Algorithm",
+      "contract_text_eligible": false,
+      "reason": "Roman-numeral conversion; range mention is a constraint",
+      "question_sha256": "ff4cca48aa4ebf953649951823f8858f9b4008a2187d8cba12fe7e546c6b7394"
+    },
+    {
+      "review_index": 32,
+      "id": "Data_Structure_20647_I",
+      "subset": "Data_Structure",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "a8137184642faceef80f5e56e65a324505b6ee362d5889a6840228a30a4789bd"
+    },
+    {
+      "review_index": 33,
+      "id": "Filter_65766_I",
+      "subset": "Filter",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "d256000b0b938a2a47425d8b376535ef967861c94388c5c1c12c247810c0ff4c"
+    },
+    {
+      "review_index": 34,
+      "id": "Filter_87995_I",
+      "subset": "Filter",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "2375d5b5f047e5dc5a5d73e8bffbe4ef13b74c2be60ba4b8a9ad0a8fc1fb6229"
+    },
+    {
+      "review_index": 35,
+      "id": "Filter_82309_I",
+      "subset": "Filter",
+      "contract_text_eligible": false,
+      "reason": "undefined 'good number' predicate; contract is incomplete",
+      "question_sha256": "9ae60cf8e76cf6623bd163f87d68e2990c263dc46ef7a798b0ded908ebb05802"
+    },
+    {
+      "review_index": 36,
+      "id": "Prefill_17087_I",
+      "subset": "Prefill",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "cb527cadf0cdefbb31558e853f28f64ff91a5595c72558eb930b889db8a95359"
+    },
+    {
+      "review_index": 37,
+      "id": "Docs: Python310_37698_I",
+      "subset": "Docs",
+      "contract_text_eligible": false,
+      "reason": "shared-memory task; range mention is incidental",
+      "question_sha256": "e120133bc365752d8598dfbd7f7eca6c8d25cba58bdbb14214a66f22d290dbf9"
+    },
+    {
+      "review_index": 38,
+      "id": "Package_6099_I",
+      "subset": "Package",
+      "contract_text_eligible": false,
+      "reason": "returns median after filtering, not count/sum/selection",
+      "question_sha256": "b954d12b978f8c6f4527e273034d79618d45c970eda7f1596e25cbc968918a4f"
+    },
+    {
+      "review_index": 39,
+      "id": "Algorithm_38927_I",
+      "subset": "Algorithm",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "9921d1cc1482b10df171cf20bd118217b5c77d498576f60e63423fcf48ceb8c9"
+    },
+    {
+      "review_index": 40,
+      "id": "Data_Structure_43299_I",
+      "subset": "Data_Structure",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "6626b7837133c6875ef60c98103a9fe228e804ebf6f7126ec8444f65f1d80cb4"
+    },
+    {
+      "review_index": 41,
+      "id": "Algorithm_11488_I",
+      "subset": "Algorithm",
+      "contract_text_eligible": false,
+      "reason": "two-sum task; range mention is incidental",
+      "question_sha256": "b984508b2013b1bf96ff5356ff110351d6817e4a115ab6a6f33abfd1033265a4"
+    },
+    {
+      "review_index": 42,
+      "id": "Data_Structure_33937_C",
+      "subset": "Data_Structure",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "20f551574c8e82da69e53b405a841b7d0e17dd2bd3bdbff5d68a464c13136217"
+    },
+    {
+      "review_index": 43,
+      "id": "Algorithm_44061_I",
+      "subset": "Algorithm",
+      "contract_text_eligible": false,
+      "reason": "Roman-numeral conversion; range mention is a constraint",
+      "question_sha256": "6ef01070e274b8b1be17527b42a6e8f2e0c42b40c26f787e140ace30c8b2130a"
+    },
+    {
+      "review_index": 44,
+      "id": "Data_Structure_8645_I",
+      "subset": "Data_Structure",
+      "contract_text_eligible": false,
+      "reason": "single missing-number task, not count/sum/selection",
+      "question_sha256": "86bd11dc5861f1d62fff25aa492b3e4215f03ccb8554b18e88862c68fbfe5a12"
+    },
+    {
+      "review_index": 45,
+      "id": "Algorithm_27273_I",
+      "subset": "Algorithm",
+      "contract_text_eligible": false,
+      "reason": "balanced-tree validation; range mention is incidental",
+      "question_sha256": "483e73de8dfdaea2069b5206c31ce696d50e0ff848a0356b6279fe74851f1270"
+    },
+    {
+      "review_index": 46,
+      "id": "Prefill_24394_C",
+      "subset": "Prefill",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "64e8587a52cd4a961086f7386978658468e519dd9f3c17b91dec3c0da75b0b07"
+    },
+    {
+      "review_index": 47,
+      "id": "Filter_27132_I",
+      "subset": "Filter",
+      "contract_text_eligible": false,
+      "reason": "random array generation; output is not the named operation",
+      "question_sha256": "415cee55c684b5d19786bfdbb4c7cbc0c8b5626186fede7fbc6c9ce0383ebb86"
+    },
+    {
+      "review_index": 48,
+      "id": "Data_Structure_41335_C",
+      "subset": "Data_Structure",
+      "contract_text_eligible": false,
+      "reason": "returns missing intervals, not qualifying element IDs",
+      "question_sha256": "5dd0971b5f354206b244e417c11777348715573ccaa4a994221105ccb2f4f34f"
+    },
+    {
+      "review_index": 49,
+      "id": "Prefill_5757_C",
+      "subset": "Prefill",
+      "contract_text_eligible": true,
+      "reason": "explicit inclusive range and direct selection/count/sum; oracle still unvalidated",
+      "question_sha256": "77a73bd26514c5d129df8075061b248ce4f3bda486f3382160be09ca8bc2542e"
+    }
+  ],
+  "limit": "Manual text review only; tests, family independence and oracle are not certified."
+}

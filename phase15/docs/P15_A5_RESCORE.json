@@ -1,0 +1,189 @@
+{
+  "schema_version": "phase15_a5_answer_decomposition_v1",
+  "source_audit": "D:\\AGI\\phase15\\results\\p15_a3_audit.jsonl",
+  "source_audit_sha256": "ef2a05b5e4c534451028a2b8cf97fa0787bb381f83171ce0e9b2d9542562bf79",
+  "manifest_sha256": "1839aba51f447c4f0da8b1b95a8fea9775072a81736f50f1faf96e418ac1c2e9",
+  "completed_episodes": 40,
+  "matched_seed_items": 120,
+  "saved_correct_label_disagreements": 0,
+  "saved_all_error_joint_label_disagreements": 0,
+  "evaluation_split_opened": false,
+  "arms": {
+    "probe": {
+      "a0_base": {
+        "n": 80,
+        "strict_correct": 31,
+        "rescued_correct": 45,
+        "format_clean": 38,
+        "strict_joint": 31,
+        "rescued_joint": 31,
+        "correct_but_strict_unparseable": 14,
+        "wrong_but_clean": 7,
+        "rescued_numeric": 80
+      },
+      "a1_context": {
+        "n": 80,
+        "strict_correct": 37,
+        "rescued_correct": 44,
+        "format_clean": 46,
+        "strict_joint": 37,
+        "rescued_joint": 37,
+        "correct_but_strict_unparseable": 7,
+        "wrong_but_clean": 9,
+        "rescued_numeric": 80
+      },
+      "a2_naive": {
+        "n": 80,
+        "strict_correct": 40,
+        "rescued_correct": 49,
+        "format_clean": 53,
+        "strict_joint": 40,
+        "rescued_joint": 40,
+        "correct_but_strict_unparseable": 9,
+        "wrong_but_clean": 13,
+        "rescued_numeric": 80
+      }
+    },
+    "control": {
+      "a0_base": {
+        "n": 40,
+        "strict_correct": 30,
+        "rescued_correct": 36,
+        "format_clean": 33,
+        "strict_joint": 30,
+        "rescued_joint": 30,
+        "correct_but_strict_unparseable": 6,
+        "wrong_but_clean": 3,
+        "rescued_numeric": 40
+      },
+      "a1_context": {
+        "n": 40,
+        "strict_correct": 34,
+        "rescued_correct": 38,
+        "format_clean": 35,
+        "strict_joint": 34,
+        "rescued_joint": 34,
+        "correct_but_strict_unparseable": 4,
+        "wrong_but_clean": 1,
+        "rescued_numeric": 40
+      },
+      "a2_naive": {
+        "n": 40,
+        "strict_correct": 29,
+        "rescued_correct": 34,
+        "format_clean": 34,
+        "strict_joint": 29,
+        "rescued_joint": 29,
+        "correct_but_strict_unparseable": 5,
+        "wrong_but_clean": 5,
+        "rescued_numeric": 40
+      }
+    }
+  },
+  "paired_vs_a0": {
+    "a1_context": {
+      "probe": {
+        "strict_correct": {
+          "fixes": 14,
+          "harms": 8
+        },
+        "rescued_correct": {
+          "fixes": 6,
+          "harms": 7
+        },
+        "format_clean": {
+          "fixes": 15,
+          "harms": 7
+        },
+        "strict_joint": {
+          "fixes": 14,
+          "harms": 8
+        },
+        "rescued_joint": {
+          "fixes": 14,
+          "harms": 8
+        }
+      },
+      "control": {
+        "strict_correct": {
+          "fixes": 5,
+          "harms": 1
+        },
+        "rescued_correct": {
+          "fixes": 2,
+          "harms": 0
+        },
+        "format_clean": {
+          "fixes": 3,
+          "harms": 1
+        },
+        "strict_joint": {
+          "fixes": 5,
+          "harms": 1
+        },
+        "rescued_joint": {
+          "fixes": 5,
+          "harms": 1
+        }
+      }
+    },
+    "a2_naive": {
+      "probe": {
+        "strict_correct": {
+          "fixes": 21,
+          "harms": 12
+        },
+        "rescued_correct": {
+          "fixes": 13,
+          "harms": 9
+        },
+        "format_clean": {
+          "fixes": 24,
+          "harms": 9
+        },
+        "strict_joint": {
+          "fixes": 21,
+          "harms": 12
+        },
+        "rescued_joint": {
+          "fixes": 21,
+          "harms": 12
+        }
+      },
+      "control": {
+        "strict_correct": {
+          "fixes": 6,
+          "harms": 7
+        },
+        "rescued_correct": {
+          "fixes": 3,
+          "harms": 5
+        },
+        "format_clean": {
+          "fixes": 6,
+          "harms": 5
+        },
+        "strict_joint": {
+          "fixes": 6,
+          "harms": 7
+        },
+        "rescued_joint": {
+          "fixes": 6,
+          "harms": 7
+        }
+      }
+    }
+  },
+  "ia3_gpu_definition_gate": {
+    "a2_minus_a0_probe": 4,
+    "a2_minus_a0_control": -2,
+    "probe_fixes": 13,
+    "probe_harms": 9,
+    "conditions": {
+      "probe_gain_at_least_4_of_80": true,
+      "probe_fixes_greater_than_harms": true,
+      "control_not_worse_than_1_of_40": false
+    },
+    "passed": false
+  }
+}

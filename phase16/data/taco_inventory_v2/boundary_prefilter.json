@@ -1,0 +1,2320 @@
+{
+  "candidate_count": 375,
+  "candidate_ids": [
+    {
+      "id": "taco_train_00044",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_00144",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_00191",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_00219",
+      "markers": [
+        "inclusive",
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_00363",
+      "markers": [
+        "not_greater"
+      ]
+    },
+    {
+      "id": "taco_train_00473",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_00620",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_00625",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_00650",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_00658",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_00880",
+      "markers": [
+        "not_greater"
+      ]
+    },
+    {
+      "id": "taco_train_01094",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_01121",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_01167",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_01197",
+      "markers": [
+        "inclusive",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_01457",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_01830",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_01909",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_02016",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_02036",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_02106",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_02342",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_02378",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_02507",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_02539",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_02632",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_02755",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_02862",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_02870",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_02890",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_02942",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_02969",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_02991",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_03068",
+      "markers": [
+        "inclusive",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_03137",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_03156",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_03226",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_03332",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_03521",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_03599",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_03601",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_03722",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_03777",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_03805",
+      "markers": [
+        "inclusive",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_03809",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_03823",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_04153",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_04250",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_04316",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_04430",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_04438",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_04487",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_04556",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_04615",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_04795",
+      "markers": [
+        "at_most",
+        "between",
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_04842",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_04888",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_04907",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_04935",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_05076",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_05120",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_05202",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_05431",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_05460",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_05568",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_05712",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_05800",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_05926",
+      "markers": [
+        "less_or_equal",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_06077",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_06132",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_06165",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_06201",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_06221",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_06284",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_06321",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_06324",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_06505",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_06576",
+      "markers": [
+        "inclusive",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_06598",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_06601",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_06671",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_06678",
+      "markers": [
+        "inclusive",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_06715",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_06771",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_06775",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_06781",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_06884",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_06909",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_06919",
+      "markers": [
+        "at_most",
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_06921",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_06999",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_07151",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_07234",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_07253",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_07282",
+      "markers": [
+        "inclusive",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_07303",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_07379",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_07414",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_07608",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_07693",
+      "markers": [
+        "inclusive",
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_07774",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_07790",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_07895",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_07899",
+      "markers": [
+        "at_most",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_07931",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_08031",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_08104",
+      "markers": [
+        "not_greater"
+      ]
+    },
+    {
+      "id": "taco_train_08236",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_08256",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_08381",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_08414",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_08450",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_08566",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_08625",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_08715",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_08742",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_08754",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_08789",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_08836",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_08844",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_08962",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_08965",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_08978",
+      "markers": [
+        "inclusive",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_09007",
+      "markers": [
+        "inclusive",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_09022",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_09043",
+      "markers": [
+        "at_most",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_09107",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_09327",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_09373",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_09382",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_09397",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_09461",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_09465",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_09539",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_09567",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_09587",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_09591",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_09600",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_09603",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_09788",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_09828",
+      "markers": [
+        "less_or_equal",
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_09877",
+      "markers": [
+        "at_most",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_10073",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_10132",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_10193",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_10257",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_10264",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_10281",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_10361",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_10580",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_10747",
+      "markers": [
+        "inclusive",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_10806",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_10885",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_10896",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_11007",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_11095",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_11212",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_11472",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_11506",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_11519",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_11533",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_11594",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_11603",
+      "markers": [
+        "inclusive",
+        "at_most",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_11639",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_11818",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_12088",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_12182",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_12212",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_12258",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_12331",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_12396",
+      "markers": [
+        "at_most",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_12509",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_12760",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_12881",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_12925",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_12938",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_12994",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_13007",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_13106",
+      "markers": [
+        "not_greater",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_13109",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_13145",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_13418",
+      "markers": [
+        "inclusive",
+        "less_or_equal",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_13470",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_13481",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_13482",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_13585",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_13601",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_13646",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_13766",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_13768",
+      "markers": [
+        "less_or_equal",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_13794",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_13820",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_13860",
+      "markers": [
+        "inclusive",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_13959",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_13997",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_14061",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_14074",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_14133",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_14224",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_14275",
+      "markers": [
+        "at_most",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_14859",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_14866",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_14927",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_15119",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_15132",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_15268",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_15290",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_15293",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_15357",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_15439",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_15466",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_15508",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_15629",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_15774",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_15797",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_15819",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_15885",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_15982",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_16004",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_16069",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_16077",
+      "markers": [
+        "inclusive",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_16086",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_16105",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_16125",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_16233",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_16311",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_16363",
+      "markers": [
+        "inclusive",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_16436",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_16488",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_16528",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_16540",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_16721",
+      "markers": [
+        "at_most",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_16843",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_16889",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_16899",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_16911",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_16998",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_17013",
+      "markers": [
+        "inclusive",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_17051",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_17079",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_17085",
+      "markers": [
+        "between",
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_17130",
+      "markers": [
+        "not_greater",
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_17142",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_17325",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_17327",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_17379",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_17454",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_17516",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_17553",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_17675",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_17777",
+      "markers": [
+        "inclusive",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_17791",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_17863",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_17909",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_17990",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_18047",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_18125",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_18325",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_18357",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_18431",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_18449",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_18497",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_18514",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_18519",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_18544",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_18565",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_18570",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_18592",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_18604",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_18617",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_18620",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_18638",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_18854",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_18939",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_18960",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_18967",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_19014",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_19114",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_19129",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_19176",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_19305",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_19340",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_19509",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_19529",
+      "markers": [
+        "inclusive",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_19620",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_19707",
+      "markers": [
+        "at_most",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_19740",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_19790",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_19796",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_19834",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_19973",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_19992",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_20129",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_20136",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_20190",
+      "markers": [
+        "inclusive",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_20248",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_20267",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_20291",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_20399",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_20540",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_20555",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_20576",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_20586",
+      "markers": [
+        "between",
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_20607",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_20629",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_20631",
+      "markers": [
+        "inclusive",
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_20652",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_20672",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_20743",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_20899",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_20929",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_20999",
+      "markers": [
+        "inclusive",
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_21071",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_21113",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_21147",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_21169",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_21202",
+      "markers": [
+        "inclusive",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_21265",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_21304",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_21309",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_21343",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_21466",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_21483",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_21551",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_21690",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_21719",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_21752",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_21763",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_21820",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_21845",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_21861",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_21873",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_22015",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_22036",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_22045",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_22096",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_22136",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_22186",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_22188",
+      "markers": [
+        "inclusive",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_22292",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_22418",
+      "markers": [
+        "between",
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_22472",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_22503",
+      "markers": [
+        "less_or_equal",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_22858",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_22890",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_23010",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_23017",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_23073",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_23126",
+      "markers": [
+        "not_greater"
+      ]
+    },
+    {
+      "id": "taco_train_23182",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_23201",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_23459",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_23548",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_23672",
+      "markers": [
+        "inclusive",
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_23686",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_23708",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_23811",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_23915",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_23919",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_23927",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_24097",
+      "markers": [
+        "closed_range"
+      ]
+    },
+    {
+      "id": "taco_train_24319",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_24329",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_24365",
+      "markers": [
+        "less_or_equal"
+      ]
+    },
+    {
+      "id": "taco_train_24403",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_24476",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_24533",
+      "markers": [
+        "at_most"
+      ]
+    },
+    {
+      "id": "taco_train_24698",
+      "markers": [
+        "at_most",
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_24778",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_24818",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_25008",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_25240",
+      "markers": [
+        "inclusive"
+      ]
+    },
+    {
+      "id": "taco_train_25354",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_25393",
+      "markers": [
+        "between"
+      ]
+    },
+    {
+      "id": "taco_train_25394",
+      "markers": [
+        "between"
+      ]
+    }
+  ],
+  "interpretation": "Source-only lexical candidates, NOT verified inclusive-boundary tasks.",
+  "marker_counts": {
+    "at_most": 55,
+    "between": 245,
+    "closed_range": 36,
+    "inclusive": 50,
+    "less_or_equal": 30,
+    "not_greater": 6
+  },
+  "metadata_sha256": "3bc4902460890c3d5cbb422a7ad20647c33e90c22cee20a3ef6747e09c731b48",
+  "overlap_sha256": "6d2eeb9f79d9e6b5d9803b01d1f91ce2c55108c38642188bed2241a56421a7bc",
+  "rows_considered": 25443,
+  "schema_version": "p16_taco_boundary_prefilter_v1",
+  "source_counts": {
+    "codewars": 251,
+    "geeksforgeeks": 24,
+    "leetcode": 100
+  }
+}

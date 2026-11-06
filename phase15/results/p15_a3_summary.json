@@ -1,0 +1,9 @@
+{
+  "amendment": "P15-A3",
+  "completed_episodes": 40,
+  "frozen_episodes": 40,
+  "status": "complete",
+  "wall_seconds": 12356.242311477661,
+  "audit_sha256": "ef2a05b5e4c534451028a2b8cf97fa0787bb381f83171ce0e9b2d9542562bf79",
+  "evaluation_split_opened": false
+}

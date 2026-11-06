@@ -1,0 +1,13 @@
+{
+  "amendment": "P15-A2",
+  "status": "complete",
+  "fp16_pilot": false,
+  "evaluation_split_opened": false,
+  "meta_training": false,
+  "p15_a1_completed_for_provenance": 31,
+  "frozen_episodes": 40,
+  "completed_episodes": 40,
+  "ready_for_go_nogo": true,
+  "wall_seconds": 15072.036577939987,
+  "audit_sha256": "96c3e339986a317ec3ff67a74e683851daa08184aa7486b8cbe59960ab906270"
+}

@@ -43,3 +43,25 @@ Thumbs.db
 .idea/
 
 .venv-*/
+
+# Local Grok skill trees (not study data)
+.grok/
+
+# Phase 16 HuggingFace dumps and clones. Re-download from pinned revisions
+# or copy to Drive. Do not commit; GitHub rejects files over 100 MB.
+*.parquet
+phase16/data/taco_raw/
+phase16/data/codecontests_candidate_raw/
+phase16/data/four_source_raw/
+phase16/data/extended_source_raw/
+phase16/data/mathematics_dataset_source/
+phase16/data/python_deps/
+phase16/data/taco_inventory_v1/train_metadata.jsonl
+phase16/data/taco_inventory_v2/train_metadata.jsonl
+
+# Regenerable Phase 16 CPU audit dumps
+phase16/results/four_source_candidate_audit.json
+phase16/results/four_source_candidate_audit_v2.json
+phase16/results/kodcode_text_audit.json
+phase16/results/kodcode_text_audit_v2.json
+

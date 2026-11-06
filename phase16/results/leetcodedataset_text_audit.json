@@ -1,0 +1,1747 @@
+{
+  "schema_version": "p16_extended_source_text_audit_v1",
+  "source": "leetcode",
+  "result": {
+    "revision": "215604aeed660029df7de2fea5a4d7b6ed476a08",
+    "files": [
+      {
+        "path": "phase16\\data\\extended_source_raw\\leetcodedataset\\LeetCodeDataset-test.jsonl",
+        "sha256": "aec951945feb555b4c72783519452a7a0437ca8c6e5624a83d0ae888718fa4ed"
+      },
+      {
+        "path": "phase16\\data\\extended_source_raw\\leetcodedataset\\LeetCodeDataset-train.jsonl",
+        "sha256": "ef7d64d34b092859607c1010bdd23540860a8cfff2ed7aeb0fe82e0ad524919b"
+      }
+    ],
+    "counts": {
+      "rows": 2869,
+      "split_test": 228,
+      "duplicate_id_rows": 0,
+      "exact_prior_overlap": 79,
+      "four_text_gates": 63,
+      "conservative_text_gate": 63,
+      "split_train": 2641,
+      "exact_within_source_duplicate_groups": 0
+    },
+    "candidates": [
+      {
+        "id": "minimize-connected-groups-by-inserting-interval",
+        "question_id": "3323",
+        "split": "test",
+        "difficulty": "Medium",
+        "estimated_date": "2024-10-13",
+        "tags": [
+          "Array",
+          "Binary Search",
+          "Sorting",
+          "Sliding Window"
+        ],
+        "entry_point": "Solution().minConnectedGroups",
+        "source_text_sha256": "a7067fc5a05601bf0462e32cf7847075d4f33a0552e6f6880500871e6ab661fe",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 132,
+        "assert_count_text": 132,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "minimum-positive-sum-subarray",
+        "question_id": "3364",
+        "split": "test",
+        "difficulty": "Easy",
+        "estimated_date": "2024-11-24",
+        "tags": [
+          "Array",
+          "Prefix Sum",
+          "Sliding Window"
+        ],
+        "entry_point": "Solution().minimumSumSubarray",
+        "source_text_sha256": "a39de139a481f4a2c2d1a52cd490314caf4f5a56e03ab86fd6fb63c7936185ae",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 113,
+        "assert_count_text": 113,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "maximum-amount-of-money-robot-can-earn",
+        "question_id": "3418",
+        "split": "test",
+        "difficulty": "Medium",
+        "estimated_date": "2025-01-12",
+        "tags": [
+          "Array",
+          "Dynamic Programming",
+          "Matrix"
+        ],
+        "entry_point": "Solution().maximumAmount",
+        "source_text_sha256": "598fcb15f41c3f63540f769e3467aa4967cd11ab286e40b6e0116fbe353b2e26",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 85,
+        "assert_count_text": 85,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "zero-array-transformation-iv",
+        "question_id": "3489",
+        "split": "test",
+        "difficulty": "Medium",
+        "estimated_date": "2025-03-16",
+        "tags": [
+          "Array",
+          "Dynamic Programming"
+        ],
+        "entry_point": "Solution().minZeroArray",
+        "source_text_sha256": "6ce493a4b3c33d09271b2e9f6abfc35679fe8ac66c92a16372e4fa53c6f3bb9f",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 100,
+        "assert_count_text": 100,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "count-beautiful-numbers",
+        "question_id": "3490",
+        "split": "test",
+        "difficulty": "Hard",
+        "estimated_date": "2025-03-16",
+        "tags": [
+          "Dynamic Programming"
+        ],
+        "entry_point": "Solution().beautifulNumbers",
+        "source_text_sha256": "71ccc5e0aeca6d6884de053599bfdd7a3256aaabc5f12777245f8c9d6a4ab7e8",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 95,
+        "assert_count_text": 92,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "minimum-operations-to-make-array-elements-zero",
+        "question_id": "3495",
+        "split": "test",
+        "difficulty": "Hard",
+        "estimated_date": "2025-03-23",
+        "tags": [
+          "Bit Manipulation",
+          "Array",
+          "Math"
+        ],
+        "entry_point": "Solution().minOperations",
+        "source_text_sha256": "002cfe4e7fbf266c85e5df1c4de07e79ea51bfbff99ecc046ba4614c70aa0380",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 97,
+        "assert_count_text": 94,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "reverse-nodes-in-k-group",
+        "question_id": "25",
+        "split": "train",
+        "difficulty": "Hard",
+        "estimated_date": "2015-08-07",
+        "tags": [
+          "Recursion",
+          "Linked List"
+        ],
+        "entry_point": "Solution().reverseKGroup",
+        "source_text_sha256": "6109c267f22f96df248e85be38b81047b4f7a9b147e4807cf95ecd5b692977bb",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 108,
+        "assert_count_text": 108,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "unique-paths",
+        "question_id": "62",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2015-08-07",
+        "tags": [
+          "Math",
+          "Dynamic Programming",
+          "Combinatorics"
+        ],
+        "entry_point": "Solution().uniquePaths",
+        "source_text_sha256": "3368c3eb5703840d1c14d0149142f19b23191971e14b16982d80886e50f91ebf",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 55,
+        "assert_count_text": 55,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "unique-paths-ii",
+        "question_id": "63",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2015-08-07",
+        "tags": [
+          "Array",
+          "Dynamic Programming",
+          "Matrix"
+        ],
+        "entry_point": "Solution().uniquePathsWithObstacles",
+        "source_text_sha256": "48c98533a70bebab73bccbbb2c39f5fa8e7a0c72f9e9db4b0092526874cc4342",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 102,
+        "assert_count_text": 102,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "missing-ranges",
+        "question_id": "163",
+        "split": "train",
+        "difficulty": "Easy",
+        "estimated_date": "2015-08-07",
+        "tags": [
+          "Array"
+        ],
+        "entry_point": "Solution().findMissingRanges",
+        "source_text_sha256": "dba7a719d1d68ee7ae12d819d47b04b3196c327fbb4810024b6534f2e002bc63",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 127,
+        "assert_count_text": 127,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "count-of-range-sum",
+        "question_id": "327",
+        "split": "train",
+        "difficulty": "Hard",
+        "estimated_date": "2015-08-07",
+        "tags": [
+          "Binary Indexed Tree",
+          "Segment Tree",
+          "Array",
+          "Binary Search",
+          "Divide and Conquer",
+          "Ordered Set",
+          "Merge Sort"
+        ],
+        "entry_point": "Solution().countRangeSum",
+        "source_text_sha256": "5997fe8b60a3de4844c16b9ce14e850b4583c0b316ce5cf859c48ad1e7ef63a9",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 107,
+        "assert_count_text": 101,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "the-maze-iii",
+        "question_id": "499",
+        "split": "train",
+        "difficulty": "Hard",
+        "estimated_date": "2015-08-07",
+        "tags": [
+          "Depth-First Search",
+          "Breadth-First Search",
+          "Graph",
+          "Array",
+          "String",
+          "Matrix",
+          "Shortest Path",
+          "Heap (Priority Queue)"
+        ],
+        "entry_point": "Solution().findShortestWay",
+        "source_text_sha256": "ae250c7ad9669be79214905c663e02607c8351fd955bc236c34b2bd1f55dd02b",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 66,
+        "assert_count_text": 66,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "find-mode-in-binary-search-tree",
+        "question_id": "501",
+        "split": "train",
+        "difficulty": "Easy",
+        "estimated_date": "2015-08-07",
+        "tags": [
+          "Tree",
+          "Depth-First Search",
+          "Binary Search Tree",
+          "Binary Tree"
+        ],
+        "entry_point": "Solution().findMode",
+        "source_text_sha256": "4d80ad294d9ba748a67eef5286a98b1375c33e21c8479cf52b4b291f115b99b7",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 89,
+        "assert_count_text": 89,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "the-maze-ii",
+        "question_id": "505",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2015-08-07",
+        "tags": [
+          "Depth-First Search",
+          "Breadth-First Search",
+          "Graph",
+          "Array",
+          "Matrix",
+          "Shortest Path",
+          "Heap (Priority Queue)"
+        ],
+        "entry_point": "Solution().shortestDistance",
+        "source_text_sha256": "af8aa8089c96f2bae26ebca0843be8560e71f4acb874f7d210fb82d04b01b86e",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 65,
+        "assert_count_text": 65,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "minesweeper",
+        "question_id": "529",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2015-08-07",
+        "tags": [
+          "Depth-First Search",
+          "Breadth-First Search",
+          "Array",
+          "Matrix"
+        ],
+        "entry_point": "Solution().updateBoard",
+        "source_text_sha256": "118c03a0556410820b60c92f7cb91e9d514b11dd1468baff13e2eef8bb8f194d",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 119,
+        "assert_count_text": 119,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "squirrel-simulation",
+        "question_id": "573",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2015-08-07",
+        "tags": [
+          "Array",
+          "Math"
+        ],
+        "entry_point": "Solution().minDistance",
+        "source_text_sha256": "b8d981e1b11334cb9a62d103ccf684befd438d8ae78eef163e3f2366b4023383",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 78,
+        "assert_count_text": 78,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "falling-squares",
+        "question_id": "699",
+        "split": "train",
+        "difficulty": "Hard",
+        "estimated_date": "2015-08-07",
+        "tags": [
+          "Segment Tree",
+          "Array",
+          "Ordered Set"
+        ],
+        "entry_point": "Solution().fallingSquares",
+        "source_text_sha256": "ed87293b6a1f5735fcba0f529451b191125220bf6d8d783119c3a2bcbb8ccb80",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 105,
+        "assert_count_text": 105,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "self-dividing-numbers",
+        "question_id": "728",
+        "split": "train",
+        "difficulty": "Easy",
+        "estimated_date": "2015-08-07",
+        "tags": [
+          "Math"
+        ],
+        "entry_point": "Solution().selfDividingNumbers",
+        "source_text_sha256": "3efa0fa6c5a3da61d63e20f877a2673a0bdf87e81197d6d00184529f9f67332c",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 82,
+        "assert_count_text": 82,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "sentence-similarity",
+        "question_id": "734",
+        "split": "train",
+        "difficulty": "Easy",
+        "estimated_date": "2015-08-07",
+        "tags": [
+          "Array",
+          "Hash Table",
+          "String"
+        ],
+        "entry_point": "Solution().areSentencesSimilar",
+        "source_text_sha256": "b63ee6cdf840042d91e205e4755be9d6042b717532b8c8fe91491c48ccd59344",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 133,
+        "assert_count_text": 121,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "sentence-similarity-ii",
+        "question_id": "737",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2015-08-07",
+        "tags": [
+          "Depth-First Search",
+          "Breadth-First Search",
+          "Union Find",
+          "Array",
+          "Hash Table",
+          "String"
+        ],
+        "entry_point": "Solution().areSentencesSimilarTwo",
+        "source_text_sha256": "b629a651c3dbac02bead2d09e552ef155c14f1bc6b21420c85d0b1430793ee2b",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 113,
+        "assert_count_text": 113,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "prime-number-of-set-bits-in-binary-representation",
+        "question_id": "762",
+        "split": "train",
+        "difficulty": "Easy",
+        "estimated_date": "2015-08-07",
+        "tags": [
+          "Bit Manipulation",
+          "Math"
+        ],
+        "entry_point": "Solution().countPrimeSetBits",
+        "source_text_sha256": "ea62fd170d3a6fcad2831c2f020a31ea907ffd1236bedb9bff9e843b1675ab42",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 79,
+        "assert_count_text": 79,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "number-of-subarrays-with-bounded-maximum",
+        "question_id": "795",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2015-08-07",
+        "tags": [
+          "Array",
+          "Two Pointers"
+        ],
+        "entry_point": "Solution().numSubarrayBoundedMax",
+        "source_text_sha256": "86a2115d70d4fc2401e73e59cd974dea474303d3c73fbaabdd1029b6d3ae09ac",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 101,
+        "assert_count_text": 101,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "super-palindromes",
+        "question_id": "906",
+        "split": "train",
+        "difficulty": "Hard",
+        "estimated_date": "2018-09-16",
+        "tags": [
+          "Math",
+          "String",
+          "Enumeration"
+        ],
+        "entry_point": "Solution().superpalindromesInRange",
+        "source_text_sha256": "f3258c97ba599143173928d74eb8790c4cadecf76bbe02312e772d028bd2e167",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 86,
+        "assert_count_text": 86,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "shortest-path-in-a-grid-with-obstacles-elimination",
+        "question_id": "1293",
+        "split": "train",
+        "difficulty": "Hard",
+        "estimated_date": "2019-12-15",
+        "tags": [
+          "Breadth-First Search",
+          "Array",
+          "Matrix"
+        ],
+        "entry_point": "Solution().shortestPath",
+        "source_text_sha256": "c6b59710b027fe7cc347716ca7ce92155dfc7382faf0582f6fc169950f970182",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 75,
+        "assert_count_text": 75,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "verbal-arithmetic-puzzle",
+        "question_id": "1307",
+        "split": "train",
+        "difficulty": "Hard",
+        "estimated_date": "2019-12-29",
+        "tags": [
+          "Array",
+          "Math",
+          "String",
+          "Backtracking"
+        ],
+        "entry_point": "Solution().isSolvable",
+        "source_text_sha256": "c77c1317c3b80f7d066044979bd9fc78a7efeb126a5975c5ef4579616398be69",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 154,
+        "assert_count_text": 148,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "sort-integers-by-the-power-value",
+        "question_id": "1387",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2020-03-15",
+        "tags": [
+          "Memoization",
+          "Dynamic Programming",
+          "Sorting"
+        ],
+        "entry_point": "Solution().getKth",
+        "source_text_sha256": "40ca8306c3af386ab45d5f9b03e3c128211129a3e3510235ae25940e45a932cb",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 94,
+        "assert_count_text": 93,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "range-sum-of-sorted-subarray-sums",
+        "question_id": "1508",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2020-07-05",
+        "tags": [
+          "Array",
+          "Two Pointers",
+          "Binary Search",
+          "Sorting"
+        ],
+        "entry_point": "Solution().rangeSum",
+        "source_text_sha256": "09855cc2cee238f42c650b283b5ae16453917076123b5e488eb6eb4b9c3f2702",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 105,
+        "assert_count_text": 105,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "reformat-phone-number",
+        "question_id": "1694",
+        "split": "train",
+        "difficulty": "Easy",
+        "estimated_date": "2020-12-20",
+        "tags": [
+          "String"
+        ],
+        "entry_point": "Solution().reformatNumber",
+        "source_text_sha256": "1e7e93456f6f09863d0cc9e0141c2a19471ae3f0260b8e0ad5f36f67f4e1effb",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 162,
+        "assert_count_text": 161,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "ways-to-split-array-into-three-subarrays",
+        "question_id": "1712",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2021-01-03",
+        "tags": [
+          "Array",
+          "Two Pointers",
+          "Binary Search",
+          "Prefix Sum"
+        ],
+        "entry_point": "Solution().waysToSplit",
+        "source_text_sha256": "aabbe4e4b71d6905b32b91ec85465327358cb6c643de7db5a487c3b33f01b606",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 93,
+        "assert_count_text": 93,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "number-of-restricted-paths-from-first-to-last-node",
+        "question_id": "1786",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2021-03-07",
+        "tags": [
+          "Graph",
+          "Topological Sort",
+          "Dynamic Programming",
+          "Shortest Path",
+          "Heap (Priority Queue)"
+        ],
+        "entry_point": "Solution().countRestrictedPaths",
+        "source_text_sha256": "8d7ede6a900ac40a6532426b1ad54e906c23ac27e1a52644dfcf76166a934f61",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 45,
+        "assert_count_text": 45,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "make-the-xor-of-all-segments-equal-to-zero",
+        "question_id": "1787",
+        "split": "train",
+        "difficulty": "Hard",
+        "estimated_date": "2021-03-07",
+        "tags": [
+          "Bit Manipulation",
+          "Array",
+          "Dynamic Programming"
+        ],
+        "entry_point": "Solution().minChanges",
+        "source_text_sha256": "69c239fec6d5d0368b5b36d218cfd7d1fa8f592b6872681a4bb35cea731247e3",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 116,
+        "assert_count_text": 113,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "faulty-sensor",
+        "question_id": "1826",
+        "split": "train",
+        "difficulty": "Easy",
+        "estimated_date": "2021-04-11",
+        "tags": [
+          "Array",
+          "Two Pointers"
+        ],
+        "entry_point": "Solution().badSensor",
+        "source_text_sha256": "608c1b38d31e786582e5f0452c76a409d50741ec445ccb167238dc7300f177ed",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 125,
+        "assert_count_text": 125,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "nearest-exit-from-entrance-in-maze",
+        "question_id": "1926",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2021-07-04",
+        "tags": [
+          "Breadth-First Search",
+          "Array",
+          "Matrix"
+        ],
+        "entry_point": "Solution().nearestExit",
+        "source_text_sha256": "dbb642edc6edd245d96fdff1eb669807dc8bd9c0147711248b3f5085a5cef958",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 116,
+        "assert_count_text": 10,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "minimum-time-for-k-virus-variants-to-spread",
+        "question_id": "1956",
+        "split": "train",
+        "difficulty": "Hard",
+        "estimated_date": "2021-08-01",
+        "tags": [
+          "Geometry",
+          "Array",
+          "Math",
+          "Binary Search",
+          "Enumeration"
+        ],
+        "entry_point": "Solution().minDayskVariants",
+        "source_text_sha256": "5ba72f4a9b4e546d711520055abd26b3526f26dc09fe4809b606a2dcc3c09c39",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 212,
+        "assert_count_text": 212,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "last-day-where-you-can-still-cross",
+        "question_id": "1970",
+        "split": "train",
+        "difficulty": "Hard",
+        "estimated_date": "2021-08-15",
+        "tags": [
+          "Depth-First Search",
+          "Breadth-First Search",
+          "Union Find",
+          "Array",
+          "Binary Search",
+          "Matrix"
+        ],
+        "entry_point": "Solution().latestDayToCross",
+        "source_text_sha256": "fbbfd5b6d829eb087f10af9c0a60ff3c1583372487513ea6c549f7df4b19e2e0",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 54,
+        "assert_count_text": 54,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "the-score-of-students-solving-math-expression",
+        "question_id": "2019",
+        "split": "train",
+        "difficulty": "Hard",
+        "estimated_date": "2021-09-26",
+        "tags": [
+          "Stack",
+          "Memoization",
+          "Array",
+          "Math",
+          "String",
+          "Dynamic Programming"
+        ],
+        "entry_point": "Solution().scoreOfStudents",
+        "source_text_sha256": "e364cb0e0317630f4a3eb2c13a6da8cde99c355b3afd515b064ee422ec493239",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 109,
+        "assert_count_text": 109,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "check-if-numbers-are-ascending-in-a-sentence",
+        "question_id": "2042",
+        "split": "train",
+        "difficulty": "Easy",
+        "estimated_date": "2021-10-17",
+        "tags": [
+          "String"
+        ],
+        "entry_point": "Solution().areNumbersAscending",
+        "source_text_sha256": "713929919af937b89afa1c8128fe1490a5f3aba7e1a2ac00fee7b85f4ed2e62d",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 211,
+        "assert_count_text": 204,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "second-minimum-time-to-reach-destination",
+        "question_id": "2045",
+        "split": "train",
+        "difficulty": "Hard",
+        "estimated_date": "2021-10-17",
+        "tags": [
+          "Breadth-First Search",
+          "Graph",
+          "Shortest Path"
+        ],
+        "entry_point": "Solution().secondMinimum",
+        "source_text_sha256": "5b9cb1f00fbd5b8cef1fb8c86aa12283959e85d329b86114f349979469c37d5a",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 86,
+        "assert_count_text": 84,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "two-best-non-overlapping-events",
+        "question_id": "2054",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2021-10-24",
+        "tags": [
+          "Array",
+          "Binary Search",
+          "Dynamic Programming",
+          "Sorting",
+          "Heap (Priority Queue)"
+        ],
+        "entry_point": "Solution().maxTwoEvents",
+        "source_text_sha256": "d57617fe7b92a5c0e63f8945926dd0390dc22f58845131233041ad8a3075800a",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 97,
+        "assert_count_text": 97,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "plates-between-candles",
+        "question_id": "2055",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2021-10-24",
+        "tags": [
+          "Array",
+          "String",
+          "Binary Search",
+          "Prefix Sum"
+        ],
+        "entry_point": "Solution().platesBetweenCandles",
+        "source_text_sha256": "495ac5e191647bb8ed3d3ca7312b05fde7d7d4b1a8261cdf4017f1f39ef27c31",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 14,
+        "assert_count_text": 13,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "minimum-cost-homecoming-of-a-robot-in-a-grid",
+        "question_id": "2087",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2021-11-21",
+        "tags": [
+          "Greedy",
+          "Array"
+        ],
+        "entry_point": "Solution().minCost",
+        "source_text_sha256": "a9f471a35ab1746ecef2231fb087b7d924ef21ee892aa603b290f3a17df7ad20",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 109,
+        "assert_count_text": 80,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "maximum-fruits-harvested-after-at-most-k-steps",
+        "question_id": "2106",
+        "split": "train",
+        "difficulty": "Hard",
+        "estimated_date": "2021-12-12",
+        "tags": [
+          "Array",
+          "Binary Search",
+          "Prefix Sum",
+          "Sliding Window"
+        ],
+        "entry_point": "Solution().maxTotalFruits",
+        "source_text_sha256": "d0a428d588843a906e2e9c6ae16dd587f874996312a8ae88195fe098cd666f9b",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 114,
+        "assert_count_text": 114,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "abbreviating-the-product-of-a-range",
+        "question_id": "2117",
+        "split": "train",
+        "difficulty": "Hard",
+        "estimated_date": "2021-12-19",
+        "tags": [
+          "Math"
+        ],
+        "entry_point": "Solution().abbreviateProduct",
+        "source_text_sha256": "2dd2c36dd36d4f8533a23ce283269552408cc567c71d773c8671a314baca3e66",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 74,
+        "assert_count_text": 74,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "execution-of-all-suffix-instructions-staying-in-a-grid",
+        "question_id": "2120",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2021-12-26",
+        "tags": [
+          "String",
+          "Simulation"
+        ],
+        "entry_point": "Solution().executeInstructions",
+        "source_text_sha256": "00ec99cefa02271e55d81f932d490df5022ba790512f205f53a4be9de3f3bc86",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 93,
+        "assert_count_text": 89,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "choose-numbers-from-two-arrays-in-range",
+        "question_id": "2143",
+        "split": "train",
+        "difficulty": "Hard",
+        "estimated_date": "2022-01-16",
+        "tags": [
+          "Array",
+          "Dynamic Programming"
+        ],
+        "entry_point": "Solution().countSubranges",
+        "source_text_sha256": "ef48110c1799a8e8209a67d7fa6462d39f79ce5232df28dc7f09491f55f323ef",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 90,
+        "assert_count_text": 90,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "count-the-hidden-sequences",
+        "question_id": "2145",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2022-01-16",
+        "tags": [
+          "Array",
+          "Prefix Sum"
+        ],
+        "entry_point": "Solution().numberOfArrays",
+        "source_text_sha256": "1fbfc743de4c67a86084da76949ce4599971055e7bd089e9f9dfc60925e1353b",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 123,
+        "assert_count_text": 123,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "number-of-ways-to-divide-a-long-corridor",
+        "question_id": "2147",
+        "split": "train",
+        "difficulty": "Hard",
+        "estimated_date": "2022-01-16",
+        "tags": [
+          "Math",
+          "String",
+          "Dynamic Programming"
+        ],
+        "entry_point": "Solution().numberOfWays",
+        "source_text_sha256": "eb6fa44cec342a8f1a6727d97e04170938bd8a8d9991be90098bcfa4994812e3",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 145,
+        "assert_count_text": 145,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "count-artifacts-that-can-be-extracted",
+        "question_id": "2201",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2022-03-13",
+        "tags": [
+          "Array",
+          "Hash Table",
+          "Simulation"
+        ],
+        "entry_point": "Solution().digArtifacts",
+        "source_text_sha256": "a5ef6c2346a62bfe15c8a3ea71e46e1b30e5dde2af5aa1e8022d66841d6f1e1d",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 72,
+        "assert_count_text": 66,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "maximum-trailing-zeros-in-a-cornered-path",
+        "question_id": "2245",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2022-04-17",
+        "tags": [
+          "Array",
+          "Matrix",
+          "Prefix Sum"
+        ],
+        "entry_point": "Solution().maxTrailingZeros",
+        "source_text_sha256": "0ff289aaf5310fc0982d8a4b65b856d76efc45bbc5f1c9e275ad1caddf30ac26",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 84,
+        "assert_count_text": 84,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "count-number-of-rectangles-containing-each-point",
+        "question_id": "2250",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2022-04-24",
+        "tags": [
+          "Binary Indexed Tree",
+          "Array",
+          "Hash Table",
+          "Binary Search",
+          "Sorting"
+        ],
+        "entry_point": "Solution().countRectangles",
+        "source_text_sha256": "996ec56234fd99bc5d101020b89941345815bd21333f8669ff95895b7d23cdd0",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 84,
+        "assert_count_text": 64,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "maximum-score-of-spliced-array",
+        "question_id": "2321",
+        "split": "train",
+        "difficulty": "Hard",
+        "estimated_date": "2022-06-26",
+        "tags": [
+          "Array",
+          "Dynamic Programming"
+        ],
+        "entry_point": "Solution().maximumsSplicedArray",
+        "source_text_sha256": "04fbe883b43337908599e74097793d64e298e8d74b31335868e53ffb93e141eb",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 89,
+        "assert_count_text": 87,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "cycle-length-queries-in-a-tree",
+        "question_id": "2509",
+        "split": "train",
+        "difficulty": "Hard",
+        "estimated_date": "2022-12-18",
+        "tags": [
+          "Tree",
+          "Array",
+          "Binary Tree"
+        ],
+        "entry_point": "Solution().cycleLengthQueries",
+        "source_text_sha256": "34d1dedf66aa74c4171d5f8f63b020cef2c56ce9372fafd61274272cefdef645",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 70,
+        "assert_count_text": 70,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "closest-prime-numbers-in-range",
+        "question_id": "2523",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2023-01-01",
+        "tags": [
+          "Math",
+          "Number Theory"
+        ],
+        "entry_point": "Solution().closestPrimes",
+        "source_text_sha256": "926290daebf8e01c36c025dc857b1a05aab75b4ac9a432635a7fb317881288b8",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 95,
+        "assert_count_text": 95,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "count-vowel-strings-in-ranges",
+        "question_id": "2559",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2023-02-05",
+        "tags": [
+          "Array",
+          "String",
+          "Prefix Sum"
+        ],
+        "entry_point": "Solution().vowelStrings",
+        "source_text_sha256": "a418635ca66f9a1de061a0a64e2a2b81398ff08c417ef104b868700007f3fe0f",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 97,
+        "assert_count_text": 97,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "count-the-number-of-vowel-strings-in-range",
+        "question_id": "2586",
+        "split": "train",
+        "difficulty": "Easy",
+        "estimated_date": "2023-03-12",
+        "tags": [
+          "Array",
+          "String",
+          "Counting"
+        ],
+        "entry_point": "Solution().vowelStrings",
+        "source_text_sha256": "8b03705a00dfef9e6442997a03c4d30a56b818a36c12e9068546ea963c81c86e",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 100,
+        "assert_count_text": 99,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "number-of-even-and-odd-bits",
+        "question_id": "2595",
+        "split": "train",
+        "difficulty": "Easy",
+        "estimated_date": "2023-03-19",
+        "tags": [
+          "Bit Manipulation"
+        ],
+        "entry_point": "Solution().evenOddBit",
+        "source_text_sha256": "3609839dbea293a9264ebb5d620789dd7316cf577377c90efdee027879f0d3b5",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 62,
+        "assert_count_text": 62,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "longest-even-odd-subarray-with-threshold",
+        "question_id": "2760",
+        "split": "train",
+        "difficulty": "Easy",
+        "estimated_date": "2023-07-02",
+        "tags": [
+          "Array",
+          "Sliding Window"
+        ],
+        "entry_point": "Solution().longestAlternatingSubarray",
+        "source_text_sha256": "21760754abb6cffac195b567edee56e6183c009b2987dd90f8069c2e2a4ab91e",
+        "exact_prior_overlap": true,
+        "declared_io_examples": 124,
+        "assert_count_text": 124,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "count-of-interesting-subarrays",
+        "question_id": "2845",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2023-09-03",
+        "tags": [
+          "Array",
+          "Hash Table",
+          "Prefix Sum"
+        ],
+        "entry_point": "Solution().countInterestingSubarrays",
+        "source_text_sha256": "be4fa6c8f66bdf36bdb2bf2ecf060ac51736694671f4c8e3b227ff6c7b8126ae",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 110,
+        "assert_count_text": 110,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "count-of-sub-multisets-with-bounded-sum",
+        "question_id": "2902",
+        "split": "train",
+        "difficulty": "Hard",
+        "estimated_date": "2023-10-08",
+        "tags": [
+          "Array",
+          "Hash Table",
+          "Dynamic Programming",
+          "Sliding Window"
+        ],
+        "entry_point": "Solution().countSubMultisets",
+        "source_text_sha256": "70d7a2ee31763dd6cc1cf17bf1ac4e310e590b655f076312fdc914e494da6208",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 89,
+        "assert_count_text": 89,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "find-the-number-of-ways-to-place-people-i",
+        "question_id": "3025",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2024-01-28",
+        "tags": [
+          "Geometry",
+          "Array",
+          "Math",
+          "Enumeration",
+          "Sorting"
+        ],
+        "entry_point": "Solution().numberOfPairs",
+        "source_text_sha256": "e2a1def9daebe317eedf94465a48c14284d5cfea4f41f17d22f023ee47cbdf05",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 111,
+        "assert_count_text": 111,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "find-the-number-of-ways-to-place-people-ii",
+        "question_id": "3027",
+        "split": "train",
+        "difficulty": "Hard",
+        "estimated_date": "2024-01-28",
+        "tags": [
+          "Geometry",
+          "Array",
+          "Math",
+          "Enumeration",
+          "Sorting"
+        ],
+        "entry_point": "Solution().numberOfPairs",
+        "source_text_sha256": "4f870b362a2d0fb3e0814f0962db0bffdbd4706f446c8b11acc0371a58d69be8",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 120,
+        "assert_count_text": 120,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "minimum-rectangles-to-cover-points",
+        "question_id": "3111",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2024-04-07",
+        "tags": [
+          "Greedy",
+          "Array",
+          "Sorting"
+        ],
+        "entry_point": "Solution().minRectanglesToCoverPoints",
+        "source_text_sha256": "a69b7e353a085db7d0dd1c0364ba9c645757b4ff22a294812c570e312b829ba6",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 118,
+        "assert_count_text": 118,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      },
+      {
+        "id": "find-the-count-of-numbers-which-are-not-special",
+        "question_id": "3233",
+        "split": "train",
+        "difficulty": "Medium",
+        "estimated_date": "2024-07-28",
+        "tags": [
+          "Array",
+          "Math",
+          "Number Theory"
+        ],
+        "entry_point": "Solution().nonSpecialCount",
+        "source_text_sha256": "08ce82a305093dc3ae64a0eb760db7617a9c5b1d6f2b27441e9f2daa52e30ed5",
+        "exact_prior_overlap": false,
+        "declared_io_examples": 77,
+        "assert_count_text": 77,
+        "flags": {
+          "explicit_bounds": true,
+          "closed_language": true,
+          "aggregate": true,
+          "sequence": true,
+          "element_operation": true,
+          "range_entity": true,
+          "four_text_gates": true,
+          "conservative_text_gate": true
+        }
+      }
+    ]
+  },
+  "interpretation": "CPU text/provenance preflight only; zero tasks are certified by this audit."
+}

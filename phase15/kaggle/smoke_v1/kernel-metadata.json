@@ -1,0 +1,16 @@
+{
+  "id": "khangkxcp/phase-15-qlora-engineering-smoke-v1",
+  "title": "Phase 15 QLoRA Engineering Smoke v1",
+  "code_file": "phase15_kaggle_smoke.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "keywords": ["phase15", "qlora", "engineering-smoke"],
+  "dataset_sources": [],
+  "kernel_sources": [],
+  "competition_sources": [],
+  "model_sources": []
+}

@@ -1,0 +1,11 @@
+{
+  "disagreements": [],
+  "labels": {
+    "correct": 9
+  },
+  "model_generation": false,
+  "n": 9,
+  "schema_version": "phase16_e1_saved_output_rescore_v1",
+  "source_audit_sha256": "11b5f13417fe5af11b353512f1df227c1ff30d7d725417a2c32979c29433e420",
+  "tasks_sha256": "cabac7e679b2de020e9de2cefa9c8d01d0f4b3c4f6f364600508aaafb7154cde"
+}

@@ -1,0 +1,53 @@
+{
+  "counts": {
+    "candidate_rows_before_dedup": 302,
+    "cross_shard_or_within_shard_duplicate": 8,
+    "exact_taco_overlap": 683,
+    "five_paired_raw_tests": 965,
+    "rows": 1026
+  },
+  "limitations": [
+    "Downloaded train shards only, not the full dataset or a random sample.",
+    "Raw paired test count and source labels are not oracle validation.",
+    "Only exact normalized-text overlap with TACO train is excluded.",
+    "Near duplicates, other historical phases, and family splits remain unchecked."
+  ],
+  "schema_version": "p16_codecontests_subset_metadata_v1",
+  "shards": [
+    {
+      "counts": {
+        "candidate_rows_before_dedup": 97,
+        "exact_taco_overlap": 230,
+        "five_paired_raw_tests": 316,
+        "rows": 342
+      },
+      "name": "train-00000-of-00039-e991a271dbfa9925.parquet",
+      "sha256": "950bfdefde1f274edf93963e7e23c93ab16034de344aa7b7c32d14145e8d5232"
+    },
+    {
+      "counts": {
+        "candidate_rows_before_dedup": 98,
+        "duplicate": 5,
+        "exact_taco_overlap": 234,
+        "five_paired_raw_tests": 325,
+        "rows": 342
+      },
+      "name": "train-00001-of-00039-e092fe56fda18715.parquet",
+      "sha256": "7bcc72d98a3d97f07be90ea70bf8db834c8f29ac2c7626d7cfc657bae6f5ddd9"
+    },
+    {
+      "counts": {
+        "candidate_rows_before_dedup": 107,
+        "duplicate": 3,
+        "exact_taco_overlap": 219,
+        "five_paired_raw_tests": 324,
+        "rows": 342
+      },
+      "name": "train-00002-of-00039-9cea23812e920e41.parquet",
+      "sha256": "d67c9643019e632941b045f115c6bdf5925a4b32cd9f3fc991734970669b4a29"
+    }
+  ],
+  "source_revision": "802411c3010cb00d1b05bad57ca77365a3c699d6",
+  "unique_descriptions": 1018,
+  "unique_metadata_candidates": 302
+}

@@ -73,11 +73,20 @@ The Phase 0 goal of a model that reliably recognizes and repairs its own errors 
 
 Each phase folder has its own README and final report.
 
-## Next: Phase 15 (draft)
+## Phase 15 closed; Phase 16 defined
 
-Can a 7B model learn to turn one or two verifier-corrected mistakes into a weight update that changes its
-behavior on new problems, with the correction no longer in context, at least as well as a harness? Draft design,
-nothing run: [phase15/docs/PREREGISTRATION.md](phase15/docs/PREREGISTRATION.md).
+Phase 15 completed development diagnostics on Qwen2.5-7B-Instruct. Its
+S-format error was recoverable with a deterministic output normalizer; the
+small remaining LoRA probe gain came with control regression. The protected
+main evaluation was never opened, so the phase does not establish a general
+yes/no claim about learning from corrections. See the
+[Phase 15 final report](phase15/docs/FINAL_REPORT.md).
+
+Phase 16 now defines substantive code and math error candidates with
+deterministic checks, disjoint teaching/probe/control tasks, and decision
+gates. A nine-task A0 engineering run verified the Colab T4 pipeline; the
+formal source pool and pilot have not begun. See the
+[Phase 16 protocol](phase16/docs/PROTOCOL.md).
 
 ## Data rules
 
@@ -96,7 +105,8 @@ AGI/
 ├── paper/          # Paper: manuscript/, results/, scripts/, figures/, summary/SUMMARY_ALL.md, PAPER_TODO.md, arxiv/
 ├── phase1/ … phase13/   # One folder per closed phase (README, docs/FINAL_REPORT.md, scripts, data)
 ├── phase14/        # Generalization study: 4 models × 4 datasets, hidden-state probes, DATA_CATALOG.md, RUN_STATUS.md
-├── phase15/        # Draft: learning to update from one or two corrections
+├── phase15/        # Closed development study of correction-driven updates
+├── phase16/        # Defined substantive-error protocol; no model run yet
 ├── instructionAI/  # Cross-phase architecture and data rules
 ├── serving/        # vLLM serving profiles and strategy client
 └── outputs/        # Generated outputs and adapters (gitignored; Phase 14 hidden states on F:\AGI_data)

@@ -1,0 +1,1711 @@
+{
+  "purpose": "mechanics_only_excluded_from_pilot",
+  "schema_version": "phase16_engineering_smoke_tasks_v1",
+  "source": "original_synthetic_handwritten_specs",
+  "tasks": [
+    {
+      "cases": [
+        {
+          "args": [
+            [
+              2
+            ],
+            1,
+            5
+          ],
+          "case_id": "ordinary",
+          "expected": 1,
+          "kind": "ordinary"
+        },
+        {
+          "args": [
+            [
+              1
+            ],
+            1,
+            5
+          ],
+          "case_id": "lower",
+          "expected": 1,
+          "kind": "lower"
+        },
+        {
+          "args": [
+            [
+              0,
+              6
+            ],
+            1,
+            5
+          ],
+          "case_id": "outside",
+          "expected": 0,
+          "kind": "outside"
+        },
+        {
+          "args": [
+            [],
+            1,
+            5
+          ],
+          "case_id": "empty",
+          "expected": 0,
+          "kind": "empty"
+        },
+        {
+          "args": [
+            [
+              5
+            ],
+            5,
+            5
+          ],
+          "case_id": "single_point",
+          "expected": 1,
+          "kind": "single_point"
+        },
+        {
+          "args": [
+            [
+              5,
+              5
+            ],
+            1,
+            5
+          ],
+          "case_id": "duplicate",
+          "expected": 2,
+          "kind": "duplicate"
+        },
+        {
+          "args": [
+            [
+              2
+            ],
+            1,
+            5
+          ],
+          "case_id": "p1_anchor",
+          "expected": 1,
+          "kind": "upper_anchor",
+          "pair_id": "p1",
+          "upper": 5
+        },
+        {
+          "args": [
+            [
+              2,
+              5
+            ],
+            1,
+            5
+          ],
+          "case_id": "p1_added",
+          "expected": 2,
+          "kind": "upper_added",
+          "pair_id": "p1",
+          "upper": 5
+        },
+        {
+          "args": [
+            [
+              1,
+              3
+            ],
+            1,
+            7
+          ],
+          "case_id": "p2_anchor",
+          "expected": 2,
+          "kind": "upper_anchor",
+          "pair_id": "p2",
+          "upper": 7
+        },
+        {
+          "args": [
+            [
+              1,
+              3,
+              7
+            ],
+            1,
+            7
+          ],
+          "case_id": "p2_added",
+          "expected": 3,
+          "kind": "upper_added",
+          "pair_id": "p2",
+          "upper": 7
+        }
+      ],
+      "function_name": "count_integers",
+      "prompt": "Write Python code defining count_integers(values: list[int], lower: int, upper: int) -> int. Return the number of list entries x with lower <= x <= upper. The interval is inclusive at both ends, lower <= upper, and duplicates count separately. Return only the code.",
+      "shape": "integers",
+      "task_id": "eng_count_integers",
+      "variant": "count"
+    },
+    {
+      "cases": [
+        {
+          "args": [
+            [
+              {
+                "score": 2,
+                "tag": "mid"
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "ordinary",
+          "expected": 1,
+          "kind": "ordinary"
+        },
+        {
+          "args": [
+            [
+              {
+                "score": 1,
+                "tag": "low"
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "lower",
+          "expected": 1,
+          "kind": "lower"
+        },
+        {
+          "args": [
+            [
+              {
+                "score": 0,
+                "tag": "other"
+              },
+              {
+                "score": 6,
+                "tag": "other"
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "outside",
+          "expected": 0,
+          "kind": "outside"
+        },
+        {
+          "args": [
+            [],
+            1,
+            5
+          ],
+          "case_id": "empty",
+          "expected": 0,
+          "kind": "empty"
+        },
+        {
+          "args": [
+            [
+              {
+                "score": 5,
+                "tag": "right5"
+              }
+            ],
+            5,
+            5
+          ],
+          "case_id": "single_point",
+          "expected": 1,
+          "kind": "single_point"
+        },
+        {
+          "args": [
+            [
+              {
+                "score": 5,
+                "tag": "right5"
+              },
+              {
+                "score": 5,
+                "tag": "rightb"
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "duplicate",
+          "expected": 2,
+          "kind": "duplicate"
+        },
+        {
+          "args": [
+            [
+              {
+                "score": 2,
+                "tag": "mid"
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "p1_anchor",
+          "expected": 1,
+          "kind": "upper_anchor",
+          "pair_id": "p1",
+          "upper": 5
+        },
+        {
+          "args": [
+            [
+              {
+                "score": 2,
+                "tag": "mid"
+              },
+              {
+                "score": 5,
+                "tag": "right5"
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "p1_added",
+          "expected": 2,
+          "kind": "upper_added",
+          "pair_id": "p1",
+          "upper": 5
+        },
+        {
+          "args": [
+            [
+              {
+                "score": 1,
+                "tag": "low"
+              },
+              {
+                "score": 3,
+                "tag": "mid"
+              }
+            ],
+            1,
+            7
+          ],
+          "case_id": "p2_anchor",
+          "expected": 2,
+          "kind": "upper_anchor",
+          "pair_id": "p2",
+          "upper": 7
+        },
+        {
+          "args": [
+            [
+              {
+                "score": 1,
+                "tag": "low"
+              },
+              {
+                "score": 3,
+                "tag": "mid"
+              },
+              {
+                "score": 7,
+                "tag": "right7"
+              }
+            ],
+            1,
+            7
+          ],
+          "case_id": "p2_added",
+          "expected": 3,
+          "kind": "upper_added",
+          "pair_id": "p2",
+          "upper": 7
+        }
+      ],
+      "function_name": "count_scores",
+      "prompt": "Write Python code defining count_scores(rows: list[dict], low: int, high: int) -> int. Each row has integer key 'score'. Count rows with score in the closed interval low through high, including score == high. Assume low <= high. Return only the code.",
+      "shape": "dict_score",
+      "task_id": "eng_count_scores",
+      "variant": "count"
+    },
+    {
+      "cases": [
+        {
+          "args": [
+            [
+              [
+                2,
+                "mid"
+              ]
+            ],
+            1,
+            5
+          ],
+          "case_id": "ordinary",
+          "expected": 1,
+          "kind": "ordinary"
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                "low"
+              ]
+            ],
+            1,
+            5
+          ],
+          "case_id": "lower",
+          "expected": 1,
+          "kind": "lower"
+        },
+        {
+          "args": [
+            [
+              [
+                0,
+                "other"
+              ],
+              [
+                6,
+                "other"
+              ]
+            ],
+            1,
+            5
+          ],
+          "case_id": "outside",
+          "expected": 0,
+          "kind": "outside"
+        },
+        {
+          "args": [
+            [],
+            1,
+            5
+          ],
+          "case_id": "empty",
+          "expected": 0,
+          "kind": "empty"
+        },
+        {
+          "args": [
+            [
+              [
+                5,
+                "right5"
+              ]
+            ],
+            5,
+            5
+          ],
+          "case_id": "single_point",
+          "expected": 1,
+          "kind": "single_point"
+        },
+        {
+          "args": [
+            [
+              [
+                5,
+                "right5"
+              ],
+              [
+                5,
+                "rightb"
+              ]
+            ],
+            1,
+            5
+          ],
+          "case_id": "duplicate",
+          "expected": 2,
+          "kind": "duplicate"
+        },
+        {
+          "args": [
+            [
+              [
+                2,
+                "mid"
+              ]
+            ],
+            1,
+            5
+          ],
+          "case_id": "p1_anchor",
+          "expected": 1,
+          "kind": "upper_anchor",
+          "pair_id": "p1",
+          "upper": 5
+        },
+        {
+          "args": [
+            [
+              [
+                2,
+                "mid"
+              ],
+              [
+                5,
+                "right5"
+              ]
+            ],
+            1,
+            5
+          ],
+          "case_id": "p1_added",
+          "expected": 2,
+          "kind": "upper_added",
+          "pair_id": "p1",
+          "upper": 5
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                "low"
+              ],
+              [
+                3,
+                "mid"
+              ]
+            ],
+            1,
+            7
+          ],
+          "case_id": "p2_anchor",
+          "expected": 2,
+          "kind": "upper_anchor",
+          "pair_id": "p2",
+          "upper": 7
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                "low"
+              ],
+              [
+                3,
+                "mid"
+              ],
+              [
+                7,
+                "right7"
+              ]
+            ],
+            1,
+            7
+          ],
+          "case_id": "p2_added",
+          "expected": 3,
+          "kind": "upper_added",
+          "pair_id": "p2",
+          "upper": 7
+        }
+      ],
+      "function_name": "count_events",
+      "prompt": "Write Python code defining count_events(events: list[tuple[int, str]], start: int, end: int) -> int. Every event is (timestamp, label). Count events whose timestamp lies between start and end, inclusive of both timestamps; start <= end. Return only the code.",
+      "shape": "pairs",
+      "task_id": "eng_count_events",
+      "variant": "count"
+    },
+    {
+      "cases": [
+        {
+          "args": [
+            [
+              {
+                "amount": 3,
+                "day": 2
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "ordinary",
+          "expected": 3,
+          "kind": "ordinary"
+        },
+        {
+          "args": [
+            [
+              {
+                "amount": 4,
+                "day": 1
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "lower",
+          "expected": 4,
+          "kind": "lower"
+        },
+        {
+          "args": [
+            [
+              {
+                "amount": 9,
+                "day": 0
+              },
+              {
+                "amount": 9,
+                "day": 6
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "outside",
+          "expected": 0,
+          "kind": "outside"
+        },
+        {
+          "args": [
+            [],
+            1,
+            5
+          ],
+          "case_id": "empty",
+          "expected": 0,
+          "kind": "empty"
+        },
+        {
+          "args": [
+            [
+              {
+                "amount": 6,
+                "day": 5
+              }
+            ],
+            5,
+            5
+          ],
+          "case_id": "single_point",
+          "expected": 6,
+          "kind": "single_point"
+        },
+        {
+          "args": [
+            [
+              {
+                "amount": 6,
+                "day": 5
+              },
+              {
+                "amount": 2,
+                "day": 5
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "duplicate",
+          "expected": 8,
+          "kind": "duplicate"
+        },
+        {
+          "args": [
+            [
+              {
+                "amount": 3,
+                "day": 2
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "p1_anchor",
+          "expected": 3,
+          "kind": "upper_anchor",
+          "pair_id": "p1",
+          "upper": 5
+        },
+        {
+          "added_value": 6,
+          "args": [
+            [
+              {
+                "amount": 3,
+                "day": 2
+              },
+              {
+                "amount": 6,
+                "day": 5
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "p1_added",
+          "expected": 9,
+          "kind": "upper_added",
+          "pair_id": "p1",
+          "upper": 5
+        },
+        {
+          "args": [
+            [
+              {
+                "amount": 4,
+                "day": 1
+              },
+              {
+                "amount": 3,
+                "day": 3
+              }
+            ],
+            1,
+            7
+          ],
+          "case_id": "p2_anchor",
+          "expected": 7,
+          "kind": "upper_anchor",
+          "pair_id": "p2",
+          "upper": 7
+        },
+        {
+          "added_value": 5,
+          "args": [
+            [
+              {
+                "amount": 4,
+                "day": 1
+              },
+              {
+                "amount": 3,
+                "day": 3
+              },
+              {
+                "amount": 5,
+                "day": 7
+              }
+            ],
+            1,
+            7
+          ],
+          "case_id": "p2_added",
+          "expected": 12,
+          "kind": "upper_added",
+          "pair_id": "p2",
+          "upper": 7
+        }
+      ],
+      "function_name": "sum_payments",
+      "prompt": "Write Python code defining sum_payments(payments: list[dict], first_day: int, last_day: int) -> int. Each payment has integer keys 'day' and 'amount'. Sum amounts when first_day <= day <= last_day; include last_day and assume first_day <= last_day. Return only the code.",
+      "shape": "dict_day_amount",
+      "task_id": "eng_sum_payments",
+      "variant": "sum"
+    },
+    {
+      "cases": [
+        {
+          "args": [
+            [
+              [
+                2,
+                3
+              ]
+            ],
+            1,
+            5
+          ],
+          "case_id": "ordinary",
+          "expected": 3,
+          "kind": "ordinary"
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                4
+              ]
+            ],
+            1,
+            5
+          ],
+          "case_id": "lower",
+          "expected": 4,
+          "kind": "lower"
+        },
+        {
+          "args": [
+            [
+              [
+                0,
+                9
+              ],
+              [
+                6,
+                9
+              ]
+            ],
+            1,
+            5
+          ],
+          "case_id": "outside",
+          "expected": 0,
+          "kind": "outside"
+        },
+        {
+          "args": [
+            [],
+            1,
+            5
+          ],
+          "case_id": "empty",
+          "expected": 0,
+          "kind": "empty"
+        },
+        {
+          "args": [
+            [
+              [
+                5,
+                6
+              ]
+            ],
+            5,
+            5
+          ],
+          "case_id": "single_point",
+          "expected": 6,
+          "kind": "single_point"
+        },
+        {
+          "args": [
+            [
+              [
+                5,
+                6
+              ],
+              [
+                5,
+                2
+              ]
+            ],
+            1,
+            5
+          ],
+          "case_id": "duplicate",
+          "expected": 8,
+          "kind": "duplicate"
+        },
+        {
+          "args": [
+            [
+              [
+                2,
+                3
+              ]
+            ],
+            1,
+            5
+          ],
+          "case_id": "p1_anchor",
+          "expected": 3,
+          "kind": "upper_anchor",
+          "pair_id": "p1",
+          "upper": 5
+        },
+        {
+          "added_value": 6,
+          "args": [
+            [
+              [
+                2,
+                3
+              ],
+              [
+                5,
+                6
+              ]
+            ],
+            1,
+            5
+          ],
+          "case_id": "p1_added",
+          "expected": 9,
+          "kind": "upper_added",
+          "pair_id": "p1",
+          "upper": 5
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                4
+              ],
+              [
+                3,
+                3
+              ]
+            ],
+            1,
+            7
+          ],
+          "case_id": "p2_anchor",
+          "expected": 7,
+          "kind": "upper_anchor",
+          "pair_id": "p2",
+          "upper": 7
+        },
+        {
+          "added_value": 5,
+          "args": [
+            [
+              [
+                1,
+                4
+              ],
+              [
+                3,
+                3
+              ],
+              [
+                7,
+                5
+              ]
+            ],
+            1,
+            7
+          ],
+          "case_id": "p2_added",
+          "expected": 12,
+          "kind": "upper_added",
+          "pair_id": "p2",
+          "upper": 7
+        }
+      ],
+      "function_name": "sum_readings",
+      "prompt": "Write Python code defining sum_readings(readings: list[tuple[int, int]], low: int, high: int) -> int. Each pair is (time, value). Sum values with time in the inclusive interval [low, high]. Assume low <= high. Return only the code.",
+      "shape": "pairs",
+      "task_id": "eng_sum_readings",
+      "variant": "sum"
+    },
+    {
+      "cases": [
+        {
+          "args": [
+            [
+              {
+                "key": 2,
+                "weight": 3
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "ordinary",
+          "expected": 3,
+          "kind": "ordinary"
+        },
+        {
+          "args": [
+            [
+              {
+                "key": 1,
+                "weight": 4
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "lower",
+          "expected": 4,
+          "kind": "lower"
+        },
+        {
+          "args": [
+            [
+              {
+                "key": 0,
+                "weight": 9
+              },
+              {
+                "key": 6,
+                "weight": 9
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "outside",
+          "expected": 0,
+          "kind": "outside"
+        },
+        {
+          "args": [
+            [],
+            1,
+            5
+          ],
+          "case_id": "empty",
+          "expected": 0,
+          "kind": "empty"
+        },
+        {
+          "args": [
+            [
+              {
+                "key": 5,
+                "weight": 6
+              }
+            ],
+            5,
+            5
+          ],
+          "case_id": "single_point",
+          "expected": 6,
+          "kind": "single_point"
+        },
+        {
+          "args": [
+            [
+              {
+                "key": 5,
+                "weight": 6
+              },
+              {
+                "key": 5,
+                "weight": 2
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "duplicate",
+          "expected": 8,
+          "kind": "duplicate"
+        },
+        {
+          "args": [
+            [
+              {
+                "key": 2,
+                "weight": 3
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "p1_anchor",
+          "expected": 3,
+          "kind": "upper_anchor",
+          "pair_id": "p1",
+          "upper": 5
+        },
+        {
+          "added_value": 6,
+          "args": [
+            [
+              {
+                "key": 2,
+                "weight": 3
+              },
+              {
+                "key": 5,
+                "weight": 6
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "p1_added",
+          "expected": 9,
+          "kind": "upper_added",
+          "pair_id": "p1",
+          "upper": 5
+        },
+        {
+          "args": [
+            [
+              {
+                "key": 1,
+                "weight": 4
+              },
+              {
+                "key": 3,
+                "weight": 3
+              }
+            ],
+            1,
+            7
+          ],
+          "case_id": "p2_anchor",
+          "expected": 7,
+          "kind": "upper_anchor",
+          "pair_id": "p2",
+          "upper": 7
+        },
+        {
+          "added_value": 5,
+          "args": [
+            [
+              {
+                "key": 1,
+                "weight": 4
+              },
+              {
+                "key": 3,
+                "weight": 3
+              },
+              {
+                "key": 7,
+                "weight": 5
+              }
+            ],
+            1,
+            7
+          ],
+          "case_id": "p2_added",
+          "expected": 12,
+          "kind": "upper_added",
+          "pair_id": "p2",
+          "upper": 7
+        }
+      ],
+      "function_name": "sum_weights",
+      "prompt": "Write Python code defining sum_weights(items: list[dict], min_key: int, max_key: int) -> int. Every item contains integer fields 'key' and 'weight'. Return the total weight for items with min_key <= key <= max_key; both endpoints are included. Assume min_key <= max_key. Return only the code.",
+      "shape": "dict_key_weight",
+      "task_id": "eng_sum_weights",
+      "variant": "sum"
+    },
+    {
+      "cases": [
+        {
+          "args": [
+            [
+              {
+                "name": "mid",
+                "price": 2
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "ordinary",
+          "expected": [
+            "mid"
+          ],
+          "kind": "ordinary"
+        },
+        {
+          "args": [
+            [
+              {
+                "name": "low",
+                "price": 1
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "lower",
+          "expected": [
+            "low"
+          ],
+          "kind": "lower"
+        },
+        {
+          "args": [
+            [
+              {
+                "name": "other",
+                "price": 0
+              },
+              {
+                "name": "other",
+                "price": 6
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "outside",
+          "expected": [],
+          "kind": "outside"
+        },
+        {
+          "args": [
+            [],
+            1,
+            5
+          ],
+          "case_id": "empty",
+          "expected": [],
+          "kind": "empty"
+        },
+        {
+          "args": [
+            [
+              {
+                "name": "right5",
+                "price": 5
+              }
+            ],
+            5,
+            5
+          ],
+          "case_id": "single_point",
+          "expected": [
+            "right5"
+          ],
+          "kind": "single_point"
+        },
+        {
+          "args": [
+            [
+              {
+                "name": "right5",
+                "price": 5
+              },
+              {
+                "name": "rightb",
+                "price": 5
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "duplicate",
+          "expected": [
+            "right5",
+            "rightb"
+          ],
+          "kind": "duplicate"
+        },
+        {
+          "args": [
+            [
+              {
+                "name": "mid",
+                "price": 2
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "p1_anchor",
+          "expected": [
+            "mid"
+          ],
+          "kind": "upper_anchor",
+          "pair_id": "p1",
+          "upper": 5
+        },
+        {
+          "added_item": "right5",
+          "args": [
+            [
+              {
+                "name": "mid",
+                "price": 2
+              },
+              {
+                "name": "right5",
+                "price": 5
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "p1_added",
+          "expected": [
+            "mid",
+            "right5"
+          ],
+          "kind": "upper_added",
+          "pair_id": "p1",
+          "upper": 5
+        },
+        {
+          "args": [
+            [
+              {
+                "name": "low",
+                "price": 1
+              },
+              {
+                "name": "mid",
+                "price": 3
+              }
+            ],
+            1,
+            7
+          ],
+          "case_id": "p2_anchor",
+          "expected": [
+            "low",
+            "mid"
+          ],
+          "kind": "upper_anchor",
+          "pair_id": "p2",
+          "upper": 7
+        },
+        {
+          "added_item": "right7",
+          "args": [
+            [
+              {
+                "name": "low",
+                "price": 1
+              },
+              {
+                "name": "mid",
+                "price": 3
+              },
+              {
+                "name": "right7",
+                "price": 7
+              }
+            ],
+            1,
+            7
+          ],
+          "case_id": "p2_added",
+          "expected": [
+            "low",
+            "mid",
+            "right7"
+          ],
+          "kind": "upper_added",
+          "pair_id": "p2",
+          "upper": 7
+        }
+      ],
+      "function_name": "select_names",
+      "prompt": "Write Python code defining select_names(products: list[dict], min_price: int, max_price: int) -> list[str]. Each product has integer 'price' and unique string 'name'. Return names in input order for products with min_price <= price <= max_price, including max_price. Assume min_price <= max_price. Return only the code.",
+      "shape": "dict_price_name",
+      "task_id": "eng_select_names",
+      "variant": "select"
+    },
+    {
+      "cases": [
+        {
+          "args": [
+            [
+              [
+                2,
+                "mid"
+              ]
+            ],
+            1,
+            5
+          ],
+          "case_id": "ordinary",
+          "expected": [
+            "mid"
+          ],
+          "kind": "ordinary"
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                "low"
+              ]
+            ],
+            1,
+            5
+          ],
+          "case_id": "lower",
+          "expected": [
+            "low"
+          ],
+          "kind": "lower"
+        },
+        {
+          "args": [
+            [
+              [
+                0,
+                "other"
+              ],
+              [
+                6,
+                "other"
+              ]
+            ],
+            1,
+            5
+          ],
+          "case_id": "outside",
+          "expected": [],
+          "kind": "outside"
+        },
+        {
+          "args": [
+            [],
+            1,
+            5
+          ],
+          "case_id": "empty",
+          "expected": [],
+          "kind": "empty"
+        },
+        {
+          "args": [
+            [
+              [
+                5,
+                "right5"
+              ]
+            ],
+            5,
+            5
+          ],
+          "case_id": "single_point",
+          "expected": [
+            "right5"
+          ],
+          "kind": "single_point"
+        },
+        {
+          "args": [
+            [
+              [
+                5,
+                "right5"
+              ],
+              [
+                5,
+                "rightb"
+              ]
+            ],
+            1,
+            5
+          ],
+          "case_id": "duplicate",
+          "expected": [
+            "right5",
+            "rightb"
+          ],
+          "kind": "duplicate"
+        },
+        {
+          "args": [
+            [
+              [
+                2,
+                "mid"
+              ]
+            ],
+            1,
+            5
+          ],
+          "case_id": "p1_anchor",
+          "expected": [
+            "mid"
+          ],
+          "kind": "upper_anchor",
+          "pair_id": "p1",
+          "upper": 5
+        },
+        {
+          "added_item": "right5",
+          "args": [
+            [
+              [
+                2,
+                "mid"
+              ],
+              [
+                5,
+                "right5"
+              ]
+            ],
+            1,
+            5
+          ],
+          "case_id": "p1_added",
+          "expected": [
+            "mid",
+            "right5"
+          ],
+          "kind": "upper_added",
+          "pair_id": "p1",
+          "upper": 5
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                "low"
+              ],
+              [
+                3,
+                "mid"
+              ]
+            ],
+            1,
+            7
+          ],
+          "case_id": "p2_anchor",
+          "expected": [
+            "low",
+            "mid"
+          ],
+          "kind": "upper_anchor",
+          "pair_id": "p2",
+          "upper": 7
+        },
+        {
+          "added_item": "right7",
+          "args": [
+            [
+              [
+                1,
+                "low"
+              ],
+              [
+                3,
+                "mid"
+              ],
+              [
+                7,
+                "right7"
+              ]
+            ],
+            1,
+            7
+          ],
+          "case_id": "p2_added",
+          "expected": [
+            "low",
+            "mid",
+            "right7"
+          ],
+          "kind": "upper_added",
+          "pair_id": "p2",
+          "upper": 7
+        }
+      ],
+      "function_name": "select_labels",
+      "prompt": "Write Python code defining select_labels(events: list[tuple[int, str]], start: int, finish: int) -> list[str]. Each event is (timestamp, unique label). Return labels in input order for events in the closed time interval [start, finish], including events at finish. Assume start <= finish. Return only the code.",
+      "shape": "pairs",
+      "task_id": "eng_select_labels",
+      "variant": "select"
+    },
+    {
+      "cases": [
+        {
+          "args": [
+            [
+              {
+                "id": "mid",
+                "rank": 2
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "ordinary",
+          "expected": [
+            "mid"
+          ],
+          "kind": "ordinary"
+        },
+        {
+          "args": [
+            [
+              {
+                "id": "low",
+                "rank": 1
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "lower",
+          "expected": [
+            "low"
+          ],
+          "kind": "lower"
+        },
+        {
+          "args": [
+            [
+              {
+                "id": "other",
+                "rank": 0
+              },
+              {
+                "id": "other",
+                "rank": 6
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "outside",
+          "expected": [],
+          "kind": "outside"
+        },
+        {
+          "args": [
+            [],
+            1,
+            5
+          ],
+          "case_id": "empty",
+          "expected": [],
+          "kind": "empty"
+        },
+        {
+          "args": [
+            [
+              {
+                "id": "right5",
+                "rank": 5
+              }
+            ],
+            5,
+            5
+          ],
+          "case_id": "single_point",
+          "expected": [
+            "right5"
+          ],
+          "kind": "single_point"
+        },
+        {
+          "args": [
+            [
+              {
+                "id": "right5",
+                "rank": 5
+              },
+              {
+                "id": "rightb",
+                "rank": 5
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "duplicate",
+          "expected": [
+            "right5",
+            "rightb"
+          ],
+          "kind": "duplicate"
+        },
+        {
+          "args": [
+            [
+              {
+                "id": "mid",
+                "rank": 2
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "p1_anchor",
+          "expected": [
+            "mid"
+          ],
+          "kind": "upper_anchor",
+          "pair_id": "p1",
+          "upper": 5
+        },
+        {
+          "added_item": "right5",
+          "args": [
+            [
+              {
+                "id": "mid",
+                "rank": 2
+              },
+              {
+                "id": "right5",
+                "rank": 5
+              }
+            ],
+            1,
+            5
+          ],
+          "case_id": "p1_added",
+          "expected": [
+            "mid",
+            "right5"
+          ],
+          "kind": "upper_added",
+          "pair_id": "p1",
+          "upper": 5
+        },
+        {
+          "args": [
+            [
+              {
+                "id": "low",
+                "rank": 1
+              },
+              {
+                "id": "mid",
+                "rank": 3
+              }
+            ],
+            1,
+            7
+          ],
+          "case_id": "p2_anchor",
+          "expected": [
+            "low",
+            "mid"
+          ],
+          "kind": "upper_anchor",
+          "pair_id": "p2",
+          "upper": 7
+        },
+        {
+          "added_item": "right7",
+          "args": [
+            [
+              {
+                "id": "low",
+                "rank": 1
+              },
+              {
+                "id": "mid",
+                "rank": 3
+              },
+              {
+                "id": "right7",
+                "rank": 7
+              }
+            ],
+            1,
+            7
+          ],
+          "case_id": "p2_added",
+          "expected": [
+            "low",
+            "mid",
+            "right7"
+          ],
+          "kind": "upper_added",
+          "pair_id": "p2",
+          "upper": 7
+        }
+      ],
+      "function_name": "select_ids",
+      "prompt": "Write Python code defining select_ids(records: list[dict], smallest: int, largest: int) -> list[str]. Each record has integer 'rank' and unique string 'id'. Preserve input order while selecting IDs whose rank is at least smallest and at most largest. Assume smallest <= largest. Return only the code.",
+      "shape": "dict_rank_id",
+      "task_id": "eng_select_ids",
+      "variant": "select"
+    }
+  ]
+}

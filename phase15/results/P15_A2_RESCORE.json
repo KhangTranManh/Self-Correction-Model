@@ -1,0 +1,30 @@
+{
+  "audit_sha256": "96c3e339986a317ec3ff67a74e683851daa08184aa7486b8cbe59960ab906270",
+  "completed_episodes": 40,
+  "detector_disagreements": 0,
+  "self_edit_skipped": 13,
+  "arms": {
+    "a0_base": {
+      "episodes": 40,
+      "probe": {"n": 80, "correct": 31, "format_clean": 38, "joint": 31},
+      "control": {"n": 40, "correct": 30, "format_clean": 33, "joint": 30}
+    },
+    "a1_context": {
+      "episodes": 40,
+      "probe": {"n": 80, "correct": 32, "format_clean": 42, "joint": 32},
+      "control": {"n": 40, "correct": 32, "format_clean": 34, "joint": 32}
+    },
+    "a2_naive": {
+      "episodes": 40,
+      "probe": {"n": 80, "correct": 40, "format_clean": 52, "joint": 40},
+      "control": {"n": 40, "correct": 37, "format_clean": 38, "joint": 37}
+    },
+    "a3_self_edit": {
+      "episodes": 27,
+      "probe": {"n": 54, "correct": 19, "format_clean": 27, "joint": 19},
+      "control": {"n": 27, "correct": 20, "format_clean": 22, "joint": 20},
+      "matched_a0_probe": {"n": 54, "correct": 21, "format_clean": 24, "joint": 21}
+    }
+  },
+  "interpretation_limit": "A0, A1, and A2 used different sampling seeds; arm differences do not isolate intervention effects."
+}

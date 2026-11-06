@@ -1,0 +1,46 @@
+{
+  "schema_version": "p16_kodcode_oracle_audit_v1",
+  "task_id": "Algorithm_6681_I",
+  "family_id": "kc_60463e25cc5178ff79d9",
+  "question_sha256": "ff1781ec90657f3fafea297c308df7aebafac58982e8e6769cb16d18e93c6a6c",
+  "variant": "count",
+  "universe_mode": "explicit_collection",
+  "test_count": 10,
+  "oracle_reference_agree": true,
+  "reference_score": {
+    "task_id": "Algorithm_6681_I",
+    "variant": "count",
+    "full_correct": true,
+    "label": "correct",
+    "signature_pairs": 0,
+    "passed_cases": 10,
+    "total_cases": 10
+  },
+  "exclusive_upper_score": {
+    "task_id": "Algorithm_6681_I",
+    "variant": "count",
+    "full_correct": false,
+    "label": "upper_boundary_signature",
+    "signature_pairs": 2,
+    "passed_cases": 6,
+    "total_cases": 10
+  },
+  "unrelated_mutant_score": {
+    "task_id": "Algorithm_6681_I",
+    "variant": "count",
+    "full_correct": false,
+    "label": "other_failure",
+    "signature_pairs": 0,
+    "passed_cases": 6,
+    "total_cases": 10
+  },
+  "oracle_sha256": "cb868555c59310c11985d19375ea8223b4a68a66415e54090e8a3e58e1c27672",
+  "reference_sha256": "67e93e0d429a2935a77867786befc745c8ae936f02d51fac5431dd0bc73a4560",
+  "tests_sha256": "9cf8f8d3074ed8045283b07a25d756eaa8dd8861bc2d72b732a07e58e325ae81",
+  "oracle_status": "validated_on_trusted_cpu_cases",
+  "history_status": "pending",
+  "near_duplicate_status": "pending",
+  "sandbox_status": "pending",
+  "fully_certified": false,
+  "limitations": "Trusted local functions only; no untrusted code or sandbox was exercised."
+}

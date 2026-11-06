@@ -1,0 +1,4140 @@
+{
+  "schema_version": "p16_c_contract_text_audit_v1",
+  "source": "TACO train, pinned in taco_inventory.py",
+  "prefilter_count": 375,
+  "counts": {
+    "explicit_bounds": 54,
+    "closed_language": 162,
+    "aggregate": 225,
+    "sequence": 313,
+    "all_text_gates": 15
+  },
+  "rows": [
+    {
+      "id": "taco_train_00044",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_00144",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_00191",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_00219",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_00363",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_00473",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_00620",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_00625",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_00650",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_00658",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_00880",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_01094",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_01121",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_01167",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_01197",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_01457",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_01830",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_01909",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_02016",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_02036",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_02106",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_02342",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_02378",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_02507",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_02539",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_02632",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_02755",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_02862",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_02870",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_02890",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_02942",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_02969",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_02991",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_03068",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_03137",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_03156",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_03226",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_03332",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_03521",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_03599",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_03601",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_03722",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_03777",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_03805",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_03809",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_03823",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_04153",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_04250",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_04316",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_04430",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_04438",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_04487",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_04556",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_04615",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_04795",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_04842",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_04888",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_04907",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_04935",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_05076",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_05120",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_05202",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_05431",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_05460",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_05568",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_05712",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_05800",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_05926",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_06077",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_06132",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_06165",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_06201",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_06221",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_06284",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_06321",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_06324",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_06505",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_06576",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_06598",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_06601",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_06671",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_06678",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_06715",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_06771",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_06775",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_06781",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_06884",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_06909",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": true
+    },
+    {
+      "id": "taco_train_06919",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_06921",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_06999",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_07151",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_07234",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_07253",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_07282",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_07303",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_07379",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_07414",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_07608",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_07693",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": true
+    },
+    {
+      "id": "taco_train_07774",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_07790",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_07895",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_07899",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_07931",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_08031",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_08104",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_08236",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_08256",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_08381",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_08414",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_08450",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_08566",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_08625",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_08715",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_08742",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_08754",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_08789",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_08836",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_08844",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": true
+    },
+    {
+      "id": "taco_train_08962",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_08965",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_08978",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_09007",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_09022",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_09043",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_09107",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_09327",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_09373",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": true
+    },
+    {
+      "id": "taco_train_09382",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_09397",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_09461",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_09465",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_09539",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_09567",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_09587",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_09591",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_09600",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_09603",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_09788",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_09828",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_09877",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_10073",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_10132",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_10193",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_10257",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": true
+    },
+    {
+      "id": "taco_train_10264",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_10281",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_10361",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_10580",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_10747",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": true
+    },
+    {
+      "id": "taco_train_10806",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_10885",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_10896",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_11007",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_11095",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_11212",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_11472",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_11506",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_11519",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_11533",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_11594",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_11603",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_11639",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_11818",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_12088",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_12182",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_12212",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_12258",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_12331",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_12396",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_12509",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_12760",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_12881",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_12925",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_12938",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_12994",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_13007",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_13106",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_13109",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_13145",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_13418",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_13470",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_13481",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_13482",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_13585",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_13601",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_13646",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_13766",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_13768",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_13794",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_13820",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_13860",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_13959",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_13997",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_14061",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_14074",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_14133",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_14224",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_14275",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_14859",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_14866",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_14927",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_15119",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_15132",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_15268",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_15290",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_15293",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_15357",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_15439",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_15466",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": true
+    },
+    {
+      "id": "taco_train_15508",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_15629",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_15774",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_15797",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_15819",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_15885",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_15982",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_16004",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_16069",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_16077",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_16086",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_16105",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_16125",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_16233",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_16311",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_16363",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_16436",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_16488",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_16528",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_16540",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_16721",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_16843",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_16889",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_16899",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_16911",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_16998",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_17013",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": true
+    },
+    {
+      "id": "taco_train_17051",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_17079",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_17085",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_17130",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": true
+    },
+    {
+      "id": "taco_train_17142",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_17325",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_17327",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_17379",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_17454",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_17516",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_17553",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_17675",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_17777",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_17791",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_17863",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_17909",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_17990",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_18047",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_18125",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_18325",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_18357",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_18431",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_18449",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_18497",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_18514",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_18519",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_18544",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_18565",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_18570",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_18592",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_18604",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_18617",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_18620",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_18638",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_18854",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_18939",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_18960",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_18967",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_19014",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_19114",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_19129",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_19176",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_19305",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_19340",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_19509",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_19529",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_19620",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_19707",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_19740",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": true
+    },
+    {
+      "id": "taco_train_19790",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_19796",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_19834",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_19973",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_19992",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_20129",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_20136",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_20190",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_20248",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_20267",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_20291",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_20399",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_20540",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_20555",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_20576",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_20586",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_20607",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_20629",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_20631",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_20652",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_20672",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_20743",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_20899",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_20929",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_20999",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_21071",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": true
+    },
+    {
+      "id": "taco_train_21113",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_21147",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_21169",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_21202",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_21265",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_21304",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_21309",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_21343",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_21466",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_21483",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_21551",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_21690",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_21719",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_21752",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": true
+    },
+    {
+      "id": "taco_train_21763",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_21820",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_21845",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_21861",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": true
+    },
+    {
+      "id": "taco_train_21873",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_22015",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": true
+    },
+    {
+      "id": "taco_train_22036",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_22045",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_22096",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_22136",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_22186",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_22188",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_22292",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_22418",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": true
+    },
+    {
+      "id": "taco_train_22472",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": true,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_22503",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_22858",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_22890",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_23010",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_23017",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_23073",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_23126",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_23182",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_23201",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_23459",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_23548",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_23672",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_23686",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_23708",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_23811",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_23915",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_23919",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_23927",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_24097",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_24319",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_24329",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_24365",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_24403",
+      "source": "geeksforgeeks",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_24476",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": false
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_24533",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_24698",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_24778",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_24818",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_25008",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_25240",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": true,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_25354",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_25393",
+      "source": "codewars",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": true,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    },
+    {
+      "id": "taco_train_25394",
+      "source": "leetcode",
+      "flags": {
+        "explicit_bounds": false,
+        "closed_language": false,
+        "aggregate": false,
+        "sequence": true
+      },
+      "needs_manual_contract_audit": false
+    }
+  ],
+  "limit": "Text gates only; no contract, oracle, family or 300-task validation."
+}

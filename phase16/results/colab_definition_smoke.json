@@ -1,0 +1,70 @@
+{
+  "schema_version": "phase16_colab_definition_smoke_v1",
+  "purpose": "trusted_fixture_mechanics_only",
+  "model_generation": false,
+  "gpu_used": false,
+  "python": "3.13.18",
+  "scorer_sha256": "4cabc19a099497ca5b9d5f388fb3d8f7be6102c71cbd82aaa6f9f5e86cf52b21",
+  "variants": {
+    "count": {
+      "correct": {
+        "task_id": "engineering_count_correct",
+        "variant": "count",
+        "full_correct": true,
+        "label": "correct",
+        "signature_pairs": 0,
+        "passed_cases": 10,
+        "total_cases": 10
+      },
+      "exclusive_upper": {
+        "task_id": "engineering_count_exclusive",
+        "variant": "count",
+        "full_correct": false,
+        "label": "upper_boundary_signature",
+        "signature_pairs": 2,
+        "passed_cases": 6,
+        "total_cases": 10
+      }
+    },
+    "sum": {
+      "correct": {
+        "task_id": "engineering_sum_correct",
+        "variant": "sum",
+        "full_correct": true,
+        "label": "correct",
+        "signature_pairs": 0,
+        "passed_cases": 10,
+        "total_cases": 10
+      },
+      "exclusive_upper": {
+        "task_id": "engineering_sum_exclusive",
+        "variant": "sum",
+        "full_correct": false,
+        "label": "upper_boundary_signature",
+        "signature_pairs": 2,
+        "passed_cases": 6,
+        "total_cases": 10
+      }
+    },
+    "select": {
+      "correct": {
+        "task_id": "engineering_select_correct",
+        "variant": "select",
+        "full_correct": true,
+        "label": "correct",
+        "signature_pairs": 0,
+        "passed_cases": 10,
+        "total_cases": 10
+      },
+      "exclusive_upper": {
+        "task_id": "engineering_select_exclusive",
+        "variant": "select",
+        "full_correct": false,
+        "label": "upper_boundary_signature",
+        "signature_pairs": 2,
+        "passed_cases": 6,
+        "total_cases": 10
+      }
+    }
+  }
+}

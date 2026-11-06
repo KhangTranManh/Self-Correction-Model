@@ -1,0 +1,43 @@
+{
+  "audit_sha256": "ef2a05b5e4c534451028a2b8cf97fa0787bb381f83171ce0e9b2d9542562bf79",
+  "completed_episodes": 40,
+  "score_disagreements": 0,
+  "arms": {
+    "probe": {
+      "a0_base": {"correct": 31, "format_clean": 38, "joint": 31, "n": 80},
+      "a1_context": {"correct": 37, "format_clean": 46, "joint": 37, "n": 80},
+      "a2_naive": {"correct": 40, "format_clean": 53, "joint": 40, "n": 80}
+    },
+    "control": {
+      "a0_base": {"correct": 30, "format_clean": 33, "joint": 30, "n": 40},
+      "a1_context": {"correct": 34, "format_clean": 35, "joint": 34, "n": 40},
+      "a2_naive": {"correct": 29, "format_clean": 34, "joint": 29, "n": 40}
+    }
+  },
+  "paired": {
+    "a1_context": {
+      "probe": {
+        "correct": {"fixes": 14, "harms": 8},
+        "format_clean": {"fixes": 15, "harms": 7},
+        "joint": {"fixes": 14, "harms": 8}
+      },
+      "control": {
+        "correct": {"fixes": 5, "harms": 1},
+        "format_clean": {"fixes": 3, "harms": 1},
+        "joint": {"fixes": 5, "harms": 1}
+      }
+    },
+    "a2_naive": {
+      "probe": {
+        "correct": {"fixes": 21, "harms": 12},
+        "format_clean": {"fixes": 24, "harms": 9},
+        "joint": {"fixes": 21, "harms": 12}
+      },
+      "control": {
+        "correct": {"fixes": 6, "harms": 7},
+        "format_clean": {"fixes": 6, "harms": 5},
+        "joint": {"fixes": 6, "harms": 7}
+      }
+    }
+  }
+}

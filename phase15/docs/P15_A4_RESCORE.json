@@ -1,0 +1,30 @@
+{
+  "schema_version": "phase15_a4_normalizer_rescore_v1",
+  "source_audit": "phase15/results/p15_a3_audit.jsonl",
+  "source_audit_sha256": "ef2a05b5e4c534451028a2b8cf97fa0787bb381f83171ce0e9b2d9542562bf79",
+  "completed_episodes": 40,
+  "transformation_used_reference_answers": false,
+  "statuses": {"accepted": 49, "not_applicable": 71},
+  "accepted_but_incorrect": 29,
+  "changed_already_clean": 0,
+  "roles": {
+    "probe": {
+      "before": {"n": 80, "correct": 31, "format_clean": 38, "joint": 31},
+      "after": {"n": 80, "correct": 45, "format_clean": 80, "joint": 45},
+      "paired": {
+        "correct": {"fixes": 14, "harms": 0},
+        "format_clean": {"fixes": 42, "harms": 0},
+        "joint": {"fixes": 14, "harms": 0}
+      }
+    },
+    "control": {
+      "before": {"n": 40, "correct": 30, "format_clean": 33, "joint": 30},
+      "after": {"n": 40, "correct": 36, "format_clean": 40, "joint": 36},
+      "paired": {
+        "correct": {"fixes": 6, "harms": 0},
+        "format_clean": {"fixes": 7, "harms": 0},
+        "joint": {"fixes": 6, "harms": 0}
+      }
+    }
+  }
+}

@@ -1,0 +1,321 @@
+{
+  "difficulty_counts": {
+    "EASY": 6,
+    "MEDIUM": 6,
+    "MEDIUM_HARD": 6
+  },
+  "flag_counts": {
+    "fewer_than_3_tests": 12,
+    "non_sequence_call_input": 6
+  },
+  "interpretation": "Structural source-only engineering sample; no solution or model code executed.",
+  "later_study_exclusion": [
+    "taco_train_00084",
+    "taco_train_00550",
+    "taco_train_02363",
+    "taco_train_04007",
+    "taco_train_04060",
+    "taco_train_04395",
+    "taco_train_04922",
+    "taco_train_08452",
+    "taco_train_09373",
+    "taco_train_12936",
+    "taco_train_13905",
+    "taco_train_16248",
+    "taco_train_16789",
+    "taco_train_17776",
+    "taco_train_21304",
+    "taco_train_21343",
+    "taco_train_23288",
+    "taco_train_24326"
+  ],
+  "metadata_sha256": "3bc4902460890c3d5cbb422a7ad20647c33e90c22cee20a3ef6747e09c731b48",
+  "overlap_sha256": "6d2eeb9f79d9e6b5d9803b01d1f91ce2c55108c38642188bed2241a56421a7bc",
+  "rows": [
+    {
+      "difficulty": "MEDIUM_HARD",
+      "flags": [
+        "fewer_than_3_tests",
+        "non_sequence_call_input"
+      ],
+      "id": "taco_train_00084",
+      "input_shapes": {
+        "str": 1
+      },
+      "skills": [
+        "Data structures"
+      ],
+      "solution_count": 12,
+      "source": "geeksforgeeks",
+      "test_count": 1
+    },
+    {
+      "difficulty": "EASY",
+      "flags": [],
+      "id": "taco_train_00550",
+      "input_shapes": {
+        "list": 5
+      },
+      "skills": [
+        "Data structures"
+      ],
+      "solution_count": 9,
+      "source": "codewars",
+      "test_count": 5
+    },
+    {
+      "difficulty": "MEDIUM_HARD",
+      "flags": [
+        "fewer_than_3_tests"
+      ],
+      "id": "taco_train_02363",
+      "input_shapes": {
+        "list": 1
+      },
+      "skills": [],
+      "solution_count": 6,
+      "source": "leetcode",
+      "test_count": 1
+    },
+    {
+      "difficulty": "MEDIUM",
+      "flags": [],
+      "id": "taco_train_04007",
+      "input_shapes": {
+        "list": 5
+      },
+      "skills": [],
+      "solution_count": 10,
+      "source": "codewars",
+      "test_count": 5
+    },
+    {
+      "difficulty": "EASY",
+      "flags": [],
+      "id": "taco_train_04060",
+      "input_shapes": {
+        "list": 7
+      },
+      "skills": [],
+      "solution_count": 9,
+      "source": "codewars",
+      "test_count": 7
+    },
+    {
+      "difficulty": "MEDIUM_HARD",
+      "flags": [
+        "fewer_than_3_tests"
+      ],
+      "id": "taco_train_04395",
+      "input_shapes": {
+        "list": 2
+      },
+      "skills": [],
+      "solution_count": 9,
+      "source": "codewars",
+      "test_count": 2
+    },
+    {
+      "difficulty": "EASY",
+      "flags": [
+        "fewer_than_3_tests",
+        "non_sequence_call_input"
+      ],
+      "id": "taco_train_04922",
+      "input_shapes": {
+        "str": 1
+      },
+      "skills": [
+        "Data structures"
+      ],
+      "solution_count": 11,
+      "source": "geeksforgeeks",
+      "test_count": 1
+    },
+    {
+      "difficulty": "MEDIUM_HARD",
+      "flags": [],
+      "id": "taco_train_08452",
+      "input_shapes": {
+        "list": 5
+      },
+      "skills": [
+        "Data structures"
+      ],
+      "solution_count": 9,
+      "source": "codewars",
+      "test_count": 5
+    },
+    {
+      "difficulty": "MEDIUM",
+      "flags": [
+        "fewer_than_3_tests"
+      ],
+      "id": "taco_train_09373",
+      "input_shapes": {
+        "list": 2
+      },
+      "skills": [
+        "Data structures"
+      ],
+      "solution_count": 10,
+      "source": "codewars",
+      "test_count": 2
+    },
+    {
+      "difficulty": "MEDIUM",
+      "flags": [
+        "fewer_than_3_tests"
+      ],
+      "id": "taco_train_12936",
+      "input_shapes": {
+        "list": 1
+      },
+      "skills": [
+        "Dynamic programming",
+        "Bit manipulation",
+        "Data structures"
+      ],
+      "solution_count": 23,
+      "source": "leetcode",
+      "test_count": 1
+    },
+    {
+      "difficulty": "MEDIUM_HARD",
+      "flags": [
+        "fewer_than_3_tests",
+        "non_sequence_call_input"
+      ],
+      "id": "taco_train_13905",
+      "input_shapes": {
+        "str": 2
+      },
+      "skills": [
+        "Data structures"
+      ],
+      "solution_count": 67,
+      "source": "geeksforgeeks",
+      "test_count": 2
+    },
+    {
+      "difficulty": "EASY",
+      "flags": [],
+      "id": "taco_train_16248",
+      "input_shapes": {
+        "list": 3
+      },
+      "skills": [
+        "Data structures"
+      ],
+      "solution_count": 11,
+      "source": "leetcode",
+      "test_count": 3
+    },
+    {
+      "difficulty": "EASY",
+      "flags": [],
+      "id": "taco_train_16789",
+      "input_shapes": {
+        "list": 4
+      },
+      "skills": [
+        "Data structures",
+        "Greedy algorithms"
+      ],
+      "solution_count": 55,
+      "source": "leetcode",
+      "test_count": 4
+    },
+    {
+      "difficulty": "MEDIUM",
+      "flags": [
+        "fewer_than_3_tests",
+        "non_sequence_call_input"
+      ],
+      "id": "taco_train_17776",
+      "input_shapes": {
+        "str": 2
+      },
+      "skills": [],
+      "solution_count": 62,
+      "source": "geeksforgeeks",
+      "test_count": 2
+    },
+    {
+      "difficulty": "MEDIUM_HARD",
+      "flags": [
+        "fewer_than_3_tests"
+      ],
+      "id": "taco_train_21304",
+      "input_shapes": {
+        "list": 1
+      },
+      "skills": [
+        "Data structures",
+        "Complete search"
+      ],
+      "solution_count": 4,
+      "source": "leetcode",
+      "test_count": 1
+    },
+    {
+      "difficulty": "EASY",
+      "flags": [
+        "fewer_than_3_tests",
+        "non_sequence_call_input"
+      ],
+      "id": "taco_train_21343",
+      "input_shapes": {
+        "str": 2
+      },
+      "skills": [
+        "Data structures"
+      ],
+      "solution_count": 19,
+      "source": "geeksforgeeks",
+      "test_count": 2
+    },
+    {
+      "difficulty": "MEDIUM",
+      "flags": [
+        "fewer_than_3_tests"
+      ],
+      "id": "taco_train_23288",
+      "input_shapes": {
+        "list": 1
+      },
+      "skills": [
+        "Dynamic programming",
+        "Data structures"
+      ],
+      "solution_count": 20,
+      "source": "leetcode",
+      "test_count": 1
+    },
+    {
+      "difficulty": "MEDIUM",
+      "flags": [
+        "fewer_than_3_tests",
+        "non_sequence_call_input"
+      ],
+      "id": "taco_train_24326",
+      "input_shapes": {
+        "str": 2
+      },
+      "skills": [
+        "Data structures"
+      ],
+      "solution_count": 40,
+      "source": "geeksforgeeks",
+      "test_count": 2
+    }
+  ],
+  "sample_count": 18,
+  "sample_salt": "P16-D1-source-preflight-2026-11-03",
+  "schema_version": "p16_taco_diverse_source_preflight_v1",
+  "source_counts": {
+    "codewars": 6,
+    "geeksforgeeks": 6,
+    "leetcode": 6
+  }
+}

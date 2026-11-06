@@ -1,0 +1,6 @@
+# Reproducible pinned third-party source data; keep out of Git.
+taco_raw/
+# Incomplete first parser attempt; v2 is the completed audit.
+taco_inventory_v1/
+# Candidate-dataset sample for the Phase 16 feasibility review.
+codecontests_candidate_raw/
