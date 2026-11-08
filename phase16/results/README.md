@@ -96,3 +96,13 @@ and the one nondeterministic wrong-answer record, queues 168 deterministic
 zero corrections. It contains no prompt text, reference solution, published
 test payload, expected value or model code. See
 `../docs/A0_CPU_ADMISSION_V1.md` for the integrity and review boundary.
+
+## A0 CPU admission review
+
+`a0_cpu_review_batch1_v1.json` starts the fail-closed review in frozen order
+at positions 0, 2 and 6. One task has a trusted contract-derived oracle ready
+but still lacks sandbox, full-history/semantic and human gates; one is rejected
+for an under-specified contract; and one is deferred pending a specialized
+guitar-tab grid oracle. The artifact executes no untrusted model code, admits
+zero corrections and authorizes neither training nor protected opening. See
+`../docs/A0_CPU_REVIEW_LOG_V1.md`.

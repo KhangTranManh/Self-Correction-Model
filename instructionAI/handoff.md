@@ -107,6 +107,17 @@ human review, and zero corrections are admitted. `.gitattributes` pins the
 tracked A0 JSON/JSONL evidence to LF so its remote byte hashes remain valid on
 Windows. Training and protected opening remain unauthorized.
 
+CPU review has begun without mutating the frozen inventory. Batch 1 examines
+the first three pending positions (0, 2, 6) in
+`phase16/results/a0_cpu_review_batch1_v1.json`. Position 0 has two agreeing
+contract-derived trusted oracles but still needs exact-output sandbox,
+full-history/semantic and human gates; position 2 is rejected because its
+scheduling contract delegates essential semantics to unavailable example
+tests; position 6 is blocked on a specialized guitar-tab grid oracle. No later
+position has been reviewed, no untrusted model code ran locally, and zero
+corrections are admitted. Review log:
+`phase16/docs/A0_CPU_REVIEW_LOG_V1.md`.
+
 The earlier C-upper-inclusive source branch remains useful as capacity and
 selection-bias evidence, but it is stopped and does not satisfy the new
 recovery-first study roles.
@@ -154,12 +165,14 @@ were audited on CPU; none is a certified C pool.
 
 ## Next decision (CPU admission)
 
-Review the 168 queued records in frozen A0 position order. Construct a
-task-specific deterministic oracle from the task contract rather than copied
-published expected values or dataset reference solutions, then review
-contract, full history, family and semantic-near-duplicate eligibility. Only
-admitted residuals may populate the real 64-correction prefix and 80/20/40
-held-out roles. If fewer than 64 survive, report the stable-onset experiment
-as infeasible. Do not run LoRA, micro-update, protected data, or claim an
-effect until the aggregate CPU release and a later update execution protocol
-pass.
+Finish the specialized independent oracle for frozen position 6 before
+reviewing position 10. Position 0 still requires sandbox execution of the
+exact hash-frozen output, full history and cross-history semantic-near-
+duplicate review, plus human approval. Continue the remaining records in
+frozen A0 order, constructing task-specific deterministic oracles from each
+contract rather than copied published expected values or dataset reference
+solutions. Only admitted residuals may populate the real 64-correction prefix
+and 80/20/40 held-out roles. If fewer than 64 survive, report the stable-onset
+experiment as infeasible. Do not run LoRA, micro-update, protected data, or
+claim an effect until the aggregate CPU release and a later update execution
+protocol pass.
