@@ -1,0 +1,31 @@
+{
+  "schema_version": "p16_a0_rescore_nondeterminism_evidence_v1",
+  "source_rescore_file_sha256": "dcff5a6d4fb0774065074e55bced413cad687cfffcd3fb1a10f61bbb00572079",
+  "position": 171,
+  "item_id": "taco_train_05701",
+  "family_id": "taco-nd-f79e366119be6c552401",
+  "recovered_output_sha256": "7296c190eed86c7f9aa66a3a7d8f4e74dac3a120d4abdc9f5020c869add790b4",
+  "diagnosis": "unordered_set_iteration_changes_return_value_across_python_processes",
+  "stored_report": {
+    "actual_sha256": "97acf7877d57dc0d9ce804df13ab8cc378f7bff70af67d355b6ce5dee4ef36ab",
+    "all_correct": false,
+    "callable_shape": "top_level",
+    "match_count": 8,
+    "status": "completed",
+    "test_count": 10
+  },
+  "repeat_reports": [
+    {"actual_sha256": "6de14a1fae4c1b6b516fa994ddbdd1ec14d5a3525c601d10a4a0a6eaa52cfb3f", "match_count": 8},
+    {"actual_sha256": "d21067f1fc7276cb542a9c6d50bd7439d0065ed3834150052169877dba533615", "match_count": 6},
+    {"actual_sha256": "d41ed48c5bd5ac475225151b5dbc5534d1a2d66c850490f7e203c97bb1987d51", "match_count": 6},
+    {"actual_sha256": "d8cbbc118c9267e8c67f22f013539f3767b2d63ab74d9d52a555367d50b95f34", "match_count": 6},
+    {"actual_sha256": "f2c8fb961c5a9706298e31dff109edac8b7156eead5c65e4bb98fba124816987", "match_count": 9},
+    {"actual_sha256": "ce723b43aa47d7773e1cc79835580082e6b73b291488bf2cd2c2e20c0e6309d9", "match_count": 6},
+    {"actual_sha256": "96b52535364d2b85413c28c623d5a6c70d2614577f61c5813d0d893ea625a1de", "match_count": 6},
+    {"actual_sha256": "c5d2bdcd8925297534ee421a98b0d687c8c80dbb985a7bf8b3113e143d61303c", "match_count": 9}
+  ],
+  "all_repeat_labels": "wrong_answer",
+  "r0_admission_eligible": false,
+  "rejection_reason": "deterministic_rerun_failed",
+  "independent_oracle_validated": false
+}

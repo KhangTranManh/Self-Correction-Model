@@ -1,0 +1,41 @@
+{
+  "all_saved_verdicts_reproduced": false,
+  "completed": 400,
+  "dataset_oracle_only": true,
+  "disagreement_count": 1,
+  "disagreements": [
+    {
+      "item_id": "taco_train_05701",
+      "position": 171,
+      "rescored_class": "substantive_content",
+      "rescored_label": "wrong_answer",
+      "rescored_verification_sha256": "ae1e47e30119c4e43ea2cccb083bbd7cd8bec348babbb9e76a3bdbaa1ab4db91",
+      "stored_class": "substantive_content",
+      "stored_label": "wrong_answer",
+      "stored_verification_sha256": "df5c248a978f70c047ce86287855f74c1f59e968037323baa7f8ebdfffda354c"
+    }
+  ],
+  "gpu_training_authorized": false,
+  "independent_oracle_validated": false,
+  "model_generation": false,
+  "report_sha256": "47cabc5f3b2dde31ecbb0f173f3025b316a3854da2bda9dc93faa52112ffcb60",
+  "rescored_counts": {
+    "correct": 156,
+    "runtime_error": 57,
+    "syntax_or_interface_error": 18,
+    "wrong_answer": 169
+  },
+  "schema_version": "p16_a0_discovery_rescore_v1",
+  "source_file_sha256": {
+    "a0_shard_00.jsonl": "ba987a446f1aaa6a8a35b450736de8f6b51b00faadf6fe8b239282a818c5191d",
+    "a0_shard_00_summary.json": "62a6910e1af7b21b243ec331eef03547a5262df744c4521157ff802b2ad7748d",
+    "a0_shard_01.jsonl": "e014cde696dc2d8a0f360af02d0cea2e506fe79beb71accf9800b7efe293020e",
+    "a0_shard_01_summary.json": "f72453050b553d780533e81503b9a3a0b50eb7a1027327df1250fd9dca756cc5",
+    "a0_shard_02.jsonl": "c1f95dbe0405e7e52b565f1502fa0e6e5946e107eaa69ce2b1de52d15ed7bc9f",
+    "a0_shard_02_summary.json": "6ef754a3de0dd876895c32110cee5ee5ed62626972c8fe9b957b01c673914b37",
+    "a0_shard_03.jsonl": "1a8f3060090a253076aa848439f416b994c33be310f19120d080c6581d7edbd3",
+    "a0_shard_03_summary.json": "fb9234728799980a2e4af6b41686cd3cb51882ca0e482382c172d1f74eaff662"
+  },
+  "source_lock_sha256": "f655a2f3de813bc1d420d37d105dff7d881156e37b05b34a44cd155e04ae3b4c",
+  "source_manifest_sha256": "d69c69d25f88364f842692f7bf5b5a28718fe167cd1b9cab600d3c6bfbb67d7e"
+}

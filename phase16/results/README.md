@@ -78,3 +78,11 @@ dataset-side failures are CPU-screening inputs only.
 `a0_discovery_run_v2_manifest.json` records every downloaded file SHA-256,
 preflight counts and aggregate shard counts. The run has no independent-oracle
 validation and authorizes neither training nor protected data opening.
+
+`a0_discovery_run_v2/a0_rescore_v1.json` is a model-free re-execution of all
+400 saved recovered outputs in the frozen sandbox. It reproduced the four
+label totals, but one item (`taco_train_05701`, position 171) changed its
+verification payload while remaining `wrong_answer`. Its use of unordered set
+iteration produced match counts of 6, 8 or 9 across repeated fresh processes.
+`a0_rescore_nondeterminism_v1.json` preserves that evidence; the item fails the
+deterministic-rerun gate and is ineligible for R0 admission.

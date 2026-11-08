@@ -88,6 +88,14 @@ gate is P16-R0 CPU rescore plus independent-oracle admission. There is still
 no certified study pool, micro-update, LoRA run, protected opening or effect
 claim.
 
+The model-free saved-output rescore is
+`phase16/results/a0_discovery_run_v2/a0_rescore_v1.json`. It reproduced the
+aggregate labels but found one payload disagreement: `taco_train_05701`
+(position 171) uses unordered set iteration. Eight additional processes
+returned different output hashes with match counts 6, 8 or 9/10. Evidence is
+`a0_rescore_nondeterminism_v1.json`; reject this item for deterministic-rerun
+failure. The remaining candidates still need independent-oracle admission.
+
 The earlier C-upper-inclusive source branch remains useful as capacity and
 selection-bias evidence, but it is stopped and does not satisfy the new
 recovery-first study roles.

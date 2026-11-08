@@ -139,6 +139,15 @@ continued without restart, completed the same lock, and wrote all four
 hash-verified summaries. No model training, protected opening, or independent
 oracle validation occurred.
 
+The model-free CPU rescore in `../scripts/rescore_a0_discovery.py` reproduced
+all four label totals. It found one verification-payload disagreement at
+position 171 (`taco_train_05701`): the saved code returns the first element of
+an unordered set. Eight additional fresh-process executions produced distinct
+output hashes and match counts of 6, 8 or 9 out of 10, while all remained
+`wrong_answer`. The item is therefore rejected by the deterministic-rerun
+gate. This rescore still uses dataset tests and is not independent-oracle
+admission.
+
 ## Handoff commands
 
 Copy these files into one remote directory:
