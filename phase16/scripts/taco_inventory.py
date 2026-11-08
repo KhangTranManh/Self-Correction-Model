@@ -15,8 +15,6 @@ from pathlib import Path
 import re
 from urllib.parse import urlsplit, urlunsplit
 
-import pyarrow.parquet as pq
-
 
 REVISION = "d593ed0a2becbbc952230bb89be09189bf1056dc"
 COLUMNS = [
@@ -88,6 +86,11 @@ def io_metadata(value: object) -> tuple[str, int, str | None]:
 
 
 def inventory(raw_dir: Path, output_dir: Path) -> None:
+    try:
+        import pyarrow.parquet as pq
+    except ModuleNotFoundError as exc:
+        raise SystemExit("pyarrow is required only for reading TACO parquet shards") from exc
+
     shards = sorted((raw_dir / "ALL").glob("train-*.parquet"))
     if len(shards) != 9:
         raise SystemExit(f"expected 9 train shards; found {len(shards)}")

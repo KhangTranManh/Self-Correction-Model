@@ -19,6 +19,20 @@ The separate, smaller **signal-only** development definition was recorded on
 2026-11-05 in [`SIGNAL_ONLY_CPU_V1.md`](SIGNAL_ONLY_CPU_V1.md). It does not
 retroactively alter this 40-episode protocol or open any source pool.
 
+The prospective **recovery-first** intervention order was recorded on
+2026-11-07 in [`RECOVERY_FIRST_V1.md`](RECOVERY_FIRST_V1.md). For all future
+Phase 16 work, deterministic output recovery and a bounded stateful harness
+must be evaluated before any micro-update. Weight work is restricted to
+independently verified substantive residual errors and a nested sample-size
+gate. This does not reinterpret prior outputs or reopen a failed source pool.
+
+The later **inference-only residual-discovery handoff** was recorded on
+2026-11-07 in [`A0_DISCOVERY_GPU_V1.md`](A0_DISCOVERY_GPU_V1.md). It separates
+a source-preflighted A0 screen from the final correction-pool release so the
+baseline outputs can reveal residual failures without circularly assuming
+that 64 already exist. This amendment authorizes neither generation before
+its remote lock nor any training, protected opening, or effect claim.
+
 ## Question and learner
 
 Can a single verified correction reduce a specific content error on unseen

@@ -22,11 +22,57 @@ Phases 1–14 are closed. Phase 14 produced the paper
 the reserved final evaluation was never opened. Reports live under each
 `phaseN/docs/FINAL_REPORT.md`.
 
-## Active work: Phase 16 CPU data
+## Active work: Phase 16 recovery-first definition and CPU data
 
-Question: can one verified correction reduce a named content error on unseen
-tasks without harming unrelated tasks? Learner: `Qwen/Qwen2.5-7B-Instruct`.
-GPU gate is **closed**. No certified study pool, no A0 screen, no LoRA.
+Prospective intervention order is frozen in
+`phase16/docs/RECOVERY_FIRST_V1.md`: deterministic output recovery first,
+constrained decoding only when recovery cannot safely close the exact output
+contract, then a bounded stateful harness. Self-edits are proposal data only;
+they require schema, leakage, independent-oracle, near-negative, duplicate,
+and human admission gates before a later batch freeze. Micro-update is allowed
+only for independently verified residual `substantive_content` failures that
+the frozen recovery wrapper and harness do not repair.
+
+The update-resource curve uses nested correction counts 8/16/32/64, a fixed
+evaluation set of 80 applicable probes, 20 near-negatives, and 40 unrelated
+controls, with three update-training seeds per level. Stable onset requires
+two adjacent passing levels plus reset, hash, audit, leakage, local-rescore,
+family-coverage, and harm gates. CPU scorer:
+`phase16/scripts/recovery_first_gate.py`. This is a definition only.
+
+The CPU software contract is implemented in
+`phase16/docs/RECOVERY_FIRST_CPU_CONTRACT_V1.md` and
+`phase16/scripts/validate_recovery_first_cpu.py`. It validates recovery
+evidence, immutable harness memory plus bounded run logs, self-edit admission,
+the exact 64/80/20/40 pool, and an aggregate cross-artifact release. The
+release validator recomputes hashes/decisions and explicitly does not
+authorize GPU execution. All 84 Phase 16 tests pass. No real release artifact
+exists yet.
+
+P16-G0 now separates inference-only residual discovery from update release.
+All nine pinned TACO train shards are present again and match the recorded
+byte sizes and SHA-256 values; TACO test remains unopened. The reproducible
+private bank in ignored `phase16/data/a0_discovery_v1/` has 1,323 structural
+call-based candidates (1,322 CodeWars, 1 LeetCode), canonical SHA-256
+`1a5334e86e8904a35aa4d04234480057523c801104ce991b6b1c1b237e19a352`.
+The tracked public index is
+`phase16/results/a0_candidate_bank_summary_v1.json`. A remote networkless
+dual-reference and tokenizer preflight must freeze exactly 400 families before
+four 100-item A0 shards. Until that lock exists, A0 is not authorized. Even
+after it exists, it authorizes inference only: dataset tests are not independent
+oracles, and training/protected opening remain closed. Protocol and runner:
+`phase16/docs/A0_DISCOVERY_GPU_V1.md` and
+`phase16/scripts/colab_a0_discovery.py`.
+The ready-to-transfer ignored bundle is
+`phase16/data/a0_discovery_v1/p16_g0_gpu_bundle.zip` (1,877,501 bytes,
+SHA-256 `2c3a40c2750e93638b4399783f908178013f0864301008893f96a8922bfc6175`).
+
+Learner remains `Qwen/Qwen2.5-7B-Instruct`. GPU gate is **closed**. There is
+no certified study pool, Phase 16 A0 screen, micro-update, or LoRA run.
+
+The earlier C-upper-inclusive source branch remains useful as capacity and
+selection-bias evidence, but it is stopped and does not satisfy the new
+recovery-first study roles.
 
 Named error **C-upper-inclusive**: one explicit Python function; inclusive
 `[L,R]`; output is count, sum, or select of elements with `L <= key <= R`.
@@ -39,24 +85,28 @@ A text/shortlist hit is not eligibility. Family review is the contract gate.
 KodCode-V1 pin `97d81f0695ddd7c5c02bfe16436db9a17a4a21e5`. Review unit is a
 connected `seed_ids` family in
 `phase16/results/kodcode_family_review_manifest.json` (627 families from 896
-shortlisted rows). Frozen-order Batch 1 (20 families): 6
-`applicable_candidate`, 1 `near_negative_candidate`, 13 `reject`, 0 fully
-certified. Artifact:
-`phase16/results/kodcode_family_contract_review_batch1.json`. Log:
-`phase16/docs/CPU_FAMILY_REVIEW_LOG_V1.md`.
+shortlisted rows). `phase16/docs/FAMILY_REVIEW_TAXONOMY_V1.md` records the
+dated four-lane review amendment. The first 100 families in the original
+hash-frozen order have been reviewed: 17 `direct_candidate`, 9
+`execution_adapter_candidate`, 25 `control_candidate`, 49 `hard_reject` (24
+with `deferred_multiop` status), and 0 fully certified.
 
-Rejects stay in the inventory. They are out of the **positive** C pool
-because the statement is not the locked contract (incidental range language,
-stdio/multi-op, missing signature, first-scalar instead of selected set,
-malformed scaffold). `Algorithm_38927_I` is near-negative: exclusive upper
-endpoint. Planned 300-task S0 split (160/40/20/20/60) is defined in
-`phase16/docs/SYNTHETIC_DEVELOPMENT_AMENDMENT_V1.md` and is not frozen.
+Only direct+adapter counts toward applicable capacity: 26/100. The fixed pool
+needs 260/627 (41.5%); the point projection is 163 and the descriptive Wilson
+95% upper projection is about 222. The current 300-task C-upper-inclusive
+branch therefore fails its CPU capacity gate. Do not start bulk oracle work,
+roles, A0, LoRA, or GPU on this inventory. Artifacts and decision rationale are
+in `phase16/docs/CPU_FAMILY_REVIEW_LOG_V1.md`.
 
-Batch 2 recorder `phase16/scripts/record_kodcode_family_review_batch2.py` may
-exist; Batch 2 JSON was missing when last checked. Chat proposed four lanes
-(`direct_candidate`, `execution_adapter_candidate`, `control_candidate`,
-`hard_reject` plus `deferred_multiop`). Those names are **not** in protocol
-files yet.
+Recall audit (CPU only): `phase16/results/kodcode_recall_sample_v1.json`
+freezes 100 of 3,469 broad predicted-negative components (SHA-256
+`d1a97333184f50b831703d93a019e3d251965b3e4f0c4c57287eb3f24fee632c`).
+Review found 4 false negatives and 96 true negatives. Negative-stratum FNR is
+4.0% (Wilson 95% 1.57--9.84%); paired descriptively with 26.0% shortlist
+precision, plug-in recall is 54.02% with 25.27--80.32% sensitivity. The 627
+shortlist families merge to 625 positive components in the broad graph, so
+this is not formal population inference. No task was certified; the capacity
+and GPU gates remain closed. Details: `phase16/docs/KODCODE_RECALL_AUDIT_V1.md`.
 
 P16-E1 engineering smoke: Qwen 9/9 on synthetic tasks. Those tasks are
 excluded from any study pool.
@@ -65,20 +115,13 @@ TACO train pin `d593ed0a2becbbc952230bb89be09189bf1056dc`. TACO test is
 unopened. CodeContests, EvalPlus, LiveCodeBench, LeetCodeDataset, KodCode
 were audited on CPU; none is a certified C pool.
 
-## Next CPU step (do not skip to GPU)
+## Next decision (GPU handoff is inference-only)
 
-1. Record the four-lane taxonomy in a dated protocol amendment if that is
-   still the plan, then relabel the first 40 families in frozen order.
-2. Review through 100 families. Report direct / adapter / control / hard
-   reject counts. Estimate capacity on 627 families against 260 applicable.
-3. Oracle preflight only if direct+adapter can reach 260. Then history /
-   near-duplicate / sandbox. Then roles. Then validator
-   `phase16/scripts/validate_synthetic_pool.py`.
-4. Keep secrets in `.env`. Do not rent GPU until those gates pass.
-
-## Local agent extras (not the study)
-
-`.grok/skills/` holds 58 untracked pstack skills copied from
-`cursor/plugins` `pstack/skills` (535 files). They are project-local for
-Grok. They are unrelated to Phase 16 data. `.codex/skills` was not writable
-under local ACLs.
+Stage the four files listed in `docs/A0_DISCOVERY_GPU_V1.md` on the supplied
+Linux GPU environment and run `preflight` before loading model weights. If it
+cannot freeze exactly 400 passing families, stop without generation. If it
+passes, its lock authorizes only the four A0 discovery shards. Download every
+lock/audit/summary before releasing the instance, then return to CPU for
+independent-oracle admission and population of the real 64/80/20/40 artifacts.
+Do not run LoRA, micro-update, protected data, or claim an effect until the
+aggregate CPU release and a later update execution protocol pass.

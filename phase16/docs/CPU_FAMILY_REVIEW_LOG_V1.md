@@ -1,6 +1,7 @@
 # P16-S0 KodCode CPU family review log v1
 
-Status at 2026-11-05: **review started; GPU gate closed**.
+Status at 2026-11-06: **100-family contract review complete; the 300-task
+capacity gate fails and the GPU gate remains closed**.
 
 The review unit is the connected `seed_ids` family in
 `../results/kodcode_family_review_manifest.json`. Families are read in its
@@ -48,10 +49,63 @@ That only resolves exact normalized overlap against the prior inventory.
 Cross-source semantic near-duplicate review and sandbox smoke remain pending,
 so the task is **oracle-validated but not fully certified** and has no role.
 
-## Next CPU work
+## Taxonomy amendment and review through 100 families
 
-Continue family contract review in frozen batches, prioritize count/sum
-contracts for oracle throughput, then run cross-source near-duplicate and
-history checks. Do not assign screen/probe/control roles until the complete
-eligible set is known and the 300-task quota can be satisfied.
+`FAMILY_REVIEW_TAXONOMY_V1.md` records four active lanes before the review was
+continued: `direct_candidate`, `execution_adapter_candidate`,
+`control_candidate`, and `hard_reject`. `deferred_multiop` is an exclusion
+status inside `hard_reject`, not a capacity lane. The old Batch 1 and Batch 2
+contract labels remain unchanged in their source artifacts.
+
+| lane/status | families |
+|---|---:|
+| direct candidate | 17 |
+| execution-adapter candidate | 9 |
+| control candidate | 25 |
+| hard reject | 49 |
+| of which deferred multi-operation | 24 |
+| fully certified | 0 |
+
+The controls comprise one near-negative and 24 unrelated candidates. Only
+direct plus adapter candidates count toward applicable capacity: **26/100**.
+Artifacts:
+
+- `../results/kodcode_family_contract_review_batch2.json` (old contract
+  taxonomy, frozen indices 20--39);
+- `../results/kodcode_family_lane_review_40_v1.json` (taxonomy-v1 relabel of
+  frozen indices 0--39);
+- `../results/kodcode_family_lane_review_batch3.json` (indices 40--59);
+- `../results/kodcode_family_lane_review_60_99.json` (indices 60--99).
+
+## Capacity decision at 100 families
+
+The fixed pool requires 260 applicable families out of 627, a yield of 41.5%.
+The observed frozen-prefix yield is 26.0%, projecting to 163 families. As a
+descriptive sensitivity check, the Wilson 95% interval for 26/100 is
+18.4--35.4%, corresponding to approximately 115--222 of 627. The manifest
+order is hash-frozen rather than a probability sample, so this interval is not
+treated as formal population inference. It nevertheless remains below 260 at
+its upper end, and the adapter lane was deliberately permissive toward
+retaining candidates.
+
+**Decision:** the current KodCode C-upper-inclusive inventory cannot plausibly
+supply the preregistered 260 applicable families. Do not spend effort on bulk
+oracle preflight, role assignment, A0, LoRA, or GPU for this 300-task branch.
+The 26 candidates and 25 controls remain useful review artifacts, but none is
+fully certified and they do not constitute a study pool.
+
+Any continuation requires a dated design decision: reduce the pool and claims,
+admit a separately audited new source, or define a different error/domain.
+None of those changes is made by this review.
+
+## Negative-stratum recall audit
+
+The later audit in `KODCODE_RECALL_AUDIT_V1.md` sampled 100 of the 3,469
+broad components omitted by the shortlist. Four were applicable contract
+candidates, so the observed negative-stratum false-negative rate is 4/100.
+Combined descriptively with the 26/100 positive precision, the two-stratum
+plug-in recall estimate is 54.02% (wide endpoint sensitivity 25.27--80.32%).
+This does not alter the capacity decision above: estimated applicable count,
+recall and certification are different quantities, and all four recovered
+candidates still have pending downstream gates.
 

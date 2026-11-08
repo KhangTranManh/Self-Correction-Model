@@ -17,3 +17,51 @@ These files are engineering artifacts. They are excluded from the future
 The live partial snapshot used during monitoring was removed after the full
 audit was downloaded and verified. See `../docs/ENGINEERING_A0.md` for the
 frozen specification and interpretation.
+
+## CPU source-review artifacts
+
+These are contract-review records, not model results or certified study data:
+
+- `kodcode_family_contract_review_batch1.json` and
+  `kodcode_family_contract_review_batch2.json`: original three-label reviews
+  for frozen family indices 0--39.
+- `kodcode_family_lane_review_40_v1.json`: taxonomy-v1 relabel of indices
+  0--39 while preserving the original labels.
+- `kodcode_family_lane_review_batch3.json`: taxonomy-v1 review of indices
+  40--59.
+- `kodcode_family_lane_review_60_99.json`: taxonomy-v1 review of indices
+  60--99.
+
+Across the first 100 hash-frozen families, 17 are direct candidates, 9 need a
+permitted interface adapter, 25 are control candidates and 49 are hard
+rejects. None is fully certified. See
+`../docs/CPU_FAMILY_REVIEW_LOG_V1.md` for the capacity decision.
+
+- `kodcode_recall_sample_v1.json`: hash-frozen 100-family sample from the
+  3,469 broad components omitted by the semantic shortlist; it retains only
+  sampled representatives and summary counts.
+- `kodcode_recall_review_v1.json`: taxonomy review of that sample: 4 false
+  negatives and 96 true negatives, plus the two-stratum precision/recall
+  estimates. It is not a certification or model result.
+
+See `../docs/KODCODE_RECALL_AUDIT_V1.md` for the sampling definition,
+limitations and interpretation.
+
+## Recovery-first CPU reports
+
+`../scripts/validate_recovery_first_cpu.py` may write validation reports here
+only from frozen, reviewable input artifacts. No real recovery-first CPU
+release report exists yet: the current source branch does not supply 64
+certified residual corrections plus the 80/20/40 held-out roles. Synthetic
+coverage lives in `tests/test_validate_recovery_first_cpu.py` and is not a
+study result.
+
+## A0 residual-discovery preparation
+
+`a0_candidate_bank_summary_v1.json` is the non-text public index for the
+gitignored private TACO train candidate bank. It records 1,323 structural
+call-based candidates in frozen hash order, their family/prompt/test/reference
+hashes, and the strong 1,322 CodeWars / 1 LeetCode source concentration. It is
+not model output, independent-oracle certification, or GPU authorization. The
+remote preflight in `../docs/A0_DISCOVERY_GPU_V1.md` must freeze exactly 400
+passing families before inference, and training remains prohibited.

@@ -12,9 +12,6 @@ import json
 from pathlib import Path
 import re
 
-import pyarrow.parquet as pq
-
-
 EXPLICIT_BOUNDS = re.compile(
     r"\b(?:lower|left|start|lo|l)\b.{0,100}\b(?:upper|right|end|hi|r)\b"
     r"|\b(?:upper|right|end|hi|r)\b.{0,100}\b(?:lower|left|start|lo|l)\b",
@@ -31,6 +28,11 @@ SEQUENCE = re.compile(r"\b(?:array|list|elements?|items?|numbers?|values?)\b", r
 
 
 def audit(raw_dir: Path, metadata_path: Path, prefilter_path: Path) -> dict:
+    try:
+        import pyarrow.parquet as pq
+    except ModuleNotFoundError as exc:
+        raise RuntimeError("pyarrow is required to audit raw TACO parquet shards") from exc
+
     metadata = [json.loads(line) for line in metadata_path.open(encoding="utf-8")]
     prefilter = json.loads(prefilter_path.read_text(encoding="utf-8"))
     candidates = {row["id"] for row in prefilter["candidate_ids"]}

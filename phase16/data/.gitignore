@@ -4,3 +4,5 @@ taco_raw/
 taco_inventory_v1/
 # Candidate-dataset sample for the Phase 16 feasibility review.
 codecontests_candidate_raw/
+# Raw third-party prompts/tests/reference code for the A0 discovery handoff.
+a0_discovery_v1/
