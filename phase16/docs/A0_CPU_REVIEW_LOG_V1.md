@@ -44,3 +44,19 @@ Continue at position 16. Positions 0, 6, 10 and 12 still need sandbox
 execution of the exact hash-frozen recovered output, full history and
 cross-history semantic-near-duplicate review, and human approval. Training,
 protected opening and effect claims remain unauthorized.
+
+## Batch 3
+
+Batch 3 reviews positions 16, 21 and 22:
+
+| Position | Item | Review result |
+|---:|---|---|
+| 16 | `taco_train_04114` / `string_transformer` | Rejected fail-closed. Reversing words does not uniquely determine how unequal leading, trailing and inter-word space runs move, while the contract explicitly requires those cases. Published tests were not used to resolve the ambiguity. |
+| 21 | `taco_train_14075` / `case_id` | Regex and parser oracles agree on 16 contract-derived valid and invalid case-style examples. The trusted model-equivalent mutant fails camel cases and malformed separators/casing. |
+| 22 | `taco_train_00638` / `diff` | Iterative and vectorized first-maximum oracles agree on seven cases. The trusted model-equivalent mutant incorrectly returns the first pair when every difference is zero. |
+
+Artifact: `../results/a0_cpu_review_batch3_v1.json`, hash-chained to batch 2.
+Cumulatively, eight positions have been examined: six are oracle-ready for
+remaining gates, two are contract-rejected and zero are admitted. Continue at
+position 23. Exact recovered model execution, full semantic history and human
+approval remain pending for every oracle-ready record.

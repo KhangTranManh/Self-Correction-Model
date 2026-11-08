@@ -108,14 +108,13 @@ tracked A0 JSON/JSONL evidence to LF so its remote byte hashes remain valid on
 Windows. Training and protected opening remain unauthorized.
 
 CPU review has begun without mutating the frozen inventory. Hash-chained
-batches 1 and 2 are `phase16/results/a0_cpu_review_batch1_v1.json` and
-`a0_cpu_review_batch2_v1.json`. Five frozen positions have been examined:
-0, 6, 10 and 12 have pairs of agreeing contract-derived trusted oracles;
-position 2 is rejected because its scheduling contract delegates essential
-semantics to unavailable example tests. The four oracle-ready records still
-need exact-output sandbox, full-history/semantic and human gates. No untrusted
-model code ran locally, zero corrections are admitted, and the next position
-is 16. Review log: `phase16/docs/A0_CPU_REVIEW_LOG_V1.md`.
+batches 1--3 are `phase16/results/a0_cpu_review_batch{1,2,3}_v1.json`. Eight
+frozen positions have been examined: 0, 6, 10, 12, 21 and 22 have pairs of
+agreeing contract-derived trusted oracles; positions 2 and 16 are rejected for
+under-specified contracts. The six oracle-ready records still need exact-
+output sandbox, full-history/semantic and human gates. No untrusted model code
+ran locally, zero corrections are admitted, and the next position is 23.
+Review log: `phase16/docs/A0_CPU_REVIEW_LOG_V1.md`.
 
 The earlier C-upper-inclusive source branch remains useful as capacity and
 selection-bias evidence, but it is stopped and does not satisfy the new
@@ -164,12 +163,13 @@ were audited on CPU; none is a certified C pool.
 
 ## Next decision (CPU admission)
 
-Continue at frozen position 16, constructing task-specific deterministic
+Continue at frozen position 23, constructing task-specific deterministic
 oracles from each contract rather than copied published expected values or
-dataset reference solutions. Separately, positions 0, 6, 10 and 12 require
-sandbox execution of the exact hash-frozen outputs, full history and cross-
-history semantic-near-duplicate review, plus human approval. Only admitted
-residuals may populate the real 64-correction prefix and 80/20/40 held-out
-roles. If fewer than 64 survive, report the stable-onset experiment as
-infeasible. Do not run LoRA, micro-update, protected data, or claim an effect
-until the aggregate CPU release and a later update execution protocol pass.
+dataset reference solutions. Separately, the six oracle-ready positions
+require sandbox execution of the exact hash-frozen outputs, full history and
+cross-history semantic-near-duplicate review, plus human approval. Only
+admitted residuals may populate the real 64-correction prefix and 80/20/40
+held-out roles. If fewer than 64 survive, report the stable-onset experiment
+as infeasible. Do not run LoRA, micro-update, protected data, or claim an
+effect until the aggregate CPU release and a later update execution protocol
+pass.

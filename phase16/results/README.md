@@ -113,3 +113,9 @@ records have pairs of agreeing contract-derived trusted CPU oracles that catch
 their corresponding trusted model-equivalent mutants. Cumulatively, four
 records are oracle-ready for remaining gates, one is contract-rejected and
 zero are admitted. Exact recovered model code was not executed locally.
+
+`a0_cpu_review_batch3_v1.json` hash-chains to batch 2 and reviews positions 16,
+21 and 22. Position 16 is contract-rejected because whitespace-run placement
+is not uniquely specified; positions 21 and 22 have agreeing independent
+trusted oracles. Cumulatively, six records are oracle-ready, two are contract-
+rejected and zero are admitted. The next frozen position is 23.
