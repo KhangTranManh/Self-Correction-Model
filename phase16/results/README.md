@@ -125,3 +125,10 @@ rejected and zero are admitted. The next frozen position is 23.
 and integer/Decimal schedule oracles agree and catch their corresponding
 trusted mutants. Cumulatively, nine records are oracle-ready, two are contract-
 rejected and zero are admitted. The next frozen position is 30.
+
+`a0_cpu_review_batch5_v1.json` hash-chains to batch 4 and reviews positions 30,
+31 and 36. Vowel-run/regex and direct-hex/parity oracle pairs agree and catch
+their corresponding trusted mutants. Position 36 is contract-rejected because
+first-letter ties and punctuation-token semantics are not fully specified.
+Cumulatively, eleven records are oracle-ready, three are contract-rejected and
+zero are admitted. The next frozen position is 37.

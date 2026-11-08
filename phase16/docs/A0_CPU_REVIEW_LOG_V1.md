@@ -75,3 +75,20 @@ Artifact: `../results/a0_cpu_review_batch4_v1.json`, hash-chained to batch 3.
 Cumulatively, eleven positions have been examined: nine are oracle-ready, two
 are contract-rejected and zero are admitted. Continue at position 30. All
 remaining sandbox/history/semantic/human gates stay pending.
+
+## Batch 5
+
+Batch 5 reviews positions 30, 31 and 36:
+
+| Position | Item | Review result |
+|---:|---|---|
+| 30 | `taco_train_10757` / `ka_co_ka_de_ka_me` | Vowel-run and regular-expression boundary oracles agree on eight cases covering the required prefix, terminal vowels, vowel clusters and case preservation. The trusted model-equivalent mutant inserts `ka` before rather than after vowel runs and lowercases the input. |
+| 31 | `taco_train_02417` / `fisHex` | Direct hexadecimal conversion and parity-reduction oracles agree on seven cases. The trusted model-equivalent mutant XORs character code points instead of hexadecimal values. |
+| 36 | `taco_train_25279` / `pseudo_sort` | Rejected fail-closed. Sorting only by first letter does not specify the order of distinct words tied on that letter, and punctuation removal does not specify whether separated fragments join or remain separate tokens. |
+
+Artifact: `../results/a0_cpu_review_batch5_v1.json`, hash-chained to batch 4.
+Cumulatively, fourteen positions have been examined: eleven are oracle-ready,
+three are contract-rejected and zero are admitted. Continue at position 37.
+Exact recovered-output sandbox execution, full semantic history, manual cross-
+history near-duplicate review and human approval remain pending for every
+oracle-ready record.

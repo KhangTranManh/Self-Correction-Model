@@ -1,0 +1,161 @@
+{
+  "schema_version": "p16_a0_cpu_review_batch_v1",
+  "source": {
+    "inventory_sha256": "00743b1561a4c0e632ca2020c91e7a1c891e6d9e75af28b3ff04ad7edc6be377",
+    "bank_sha256": "1a5334e86e8904a35aa4d04234480057523c801104ce991b6b1c1b237e19a352",
+    "previous_review_sha256": "6dc9b86182dfd3f2191ed256a4cb1f8b4afe0566029772627813db77f5d96618"
+  },
+  "frozen_review_rule": "review pending positions 30, 31 and 36",
+  "positions": [
+    30,
+    31,
+    36
+  ],
+  "counts": {
+    "newly_examined": 3,
+    "contract_passed": 2,
+    "contract_rejected": 1,
+    "trusted_oracle_validated": 2,
+    "correction_admitted": 0,
+    "cumulative_positions_examined": 14,
+    "cumulative_contract_rejected": 3,
+    "cumulative_oracle_ready": 11
+  },
+  "rows": [
+    {
+      "position": 30,
+      "item_id": "taco_train_10757",
+      "family_id": "taco-nd-dad0e1aa687f4d1dbbb0",
+      "source_record_sha256": "2b481bf363771a0901c07a601d409cd132414656cbe2aeebf16ae6c767e10a73",
+      "prompt_sha256": "d53fe310072725ccfd384825c7e8bffb885f881ae8a5e32de1e88b20a3b602f8",
+      "recovered_output_sha256": "197e0c5f13f3893ed66a100c067ed8951a65e1e2bb612e907832104c4fd92cae",
+      "contract_review": {
+        "status": "passed",
+        "reason": "prefix, vowel-run boundaries, terminal vowels and case preservation are explicit"
+      },
+      "independent_oracle": {
+        "status": "validated_on_trusted_cpu_cases",
+        "derivation_boundary": "task_contract_only",
+        "published_test_values_used": false,
+        "dataset_reference_solutions_used": false,
+        "test_count": 8,
+        "oracle_reference_agree": true,
+        "model_equivalent_mutant_caught": true,
+        "failing_case_ids": [
+          "single_vowel",
+          "consonant_then_final_vowel",
+          "vowel_cluster",
+          "uppercase_and_final_cluster",
+          "internal_clusters",
+          "mixed_case_clusters",
+          "alternating"
+        ],
+        "oracle_source_sha256": "18732d2def39a608154cb898794e4e4f846291267f0e68d01a1268dc44ad4e42",
+        "reference_source_sha256": "c5b2b0336ed289ad8e5b9ad698467868d5367c9cf6a9d6eed6c2256c3d90a42d",
+        "mutant_source_sha256": "d4128b96ce2ae982c9062aebf505b1143fad70a07bc4135ef2b3a66c600d9f24",
+        "cases_sha256": "e0b7df9cae82a10199ed37a853cdeab6f10279af260169f65cae0c8f6d8d3de2",
+        "transcript_sha256": "79ba1ec8af2ef74124d5ae3fa1b0bfab5d56c8fcf1d74e1cdc0e605186960167"
+      },
+      "history_review": {
+        "frozen_phase_1_15_exact_status": "passed",
+        "full_semantic_history_status": "pending"
+      },
+      "near_duplicate_review": {
+        "frozen_component_size": 1,
+        "method": "token_5gram_jaccard",
+        "threshold": 0.8,
+        "maximum_other_similarity": 0.0071174377224199285,
+        "top_ten_sha256": "da14d81091a633d117c7aa4e1807e2df91801c38d0439b646bea3c15cf4a894f",
+        "bank_local_automated_status": "passed",
+        "manual_cross_history_status": "pending"
+      },
+      "sandbox_review": "pending_no_local_untrusted_code_sandbox",
+      "human_approval": "pending",
+      "review_disposition": "oracle_ready_remaining_gates_pending",
+      "correction_admitted": false
+    },
+    {
+      "position": 31,
+      "item_id": "taco_train_02417",
+      "family_id": "taco-nd-8feb30d479bf894aae1d",
+      "source_record_sha256": "a50a02d59da3b22d7f80a868a3ffa5b9f94ac7cb962ebba49b80bb1190709b68",
+      "prompt_sha256": "b3337963934930b47566ed0379af8363b7c7e5951b98ab7025df5b7f79c0530d",
+      "recovered_output_sha256": "dafdbf3f46da866d41210d0c64b5c399940a34dd70cc8ced3840c49e0d8be38d",
+      "contract_review": {
+        "status": "passed",
+        "reason": "case-insensitive hexadecimal values and XOR reduction are explicit"
+      },
+      "independent_oracle": {
+        "status": "validated_on_trusted_cpu_cases",
+        "derivation_boundary": "task_contract_only",
+        "published_test_values_used": false,
+        "dataset_reference_solutions_used": false,
+        "test_count": 7,
+        "oracle_reference_agree": true,
+        "model_equivalent_mutant_caught": true,
+        "failing_case_ids": [
+          "single_lower",
+          "single_upper",
+          "contract_example",
+          "mixed_case",
+          "repeated_odd_counts"
+        ],
+        "oracle_source_sha256": "470866bb212d83d22b430d6b003148c273277cbe1cf0547c44e7082cc175fa96",
+        "reference_source_sha256": "80e36815878a05a9f55e5f59d9f8c36a2f0841335f38654b7781feeed081d158",
+        "mutant_source_sha256": "97a0ae68f0c25c18791192d83b8bf558bb9fe2cc0593006648fec49be1c7d74e",
+        "cases_sha256": "e6f9ab9ce871c27d973efc51a89ee10643c43ee3aa344b65a1f1f64c1bb8ccb9",
+        "transcript_sha256": "48a545563c45a191cd517ab73230cca6d34a4f929221e87e1ae4ff466b141e52"
+      },
+      "history_review": {
+        "frozen_phase_1_15_exact_status": "passed",
+        "full_semantic_history_status": "pending"
+      },
+      "near_duplicate_review": {
+        "frozen_component_size": 1,
+        "method": "token_5gram_jaccard",
+        "threshold": 0.8,
+        "maximum_other_similarity": 0.017543859649122806,
+        "top_ten_sha256": "a8a83aefb9e4d1d401144d7b68a014fb1941bfd57d49ea717a2c962bfa531cd5",
+        "bank_local_automated_status": "passed",
+        "manual_cross_history_status": "pending"
+      },
+      "sandbox_review": "pending_no_local_untrusted_code_sandbox",
+      "human_approval": "pending",
+      "review_disposition": "oracle_ready_remaining_gates_pending",
+      "correction_admitted": false
+    },
+    {
+      "position": 36,
+      "item_id": "taco_train_25279",
+      "family_id": "taco-nd-207153744b809e4d7e76",
+      "source_record_sha256": "2dbb6536d49801e64bb9a6daa9708a775e8f9fae8712286753ce1f3c01a57efc",
+      "prompt_sha256": "4837debf70bde6331e0e3aa13c5606e2a1b16d60612e197f20271c23fe3a4ac6",
+      "recovered_output_sha256": "86665b273b82e1654bdaffd0b4a63bf71348ca7cb0560e0edb9eedb3477e7acc",
+      "contract_review": {
+        "status": "failed",
+        "reason": "first-letter sorting leaves distinct-word tie order undefined; punctuation removal also does not define token joining"
+      },
+      "independent_oracle": {
+        "status": "not_constructed_contract_failed"
+      },
+      "history_review": "not_reviewed_ineligible",
+      "near_duplicate_review": "not_reviewed_ineligible",
+      "sandbox_review": "not_reviewed_ineligible",
+      "human_approval": "not_applicable_rejected",
+      "review_disposition": "rejected_contract_under_specified",
+      "rejection_reasons": [
+        "contract_under_specified_tie_and_punctuation_semantics"
+      ],
+      "correction_admitted": false
+    }
+  ],
+  "claims": {
+    "untrusted_model_code_executed": false,
+    "independent_oracle_admission_complete": false,
+    "correction_pool_certified": false,
+    "gpu_training_authorized": false,
+    "protected_data_opening_authorized": false
+  },
+  "next_position": 37,
+  "review_sha256": "a8689cb7176568bdce0d61fb8ff9b0bc433b53ea0e5ac0dad11c105654804998"
+}
