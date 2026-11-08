@@ -65,3 +65,16 @@ hashes, and the strong 1,322 CodeWars / 1 LeetCode source concentration. It is
 not model output, independent-oracle certification, or GPU authorization. The
 remote preflight in `../docs/A0_DISCOVERY_GPU_V1.md` must freeze exactly 400
 passing families before inference, and training remains prohibited.
+
+## A0 residual-discovery execution
+
+`a0_discovery_run_v2/` is the completed inference-only P16-G0 run. Its fresh
+preflight froze 400 distinct families under lock SHA-256
+`f655a2f3de813bc1d420d37d105dff7d881156e37b05b34a44cd155e04ae3b4c`,
+then four immutable 100-item shards completed. The aggregate is 156 correct,
+169 wrong answer, 57 runtime error and 18 syntax/interface error. The 244
+dataset-side failures are CPU-screening inputs only.
+
+`a0_discovery_run_v2_manifest.json` records every downloaded file SHA-256,
+preflight counts and aggregate shard counts. The run has no independent-oracle
+validation and authorizes neither training nor protected data opening.

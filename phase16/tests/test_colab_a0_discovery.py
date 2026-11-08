@@ -12,6 +12,7 @@ from colab_a0_discovery import (  # noqa: E402
     callable_shape,
     classify,
     extract_code,
+    published_test_match,
     result_label,
 )
 
@@ -55,6 +56,24 @@ class ClassificationTests(unittest.TestCase):
                          "correct")
         self.assertEqual(result_label({"status": "completed", "all_correct": False}),
                          "wrong_answer")
+
+
+class PublishedTestMatchTests(unittest.TestCase):
+    def test_exact_values_match(self):
+        self.assertTrue(published_test_match("blue is sky the", "blue is sky the"))
+        self.assertTrue(published_test_match([1, 2], [1, 2]))
+        self.assertTrue(published_test_match([5], [5]))
+
+    def test_singleton_expected_list_unwraps_once(self):
+        self.assertTrue(published_test_match("exampleexample", ["exampleexample"]))
+        self.assertTrue(published_test_match([1, 2], [[1, 2]]))
+        self.assertTrue(published_test_match(5, [5]))
+
+    def test_does_not_unwrap_got_or_longer_lists(self):
+        self.assertFalse(published_test_match(["exampleexample"], "exampleexample"))
+        self.assertFalse(published_test_match("a", ["a", "b"]))
+        self.assertFalse(published_test_match(1, [1, 2]))
+        self.assertFalse(published_test_match("a", "b"))
 
 
 if __name__ == "__main__":

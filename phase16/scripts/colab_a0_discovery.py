@@ -79,7 +79,19 @@ def write_new_json(path: Path, value: dict) -> None:
         os.fsync(stream.fileno())
 
 
+def published_test_match(got: object, expected: object) -> bool:
+    """Exact equality, plus one singleton unwrap of a published expected list."""
+    if got == expected:
+        return True
+    return (
+        isinstance(expected, list)
+        and len(expected) == 1
+        and got == expected[0]
+    )
+
+
 def ensure_packages() -> dict[str, str]:
+    import importlib
     import importlib.metadata as metadata
 
     present = {}
@@ -94,6 +106,7 @@ def ensure_packages() -> dict[str, str]:
              *[f"{name}=={version}" for name, version in PACKAGES.items()]],
             check=True, timeout=900,
         )
+        importlib.invalidate_caches()
     return {name: metadata.version(name) for name in PACKAGES}
 
 
@@ -112,7 +125,8 @@ def sandbox_preflight() -> None:
     result = subprocess.run([
         "bwrap", "--die-with-parent", "--unshare-user", "--uid", "65534",
         "--gid", "65534", "--unshare-net", "--unshare-pid",
-        "--ro-bind", "/usr", "/usr", "--tmpfs", "/tmp", "--dev", "/dev",
+        "--ro-bind", "/usr", "/usr", "--symlink", "usr/lib", "/lib",
+        "--symlink", "usr/lib64", "/lib64", "--tmpfs", "/tmp", "--dev", "/dev",
         "/usr/bin/id", "-u",
     ], capture_output=True, text=True, timeout=SANDBOX_TIMEOUT_SECONDS)
     if result.returncode or result.stdout.strip() != "65534":
@@ -226,7 +240,8 @@ def sandbox_execute(code: str, task: dict) -> dict:
         return {"status": "invalid_result_json", "callable_shape": shape}
     if not isinstance(actual, list) or len(actual) != len(task["test_outputs"]):
         return {"status": "result_count_mismatch", "callable_shape": shape}
-    matches = [got == expected for got, expected in zip(actual, task["test_outputs"])]
+    matches = [published_test_match(got, expected)
+               for got, expected in zip(actual, task["test_outputs"])]
     return {
         "status": "completed",
         "callable_shape": shape,

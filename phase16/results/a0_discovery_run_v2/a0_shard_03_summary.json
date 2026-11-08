@@ -1,0 +1,20 @@
+{
+  "audit_sha256": "1a8f3060090a253076aa848439f416b994c33be310f19120d080c6581d7edbd3",
+  "completed": 100,
+  "counts": {
+    "class:execution_or_scaffold": 12,
+    "class:presentation_only": 43,
+    "class:substantive_content": 45,
+    "correct": 43,
+    "runtime_error": 10,
+    "syntax_or_interface_error": 2,
+    "wrong_answer": 45
+  },
+  "dataset_oracle_only": true,
+  "gpu_training_authorized": false,
+  "independent_oracle_validated": false,
+  "lock_sha256": "f655a2f3de813bc1d420d37d105dff7d881156e37b05b34a44cd155e04ae3b4c",
+  "schema_version": "p16_a0_discovery_shard_summary_v1",
+  "shard_index": 3,
+  "summary_sha256": "13a19ceca0adef33cab56f02b0acc8669d8cd7e6f657d9602cd1d10a4b41c212"
+}

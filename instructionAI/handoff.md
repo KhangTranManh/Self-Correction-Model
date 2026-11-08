@@ -67,8 +67,26 @@ The ready-to-transfer ignored bundle is
 `phase16/data/a0_discovery_v1/p16_g0_gpu_bundle.zip` (1,877,501 bytes,
 SHA-256 `2c3a40c2750e93638b4399783f908178013f0864301008893f96a8922bfc6175`).
 
-Learner remains `Qwen/Qwen2.5-7B-Instruct`. GPU gate is **closed**. There is
-no certified study pool, Phase 16 A0 screen, micro-update, or LoRA run.
+2026-11-08 remote preflight v1 accepted 1/400 and stopped. Failed audit:
+`phase16/results/a0_preflight_fail_v1.jsonl` (SHA-256
+`9b42a67be42c72d802e69a2c6ead1f9a81fa452386d321aef84b4c9d0866f784`).
+Comparison amendment: `phase16/docs/A0_PUBLISHED_TEST_MATCH_V1.md` (exact
+match plus one singleton expected-list unwrap). Copy the updated
+`colab_a0_discovery.py` before the next preflight. Use a **new** output
+directory. Do not splice the failed audit into a lock.
+
+The fresh v2 preflight then accepted 400 families after two rejects and froze
+lock `f655a2f3de813bc1d420d37d105dff7d881156e37b05b34a44cd155e04ae3b4c`.
+All four 100-item Qwen shards completed and were downloaded to
+`phase16/results/a0_discovery_run_v2/`. The hash/aggregate manifest is
+`phase16/results/a0_discovery_run_v2_manifest.json`. Aggregate: 156 correct,
+169 wrong answer, 57 runtime error and 18 syntax/interface error. These 244
+dataset-side failures are screening candidates only.
+
+Learner remains `Qwen/Qwen2.5-7B-Instruct`. P16-G0 is complete and the next
+gate is P16-R0 CPU rescore plus independent-oracle admission. There is still
+no certified study pool, micro-update, LoRA run, protected opening or effect
+claim.
 
 The earlier C-upper-inclusive source branch remains useful as capacity and
 selection-bias evidence, but it is stopped and does not satisfy the new
@@ -115,13 +133,12 @@ TACO train pin `d593ed0a2becbbc952230bb89be09189bf1056dc`. TACO test is
 unopened. CodeContests, EvalPlus, LiveCodeBench, LeetCodeDataset, KodCode
 were audited on CPU; none is a certified C pool.
 
-## Next decision (GPU handoff is inference-only)
+## Next decision (CPU admission)
 
-Stage the four files listed in `docs/A0_DISCOVERY_GPU_V1.md` on the supplied
-Linux GPU environment and run `preflight` before loading model weights. If it
-cannot freeze exactly 400 passing families, stop without generation. If it
-passes, its lock authorizes only the four A0 discovery shards. Download every
-lock/audit/summary before releasing the instance, then return to CPU for
-independent-oracle admission and population of the real 64/80/20/40 artifacts.
-Do not run LoRA, micro-update, protected data, or claim an effect until the
-aggregate CPU release and a later update execution protocol pass.
+Rescore every saved v2 completion in the frozen sandbox, then independently
+review oracle, contract, history, family and near-duplicate eligibility for
+the 244 dataset-side failures. Only admitted residuals may populate the real
+64-correction prefix and 80/20/40 held-out roles. If fewer than 64 survive,
+report the stable-onset experiment as infeasible. Do not run LoRA,
+micro-update, protected data, or claim an effect until the aggregate CPU
+release and a later update execution protocol pass.

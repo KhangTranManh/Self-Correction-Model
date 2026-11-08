@@ -1,7 +1,12 @@
 # P16-G0: inference-only residual-discovery handoff v1 (2026-11-07)
 
-Status: **CPU candidate bank prepared; GPU generation remains conditional on
-the remote source preflight lock**.
+Status: **P16-G0 inference complete; P16-R0 CPU admission pending.** The first
+remote preflight failed 1/400 and is retained as
+`../results/a0_preflight_fail_v1.jsonl`. After the comparison amendment in
+`A0_PUBLISHED_TEST_MATCH_V1.md`, a fresh v2 preflight froze 400 families and
+all four 100-item inference shards completed. The downloaded run is
+`../results/a0_discovery_run_v2/`; its file-hash and aggregate manifest is
+`../results/a0_discovery_run_v2_manifest.json`.
 
 This dated amendment resolves a sequencing loop in the recovery-first design.
 The final `64/80/20/40` release pool cannot be required before A0 because the
@@ -114,6 +119,26 @@ Preliminary classes are screening labels only:
 The word “candidate” matters: dataset-test failure alone cannot enter the
 64-correction prefix.
 
+## 2026-11-08 execution result
+
+The fresh v2 preflight wrote lock SHA-256
+`f655a2f3de813bc1d420d37d105dff7d881156e37b05b34a44cd155e04ae3b4c`.
+Its audit contains 400 accepts, two rejects, no preflight-failure record, and
+the final lock-freeze record. The four immutable shards then completed all
+400 locked positions without a shard failure record:
+
+- 156 `correct` / `presentation_only`;
+- 169 `wrong_answer` / `substantive_content` candidates;
+- 57 `runtime_error`; and
+- 18 `syntax_or_interface_error`.
+
+Thus 244 outputs failed at least one dataset-side check and are inputs to CPU
+screening, not admitted residuals. During shard 1, SSH monitoring was briefly
+unavailable while the host was oversubscribed by another workload. The runner
+continued without restart, completed the same lock, and wrote all four
+hash-verified summaries. No model training, protected opening, or independent
+oracle validation occurred.
+
 ## Handoff commands
 
 Copy these files into one remote directory:
@@ -133,9 +158,10 @@ python /content/phase16/scripts/colab_a0_discovery.py generate --shard 2
 python /content/phase16/scripts/colab_a0_discovery.py generate --shard 3
 ```
 
-Download the lock, preflight audit, four shard audits and four summaries before
-releasing the remote instance. A partial or failed shard is infrastructure
-evidence only and must not be spliced with a changed lock or package version.
+The lock, preflight audit, four shard audits and four summaries were downloaded
+and hash-verified in `../results/a0_discovery_run_v2/`. A partial or failed
+shard remains infrastructure evidence only and must not be spliced with a
+changed lock or package version.
 
 ## CPU work after A0
 
