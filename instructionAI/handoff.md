@@ -46,7 +46,7 @@ The CPU software contract is implemented in
 evidence, immutable harness memory plus bounded run logs, self-edit admission,
 the exact 64/80/20/40 pool, and an aggregate cross-artifact release. The
 release validator recomputes hashes/decisions and explicitly does not
-authorize GPU execution. All 84 Phase 16 tests pass. No real release artifact
+authorize GPU execution. No real release artifact
 exists yet.
 
 P16-G0 now separates inference-only residual discovery from update release.
@@ -94,7 +94,18 @@ aggregate labels but found one payload disagreement: `taco_train_05701`
 (position 171) uses unordered set iteration. Eight additional processes
 returned different output hashes with match counts 6, 8 or 9/10. Evidence is
 `a0_rescore_nondeterminism_v1.json`; reject this item for deterministic-rerun
-failure. The remaining candidates still need independent-oracle admission.
+failure.
+
+The fail-closed CPU worklist is
+`phase16/results/a0_admission_inventory_v1.json`; builder and protocol are
+`phase16/scripts/build_a0_admission_inventory.py` and
+`phase16/docs/A0_CPU_ADMISSION_V1.md`. It accounts for all 244 failures:
+75 execution/scaffold records plus the nondeterministic wrong answer are
+rejected, 168 deterministic `substantive_content` candidates await
+task-specific independent-oracle, contract, full-history, near-duplicate and
+human review, and zero corrections are admitted. `.gitattributes` pins the
+tracked A0 JSON/JSONL evidence to LF so its remote byte hashes remain valid on
+Windows. Training and protected opening remain unauthorized.
 
 The earlier C-upper-inclusive source branch remains useful as capacity and
 selection-bias evidence, but it is stopped and does not satisfy the new
@@ -143,10 +154,12 @@ were audited on CPU; none is a certified C pool.
 
 ## Next decision (CPU admission)
 
-Rescore every saved v2 completion in the frozen sandbox, then independently
-review oracle, contract, history, family and near-duplicate eligibility for
-the 244 dataset-side failures. Only admitted residuals may populate the real
-64-correction prefix and 80/20/40 held-out roles. If fewer than 64 survive,
-report the stable-onset experiment as infeasible. Do not run LoRA,
-micro-update, protected data, or claim an effect until the aggregate CPU
-release and a later update execution protocol pass.
+Review the 168 queued records in frozen A0 position order. Construct a
+task-specific deterministic oracle from the task contract rather than copied
+published expected values or dataset reference solutions, then review
+contract, full history, family and semantic-near-duplicate eligibility. Only
+admitted residuals may populate the real 64-correction prefix and 80/20/40
+held-out roles. If fewer than 64 survive, report the stable-onset experiment
+as infeasible. Do not run LoRA, micro-update, protected data, or claim an
+effect until the aggregate CPU release and a later update execution protocol
+pass.

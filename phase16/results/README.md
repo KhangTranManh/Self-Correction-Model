@@ -86,3 +86,13 @@ verification payload while remaining `wrong_answer`. Its use of unordered set
 iteration produced match counts of 6, 8 or 9 across repeated fresh processes.
 `a0_rescore_nondeterminism_v1.json` preserves that evidence; the item fails the
 deterministic-rerun gate and is ineligible for R0 admission.
+
+## A0 CPU admission inventory
+
+`a0_admission_inventory_v1.json` is the hash-linked, fail-closed worklist for
+all 244 dataset-side failures. It rejects 75 frozen execution/scaffold records
+and the one nondeterministic wrong-answer record, queues 168 deterministic
+`substantive_content` candidates for independent-oracle review, and admits
+zero corrections. It contains no prompt text, reference solution, published
+test payload, expected value or model code. See
+`../docs/A0_CPU_ADMISSION_V1.md` for the integrity and review boundary.
