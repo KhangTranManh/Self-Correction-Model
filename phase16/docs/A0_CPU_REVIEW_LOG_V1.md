@@ -27,8 +27,20 @@ untrusted model code was executed locally and no correction was admitted.
 
 ## Next gate
 
-Complete the specialized independent oracle for position 6 before reviewing
-position 10. Position 0 additionally needs sandbox execution of the exact
-hash-frozen recovered output, full history and semantic-near-duplicate review,
-and human approval. Training, protected opening and effect claims remain
-unauthorized.
+Batch 2 resolves the position-6 blocker, then reviews positions 10 and 12:
+
+| Position | Item | Review result |
+|---:|---|---|
+| 6 | `taco_train_24349` / `transpose` | Two independent grid implementations agree on seven contract-derived cases covering width expansion/contraction, simultaneous notes, a slide marker and both fret bounds. The trusted linewise model-equivalent mutant fails four cases. |
+| 10 | `taco_train_16524` / `identify_weapon` | Two independent mapping implementations agree on all six valid characters and three invalid inputs. The trusted model-equivalent mutant incorrectly prefixes invalid results. |
+| 12 | `taco_train_19256` / `closest_pair_tonum` | Brute-force and square-parameterization oracles agree on nine limits. The trusted model-equivalent mutant misses all valid pairs whose largest member is at most 10. |
+
+The hash-chained artifact is `../results/a0_cpu_review_batch2_v1.json`.
+Cumulatively, five positions have been examined: four have trusted oracles
+ready for remaining gates, one is contract-rejected, and zero are admitted.
+No exact recovered model output was executed locally.
+
+Continue at position 16. Positions 0, 6, 10 and 12 still need sandbox
+execution of the exact hash-frozen recovered output, full history and
+cross-history semantic-near-duplicate review, and human approval. Training,
+protected opening and effect claims remain unauthorized.

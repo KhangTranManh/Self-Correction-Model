@@ -106,3 +106,10 @@ for an under-specified contract; and one is deferred pending a specialized
 guitar-tab grid oracle. The artifact executes no untrusted model code, admits
 zero corrections and authorizes neither training nor protected opening. See
 `../docs/A0_CPU_REVIEW_LOG_V1.md`.
+
+`a0_cpu_review_batch2_v1.json` hash-chains to batch 1, resolves the specialized
+guitar-tab oracle at position 6, and reviews positions 10 and 12. All three
+records have pairs of agreeing contract-derived trusted CPU oracles that catch
+their corresponding trusted model-equivalent mutants. Cumulatively, four
+records are oracle-ready for remaining gates, one is contract-rejected and
+zero are admitted. Exact recovered model code was not executed locally.
