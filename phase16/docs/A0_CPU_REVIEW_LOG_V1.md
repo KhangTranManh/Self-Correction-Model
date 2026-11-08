@@ -60,3 +60,18 @@ Cumulatively, eight positions have been examined: six are oracle-ready for
 remaining gates, two are contract-rejected and zero are admitted. Continue at
 position 23. Exact recovered model execution, full semantic history and human
 approval remain pending for every oracle-ready record.
+
+## Batch 4
+
+Batch 4 reviews positions 23, 28 and 29. All three contracts pass:
+
+| Position | Item | Review result |
+|---:|---|---|
+| 23 | `taco_train_17641` / `calculate_scrap` | Closed-form integer ceiling and monotone binary-search oracles agree on seven cases. The trusted model-equivalent mutant floors fractional kilogram requirements. |
+| 28 | `taco_train_05174` / `race` | Integer-second and rational-duration oracles agree on seven cases. The trusted model-equivalent mutant does not reduce minutes modulo 60 and computes minutes again in the seconds slot. |
+| 29 | `taco_train_11943` / `day_plan` | Integer half-even and Decimal half-even schedule oracles agree on seven cases. The trusted model-equivalent mutant hard-codes ten-minute breaks instead of distributing available time. |
+
+Artifact: `../results/a0_cpu_review_batch4_v1.json`, hash-chained to batch 3.
+Cumulatively, eleven positions have been examined: nine are oracle-ready, two
+are contract-rejected and zero are admitted. Continue at position 30. All
+remaining sandbox/history/semantic/human gates stay pending.

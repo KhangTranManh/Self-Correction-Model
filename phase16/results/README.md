@@ -119,3 +119,9 @@ zero are admitted. Exact recovered model code was not executed locally.
 is not uniquely specified; positions 21 and 22 have agreeing independent
 trusted oracles. Cumulatively, six records are oracle-ready, two are contract-
 rejected and zero are admitted. The next frozen position is 23.
+
+`a0_cpu_review_batch4_v1.json` hash-chains to batch 3 and reviews positions 23,
+28 and 29. Closed-form/binary-search material-loss, integer/rational race-time,
+and integer/Decimal schedule oracles agree and catch their corresponding
+trusted mutants. Cumulatively, nine records are oracle-ready, two are contract-
+rejected and zero are admitted. The next frozen position is 30.
