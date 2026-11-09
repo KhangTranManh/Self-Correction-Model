@@ -134,6 +134,14 @@ The cumulative funnel in `a0_cpu_admission_tracker_v2.json` is now 168 queued,
 position is 43. All remaining sandbox, history/semantic and human gates stay
 pending, and no model code or GPU was used.
 
+Exact-output CPU closure is implemented in
+`phase16/scripts/close_a0_cpu_sandbox_gates.py`; definition:
+`phase16/docs/A0_CPU_SANDBOX_CLOSURE_V1.md`. It covers all 15 oracle-ready
+positions and fails closed on identity changes or residuals that do not
+reproduce. Its real artifact is still pending because the previous Linux
+bubblewrap host is unreachable and no compatible local sandbox is active.
+Do not replace it with unrestricted Windows execution of recovered code.
+
 The earlier C-upper-inclusive source branch remains useful as capacity and
 selection-bias evidence, but it is stopped and does not satisfy the new
 recovery-first study roles.
