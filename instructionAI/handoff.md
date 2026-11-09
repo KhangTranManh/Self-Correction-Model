@@ -116,6 +116,16 @@ output sandbox, full-history/semantic and human gates. No untrusted model code
 ran locally, zero corrections are admitted, and the next position is 37.
 Review log: `phase16/docs/A0_CPU_REVIEW_LOG_V1.md`.
 
+CPU admission progress is derived by
+`phase16/scripts/track_a0_cpu_admission.py` into
+`phase16/results/a0_cpu_admission_tracker_v1.json`; definition:
+`phase16/docs/A0_CPU_ADMISSION_TRACKER_V1.md`. The tracker verifies the frozen
+inventory and complete review hash chain before reporting 168 queued, 14
+reviewed, 11 oracle-ready, three contract-rejected and zero admitted. The
+11/14 oracle-ready point rate implies 82 total reviews for 64 oracle-ready
+records (Wilson planning range 70--123), but this is not an admission forecast:
+no admission gate has completed, so admission yield is intentionally unknown.
+
 The earlier C-upper-inclusive source branch remains useful as capacity and
 selection-bias evidence, but it is stopped and does not satisfy the new
 recovery-first study roles.

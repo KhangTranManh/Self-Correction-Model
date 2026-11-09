@@ -132,3 +132,12 @@ their corresponding trusted mutants. Position 36 is contract-rejected because
 first-letter ties and punctuation-token semantics are not fully specified.
 Cumulatively, eleven records are oracle-ready, three are contract-rejected and
 zero are admitted. The next frozen position is 37.
+
+`a0_cpu_admission_tracker_v1.json` is a model-free CPU aggregation of the
+frozen inventory and review batches 1--5. It verifies inventory/record hashes,
+review self-hashes, the cross-batch chain, identities and allowed deferral
+transitions before reporting the 168 -> 14 reviewed -> 11 oracle-ready -> 0
+admitted funnel. Its 82-review point projection and 70--123 Wilson range refer
+only to reaching 64 oracle-ready records; admission yield remains unavailable
+because no admission decision is complete. See
+`../docs/A0_CPU_ADMISSION_TRACKER_V1.md`.
