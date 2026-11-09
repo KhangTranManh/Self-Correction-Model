@@ -126,6 +126,14 @@ reviewed, 11 oracle-ready, three contract-rejected and zero admitted. The
 records (Wilson planning range 70--123), but this is not an admission forecast:
 no admission gate has completed, so admission yield is intentionally unknown.
 
+Batch 6 is `phase16/results/a0_cpu_review_batch6_v1.json`. It reviews the next
+five frozen positions: four receive agreeing contract-derived oracle pairs and
+position 37 is contract-rejected for under-specified FEN return serialization.
+The cumulative funnel in `a0_cpu_admission_tracker_v2.json` is now 168 queued,
+19 reviewed, 15 oracle-ready, four contract-rejected and zero admitted; next
+position is 43. All remaining sandbox, history/semantic and human gates stay
+pending, and no model code or GPU was used.
+
 The earlier C-upper-inclusive source branch remains useful as capacity and
 selection-bias evidence, but it is stopped and does not satisfy the new
 recovery-first study roles.

@@ -28,6 +28,12 @@ class A0CPUAdmissionTrackerTests(unittest.TestCase):
         cls.reviews = [json.loads((
             ROOT / "results" / f"a0_cpu_review_batch{index}_v1.json"
         ).read_text(encoding="utf-8")) for index in range(1, 6)]
+        cls.review6 = json.loads((
+            ROOT / "results" / "a0_cpu_review_batch6_v1.json"
+        ).read_text(encoding="utf-8"))
+        cls.tracker2 = json.loads((
+            ROOT / "results" / "a0_cpu_admission_tracker_v2.json"
+        ).read_text(encoding="utf-8"))
 
     def test_current_funnel_and_projection(self) -> None:
         report = build_tracker(self.inventory, self.reviews)
@@ -82,6 +88,16 @@ class A0CPUAdmissionTrackerTests(unittest.TestCase):
         lower, upper = wilson_interval(11, 14)
         self.assertLess(lower, 11 / 14)
         self.assertGreater(upper, 11 / 14)
+
+    def test_batch6_tracker_matches_saved_v2(self) -> None:
+        report = build_tracker(self.inventory, self.reviews + [self.review6],
+                               source_files=self.tracker2["source"]
+                               ["source_file_sha256"])
+        self.assertEqual(report, self.tracker2)
+        self.assertEqual(report["funnel"]["unique_positions_reviewed"], 19)
+        self.assertEqual(report["funnel"]["oracle_ready_remaining_gates"], 15)
+        self.assertEqual(report["funnel"]["contract_rejected"], 4)
+        self.assertEqual(report["positions"]["next_frozen_position"], 43)
 
 
 if __name__ == "__main__":

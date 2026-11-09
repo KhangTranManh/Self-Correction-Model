@@ -92,3 +92,21 @@ three are contract-rejected and zero are admitted. Continue at position 37.
 Exact recovered-output sandbox execution, full semantic history, manual cross-
 history near-duplicate review and human approval remain pending for every
 oracle-ready record.
+
+## Batch 6
+
+Batch 6 increases the CPU review unit from three to five records and examines
+positions 37, 39, 40, 41 and 42 in frozen order:
+
+| Position | Item | Review result |
+|---:|---|---|
+| 37 | `taco_train_21380` / `parse_fen` | Rejected fail-closed. The contract depicts eight rows but does not uniquely specify the returned row delimiter or trailing-newline policy, so exact serialization cannot be independently certified. |
+| 39 | `taco_train_18261` / `diamond` | Width-sequence and row-distance oracles agree on six odd/invalid-size cases. The trusted model-equivalent mutant reverses the diamond widths. |
+| 40 | `taco_train_14218` / `gordon` | Character-loop and regex oracles agree on four contract-derived strings. The trusted mutant appends markers incorrectly and removes word separators. |
+| 41 | `taco_train_02162` / `finding_k` | Difference-GCD and bounded exhaustive oracles agree on six arrays, including the all-equal sentinel. The trusted mutant confuses distinct-value counting with the modulus condition. |
+| 42 | `taco_train_16843` / `change_case` | Manual-parser and regex-parser oracles agree on nine valid/invalid conversions, including acronym boundaries and mixed separators. The trusted mutant handles only fragments of the three grammars. |
+
+Artifact: `../results/a0_cpu_review_batch6_v1.json`, hash-chained to batch 5.
+Cumulatively, nineteen positions have been examined: fifteen are oracle-ready,
+four are contract-rejected and zero are admitted. Continue at position 43.
+All exact-output sandbox, full-history/semantic and human gates remain pending.

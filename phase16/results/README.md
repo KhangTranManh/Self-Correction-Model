@@ -141,3 +141,17 @@ admitted funnel. Its 82-review point projection and 70--123 Wilson range refer
 only to reaching 64 oracle-ready records; admission yield remains unavailable
 because no admission decision is complete. See
 `../docs/A0_CPU_ADMISSION_TRACKER_V1.md`.
+
+`a0_cpu_review_batch6_v1.json` hash-chains to batch 5 and expands the review
+unit to five frozen positions (37, 39, 40, 41 and 42). Four pairs of trusted
+contract-derived CPU oracles validate diamond geometry, Gordon-language word
+transformation, maximal common-remainder modulus and case-grammar conversion.
+Position 37 is rejected because the FEN depiction's exact return serialization
+is under-specified. Cumulatively, 19 positions are reviewed, 15 are oracle-
+ready, four are contract-rejected and zero are admitted; next position is 43.
+
+`a0_cpu_admission_tracker_v2.json` extends the verified tracker chain through
+batch 6. The observed oracle-ready rate is 15/19 (0.7895), with Wilson 95%
+interval 0.5667--0.9149. The descriptive total-review estimate for 64 oracle-
+ready records remains 82, with a 70--113 planning range. Admission yield is
+still unavailable because all 15 oracle-ready records retain remaining gates.
