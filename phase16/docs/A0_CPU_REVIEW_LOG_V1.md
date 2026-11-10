@@ -179,3 +179,13 @@ press precedence is unspecified. Artifact:
 `../results/a0_cpu_review_batch10_v1.json`, hash-chained to batch 9.
 Cumulatively, 39 positions are reviewed, 31 are oracle-ready, eight are
 contract-rejected and zero are admitted. Continue at position 80.
+
+## Batch 11
+
+Batch 11 reviews positions 80, 81, 82, 85 and 86. All five contract-derived
+oracle pairs agree and catch the frozen mutants for disposable-note clamping,
+case-insensitive beach words, exact HK phone formatting, alphabet-position
+sequences and age-specific chicken production. Artifact:
+`../results/a0_cpu_review_batch11_v1.json`. Cumulatively, 44 positions are
+reviewed, 36 are oracle-ready, eight are rejected and zero are admitted.
+Continue at position 87.

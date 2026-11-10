@@ -202,3 +202,7 @@ Three trusted oracle pairs agree and catch their frozen mutants; two contracts
 are rejected for undefined domain/no-solution or transition-precedence
 semantics. `a0_cpu_admission_tracker_v6.json` verifies 39 reviewed, 31 ready,
 eight rejected, 129 unreviewed and zero admitted; next position is 80.
+
+`a0_cpu_review_batch11_v1.json` validates all five positions 80, 81, 82, 85
+and 86. Tracker v7 verifies 44 reviewed, 36 ready, eight rejected, 124
+unreviewed and zero admitted; next position is 87.
