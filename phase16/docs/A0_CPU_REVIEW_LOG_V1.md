@@ -167,3 +167,15 @@ oracle-ready, six are contract-rejected and zero are admitted. Continue at
 position 71. The first 24 ready records have completed sandbox closure; the
 four new ready records still need that gate. Full-history/semantic, manual
 cross-history and human gates remain pending for all ready records.
+
+## Batch 10
+
+Batch 10 examines positions 71, 73, 74, 76 and 77. Positions 71 (`remove`),
+73 (`bits_war`) and 77 (`numberOfSteps`) have agreeing contract-derived
+oracle pairs that catch their frozen mutants. Position 74 (`solve`) is
+rejected because base factors 2 and 5 and the no-rule result are unspecified.
+Position 76 (`button_sequences`) is rejected because simultaneous release and
+press precedence is unspecified. Artifact:
+`../results/a0_cpu_review_batch10_v1.json`, hash-chained to batch 9.
+Cumulatively, 39 positions are reviewed, 31 are oracle-ready, eight are
+contract-rejected and zero are admitted. Continue at position 80.

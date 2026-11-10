@@ -196,3 +196,9 @@ observed oracle-ready rate is 28/34 (0.8235), with Wilson 95% interval
 0.6649--0.9165. Reaching 64 ready records is descriptively 78 total reviews,
 with a 70--97 planning range. The first 24 ready records have completed the
 sandbox gate; the four batch-9 records have not.
+
+`a0_cpu_review_batch10_v1.json` reviews positions 71, 73, 74, 76 and 77.
+Three trusted oracle pairs agree and catch their frozen mutants; two contracts
+are rejected for undefined domain/no-solution or transition-precedence
+semantics. `a0_cpu_admission_tracker_v6.json` verifies 39 reviewed, 31 ready,
+eight rejected, 129 unreviewed and zero admitted; next position is 80.
