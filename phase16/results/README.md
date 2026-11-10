@@ -216,3 +216,8 @@ contracts pass and four reject fail-closed. Tracker v8 verifies 64 reviewed,
 through position 198. Seventeen contracts pass independent oracle/reference
 agreement and eight reject fail-closed. Tracker v10 verifies 89 reviewed, 69
 ready, 20 rejected, 79 unreviewed and zero admitted; next position is 202.
+
+`a0_cpu_review_batch{21,22,23,24}_v1.json` extend the chain through position
+255. Nineteen contracts pass and one rejects fail-closed. Tracker v11 verifies
+109 reviewed, 88 ready, 21 rejected, 59 unreviewed and zero admitted; next
+position is 260.

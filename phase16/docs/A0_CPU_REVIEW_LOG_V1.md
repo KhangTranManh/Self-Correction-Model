@@ -211,3 +211,13 @@ are absent. Batches 17--20 then review the next twenty frozen positions through
 158, 161, 170, 192 and 193. Every artifact rebuilds through the shared
 fail-closed assembler. Cumulatively, 89 positions are reviewed, 69 are
 oracle-ready, 20 are rejected and zero are admitted. Continue at position 202.
+
+## Batches 21--24
+
+Batches 21--24 review positions 202 through 255 in frozen pending order.
+Nineteen contract-derived oracle/reference pairs agree and catch their locally
+authored frozen-output mutants. Position 230 (`group_cities`) rejects
+fail-closed because case-insensitive duplicate removal does not specify which
+original capitalization survives or how mixed-case results sort. Tracker v11
+therefore records 109 reviewed, 88 oracle-ready, 21 rejected, 59 unreviewed
+and zero admitted. Continue at position 260.
