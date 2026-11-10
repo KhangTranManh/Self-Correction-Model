@@ -182,3 +182,17 @@ case: 24 residuals reproduced, zero unexpectedly correct and zero corrections
 admitted. It retains only identities, hashes, counts and sandbox observations;
 independent inputs, expected values and candidate code are absent. Closure
 SHA-256: `71fe8dbdf483ef380b359032b020318dc877ec4cc51a28a699f29e5badfa8ff2`.
+
+`a0_cpu_review_batch9_v1.json` hash-chains to batch 8 and reviews positions
+62, 64, 66, 68 and 70. Four independent oracle pairs agree and catch the
+frozen model-equivalent mutants. Position 70 is rejected because essential
+pattern semantics are delegated to unavailable tests and empty/singleton
+behavior is unspecified. Cumulatively, 34 positions are reviewed, 28 are
+oracle-ready, six are contract-rejected and zero are admitted; next position
+is 71.
+
+`a0_cpu_admission_tracker_v5.json` verifies all nine review batches. The
+observed oracle-ready rate is 28/34 (0.8235), with Wilson 95% interval
+0.6649--0.9165. Reaching 64 ready records is descriptively 78 total reviews,
+with a 70--97 planning range. The first 24 ready records have completed the
+sandbox gate; the four batch-9 records have not.

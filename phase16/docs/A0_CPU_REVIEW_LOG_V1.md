@@ -147,3 +147,23 @@ Cumulatively, twenty-nine positions have been examined: twenty-four are
 oracle-ready, five are contract-rejected and zero are admitted. Continue at
 position 62. All exact-output sandbox, full-history/semantic and human gates
 remain pending.
+
+## Batch 9
+
+Batch 9 examines positions 62, 64, 66, 68 and 70 in frozen order. Four
+contracts pass and one is rejected:
+
+| Position | Item | Review result |
+|---:|---|---|
+| 62 | `taco_train_03599` / `rank_of_element` | Direct side-count and strict-smaller-plus-equal-before oracles agree on six cases. The frozen mutant incorrectly includes equal elements after index zero. |
+| 64 | `taco_train_17176` / `pick_peaks` | Rising-edge and plateau-scan oracles agree on eight cases covering strict peaks, plateau starts and excluded endpoints. The frozen mutant records the falling edge of a plateau as a duplicate peak. |
+| 66 | `taco_train_15240` / `blocks` | Counter-layer and repeated-alphabet-pass oracles agree on six cases. The frozen mutant sorts all repeated characters into one block and omits dashes. |
+| 68 | `taco_train_10087` / `calc_ms` | Exponentiation and iterative multiplication oracles agree on five levels. The frozen mutant cubes the previous count and divides by 27. |
+| 70 | `taco_train_15788` / `find_pattern` | Rejected fail-closed. The statement delegates essential pattern semantics to unavailable test cases and does not define empty or singleton sequences. |
+
+Artifact: `../results/a0_cpu_review_batch9_v1.json`, hash-chained to batch 8.
+Cumulatively, thirty-four positions have been examined: twenty-eight are
+oracle-ready, six are contract-rejected and zero are admitted. Continue at
+position 71. The first 24 ready records have completed sandbox closure; the
+four new ready records still need that gate. Full-history/semantic, manual
+cross-history and human gates remain pending for all ready records.

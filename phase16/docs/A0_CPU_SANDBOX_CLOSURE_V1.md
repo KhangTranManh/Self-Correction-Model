@@ -3,7 +3,9 @@
 Status: **completed on the local CPU Docker/bubblewrap sandbox**.
 
 This model-free step closes the exact-output sandbox and frozen-recovery gates
-for the 24 records currently marked `oracle_ready_remaining_gates_pending`.
+for the 24 records marked `oracle_ready_remaining_gates_pending` through
+review batch 8. Batch 9 later added four more ready records that are outside
+this immutable closure artifact.
 It does not generate corrected code, perform human approval, certify training
 data, use a GPU, or authorize training.
 
