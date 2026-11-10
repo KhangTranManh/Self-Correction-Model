@@ -109,20 +109,20 @@ Windows. Training and protected opening remain unauthorized.
 
 CPU review has progressed without mutating the frozen inventory. Hash-chained
 batches 1--8 are `phase16/results/a0_cpu_review_batch{1..8}_v1.json`.
-Forty-four frozen positions have been examined: 36 have pairs of agreeing
-contract-derived trusted oracles and eight are rejected for under-specified
+Sixty-four frozen positions have been examined: 52 have pairs of agreeing
+contract-derived trusted oracles and 12 are rejected for under-specified
 contracts. The first 24 oracle-ready records passed exact-output sandbox
-reproduction; twelve records from batches 9--11 still need that gate. All 36 still
+reproduction; 28 records from batches 9--15 still need that gate. All 52 still
 need full-history/semantic, human and corrected-implementation gates. Zero
-corrections are admitted, and the next position is 87. Review log:
+corrections are admitted, and the next position is 144. Review log:
 `phase16/docs/A0_CPU_REVIEW_LOG_V1.md`.
 
 CPU admission progress is derived by
 `phase16/scripts/track_a0_cpu_admission.py` into
-`phase16/results/a0_cpu_admission_tracker_v7.json`; definition:
+`phase16/results/a0_cpu_admission_tracker_v8.json`; definition:
 `phase16/docs/A0_CPU_ADMISSION_TRACKER_V1.md`. The tracker verifies the frozen
-inventory and complete review hash chain before reporting 168 queued, 44
-reviewed, 36 oracle-ready, eight contract-rejected and zero admitted. This is
+inventory and complete review hash chain before reporting 168 queued, 64
+reviewed, 52 oracle-ready, 12 contract-rejected and zero admitted. This is
 not an admission forecast:
 no admission gate has completed, so admission yield is intentionally unknown.
 

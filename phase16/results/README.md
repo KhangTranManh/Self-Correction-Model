@@ -206,3 +206,8 @@ eight rejected, 129 unreviewed and zero admitted; next position is 80.
 `a0_cpu_review_batch11_v1.json` validates all five positions 80, 81, 82, 85
 and 86. Tracker v7 verifies 44 reviewed, 36 ready, eight rejected, 124
 unreviewed and zero admitted; next position is 87.
+
+`a0_cpu_review_batch{12,13,14,15}_v1.json` split the verified 20-position
+group-B definitions into four ordinary five-record hash-chain batches. Sixteen
+contracts pass and four reject fail-closed. Tracker v8 verifies 64 reviewed,
+52 ready, 12 rejected, 104 unreviewed and zero admitted; next position is 144.

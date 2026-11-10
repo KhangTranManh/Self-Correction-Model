@@ -1,0 +1,230 @@
+{
+  "schema_version": "p16_a0_cpu_review_batch_v1",
+  "source": {
+    "inventory_sha256": "00743b1561a4c0e632ca2020c91e7a1c891e6d9e75af28b3ff04ad7edc6be377",
+    "bank_sha256": "1a5334e86e8904a35aa4d04234480057523c801104ce991b6b1c1b237e19a352",
+    "previous_review_sha256": "a51e06e53237f3d882b2bb2bfe13bffb6c5e7c888f493536389a5374d6712572"
+  },
+  "frozen_review_rule": "review next 5 pending positions from 132",
+  "positions": [
+    132,
+    133,
+    137,
+    138,
+    142
+  ],
+  "counts": {
+    "newly_examined": 5,
+    "contract_passed": 3,
+    "contract_rejected": 2,
+    "trusted_oracle_validated": 3,
+    "correction_admitted": 0,
+    "cumulative_positions_examined": 64,
+    "cumulative_contract_rejected": 12,
+    "cumulative_oracle_ready": 52
+  },
+  "rows": [
+    {
+      "position": 132,
+      "item_id": "taco_train_08611",
+      "family_id": "taco-nd-05fe5a7caef5439091d0",
+      "source_record_sha256": "88dbde438e19272a7f08bf2a57d3e60a71810194a8fa52c36dc1bbf78b8d4021",
+      "prompt_sha256": "5fe706b48e337cbb0ab2e4efe8de3c97fbff278600f6fabb95e81b683a7c8ada",
+      "recovered_output_sha256": "7067f2c37099dafbcac27bc38587989fb3c0ecf43915c8c8268e35c64725670c",
+      "contract_review": {
+        "status": "passed",
+        "reason": "sum primes in inclusive range whose one-based prime index is prime"
+      },
+      "independent_oracle": {
+        "status": "validated_on_trusted_cpu_cases",
+        "derivation_boundary": "task_contract_only",
+        "published_test_values_used": false,
+        "dataset_reference_solutions_used": false,
+        "test_count": 5,
+        "oracle_reference_agree": true,
+        "model_equivalent_mutant_caught": true,
+        "failing_case_ids": [
+          "low",
+          "middle",
+          "none",
+          "wide"
+        ],
+        "oracle_source_sha256": "3612c4d53b6e5f4f95f7c2573868edc60b2cfbe6275342179eedb1fa0c1fbb91",
+        "reference_source_sha256": "9e8cdc04c6e6e62c0faacc58ee75603fc833570eade5fef088d4d8fee61c82e6",
+        "mutant_source_sha256": "7491c92a74ff1a10a8dd3e6dbee8c45e91d023819908816e703e5871ca5d65ca",
+        "cases_sha256": "c4d3e958bae0b8673b17f37c60624ce66b549258c771d3039522e69c7b8d758f",
+        "transcript_sha256": "9af1e0e8d9f3dce1dec0f1b926e228e3406782cea4190a864d427f7df916443b"
+      },
+      "history_review": {
+        "frozen_phase_1_15_exact_status": "passed",
+        "full_semantic_history_status": "pending"
+      },
+      "near_duplicate_review": {
+        "frozen_component_size": 1,
+        "method": "token_5gram_jaccard",
+        "threshold": 0.8,
+        "maximum_other_similarity": 0.03367003367003367,
+        "top_ten_sha256": "114d51a30f9357f887fd9cd7208a60d2535065aa84794a35ef1670f6e9e31c06",
+        "bank_local_automated_status": "passed",
+        "manual_cross_history_status": "pending"
+      },
+      "sandbox_review": "pending_cpu_sandbox_closure",
+      "human_approval": "pending",
+      "review_disposition": "oracle_ready_remaining_gates_pending",
+      "correction_admitted": false
+    },
+    {
+      "position": 133,
+      "item_id": "taco_train_18734",
+      "family_id": "taco-nd-78d8490868e1e1344a70",
+      "source_record_sha256": "529f0dbbf4ea723ed546fa967784280344d2ba22ff4ceb9ba8dda1003539011a",
+      "prompt_sha256": "3a27fdae7edcc2043a92cd1b59f72dfc5f3e99206f5abaa01eb1e6bbff31f67d",
+      "recovered_output_sha256": "6f89f89b1486769889d30801908d1f0bb1d8e4408aaac8a9f256b6d0d5b8ec6d",
+      "contract_review": {
+        "status": "failed",
+        "reason": "the 2/888 example repeats a single digit in multiple positions rather than specifying periodic notation"
+      },
+      "independent_oracle": {
+        "status": "not_constructed_contract_failed"
+      },
+      "history_review": "not_reviewed_ineligible",
+      "near_duplicate_review": "not_reviewed_ineligible",
+      "sandbox_review": "not_reviewed_ineligible",
+      "human_approval": "not_applicable_rejected",
+      "review_disposition": "rejected_contract_under_specified",
+      "rejection_reasons": [
+        "contract_under_specified"
+      ],
+      "correction_admitted": false
+    },
+    {
+      "position": 137,
+      "item_id": "taco_train_12972",
+      "family_id": "taco-nd-b1aab18017ff2561baf7",
+      "source_record_sha256": "7833b2360461f4f02d42e000cef5baed3369a99ecf522170e84c8b556d3b3ae1",
+      "prompt_sha256": "131774dd7d66a71c8abe7c7ec565751bd33e8ba19c463cb56deb300690cb0211",
+      "recovered_output_sha256": "c0651247b51655bac48a41dea668045356ee2f6296832c5ba651acbec1ef2be1",
+      "contract_review": {
+        "status": "failed",
+        "reason": "word boundaries and capitalization of multiword patterns are not determined by the replacement list"
+      },
+      "independent_oracle": {
+        "status": "not_constructed_contract_failed"
+      },
+      "history_review": "not_reviewed_ineligible",
+      "near_duplicate_review": "not_reviewed_ineligible",
+      "sandbox_review": "not_reviewed_ineligible",
+      "human_approval": "not_applicable_rejected",
+      "review_disposition": "rejected_contract_under_specified",
+      "rejection_reasons": [
+        "contract_under_specified"
+      ],
+      "correction_admitted": false
+    },
+    {
+      "position": 138,
+      "item_id": "taco_train_12509",
+      "family_id": "taco-nd-4a23b2d8e1ad953fb145",
+      "source_record_sha256": "84398928b77ef7c2097cb713fd57111a76865a61095b2670e17124954680b794",
+      "prompt_sha256": "94e54a1b563fc296fbae04f154ac21f1dba81e00f122c94b8cac8c8c98a80ece",
+      "recovered_output_sha256": "84db5f4d6e1ddc7bb93b606193a51b946b7f5b87954ee61dfbb7263a039785e8",
+      "contract_review": {
+        "status": "passed",
+        "reason": "explicit Python remainder behavior for negative operands"
+      },
+      "independent_oracle": {
+        "status": "validated_on_trusted_cpu_cases",
+        "derivation_boundary": "task_contract_only",
+        "published_test_values_used": false,
+        "dataset_reference_solutions_used": false,
+        "test_count": 5,
+        "oracle_reference_agree": true,
+        "model_equivalent_mutant_caught": true,
+        "failing_case_ids": [
+          "negative",
+          "edge"
+        ],
+        "oracle_source_sha256": "475f13c4ceebc02c7852e4ec40f1e2934909240b54c931eab9e3990135f09fef",
+        "reference_source_sha256": "64a6d152f647148178a61bc825914052fb022deff25b263f808fdb35e5f4ba8c",
+        "mutant_source_sha256": "a2c1391cf4c5c21fadaba8345c4e686459938901808aa5c587fee5b6da36166a",
+        "cases_sha256": "20cc549137aeb0b0aef32d13d4af8a2b2b023e36e2229903cdf1164ba91fd1b8",
+        "transcript_sha256": "8a0a57987524bb26b4886bbd8aaa4aab180903a5a59f0fba8057c1754ae2c52c"
+      },
+      "history_review": {
+        "frozen_phase_1_15_exact_status": "passed",
+        "full_semantic_history_status": "pending"
+      },
+      "near_duplicate_review": {
+        "frozen_component_size": 1,
+        "method": "token_5gram_jaccard",
+        "threshold": 0.8,
+        "maximum_other_similarity": 0.0913978494623656,
+        "top_ten_sha256": "621b5b860afd95ed86889ba69bdfe0ea0977250afc3658c7860464e15fb163be",
+        "bank_local_automated_status": "passed",
+        "manual_cross_history_status": "pending"
+      },
+      "sandbox_review": "pending_cpu_sandbox_closure",
+      "human_approval": "pending",
+      "review_disposition": "oracle_ready_remaining_gates_pending",
+      "correction_admitted": false
+    },
+    {
+      "position": 142,
+      "item_id": "taco_train_00781",
+      "family_id": "taco-nd-3ada627100b2c1194ba6",
+      "source_record_sha256": "0d50745bb981016bcfde0097a85370d2c529c5fe111a56cab5850a9b12c264de",
+      "prompt_sha256": "951dae157d5af792c6191d8e129b236c6a7ead6177d22202f37dc9bf7c8a1a69",
+      "recovered_output_sha256": "ad9c286a5c29e29c3741ecc1cbbe0e47497f4ba1ccfecadd0e2e33f8d245cea6",
+      "contract_review": {
+        "status": "passed",
+        "reason": "one piece cut from full-width roll; choose feasible room orientation at minimum area cost"
+      },
+      "independent_oracle": {
+        "status": "validated_on_trusted_cpu_cases",
+        "derivation_boundary": "task_contract_only",
+        "published_test_values_used": false,
+        "dataset_reference_solutions_used": false,
+        "test_count": 5,
+        "oracle_reference_agree": true,
+        "model_equivalent_mutant_caught": true,
+        "failing_case_ids": [
+          "both_fit",
+          "one_fit",
+          "neither",
+          "fractional"
+        ],
+        "oracle_source_sha256": "5a06040e08c565953b0518f6117483cda22d9298917dcf39412d940fd235e0ca",
+        "reference_source_sha256": "6a213700299616f48961a05527e30491e02721be6308488ac56294426c243257",
+        "mutant_source_sha256": "39520634439d594c438e3487f2790a84e9b46f93065483b64ac0f90aab6e57d0",
+        "cases_sha256": "bafe815552725c5799d1b54dd37843d3564d20d98037ef9ad8735186c0730ec2",
+        "transcript_sha256": "dd98147639f844e5db8abad811704616c13ac54fa0b6aff46ccc13fb14460cf8"
+      },
+      "history_review": {
+        "frozen_phase_1_15_exact_status": "passed",
+        "full_semantic_history_status": "pending"
+      },
+      "near_duplicate_review": {
+        "frozen_component_size": 1,
+        "method": "token_5gram_jaccard",
+        "threshold": 0.8,
+        "maximum_other_similarity": 0.011538461538461539,
+        "top_ten_sha256": "c1fd742110be462e3f46545ba10a12e2b363a6be58544b32a0dae356dfa9ffb8",
+        "bank_local_automated_status": "passed",
+        "manual_cross_history_status": "pending"
+      },
+      "sandbox_review": "pending_cpu_sandbox_closure",
+      "human_approval": "pending",
+      "review_disposition": "oracle_ready_remaining_gates_pending",
+      "correction_admitted": false
+    }
+  ],
+  "claims": {
+    "untrusted_model_code_executed": false,
+    "independent_oracle_admission_complete": false,
+    "correction_pool_certified": false,
+    "gpu_training_authorized": false,
+    "protected_data_opening_authorized": false
+  },
+  "next_position": 144,
+  "review_sha256": "8fd51a79b68a8ce4ecabbd982e65a527ceffb073d534e75beb470bb752ae9c4f"
+}

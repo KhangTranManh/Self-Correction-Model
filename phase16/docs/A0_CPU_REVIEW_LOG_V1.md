@@ -189,3 +189,14 @@ sequences and age-specific chicken production. Artifact:
 `../results/a0_cpu_review_batch11_v1.json`. Cumulatively, 44 positions are
 reviewed, 36 are oracle-ready, eight are rejected and zero are admitted.
 Continue at position 87.
+
+## Batches 12--15
+
+The previously drafted group-B definitions exactly match the next twenty
+pending positions and are split into four five-record hash-chain batches.
+Batches 12--15 validate sixteen trusted oracle pairs and reject positions 87,
+107, 133 and 137 fail-closed for under-specified contracts. The chain advances
+through positions 87, 90, 99, 101, 104, 105, 106, 107, 110, 111, 113, 116,
+117, 127, 128, 132, 133, 137, 138 and 142. Cumulatively, 64 positions are
+reviewed, 52 are oracle-ready, 12 are rejected and zero are admitted. Continue
+at position 144.
