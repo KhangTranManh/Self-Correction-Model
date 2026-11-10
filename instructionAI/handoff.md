@@ -111,9 +111,10 @@ CPU review has progressed without mutating the frozen inventory. Hash-chained
 batches 1--8 are `phase16/results/a0_cpu_review_batch{1..8}_v1.json`.
 Twenty-nine frozen positions have been examined: 24 have pairs of agreeing
 contract-derived trusted oracles and five are rejected for under-specified
-contracts. All 24 oracle-ready records still need exact-output sandbox,
-full-history/semantic and human gates. No untrusted model code ran locally,
-zero corrections are admitted, and the next position is 62. Review log:
+contracts. All 24 oracle-ready records have now passed exact-output sandbox
+reproduction but still need full-history/semantic, human and corrected-
+implementation gates. Zero corrections are admitted, and the next position
+is 62. Review log:
 `phase16/docs/A0_CPU_REVIEW_LOG_V1.md`.
 
 CPU admission progress is derived by
@@ -133,16 +134,19 @@ are under-specified; its other four trusted oracle pairs agree and catch their
 model-equivalent mutants. The cumulative funnel in
 `a0_cpu_admission_tracker_v4.json` is 168 queued, 29 reviewed, 24 oracle-ready,
 five contract-rejected, 139 unreviewed and zero admitted; next position is 62.
-All remaining sandbox, history/semantic and human gates stay pending, and no
-model code or GPU was used for this CPU review.
+The separate sandbox closure now covers all 24 ready records; history/semantic
+and human gates stay pending. No GPU was used for this CPU review.
 
 Exact-output CPU closure is implemented in
 `phase16/scripts/close_a0_cpu_sandbox_gates.py`; definition:
 `phase16/docs/A0_CPU_SANDBOX_CLOSURE_V1.md`. It covers all 24 oracle-ready
 positions and fails closed on identity changes or residuals that do not
-reproduce. Its real artifact is still pending because the previous Linux
-bubblewrap host is unreachable and no compatible local sandbox is active.
-Do not replace it with unrestricted Windows execution of recovered code.
+reproduce. The completed local CPU Docker/bubblewrap run is
+`phase16/results/a0_cpu_sandbox_closure_v1.json`: all 24 exact frozen outputs
+completed and failed at least one independent case, zero were unexpectedly
+correct and zero were admitted. Closure SHA-256:
+`71fe8dbdf483ef380b359032b020318dc877ec4cc51a28a699f29e5badfa8ff2`.
+The reproducible image is `phase16/docker/a0-cpu-sandbox.Dockerfile`.
 
 The earlier C-upper-inclusive source branch remains useful as capacity and
 selection-bias evidence, but it is stopped and does not satisfy the new

@@ -174,3 +174,11 @@ The observed oracle-ready rate is 24/29 (0.8276), with Wilson 95% interval
 0.6545--0.9240. Reaching 64 oracle-ready records is descriptively 78 total
 reviews at the point rate, with a 70--98 planning range. Admission yield is
 still unavailable because all 24 oracle-ready records retain remaining gates.
+
+`a0_cpu_sandbox_closure_v1.json` records the completed CPU-only sandbox gate
+for all 24 oracle-ready records. Every exact frozen recovered output completed
+inside the local Docker/bubblewrap sandbox and failed at least one independent
+case: 24 residuals reproduced, zero unexpectedly correct and zero corrections
+admitted. It retains only identities, hashes, counts and sandbox observations;
+independent inputs, expected values and candidate code are absent. Closure
+SHA-256: `71fe8dbdf483ef380b359032b020318dc877ec4cc51a28a699f29e5badfa8ff2`.

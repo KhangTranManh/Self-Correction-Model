@@ -1,20 +1,38 @@
 from __future__ import annotations
 
+import os
 import sys
 from pathlib import Path
 import unittest
+from unittest import mock
 
 
 SCRIPTS = Path(__file__).resolve().parents[1] / "scripts"
 sys.path.insert(0, str(SCRIPTS))
 
 from colab_a0_discovery import (  # noqa: E402
+    _sandbox_command,
     callable_shape,
     classify,
     extract_code,
     published_test_match,
     result_label,
 )
+
+
+class SandboxCommandTests(unittest.TestCase):
+    def test_default_backend_preserves_user_namespace_isolation(self):
+        with mock.patch.dict(os.environ, {}, clear=True):
+            command = _sandbox_command("/usr/bin/id", "-u")
+        self.assertIn("--unshare-user", command)
+        self.assertIn("--unshare-net", command)
+        self.assertEqual(command[-2:], ["/usr/bin/id", "-u"])
+
+    def test_unknown_backend_is_rejected(self):
+        with mock.patch.dict(
+                os.environ, {"P16_A0_SANDBOX_BACKEND": "unknown"}):
+            with self.assertRaisesRegex(RuntimeError, "unknown sandbox backend"):
+                _sandbox_command("/usr/bin/id", "-u")
 
 
 class RecoveryTests(unittest.TestCase):

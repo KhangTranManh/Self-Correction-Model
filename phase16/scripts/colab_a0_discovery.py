@@ -120,15 +120,42 @@ def ensure_bwrap() -> None:
     )
 
 
+def _sandbox_command(*command: str, work: Path | None = None) -> list[str]:
+    backend = os.environ.get("P16_A0_SANDBOX_BACKEND", "userns")
+    common = [
+        "bwrap", "--die-with-parent", "--unshare-net", "--unshare-pid",
+        "--ro-bind", "/usr", "/usr", "--symlink", "usr/lib", "/lib",
+        "--symlink", "usr/lib64", "/lib64", "--tmpfs", "/tmp",
+        "--dev", "/dev",
+    ]
+    if work is not None:
+        common.extend(["--ro-bind", str(work), "/work", "--chdir", "/tmp"])
+    if backend == "userns":
+        common[2:2] = [
+            "--unshare-user", "--uid", "65534", "--gid", "65534",
+        ]
+    elif backend == "docker":
+        if (not Path("/.dockerenv").exists()
+                or getattr(os, "geteuid", lambda: -1)() != 0):
+            raise RuntimeError(
+                "docker sandbox backend requires root inside a container")
+        if not Path("/usr/bin/setpriv").is_file():
+            raise RuntimeError("docker sandbox backend requires setpriv")
+        common.extend([
+            "/usr/bin/setpriv", "--reuid", "65534", "--regid", "65534",
+            "--clear-groups",
+        ])
+    else:
+        raise RuntimeError(f"unknown sandbox backend: {backend}")
+    return [*common, *command]
+
+
 def sandbox_preflight() -> None:
     ensure_bwrap()
-    result = subprocess.run([
-        "bwrap", "--die-with-parent", "--unshare-user", "--uid", "65534",
-        "--gid", "65534", "--unshare-net", "--unshare-pid",
-        "--ro-bind", "/usr", "/usr", "--symlink", "usr/lib", "/lib",
-        "--symlink", "usr/lib64", "/lib64", "--tmpfs", "/tmp", "--dev", "/dev",
-        "/usr/bin/id", "-u",
-    ], capture_output=True, text=True, timeout=SANDBOX_TIMEOUT_SECONDS)
+    result = subprocess.run(
+        _sandbox_command("/usr/bin/id", "-u"),
+        capture_output=True, text=True, timeout=SANDBOX_TIMEOUT_SECONDS,
+    )
     if result.returncode or result.stdout.strip() != "65534":
         raise RuntimeError("bubblewrap UID/network sandbox preflight failed")
 
@@ -200,14 +227,9 @@ def sandbox_execute(code: str, task: dict) -> dict:
         candidate = work / "candidate.py"
         candidate.write_text(code + "\n", encoding="utf-8")
         os.chmod(candidate, 0o644)
-        command = [
-            "bwrap", "--die-with-parent", "--unshare-user", "--uid", "65534",
-            "--gid", "65534", "--unshare-net", "--unshare-pid",
-            "--ro-bind", "/usr", "/usr", "--symlink", "usr/lib", "/lib",
-            "--symlink", "usr/lib64", "/lib64", "--tmpfs", "/tmp",
-            "--ro-bind", str(work), "/work", "--dev", "/dev",
-            "--chdir", "/tmp", "/usr/bin/python3", "-I", "-S", "-c", CHILD,
-        ]
+        command = _sandbox_command(
+            "/usr/bin/python3", "-I", "-S", "-c", CHILD, work=work,
+        )
         try:
             result = subprocess.run(
                 command,

@@ -1,6 +1,6 @@
 # P16-R0 A0 CPU sandbox closure v1 (2026-11-09)
 
-Status: **implementation ready; real sandbox execution pending**.
+Status: **completed on the local CPU Docker/bubblewrap sandbox**.
 
 This model-free step closes the exact-output sandbox and frozen-recovery gates
 for the 24 records currently marked `oracle_ready_remaining_gates_pending`.
@@ -25,10 +25,20 @@ cross-history near-duplicate review, human approval and a verified corrected
 implementation remain required. Independent cases remain held out from any
 future correction prompt or training record.
 
-The real run is pending because the previous Linux sandbox host is not
-currently reachable and the local Windows host has neither bubblewrap nor an
-active Docker Linux engine. Do not substitute unrestricted local execution of
-untrusted recovered code.
+The real run completed on 2026-11-10 in a CPU-only Docker Linux container.
+The outer container had no network, a read-only root filesystem, a read-only
+repository mount, two CPUs, 1 GiB RAM and a 64-process cap. Bubblewrap created
+another network/PID/filesystem boundary for each candidate, and `setpriv`
+dropped it to UID/GID 65534. All 24 candidates completed execution and failed
+at least one independent case: 24 residuals reproduced, zero unexpectedly
+correct and zero admitted. Artifact:
+`../results/a0_cpu_sandbox_closure_v1.json`; closure SHA-256
+`71fe8dbdf483ef380b359032b020318dc877ec4cc51a28a699f29e5badfa8ff2`.
+
+The reproducible image definition is
+`../docker/a0-cpu-sandbox.Dockerfile`. Docker mode is opt-in through
+`P16_A0_SANDBOX_BACKEND=docker` and refuses to activate outside a root process
+inside a container. The original user-namespace backend remains the default.
 
 ## Design decision
 
