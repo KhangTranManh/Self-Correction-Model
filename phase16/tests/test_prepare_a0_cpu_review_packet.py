@@ -49,6 +49,20 @@ class A0CPUReviewPacketTests(unittest.TestCase):
             build_packet(
                 self.inventory, self.bank, self.reviews, self.completions, 0)
 
+    def test_offset_selects_later_verified_window(self) -> None:
+        packet = build_packet(
+            self.inventory, self.bank, self.reviews, self.completions, 3, 5)
+        self.assertEqual(packet["offset"], 5)
+        self.assertEqual([row["position"] for row in packet["records"]],
+                         [80, 81, 82])
+        self.assertEqual(packet["remaining_after_packet"], 126)
+
+    def test_negative_offset_fails(self) -> None:
+        with self.assertRaisesRegex(RuntimeError, "offset must be non-negative"):
+            build_packet(
+                self.inventory, self.bank, self.reviews, self.completions,
+                5, -1)
+
 
 if __name__ == "__main__":
     unittest.main()

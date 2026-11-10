@@ -1,0 +1,208 @@
+{
+  "schema_version": "p16_a0_cpu_review_batch_v1",
+  "source": {
+    "inventory_sha256": "00743b1561a4c0e632ca2020c91e7a1c891e6d9e75af28b3ff04ad7edc6be377",
+    "bank_sha256": "1a5334e86e8904a35aa4d04234480057523c801104ce991b6b1c1b237e19a352",
+    "previous_review_sha256": "8fd51a79b68a8ce4ecabbd982e65a527ceffb073d534e75beb470bb752ae9c4f"
+  },
+  "frozen_review_rule": "review next 5 pending positions from 144",
+  "positions": [
+    144,
+    146,
+    147,
+    150,
+    151
+  ],
+  "counts": {
+    "newly_examined": 5,
+    "contract_passed": 2,
+    "contract_rejected": 3,
+    "trusted_oracle_validated": 2,
+    "correction_admitted": 0,
+    "cumulative_positions_examined": 69,
+    "cumulative_contract_rejected": 15,
+    "cumulative_oracle_ready": 54
+  },
+  "rows": [
+    {
+      "position": 144,
+      "item_id": "taco_train_24290",
+      "family_id": "taco-nd-4532c164322958b0108f",
+      "source_record_sha256": "890eedcd8b55f2ba30b8822794677d782e94a76bd49203e9c2128f51552f27dd",
+      "prompt_sha256": "3d877c3c4323df5fb90dc55c0b98a744635b785436ed4920f4ef5a14ad22cebb",
+      "recovered_output_sha256": "d848744896fa75683b6cf4a5b596c3ead39f8482e9f33c0a9e6d738da663547d",
+      "contract_review": {
+        "status": "passed",
+        "reason": "minimum individual parenthesis flips needed for a balanced string; odd lengths return -1"
+      },
+      "independent_oracle": {
+        "status": "validated_on_trusted_cpu_cases",
+        "derivation_boundary": "task_contract_only",
+        "published_test_values_used": false,
+        "dataset_reference_solutions_used": false,
+        "test_count": 9,
+        "oracle_reference_agree": true,
+        "model_equivalent_mutant_caught": true,
+        "failing_case_ids": [
+          "example_two",
+          "two_blocks",
+          "crossed",
+          "all_closed"
+        ],
+        "oracle_source_sha256": "f333ed8e935396153eaa77e1431291d01b78bc2fc7dbaed8fd3da81754668a94",
+        "reference_source_sha256": "d861086e4cb9b90a7d1e4eb4d331a3b93e17a15ec28a1166cf3913d6d41d9581",
+        "mutant_source_sha256": "22ae76f4b22e9c1a440c9f8d0a212c94ecc4864787b6f3c5da48ee37079a8eff",
+        "cases_sha256": "e338677e6e7f58360dff4a93b957f91d5a6b4be020e300b7e50fce425f2a063a",
+        "transcript_sha256": "7bda174dbb2f23f3d31fd97ad705b791aab18fe9e452d8f52767408c9a023636"
+      },
+      "history_review": {
+        "frozen_phase_1_15_exact_status": "passed",
+        "full_semantic_history_status": "pending"
+      },
+      "near_duplicate_review": {
+        "frozen_component_size": 1,
+        "method": "token_5gram_jaccard",
+        "threshold": 0.8,
+        "maximum_other_similarity": 0.036036036036036036,
+        "top_ten_sha256": "c425e41ee463bdccee1e44e331682090f2ee60a42467d9c7de28ef76bd6664d0",
+        "bank_local_automated_status": "passed",
+        "manual_cross_history_status": "pending"
+      },
+      "sandbox_review": "pending_cpu_sandbox_closure",
+      "human_approval": "pending",
+      "review_disposition": "oracle_ready_remaining_gates_pending",
+      "correction_admitted": false
+    },
+    {
+      "position": 146,
+      "item_id": "taco_train_18223",
+      "family_id": "taco-nd-358a1d5b455bd30668af",
+      "source_record_sha256": "96bbb8ff1f1fa309dc3290246694979a8151de2af004a8b912cdf35d808d47bf",
+      "prompt_sha256": "7bba0798a0f7ccea2cb169f1d7eaa815db9a219603e51cd3cb9c6f50591f7a5a",
+      "recovered_output_sha256": "5e330832cf06e9d9a1fba86f17140bc601dc381fb5a5f67a0e849bbf2a4d3721",
+      "contract_review": {
+        "status": "failed",
+        "reason": "the visual X example is absent, so internal row geometry and indentation are not specified"
+      },
+      "independent_oracle": {
+        "status": "not_constructed_contract_failed"
+      },
+      "history_review": "not_reviewed_ineligible",
+      "near_duplicate_review": "not_reviewed_ineligible",
+      "sandbox_review": "not_reviewed_ineligible",
+      "human_approval": "not_applicable_rejected",
+      "review_disposition": "rejected_contract_under_specified",
+      "rejection_reasons": [
+        "contract_under_specified_output_geometry"
+      ],
+      "correction_admitted": false
+    },
+    {
+      "position": 147,
+      "item_id": "taco_train_14487",
+      "family_id": "taco-nd-4192b22803c5ac713c4b",
+      "source_record_sha256": "0b31b73d1f18094f39b1959861adf349948d75510cca0015831d5a7d3114c4fd",
+      "prompt_sha256": "416a9c235d636eefbecdcf66a3839b3d300651f3f225db9369f33e5da44bf94b",
+      "recovered_output_sha256": "ab4924a659e9a70ecdcf8c2fae111f08d1413823b71c55639c9db45f36671ba0",
+      "contract_review": {
+        "status": "passed",
+        "reason": "select the first number having the greatest count of decimal digits, excluding a minus sign"
+      },
+      "independent_oracle": {
+        "status": "validated_on_trusted_cpu_cases",
+        "derivation_boundary": "task_contract_only",
+        "published_test_values_used": false,
+        "dataset_reference_solutions_used": false,
+        "test_count": 6,
+        "oracle_reference_agree": true,
+        "model_equivalent_mutant_caught": true,
+        "failing_case_ids": [
+          "example",
+          "first_tie",
+          "negative_digits",
+          "sign_not_digit",
+          "zero"
+        ],
+        "oracle_source_sha256": "7c1c2e2e52e4cd7d4facb582483798bd1a301799b507dec797dcd0731d07474b",
+        "reference_source_sha256": "d81fa57e0d0db15cabd53920f6577badefa8523e1be70c5fb44c05c4cffde9f0",
+        "mutant_source_sha256": "1fe8aae2e2e74adaf1200bef7af80283d34f26ac9949a15c4a468632f18dbe57",
+        "cases_sha256": "258ad09f80908873a7f9a4c5a761736e4eaa2eaec7263540cd5f52bfc99a2136",
+        "transcript_sha256": "a35e6bc34f55b96c075d8a5bcf629d5af99852659a6da91475c80661355197b1"
+      },
+      "history_review": {
+        "frozen_phase_1_15_exact_status": "passed",
+        "full_semantic_history_status": "pending"
+      },
+      "near_duplicate_review": {
+        "frozen_component_size": 1,
+        "method": "token_5gram_jaccard",
+        "threshold": 0.8,
+        "maximum_other_similarity": 0.008547008547008548,
+        "top_ten_sha256": "63d60791a8e9ac5a4af11874c3534365dfb28a8a12185b1c2d5efb20f20ac018",
+        "bank_local_automated_status": "passed",
+        "manual_cross_history_status": "pending"
+      },
+      "sandbox_review": "pending_cpu_sandbox_closure",
+      "human_approval": "pending",
+      "review_disposition": "oracle_ready_remaining_gates_pending",
+      "correction_admitted": false
+    },
+    {
+      "position": 150,
+      "item_id": "taco_train_21530",
+      "family_id": "taco-nd-2e85e6a7e83593064a50",
+      "source_record_sha256": "abcfe6854495b088f5fad4d7fdfcf963b4896b499007ab04d3dd483adf129b6d",
+      "prompt_sha256": "7e4f33e790ce5d43121e533125f792706e67ae390727b71c089b4915af460db3",
+      "recovered_output_sha256": "c26c00ab0026b51dd81d148d6e06710df8828d7bd1f2545a76db2a7faf8f2752",
+      "contract_review": {
+        "status": "failed",
+        "reason": "sentence boundaries, punctuation attachment and exact capitalization after multiword replacements are not specified"
+      },
+      "independent_oracle": {
+        "status": "not_constructed_contract_failed"
+      },
+      "history_review": "not_reviewed_ineligible",
+      "near_duplicate_review": "not_reviewed_ineligible",
+      "sandbox_review": "not_reviewed_ineligible",
+      "human_approval": "not_applicable_rejected",
+      "review_disposition": "rejected_contract_under_specified",
+      "rejection_reasons": [
+        "contract_under_specified_tokenization_and_capitalization"
+      ],
+      "correction_admitted": false
+    },
+    {
+      "position": 151,
+      "item_id": "taco_train_20399",
+      "family_id": "taco-nd-2cce86036e05ccc4a087",
+      "source_record_sha256": "5a2d9d28bca2fd3f500ca2ecfb105d20b766e04b580cb168d623dcbba007fd66",
+      "prompt_sha256": "19736419ff490156632baf01996af318d78d7a28453184c633fdaf79d060c7f7",
+      "recovered_output_sha256": "bb76e460d6fa18bfae6e057a61c85c2c8ccb9e168bf0d7ceb52f09836611e4f5",
+      "contract_review": {
+        "status": "failed",
+        "reason": "distinct-index reuse, no-solution return and first-pair ordering with negatives or duplicates are not specified"
+      },
+      "independent_oracle": {
+        "status": "not_constructed_contract_failed"
+      },
+      "history_review": "not_reviewed_ineligible",
+      "near_duplicate_review": "not_reviewed_ineligible",
+      "sandbox_review": "not_reviewed_ineligible",
+      "human_approval": "not_applicable_rejected",
+      "review_disposition": "rejected_contract_under_specified",
+      "rejection_reasons": [
+        "contract_under_specified_pair_selection"
+      ],
+      "correction_admitted": false
+    }
+  ],
+  "claims": {
+    "untrusted_model_code_executed": false,
+    "independent_oracle_admission_complete": false,
+    "correction_pool_certified": false,
+    "gpu_training_authorized": false,
+    "protected_data_opening_authorized": false
+  },
+  "next_position": 152,
+  "review_sha256": "0afb7a1e7831377ca29cb44124230f9f03501a0aaa1ceea8db6e6bb22598a97c"
+}

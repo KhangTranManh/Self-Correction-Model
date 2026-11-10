@@ -200,3 +200,14 @@ through positions 87, 90, 99, 101, 104, 105, 106, 107, 110, 111, 113, 116,
 117, 127, 128, 132, 133, 137, 138 and 142. Cumulatively, 64 positions are
 reviewed, 52 are oracle-ready, 12 are rejected and zero are admitted. Continue
 at position 144.
+
+## Batches 16--20
+
+Batch 16 reviews positions 144, 146, 147, 150 and 151. Parenthesis-reversal
+and longest-digit oracle pairs validate; three contracts reject because exact
+X geometry, acronym tokenization/capitalization, or pair-selection semantics
+are absent. Batches 17--20 then review the next twenty frozen positions through
+198. Fifteen more oracle pairs validate and five contracts reject at positions
+158, 161, 170, 192 and 193. Every artifact rebuilds through the shared
+fail-closed assembler. Cumulatively, 89 positions are reviewed, 69 are
+oracle-ready, 20 are rejected and zero are admitted. Continue at position 202.

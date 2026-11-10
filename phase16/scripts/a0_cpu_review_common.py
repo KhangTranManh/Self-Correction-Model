@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 
+import argparse
+import json
+from pathlib import Path
+
 from audit_a0_cpu_review_batch6 import (
     EXPECTED_BANK_SHA256, EXPECTED_INVENTORY_SHA256, SCHEMA_VERSION,
     _base_row, _evidence, _near_duplicate_evidence, _require,
@@ -103,3 +107,23 @@ def build_review_batch(
     }
     document["review_sha256"] = canonical_sha256(document)
     return document
+
+
+def run_review_cli(build) -> None:
+    """Write one immutable review artifact with the shared CLI contract."""
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--inventory", type=Path, required=True)
+    parser.add_argument("--bank", type=Path, required=True)
+    parser.add_argument("--previous-review", type=Path, required=True)
+    parser.add_argument("--output", type=Path, required=True)
+    args = parser.parse_args()
+    if args.output.exists():
+        parser.error(f"refusing to overwrite {args.output}")
+    inputs = [json.loads(path.read_text(encoding="utf-8")) for path in
+              (args.inventory, args.bank, args.previous_review)]
+    report = build(*inputs)
+    args.output.write_text(
+        json.dumps(report, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8", newline="\n")
+    print(json.dumps(report["counts"], indent=2, sort_keys=True))
+    print(f"next_position: {report['next_position']}")

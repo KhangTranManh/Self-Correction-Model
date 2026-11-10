@@ -1,0 +1,415 @@
+{
+  "schema_version": "p16_a0_cpu_admission_tracker_v1",
+  "purpose": "model_free_cpu_admission_progress_tracking",
+  "source": {
+    "inventory_sha256": "00743b1561a4c0e632ca2020c91e7a1c891e6d9e75af28b3ff04ad7edc6be377",
+    "review_chain_tip_sha256": "0afb7a1e7831377ca29cb44124230f9f03501a0aaa1ceea8db6e6bb22598a97c",
+    "review_batch_count": 16,
+    "source_file_sha256": {
+      "a0_admission_inventory_v1.json": "989758c90bf79ad1a3cecb81f40c14c9235d4ff210859b6f4b725f10710f6396",
+      "a0_cpu_review_batch10_v1.json": "596d2df305c415ad1e7771a18bbca27fbbc9249165a12b89b952dc9a874c0f45",
+      "a0_cpu_review_batch11_v1.json": "80a4c8e97a91e041031b9be109dcb8d56e47f1e18408d5513f971a1bdd2ab843",
+      "a0_cpu_review_batch12_v1.json": "fc33e0cca9d70fe303820fef2b68e1bc367f8510d42986da0838fa84c84e3833",
+      "a0_cpu_review_batch13_v1.json": "98e81f51aa3eba8d1fe70487f695c4b4aac9b471c97004d078816335d743d5d1",
+      "a0_cpu_review_batch14_v1.json": "9665eb104e8702ddd8fb76007dafb7e6a03e00df3d5b8c437a7d07b6fb09760c",
+      "a0_cpu_review_batch15_v1.json": "03d77f90c124872a17d211d5f4bad28a5f2a8f52bb1ae726a17c760e68d4b2ca",
+      "a0_cpu_review_batch16_v1.json": "7618756f88e5bb4d1bc84c2dee61a48fbd70b46bc16b44937e63ae6eba3dfe60",
+      "a0_cpu_review_batch1_v1.json": "ad8de04631ed6925968fc440ba330c161e11389dd7269d6afc624da4a3d4c406",
+      "a0_cpu_review_batch2_v1.json": "3f5b280853aedaba7c5ac39d24813d0670ce6b48811c85d4afdccbbe94bf6288",
+      "a0_cpu_review_batch3_v1.json": "61420c35a90a70fc407df8ed49c04cf550299da377222344e618a727070bd8a5",
+      "a0_cpu_review_batch4_v1.json": "7a073d27ab956d351fe2885de5fa9e65f6611812d8cdab1eb07d880cb414a57f",
+      "a0_cpu_review_batch5_v1.json": "c28173ce9c16eb9f14463f59bed696bf8129c52699d5a6605f29eb09514f1129",
+      "a0_cpu_review_batch6_v1.json": "d46bc79d549b14f8c16f07f0fe23833601dc3383d0164b122db61441dc4ce2e3",
+      "a0_cpu_review_batch7_v1.json": "d6a357d7eda468fc4fe988c1f8bf1d3c833d4f7693135b58cb873c98650051ab",
+      "a0_cpu_review_batch8_v1.json": "587fb5c8564a9ca8b693513a5a28d295192d946528c173c0202bb6ebf35d7568",
+      "a0_cpu_review_batch9_v1.json": "083c2d4e16593947ab520c2271617242dd8bfe4e0b50fb88c648e963cb0f23eb"
+    }
+  },
+  "funnel": {
+    "a0_dataset_side_failures": 244,
+    "rejected_before_oracle_review": 76,
+    "independent_oracle_review_queue": 168,
+    "unique_positions_reviewed": 69,
+    "contract_oracle_resolved": 69,
+    "oracle_ready_remaining_gates": 54,
+    "contract_rejected": 15,
+    "deferred_latest": 0,
+    "unreviewed_queue": 99,
+    "sandbox_pending": 54,
+    "full_semantic_history_pending": 54,
+    "manual_cross_history_pending": 54,
+    "human_approval_pending": 54,
+    "correction_admitted": 0
+  },
+  "positions": {
+    "reviewed": [
+      0,
+      2,
+      6,
+      10,
+      12,
+      16,
+      21,
+      22,
+      23,
+      28,
+      29,
+      30,
+      31,
+      36,
+      37,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      47,
+      48,
+      51,
+      53,
+      56,
+      58,
+      60,
+      61,
+      62,
+      64,
+      66,
+      68,
+      70,
+      71,
+      73,
+      74,
+      76,
+      77,
+      80,
+      81,
+      82,
+      85,
+      86,
+      87,
+      90,
+      99,
+      101,
+      104,
+      105,
+      106,
+      107,
+      110,
+      111,
+      113,
+      116,
+      117,
+      127,
+      128,
+      132,
+      133,
+      137,
+      138,
+      142,
+      144,
+      146,
+      147,
+      150,
+      151
+    ],
+    "oracle_ready": [
+      0,
+      6,
+      10,
+      12,
+      21,
+      22,
+      23,
+      28,
+      29,
+      30,
+      31,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      47,
+      48,
+      51,
+      56,
+      58,
+      60,
+      61,
+      62,
+      64,
+      66,
+      68,
+      71,
+      73,
+      77,
+      80,
+      81,
+      82,
+      85,
+      86,
+      90,
+      99,
+      101,
+      104,
+      105,
+      106,
+      110,
+      111,
+      113,
+      116,
+      117,
+      127,
+      128,
+      132,
+      138,
+      142,
+      144,
+      147
+    ],
+    "contract_rejected": [
+      2,
+      16,
+      36,
+      37,
+      53,
+      70,
+      74,
+      76,
+      87,
+      107,
+      133,
+      137,
+      146,
+      150,
+      151
+    ],
+    "deferred_latest": [],
+    "admitted": [],
+    "next_frozen_position": 152
+  },
+  "review_chain": [
+    {
+      "batch_index": 1,
+      "review_sha256": "4186bc1a8fe1b339187f2301aea4222b5477de628bbec6749cf95833e04875a2",
+      "positions": [
+        0,
+        2,
+        6
+      ]
+    },
+    {
+      "batch_index": 2,
+      "review_sha256": "2369e0d44716eac286fc13327985c1bdb66ad3a5fdeda79d042af813191b48ca",
+      "positions": [
+        6,
+        10,
+        12
+      ]
+    },
+    {
+      "batch_index": 3,
+      "review_sha256": "fac1983720608dea56277157ea806b3240d84948ada264093805757910a11c73",
+      "positions": [
+        16,
+        21,
+        22
+      ]
+    },
+    {
+      "batch_index": 4,
+      "review_sha256": "6dc9b86182dfd3f2191ed256a4cb1f8b4afe0566029772627813db77f5d96618",
+      "positions": [
+        23,
+        28,
+        29
+      ]
+    },
+    {
+      "batch_index": 5,
+      "review_sha256": "a8689cb7176568bdce0d61fb8ff9b0bc433b53ea0e5ac0dad11c105654804998",
+      "positions": [
+        30,
+        31,
+        36
+      ]
+    },
+    {
+      "batch_index": 6,
+      "review_sha256": "d9effe3a27074ae7a2c8a6ed5ce94e6938f122e96fc228946ecce3eb5183422f",
+      "positions": [
+        37,
+        39,
+        40,
+        41,
+        42
+      ]
+    },
+    {
+      "batch_index": 7,
+      "review_sha256": "581a8cefd9b0445e49843da1483e7d57f8140a7342430e8ea0efde9ad3db7e79",
+      "positions": [
+        43,
+        44,
+        47,
+        48,
+        51
+      ]
+    },
+    {
+      "batch_index": 8,
+      "review_sha256": "f7c2813a8ac2008fbfc6dfa2edbf29b4d75541c110bb3060ccee751e600accd7",
+      "positions": [
+        53,
+        56,
+        58,
+        60,
+        61
+      ]
+    },
+    {
+      "batch_index": 9,
+      "review_sha256": "a53976f5254b13e9a67fa8f27b51b3b3d579058185afb9f159051190054f5fdc",
+      "positions": [
+        62,
+        64,
+        66,
+        68,
+        70
+      ]
+    },
+    {
+      "batch_index": 10,
+      "review_sha256": "dc2be145e5ad402ad87be0b8eabf42caf1679e98333ce927bca86f7806378ccc",
+      "positions": [
+        71,
+        73,
+        74,
+        76,
+        77
+      ]
+    },
+    {
+      "batch_index": 11,
+      "review_sha256": "a6caaf09a9342835b740d728a045a82cfcc55b645812d80551378592fcd16933",
+      "positions": [
+        80,
+        81,
+        82,
+        85,
+        86
+      ]
+    },
+    {
+      "batch_index": 12,
+      "review_sha256": "e4fccb72696853e7e0eb42237d17a6d168f6896c9df8ac9afdd4e768e6af87e7",
+      "positions": [
+        87,
+        90,
+        99,
+        101,
+        104
+      ]
+    },
+    {
+      "batch_index": 13,
+      "review_sha256": "ae6b2cf7e2a87ea5f932bb80232016459ed5d642015497abf66ea9d307f52602",
+      "positions": [
+        105,
+        106,
+        107,
+        110,
+        111
+      ]
+    },
+    {
+      "batch_index": 14,
+      "review_sha256": "a51e06e53237f3d882b2bb2bfe13bffb6c5e7c888f493536389a5374d6712572",
+      "positions": [
+        113,
+        116,
+        117,
+        127,
+        128
+      ]
+    },
+    {
+      "batch_index": 15,
+      "review_sha256": "8fd51a79b68a8ce4ecabbd982e65a527ceffb073d534e75beb470bb752ae9c4f",
+      "positions": [
+        132,
+        133,
+        137,
+        138,
+        142
+      ]
+    },
+    {
+      "batch_index": 16,
+      "review_sha256": "0afb7a1e7831377ca29cb44124230f9f03501a0aaa1ceea8db6e6bb22598a97c",
+      "positions": [
+        144,
+        146,
+        147,
+        150,
+        151
+      ]
+    }
+  ],
+  "capacity_projection": {
+    "basis": "oracle_ready_among_contract_oracle_resolved",
+    "observed_ready": 54,
+    "observed_resolved": 69,
+    "point_rate": 0.782608695652174,
+    "wilson_95_lower": 0.6718170359123908,
+    "wilson_95_upper": 0.8635923398937974,
+    "estimated_total_reviews_for_64_at_point_rate": 82,
+    "estimated_total_reviews_for_64_at_wilson_lower": 96,
+    "estimated_total_reviews_for_64_at_wilson_upper": 75,
+    "projected_oracle_ready_if_all_168_reviewed_at_point_rate": 131,
+    "small_sample_descriptive_only": true
+  },
+  "admission_projection": {
+    "status": "unavailable_no_completed_admission_decisions",
+    "gate_complete_decisions": 0,
+    "admission_rate": null
+  },
+  "milestones": [
+    {
+      "reviewed_target": 24,
+      "remaining_from_current": 0,
+      "reached": true
+    },
+    {
+      "reviewed_target": 48,
+      "remaining_from_current": 0,
+      "reached": true
+    },
+    {
+      "reviewed_target": 80,
+      "remaining_from_current": 11,
+      "reached": false
+    },
+    {
+      "reviewed_target": 120,
+      "remaining_from_current": 51,
+      "reached": false
+    },
+    {
+      "reviewed_target": 168,
+      "remaining_from_current": 99,
+      "reached": false
+    }
+  ],
+  "claims": {
+    "model_generation": false,
+    "untrusted_model_code_executed": false,
+    "independent_oracle_admission_complete": false,
+    "correction_pool_certified": false,
+    "gpu_training_authorized": false,
+    "protected_data_opening_authorized": false
+  },
+  "tracker_sha256": "799080ace2cfa00eaa6dd52ddbfe4588d88c6de35db25b4fa1b5dcf786e158f5"
+}

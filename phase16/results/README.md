@@ -211,3 +211,8 @@ unreviewed and zero admitted; next position is 87.
 group-B definitions into four ordinary five-record hash-chain batches. Sixteen
 contracts pass and four reject fail-closed. Tracker v8 verifies 64 reviewed,
 52 ready, 12 rejected, 104 unreviewed and zero admitted; next position is 144.
+
+`a0_cpu_review_batch{16,17,18,19,20}_v1.json` continue the immutable chain
+through position 198. Seventeen contracts pass independent oracle/reference
+agreement and eight reject fail-closed. Tracker v10 verifies 89 reviewed, 69
+ready, 20 rejected, 79 unreviewed and zero admitted; next position is 202.
