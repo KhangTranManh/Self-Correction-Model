@@ -155,3 +155,22 @@ batch 6. The observed oracle-ready rate is 15/19 (0.7895), with Wilson 95%
 interval 0.5667--0.9149. The descriptive total-review estimate for 64 oracle-
 ready records remains 82, with a 70--113 planning range. Admission yield is
 still unavailable because all 15 oracle-ready records retain remaining gates.
+
+`a0_cpu_review_batch7_v1.json` hash-chains to batch 6 and reviews positions
+43, 44, 47, 48 and 51. All five contracts pass, bringing the cumulative
+funnel to 24 reviewed, 20 oracle-ready, four contract-rejected and zero
+admitted. `a0_cpu_admission_tracker_v3.json` is the corresponding immutable
+seven-batch snapshot.
+
+`a0_cpu_review_batch8_v1.json` hash-chains to batch 7 and reviews positions
+53, 56, 58, 60 and 61. Position 53 is rejected because the Morse converter's
+multi-digit input and output serialization are under-specified; four trusted
+oracle pairs agree and catch their model-equivalent mutants. Cumulatively, 29
+positions are reviewed, 24 are oracle-ready, five are contract-rejected and
+zero are admitted; next position is 62.
+
+`a0_cpu_admission_tracker_v4.json` verifies the complete eight-batch chain.
+The observed oracle-ready rate is 24/29 (0.8276), with Wilson 95% interval
+0.6545--0.9240. Reaching 64 oracle-ready records is descriptively 78 total
+reviews at the point rate, with a 70--98 planning range. Admission yield is
+still unavailable because all 24 oracle-ready records retain remaining gates.

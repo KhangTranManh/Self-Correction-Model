@@ -28,7 +28,7 @@ class A0CPUReviewBatch1Tests(unittest.TestCase):
         ).read_text(encoding="utf-8"))
         cls.bank = json.loads((
             ROOT / "phase16" / "data" / "a0_discovery_v1" /
-            "gpu_bundle" / "candidate_bank.json"
+            "candidate_bank.json"
         ).read_text(encoding="utf-8"))
 
     def test_independent_implementations_agree(self):

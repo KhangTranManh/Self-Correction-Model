@@ -107,36 +107,38 @@ human review, and zero corrections are admitted. `.gitattributes` pins the
 tracked A0 JSON/JSONL evidence to LF so its remote byte hashes remain valid on
 Windows. Training and protected opening remain unauthorized.
 
-CPU review has begun without mutating the frozen inventory. Hash-chained
-batches 1--5 are `phase16/results/a0_cpu_review_batch{1,2,3,4,5}_v1.json`.
-Fourteen frozen positions have been examined: eleven have pairs of agreeing
-contract-derived trusted oracles; positions 2, 16 and 36 are rejected for
-under-specified contracts. The eleven oracle-ready records still need exact-
-output sandbox, full-history/semantic and human gates. No untrusted model code
-ran locally, zero corrections are admitted, and the next position is 37.
-Review log: `phase16/docs/A0_CPU_REVIEW_LOG_V1.md`.
+CPU review has progressed without mutating the frozen inventory. Hash-chained
+batches 1--8 are `phase16/results/a0_cpu_review_batch{1..8}_v1.json`.
+Twenty-nine frozen positions have been examined: 24 have pairs of agreeing
+contract-derived trusted oracles and five are rejected for under-specified
+contracts. All 24 oracle-ready records still need exact-output sandbox,
+full-history/semantic and human gates. No untrusted model code ran locally,
+zero corrections are admitted, and the next position is 62. Review log:
+`phase16/docs/A0_CPU_REVIEW_LOG_V1.md`.
 
 CPU admission progress is derived by
 `phase16/scripts/track_a0_cpu_admission.py` into
-`phase16/results/a0_cpu_admission_tracker_v1.json`; definition:
+`phase16/results/a0_cpu_admission_tracker_v4.json`; definition:
 `phase16/docs/A0_CPU_ADMISSION_TRACKER_V1.md`. The tracker verifies the frozen
-inventory and complete review hash chain before reporting 168 queued, 14
-reviewed, 11 oracle-ready, three contract-rejected and zero admitted. The
-11/14 oracle-ready point rate implies 82 total reviews for 64 oracle-ready
-records (Wilson planning range 70--123), but this is not an admission forecast:
+inventory and complete review hash chain before reporting 168 queued, 29
+reviewed, 24 oracle-ready, five contract-rejected and zero admitted. The
+24/29 oracle-ready point rate implies 78 total reviews for 64 oracle-ready
+records (Wilson planning range 70--98), but this is not an admission forecast:
 no admission gate has completed, so admission yield is intentionally unknown.
 
-Batch 6 is `phase16/results/a0_cpu_review_batch6_v1.json`. It reviews the next
-five frozen positions: four receive agreeing contract-derived oracle pairs and
-position 37 is contract-rejected for under-specified FEN return serialization.
-The cumulative funnel in `a0_cpu_admission_tracker_v2.json` is now 168 queued,
-19 reviewed, 15 oracle-ready, four contract-rejected and zero admitted; next
-position is 43. All remaining sandbox, history/semantic and human gates stay
-pending, and no model code or GPU was used.
+Batches 6--8 are `phase16/results/a0_cpu_review_batch{6,7,8}_v1.json`.
+They extend the hash chain through position 61. Batch 8 rejects position 53
+(`morse_converter`) because multi-digit separators and exact serialization
+are under-specified; its other four trusted oracle pairs agree and catch their
+model-equivalent mutants. The cumulative funnel in
+`a0_cpu_admission_tracker_v4.json` is 168 queued, 29 reviewed, 24 oracle-ready,
+five contract-rejected, 139 unreviewed and zero admitted; next position is 62.
+All remaining sandbox, history/semantic and human gates stay pending, and no
+model code or GPU was used for this CPU review.
 
 Exact-output CPU closure is implemented in
 `phase16/scripts/close_a0_cpu_sandbox_gates.py`; definition:
-`phase16/docs/A0_CPU_SANDBOX_CLOSURE_V1.md`. It covers all 15 oracle-ready
+`phase16/docs/A0_CPU_SANDBOX_CLOSURE_V1.md`. It covers all 24 oracle-ready
 positions and fails closed on identity changes or residuals that do not
 reproduce. Its real artifact is still pending because the previous Linux
 bubblewrap host is unreachable and no compatible local sandbox is active.

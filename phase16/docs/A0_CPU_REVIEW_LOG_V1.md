@@ -110,3 +110,40 @@ Artifact: `../results/a0_cpu_review_batch6_v1.json`, hash-chained to batch 5.
 Cumulatively, nineteen positions have been examined: fifteen are oracle-ready,
 four are contract-rejected and zero are admitted. Continue at position 43.
 All exact-output sandbox, full-history/semantic and human gates remain pending.
+
+## Batch 7
+
+Batch 7 examines positions 43, 44, 47, 48 and 51 in frozen order. All five
+contracts pass:
+
+| Position | Item | Review result |
+|---:|---|---|
+| 43 | `taco_train_09007` / `base_finder` | Unique-digit-set and highest-digit-plus-one oracles agree on five base-encoded sequences (binary through decimal). The trusted model-equivalent mutant computes range length instead of unique digit count. |
+| 44 | `taco_train_07486` / `search_substr` | Scan and find-based oracles agree on seven cases covering overlapping, non-overlapping and empty-search behavior. The trusted model-equivalent mutant swaps the overlap/non-overlap step logic. |
+| 47 | `taco_train_13728` / `archers_ready` | Short-circuit and iterative oracles agree on six cases including the empty-list edge. The trusted model-equivalent mutant omits the empty-group check (`all([])` returns `True`). |
+| 48 | `taco_train_10648` / `combs` | Brute-force offset and exhaustive placement oracles agree on six tooth-collision cases. The trusted model-equivalent mutant uses a greedy scan that miscomputes optimal interleaving. |
+| 51 | `taco_train_12930` / `wheres_wally` | Regex and manual-scan oracles agree on nine cases covering standalone, attached, punctuated and apostrophe-prefixed words. The trusted model-equivalent mutant hard-codes specific punctuation patterns and misses start-of-string and apostrophe-before cases. |
+
+Artifact: `../results/a0_cpu_review_batch7_v1.json`, hash-chained to batch 6.
+Cumulatively, twenty-four positions have been examined: twenty are oracle-ready,
+four are contract-rejected and zero are admitted. Continue at position 53.
+All exact-output sandbox, full-history/semantic and human gates remain pending.
+
+## Batch 8
+
+Batch 8 examines positions 53, 56, 58, 60 and 61 in frozen order. Four
+contracts pass and one is rejected:
+
+| Position | Item | Review result |
+|---:|---|---|
+| 53 | `taco_train_04217` / `morse_converter` | Rejected fail-closed. The contract lists digit-to-Morse mappings but does not specify how multi-digit inputs are separated or the exact return type/serialization. |
+| 56 | `taco_train_22255` / `uncollapse` | Greedy-scan and regex oracles agree on six collapsed-digit-word strings. The trusted model-equivalent mutant replaces digit words with numeric characters instead of space-separating them. |
+| 58 | `taco_train_06251` / `string_merge` | Index and iterative oracles agree on five merge cases. The trusted model-equivalent mutant duplicates the dividing letter using split/rejoin. |
+| 60 | `taco_train_10013` / `checkchoose` | Comb-iteration and factorial oracles agree on eight cases including x=0 and no-solution sentinels. The trusted model-equivalent mutant skips x=0 and mishandles m=0. |
+| 61 | `taco_train_19936` / `custom_fib` | Sliding-window and offset oracles agree on six sequences. The trusted model-equivalent mutant uses absolute indexes instead of window-relative indexes. |
+
+Artifact: `../results/a0_cpu_review_batch8_v1.json`, hash-chained to batch 7.
+Cumulatively, twenty-nine positions have been examined: twenty-four are
+oracle-ready, five are contract-rejected and zero are admitted. Continue at
+position 62. All exact-output sandbox, full-history/semantic and human gates
+remain pending.

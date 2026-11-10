@@ -23,11 +23,11 @@ class A0CPUSandboxClosureTests(unittest.TestCase):
             "a0_admission_inventory_v1.json").read_text(encoding="utf-8"))
         cls.reviews = [json.loads((ROOT / "results" /
             f"a0_cpu_review_batch{i}_v1.json").read_text(encoding="utf-8"))
-            for i in range(1, 7)]
+            for i in range(1, 9)]
         cls.completions = _load_completions(
             ROOT / "results" / "a0_discovery_run_v2")
 
-    def test_all_15_failed_observations_reproduce_residuals(self) -> None:
+    def test_all_24_failed_observations_reproduce_residuals(self) -> None:
         calls = []
         def execute(code, task):
             calls.append((code, task))
@@ -36,8 +36,8 @@ class A0CPUSandboxClosureTests(unittest.TestCase):
                     "actual_sha256": "0" * 64}
         report = build(self.inventory, self.reviews, self.completions,
                        execute=execute, preflight=lambda: None)
-        self.assertEqual(len(calls), 15)
-        self.assertEqual(report["counts"]["residual_reproduced"], 15)
+        self.assertEqual(len(calls), 24)
+        self.assertEqual(report["counts"]["residual_reproduced"], 24)
         self.assertEqual(report["counts"]["correction_admitted"], 0)
         self.assertFalse(report["claims"]["gpu_training_authorized"])
         claimed = report["closure_sha256"]
@@ -52,7 +52,7 @@ class A0CPUSandboxClosureTests(unittest.TestCase):
                     "actual_sha256": "1" * 64}
         report = build(self.inventory, self.reviews, self.completions,
                        execute=execute, preflight=lambda: None)
-        self.assertEqual(report["counts"]["residual_not_reproduced"], 15)
+        self.assertEqual(report["counts"]["residual_not_reproduced"], 24)
         self.assertTrue(all(row["sandbox_gate"] ==
             "failed_residual_not_reproduced" for row in report["records"]))
 

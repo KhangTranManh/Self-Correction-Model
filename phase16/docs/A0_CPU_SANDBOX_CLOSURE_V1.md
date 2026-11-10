@@ -3,12 +3,12 @@
 Status: **implementation ready; real sandbox execution pending**.
 
 This model-free step closes the exact-output sandbox and frozen-recovery gates
-for the 15 records currently marked `oracle_ready_remaining_gates_pending`.
+for the 24 records currently marked `oracle_ready_remaining_gates_pending`.
 It does not generate corrected code, perform human approval, certify training
 data, use a GPU, or authorize training.
 
 `../scripts/close_a0_cpu_sandbox_gates.py` verifies the frozen admission
-inventory and all six review batches through the existing tracker validator,
+inventory and all eight review batches through the existing tracker validator,
 then binds each oracle-ready position to its task-specific contract cases and
 trusted oracle. It verifies the exact recovered-output hash and requires the
 frozen recovery status `accepted` before executing the output in the same
@@ -29,3 +29,12 @@ The real run is pending because the previous Linux sandbox host is not
 currently reachable and the local Windows host has neither bubblewrap nor an
 active Docker Linux engine. Do not substitute unrestricted local execution of
 untrusted recovered code.
+
+## Design decision
+
+The closure keeps an explicit fail-closed registry from each frozen position
+to its independent cases and oracle. A distributed registry exported by every
+historical batch would reduce this central list, but would also rewrite the
+review modules that produced existing evidence. The explicit registry leaves
+those modules immutable and makes any tracker/spec disagreement stop before
+untrusted code executes.

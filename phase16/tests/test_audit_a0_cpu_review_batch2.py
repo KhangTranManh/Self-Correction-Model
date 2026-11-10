@@ -36,7 +36,7 @@ class A0CPUReviewBatch2Tests(unittest.TestCase):
         ).read_text(encoding="utf-8"))
         cls.bank = json.loads((
             ROOT / "phase16" / "data" / "a0_discovery_v1" /
-            "gpu_bundle" / "candidate_bank.json"
+            "candidate_bank.json"
         ).read_text(encoding="utf-8"))
         cls.batch1 = json.loads((
             ROOT / "phase16" / "results" / "a0_cpu_review_batch1_v1.json"

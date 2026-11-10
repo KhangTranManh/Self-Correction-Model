@@ -16,6 +16,8 @@ import audit_a0_cpu_review_batch3 as b3
 import audit_a0_cpu_review_batch4 as b4
 import audit_a0_cpu_review_batch5 as b5
 import audit_a0_cpu_review_batch6 as b6
+import audit_a0_cpu_review_batch7 as b7
+import audit_a0_cpu_review_batch8 as b8
 
 
 SCHEMA_VERSION = "p16_a0_cpu_sandbox_closure_v1"
@@ -45,6 +47,15 @@ SPECS = {
     40: (b6.GORDON_CASES, b6.gordon_oracle, _args),
     41: (b6.FINDING_K_CASES, b6.finding_k_oracle, _args),
     42: (b6.CHANGE_CASE_CASES, b6.change_case_oracle, _args),
+    43: (b7.BASE_FINDER_CASES, b7.base_finder_oracle, _args),
+    44: (b7.SEARCH_SUBSTR_CASES, b7.search_substr_oracle, _args),
+    47: (b7.ARCHERS_READY_CASES, b7.archers_ready_oracle, _args),
+    48: (b7.COMBS_CASES, b7.combs_oracle, _args),
+    51: (b7.WHERES_WALLY_CASES, b7.wheres_wally_oracle, _args),
+    56: (b8.UNCOLLAPSE_CASES, b8.uncollapse_oracle, _args),
+    58: (b8.STRING_MERGE_CASES, b8.string_merge_oracle, _args),
+    60: (b8.CHECKCHOOSE_CASES, b8.checkchoose_oracle, _args),
+    61: (b8.CUSTOM_FIB_CASES, b8.custom_fib_oracle, _args),
 }
 
 
