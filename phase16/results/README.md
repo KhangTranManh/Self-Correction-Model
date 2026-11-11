@@ -243,3 +243,9 @@ its tracker SHA-256 is
 `cd7fc94f01e64b35f5e9277e81cea3f21442c9f56a2cd94c3c330de39e328b94`.
 Queue exhaustion completes contract/oracle review only; remaining admission
 gates and GPU authorization stay closed.
+
+`a0_cpu_sandbox_plan_v2.json` freezes twelve CPU execution batches for the
+118 oracle-ready positions outside the earlier 24-record closure. The plan
+verifies source identities and oracle evidence but contains no sandbox
+results. See `../docs/A0_CPU_SANDBOX_CLOSURE_V2.md` for the comparison and
+classification changes and the limitations of the earlier closure.

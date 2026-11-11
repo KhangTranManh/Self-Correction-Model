@@ -217,7 +217,7 @@ print("__P16_A0_RESULT__=" + json.dumps(answers, ensure_ascii=False))
 '''
 
 
-def sandbox_execute(code: str, task: dict) -> dict:
+def sandbox_execute(code: str, task: dict, *, exact_expected: bool = False) -> dict:
     shape = callable_shape(code, task["function_name"])
     if shape is None:
         return {"status": "syntax_or_interface_error"}
@@ -262,7 +262,7 @@ def sandbox_execute(code: str, task: dict) -> dict:
         return {"status": "invalid_result_json", "callable_shape": shape}
     if not isinstance(actual, list) or len(actual) != len(task["test_outputs"]):
         return {"status": "result_count_mismatch", "callable_shape": shape}
-    matches = [published_test_match(got, expected)
+    matches = [(got == expected if exact_expected else published_test_match(got, expected))
                for got, expected in zip(actual, task["test_outputs"])]
     return {
         "status": "completed",
