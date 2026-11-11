@@ -1,0 +1,852 @@
+{
+  "schema_version": "p16_a0_cpu_admission_tracker_v1",
+  "purpose": "model_free_cpu_admission_progress_tracking",
+  "source": {
+    "inventory_sha256": "00743b1561a4c0e632ca2020c91e7a1c891e6d9e75af28b3ff04ad7edc6be377",
+    "review_chain_tip_sha256": "e977129d03252664f1c5724c7777fab58ac71445d7e7f0a94ad4749e54dc09c2",
+    "review_batch_count": 36,
+    "source_file_sha256": {
+      "a0_admission_inventory_v1.json": "989758c90bf79ad1a3cecb81f40c14c9235d4ff210859b6f4b725f10710f6396",
+      "a0_cpu_review_batch10_v1.json": "596d2df305c415ad1e7771a18bbca27fbbc9249165a12b89b952dc9a874c0f45",
+      "a0_cpu_review_batch11_v1.json": "80a4c8e97a91e041031b9be109dcb8d56e47f1e18408d5513f971a1bdd2ab843",
+      "a0_cpu_review_batch12_v1.json": "fc33e0cca9d70fe303820fef2b68e1bc367f8510d42986da0838fa84c84e3833",
+      "a0_cpu_review_batch13_v1.json": "98e81f51aa3eba8d1fe70487f695c4b4aac9b471c97004d078816335d743d5d1",
+      "a0_cpu_review_batch14_v1.json": "9665eb104e8702ddd8fb76007dafb7e6a03e00df3d5b8c437a7d07b6fb09760c",
+      "a0_cpu_review_batch15_v1.json": "03d77f90c124872a17d211d5f4bad28a5f2a8f52bb1ae726a17c760e68d4b2ca",
+      "a0_cpu_review_batch16_v1.json": "7618756f88e5bb4d1bc84c2dee61a48fbd70b46bc16b44937e63ae6eba3dfe60",
+      "a0_cpu_review_batch17_v1.json": "259ca7dfcb8c4b78c1dd656fcfcd21d6ae6a08b2cf20681f18c3a0f492ccb1aa",
+      "a0_cpu_review_batch18_v1.json": "5cc096efb22a2e72f54c35aa29110b4893ed08df9f12caa83568bd8d2bd7aa50",
+      "a0_cpu_review_batch19_v1.json": "a839b7014f1911fa70ce1e159938694d0b62ff9a20596b706ac5266527733cfc",
+      "a0_cpu_review_batch1_v1.json": "ad8de04631ed6925968fc440ba330c161e11389dd7269d6afc624da4a3d4c406",
+      "a0_cpu_review_batch20_v1.json": "e80684f052a737a14ec58be41d2c2877d22c5efc2500a83b3d951b47b3bb4c1d",
+      "a0_cpu_review_batch21_v1.json": "af915b58b0a52002bf6e15f1584fc6bd2e15f0d45dc077057af8f175a8aded02",
+      "a0_cpu_review_batch22_v1.json": "a0b6f89dbab32f44c73877bc91e5201a847d4d1c7c3a89bab0de6c765ac6c8aa",
+      "a0_cpu_review_batch23_v1.json": "4c75e011e6a0f3fe0c2bb796b139723936e81addffd838d9db4a8f4cb7024741",
+      "a0_cpu_review_batch24_v1.json": "91f4c72e60816c6539d70587a21e882d6973867764ef4bc5517d709f6094ada5",
+      "a0_cpu_review_batch25_v1.json": "fad4ceca3399b740ab6e14b517da34ff0774d2111c7e37063c99b2d83d5f5564",
+      "a0_cpu_review_batch26_v1.json": "adb075e02910ff56057c1d205e68ddbd01c1567fbebe5bb07f498f790e42c2ca",
+      "a0_cpu_review_batch27_v1.json": "6905102540f26ac336bf6972e6ee827e823189a1964a8ef1810f8571b61704c9",
+      "a0_cpu_review_batch28_v1.json": "116838cdbcf9c1b2eeec418cb69e4d6a012ffdd9d2391996d5f91f0343b0a627",
+      "a0_cpu_review_batch29_v1.json": "71171c06266ae357e26dd9089f33bc4b40c92cf1564b8459acfacb676da082bb",
+      "a0_cpu_review_batch2_v1.json": "3f5b280853aedaba7c5ac39d24813d0670ce6b48811c85d4afdccbbe94bf6288",
+      "a0_cpu_review_batch30_v1.json": "ae0f2f8f417397293259a3a56542158d0423b25f354b83453df1c1d558546d95",
+      "a0_cpu_review_batch31_v1.json": "afce8a3c64ae0a63be2664b9c856439971f2798be37046882833e2a992324011",
+      "a0_cpu_review_batch32_v1.json": "84c6ebc0e64d439118f2b7a4ee1759e16194f78109a4b445f46d5480d873dbea",
+      "a0_cpu_review_batch33_v1.json": "bbfb30f1d167be12551cd25e8a314f392bdee84e18f03bff9fd85a4d68aede4b",
+      "a0_cpu_review_batch34_v1.json": "93ac56f38429139d46cc4f1db583db78ff0dd652ab66c9992fbf9e5e36c09abc",
+      "a0_cpu_review_batch35_v1.json": "b4750d5aadec30ebf1dee578058a4f5d8043736717a305bd66ff2629f09310fb",
+      "a0_cpu_review_batch36_v1.json": "5083224a7c92a09f21c1f5786fa9e1a5950fbe60cdb1675fc637df56fdafe826",
+      "a0_cpu_review_batch3_v1.json": "61420c35a90a70fc407df8ed49c04cf550299da377222344e618a727070bd8a5",
+      "a0_cpu_review_batch4_v1.json": "7a073d27ab956d351fe2885de5fa9e65f6611812d8cdab1eb07d880cb414a57f",
+      "a0_cpu_review_batch5_v1.json": "c28173ce9c16eb9f14463f59bed696bf8129c52699d5a6605f29eb09514f1129",
+      "a0_cpu_review_batch6_v1.json": "d46bc79d549b14f8c16f07f0fe23833601dc3383d0164b122db61441dc4ce2e3",
+      "a0_cpu_review_batch7_v1.json": "d6a357d7eda468fc4fe988c1f8bf1d3c833d4f7693135b58cb873c98650051ab",
+      "a0_cpu_review_batch8_v1.json": "587fb5c8564a9ca8b693513a5a28d295192d946528c173c0202bb6ebf35d7568",
+      "a0_cpu_review_batch9_v1.json": "083c2d4e16593947ab520c2271617242dd8bfe4e0b50fb88c648e963cb0f23eb"
+    }
+  },
+  "funnel": {
+    "a0_dataset_side_failures": 244,
+    "rejected_before_oracle_review": 76,
+    "independent_oracle_review_queue": 168,
+    "unique_positions_reviewed": 168,
+    "contract_oracle_resolved": 168,
+    "oracle_ready_remaining_gates": 142,
+    "contract_rejected": 26,
+    "deferred_latest": 0,
+    "unreviewed_queue": 0,
+    "sandbox_pending": 142,
+    "full_semantic_history_pending": 142,
+    "manual_cross_history_pending": 142,
+    "human_approval_pending": 142,
+    "correction_admitted": 0
+  },
+  "positions": {
+    "reviewed": [
+      0,
+      2,
+      6,
+      10,
+      12,
+      16,
+      21,
+      22,
+      23,
+      28,
+      29,
+      30,
+      31,
+      36,
+      37,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      47,
+      48,
+      51,
+      53,
+      56,
+      58,
+      60,
+      61,
+      62,
+      64,
+      66,
+      68,
+      70,
+      71,
+      73,
+      74,
+      76,
+      77,
+      80,
+      81,
+      82,
+      85,
+      86,
+      87,
+      90,
+      99,
+      101,
+      104,
+      105,
+      106,
+      107,
+      110,
+      111,
+      113,
+      116,
+      117,
+      127,
+      128,
+      132,
+      133,
+      137,
+      138,
+      142,
+      144,
+      146,
+      147,
+      150,
+      151,
+      152,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      168,
+      170,
+      176,
+      178,
+      179,
+      180,
+      183,
+      186,
+      187,
+      192,
+      193,
+      194,
+      198,
+      202,
+      204,
+      207,
+      209,
+      211,
+      212,
+      215,
+      222,
+      225,
+      226,
+      230,
+      235,
+      237,
+      240,
+      241,
+      243,
+      244,
+      245,
+      252,
+      255,
+      260,
+      263,
+      268,
+      271,
+      276,
+      278,
+      281,
+      282,
+      285,
+      288,
+      290,
+      291,
+      295,
+      297,
+      301,
+      302,
+      304,
+      307,
+      317,
+      318,
+      321,
+      322,
+      323,
+      324,
+      326,
+      327,
+      329,
+      332,
+      335,
+      336,
+      338,
+      339,
+      340,
+      341,
+      342,
+      343,
+      345,
+      346,
+      353,
+      356,
+      357,
+      358,
+      360,
+      361,
+      364,
+      366,
+      373,
+      374,
+      377,
+      378,
+      381,
+      382,
+      387,
+      392,
+      395,
+      396,
+      397,
+      398,
+      399
+    ],
+    "oracle_ready": [
+      0,
+      6,
+      10,
+      12,
+      21,
+      22,
+      23,
+      28,
+      29,
+      30,
+      31,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      47,
+      48,
+      51,
+      56,
+      58,
+      60,
+      61,
+      62,
+      64,
+      66,
+      68,
+      71,
+      73,
+      77,
+      80,
+      81,
+      82,
+      85,
+      86,
+      90,
+      99,
+      101,
+      104,
+      105,
+      106,
+      110,
+      111,
+      113,
+      116,
+      117,
+      127,
+      128,
+      132,
+      138,
+      142,
+      144,
+      147,
+      152,
+      156,
+      157,
+      159,
+      160,
+      168,
+      176,
+      178,
+      179,
+      180,
+      183,
+      186,
+      187,
+      194,
+      198,
+      202,
+      204,
+      207,
+      209,
+      211,
+      212,
+      215,
+      222,
+      225,
+      226,
+      235,
+      237,
+      240,
+      241,
+      243,
+      244,
+      245,
+      252,
+      255,
+      260,
+      263,
+      268,
+      271,
+      278,
+      281,
+      282,
+      285,
+      288,
+      290,
+      291,
+      295,
+      297,
+      301,
+      302,
+      304,
+      307,
+      317,
+      318,
+      321,
+      322,
+      323,
+      324,
+      326,
+      327,
+      329,
+      332,
+      335,
+      336,
+      338,
+      339,
+      340,
+      343,
+      345,
+      346,
+      353,
+      356,
+      357,
+      358,
+      360,
+      361,
+      364,
+      366,
+      373,
+      374,
+      377,
+      378,
+      381,
+      387,
+      392,
+      396,
+      397,
+      398,
+      399
+    ],
+    "contract_rejected": [
+      2,
+      16,
+      36,
+      37,
+      53,
+      70,
+      74,
+      76,
+      87,
+      107,
+      133,
+      137,
+      146,
+      150,
+      151,
+      158,
+      161,
+      170,
+      192,
+      193,
+      230,
+      276,
+      341,
+      342,
+      382,
+      395
+    ],
+    "deferred_latest": [],
+    "admitted": [],
+    "next_frozen_position": null
+  },
+  "review_chain": [
+    {
+      "batch_index": 1,
+      "review_sha256": "4186bc1a8fe1b339187f2301aea4222b5477de628bbec6749cf95833e04875a2",
+      "positions": [
+        0,
+        2,
+        6
+      ]
+    },
+    {
+      "batch_index": 2,
+      "review_sha256": "2369e0d44716eac286fc13327985c1bdb66ad3a5fdeda79d042af813191b48ca",
+      "positions": [
+        6,
+        10,
+        12
+      ]
+    },
+    {
+      "batch_index": 3,
+      "review_sha256": "fac1983720608dea56277157ea806b3240d84948ada264093805757910a11c73",
+      "positions": [
+        16,
+        21,
+        22
+      ]
+    },
+    {
+      "batch_index": 4,
+      "review_sha256": "6dc9b86182dfd3f2191ed256a4cb1f8b4afe0566029772627813db77f5d96618",
+      "positions": [
+        23,
+        28,
+        29
+      ]
+    },
+    {
+      "batch_index": 5,
+      "review_sha256": "a8689cb7176568bdce0d61fb8ff9b0bc433b53ea0e5ac0dad11c105654804998",
+      "positions": [
+        30,
+        31,
+        36
+      ]
+    },
+    {
+      "batch_index": 6,
+      "review_sha256": "d9effe3a27074ae7a2c8a6ed5ce94e6938f122e96fc228946ecce3eb5183422f",
+      "positions": [
+        37,
+        39,
+        40,
+        41,
+        42
+      ]
+    },
+    {
+      "batch_index": 7,
+      "review_sha256": "581a8cefd9b0445e49843da1483e7d57f8140a7342430e8ea0efde9ad3db7e79",
+      "positions": [
+        43,
+        44,
+        47,
+        48,
+        51
+      ]
+    },
+    {
+      "batch_index": 8,
+      "review_sha256": "f7c2813a8ac2008fbfc6dfa2edbf29b4d75541c110bb3060ccee751e600accd7",
+      "positions": [
+        53,
+        56,
+        58,
+        60,
+        61
+      ]
+    },
+    {
+      "batch_index": 9,
+      "review_sha256": "a53976f5254b13e9a67fa8f27b51b3b3d579058185afb9f159051190054f5fdc",
+      "positions": [
+        62,
+        64,
+        66,
+        68,
+        70
+      ]
+    },
+    {
+      "batch_index": 10,
+      "review_sha256": "dc2be145e5ad402ad87be0b8eabf42caf1679e98333ce927bca86f7806378ccc",
+      "positions": [
+        71,
+        73,
+        74,
+        76,
+        77
+      ]
+    },
+    {
+      "batch_index": 11,
+      "review_sha256": "a6caaf09a9342835b740d728a045a82cfcc55b645812d80551378592fcd16933",
+      "positions": [
+        80,
+        81,
+        82,
+        85,
+        86
+      ]
+    },
+    {
+      "batch_index": 12,
+      "review_sha256": "e4fccb72696853e7e0eb42237d17a6d168f6896c9df8ac9afdd4e768e6af87e7",
+      "positions": [
+        87,
+        90,
+        99,
+        101,
+        104
+      ]
+    },
+    {
+      "batch_index": 13,
+      "review_sha256": "ae6b2cf7e2a87ea5f932bb80232016459ed5d642015497abf66ea9d307f52602",
+      "positions": [
+        105,
+        106,
+        107,
+        110,
+        111
+      ]
+    },
+    {
+      "batch_index": 14,
+      "review_sha256": "a51e06e53237f3d882b2bb2bfe13bffb6c5e7c888f493536389a5374d6712572",
+      "positions": [
+        113,
+        116,
+        117,
+        127,
+        128
+      ]
+    },
+    {
+      "batch_index": 15,
+      "review_sha256": "8fd51a79b68a8ce4ecabbd982e65a527ceffb073d534e75beb470bb752ae9c4f",
+      "positions": [
+        132,
+        133,
+        137,
+        138,
+        142
+      ]
+    },
+    {
+      "batch_index": 16,
+      "review_sha256": "0afb7a1e7831377ca29cb44124230f9f03501a0aaa1ceea8db6e6bb22598a97c",
+      "positions": [
+        144,
+        146,
+        147,
+        150,
+        151
+      ]
+    },
+    {
+      "batch_index": 17,
+      "review_sha256": "d16aa5fa22fb039e6d9d8e61593b069b78afe5a9a0a216664645fd3b712e28e7",
+      "positions": [
+        152,
+        156,
+        157,
+        158,
+        159
+      ]
+    },
+    {
+      "batch_index": 18,
+      "review_sha256": "d10e312a5894bdd4de1547535625074518fe819636b9bb18875b8890865d8098",
+      "positions": [
+        160,
+        161,
+        168,
+        170,
+        176
+      ]
+    },
+    {
+      "batch_index": 19,
+      "review_sha256": "0acaccc4b5b868fbc9a3c4d5622b687ded4b6695e3da4443e7a89ef7bd86e238",
+      "positions": [
+        178,
+        179,
+        180,
+        183,
+        186
+      ]
+    },
+    {
+      "batch_index": 20,
+      "review_sha256": "7d0a30073250711e03bcf955dd88a428df93261f1b869739f6fd755e45bfbe05",
+      "positions": [
+        187,
+        192,
+        193,
+        194,
+        198
+      ]
+    },
+    {
+      "batch_index": 21,
+      "review_sha256": "2b3c4610b0d86b004e5536cc3ab1b3c1d5920e2ed27fa7760b8e317285098234",
+      "positions": [
+        202,
+        204,
+        207,
+        209,
+        211
+      ]
+    },
+    {
+      "batch_index": 22,
+      "review_sha256": "91a849e95eff84bca6f77403e5a84b0b1f7af9c2f306c0d911174ca919ba0c80",
+      "positions": [
+        212,
+        215,
+        222,
+        225,
+        226
+      ]
+    },
+    {
+      "batch_index": 23,
+      "review_sha256": "50fea87f0eaa40f1b34d3da3f90c1bdfe1e76264c1b4c998bac07cef08b8cb01",
+      "positions": [
+        230,
+        235,
+        237,
+        240,
+        241
+      ]
+    },
+    {
+      "batch_index": 24,
+      "review_sha256": "527a5e50970583d14363dcc5a75bde6be1119991a9f56973de886abc81ff9e57",
+      "positions": [
+        243,
+        244,
+        245,
+        252,
+        255
+      ]
+    },
+    {
+      "batch_index": 25,
+      "review_sha256": "94576adbde1669300aadc31eb7bf6501e48ad4bd8bd14562cbe11e94dbcb708e",
+      "positions": [
+        260,
+        263,
+        268,
+        271,
+        276
+      ]
+    },
+    {
+      "batch_index": 26,
+      "review_sha256": "17f180e6de3472f524d95c3a45bc31296943a8a143affb046cd211d5a773613e",
+      "positions": [
+        278,
+        281,
+        282,
+        285,
+        288
+      ]
+    },
+    {
+      "batch_index": 27,
+      "review_sha256": "e181a30a76b3c053d480e546ece84d15e2ef2c1c6cf03b33cf547a3f276efa78",
+      "positions": [
+        290,
+        291,
+        295,
+        297,
+        301
+      ]
+    },
+    {
+      "batch_index": 28,
+      "review_sha256": "bb3e9d3aaa82dee153ae41abf8f1ceeae3112b90d0e9712dbf24883aeb78c6d5",
+      "positions": [
+        302,
+        304,
+        307,
+        317,
+        318
+      ]
+    },
+    {
+      "batch_index": 29,
+      "review_sha256": "209eecedc5746f910273dea0947df2b13bb5bac493fa149ce70fb267a24ea330",
+      "positions": [
+        321,
+        322,
+        323,
+        324,
+        326
+      ]
+    },
+    {
+      "batch_index": 30,
+      "review_sha256": "c121ba38c3637694182c034064fe84d7f6da78c241631f78f85190216e2a436f",
+      "positions": [
+        327,
+        329,
+        332,
+        335,
+        336
+      ]
+    },
+    {
+      "batch_index": 31,
+      "review_sha256": "416db3fb7f31df01006b59ed96ec7016cea3c73ef1bcb6cb4dcbe25aa442a659",
+      "positions": [
+        338,
+        339,
+        340,
+        341,
+        342
+      ]
+    },
+    {
+      "batch_index": 32,
+      "review_sha256": "8f8f8d95749760bdb4a4542c8fedc7f668440f526f32b1b211a7d8c23c5315e9",
+      "positions": [
+        343,
+        345,
+        346,
+        353,
+        356
+      ]
+    },
+    {
+      "batch_index": 33,
+      "review_sha256": "d7586e0c088ff3536c5180cb70c18e54ebdba40d35ef1931ff313c4288b5f5b1",
+      "positions": [
+        357,
+        358,
+        360,
+        361,
+        364
+      ]
+    },
+    {
+      "batch_index": 34,
+      "review_sha256": "90302ebc09dc26f33940544c55b3598a3cd8189cd3bec13468a1d9b4d9281c25",
+      "positions": [
+        366,
+        373,
+        374,
+        377,
+        378
+      ]
+    },
+    {
+      "batch_index": 35,
+      "review_sha256": "e97ea9e84dff31ff2caeccd6093f863059b63f5d5d5dbeba8c72ae3398050f9e",
+      "positions": [
+        381,
+        382,
+        387,
+        392,
+        395
+      ]
+    },
+    {
+      "batch_index": 36,
+      "review_sha256": "e977129d03252664f1c5724c7777fab58ac71445d7e7f0a94ad4749e54dc09c2",
+      "positions": [
+        396,
+        397,
+        398,
+        399
+      ]
+    }
+  ],
+  "capacity_projection": {
+    "basis": "oracle_ready_among_contract_oracle_resolved",
+    "observed_ready": 142,
+    "observed_resolved": 168,
+    "point_rate": 0.8452380952380952,
+    "wilson_95_lower": 0.7828963194479739,
+    "wilson_95_upper": 0.892144504786641,
+    "estimated_total_reviews_for_64_at_point_rate": 76,
+    "estimated_total_reviews_for_64_at_wilson_lower": 82,
+    "estimated_total_reviews_for_64_at_wilson_upper": 72,
+    "projected_oracle_ready_if_all_168_reviewed_at_point_rate": 142,
+    "small_sample_descriptive_only": true
+  },
+  "admission_projection": {
+    "status": "unavailable_no_completed_admission_decisions",
+    "gate_complete_decisions": 0,
+    "admission_rate": null
+  },
+  "milestones": [
+    {
+      "reviewed_target": 24,
+      "remaining_from_current": 0,
+      "reached": true
+    },
+    {
+      "reviewed_target": 48,
+      "remaining_from_current": 0,
+      "reached": true
+    },
+    {
+      "reviewed_target": 80,
+      "remaining_from_current": 0,
+      "reached": true
+    },
+    {
+      "reviewed_target": 120,
+      "remaining_from_current": 0,
+      "reached": true
+    },
+    {
+      "reviewed_target": 168,
+      "remaining_from_current": 0,
+      "reached": true
+    }
+  ],
+  "claims": {
+    "model_generation": false,
+    "untrusted_model_code_executed": false,
+    "independent_oracle_admission_complete": false,
+    "correction_pool_certified": false,
+    "gpu_training_authorized": false,
+    "protected_data_opening_authorized": false
+  },
+  "tracker_sha256": "cd7fc94f01e64b35f5e9277e81cea3f21442c9f56a2cd94c3c330de39e328b94"
+}

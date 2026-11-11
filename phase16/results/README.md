@@ -232,3 +232,14 @@ next position is 321.
 356. Eighteen contracts validate and two reject fail-closed. Tracker v13
 verifies 149 reviewed, 125 ready, 24 rejected, 19 unreviewed and zero admitted;
 next position is 357.
+
+`a0_cpu_review_batch{33,34,35,36}_v1.json` exhaust the frozen review queue
+through position 399. Seventeen contracts validate and two reject fail-closed.
+`a0_cpu_admission_tracker_v14.json` verifies all 36 batches and records 168
+reviewed, 142 oracle-ready, 26 contract-rejected, zero unreviewed and zero
+admitted. Its chain tip is
+`e977129d03252664f1c5724c7777fab58ac71445d7e7f0a94ad4749e54dc09c2` and
+its tracker SHA-256 is
+`cd7fc94f01e64b35f5e9277e81cea3f21442c9f56a2cd94c3c330de39e328b94`.
+Queue exhaustion completes contract/oracle review only; remaining admission
+gates and GPU authorization stay closed.

@@ -241,3 +241,16 @@ reject fail-closed because the prompt does not define the shell marker count
 and placement or what case-sensitive encoding does to uppercase letters.
 Tracker v13 records 149 reviewed, 125 oracle-ready, 24 rejected, 19 unreviewed
 and zero admitted. Continue at position 357.
+
+## Batches 33--36
+
+Batches 33--36 exhaust the final nineteen records in the frozen queue through
+position 399. Seventeen contract-derived oracle/reference pairs agree and
+catch their locally authored frozen-output mutants. Position 382 (`code`)
+rejects fail-closed because its behavior is delegated entirely to unavailable
+tests. Position 395 (`calculate_damage`) rejects because the captured contract
+refers to a formula that it does not contain. Tracker v14 records all 168
+records resolved: 142 oracle-ready, 26 contract-rejected, zero unreviewed and
+zero admitted. The chain has no next position. Sandbox, full semantic history,
+manual cross-history and human approval remain pending for the 142 ready
+records, so correction certification and GPU training remain unauthorized.
