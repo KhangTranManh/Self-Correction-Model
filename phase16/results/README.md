@@ -227,3 +227,8 @@ position is 260.
 rejects because no contract-derived frozen-output failure exists. Tracker v12
 verifies 129 reviewed, 107 ready, 22 rejected, 39 unreviewed and zero admitted;
 next position is 321.
+
+`a0_cpu_review_batch{29,30,31,32}_v1.json` extend the chain through position
+356. Eighteen contracts validate and two reject fail-closed. Tracker v13
+verifies 149 reviewed, 125 ready, 24 rejected, 19 unreviewed and zero admitted;
+next position is 357.

@@ -231,3 +231,13 @@ stated positive-integer domain its frozen implementation is contract-equivalent,
 and the prompt's empty Examples section supplies no behavior from which to
 establish a residual. Tracker v12 records 129 reviewed, 107 oracle-ready, 22
 rejected, 39 unreviewed and zero admitted. Continue at position 321.
+
+## Batches 29--32
+
+Batches 29--32 review twenty more frozen records through position 356.
+Eighteen independent oracle/reference pairs validate and catch their locally
+authored frozen-output mutants. Positions 341 (`tacofy`) and 342 (`encode`)
+reject fail-closed because the prompt does not define the shell marker count
+and placement or what case-sensitive encoding does to uppercase letters.
+Tracker v13 records 149 reviewed, 125 oracle-ready, 24 rejected, 19 unreviewed
+and zero admitted. Continue at position 357.
