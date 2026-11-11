@@ -221,3 +221,9 @@ ready, 20 rejected, 79 unreviewed and zero admitted; next position is 202.
 255. Nineteen contracts pass and one rejects fail-closed. Tracker v11 verifies
 109 reviewed, 88 ready, 21 rejected, 59 unreviewed and zero admitted; next
 position is 260.
+
+`a0_cpu_review_batch{25,26,27,28}_v1.json` extend the chain through position
+318. Nineteen contracts validate an independently caught residual; one record
+rejects because no contract-derived frozen-output failure exists. Tracker v12
+verifies 129 reviewed, 107 ready, 22 rejected, 39 unreviewed and zero admitted;
+next position is 321.

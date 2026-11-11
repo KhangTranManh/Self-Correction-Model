@@ -221,3 +221,13 @@ fail-closed because case-insensitive duplicate removal does not specify which
 original capitalization survives or how mixed-case results sort. Tracker v11
 therefore records 109 reviewed, 88 oracle-ready, 21 rejected, 59 unreviewed
 and zero admitted. Continue at position 260.
+
+## Batches 25--28
+
+Batches 25--28 review the next twenty pending records through position 318.
+Nineteen independent oracle/reference pairs agree and catch the corresponding
+frozen-output mutants. Position 276 (`sum_mul`) rejects fail-closed: on the
+stated positive-integer domain its frozen implementation is contract-equivalent,
+and the prompt's empty Examples section supplies no behavior from which to
+establish a residual. Tracker v12 records 129 reviewed, 107 oracle-ready, 22
+rejected, 39 unreviewed and zero admitted. Continue at position 321.
