@@ -58,9 +58,10 @@ The one error at position 392 (`pay_cheese`) exposed a flaw in the frozen
 batch-35 oracle: it supplies a number, while the captured prompt specifies an
 array of five daily values and a currency-formatted string. The runner
 therefore exercised the function with the wrong input type; this is not
-evidence of a model runtime failure on a valid input. The prompt's captured
-currency symbol also appears as a replacement character, so exact string
-serialization needs source clarification. Position 392 remains unresolved;
+evidence of a model runtime failure on a valid input. A later code-point check
+confirmed that the captured currency symbol is `£` (U+00A3); its earlier display
+as a replacement character was a terminal rendering error. Exact string
+serialization still needs clarification. Position 392 remains unresolved;
 do not treat its earlier oracle-ready designation as validated admission.
 The earlier review and execution artifacts remain immutable historical
 evidence. A corrected contract assessment requires a new versioned artifact.

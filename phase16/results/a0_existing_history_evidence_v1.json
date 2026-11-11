@@ -1,0 +1,1032 @@
+{
+  "schema_version": "p16_a0_existing_history_evidence_v1",
+  "source": {
+    "worklist_sha256": "b789cdc33449bb2619a717abbd0500fa1c3449d5019e53a6ce088517c3cd812e",
+    "bank_sha256": "1a5334e86e8904a35aa4d04234480057523c801104ce991b6b1c1b237e19a352",
+    "metadata_sha256": "3bc4902460890c3d5cbb422a7ad20647c33e90c22cee20a3ef6747e09c731b48",
+    "source_file_sha256": {
+      "a0_cpu_followup_worklist_v1.json": "3d041fcfb19f30a719c8884f95eed693463109c733b8641a722fea344bf0fdd0",
+      "candidate_bank.json": "db3987682bc6b391deb0302bd48342c125fabd3165e52d6fd1ae437ca9ea5212",
+      "exact_overlap.json": "6d2eeb9f79d9e6b5d9803b01d1f91ce2c55108c38642188bed2241a56421a7bc",
+      "train_metadata.jsonl": "3bc4902460890c3d5cbb422a7ad20647c33e90c22cee20a3ef6747e09c731b48"
+    }
+  },
+  "scope": {
+    "historical_files_scanned_previously": 393,
+    "historical_scan_parse_errors": 0,
+    "historical_scan_limitations": [
+      "Scans local JSON/JSONL only; other artifact formats and remote source registries not covered.",
+      "Matches normalized text and canonical URL exactly; near duplicates not covered.",
+      "A matching row is flagged, not silently removed; independent source review remains required."
+    ]
+  },
+  "counts": {
+    "records_checked": 142,
+    "exact_hits": 0,
+    "semantic_review_pending": 142,
+    "manual_cross_history_pending": 142
+  },
+  "records": [
+    {
+      "position": 0,
+      "item_id": "taco_train_14050",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 6,
+      "item_id": "taco_train_24349",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 10,
+      "item_id": "taco_train_16524",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 12,
+      "item_id": "taco_train_19256",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 21,
+      "item_id": "taco_train_14075",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 22,
+      "item_id": "taco_train_00638",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 23,
+      "item_id": "taco_train_17641",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 28,
+      "item_id": "taco_train_05174",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 29,
+      "item_id": "taco_train_11943",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 30,
+      "item_id": "taco_train_10757",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 31,
+      "item_id": "taco_train_02417",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 39,
+      "item_id": "taco_train_18261",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 40,
+      "item_id": "taco_train_14218",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 41,
+      "item_id": "taco_train_02162",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 42,
+      "item_id": "taco_train_16843",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 43,
+      "item_id": "taco_train_09007",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 44,
+      "item_id": "taco_train_07486",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 47,
+      "item_id": "taco_train_13728",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 48,
+      "item_id": "taco_train_10648",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 51,
+      "item_id": "taco_train_12930",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 56,
+      "item_id": "taco_train_22255",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 58,
+      "item_id": "taco_train_06251",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 60,
+      "item_id": "taco_train_10013",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 61,
+      "item_id": "taco_train_19936",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 62,
+      "item_id": "taco_train_03599",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 64,
+      "item_id": "taco_train_17176",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 66,
+      "item_id": "taco_train_15240",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 68,
+      "item_id": "taco_train_10087",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 71,
+      "item_id": "taco_train_22249",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 73,
+      "item_id": "taco_train_06181",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 77,
+      "item_id": "taco_train_11332",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 80,
+      "item_id": "taco_train_11425",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 81,
+      "item_id": "taco_train_06163",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 82,
+      "item_id": "taco_train_25364",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 85,
+      "item_id": "taco_train_15959",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 86,
+      "item_id": "taco_train_11808",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 90,
+      "item_id": "taco_train_09250",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 99,
+      "item_id": "taco_train_04564",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 101,
+      "item_id": "taco_train_07351",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 104,
+      "item_id": "taco_train_00515",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 105,
+      "item_id": "taco_train_11132",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 106,
+      "item_id": "taco_train_00359",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 110,
+      "item_id": "taco_train_09816",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 111,
+      "item_id": "taco_train_11783",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 113,
+      "item_id": "taco_train_05936",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 116,
+      "item_id": "taco_train_18482",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 117,
+      "item_id": "taco_train_11431",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 127,
+      "item_id": "taco_train_12669",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 128,
+      "item_id": "taco_train_02965",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 132,
+      "item_id": "taco_train_08611",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 138,
+      "item_id": "taco_train_12509",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 142,
+      "item_id": "taco_train_00781",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 144,
+      "item_id": "taco_train_24290",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 147,
+      "item_id": "taco_train_14487",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 152,
+      "item_id": "taco_train_15693",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 156,
+      "item_id": "taco_train_08280",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 157,
+      "item_id": "taco_train_10328",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 159,
+      "item_id": "taco_train_11774",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 160,
+      "item_id": "taco_train_14402",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 168,
+      "item_id": "taco_train_18941",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 176,
+      "item_id": "taco_train_02309",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 178,
+      "item_id": "taco_train_06856",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 179,
+      "item_id": "taco_train_13166",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 180,
+      "item_id": "taco_train_11273",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 183,
+      "item_id": "taco_train_23182",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 186,
+      "item_id": "taco_train_09653",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 187,
+      "item_id": "taco_train_24539",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 194,
+      "item_id": "taco_train_19139",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 198,
+      "item_id": "taco_train_24401",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 202,
+      "item_id": "taco_train_12240",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 204,
+      "item_id": "taco_train_19143",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 207,
+      "item_id": "taco_train_14253",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 209,
+      "item_id": "taco_train_16145",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 211,
+      "item_id": "taco_train_09580",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 212,
+      "item_id": "taco_train_10459",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 215,
+      "item_id": "taco_train_02344",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 222,
+      "item_id": "taco_train_12609",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 225,
+      "item_id": "taco_train_24857",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 226,
+      "item_id": "taco_train_09600",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 235,
+      "item_id": "taco_train_16528",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 237,
+      "item_id": "taco_train_17074",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 240,
+      "item_id": "taco_train_17226",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 241,
+      "item_id": "taco_train_08869",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 243,
+      "item_id": "taco_train_17013",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 244,
+      "item_id": "taco_train_12623",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 245,
+      "item_id": "taco_train_00566",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 252,
+      "item_id": "taco_train_21944",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 255,
+      "item_id": "taco_train_11022",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 260,
+      "item_id": "taco_train_24559",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 263,
+      "item_id": "taco_train_14709",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 268,
+      "item_id": "taco_train_12935",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 271,
+      "item_id": "taco_train_13236",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 278,
+      "item_id": "taco_train_02477",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 281,
+      "item_id": "taco_train_03395",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 282,
+      "item_id": "taco_train_08576",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 285,
+      "item_id": "taco_train_07625",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 288,
+      "item_id": "taco_train_10583",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 290,
+      "item_id": "taco_train_13321",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 291,
+      "item_id": "taco_train_12249",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 295,
+      "item_id": "taco_train_16186",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 297,
+      "item_id": "taco_train_07480",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 301,
+      "item_id": "taco_train_14132",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 302,
+      "item_id": "taco_train_16023",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 304,
+      "item_id": "taco_train_01819",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 307,
+      "item_id": "taco_train_08040",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 317,
+      "item_id": "taco_train_21389",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 318,
+      "item_id": "taco_train_02129",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 321,
+      "item_id": "taco_train_14020",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 322,
+      "item_id": "taco_train_09587",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 323,
+      "item_id": "taco_train_17777",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 324,
+      "item_id": "taco_train_15015",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 326,
+      "item_id": "taco_train_19213",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 327,
+      "item_id": "taco_train_10257",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 329,
+      "item_id": "taco_train_15170",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 332,
+      "item_id": "taco_train_03333",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 335,
+      "item_id": "taco_train_05521",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 336,
+      "item_id": "taco_train_02434",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 338,
+      "item_id": "taco_train_08339",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 339,
+      "item_id": "taco_train_14546",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 340,
+      "item_id": "taco_train_17845",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 343,
+      "item_id": "taco_train_07588",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 345,
+      "item_id": "taco_train_15096",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 346,
+      "item_id": "taco_train_02507",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 353,
+      "item_id": "taco_train_25196",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 356,
+      "item_id": "taco_train_21327",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 357,
+      "item_id": "taco_train_00256",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 358,
+      "item_id": "taco_train_03223",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 360,
+      "item_id": "taco_train_18200",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 361,
+      "item_id": "taco_train_04343",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 364,
+      "item_id": "taco_train_11244",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 366,
+      "item_id": "taco_train_03641",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 373,
+      "item_id": "taco_train_23177",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 374,
+      "item_id": "taco_train_21239",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 377,
+      "item_id": "taco_train_00598",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 378,
+      "item_id": "taco_train_20805",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 381,
+      "item_id": "taco_train_05612",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 387,
+      "item_id": "taco_train_09828",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 392,
+      "item_id": "taco_train_12471",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 396,
+      "item_id": "taco_train_01215",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 397,
+      "item_id": "taco_train_01094",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 398,
+      "item_id": "taco_train_17290",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    },
+    {
+      "position": 399,
+      "item_id": "taco_train_02266",
+      "historical_exact_hit": false,
+      "historical_semantic_review": "pending",
+      "manual_cross_history_review": "pending"
+    }
+  ],
+  "claims": {
+    "historical_text_opened_in_this_audit": false,
+    "full_semantic_history_complete": false,
+    "near_duplicate_review_complete": false,
+    "gpu_training_authorized": false
+  },
+  "audit_sha256": "f84a968fa3b9ad6f37cfec720f7a5ee8b3c64768b8c222b75ccc04672ba832e1"
+}

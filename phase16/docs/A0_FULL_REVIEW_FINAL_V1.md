@@ -1,5 +1,9 @@
 # P16-R0 A0 full CPU contract/oracle review
 
+**Historical snapshot:** subsequent checks found incorrect frozen oracles at
+positions 392 and 398. See `A0_CPU_FOLLOWUP_V1.md` for the amended evidence and
+current pending gates; the counts below describe the original review only.
+
 ## Outcome
 
 The hash-frozen 168-record independent-oracle review queue is exhausted.

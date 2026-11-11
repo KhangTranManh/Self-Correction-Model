@@ -1,0 +1,19 @@
+{
+  "schema_version": "p16_a0_position392_source_audit_v1",
+  "position": 392,
+  "item_id": "taco_train_12471",
+  "source": {
+    "bank_sha256": "1a5334e86e8904a35aa4d04234480057523c801104ce991b6b1c1b237e19a352",
+    "taco_revision": "d593ed0a2becbbc952230bb89be09189bf1056dc",
+    "shard": "train-00004-of-00009.parquet",
+    "shard_sha256": "d634726c27b85171494f7d38abfcd31d773a205002f9218bb54bc2cba49c99d4",
+    "question_sha256": "fb529a6b2ecb4c66b92f41e903495bbb3c8797a7c4d46b499fad987308794a4d"
+  },
+  "non_ascii_codepoints": [
+    "U+00A3"
+  ],
+  "replacement_character_count": 0,
+  "currency_symbol": "U+00A3",
+  "claim": "source identity and code points only; output formatting remains a separate contract question",
+  "audit_sha256": "78e772bf2e320810551c1a6d674e911a7478daa8d6e58f5f3e54b0c146ba9514"
+}

@@ -256,3 +256,10 @@ outputs had independent-case mismatches, zero matched all cases and position
 392 is unresolved because its test used the wrong input type. No correction
 is admitted. The summary SHA-256 is
 `72dc0309902724f80d4a4d4c29ff797b2dce1c99da9d0b73f07fac394e9c05ef`.
+
+`a0_oracle_input_shape_triage_v1.json` flags positions 343 and 392 for
+contract review. The prompt supports 343's variadic call; 392 remains held.
+`a0_cpu_sandbox_v2/position_398_amendment_v2.json` supersedes position 398's
+incorrect original oracle and sandbox interpretation. The current pending
+gates are in `a0_cpu_followup_worklist_v1.json`; the prior exact-history scan
+is bound to those identities by `a0_existing_history_evidence_v1.json`.
