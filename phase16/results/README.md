@@ -249,3 +249,10 @@ gates and GPU authorization stay closed.
 verifies source identities and oracle evidence but contains no sandbox
 results. See `../docs/A0_CPU_SANDBOX_CLOSURE_V2.md` for the comparison and
 classification changes and the limitations of the earlier closure.
+
+`a0_cpu_sandbox_v2/` now contains the twelve immutable execution batches,
+the exact rerun of the prior 24 and a verified `summary.json`: 141 completed
+outputs had independent-case mismatches, zero matched all cases and position
+392 is unresolved because its test used the wrong input type. No correction
+is admitted. The summary SHA-256 is
+`72dc0309902724f80d4a4d4c29ff797b2dce1c99da9d0b73f07fac394e9c05ef`.

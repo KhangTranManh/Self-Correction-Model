@@ -1,0 +1,245 @@
+{
+  "schema_version": "p16_a0_cpu_sandbox_closure_batch_v2",
+  "source": {
+    "inventory_sha256": "00743b1561a4c0e632ca2020c91e7a1c891e6d9e75af28b3ff04ad7edc6be377",
+    "review_chain_tip_sha256": "e977129d03252664f1c5724c7777fab58ac71445d7e7f0a94ad4749e54dc09c2",
+    "previous_closure_sha256": "71fe8dbdf483ef380b359032b020318dc877ec4cc51a28a699f29e5badfa8ff2",
+    "source_file_sha256": {
+      "a0_admission_inventory_v1.json": "989758c90bf79ad1a3cecb81f40c14c9235d4ff210859b6f4b725f10710f6396",
+      "a0_cpu_review_batch10_v1.json": "596d2df305c415ad1e7771a18bbca27fbbc9249165a12b89b952dc9a874c0f45",
+      "a0_cpu_review_batch11_v1.json": "80a4c8e97a91e041031b9be109dcb8d56e47f1e18408d5513f971a1bdd2ab843",
+      "a0_cpu_review_batch12_v1.json": "fc33e0cca9d70fe303820fef2b68e1bc367f8510d42986da0838fa84c84e3833",
+      "a0_cpu_review_batch13_v1.json": "98e81f51aa3eba8d1fe70487f695c4b4aac9b471c97004d078816335d743d5d1",
+      "a0_cpu_review_batch14_v1.json": "9665eb104e8702ddd8fb76007dafb7e6a03e00df3d5b8c437a7d07b6fb09760c",
+      "a0_cpu_review_batch15_v1.json": "03d77f90c124872a17d211d5f4bad28a5f2a8f52bb1ae726a17c760e68d4b2ca",
+      "a0_cpu_review_batch16_v1.json": "7618756f88e5bb4d1bc84c2dee61a48fbd70b46bc16b44937e63ae6eba3dfe60",
+      "a0_cpu_review_batch17_v1.json": "259ca7dfcb8c4b78c1dd656fcfcd21d6ae6a08b2cf20681f18c3a0f492ccb1aa",
+      "a0_cpu_review_batch18_v1.json": "5cc096efb22a2e72f54c35aa29110b4893ed08df9f12caa83568bd8d2bd7aa50",
+      "a0_cpu_review_batch19_v1.json": "a839b7014f1911fa70ce1e159938694d0b62ff9a20596b706ac5266527733cfc",
+      "a0_cpu_review_batch1_v1.json": "ad8de04631ed6925968fc440ba330c161e11389dd7269d6afc624da4a3d4c406",
+      "a0_cpu_review_batch20_v1.json": "e80684f052a737a14ec58be41d2c2877d22c5efc2500a83b3d951b47b3bb4c1d",
+      "a0_cpu_review_batch21_v1.json": "af915b58b0a52002bf6e15f1584fc6bd2e15f0d45dc077057af8f175a8aded02",
+      "a0_cpu_review_batch22_v1.json": "a0b6f89dbab32f44c73877bc91e5201a847d4d1c7c3a89bab0de6c765ac6c8aa",
+      "a0_cpu_review_batch23_v1.json": "4c75e011e6a0f3fe0c2bb796b139723936e81addffd838d9db4a8f4cb7024741",
+      "a0_cpu_review_batch24_v1.json": "91f4c72e60816c6539d70587a21e882d6973867764ef4bc5517d709f6094ada5",
+      "a0_cpu_review_batch25_v1.json": "fad4ceca3399b740ab6e14b517da34ff0774d2111c7e37063c99b2d83d5f5564",
+      "a0_cpu_review_batch26_v1.json": "adb075e02910ff56057c1d205e68ddbd01c1567fbebe5bb07f498f790e42c2ca",
+      "a0_cpu_review_batch27_v1.json": "6905102540f26ac336bf6972e6ee827e823189a1964a8ef1810f8571b61704c9",
+      "a0_cpu_review_batch28_v1.json": "116838cdbcf9c1b2eeec418cb69e4d6a012ffdd9d2391996d5f91f0343b0a627",
+      "a0_cpu_review_batch29_v1.json": "71171c06266ae357e26dd9089f33bc4b40c92cf1564b8459acfacb676da082bb",
+      "a0_cpu_review_batch2_v1.json": "3f5b280853aedaba7c5ac39d24813d0670ce6b48811c85d4afdccbbe94bf6288",
+      "a0_cpu_review_batch30_v1.json": "ae0f2f8f417397293259a3a56542158d0423b25f354b83453df1c1d558546d95",
+      "a0_cpu_review_batch31_v1.json": "afce8a3c64ae0a63be2664b9c856439971f2798be37046882833e2a992324011",
+      "a0_cpu_review_batch32_v1.json": "84c6ebc0e64d439118f2b7a4ee1759e16194f78109a4b445f46d5480d873dbea",
+      "a0_cpu_review_batch33_v1.json": "bbfb30f1d167be12551cd25e8a314f392bdee84e18f03bff9fd85a4d68aede4b",
+      "a0_cpu_review_batch34_v1.json": "93ac56f38429139d46cc4f1db583db78ff0dd652ab66c9992fbf9e5e36c09abc",
+      "a0_cpu_review_batch35_v1.json": "b4750d5aadec30ebf1dee578058a4f5d8043736717a305bd66ff2629f09310fb",
+      "a0_cpu_review_batch36_v1.json": "5083224a7c92a09f21c1f5786fa9e1a5950fbe60cdb1675fc637df56fdafe826",
+      "a0_cpu_review_batch3_v1.json": "61420c35a90a70fc407df8ed49c04cf550299da377222344e618a727070bd8a5",
+      "a0_cpu_review_batch4_v1.json": "7a073d27ab956d351fe2885de5fa9e65f6611812d8cdab1eb07d880cb414a57f",
+      "a0_cpu_review_batch5_v1.json": "c28173ce9c16eb9f14463f59bed696bf8129c52699d5a6605f29eb09514f1129",
+      "a0_cpu_review_batch6_v1.json": "d46bc79d549b14f8c16f07f0fe23833601dc3383d0164b122db61441dc4ce2e3",
+      "a0_cpu_review_batch7_v1.json": "d6a357d7eda468fc4fe988c1f8bf1d3c833d4f7693135b58cb873c98650051ab",
+      "a0_cpu_review_batch8_v1.json": "587fb5c8564a9ca8b693513a5a28d295192d946528c173c0202bb6ebf35d7568",
+      "a0_cpu_review_batch9_v1.json": "083c2d4e16593947ab520c2271617242dd8bfe4e0b50fb88c648e963cb0f23eb",
+      "a0_cpu_sandbox_closure_v1.json": "102db5f50bfa4c03f4c428fac91c1864bfe39ca567891c5f4d9296bbc697f789",
+      "a0_discovery_run_v2_manifest.json": "d69c69d25f88364f842692f7bf5b5a28718fe167cd1b9cab600d3c6bfbb67d7e"
+    }
+  },
+  "offset": 0,
+  "total_remaining": 118,
+  "records": [
+    {
+      "position": 62,
+      "item_id": "taco_train_03599",
+      "family_id": "taco-nd-f265bf322f740d7e3272",
+      "recovered_output_sha256": "ea30668ca0c50cd1ed57677b5832c36f3b06fd7053d447dcb96a287a69a63520",
+      "independent_cases_sha256": "4bac2d04f40b186161d2e15d9fe0de20dd1869d2f3ac8e1bfc2f99556b924ce8",
+      "independent_expected_sha256": "9a41fccb0edc1dfae594ec205b66eba2011513739dc86e0818993bd13180c8c7",
+      "sandbox_observation": {
+        "status": "completed",
+        "callable_shape": "top_level",
+        "test_count": 6,
+        "match_count": 5,
+        "all_correct": false,
+        "actual_sha256": "8ab34debe85515ad30fcaced64808f584bfe2026110da553dec789219f7cc698"
+      },
+      "verdict": "substantive_residual_reproduced",
+      "correction_admitted": false
+    },
+    {
+      "position": 64,
+      "item_id": "taco_train_17176",
+      "family_id": "taco-nd-c3449625c7f3d179dc92",
+      "recovered_output_sha256": "bc4028e29c313e4449fcbb239608b869d9ec9a27f16d19f297c8b7e2ff9f1d4c",
+      "independent_cases_sha256": "99b9bbd82f96bf97a9040759f15e8ece4775a336e2168d358e6be6bc49e199ba",
+      "independent_expected_sha256": "cf7b724516a8088b29d8806a09ccc3a20686a21c7278995c18b729815a90341b",
+      "sandbox_observation": {
+        "status": "completed",
+        "callable_shape": "top_level",
+        "test_count": 8,
+        "match_count": 5,
+        "all_correct": false,
+        "actual_sha256": "1175ecc70baef421bd0ebd90af349fe2c957fc0305621dd6cf075b687fd1060f"
+      },
+      "verdict": "substantive_residual_reproduced",
+      "correction_admitted": false
+    },
+    {
+      "position": 66,
+      "item_id": "taco_train_15240",
+      "family_id": "taco-nd-5be40a9e92b166fd014a",
+      "recovered_output_sha256": "875755a13d1c414e39e5a0ebecd839354d53edf9d993b735201fae28a760321a",
+      "independent_cases_sha256": "294f937709737213b3543a6572e28d4c085f48431a2de4cca1e3f593da40f17d",
+      "independent_expected_sha256": "2ee9a1b5a3daa922a0c2e4828c398341dc7fc8ea6e98576795558bddeebab50c",
+      "sandbox_observation": {
+        "status": "completed",
+        "callable_shape": "top_level",
+        "test_count": 6,
+        "match_count": 3,
+        "all_correct": false,
+        "actual_sha256": "ce171e1af090a3d1c20c423b3b1443a92709a58fea8348744cc17ecc32ffd7e2"
+      },
+      "verdict": "substantive_residual_reproduced",
+      "correction_admitted": false
+    },
+    {
+      "position": 68,
+      "item_id": "taco_train_10087",
+      "family_id": "taco-nd-c12cf564b64f3cc32d9c",
+      "recovered_output_sha256": "1d3c648d7de670e80e9825a6dd849f5568909a2bc10dd76492fa2a866a0097ce",
+      "independent_cases_sha256": "7521f0087c223f83a162229fef7c4a89dc6f10036cebb84962053c78e2b9e984",
+      "independent_expected_sha256": "67c47268d431c4c812f1a8891ec87c7053978f1e889eccf77db4715242fcccee",
+      "sandbox_observation": {
+        "status": "completed",
+        "callable_shape": "top_level",
+        "test_count": 5,
+        "match_count": 1,
+        "all_correct": false,
+        "actual_sha256": "3404d3bfd3c7f4315b41e4c6d2f4d0e3bbbe8a4c884df36ac042490ae960913b"
+      },
+      "verdict": "substantive_residual_reproduced",
+      "correction_admitted": false
+    },
+    {
+      "position": 71,
+      "item_id": "taco_train_22249",
+      "family_id": "taco-nd-0d00be234c84dea735cd",
+      "recovered_output_sha256": "2d4c79c6299a75d8ea81af8f6016a115d76152ba6c5329f147ee3e8c3bcf3fe4",
+      "independent_cases_sha256": "b2ee251324e14111cc8a9ab8f36b728d58c35f56f022ae164b86ff75a998c836",
+      "independent_expected_sha256": "8b2874246e79c28ba23cd95cdddb2f2d803efca61a8c003aa6d302ab813c8ec5",
+      "sandbox_observation": {
+        "status": "completed",
+        "callable_shape": "top_level",
+        "test_count": 7,
+        "match_count": 5,
+        "all_correct": false,
+        "actual_sha256": "a8cd5c4cfff37ddebaafef5c0ceec02ec0e99b7c08949b2ad512d348ed68c12e"
+      },
+      "verdict": "substantive_residual_reproduced",
+      "correction_admitted": false
+    },
+    {
+      "position": 73,
+      "item_id": "taco_train_06181",
+      "family_id": "taco-nd-e3ff5c22b2bae8c974ef",
+      "recovered_output_sha256": "11395a9a75a8f26491540bba55c89202d52d5aa379641c780e509fb1dc90e35d",
+      "independent_cases_sha256": "2a88b8314a8509584454fe7ba12a2789840f4cabbc75fd9cab19401c4fe09673",
+      "independent_expected_sha256": "439a807151c7f7eb95c21e197003764c6589c3038243f50c765c53b7f97b663f",
+      "sandbox_observation": {
+        "status": "completed",
+        "callable_shape": "top_level",
+        "test_count": 7,
+        "match_count": 3,
+        "all_correct": false,
+        "actual_sha256": "b6cdcde56d5b5f9c43c1447cd58f1bb1a6349ed5b876641e1e3666f57fde382d"
+      },
+      "verdict": "substantive_residual_reproduced",
+      "correction_admitted": false
+    },
+    {
+      "position": 77,
+      "item_id": "taco_train_11332",
+      "family_id": "taco-nd-434c28bef0eeb257f77c",
+      "recovered_output_sha256": "84f352e05c953e4fd8045de9dd4d778faec4320e72504e32f61e49ac198e0e16",
+      "independent_cases_sha256": "9ab480b88595ea18e4c3c06dc3dab1fd606bb897c422cdf242a1ae03b6385ab0",
+      "independent_expected_sha256": "af2a99ccec64a9fd36c643e8df8c414b2ade4e2fb0fa36d6d1e5db8a8de1cfdc",
+      "sandbox_observation": {
+        "status": "completed",
+        "callable_shape": "top_level",
+        "test_count": 6,
+        "match_count": 1,
+        "all_correct": false,
+        "actual_sha256": "a64902afee5205b4311f88934a9ab7adb149f3484c9e461fcecc664292dc0916"
+      },
+      "verdict": "substantive_residual_reproduced",
+      "correction_admitted": false
+    },
+    {
+      "position": 80,
+      "item_id": "taco_train_11425",
+      "family_id": "taco-nd-26b83c35dcbf6f40a0a9",
+      "recovered_output_sha256": "3bf8db90dd016916d5c935968fe4ba8fa17d4d081a6c38ecd7456f1c309dcc10",
+      "independent_cases_sha256": "ffbbc13e708421ce0d84bb318751b534fbe4a71fdd3775026bf0dc17373596f2",
+      "independent_expected_sha256": "a4adcd5fafeb94f9bc2ae026bb64124b0f9a6da9c2b294383a8215d14c1ebcfd",
+      "sandbox_observation": {
+        "status": "completed",
+        "callable_shape": "top_level",
+        "test_count": 5,
+        "match_count": 4,
+        "all_correct": false,
+        "actual_sha256": "96b37f73edf5bc501b12d27925bcbcf30d9fa137b19ea93e1a19a03d9bdf0ab7"
+      },
+      "verdict": "substantive_residual_reproduced",
+      "correction_admitted": false
+    },
+    {
+      "position": 81,
+      "item_id": "taco_train_06163",
+      "family_id": "taco-nd-bdf353f680b136717e43",
+      "recovered_output_sha256": "f8a7b3f44c8231763e462e6c748be8042d2b513763651e721e9ffb88f0751058",
+      "independent_cases_sha256": "be6558adec1c3ed40284d9af7c8a3812b21ae71eabf3e83996ffb30d963580bf",
+      "independent_expected_sha256": "67d0a67e1b9e51db9a9818884c49b63bb3487e05dd3b6e415c9fbddb2d1d4672",
+      "sandbox_observation": {
+        "status": "completed",
+        "callable_shape": "top_level",
+        "test_count": 6,
+        "match_count": 2,
+        "all_correct": false,
+        "actual_sha256": "9577fdf7d1e750a6e3727af5ab9affc8ff926c9d13b711f5c4112eedaacab321"
+      },
+      "verdict": "substantive_residual_reproduced",
+      "correction_admitted": false
+    },
+    {
+      "position": 82,
+      "item_id": "taco_train_25364",
+      "family_id": "taco-nd-08a69bad5107bbb75148",
+      "recovered_output_sha256": "a5ed9d57364018b9973bae7cfe6423ffc0b13433e7c607f4180f4de8650b5f04",
+      "independent_cases_sha256": "8d7e20849253570f4c5443f353879baefa0767fb6eb30ee73835003ef2eacca7",
+      "independent_expected_sha256": "c120e855d691467262101228b83c658958ae8353dbe3946fcd69275dbd58d1ee",
+      "sandbox_observation": {
+        "status": "completed",
+        "callable_shape": "top_level",
+        "test_count": 6,
+        "match_count": 1,
+        "all_correct": false,
+        "actual_sha256": "c18126723e74d9b67f28c511ccfdb9f1572ac367ba4e7a70d60c4378ae87b870"
+      },
+      "verdict": "substantive_residual_reproduced",
+      "correction_admitted": false
+    }
+  ],
+  "counts": {
+    "substantive_residual_reproduced": 10,
+    "residual_not_reproduced": 0,
+    "execution_or_scaffold_unresolved": 0
+  },
+  "claims": {
+    "model_generation": false,
+    "gpu_used": false,
+    "correction_pool_certified": false,
+    "gpu_training_authorized": false
+  },
+  "closure_sha256": "97b0e216ca8f0ceb494b6ebe3857013ade7663814e18a8dc47b34640572bf3d8"
+}

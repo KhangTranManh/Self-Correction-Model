@@ -1,6 +1,6 @@
 # A0 CPU sandbox closure v2
 
-Status: **defined and input-verified; execution pending**.
+Status: **executed on CPU; one oracle/contract mismatch remains unresolved**.
 
 The v2 plan covers the 118 oracle-ready positions that were not included in
 the prior 24-record closure. It contains 12 ordered batches, each with at
@@ -44,6 +44,30 @@ discovery run and manifest, and previous closure. Save each output under a new
 name, then verify its hash and matching positions before moving to the next
 batch. The plan is not an execution result.
 
-The sandbox engine was unavailable when this definition was prepared. No
-new sandbox results, correction admission, protected opening or GPU
-authorization are implied.
+## Execution result
+
+All twelve planned batches completed in a CPU Docker/bubblewrap sandbox. The
+first 24 records were also rerun using exact equality. The verified aggregate
+in `../results/a0_cpu_sandbox_v2/summary.json` contains 142 checked: 141
+completed with at least one independent case mismatch, zero passed every case,
+and one had an execution error. These are sandbox observations, not final
+admission decisions; oracle correctness and remaining history, duplicate,
+correction and human gates still matter.
+
+The one error at position 392 (`pay_cheese`) exposed a flaw in the frozen
+batch-35 oracle: it supplies a number, while the captured prompt specifies an
+array of five daily values and a currency-formatted string. The runner
+therefore exercised the function with the wrong input type; this is not
+evidence of a model runtime failure on a valid input. The prompt's captured
+currency symbol also appears as a replacement character, so exact string
+serialization needs source clarification. Position 392 remains unresolved;
+do not treat its earlier oracle-ready designation as validated admission.
+The earlier review and execution artifacts remain immutable historical
+evidence. A corrected contract assessment requires a new versioned artifact.
+
+The run used Docker `--network none`, a read-only repository and root
+filesystem, two CPUs, 1 GiB RAM, a 64-process cap, and bubblewrap with an
+unprivileged UID. The container needed `SYS_ADMIN` and `NET_ADMIN` capabilities
+and an unconfined seccomp profile for nested namespace creation; candidates
+ran inside the additional bubblewrap boundary. No GPU or model generation was
+used. No correction was admitted and GPU training remains unauthorized.
