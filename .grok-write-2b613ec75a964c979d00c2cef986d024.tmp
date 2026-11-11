@@ -1,0 +1,67 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+.venv_train/
+venv/
+*.egg-info/
+.cache/
+unsloth_compiled_cache/
+
+# Data sinh ra tu pipeline (co the lon, co the chua noi dung tu DeepSeek/model)
+data/processed/
+data/attempts/
+# Phase 2: du lieu preference sinh ra (KTO seed, sycophancy) -- tai tao duoc tu
+# build_preference.py + output Phase 1, co chua text sua cua model.
+data/preference/
+
+# Model checkpoints / LoRA adapters
+.venv-phase4-verify/
+outputs/
+*.safetensors
+*.bin
+*.gguf
+
+# Phase 4 generated rollouts, checkpoints, and run evidence are synchronized
+# between the workstation and GPU host but are not committed.
+phase4/data/rollouts/
+phase4/runs/
+
+# Logs
+*.log
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+.venv-*/
+
+# Local Grok skill trees (not study data)
+.grok/
+
+# Phase 16 HuggingFace dumps and clones. Re-download from pinned revisions
+# or copy to Drive. Do not commit; GitHub rejects files over 100 MB.
+*.parquet
+phase16/data/taco_raw/
+phase16/data/codecontests_candidate_raw/
+phase16/data/four_source_raw/
+phase16/data/extended_source_raw/
+phase16/data/mathematics_dataset_source/
+phase16/data/python_deps/
+phase16/data/taco_inventory_v1/train_metadata.jsonl
+phase16/data/taco_inventory_v2/train_metadata.jsonl
+
+# Regenerable Phase 16 CPU audit dumps
+phase16/results/four_source_candidate_audit.json
+phase16/results/four_source_candidate_audit_v2.json
+phase16/results/kodcode_text_audit.json
+phase16/results/kodcode_text_audit_v2.json
+

@@ -1,11 +1,2 @@
 # Auto detect text files and perform LF normalization
 * text=auto
-
-# Phase 16 A0 evidence is byte-hashed in its run manifest. Keep the downloaded
-# LF representation on every platform so a Windows checkout remains verifiable.
-phase16/results/a0_discovery_run_v2/*.json text eol=lf
-phase16/results/a0_discovery_run_v2/*.jsonl text eol=lf
-phase16/results/a0_discovery_run_v2_manifest.json text eol=lf
-phase16/results/a0_preflight_fail_v1.jsonl text eol=lf
-phase16/results/a0_admission_inventory_v1.json text eol=lf
-phase16/results/a0_cpu_review_batch*.json text eol=lf
